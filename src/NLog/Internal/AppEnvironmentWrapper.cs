@@ -42,6 +42,8 @@ namespace NLog.Internal.Fakeables
 
     internal sealed class AppEnvironmentWrapper : IAppEnvironment
     {
+        const string LongUNCPrefix = @"\\?\UNC\";
+
         private const string UnknownProcessName = "<unknown>";
 
         private string _entryAssemblyLocation;
@@ -104,7 +106,23 @@ namespace NLog.Internal.Fakeables
         /// <inheritdoc/>
         public XmlReader LoadXmlFile(string path)
         {
+            path = FixFilePathWithLongUNC(path);
             return XmlReader.Create(path);
+        }
+
+        /// <summary>
+        /// Long UNC paths does not allow relative-path-logic using '..', and also cannot be loaded into Uri by XmlReader
+        /// </summary>
+        internal static string FixFilePathWithLongUNC(string filepath)
+        {
+            if (!string.IsNullOrEmpty(filepath) && filepath.StartsWith(LongUNCPrefix, StringComparison.Ordinal) && filepath.Length < 260)
+            {
+                // Workaround .NET 9 regression returning long-form UNC
+                // path from AppDomain.CurrentDomain.BaseDirectory
+                // https://github.com/dotnet/runtime/issues/109846
+                filepath = @"\\" + filepath.Substring(LongUNCPrefix.Length);
+            }
+            return filepath;
         }
 
         private static string LookupAppDomainBaseDirectory()

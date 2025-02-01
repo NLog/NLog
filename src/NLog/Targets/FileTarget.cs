@@ -42,6 +42,7 @@ namespace NLog.Targets
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Internal.Fakeables;
     using NLog.Layouts;
     using NLog.Targets.FileAppenders;
     using NLog.Targets.FileArchiveHandlers;
@@ -1112,7 +1113,7 @@ namespace NLog.Targets
                 filename = Path.Combine(dirName, new string(fileNameChars));
             }
 
-            var filepath = FileInfoHelper.IsRelativeFilePath(filename) ? Path.Combine(LogManager.LogFactory.CurrentAppEnvironment.AppDomainBaseDirectory, filename) : filename;
+            var filepath = FileInfoHelper.IsRelativeFilePath(filename) ? Path.Combine(AppEnvironmentWrapper.FixFilePathWithLongUNC(LogManager.LogFactory.CurrentAppEnvironment.AppDomainBaseDirectory), filename) : filename;
             filepath = Path.GetFullPath(filepath);
             return filepath;
         }
