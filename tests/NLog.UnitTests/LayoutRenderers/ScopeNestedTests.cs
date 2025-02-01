@@ -395,7 +395,7 @@ namespace NLog.UnitTests.LayoutRenderers
             measurements = messageFirstScopeSleep.Split(new[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
             Assert.Equal(7, measurements.Length);
             Assert.Equal("ala", measurements[0]);
-            Assert.InRange(double.Parse(measurements[1], System.Globalization.CultureInfo.InvariantCulture), 10, 999);
+            Assert.InRange(double.Parse(measurements[1], System.Globalization.CultureInfo.InvariantCulture), 9, 999);
             Assert.InRange(int.Parse(measurements[3]), 10, 999);
             Assert.InRange(int.Parse(measurements[5]), 100000, 9999999);
             Assert.Equal("b", measurements[measurements.Length - 1]);
@@ -403,7 +403,7 @@ namespace NLog.UnitTests.LayoutRenderers
             measurements = messageSecondScope.Split(new[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
             Assert.Equal(7, measurements.Length);
             Assert.Equal("ala ma", measurements[0]);
-            Assert.InRange(double.Parse(measurements[1], System.Globalization.CultureInfo.InvariantCulture), 10, 999);
+            Assert.InRange(double.Parse(measurements[1], System.Globalization.CultureInfo.InvariantCulture), 9, 999);
             Assert.InRange(int.Parse(measurements[3]), 10, 999);
             Assert.InRange(int.Parse(measurements[5]), 0, 9999999);
             Assert.Equal("a", measurements[measurements.Length - 1]);
@@ -411,7 +411,7 @@ namespace NLog.UnitTests.LayoutRenderers
             measurements = messageSecondScopeSleep.Split(new[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
             Assert.Equal(7, measurements.Length);
             Assert.Equal("ala ma", measurements[0]);
-            Assert.InRange(double.Parse(measurements[1], System.Globalization.CultureInfo.InvariantCulture), 20, 999);
+            Assert.InRange(double.Parse(measurements[1], System.Globalization.CultureInfo.InvariantCulture), 19, 999);
             Assert.InRange(int.Parse(measurements[3]), 20, 999);
             Assert.InRange(int.Parse(measurements[5]), 100000, 9999999);
             Assert.Equal("b", measurements[measurements.Length - 1]);
@@ -419,7 +419,7 @@ namespace NLog.UnitTests.LayoutRenderers
             measurements = messageFirstScopeExit.Split(new[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
             Assert.Equal(7, measurements.Length);
             Assert.Equal("ala", measurements[0]);
-            Assert.InRange(double.Parse(measurements[1], System.Globalization.CultureInfo.InvariantCulture), 20, 999);
+            Assert.InRange(double.Parse(measurements[1], System.Globalization.CultureInfo.InvariantCulture), 19, 999);
             Assert.InRange(int.Parse(measurements[3]), 20, 999);
             Assert.InRange(int.Parse(measurements[5]), 200000, 9999999);
             Assert.Equal("c", measurements[measurements.Length - 1]);

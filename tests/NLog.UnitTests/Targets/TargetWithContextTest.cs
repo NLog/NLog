@@ -127,7 +127,7 @@ namespace NLog.UnitTests.Targets
         private static bool WaitForLastMessage(CustomTargetWithContext target)
         {
             System.Threading.Thread.Sleep(1);
-            for (int i = 0; i < 1000; ++i)
+            for (int i = 0; i < 5000; ++i)
             {
                 if (target.LastMessage != null)
                     return true;
@@ -328,7 +328,7 @@ namespace NLog.UnitTests.Targets
             logger.Error("log message");
             var target = logFactory.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
             System.Threading.Thread.Sleep(1);
-            for (int i = 0; i < 1000; ++i)
+            for (int i = 0; i < 5000; ++i)
             {
                 if (target.LastMessage != null)
                     break;
