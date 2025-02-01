@@ -261,7 +261,9 @@ namespace NLog.Layouts
                 {
                     if (!attribute.EscapeForwardSlashInternal.HasValue)
                     {
+#pragma warning disable CS0618 // Type or member is obsolete
                         attribute.EscapeForwardSlash = _escapeForwardSlashInternal.Value;
+#pragma warning restore CS0618 // Type or member is obsolete
                     }
                 }
             }
