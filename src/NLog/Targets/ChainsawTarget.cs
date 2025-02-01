@@ -52,14 +52,18 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/Chainsaw/Simple/Example.cs" />
     /// </example>
     [Target("Chainsaw")]
+#pragma warning disable CS0618 // Type or member is obsolete
     public class ChainsawTarget : NLogViewerTarget
+#pragma warning restore CS0618 // Type or member is obsolete
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ChainsawTarget" /> class.
         /// </summary>
         public ChainsawTarget()
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             IncludeNLogData = false;
+#pragma warning restore CS0618 // Type or member is obsolete
             IncludeEventProperties = true;
         }
 

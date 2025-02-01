@@ -1190,7 +1190,9 @@ namespace NLog.UnitTests.Targets
   </rules>
 </nlog>");
 
+#pragma warning disable CS0618 // Type or member is obsolete
             var target = config.LoggingRules[0].Targets[0] as NLogViewerTarget;
+#pragma warning restore CS0618 // Type or member is obsolete
             Assert.NotNull(target);
         }
 

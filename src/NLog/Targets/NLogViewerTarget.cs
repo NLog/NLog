@@ -59,6 +59,7 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/NLogViewer/Simple/Example.cs" />
     /// </example>
     [Target("NLogViewer")]
+    [Obsolete("Non-Standard Log4j-xml-output. Instead use ChainsawTarget. Marked obsolete with NLog v5.4")]
     public class NLogViewerTarget : NetworkTarget, IIncludeContext
     {
         private readonly Log4JXmlEventLayout _log4JLayout = new Log4JXmlEventLayout();
@@ -91,6 +92,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
+        [Obsolete("Non-Standard Log4j-xml-output. Instead use Log4JXmlEventLayout.Parameters. Marked obsolete with NLog v5.4")]
         public bool IncludeNLogData
         {
             get => Renderer.IncludeNLogData;
