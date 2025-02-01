@@ -75,6 +75,24 @@ namespace NLog.Common
             Info("NLog internal logger initialized.");
         }
 
+        internal static void ResetConfig()
+        {
+            ExceptionThrowWhenWriting = false;
+            LogWriter = null;
+            InternalEventOccurred = null;
+
+            LogLevel = LogLevel.Off;
+            IncludeTimestamp = true;
+            LogToConsole = false;
+            LogToConsoleError = false;
+            LogFile = string.Empty;
+
+#pragma warning disable CS0618 // Type or member is obsolete
+            _logMessageReceived = null;
+            LogToTrace = false;
+#pragma warning restore CS0618 // Type or member is obsolete
+        }
+
         /// <summary>
         /// Gets or sets the minimal internal log level.
         /// </summary>

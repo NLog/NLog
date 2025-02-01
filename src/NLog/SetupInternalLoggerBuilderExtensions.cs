@@ -84,11 +84,11 @@ namespace NLog
         /// <summary>
         /// Configures <see cref="InternalLogger.LogToTrace"/>
         /// </summary>
+        [Obsolete("Instead use InternalLogger.LogWriter. Marked obsolete with NLog v5.4")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static ISetupInternalLoggerBuilder LogToTrace(this ISetupInternalLoggerBuilder setupBuilder, bool enabled)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
             InternalLogger.LogToTrace = enabled;
-#pragma warning restore CS0618 // Type or member is obsolete
             return setupBuilder;
         }
 #endif
@@ -143,6 +143,15 @@ namespace NLog
         }
 
         /// <summary>
+        /// Resets the InternalLogger configuration without resolving default values from Environment-varialbes or App.config
+        /// </summary>
+        public static ISetupInternalLoggerBuilder ResetConfig(this ISetupInternalLoggerBuilder setupBuilder)
+        {
+            InternalLogger.ResetConfig();
+            return setupBuilder;
+        }
+
+        /// <summary>
         /// Configure the InternalLogger properties from Environment-variables and App.config using <see cref="InternalLogger.Reset"/>
         /// </summary>
         /// <remarks>
@@ -164,6 +173,8 @@ namespace NLog
         /// - nlog.internalLogToTrace
         /// - nlog.internalLogIncludeTimestamp
         /// </remarks>
+        [Obsolete("Replaced by ResetConfig to reset configurtion. Marked obsolete with NLog v5.4")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static ISetupInternalLoggerBuilder SetupFromEnvironmentVariables(this ISetupInternalLoggerBuilder setupBuilder)
         {
             InternalLogger.Reset();
