@@ -486,9 +486,11 @@ namespace NLog
                 ev.Properties.Add("EventID", ResolvedBoxedEventId(eventId.Value));
             }
 
-            if (stackTrace != null && userFrameIndex >= 0)
+            if (stackTrace != null)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 ev.SetStackTrace(stackTrace, userFrameIndex);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
 
             logger.Log(typeof(System.Diagnostics.Trace), ev);

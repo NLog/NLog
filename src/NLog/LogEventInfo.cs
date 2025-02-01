@@ -221,13 +221,14 @@ namespace NLog
         ///
         /// Gets the stack frame of the method that did the logging.
         /// </summary>
-        [Obsolete("Instead use ${callsite} or CallerMemberName. Marked obsolete on NLog 5.3")]
+        [Obsolete("Instead use ${callsite} or CallerMemberName. Marked obsolete with NLog 5.3")]
         public StackFrame UserStackFrame => CallSiteInformation?.UserStackFrame;
 
         /// <summary>
         /// Gets the number index of the stack frame that represents the user
         /// code (not the NLog code).
         /// </summary>
+        [Obsolete("Instead use ${callsite} or CallerMemberName. Marked obsolete with NLog 5.4")]
         public int UserStackFrameNumber => CallSiteInformation?.UserStackFrameNumberLegacy ?? CallSiteInformation?.UserStackFrameNumber ?? 0;
 
         /// <summary>
@@ -547,7 +548,17 @@ namespace NLog
         /// Sets the stack trace for the event info.
         /// </summary>
         /// <param name="stackTrace">The stack trace.</param>
+        public void SetStackTrace(StackTrace stackTrace)
+        {
+            GetCallSiteInformationInternal().SetStackTrace(stackTrace, default(int?));
+        }
+
+        /// <summary>
+        /// Sets the stack trace for the event info.
+        /// </summary>
+        /// <param name="stackTrace">The stack trace.</param>
         /// <param name="userStackFrame">Index of the first user stack frame within the stack trace (Negative means NLog should skip stackframes from System-assemblies).</param>
+        [Obsolete("Instead use SetStackTrace or SetCallerInfo. Marked obsolete with NLog 5.4")]
         public void SetStackTrace(StackTrace stackTrace, int userStackFrame)
         {
             GetCallSiteInformationInternal().SetStackTrace(stackTrace, userStackFrame >= 0 ? userStackFrame : (int?)null);
