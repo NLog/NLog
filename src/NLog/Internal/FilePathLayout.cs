@@ -94,7 +94,7 @@ namespace NLog.Internal
 
             if (_filePathKind == FilePathKind.Relative)
             {
-                _baseDir = LogFactory.DefaultAppEnvironment.AppDomainBaseDirectory;
+                _baseDir = Fakeables.AppEnvironmentWrapper.FixFilePathWithLongUNC(LogFactory.DefaultAppEnvironment.AppDomainBaseDirectory);
                 InternalLogger.Debug("FileTarget FilePathLayout with FilePathKind.Relative using AppDomain.BaseDirectory: {0}", _baseDir);
             }
 

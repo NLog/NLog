@@ -121,14 +121,25 @@ namespace NLog.UnitTests.LayoutRenderers
             appEnvironment.AppDomainBaseDirectory = tempDir;
             appEnvironment.UserTempFilePath = tempDir;
             appEnvironment.CurrentProcessFilePath = processPath;
-            var baseLayoutRenderer = new NLog.LayoutRenderers.BaseDirLayoutRenderer(appEnvironment);
 
             // test1
-            Assert.Equal(tempDir, baseLayoutRenderer.Render(LogEventInfo.CreateNullEvent()));
+            var baseLayoutRenderer1 = new NLog.LayoutRenderers.BaseDirLayoutRenderer(appEnvironment);
+            Assert.Equal(tempDir, baseLayoutRenderer1.Render(LogEventInfo.CreateNullEvent()));
 
             // test2
-            baseLayoutRenderer.FixTempDir = true;
-            Assert.Equal(Path.GetDirectoryName(processPath), baseLayoutRenderer.Render(LogEventInfo.CreateNullEvent()));
+            var baseLayoutRenderer2 = new NLog.LayoutRenderers.BaseDirLayoutRenderer(appEnvironment);
+            baseLayoutRenderer2.FixTempDir = true;
+            Assert.Equal(Path.GetDirectoryName(processPath), baseLayoutRenderer2.Render(LogEventInfo.CreateNullEvent()));
+        }
+
+        [Fact]
+        public void BaseDir_FixFilePathForNet9_WhenLongUNC()
+        {
+            var appEnvironment = new Mocks.AppEnvironmentMock(null, null);
+            appEnvironment.AppDomainBaseDirectory = @"\\?\UNC\major\tom\groundcontrol\bin\Development\net9.0\NLog.config";
+            var baseLayoutRenderer = new NLog.LayoutRenderers.BaseDirLayoutRenderer(appEnvironment);
+
+            Assert.Equal(@"\\major\tom\groundcontrol\bin\Development\net9.0\NLog.config", baseLayoutRenderer.Render(LogEventInfo.CreateNullEvent()));
         }
     }
 }
