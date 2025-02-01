@@ -52,13 +52,10 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class BaseDirLayoutRenderer : LayoutRenderer
     {
-        private readonly string _baseDir;
+        private readonly string _appDomainDirectory;
+        private string _baseDir;
 
 #if !NETSTANDARD1_3
-        /// <summary>
-        /// cached
-        /// </summary>
-        private string _processDir;
         private readonly IAppEnvironment _appEnvironment;
 #endif
 
@@ -86,7 +83,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         internal BaseDirLayoutRenderer(IAppEnvironment appEnvironment)
         {
-            _baseDir = appEnvironment.AppDomainBaseDirectory;
+            _baseDir = _appDomainDirectory = appEnvironment.AppDomainBaseDirectory;
 #if !NETSTANDARD1_3
             _appEnvironment = appEnvironment;
 #endif
@@ -105,25 +102,34 @@ namespace NLog.LayoutRenderers
         public string Dir { get; set; }
 
         /// <inheritdoc/>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        protected override void InitializeLayoutRenderer()
         {
-            var dir = _baseDir;
+            base.InitializeLayoutRenderer();
+
+            _baseDir = _appDomainDirectory;
+
 #if !NETSTANDARD1_3
             if (ProcessDir)
             {
-                dir = _processDir ?? (_processDir = GetProcessDir());
+                var processDir = GetProcessDir();
+                if (!string.IsNullOrEmpty(processDir))
+                    _baseDir = processDir;
             }
             else if (FixTempDir)
             {
-                dir = _processDir ?? (_processDir = GetFixedTempBaseDir(_baseDir));
+                var fixTempDir = GetFixedTempBaseDir(_appDomainDirectory);
+                if (!string.IsNullOrEmpty(fixTempDir))
+                    _baseDir = fixTempDir;
             }
 #endif
+            _baseDir = AppEnvironmentWrapper.FixFilePathWithLongUNC(_baseDir);
+            _baseDir = PathHelpers.CombinePaths(_baseDir, Dir, File);
+        }
 
-            if (dir != null)
-            {
-                var path = PathHelpers.CombinePaths(dir, Dir, File);
-                builder.Append(path);
-            }
+        /// <inheritdoc/>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            builder.Append(_baseDir);
         }
 
 #if !NETSTANDARD1_3

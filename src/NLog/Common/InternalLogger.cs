@@ -40,6 +40,7 @@ namespace NLog.Common
     using System.Reflection;
     using JetBrains.Annotations;
     using NLog.Internal;
+    using NLog.Internal.Fakeables;
     using NLog.Time;
 
     /// <summary>
@@ -640,6 +641,10 @@ namespace NLog.Common
 #endif
                 if (internalLogFile.IndexOf('%') >= 0)
                     internalLogFile = Environment.ExpandEnvironmentVariables(internalLogFile);
+
+                if (!string.IsNullOrEmpty(internalLogFile) && internalLogFile.IndexOf('.') >= 0)
+                    internalLogFile = AppEnvironmentWrapper.FixFilePathWithLongUNC(internalLogFile);
+
                 return internalLogFile;
             }
             catch
