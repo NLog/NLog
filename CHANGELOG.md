@@ -4,6 +4,33 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### version 5.4 (2025/02/02)
+
+**Improvements**
+- [#5698](https://github.com/NLog/NLog/pull/5698) Fix AppDomain BaseDirectory on NET9 when it returns Long UNC (#5698) (@snakefoot)
+- [#5700](https://github.com/NLog/NLog/pull/5700) AsyncTaskTarget - Reduce default throttle after failure to 50ms instead of 500ms (#5700) (@snakefoot)
+- [#5702](https://github.com/NLog/NLog/pull/5702) ColoredConsoleTarget - Recognize NO_COLOR environment variable (#5702) (@snakefoot)
+- [#5696](https://github.com/NLog/NLog/pull/5696) More InternalLogger output when target disabled because failed to initialize (#5696) (@snakefoot)
+- [#5681](https://github.com/NLog/NLog/pull/5681) SimpleLayout - FromString avoid first chance exception when unknown layoutrenderer-type (#5681) (@snakefoot)
+- [#5651](https://github.com/NLog/NLog/pull/5651) ObjectGraphScanner - Handle property-getter that throws when AOT (#5651) (@snakefoot)
+- [#5656](https://github.com/NLog/NLog/pull/5656) LoggingConfigurationParser - Handle property-getter that throws when AOT (#5656) (@snakefoot)
+- [#5604](https://github.com/NLog/NLog/pull/5604) Remove Serializable-attribute and SerializationInfo since obsolete in NET8 (#5604) (@snakefoot)
+- [#5695](https://github.com/NLog/NLog/pull/5695) Marked JsonLayout EscapeForwardSlash as obsolete (#5695) (@snakefoot)
+- [#5694](https://github.com/NLog/NLog/pull/5694) Marked NLogViewerTarget and IncludeNLogData as obsolete (#5694) (@snakefoot)
+- [#5693](https://github.com/NLog/NLog/pull/5693) Marked XmlLoggingConfiguration AppConfig as obsolete (#5693) (@snakefoot)
+- [#5692](https://github.com/NLog/NLog/pull/5692) Marked XmlLoggingConfiguration InitializeSucceeded as obsolete (#5692) (@snakefoot)
+- [#5691](https://github.com/NLog/NLog/pull/5691) Marked LogEventInfo SetStackTrace with UserStackFrameNumber as obsolete (#5691) (@snakefoot)
+- [#5689](https://github.com/NLog/NLog/pull/5689) Marked SetupFromEnvironmentVariables and LogToTrace as obsolete (#5689) (@snakefoot)
+- [#5687](https://github.com/NLog/NLog/pull/5687) FileTarget - Introduced WriteToFile without concurrentWrites (#5687) (@snakefoot)
+- [#5682](https://github.com/NLog/NLog/pull/5682) TraceTarget - Fixed Header output (#5682) (@snakefoot)
+- [#5680](https://github.com/NLog/NLog/pull/5680) CounterLayoutRenderer - Lock on readonly field to fix Sonar Code Smell (#5680) (@snakefoot)
+- [#5630](https://github.com/NLog/NLog/pull/5630) LogAssemblyVersion should check InternalLogger IsInfoEnabled (#5630) (@snakefoot)
+- [#5684](https://github.com/NLog/NLog/pull/5684) MethodFactory - Only register methods from class-types (#5684) (@snakefoot)
+- [#5686](https://github.com/NLog/NLog/pull/5686) StringBuilderExt - Updated EqualTo for StringBuilder to foreach-loop (#5686) (@snakefoot)
+- [#5611](https://github.com/NLog/NLog/pull/5611) SimpleLayout - Refactor RenderAllRenderers to use foreach (#5611) (@snakefoot)
+- [#5610](https://github.com/NLog/NLog/pull/5610) JsonLayout - Optimize AppendStringEscape for success path (#5610) (@snakefoot)
+- [#5601](https://github.com/NLog/NLog/pull/5601) JsonLayout - Optimize ExcludeEmptyProperties to skip string cast (#5601) (@snakefoot)
+
 ### Version 5.3.4 (2024/09/12)
 
 **Improvements**
