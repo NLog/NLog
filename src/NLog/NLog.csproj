@@ -10,7 +10,7 @@ NLog supports traditional logging, structured logging and the combination of bot
 
 Supported platforms:
 
-- .NET 5, 6, 7 and 8
+- .NET 5, 6, 7, 8 and 9
 - .NET Core 1, 2 and 3
 - .NET Standard 1.3+ and 2.0+
 - .NET Framework 3.5 - 4.8
@@ -29,19 +29,29 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 ChangeLog:
 
-- Layout.FromMethod that supports typed Layout (#5572) (@smnsht)
-- Layout.FromMethod that supports typed Layout (without boxing) (#5580) (@snakefoot)
-- ScopeContextPropertyEnumerator - Optimize HasUniqueCollectionKeys (#5570) (@snakefoot)
-- XmlLayout - Fixed bug in handling unsafe xml property names (#5571) (@snakefoot)
-- FuncThreadAgnosticLayoutRenderer - Implement IRawValue (#5573) (@snakefoot)
-- Introduced OnConfigurationAssigned to signal activation of LoggingConfiguration (#5577) (@snakefoot)
-- Update copyright to 2024, and removed trailing white spaces in source code (#5578) (@snakefoot)
-- Fixed various issues reported by EnableNETAnalyzers (#5585) (@snakefoot)
-- NetworkTarget - Added SendTimeoutSeconds to assign TCP Socket SendTimeout (#5587) (@snakefoot)
-- DateLayoutRenderer - Optimize for Round Trip ISO 8601 Date Format = o (#5588) (@snakefoot)
-- LayoutRenderer - Changed Render-method to use StringBuilderPool (#5589) (@snakefoot)
-- JsonLayout - Precalculate Json-Document delimiters upfront (#5600) (@snakefoot)
-- JsonLayout - Refactor code to simplify rendering of scope properties (#5599) (@snakefoot)
+- Fix AppDomain BaseDirectory on NET9 when it returns Long UNC (#5698) (@snakefoot)
+- AsyncTaskTarget - Reduce default throttle after failure to 50ms instead of 500ms (#5700) (@snakefoot)
+- ColoredConsoleTarget - Recognize NO_COLOR environment variable (#5702) (@snakefoot)
+- More InternalLogger output when target disabled because failed to initialize (#5696) (@snakefoot)
+- SimpleLayout - FromString avoid first chance exception when unknown layoutrenderer-type (#5681) (@snakefoot)
+- ObjectGraphScanner - Handle property-getter that throws when AOT (#5651) (@snakefoot)
+- LoggingConfigurationParser - Handle property-getter that throws when AOT (#5656) (@snakefoot)
+- Remove Serializable-attribute and SerializationInfo since obsolete in NET8 (#5604) (@snakefoot)
+- Marked JsonLayout EscapeForwardSlash as obsolete (#5695) (@snakefoot)
+- Marked NLogViewerTarget and IncludeNLogData as obsolete (#5694) (@snakefoot)
+- Marked XmlLoggingConfiguration AppConfig as obsolete (#5693) (@snakefoot)
+- Marked XmlLoggingConfiguration InitializeSucceeded as obsolete (#5692) (@snakefoot)
+- Marked LogEventInfo SetStackTrace with UserStackFrameNumber as obsolete (#5691) (@snakefoot)
+- Marked SetupFromEnvironmentVariables and LogToTrace as obsolete (#5689) (@snakefoot)
+- FileTarget - Introduced WriteToFile without concurrentWrites (#5687) (@snakefoot)
+- TraceTarget - Fixed Header output (#5682) (@snakefoot)
+- CounterLayoutRenderer - Lock on readonly field to fix Sonar Code Smell (#5680) (@snakefoot)
+- LogAssemblyVersion should check InternalLogger IsInfoEnabled (#5630) (@snakefoot)
+- MethodFactory - Only register methods from class-types (#5684) (@snakefoot)
+- StringBuilderExt - Updated EqualTo for StringBuilder to foreach-loop (#5686) (@snakefoot)
+- SimpleLayout - Refactor RenderAllRenderers to use foreach (#5611) (@snakefoot)
+- JsonLayout - Optimize AppendStringEscape for success path (#5610) (@snakefoot)
+- JsonLayout - Optimize ExcludeEmptyProperties to skip string cast (#5601) (@snakefoot)
 
 NLog v5.2 changes how to load extensions: https://nlog-project.org/2023/05/30/nlog-5-2-trim-warnings.html
 
