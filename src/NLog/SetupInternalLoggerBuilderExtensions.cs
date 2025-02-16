@@ -33,9 +33,12 @@
 
 namespace NLog
 {
+    using System;
+    using System.Globalization;
     using System.IO;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Extension methods to setup NLog <see cref="InternalLogger"/> options
@@ -103,6 +106,142 @@ namespace NLog
         {
             InternalLogger.InternalEventOccurred -= eventSubscriber;
             return setupBuilder;
+        }
+
+        /// <summary>
+        /// Resets the InternalLogger configuration without resolving default values from Environment-varialbes or App.config
+        /// </summary>
+        public static ISetupInternalLoggerBuilder ResetConfig(this ISetupInternalLoggerBuilder setupBuilder)
+        {
+            InternalLogger.Reset();
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Configure the InternalLogger properties from Environment-variables and App.config using <see cref="InternalLogger.Reset"/>
+        /// </summary>
+        /// <remarks>
+        /// Recognizes the following environment-variables:
+        ///
+        /// - NLOG_INTERNAL_LOG_LEVEL
+        /// - NLOG_INTERNAL_LOG_FILE
+        /// - NLOG_INTERNAL_LOG_TO_CONSOLE
+        /// - NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR
+        /// - NLOG_INTERNAL_INCLUDE_TIMESTAMP
+        ///
+        /// Legacy .NetFramework platform will also recognizes the following app.config settings:
+        ///
+        /// - nlog.internalLogLevel
+        /// - nlog.internalLogFile
+        /// - nlog.internalLogToConsole
+        /// - nlog.internalLogToConsoleError
+        /// - nlog.internalLogIncludeTimestamp
+        /// </remarks>
+        public static ISetupInternalLoggerBuilder SetupFromEnvironmentVariables(this ISetupInternalLoggerBuilder setupBuilder)
+        {
+            InternalLogger.LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Off);
+            InternalLogger.IncludeTimestamp = GetSetting("nlog.internalLogIncludeTimestamp", "NLOG_INTERNAL_INCLUDE_TIMESTAMP", true);
+            InternalLogger.LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
+            InternalLogger.LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
+            InternalLogger.LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
+            return setupBuilder;
+        }
+
+        private static string GetAppSettings(string configName)
+        {
+#if NETFRAMEWORK
+            try
+            {
+                return System.Configuration.ConfigurationManager.AppSettings[configName];
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+            }
+#endif
+            return null;
+        }
+
+        private static string GetSettingString(string configName, string envName)
+        {
+            try
+            {
+                string settingValue = GetAppSettings(configName);
+                if (settingValue != null)
+                    return settingValue;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+            }
+
+            try
+            {
+                string settingValue = EnvironmentHelper.GetSafeEnvironmentVariable(envName);
+                if (!string.IsNullOrEmpty(settingValue))
+                    return settingValue;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+            }
+
+            return null;
+        }
+
+        private static LogLevel GetSetting(string configName, string envName, LogLevel defaultValue)
+        {
+            string value = GetSettingString(configName, envName);
+            if (value is null)
+            {
+                return defaultValue;
+            }
+
+            try
+            {
+                return LogLevel.FromString(value);
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+
+                return defaultValue;
+            }
+        }
+
+        private static T GetSetting<T>(string configName, string envName, T defaultValue)
+        {
+            string value = GetSettingString(configName, envName);
+            if (value is null)
+            {
+                return defaultValue;
+            }
+
+            try
+            {
+                return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+
+                return defaultValue;
+            }
         }
     }
 }
