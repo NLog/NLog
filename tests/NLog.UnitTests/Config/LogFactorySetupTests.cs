@@ -587,7 +587,6 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        [Obsolete("Replaced by ResetLogOutput to reset configurtion. Marked obsolete with NLog v5.4")]
         public void SetupInternalLoggerSetupFromEnvironmentVariablesTest()
         {
             try
