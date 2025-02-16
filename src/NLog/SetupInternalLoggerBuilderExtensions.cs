@@ -173,8 +173,6 @@ namespace NLog
         /// - nlog.internalLogToTrace
         /// - nlog.internalLogIncludeTimestamp
         /// </remarks>
-        [Obsolete("Replaced by ResetConfig to reset configurtion. Marked obsolete with NLog v5.4")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static ISetupInternalLoggerBuilder SetupFromEnvironmentVariables(this ISetupInternalLoggerBuilder setupBuilder)
         {
             InternalLogger.Reset();
