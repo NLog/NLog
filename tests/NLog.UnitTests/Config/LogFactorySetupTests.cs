@@ -565,6 +565,52 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void SetupInternalLoggerSetupFromEnvironmentVariablesTest()
+        {
+            try
+            {
+                // Arrange
+                InternalLogger.Reset();
+                var logFactory = new LogFactory();
+                InternalLogger.IncludeTimestamp = false;
+
+                // Act
+                logFactory.Setup().SetupInternalLogger(b => b.SetupFromEnvironmentVariables().SetMinimumLogLevel(LogLevel.Fatal));
+
+                // Assert
+                Assert.True(InternalLogger.IncludeTimestamp);
+                Assert.Equal(LogLevel.Fatal, InternalLogger.LogLevel);
+            }
+            finally
+            {
+                InternalLogger.Reset();
+            }
+        }
+
+        [Fact]
+        public void SetupInternalLoggerResetConfigTest()
+        {
+            try
+            {
+                // Arrange
+                InternalLogger.Reset();
+                var logFactory = new LogFactory();
+                InternalLogger.IncludeTimestamp = false;
+
+                // Act
+                logFactory.Setup().SetupInternalLogger(b => b.ResetConfig().SetMinimumLogLevel(LogLevel.Fatal));
+
+                // Assert
+                Assert.True(InternalLogger.IncludeTimestamp);
+                Assert.Equal(LogLevel.Fatal, InternalLogger.LogLevel);
+            }
+            finally
+            {
+                InternalLogger.Reset();
+            }
+        }
+
+        [Fact]
         public void SetupExtensionsRegisterConditionMethodTest()
         {
             // Arrange
