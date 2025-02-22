@@ -126,6 +126,9 @@ namespace NLog.Config
         /// </summary>
         public static IEnumerable<ILoggingConfigurationElement> FilterChildren(this ILoggingConfigurationElement element, string elementName)
         {
+            if (elementName is null || element?.Children is null)
+                yield break;
+
             foreach (var childElement in element.Children)
             {
                 if (childElement.Name.Equals(elementName, StringComparison.OrdinalIgnoreCase))
