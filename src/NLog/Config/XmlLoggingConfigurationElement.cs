@@ -121,22 +121,6 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Returns children elements with the specified element name.
-        /// </summary>
-        /// <param name="elementName">Name of the element.</param>
-        /// <returns>Children elements with the specified element name.</returns>
-        public IEnumerable<XmlLoggingConfigurationElement> FilterChildren(string elementName)
-        {
-            foreach (var childElement in Children)
-            {
-                if (childElement.LocalName.Equals(elementName, StringComparison.OrdinalIgnoreCase))
-                {
-                    yield return childElement;
-                }
-            }
-        }
-
-        /// <summary>
         /// Asserts that the name of the element is among specified element names.
         /// </summary>
         /// <param name="allowedNames">The allowed names.</param>

@@ -110,6 +110,11 @@ namespace NLog.Internal.Fakeables
             return XmlReader.Create(path);
         }
 
+        public TextReader LoadTextFile(string path)
+        {
+            return new StreamReader(path);
+        }
+
         /// <summary>
         /// Long UNC paths does not allow relative-path-logic using '..', and also cannot be loaded into Uri by XmlReader
         /// </summary>

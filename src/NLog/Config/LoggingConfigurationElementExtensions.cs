@@ -32,6 +32,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using NLog.Common;
@@ -118,6 +119,20 @@ namespace NLog.Config
         {
             var typeAttributeValue = sectionNameForRequiredValue != null ? element.GetRequiredValue("type", sectionNameForRequiredValue) : element.GetOptionalValue("type", null);
             return StripOptionalNamespacePrefix(typeAttributeValue)?.Trim();
+        }
+
+        /// <summary>
+        /// Returns children elements with the specified element name.
+        /// </summary>
+        public static IEnumerable<ILoggingConfigurationElement> FilterChildren(this ILoggingConfigurationElement element, string elementName)
+        {
+            foreach (var childElement in element.Children)
+            {
+                if (childElement.Name.Equals(elementName, StringComparison.OrdinalIgnoreCase))
+                {
+                    yield return childElement;
+                }
+            }
         }
 
         /// <summary>
