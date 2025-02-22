@@ -79,6 +79,7 @@ namespace NLog.Config
         public XmlLoggingConfiguration([NotNull] string fileName, LogFactory logFactory)
             : base(logFactory)
         {
+            Guard.ThrowIfNullOrEmpty(fileName);
             LoadFromXmlFile(fileName);
         }
 
@@ -236,6 +237,8 @@ namespace NLog.Config
 
         private void LoadFromXmlFile(string fileName)
         {
+            Guard.ThrowIfNullOrEmpty(fileName);
+
             using (var textReader = LogFactory.CurrentAppEnvironment.LoadTextFile(fileName))
             {
                 ParseFromTextReader(textReader, fileName);
