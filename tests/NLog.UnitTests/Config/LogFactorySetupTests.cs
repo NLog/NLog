@@ -736,7 +736,7 @@ namespace NLog.UnitTests.Config
         public void SetupBuilderLoadConfigurationFromFileMissingTest()
         {
             // Arrange
-            var appEnv = new Mocks.AppEnvironmentMock(f => false, f => null);
+            var appEnv = new Mocks.AppEnvironmentMock(f => false);
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
             var logFactory = new LogFactory(configLoader);
 

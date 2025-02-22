@@ -236,9 +236,9 @@ namespace NLog.Config
 
         private void LoadFromXmlFile(string fileName)
         {
-            using (XmlReader reader = CreateFileReader(fileName))
+            using (var textReader = LogFactory.CurrentAppEnvironment.LoadTextFile(fileName))
             {
-                ParseFromXmlReader(reader, fileName);
+                ParseFromTextReader(textReader, fileName);
             }
         }
 
@@ -246,26 +246,8 @@ namespace NLog.Config
         {
             using (var stringReader = new StringReader(xmlContent))
             {
-                using (XmlReader reader = XmlReader.Create(stringReader))
-                {
-                    ParseFromXmlReader(reader, fileName);
-                }
+                ParseFromTextReader(stringReader, fileName);
             }
-        }
-
-        /// <summary>
-        /// Create XML reader for (xml config) file.
-        /// </summary>
-        /// <param name="fileName">filepath</param>
-        /// <returns>reader or <c>null</c> if filename is empty.</returns>
-        private XmlReader CreateFileReader(string fileName)
-        {
-            if (!string.IsNullOrEmpty(fileName))
-            {
-                fileName = fileName.Trim();
-                return LogFactory.CurrentAppEnvironment.LoadXmlFile(fileName);
-            }
-            return null;
         }
 
         /// <summary>
@@ -280,6 +262,30 @@ namespace NLog.Config
                 _originalFileName = string.IsNullOrEmpty(fileName) ? fileName : GetFileLookupKey(fileName);
                 reader.MoveToContent();
                 var content = new XmlLoggingConfigurationElement(reader);
+                if (!string.IsNullOrEmpty(_originalFileName))
+                {
+                    InternalLogger.Info("Loading NLog config from XML file: {0}", _originalFileName);
+                    ParseTopLevel(content, fileName, autoReloadDefault: false);
+                }
+                else
+                {
+                    ParseTopLevel(content, null, autoReloadDefault: false);
+                }
+            }
+            catch (Exception exception)
+            {
+                var configurationException = new NLogConfigurationException($"Exception when loading configuration {fileName}", exception);
+                InternalLogger.Error(exception, configurationException.Message);
+                throw configurationException;
+            }
+        }
+
+        private void ParseFromTextReader(TextReader textReader, string fileName)
+        {
+            try
+            {
+                _originalFileName = string.IsNullOrEmpty(fileName) ? fileName : GetFileLookupKey(fileName);
+                var content = new XmlParserConfigurationElement(new XmlParser(textReader).LoadDocument(out var _));
                 if (!string.IsNullOrEmpty(_originalFileName))
                 {
                     InternalLogger.Info("Loading NLog config from XML file: {0}", _originalFileName);
@@ -321,11 +327,11 @@ namespace NLog.Config
         /// <param name="content"></param>
         /// <param name="filePath">path to config file.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseTopLevel(XmlLoggingConfigurationElement content, [CanBeNull] string filePath, bool autoReloadDefault)
+        private void ParseTopLevel(ILoggingConfigurationElement content, [CanBeNull] string filePath, bool autoReloadDefault)
         {
             content.AssertName("nlog", "configuration");
 
-            switch (content.LocalName.ToUpperInvariant())
+            switch (content.Name.ToUpperInvariant())
             {
                 case "CONFIGURATION":
                     ParseConfigurationElement(content, filePath, autoReloadDefault);
@@ -343,7 +349,7 @@ namespace NLog.Config
         /// <param name="configurationElement"></param>
         /// <param name="filePath">path to config file.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseConfigurationElement(XmlLoggingConfigurationElement configurationElement, [CanBeNull] string filePath, bool autoReloadDefault)
+        private void ParseConfigurationElement(ILoggingConfigurationElement configurationElement, [CanBeNull] string filePath, bool autoReloadDefault)
         {
             InternalLogger.Trace("ParseConfigurationElement");
             configurationElement.AssertName("configuration");
