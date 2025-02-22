@@ -143,7 +143,7 @@ namespace NLog.UnitTests
         public void LoadConfigFile_EmptyEnvironment_UseCurrentDirectory()
         {
             // Arrange
-            var appEnvMock = new AppEnvironmentMock(f => true, f => null);
+            var appEnvMock = new AppEnvironmentMock(f => true);
             var fileLoader = new LoggingConfigurationFileLoader(appEnvMock);
 
             // Act
@@ -161,7 +161,7 @@ namespace NLog.UnitTests
         {
             // Arrange
             var tmpDir = Path.GetTempPath();
-            var appEnvMock = new AppEnvironmentMock(f => true, f => null)
+            var appEnvMock = new AppEnvironmentMock(f => true)
             {
                 AppDomainBaseDirectory = Path.Combine(tmpDir, "BaseDir"),
 #if NETFRAMEWORK
@@ -188,7 +188,7 @@ namespace NLog.UnitTests
         {
             // Arrange
             var tmpDir = Path.GetTempPath();
-            var appEnvMock = new AppEnvironmentMock(f => true, f => null)
+            var appEnvMock = new AppEnvironmentMock(f => true)
             {
                 AppDomainBaseDirectory = Path.Combine(tmpDir, "BaseDir"),
 #if NETFRAMEWORK
@@ -216,7 +216,7 @@ namespace NLog.UnitTests
         {
             // Arrange
             var tmpDir = Path.GetTempPath();
-            var appEnvMock = new AppEnvironmentMock(f => true, f => null)
+            var appEnvMock = new AppEnvironmentMock(f => true)
             {
                 AppDomainBaseDirectory = Path.Combine(tmpDir, "BaseDir"),
 #if NETFRAMEWORK
@@ -243,7 +243,7 @@ namespace NLog.UnitTests
         {
             // Arrange
             var tmpDir = Path.GetTempPath();
-            var appEnvMock = new AppEnvironmentMock(f => true, f => null)
+            var appEnvMock = new AppEnvironmentMock(f => true)
             {
                 AppDomainBaseDirectory = Path.Combine(tmpDir, "BaseDir"),
 #if NETFRAMEWORK
@@ -274,7 +274,7 @@ namespace NLog.UnitTests
         {
             // Arrange
             var tmpDir = "/var/tmp/";
-            var appEnvMock = new AppEnvironmentMock(f => true, f => null)
+            var appEnvMock = new AppEnvironmentMock(f => true)
             {
                 AppDomainBaseDirectory = Path.Combine(tmpDir, "BaseDir"),
 #if NETFRAMEWORK
