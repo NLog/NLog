@@ -572,11 +572,11 @@ namespace NLog
                             break;
 
                         case "AUTOLOGGERNAME":
-                            AutoLoggerName = value?.Length == 1 ? value[0] == '1' : bool.Parse(value);
+                            AutoLoggerName = value.Length == 1 ? value[0] == '1' : bool.Parse(value);
                             break;
 
                         case "DISABLEFLUSH":
-                            DisableFlush = value?.Length == 1 ? value[0] == '1' : bool.Parse(value);
+                            DisableFlush = value.Length == 1 ? value[0] == '1' : bool.Parse(value);
                             break;
                     }
                 }
