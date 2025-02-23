@@ -470,70 +470,30 @@ namespace NLog.Internal
 
                 if (includeSpaces && chr == '&')
                 {
-                    // &amp; / &quot; / &lt; / &gt; / &#xE343;
                     _xmlSource.MoveNext();
                     if (_xmlSource.Current == '#' && char.IsDigit(_xmlSource.Peek()))
                     {
-                        int unicode = '\0';
-                        while (_xmlSource.MoveNext())
-                        {
-                            if (_xmlSource.Current == ';')
-                                break;
-
-                            if (_xmlSource.Current < '0' || _xmlSource.Current > '9')
-                                throw new XmlParserException("Invalid XML document. Cannot parse unicode-char digit-value");
-
-                            unicode *= 10;
-                            unicode += _xmlSource.Current - '0';
-                        }
+                        int unicode = TryParseUnicodeValue();
                         if (unicode != 0)
                             _stringBuilder.Append((char)unicode);
                     }
                     else if (_xmlSource.Current == '#' && (_xmlSource.Peek() == 'x' || _xmlSource.Peek() == 'X'))
                     {
                         _xmlSource.MoveNext();
-                        int unicode = '\0';
-                        while (_xmlSource.MoveNext())
-                        {
-                            if (_xmlSource.Current == ';')
-                                break;
-
-                            unicode *= 16;
-                            if ("abcdef".Contains(char.ToLower(_xmlSource.Current)))
-                                unicode += int.Parse(_xmlSource.Current.ToString(), System.Globalization.NumberStyles.HexNumber);
-                            else if (_xmlSource.Current < '0' || _xmlSource.Current > '9')
-                                throw new XmlParserException("Invalid XML document. Cannot parse unicode-char hex-value");
-                            else
-                                unicode += _xmlSource.Current - '0';
-                        }
+                        int unicode = TryParseUnicodeValueHex();
                         if (unicode != 0)
                             _stringBuilder.Append((char)unicode);
                     }
+                    else if (TryParseSpecialXmlToken(out var specialToken))
+                    {
+                        _stringBuilder.Append(specialToken);
+                    }
                     else
                     {
-                        bool tokenFound = false;
-                        foreach (var token in _specialTokens)
-                        {
-                            if (_xmlSource.Current == token.Key[0] && _xmlSource.Peek() == token.Key[1])
-                            {
-                                foreach (var tokenChr in token.Key)
-                                    if (!SkipChar(tokenChr))
-                                        throw new XmlParserException($"Invalid XML document. Cannot parse special token: {token.Key}");
-                                if (_xmlSource.Current != ';')
-                                    throw new XmlParserException($"Invalid XML document. Cannot parse special token: {token.Key}");
-                                _stringBuilder.Append(token.Value);
-                                tokenFound = true;
-                                break;
-                            }
-                        }
-
-                        if (!tokenFound)
-                        {
-                            _stringBuilder.Append('&');
-                            if (_xmlSource.Current == expectedChar)
-                                break;
-                            _stringBuilder.Append(_xmlSource.Current);
-                        }
+                        _stringBuilder.Append('&');
+                        if (_xmlSource.Current == expectedChar)
+                            break;
+                        _stringBuilder.Append(_xmlSource.Current);
                     }
                 }
                 else
@@ -542,10 +502,8 @@ namespace NLog.Internal
                     {
                         if (_stringBuilder.Length == 0 && CharIsSpace(chr))
                             continue;
-                        if (!trimEnd && CharIsSpace(chr))
-                            trimEnd = true;
-                        else
-                            trimEnd = false;
+
+                        trimEnd = !trimEnd && CharIsSpace(chr);
                     }
                     _stringBuilder.Append(chr);
                 }
@@ -553,6 +511,64 @@ namespace NLog.Internal
 
             var value = _stringBuilder.ToString();
             return trimEnd ? value.TrimEnd(ArrayHelper.Empty<char>()) : value;
+        }
+
+        private int TryParseUnicodeValue()
+        {
+            int unicode = '\0';
+            while (_xmlSource.MoveNext())
+            {
+                if (_xmlSource.Current == ';')
+                    break;
+
+                if (_xmlSource.Current < '0' || _xmlSource.Current > '9')
+                    throw new XmlParserException("Invalid XML document. Cannot parse unicode-char digit-value");
+
+                unicode *= 10;
+                unicode += _xmlSource.Current - '0';
+            }
+
+            return unicode;
+        }
+
+        private int TryParseUnicodeValueHex()
+        {
+            int unicode = '\0';
+            while (_xmlSource.MoveNext())
+            {
+                if (_xmlSource.Current == ';')
+                    break;
+
+                unicode *= 16;
+                if ("abcdef".Contains(char.ToLower(_xmlSource.Current)))
+                    unicode += int.Parse(_xmlSource.Current.ToString(), System.Globalization.NumberStyles.HexNumber);
+                else if (_xmlSource.Current < '0' || _xmlSource.Current > '9')
+                    throw new XmlParserException("Invalid XML document. Cannot parse unicode-char hex-value");
+                else
+                    unicode += _xmlSource.Current - '0';
+            }
+
+            return unicode;
+        }
+
+        private bool TryParseSpecialXmlToken(out string xmlToken)
+        {
+            foreach (var token in _specialTokens)
+            {
+                if (_xmlSource.Current == token.Key[0] && _xmlSource.Peek() == token.Key[1])
+                {
+                    foreach (var tokenChr in token.Key)
+                        if (!SkipChar(tokenChr))
+                            throw new XmlParserException($"Invalid XML document. Cannot parse special token: {token.Key}");
+                    if (_xmlSource.Current != ';')
+                        throw new XmlParserException($"Invalid XML document. Cannot parse special token: {token.Key}");
+                    xmlToken = token.Value;
+                    return true;
+                }
+            }
+
+            xmlToken = null;
+            return false;
         }
 
         private static Dictionary<string, string> _specialTokens = new Dictionary<string, string>()
