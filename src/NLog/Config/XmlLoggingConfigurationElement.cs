@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#if NETFRAMEWORK
+
 namespace NLog.Config
 {
     using System;
@@ -42,6 +44,7 @@ namespace NLog.Config
     /// <summary>
     /// Represents simple XML element with case-insensitive attribute semantics.
     /// </summary>
+    [Obsolete("Instead use TextReader as input. Marked obsolete with NLog 6.0")]
     internal sealed class XmlLoggingConfigurationElement : ILoggingConfigurationElement
     {
         /// <summary>
@@ -212,3 +215,5 @@ namespace NLog.Config
         }
     }
 }
+
+#endif

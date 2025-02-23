@@ -34,7 +34,6 @@
 namespace NLog.Internal.Fakeables
 {
     using System.IO;
-    using System.Xml;
 
     /// <summary>
     /// Abstract calls to FileSystem
@@ -44,9 +43,6 @@ namespace NLog.Internal.Fakeables
         /// <summary>Determines whether the specified file exists.</summary>
         /// <param name="path">The file to check.</param>
         bool FileExists(string path);
-        /// <summary>Returns the content of the specified xml-file</summary>
-        /// <param name="path">The file to load.</param>
-        XmlReader LoadXmlFile(string path);
         /// <summary>Returns the content of the specified text-file</summary>
         /// <param name="path">The file to load.</param>
         TextReader LoadTextFile(string path);

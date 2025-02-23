@@ -36,20 +36,49 @@ namespace NLog.Internal
     using System;
     using System.Globalization;
     using System.Text;
-    using System.Xml;
 
     /// <summary>
     ///  Helper class for XML
     /// </summary>
     internal static class XmlHelper
     {
-        // found on https://stackoverflow.com/questions/397250/unicode-regex-invalid-xml-characters/961504#961504
-        // filters control characters but allows only properly-formed surrogate sequences
-#if NET35
-        private static readonly System.Text.RegularExpressions.Regex InvalidXmlChars = new System.Text.RegularExpressions.Regex(
-            @"(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\uFEFF\uFFFE\uFFFF]",
-            System.Text.RegularExpressions.RegexOptions.Compiled);
-#endif
+        const char HIGH_SURROGATE_START = '\ud800';
+        const char HIGH_SURROGATE_END = '\udbff';
+
+        const char LOW_SURROGATE_START = '\udc00';
+        const char LOW_SURROGATE_END = '\udfff';
+
+        private static bool XmlConvertIsXmlChar(char chr)
+        {
+            if (chr > '\u001f' && chr < HIGH_SURROGATE_START)
+                return true;
+
+            if (chr == '\u0009' || chr == '\u000a' || chr == '\u000d')
+                return true;
+
+            if (chr >= HIGH_SURROGATE_START && chr <= HIGH_SURROGATE_END)
+                return false;
+
+            if (chr == '\ufffe' || chr == '\uffff')
+                return false;
+
+            return true;
+        }
+
+        public static bool XmlConvertIsHighSurrogate(char chr)
+        {
+            return chr >= HIGH_SURROGATE_START && chr <= HIGH_SURROGATE_END;
+        }
+
+        public static bool XmlConvertIsLowSurrogate(char chr)
+        {
+            return chr >= LOW_SURROGATE_START && chr <= LOW_SURROGATE_END;
+        }
+
+        public static bool XmlConvertIsXmlSurrogatePair(char lowChar, char highChar)
+        {
+            return XmlConvertIsHighSurrogate(highChar) && XmlConvertIsLowSurrogate(lowChar);
+        }
 
         /// <summary>
         /// removes any unusual unicode characters that can't be encoded into XML
@@ -59,14 +88,13 @@ namespace NLog.Internal
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
 
-#if !NET35
             int length = text.Length;
             for (int i = 0; i < length; ++i)
             {
                 char ch = text[i];
-                if (!XmlConvert.IsXmlChar(ch))
+                if (!XmlConvertIsXmlChar(ch))
                 {
-                    if (i + 1 < text.Length && XmlConvert.IsXmlSurrogatePair(text[i + 1], ch))
+                    if (i + 1 < text.Length && XmlConvertIsXmlSurrogatePair(text[i + 1], ch))
                     {
                         ++i;
                     }
@@ -76,13 +104,10 @@ namespace NLog.Internal
                     }
                 }
             }
+
             return text;
-#else
-            return InvalidXmlChars.Replace(text, string.Empty);
-#endif
         }
 
-#if !NET35
         /// <summary>
         /// Cleans string of any invalid XML chars found
         /// </summary>
@@ -94,14 +119,13 @@ namespace NLog.Internal
             for (int i = 0; i < text.Length; ++i)
             {
                 char ch = text[i];
-                if (XmlConvert.IsXmlChar(ch))
+                if (XmlConvertIsXmlChar(ch))
                 {
                     sb.Append(ch);
                 }
             }
             return sb.ToString();
         }
-#endif
 
         internal static void PerformXmlEscapeWhenNeeded(StringBuilder builder, int startPos, bool xmlEncodeNewlines)
         {
@@ -226,29 +250,30 @@ namespace NLog.Internal
 
         internal static string XmlConvertToString(float value)
         {
-            if (float.IsNaN(value))
-                return XmlConvert.ToString(value);
-
             if (float.IsInfinity(value))
                 return Convert.ToString(value, CultureInfo.InvariantCulture);
-
-            return EnsureDecimalPlace(XmlConvert.ToString(value));
+            else
+                return EnsureDecimalPlace(value.ToString("R", NumberFormatInfo.InvariantInfo));
         }
 
         internal static string XmlConvertToString(double value)
         {
-            if (double.IsNaN(value))
-                return XmlConvert.ToString(value);
-
             if (double.IsInfinity(value))
                 return Convert.ToString(value, CultureInfo.InvariantCulture);
-
-            return EnsureDecimalPlace(XmlConvert.ToString(value));
+            else
+                return EnsureDecimalPlace(value.ToString("R", NumberFormatInfo.InvariantInfo));
         }
 
         internal static string XmlConvertToString(decimal value)
         {
-            return EnsureDecimalPlace(XmlConvert.ToString(value));
+            return EnsureDecimalPlace(value.ToString(null, NumberFormatInfo.InvariantInfo));
+        }
+
+        internal static string XmlConvertToString(DateTime value)
+        {
+            if (value.Kind != DateTimeKind.Utc)
+                value = value.ToUniversalTime();
+            return value.ToString("yyyy-MM-ddTHH:mm:ss.fffffffzzzzzz");
         }
 
         /// <summary>
@@ -385,23 +410,23 @@ namespace NLog.Internal
             switch (objTypeCode)
             {
                 case TypeCode.Boolean:
-                    return XmlConvert.ToString(value.ToBoolean(CultureInfo.InvariantCulture));   // boolean as lowercase
+                    return value.ToBoolean(CultureInfo.InvariantCulture) ? "true" : "false";   // boolean as lowercase
                 case TypeCode.Byte:
-                    return XmlConvert.ToString(value.ToByte(CultureInfo.InvariantCulture));
+                    return value.ToByte(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.SByte:
-                    return XmlConvert.ToString(value.ToSByte(CultureInfo.InvariantCulture));
+                    return value.ToSByte(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.Int16:
-                    return XmlConvert.ToString(value.ToInt16(CultureInfo.InvariantCulture));
+                    return value.ToInt16(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.Int32:
-                    return XmlConvert.ToString(value.ToInt32(CultureInfo.InvariantCulture));
+                    return value.ToInt32(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.Int64:
-                    return XmlConvert.ToString(value.ToInt64(CultureInfo.InvariantCulture));
+                    return value.ToInt64(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.UInt16:
-                    return XmlConvert.ToString(value.ToUInt16(CultureInfo.InvariantCulture));
+                    return value.ToUInt16(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.UInt32:
-                    return XmlConvert.ToString(value.ToUInt32(CultureInfo.InvariantCulture));
+                    return value.ToUInt32(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.UInt64:
-                    return XmlConvert.ToString(value.ToUInt64(CultureInfo.InvariantCulture));
+                    return value.ToUInt64(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.Single:
                     return XmlConvertToString(value.ToSingle(CultureInfo.InvariantCulture));
                 case TypeCode.Double:
@@ -409,7 +434,7 @@ namespace NLog.Internal
                 case TypeCode.Decimal:
                     return XmlConvertToString(value.ToDecimal(CultureInfo.InvariantCulture));
                 case TypeCode.DateTime:
-                    return XmlConvert.ToString(value.ToDateTime(CultureInfo.InvariantCulture), XmlDateTimeSerializationMode.Utc);
+                    return XmlConvertToString(value.ToDateTime(CultureInfo.InvariantCulture));
                 case TypeCode.Char:
                     return safeConversion ? RemoveInvalidXmlChars(value.ToString(CultureInfo.InvariantCulture)) : value.ToString(CultureInfo.InvariantCulture);
                 case TypeCode.String:

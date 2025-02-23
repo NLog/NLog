@@ -89,7 +89,9 @@ namespace NLog.Config
             try
             {
                 string configFileName = LogFactory.DefaultAppEnvironment.AppDomainConfigurationFile;
+#pragma warning disable CS0618 // Type or member is obsolete
                 _config = new XmlLoggingConfiguration(reader, configFileName, LogManager.LogFactory);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
             catch (Exception exception)
             {

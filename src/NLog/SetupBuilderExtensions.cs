@@ -35,6 +35,7 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Runtime.CompilerServices;
     using NLog.Common;
@@ -207,24 +208,24 @@ namespace NLog
                 var nlogConfigStream = applicationAssembly.GetManifestResourceStream(resourcePaths[0]);
                 if (nlogConfigStream?.Length > 0)
                 {
-                    NLog.Common.InternalLogger.Info("Loading NLog XML config from assembly embedded resource '{0}'", resourceName);
-                    using (var xmlReader = System.Xml.XmlReader.Create(nlogConfigStream))
+                    InternalLogger.Info("Loading NLog XML config from assembly embedded resource '{0}'", resourceName);
+                    using (var streamReader = new StreamReader(nlogConfigStream))
                     {
-                        setupBuilder.LoadConfiguration(new XmlLoggingConfiguration(xmlReader, null, setupBuilder.LogFactory));
+                        setupBuilder.LoadConfiguration(new XmlLoggingConfiguration(streamReader, null, setupBuilder.LogFactory));
                     }
                 }
                 else
                 {
-                    NLog.Common.InternalLogger.Debug("No NLog config loaded. Empty Embedded resource '{0}' found in assembly: {1}", resourceName, applicationAssembly.FullName);
+                    InternalLogger.Debug("No NLog config loaded. Empty Embedded resource '{0}' found in assembly: {1}", resourceName, applicationAssembly.FullName);
                 }
             }
             else if (resourcePaths.Count == 0)
             {
-                NLog.Common.InternalLogger.Debug("No NLog config loaded. No matching embedded resource '{0}' found in assembly: {1}", resourceName, applicationAssembly.FullName);
+                InternalLogger.Debug("No NLog config loaded. No matching embedded resource '{0}' found in assembly: {1}", resourceName, applicationAssembly.FullName);
             }
             else
             {
-                NLog.Common.InternalLogger.Error("No NLog config loaded. Multiple matching embedded resource '{0}' found in assembly: {1}", resourceName, applicationAssembly.FullName);
+                InternalLogger.Error("No NLog config loaded. Multiple matching embedded resource '{0}' found in assembly: {1}", resourceName, applicationAssembly.FullName);
             }
             return setupBuilder;
         }

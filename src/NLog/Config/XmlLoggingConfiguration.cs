@@ -39,14 +39,13 @@ namespace NLog.Config
     using System.IO;
     using System.Linq;
     using System.Threading;
-    using System.Xml;
     using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
-    /// Loads NLog LoggingConfiguration from xml-file (like app.config) using <see cref="XmlReader"/>
+    /// Loads NLog LoggingConfiguration from xml-file
     /// </summary>
     /// <remarks>
     /// Make sure to update official NLog.xsd schema, when adding new config-options outside targets/layouts
@@ -88,30 +87,67 @@ namespace NLog.Config
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
+        /// <param name="xmlSource">Configuration file to be read.</param>
+        public XmlLoggingConfiguration([NotNull] TextReader xmlSource)
+            : this(xmlSource, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
+        /// </summary>
+        /// <param name="xmlSource">Configuration file to be read.</param>
+        /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
+        public XmlLoggingConfiguration([NotNull] TextReader xmlSource, [CanBeNull] string fileName)
+            : this(xmlSource, fileName, LogManager.LogFactory)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
+        /// </summary>
+        /// <param name="xmlSource">Configuration file to be read.</param>
+        /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
+        /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
+        public XmlLoggingConfiguration([NotNull] TextReader xmlSource, [CanBeNull] string fileName, LogFactory logFactory)
+            : base(logFactory)
+        {
+            Guard.ThrowIfNull(xmlSource);
+            ParseFromTextReader(xmlSource, fileName);
+        }
+
+#if NETFRAMEWORK
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
+        /// </summary>
         /// <param name="reader">XML reader to read from.</param>
-        public XmlLoggingConfiguration([NotNull] XmlReader reader)
+        [Obsolete("Instead use TextReader as input. Marked obsolete with NLog 6.0")]
+        public XmlLoggingConfiguration([NotNull] System.Xml.XmlReader reader)
             : this(reader, null) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
-        /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
+        /// <param name="reader">XmlReader containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
-        public XmlLoggingConfiguration([NotNull] XmlReader reader, [CanBeNull] string fileName)
+        [Obsolete("Instead use TextReader as input. Marked obsolete with NLog 6.0")]
+        public XmlLoggingConfiguration([NotNull] System.Xml.XmlReader reader, [CanBeNull] string fileName)
             : this(reader, fileName, LogManager.LogFactory)
         { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
-        /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
+        /// <param name="reader">XmlReader containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
-        public XmlLoggingConfiguration([NotNull] XmlReader reader, [CanBeNull] string fileName, LogFactory logFactory)
+        [Obsolete("Instead use TextReader as input. Marked obsolete with NLog 6.0")]
+        public XmlLoggingConfiguration([NotNull] System.Xml.XmlReader reader, [CanBeNull] string fileName, LogFactory logFactory)
             : base(logFactory)
         {
             ParseFromXmlReader(reader, fileName);
         }
+#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
@@ -299,12 +335,14 @@ namespace NLog.Config
             }
         }
 
+#if NETFRAMEWORK
         /// <summary>
         /// Initializes the configuration.
         /// </summary>
-        /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
+        /// <param name="reader">XmlReader containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
-        private void ParseFromXmlReader([NotNull] XmlReader reader, [CanBeNull] string fileName)
+        [Obsolete("Instead use TextReader as input. Marked obsolete with NLog 6.0")]
+        private void ParseFromXmlReader([NotNull] System.Xml.XmlReader reader, [CanBeNull] string fileName)
         {
             try
             {
@@ -328,6 +366,7 @@ namespace NLog.Config
                 throw configurationException;
             }
         }
+#endif
 
         private void ParseFromTextReader(TextReader textReader, string fileName)
         {
@@ -362,10 +401,10 @@ namespace NLog.Config
         {
             if (!_fileMustAutoReloadLookup.ContainsKey(GetFileLookupKey(fileName)))
             {
-                using (var reader = LogFactory.CurrentAppEnvironment.LoadXmlFile(fileName))
+                using (var textReader = LogFactory.CurrentAppEnvironment.LoadTextFile(fileName))
                 {
-                    reader.MoveToContent();
-                    ParseTopLevel(new XmlLoggingConfigurationElement(reader, false), fileName, autoReloadDefault);
+                    var configElement = new XmlParserConfigurationElement(new XmlParser(textReader).LoadDocument(out var _), false);
+                    ParseTopLevel(configElement, fileName, autoReloadDefault);
                 }
             }
         }

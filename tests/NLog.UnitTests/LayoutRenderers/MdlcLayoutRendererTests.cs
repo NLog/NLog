@@ -54,8 +54,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>";
 
-            var element = XElement.Parse(configXml);
-            var config = new XmlLoggingConfiguration(element.CreateReader(), null);
+            var config = XmlLoggingConfiguration.CreateFromXmlString(configXml);
             LogManager.Configuration = config;
 
             _target = LogManager.Configuration.FindTargetByName("debug") as DebugTarget;
