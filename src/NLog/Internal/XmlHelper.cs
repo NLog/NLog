@@ -271,9 +271,11 @@ namespace NLog.Internal
 
         internal static string XmlConvertToString(DateTime value)
         {
-            if (value.Kind != DateTimeKind.Utc)
+            if (value.Kind == DateTimeKind.Unspecified)
+                value = new DateTime(value.Ticks, DateTimeKind.Utc);
+            else
                 value = value.ToUniversalTime();
-            return value.ToString("yyyy-MM-ddTHH:mm:ss.fffffffzzzzzz");
+            return value.ToString("yyyy-MM-ddTHH:mm:ss.FFFFFFFK");
         }
 
         /// <summary>
