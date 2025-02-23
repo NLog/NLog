@@ -42,13 +42,11 @@ namespace NLog.UnitTests.Mocks
     internal sealed class AppEnvironmentMock : IAppEnvironment
     {
         private readonly Func<string, bool> _fileexists;
-        private readonly Func<string, XmlReader> _loadXmlFile;
         private readonly Func<string, TextReader> _loadTextFile;
 
-        public AppEnvironmentMock(Func<string, bool> fileExists = null, Func<string, XmlReader> loadXmlFile = null, Func<string, TextReader> loadTextFile = null)
+        public AppEnvironmentMock(Func<string, bool> fileExists = null, Func<string, TextReader> loadTextFile = null)
         {
             _fileexists = fileExists != null ? fileExists : (f) => throw new NotSupportedException("FileSystem unavailable");
-            _loadXmlFile = loadXmlFile != null ? loadXmlFile : (f) => throw new NotSupportedException("FileSystem unavailable");
             _loadTextFile = loadTextFile != null ? loadTextFile : (f) => throw new NotSupportedException("FileSystem unavailable");
         }
 
@@ -82,11 +80,6 @@ namespace NLog.UnitTests.Mocks
         public bool FileExists(string path)
         {
             return _fileexists(path);
-        }
-
-        public XmlReader LoadXmlFile(string path)
-        {
-            return _loadXmlFile(path);
         }
 
         public TextReader LoadTextFile(string path)
