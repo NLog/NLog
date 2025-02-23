@@ -528,6 +528,9 @@ namespace NLog.Internal
                 unicode += _xmlSource.Current - '0';
             }
 
+            if (unicode >= '\uffff')
+                throw new XmlParserException("Invalid XML document. Unicode value exceeds maximum allowed value");
+
             return unicode;
         }
 
@@ -547,6 +550,9 @@ namespace NLog.Internal
                 else
                     unicode += _xmlSource.Current - '0';
             }
+
+            if (unicode >= '\uffff')
+                throw new XmlParserException("Invalid XML document. Unicode value exceeds maximum allowed value");
 
             return unicode;
         }
@@ -571,7 +577,7 @@ namespace NLog.Internal
             return false;
         }
 
-        private static Dictionary<string, string> _specialTokens = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> _specialTokens = new Dictionary<string, string>()
         {
             { "amp", "&" },
             { "AMP", "&" },
