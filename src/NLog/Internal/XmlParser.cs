@@ -135,19 +135,19 @@ namespace NLog.Internal
             while (_xmlSource.Current == '<' && _xmlSource.Peek() == '?')
             {
                 if (!TryBeginReadStartElement(out var instructionName, processingInstruction: true))
-                    throw new XmlParserException("Invalid XML document. Cannot XML processing instruction");
+                    throw new XmlParserException("Invalid XML document. Cannot parse XML processing instruction");
 
-                if (string.IsNullOrEmpty(instructionName) || instructionName[0] != '?')
-                    throw new XmlParserException("Invalid XML document. Cannot XML processing instruction");
+                if (string.IsNullOrEmpty(instructionName) || instructionName.Length == 1 || instructionName[0] != '?')
+                    throw new XmlParserException("Invalid XML document. Cannot parse XML processing instruction");
 
                 instructionName = instructionName.Substring(1);
 
                 TryReadAttributes(out var instructionAttributes, expectsProcessingInstruction: true);
 
                 if (!SkipChar('?'))
-                    throw new XmlParserException($"Invalid XML document. Cannot XML processing instruction: {instructionName}");
+                    throw new XmlParserException($"Invalid XML document. Cannot parse XML processing instruction: {instructionName}");
                 if (!SkipChar('>'))
-                    throw new XmlParserException($"Invalid XML document. Cannot XML processing instruction: {instructionName}");
+                    throw new XmlParserException($"Invalid XML document. Cannot parse XML processing instruction: {instructionName}");
 
                 var xmlInstruction = new XmlParserElement(instructionName, instructionAttributes);
                 processingInstructions = processingInstructions ?? new List<XmlParserElement>();

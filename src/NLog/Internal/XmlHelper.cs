@@ -269,6 +269,9 @@ namespace NLog.Internal
             return EnsureDecimalPlace(value.ToString(null, NumberFormatInfo.InvariantInfo));
         }
 
+        /// <summary>
+        /// Converts DateTime to ISO 8601 format in UTC timezone.
+        /// </summary>
         internal static string XmlConvertToString(DateTime value)
         {
             if (value.Kind == DateTimeKind.Unspecified)
