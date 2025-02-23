@@ -135,7 +135,9 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog><!-></nlog>")]
         [InlineData("<nlog><!></nlog>")]
         [InlineData("<nlog>&#12Z;</nlog>")]
+        [InlineData("<nlog>&#1234567;</nlog>")]
         [InlineData("<nlog>&#x12Z;</nlog>")]
+        [InlineData("<nlog>&#xffffff;</nlog>")]
         [InlineData("<nlog>&quop;</nlog>")]
         [InlineData("<nlog>&quot</nlog>")]
         public void XmlParse_InvalidDocument(string xmlSource)
