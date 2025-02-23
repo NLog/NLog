@@ -706,7 +706,7 @@ namespace NLog.UnitTests.Config
         {
             // Arrange
             var xmlFile = new System.IO.StringReader("<nlog autoshutdown='false'></nlog>");
-            var appEnv = new Mocks.AppEnvironmentMock(f => true);
+            var appEnv = new Mocks.AppEnvironmentMock(f => true, f => xmlFile);
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
             var logFactory = new LogFactory(configLoader);
 
