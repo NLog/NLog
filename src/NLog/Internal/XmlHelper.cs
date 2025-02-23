@@ -250,7 +250,7 @@ namespace NLog.Internal
 
         internal static string XmlConvertToString(float value)
         {
-            if (float.IsInfinity(value))
+            if (float.IsInfinity(value) || float.IsNaN(value))
                 return Convert.ToString(value, CultureInfo.InvariantCulture);
             else
                 return EnsureDecimalPlace(value.ToString("R", NumberFormatInfo.InvariantInfo));
@@ -258,7 +258,7 @@ namespace NLog.Internal
 
         internal static string XmlConvertToString(double value)
         {
-            if (double.IsInfinity(value))
+            if (double.IsInfinity(value) || double.IsNaN(value))
                 return Convert.ToString(value, CultureInfo.InvariantCulture);
             else
                 return EnsureDecimalPlace(value.ToString("R", NumberFormatInfo.InvariantInfo));
