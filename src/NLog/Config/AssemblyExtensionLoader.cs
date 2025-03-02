@@ -402,7 +402,7 @@ namespace NLog.Config
         internal static IEnumerable<KeyValuePair<string, string>> GetAutoLoadingFileLocations()
         {
             var nlogAssembly = typeof(LogFactory).Assembly;
-            var nlogAssemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly));
+            var nlogAssemblyLocation = PathHelpers.TrimDirectorySeparators(System.IO.Path.GetDirectoryName(AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly)));
             InternalLogger.Debug("Auto loading based on NLog-Assembly found location: {0}", nlogAssemblyLocation);
             if (!string.IsNullOrEmpty(nlogAssemblyLocation))
                 yield return new KeyValuePair<string, string>(nlogAssemblyLocation, nameof(nlogAssemblyLocation));

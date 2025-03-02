@@ -503,6 +503,8 @@ namespace NLog.Layouts
             return layoutRenderer;
         }
 
+
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
         private static object ParseLayoutRendererPropertyValue(ConfigurationItemFactory configurationItemFactory, SimpleStringReader stringReader, bool? throwConfigExceptions, string targetTypeName, PropertyInfo propertyInfo)
         {
             if (typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType))
@@ -512,8 +514,7 @@ namespace NLog.Layouts
 
                 if (propertyInfo.PropertyType.IsGenericType && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(Layout<>))
                 {
-                    var concreteType = typeof(Layout<>).MakeGenericType(propertyInfo.PropertyType.GetGenericArguments());
-                    nestedLayout = (Layout)Activator.CreateInstance(concreteType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { nestedLayout }, null);
+                    nestedLayout = (Layout)Activator.CreateInstance(propertyInfo.PropertyType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { nestedLayout }, null);
                 }
 
                 return nestedLayout;

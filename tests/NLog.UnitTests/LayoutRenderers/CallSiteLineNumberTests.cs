@@ -127,7 +127,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             // Act
             var logEvent = new LogEventInfo(LogLevel.Info, null, "msg");
-            logEvent.SetStackTrace(new System.Diagnostics.StackTrace(true), 0);
+            logEvent.SetStackTrace(new System.Diagnostics.StackTrace(true));
             logFactory.GetLogger("A").Log(logEvent);
 
             // Assert
