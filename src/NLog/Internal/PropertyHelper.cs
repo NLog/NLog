@@ -299,6 +299,7 @@ namespace NLog.Internal
             return false;
         }
 
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2067")]
         private static bool TryNLogSpecificConversion(Type propertyType, string value, ConfigurationItemFactory configurationItemFactory, out object newValue)
         {
             if (_propertyConversionMapper.TryGetValue(propertyType, out var objectConverter))
@@ -310,8 +311,7 @@ namespace NLog.Internal
             if (propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(Layout<>))
             {
                 var simpleLayout = new SimpleLayout(value, configurationItemFactory);
-                var concreteType = typeof(Layout<>).MakeGenericType(propertyType.GetGenericArguments());
-                newValue = Activator.CreateInstance(concreteType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { simpleLayout }, null);
+                newValue = Activator.CreateInstance(propertyType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { simpleLayout }, null);
                 return true;
             }
 
@@ -390,7 +390,7 @@ namespace NLog.Internal
         /// </remarks>
         private static bool TryFlatListConversion(object obj, PropertyInfo propInfo, string valueRaw, ConfigurationItemFactory configurationItemFactory, out object newValue)
         {
-            if (propInfo.PropertyType.IsGenericType && TryCreateCollectionObject(obj, propInfo, valueRaw, out var newList, out var collectionAddMethod, out var propertyType))
+            if (TryCreateCollectionObject(obj, propInfo, out var newList, out var collectionAddMethod, out var propertyType))
             {
                 var values = valueRaw.SplitQuoted(',', '\'', '\\');
                 foreach (var value in values)
@@ -414,89 +414,147 @@ namespace NLog.Internal
             return false;
         }
 
-        private static bool TryCreateCollectionObject(object obj, PropertyInfo propInfo, string valueRaw, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
+        private static bool TryCreateCollectionObject(object obj, PropertyInfo propInfo, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
         {
-            var collectionType = propInfo.PropertyType;
-            var typeDefinition = collectionType.GetGenericTypeDefinition();
-#if !NET35
-            var isSet = typeDefinition == typeof(ISet<>) || typeDefinition == typeof(HashSet<>);
-#else
-            var isSet = typeDefinition == typeof(HashSet<>);
-#endif
-            //not checking "implements" interface as we are creating HashSet<T> or List<T> and also those checks are expensive
-            if (isSet || typeDefinition == typeof(List<>) || typeDefinition == typeof(IList<>) || typeDefinition == typeof(IEnumerable<>)) //set or list/array etc
+            collectionItemType = null;
+            collectionObject = null;
+
+            try
             {
-                object hashsetComparer = isSet ? ExtractHashSetComparer(obj, propInfo) : null;
-
-                //note: type.GenericTypeArguments is .NET 4.5+
-                collectionItemType = collectionType.GetGenericArguments()[0];
-                collectionObject = isSet ? CreateCollectionHashSetInstance(collectionItemType, hashsetComparer, out collectionAddMethod) : CreateCollectionListInstance(collectionItemType, out collectionAddMethod);
-                //no support for array
-                if (collectionObject is null)
+                if (TryResolveCollectionType(obj, propInfo, out var collectionType, out collectionAddMethod, out var hashsetComparer))
                 {
-                    throw new NLogConfigurationException($"Cannot create instance of {collectionType.ToString()} for value {valueRaw}");
-                }
-                if (collectionAddMethod is null)
-                {
-                    throw new NLogConfigurationException($"Add method on type {collectionType.ToString()} for value {valueRaw} not found");
-                }
+                    if (collectionAddMethod is null)
+                        throw new NLogConfigurationException($"Cannot resolve Add-method for collection type {collectionType} for property '{propInfo.Name}' on {obj.GetType()}");
 
-                return true;
+                    collectionObject = CreateCollectionInstance(collectionType, hashsetComparer);
+                    if (collectionObject is null)
+                        throw new NLogConfigurationException($"Cannot create instance of collection type {collectionType} for property '{propInfo.Name}' on {obj.GetType()}");
+
+                    collectionItemType = collectionType.GetGenericArguments()[0];
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "Failed to resolve collection type {0} for property '{1}' on {2}", propInfo.PropertyType, propInfo.Name, obj.GetType());
+                if (ex.MustBeRethrown())
+                    throw;
             }
 
-            collectionObject = null;
             collectionAddMethod = null;
-            collectionItemType = null;
             return false;
         }
 
-        private static object CreateCollectionHashSetInstance(Type collectionItemType, object hashSetComparer, out MethodInfo collectionAddMethod)
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2067")]
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2070")]
+        private static object CreateCollectionInstance(Type collectionType, object hashSetComparer)
         {
-            var concreteType = typeof(HashSet<>).MakeGenericType(collectionItemType);
-
-            collectionAddMethod = typeof(HashSet<>).MakeGenericType(collectionItemType).GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
-
             if (hashSetComparer != null)
             {
-                var constructor = concreteType.GetConstructor(new[] { hashSetComparer.GetType() });
+                var constructor = collectionType.GetConstructor(new[] { hashSetComparer.GetType() });
                 if (constructor != null)
-                {
                     return constructor.Invoke(new[] { hashSetComparer });
-                }
+            }
+            return Activator.CreateInstance(collectionType);
+        }
+
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2065")]
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2075")]
+        private static bool TryResolveCollectionType(object obj, PropertyInfo propInfo, out Type collectionType, out MethodInfo collectionAddMethod, out object hashSetComparer)
+        {
+            collectionType = null;
+            collectionAddMethod = null;
+            hashSetComparer = null;
+
+            collectionType = propInfo.PropertyType;
+            if (!collectionType.IsGenericType || !typeof(IEnumerable).IsAssignableFrom(collectionType))
+                return false;
+
+            var typeDefinition = collectionType.GetGenericTypeDefinition();
+            if (typeDefinition == typeof(List<>))
+            {
+                collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                return true;
             }
 
-            return Activator.CreateInstance(concreteType);
-        }
-
-        private static object CreateCollectionListInstance(Type collectionItemType, out MethodInfo collectionAddMethod)
-        {
-            var concreteType = typeof(List<>).MakeGenericType(collectionItemType);
-
-            collectionAddMethod = typeof(List<>).MakeGenericType(collectionItemType).GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
-
-            return Activator.CreateInstance(concreteType);
-        }
-
-        /// <summary>
-        /// Attempt to reuse the HashSet.Comparer from the original HashSet-object (Ex. StringComparer.OrdinalIgnoreCase)
-        /// </summary>
-        private static object ExtractHashSetComparer(object obj, PropertyInfo propInfo)
-        {
-            var exitingValue = propInfo.IsValidPublicProperty() ? propInfo.GetPropertyValue(obj) : null;
-            if (exitingValue != null)
+            var existingValue = propInfo.IsValidPublicProperty() ? propInfo.GetPropertyValue(obj) : null;
+            if (existingValue?.GetType().IsGenericType == true)
             {
-                // Found original HashSet-object. See if we can extract the Comparer
-                if (exitingValue.GetType().GetGenericTypeDefinition() == typeof(HashSet<>))
+                if (existingValue.GetType().GetGenericTypeDefinition() == typeof(List<>))
                 {
-                    var comparerPropInfo = typeof(HashSet<>).MakeGenericType(exitingValue.GetType().GetGenericArguments()[0]).GetProperty("Comparer", BindingFlags.Instance | BindingFlags.Public);
+                    collectionType = existingValue.GetType();
+                    collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                    return true;
+                }
+
+                if (existingValue.GetType().GetGenericTypeDefinition() == typeof(HashSet<>))
+                {
+                    collectionType = existingValue.GetType();
+                    collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                    var comparerPropInfo = collectionType.GetProperty("Comparer", BindingFlags.Public | BindingFlags.Instance);
                     if (comparerPropInfo.IsValidPublicProperty())
                     {
-                        return comparerPropInfo.GetPropertyValue(exitingValue);
+                        hashSetComparer = comparerPropInfo.GetPropertyValue(existingValue);
                     }
+                    return true;
                 }
             }
 
-            return null;
+            if (typeDefinition == typeof(HashSet<>))
+            {
+                collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                return true;
+            }
+
+            if (collectionType.IsAssignableFrom(typeof(List<string>)))
+            {
+                collectionType = typeof(List<string>);
+                collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                return true;
+            }
+
+            if (collectionType.IsAssignableFrom(typeof(List<int>)))
+            {
+                collectionType = typeof(List<int>);
+                collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                return true;
+            }
+
+            if (collectionType.IsAssignableFrom(typeof(HashSet<string>)))
+            {
+                collectionType = typeof(HashSet<string>);
+                collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                return true;
+            }
+
+            if (collectionType.IsAssignableFrom(typeof(HashSet<int>)))
+            {
+                collectionType = typeof(HashSet<int>);
+                collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                return true;
+            }
+
+            InternalLogger.Debug("Object type reflection needed to configure instance of type: {0}", collectionType);
+            return TryMakeGenericCollectionType(collectionType, out collectionType, out collectionAddMethod);
+        }
+
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2065")]
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL3050")]
+        private static bool TryMakeGenericCollectionType(Type propertyType, out Type collectionType, out MethodInfo collectionAddMethod)
+        {
+#if !NET35
+            var typeDefinition = propertyType.GetGenericTypeDefinition();
+            if (typeDefinition == typeof(ISet<>))
+            {
+                collectionType = typeof(HashSet<>).MakeGenericType(propertyType.GetGenericArguments());
+                collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                return true;
+            }
+#endif
+
+            collectionType = typeof(List<>).MakeGenericType(propertyType.GetGenericArguments());
+            collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+            return true;
         }
 
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2026")]

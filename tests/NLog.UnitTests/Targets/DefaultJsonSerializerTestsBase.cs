@@ -563,7 +563,7 @@ namespace NLog.UnitTests.Targets
             public override string ToString() => "nullValue";
         }
 
-#if !NET35 && !NET40
+#if !NET35 && !NET40 && NETFRAMEWORK
 
         [Fact]
         public void SerializeExpandoObject_Test()

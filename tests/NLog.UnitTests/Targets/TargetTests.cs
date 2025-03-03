@@ -762,7 +762,6 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-
         [Fact]
         public void TypedLayoutTargetTest()
         {
@@ -789,6 +788,9 @@ namespace NLog.UnitTests.Targets
                         typeProperty='System.Int32'
                         uriProperty='https://nlog-project.org'
                         lineEndingModeProperty='default'
+                        shortSetProperty='1,2,3'
+                        shortListProperty='1,2,3'
+                        longListProperty='1,2,3'
                         />
                 </targets>
             </nlog>");
@@ -811,6 +813,18 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(typeof(int), myTarget.TypeProperty.FixedValue);
             Assert.Equal(new Uri("https://nlog-project.org"), myTarget.UriProperty.FixedValue);
             Assert.Equal(LineEndingMode.Default, myTarget.LineEndingModeProperty.FixedValue);
+            Assert.Equal(3, myTarget.ShortSetProperty.Count);
+            Assert.Contains((short)1, myTarget.ShortSetProperty);
+            Assert.Contains((short)2, myTarget.ShortSetProperty);
+            Assert.Contains((short)3, myTarget.ShortSetProperty);
+            Assert.Equal(3, myTarget.ShortListProperty.Count);
+            Assert.Contains((short)1, myTarget.ShortListProperty);
+            Assert.Contains((short)2, myTarget.ShortListProperty);
+            Assert.Contains((short)3, myTarget.ShortListProperty);
+            Assert.Equal(3, myTarget.LongListProperty.Count);
+            Assert.Contains(1L, myTarget.LongListProperty);
+            Assert.Contains(2L, myTarget.LongListProperty);
+            Assert.Contains(3L, myTarget.LongListProperty);
         }
 
         [Fact]
@@ -1021,6 +1035,15 @@ namespace NLog.UnitTests.Targets
             public Layout<Uri> UriProperty { get; set; }
 
             public Layout<LineEndingMode> LineEndingModeProperty { get; set; }
+
+#if NET35
+            public HashSet<short> ShortSetProperty { get; set; }
+#else
+            public IList<short> ShortSetProperty { get; set; }
+#endif
+
+            public IList<short> ShortListProperty { get; set; }
+            public IList<long> LongListProperty { get; set; } = new List<long>();
 
             protected override void Write(LogEventInfo logEvent)
             {

@@ -259,7 +259,8 @@ namespace NLog.Config
         {
             var nlogAssembly = typeof(LogFactory).Assembly;
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC
-            var nlogAssemblyLocation = nlogAssembly.Location;
+            // Notice NLog.dll can be loaded from nuget-cache using NTFS-hard-link, and return unexpected file-location.
+            var nlogAssemblyLocation = AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly);
             if (!string.IsNullOrEmpty(nlogAssemblyLocation))
             {
 #if NETFRAMEWORK

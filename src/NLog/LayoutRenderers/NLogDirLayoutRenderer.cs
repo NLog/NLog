@@ -91,15 +91,14 @@ namespace NLog.LayoutRenderers
         private static string ResolveNLogDir()
         {
             var nlogAssembly = typeof(LogFactory).Assembly;
-            if (!string.IsNullOrEmpty(nlogAssembly.Location))
+            var nlogLocation = AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly);
+            if (!string.IsNullOrEmpty(nlogLocation))
             {
-                return Path.GetDirectoryName(nlogAssembly.Location);
+                return Path.GetDirectoryName(nlogLocation);
             }
             else
             {
-#pragma warning disable CS0618 // Type or member is obsolete
-                return AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly) ?? string.Empty;
-#pragma warning restore CS0618 // Type or member is obsolete
+                return string.Empty;
             }
         }
     }
