@@ -394,57 +394,74 @@ namespace NLog.Internal
         /// </remarks>
         private static bool TryFlatListConversion(object obj, PropertyInfo propInfo, string valueRaw, ConfigurationItemFactory configurationItemFactory, out object newValue)
         {
-            if (propInfo.PropertyType.IsGenericType() && TryCreateCollectionObject(obj, propInfo, valueRaw, out var newList, out var collectionAddMethod, out var propertyType))
+            var collectionType = propInfo.PropertyType;
+            if (!collectionType.IsGenericType() || !typeof(IEnumerable).IsAssignableFrom(collectionType))
             {
-                var values = valueRaw.SplitQuoted(',', '\'', '\\');
-                foreach (var value in values)
-                {
-                    if (!(TryGetEnumValue(propertyType, value, out newValue)
-                          || TryNLogSpecificConversion(propertyType, value, configurationItemFactory, out newValue)
-                          || TryImplicitConversion(propertyType, value, out newValue)
-                          || TryTypeConverterConversion(propertyType, value, out newValue)))
-                    {
-                        newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
-                    }
-
-                    collectionAddMethod.Invoke(newList, new object[] { newValue });
-                }
-
-                newValue = newList;
-                return true;
+                newValue = null;
+                return false;
             }
 
-            newValue = null;
-            return false;
+            try
+            {
+                if (TryCreateCollectionObject(obj, propInfo, out var newCollection, out var collectionAddMethod, out var propertyType))
+                {
+                    if (newCollection is null)
+                    {
+                        throw new NLogConfigurationException($"Cannot create instance of {collectionType.ToString()}");
+                    }
+                    if (collectionAddMethod is null)
+                    {
+                        throw new NLogConfigurationException($"Cannot find Add-method on {collectionType.ToString()}");
+                    }
+
+                    var values = valueRaw.SplitQuoted(',', '\'', '\\');
+                    foreach (var value in values)
+                    {
+                        if (!(TryGetEnumValue(propertyType, value, out newValue)
+                              || TryNLogSpecificConversion(propertyType, value, configurationItemFactory, out newValue)
+                              || TryImplicitConversion(propertyType, value, out newValue)
+                              || TryTypeConverterConversion(propertyType, value, out newValue)))
+                        {
+                            newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
+                        }
+
+                        collectionAddMethod.Invoke(newCollection, new object[] { newValue });
+                    }
+
+                    newValue = newCollection;
+                    return true;
+                }
+
+                newValue = null;
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new NLogConfigurationException($"Failed to parse collection for property '{propInfo.Name}' on {obj.GetType()} with value '{valueRaw}'", ex);
+            }
         }
 
-        private static bool TryCreateCollectionObject(object obj, PropertyInfo propInfo, string valueRaw, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
+        private static bool TryCreateCollectionObject(object obj, PropertyInfo propInfo, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
         {
+            collectionObject = null;
+            collectionAddMethod = null;
+            collectionItemType = null;
+
             var collectionType = propInfo.PropertyType;
             var typeDefinition = collectionType.GetGenericTypeDefinition();
+            var isSet =
 #if !NET35
-            var isSet = typeDefinition == typeof(ISet<>) || typeDefinition == typeof(HashSet<>);
-#else
-            var isSet = typeDefinition == typeof(HashSet<>);
+               typeDefinition == typeof(ISet<>) ||
 #endif
+               typeDefinition == typeof(HashSet<>);
+            object hashsetComparer = isSet ? ExtractHashSetComparer(obj, propInfo) : null;
+
             //not checking "implements" interface as we are creating HashSet<T> or List<T> and also those checks are expensive
             if (isSet || typeDefinition == typeof(List<>) || typeDefinition == typeof(IList<>) || typeDefinition == typeof(IEnumerable<>)) //set or list/array etc
             {
-                object hashsetComparer = isSet ? ExtractHashSetComparer(obj, propInfo) : null;
-
                 //note: type.GenericTypeArguments is .NET 4.5+
                 collectionItemType = collectionType.GetGenericArguments()[0];
                 collectionObject = isSet ? CreateCollectionHashSetInstance(collectionItemType, hashsetComparer, out collectionAddMethod) : CreateCollectionListInstance(collectionItemType, out collectionAddMethod);
-                //no support for array
-                if (collectionObject is null)
-                {
-                    throw new NLogConfigurationException($"Cannot create instance of {collectionType.ToString()} for value {valueRaw}");
-                }
-                if (collectionAddMethod is null)
-                {
-                    throw new NLogConfigurationException($"Add method on type {collectionType.ToString()} for value {valueRaw} not found");
-                }
-
                 return true;
             }
 

@@ -143,7 +143,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Resets the InternalLogger configuration without resolving default values from Environment-varialbes or App.config
+        /// Resets the InternalLogger configuration without resolving default values from Environment-variables or App.config
         /// </summary>
         public static ISetupInternalLoggerBuilder ResetConfig(this ISetupInternalLoggerBuilder setupBuilder)
         {

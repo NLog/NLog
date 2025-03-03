@@ -111,7 +111,7 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>").LogFactory;
 
             var logEvent = new LogEventInfo(LogLevel.Info, null, "I am:");
-            logEvent.SetStackTrace(new System.Diagnostics.StackTrace(true), 0);
+            logEvent.SetStackTrace(new System.Diagnostics.StackTrace(true));
             logFactory.GetCurrentClassLogger().Log(logEvent);
             logFactory.AssertDebugLastMessageContains($" => {nameof(StackTraceRendererTests)}.{nameof(RenderStackTraceNoCaptureStackTraceWithStackTrace)}");
         }
