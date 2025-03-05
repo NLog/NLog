@@ -84,7 +84,6 @@ namespace NLog.Targets
     [Target("Mail")]
     [Target("Email")]
     [Target("Smtp")]
-    [Target("SmtpClient")]
     public class MailTarget : TargetWithLayoutHeaderAndFooter
     {
         private const string RequiredPropertyIsEmptyFormat = "After the processing of the MailTarget's '{0}' property it appears to be empty. The email message will not be sent.";

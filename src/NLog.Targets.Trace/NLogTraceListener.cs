@@ -40,7 +40,6 @@ namespace NLog
     using System.Diagnostics;
     using System.Linq;
     using System.Text;
-    using System.Xml;
     using NLog.Internal;
 
     /// <summary>
@@ -312,7 +311,7 @@ namespace NLog
                         }
 
                         sb.Append('{');
-                        sb.AppendInvariant(i);
+                        sb.Append(i);
                         sb.Append('}');
                     }
                     message = sb.ToString();
@@ -471,10 +470,6 @@ namespace NLog
             if (arguments?.Length == 1 && arguments[0] is Exception exception)
             {
                 ev.Exception = exception;
-                if (message == "{0}")
-                {
-                    ev.FormatProvider = ExceptionMessageFormatProvider.Instance;
-                }
             }
 
             ev.Level = _forceLogLevel ?? logLevel;
@@ -563,8 +558,8 @@ namespace NLog
 
                 foreach (DictionaryEntry de in Attributes)
                 {
-                    var key = (string)de.Key;
-                    var value = (string)de.Value;
+                    var key = de.Key?.ToString()?.Trim() ?? string.Empty;
+                    var value = de.Value?.ToString()?.Trim() ?? string.Empty;
 
                     switch (key.ToUpperInvariant())
                     {
@@ -577,11 +572,11 @@ namespace NLog
                             break;
 
                         case "AUTOLOGGERNAME":
-                            AutoLoggerName = XmlConvert.ToBoolean(value);
+                            AutoLoggerName = value?.Length == 1 ? value[0] == '1' : bool.Parse(value);
                             break;
 
                         case "DISABLEFLUSH":
-                            DisableFlush = bool.Parse(value);
+                            DisableFlush = value?.Length == 1 ? value[0] == '1' : bool.Parse(value);
                             break;
                     }
                 }

@@ -3,21 +3,21 @@
   <PropertyGroup>
     <TargetFrameworks>net35;net46;netstandard2.0</TargetFrameworks>
 
-    <Title>NLog.Targets.ConcurrentFile</Title>
+    <Title>NLog.Targets.Trace</Title>
     <Company>NLog</Company>
-    <Description>FileTarget with support for ConcurrentWrites where multiple processes can write to the same file</Description>
-    <Product>NLog.Targets.ConcurrentFile v$(ProductVersion)</Product>
+    <Description>Trace Target for System.Diagnostics.Trace</Description>
+    <Product>NLog.Targets.Trace v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
     <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-      FileTarget Docs:
-      https://github.com/NLog/NLog/wiki/File-target
+      Trace-Target Docs:
+      https://github.com/NLog/NLog/wiki/Trace-target
     </PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>NLog;File;Archive;Compression;Zip;NTFS;logging;log</PackageTags>
+    <PackageTags>NLog;Trace;Diagnostics;logging;log</PackageTags>
     <PackageIcon>N.png</PackageIcon>
     <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
     <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
@@ -35,41 +35,23 @@
     <EnableTrimAnalyzer Condition=" '$(TargetFramework)' == 'netstandard2.0' ">true</EnableTrimAnalyzer>
     <IsTrimmable Condition=" '$(TargetFramework)' == 'netstandard2.0' ">true</IsTrimmable>
     <TrimMode>copyused</TrimMode>
-    <SonarQubeExclude>true</SonarQubeExclude>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <Title>NLog.Targets.Trace for .NET Standard 2.0</Title>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <Title>NLog.Targets.ConcurrentFile for .NET Framework 4.6</Title>
+    <Title>NLog.Targets.Trace for .NET Framework 4.6</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Title>NLog.Targets.ConcurrentFile for .NET Framework 4.5</Title>
+    <Title>NLog.Targets.Trace for .NET Framework 4.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
-    <Title>NLog.Targets.ConcurrentFile for .NET Framework 3.5</Title>
-    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <Title>NLog.Targets.ConcurrentFile for NetStandard 2.0</Title>
-  </PropertyGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.IO.Compression" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.IO.Compression" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
+  <ItemGroup Condition=" '$(TargetFrameworkIdentifier)' == '.NETFramework' ">
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -78,7 +60,7 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup>   
     <ProjectReference Include="..\NLog\NLog.csproj" />
   </ItemGroup>
 

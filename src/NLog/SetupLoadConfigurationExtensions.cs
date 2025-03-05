@@ -523,21 +523,6 @@ namespace NLog
         }
 
         /// <summary>
-        /// Write to <see cref="NLog.Targets.TraceTarget"/>
-        /// </summary>
-        /// <param name="configBuilder"></param>
-        /// <param name="layout">Override the default Layout for output</param>
-        /// <param name="rawWrite">Force use <see cref="System.Diagnostics.Trace.WriteLine(string)"/> independent of <see cref="LogLevel"/></param>
-        public static ISetupConfigurationTargetBuilder WriteToTrace(this ISetupConfigurationTargetBuilder configBuilder, Layout layout = null, bool rawWrite = true)
-        {
-            var traceTarget = new TraceTarget();
-            traceTarget.RawWrite = rawWrite;
-            if (layout != null)
-                traceTarget.Layout = layout;
-            return configBuilder.WriteTo(traceTarget);
-        }
-
-        /// <summary>
         /// Write to <see cref="NLog.Targets.DebugSystemTarget"/>
         /// </summary>
         /// <param name="configBuilder"></param>
