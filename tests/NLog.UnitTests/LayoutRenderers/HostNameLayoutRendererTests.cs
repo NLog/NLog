@@ -51,8 +51,9 @@ namespace NLog.UnitTests.LayoutRenderers
 
             // Get the actual hostname that the code would use
             string h = Environment.GetEnvironmentVariable("HOSTNAME")
-                ?? System.Net.Dns.GetHostName()
-                ?? Environment.GetEnvironmentVariable("COMPUTERNAME");
+                ?? Environment.GetEnvironmentVariable("COMPUTERNAME")
+                ?? Environment.GetEnvironmentVariable("MACHINENAME")
+                ?? Environment.MachineName;
             logFactory.GetLogger("A").Debug("a log message");
             logFactory.AssertDebugLastMessage(h + " a log message");
         }
