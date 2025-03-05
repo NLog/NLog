@@ -96,7 +96,6 @@ namespace NLog.Config
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LevelLayoutRenderer>("loglevel");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LiteralLayoutRenderer>("literal");
             factory.RegisterTypeProperties<NLog.LayoutRenderers.LiteralWithRawValueLayoutRenderer>(() => null);
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LocalIpAddressLayoutRenderer>("local-ip");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("loggername");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("logger");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LongDateLayoutRenderer>("longdate");
