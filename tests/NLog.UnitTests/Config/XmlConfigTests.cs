@@ -52,7 +52,9 @@ namespace NLog.UnitTests.Config
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
 
                 Assert.False(config.AutoReload);
+#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.True(config.InitializeSucceeded);
+#pragma warning restore CS0618 // Type or member is obsolete
                 Assert.Equal("", InternalLogger.LogFile);
                 Assert.False(InternalLogger.LogToConsole);
                 Assert.False(InternalLogger.LogToConsoleError);
@@ -73,7 +75,9 @@ namespace NLog.UnitTests.Config
                     var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
 
                     Assert.False(config.AutoReload);
+#pragma warning disable CS0618 // Type or member is obsolete
                     Assert.True(config.InitializeSucceeded);
+#pragma warning restore CS0618 // Type or member is obsolete
                     Assert.Equal("", InternalLogger.LogFile);
                     Assert.True(InternalLogger.LogToConsole);
                     Assert.True(InternalLogger.LogToConsoleError);

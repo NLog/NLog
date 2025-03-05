@@ -218,7 +218,7 @@ namespace NLog.Targets
                 }
             }
 
-            if (value is IEnumerable enumerable)
+            if (value is IEnumerable collection)
             {
                 if (_objectReflectionCache.TryLookupExpandoObject(value, out var objectPropertyList))
                 {
@@ -228,7 +228,7 @@ namespace NLog.Targets
                 {
                     using (StartCollectionScope(ref objectsInPath, value))
                     {
-                        SerializeCollectionObject(enumerable, destination, options, objectsInPath, depth);
+                        SerializeCollectionObject(collection, destination, options, objectsInPath, depth);
                         return true;
                     }
                 }
