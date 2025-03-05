@@ -390,170 +390,183 @@ namespace NLog.Internal
         /// </remarks>
         private static bool TryFlatListConversion(object obj, PropertyInfo propInfo, string valueRaw, ConfigurationItemFactory configurationItemFactory, out object newValue)
         {
-            if (TryCreateCollectionObject(obj, propInfo, out var newList, out var collectionAddMethod, out var propertyType))
+            var collectionType = propInfo.PropertyType;
+            if (!collectionType.IsGenericType || !typeof(IEnumerable).IsAssignableFrom(collectionType))
             {
-                var values = valueRaw.SplitQuoted(',', '\'', '\\');
-                foreach (var value in values)
-                {
-                    if (!(TryGetEnumValue(propertyType, value, out newValue)
-                          || TryNLogSpecificConversion(propertyType, value, configurationItemFactory, out newValue)
-                          || TryImplicitConversion(propertyType, value, out newValue)
-                          || TryTypeConverterConversion(propertyType, value, out newValue)))
-                    {
-                        newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
-                    }
-
-                    collectionAddMethod.Invoke(newList, new object[] { newValue });
-                }
-
-                newValue = newList;
-                return true;
+                newValue = null;
+                return false;
             }
-
-            newValue = null;
-            return false;
-        }
-
-        private static bool TryCreateCollectionObject(object obj, PropertyInfo propInfo, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
-        {
-            collectionItemType = null;
-            collectionObject = null;
 
             try
             {
-                if (TryResolveCollectionType(obj, propInfo, out var collectionType, out collectionAddMethod, out var hashsetComparer))
+                if (TryCreateCollectionObject(obj, propInfo, out var newList, out var collectionAddMethod, out var propertyType))
                 {
-                    if (collectionAddMethod is null)
-                        throw new NLogConfigurationException($"Cannot resolve Add-method for collection type {collectionType} for property '{propInfo.Name}' on {obj.GetType()}");
+                    var values = valueRaw.SplitQuoted(',', '\'', '\\');
+                    foreach (var value in values)
+                    {
+                        if (!(TryGetEnumValue(propertyType, value, out newValue)
+                              || TryNLogSpecificConversion(propertyType, value, configurationItemFactory, out newValue)
+                              || TryImplicitConversion(propertyType, value, out newValue)
+                              || TryTypeConverterConversion(propertyType, value, out newValue)))
+                        {
+                            newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
+                        }
 
-                    collectionObject = CreateCollectionInstance(collectionType, hashsetComparer);
-                    if (collectionObject is null)
-                        throw new NLogConfigurationException($"Cannot create instance of collection type {collectionType} for property '{propInfo.Name}' on {obj.GetType()}");
+                        collectionAddMethod.Invoke(newList, new object[] { newValue });
+                    }
 
-                    collectionItemType = collectionType.GetGenericArguments()[0];
+                    newValue = newList;
                     return true;
                 }
+
+                newValue = null;
+                return false;
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(ex, "Failed to resolve collection type {0} for property '{1}' on {2}", propInfo.PropertyType, propInfo.Name, obj.GetType());
-                if (ex.MustBeRethrown())
-                    throw;
+                throw new NLogConfigurationException($"Failed to parse collection for property '{propInfo.Name}' on {obj.GetType()} with value '{valueRaw}'", ex);
             }
-
-            collectionAddMethod = null;
-            return false;
         }
 
-        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2067")]
-        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2070")]
-        private static object CreateCollectionInstance(Type collectionType, object hashSetComparer)
-        {
-            if (hashSetComparer != null)
-            {
-                var constructor = collectionType.GetConstructor(new[] { hashSetComparer.GetType() });
-                if (constructor != null)
-                    return constructor.Invoke(new[] { hashSetComparer });
-            }
-            return Activator.CreateInstance(collectionType);
-        }
-
-        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2065")]
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2075")]
-        private static bool TryResolveCollectionType(object obj, PropertyInfo propInfo, out Type collectionType, out MethodInfo collectionAddMethod, out object hashSetComparer)
+        private static bool TryCreateCollectionObject(object obj, PropertyInfo propInfo, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
         {
-            collectionType = null;
+            collectionObject = null;
             collectionAddMethod = null;
-            hashSetComparer = null;
+            collectionItemType = null;
 
-            collectionType = propInfo.PropertyType;
-            if (!collectionType.IsGenericType || !typeof(IEnumerable).IsAssignableFrom(collectionType))
-                return false;
+            var collectionType = propInfo.PropertyType;
+            if (TryCreateListCollection<string>(collectionType, out collectionObject, out collectionAddMethod, out collectionItemType))
+                return true;
+
+            if (TryCreateListCollection<int>(collectionType, out collectionObject, out collectionAddMethod, out collectionItemType))
+                return true;
 
             var typeDefinition = collectionType.GetGenericTypeDefinition();
             if (typeDefinition == typeof(List<>))
             {
+                collectionObject = Activator.CreateInstance(collectionType);
                 collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                collectionItemType = collectionType.GetGenericArguments()[0];
                 return true;
             }
+
+            if (typeDefinition != typeof(IList<>) && typeDefinition != typeof(IEnumerable<>) && typeDefinition != typeof(HashSet<>)
+#if !NET35
+                && typeDefinition != typeof(ISet<>)
+#endif
+                )
+                return false;
 
             var existingValue = propInfo.IsValidPublicProperty() ? propInfo.GetPropertyValue(obj) : null;
             if (existingValue?.GetType().IsGenericType == true)
             {
                 if (existingValue.GetType().GetGenericTypeDefinition() == typeof(List<>))
                 {
-                    collectionType = existingValue.GetType();
-                    collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                    var existingType = existingValue.GetType();
+                    collectionObject = Activator.CreateInstance(existingType);
+                    collectionAddMethod = existingType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                    collectionItemType = existingType.GetGenericArguments()[0];
                     return true;
                 }
 
                 if (existingValue.GetType().GetGenericTypeDefinition() == typeof(HashSet<>))
                 {
-                    collectionType = existingValue.GetType();
-                    collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
-                    var comparerPropInfo = collectionType.GetProperty("Comparer", BindingFlags.Public | BindingFlags.Instance);
+                    object hashSetComparer = null;
+                    var existingType = existingValue.GetType();
+                    var comparerPropInfo = existingType.GetProperty("Comparer", BindingFlags.Public | BindingFlags.Instance);
                     if (comparerPropInfo.IsValidPublicProperty())
                     {
                         hashSetComparer = comparerPropInfo.GetPropertyValue(existingValue);
                     }
+                    if (hashSetComparer != null)
+                    {
+                        var constructor = existingType.GetConstructor(new[] { hashSetComparer.GetType() });
+                        if (constructor != null)
+                            collectionObject = constructor.Invoke(new[] { hashSetComparer });
+                        else
+                            collectionObject = Activator.CreateInstance(existingType);
+                    }
+                    else
+                    {
+                        collectionObject = Activator.CreateInstance(existingType);
+                    }
+                    collectionAddMethod = existingType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                    collectionItemType = existingType.GetGenericArguments()[0];
                     return true;
                 }
             }
 
+            if (TryCreateHashSetCollection<string>(collectionType, out collectionObject, out collectionAddMethod, out collectionItemType))
+                return true;
+
+            if (TryCreateHashSetCollection<int>(collectionType, out collectionObject, out collectionAddMethod, out collectionItemType))
+                return true;
+
             if (typeDefinition == typeof(HashSet<>))
             {
+                collectionObject = Activator.CreateInstance(collectionType);
                 collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
-                return true;
-            }
-
-            if (collectionType.IsAssignableFrom(typeof(List<string>)))
-            {
-                collectionType = typeof(List<string>);
-                collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
-                return true;
-            }
-
-            if (collectionType.IsAssignableFrom(typeof(List<int>)))
-            {
-                collectionType = typeof(List<int>);
-                collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
-                return true;
-            }
-
-            if (collectionType.IsAssignableFrom(typeof(HashSet<string>)))
-            {
-                collectionType = typeof(HashSet<string>);
-                collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
-                return true;
-            }
-
-            if (collectionType.IsAssignableFrom(typeof(HashSet<int>)))
-            {
-                collectionType = typeof(HashSet<int>);
-                collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                collectionItemType = collectionType.GetGenericArguments()[0];
                 return true;
             }
 
             InternalLogger.Debug("Object type reflection needed to configure instance of type: {0}", collectionType);
-            return TryMakeGenericCollectionType(collectionType, out collectionType, out collectionAddMethod);
+            return TryCreateTypeCollection(collectionType, out collectionObject, out collectionAddMethod, out collectionItemType);
+         }
+
+        private static bool TryCreateListCollection<T>(Type collectionType, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
+        {
+            if (collectionType.IsAssignableFrom(typeof(List<T>)))
+            {
+                collectionObject = new List<T>();
+                collectionAddMethod = typeof(List<T>).GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                collectionItemType = typeof(T);
+                return true;
+            }
+
+            collectionObject = null;
+            collectionAddMethod = null;
+            collectionItemType = null;
+            return false;
         }
 
-        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2065")]
+        private static bool TryCreateHashSetCollection<T>(Type collectionType, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
+        {
+            if (collectionType.IsAssignableFrom(typeof(HashSet<T>)))
+            {
+                collectionObject = new HashSet<T>();
+                collectionAddMethod = typeof(HashSet<T>).GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                collectionItemType = typeof(T);
+                return true;
+            }
+
+            collectionObject = null;
+            collectionAddMethod = null;
+            collectionItemType = null;
+            return false;
+        }
+
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL3050")]
-        private static bool TryMakeGenericCollectionType(Type propertyType, out Type collectionType, out MethodInfo collectionAddMethod)
+        private static bool TryCreateTypeCollection(Type propertyType, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
         {
 #if !NET35
             var typeDefinition = propertyType.GetGenericTypeDefinition();
             if (typeDefinition == typeof(ISet<>))
             {
-                collectionType = typeof(HashSet<>).MakeGenericType(propertyType.GetGenericArguments());
-                collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                var setType = typeof(HashSet<>).MakeGenericType(propertyType.GetGenericArguments());
+                collectionAddMethod = setType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                collectionItemType = propertyType.GetGenericArguments()[0];
+                collectionObject = Activator.CreateInstance(setType);
                 return true;
             }
 #endif
 
-            collectionType = typeof(List<>).MakeGenericType(propertyType.GetGenericArguments());
-            collectionAddMethod = collectionType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+            var listType = typeof(List<>).MakeGenericType(propertyType.GetGenericArguments());
+            collectionAddMethod = listType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+            collectionItemType = propertyType.GetGenericArguments()[0];
+            collectionObject = Activator.CreateInstance(listType);
             return true;
         }
 
