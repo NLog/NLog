@@ -23,7 +23,7 @@ if (-Not (test-path $targetNugetExe))
 	Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
 }
 
-msbuild /t:Restore,Pack .\src\NLog\ /p:targetFrameworks='"net46;net45;net35;netstandard2.0"' /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:ContinuousIntegrationBuild=true  /p:EmbedUntrackedSources=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal /maxcpucount
+msbuild /t:Restore,Pack .\src\NLog\ /p:targetFrameworks='"net46;net45;net35;netstandard2.0;netstandard2.1"' /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:ContinuousIntegrationBuild=true  /p:EmbedUntrackedSources=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal /maxcpucount
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 

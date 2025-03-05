@@ -36,9 +36,7 @@ namespace NLog.Internal
     using System;
     using System.Collections.Generic;
     using System.Linq;
-#if NETFRAMEWORK
     using System.Linq.Expressions;
-#endif
     using System.Reflection;
     using JetBrains.Annotations;
 
@@ -67,28 +65,34 @@ namespace NLog.Internal
         /// <param name="arguments">Complete list of parameters that matches the method, including optional/default parameters.</param>
         public delegate object LateBoundMethod(object target, object[] arguments);
 
-#if !NETFRAMEWORK
-        public static LateBoundMethod CreateLateBoundMethod(MethodInfo methodInfo)
-        {
-            return (target, args) =>
-            {
-                try
-                {
-                    return methodInfo.Invoke(target, args);
-                }
-                catch (TargetInvocationException exception)
-                {
-                    throw exception.InnerException ?? exception;
-                }
-            };
-        }
-#else
         /// <summary>
         /// Creates an optimized delegate for calling the MethodInfo using Expression-Trees
         /// </summary>
         /// <param name="methodInfo">Method to optimize</param>
         /// <returns>Optimized delegate for invoking the MethodInfo</returns>
         public static LateBoundMethod CreateLateBoundMethod(MethodInfo methodInfo)
+        {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+            if (!System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported)
+            {
+                return (target, args) =>
+                {
+                    try
+                    {
+                        return methodInfo.Invoke(target, args);
+                    }
+                    catch (TargetInvocationException exception)
+                    {
+                        throw exception.InnerException ?? exception;
+                    }
+                };
+            }
+#endif
+
+            return CompileLateBoundMethod(methodInfo);
+        }
+
+        private static LateBoundMethod CompileLateBoundMethod(MethodInfo methodInfo)
         {
             var instanceParameter = Expression.Parameter(typeof(object), "instance");
             var parametersParameter = Expression.Parameter(typeof(object[]), "parameters");
@@ -154,7 +158,7 @@ namespace NLog.Internal
             var valueCast = Expression.Convert(expression, parameterType);
             return valueCast;
         }
-#endif
+
         [CanBeNull]
         public static TAttr GetFirstCustomAttribute<TAttr>(this Type type) where TAttr : Attribute
         {
