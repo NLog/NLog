@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.Targets.Network
 {
     using System;
     using System.Collections.Generic;
@@ -45,7 +45,7 @@ namespace NLog.UnitTests.LayoutRenderers
     using NSubstitute.ExceptionExtensions;
     using Xunit;
 
-    public class LocalIpAddressLayoutRendererTests : NLogTestBase
+    public class LocalIpAddressLayoutRendererTests
     {
         private const string Mac1 = "F0-E1-D2-C3-B4-A5";
 
@@ -250,7 +250,14 @@ namespace NLog.UnitTests.LayoutRenderers
     {
         private readonly IDictionary<int, List<KeyValuePair<string, string>>> _ips = new Dictionary<int, List<KeyValuePair<string, string>>>();
 
-        private IList<(NetworkInterfaceType networkInterfaceType, string mac, OperationalStatus status)> _networkInterfaces = new List<(NetworkInterfaceType networkInterfaceType, string mac, OperationalStatus status)>();
+        struct NetworkInfo
+        {
+            public NetworkInterfaceType NetworkType { get; set; }
+            public string MacAddress { get; set; }
+            public OperationalStatus NetworkStatus { get; set; }
+        }
+
+        private List<NetworkInfo> _networkInterfaces = new List<NetworkInfo>();
         private readonly INetworkInterfaceRetriever _networkInterfaceRetrieverMock;
 
         /// <inheritdoc/>
@@ -261,7 +268,12 @@ namespace NLog.UnitTests.LayoutRenderers
 
         public NetworkInterfaceRetrieverBuilder WithInterface(NetworkInterfaceType networkInterfaceType, string mac, OperationalStatus status = OperationalStatus.Up)
         {
-            _networkInterfaces.Add((networkInterfaceType, mac, status));
+            _networkInterfaces.Add(new NetworkInfo()
+            {
+                NetworkType = networkInterfaceType,
+                MacAddress = mac,
+                NetworkStatus = status
+            });
             return this;
         }
 
@@ -301,7 +313,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 var networkInterface = _networkInterfaces[i];
                 if (_ips.TryGetValue(i, out var ips))
                 {
-                    var networkInterfaceMock = BuildNetworkInterfaceMock(ips, networkInterface.mac, networkInterface.networkInterfaceType, networkInterface.status);
+                    var networkInterfaceMock = BuildNetworkInterfaceMock(ips, networkInterface.MacAddress, networkInterface.NetworkType, networkInterface.NetworkStatus);
                     networkInterfaceMock.Id.Returns($"#{i}");
                     networkInterfaceMock.Description.Returns("ips: " + string.Join(";", ips.ToArray()));
                     yield return networkInterfaceMock;
