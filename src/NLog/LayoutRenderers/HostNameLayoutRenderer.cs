@@ -78,14 +78,14 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Gets the host name and falls back to computer name if not available
+        /// Resolves the hostname from environment-variables with fallback to <see cref="Environment.MachineName"/>
         /// </summary>
         private static string GetHostName()
         {
             return TryLookupValue(() => Environment.GetEnvironmentVariable("HOSTNAME"), "HOSTNAME")
-                ?? TryLookupValue(() => System.Net.Dns.GetHostName(), "DnsHostName")
-                ?? TryLookupValue(() => Environment.MachineName, "MachineName")
-                ?? TryLookupValue(() => Environment.GetEnvironmentVariable("MACHINENAME"), "MachineName");
+                ?? TryLookupValue(() => Environment.GetEnvironmentVariable("COMPUTERNAME"), "COMPUTERNAME")
+                ?? TryLookupValue(() => Environment.GetEnvironmentVariable("MACHINENAME"), "MACHINENAME")
+                ?? TryLookupValue(() => Environment.MachineName, "MachineName");
         }
 
         /// <summary>

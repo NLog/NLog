@@ -219,9 +219,6 @@ namespace NLog.Internal
             if (typeof(System.IO.Stream).IsAssignableFrom(objectType))
                 return true;    // Skip serializing properties that often throws exceptions
 
-            if (typeof(System.Net.IPAddress).IsAssignableFrom(objectType))
-                return true;    // Skip serializing properties that often throws exceptions
-
             return false;
         }
 
