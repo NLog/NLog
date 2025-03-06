@@ -31,45 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.LayoutRenderers
-{
-    using System;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.Text;
-    using NLog.Internal;
+using System;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Security;
 
-    /// <summary>
-    /// A renderer that puts into log a System.Diagnostics trace correlation id.
-    /// </summary>
-    /// <remarks>
-    /// <a href="https://github.com/NLog/NLog/wiki/Trace-Activity-Id-Layout-Renderer">See NLog Wiki</a>
-    /// </remarks>
-    /// <seealso href="https://github.com/NLog/NLog/wiki/Trace-Activity-Id-Layout-Renderer">Documentation on NLog Wiki</seealso>
-    [LayoutRenderer("activityid")]
-    public class TraceActivityIdLayoutRenderer : LayoutRenderer, IStringValueRenderer
-    {
-        /// <inheritdoc/>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            builder.Append(GetStringValue());
-        }
-
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue();
-
-        private static string GetStringValue()
-        {
-            var activityId = GetValue();
-            if (!Guid.Empty.Equals(activityId))
-            {
-                return activityId.ToString("D", CultureInfo.InvariantCulture);
-            }
-            return string.Empty;
-        }
-
-        private static Guid GetValue()
-        {
-            return Trace.CorrelationManager.ActivityId;
-        }
-    }
-}
+[assembly: AssemblyCulture("")]
+[assembly: CLSCompliant(true)]
+[assembly: ComVisible(false)]
+[assembly: AllowPartiallyTrustedCallers]
+#if !NET35
+[assembly: SecurityRules(SecurityRuleSet.Level1)]
+#endif

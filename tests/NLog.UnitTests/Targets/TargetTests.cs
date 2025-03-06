@@ -535,11 +535,9 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [InlineData("Trace")]
-        [InlineData("TRACE")]
-        [InlineData("TraceSystem")]
-        [InlineData("TraceSYSTEM")]
-        [InlineData("Trace--SYSTEM")]
+        [InlineData("DebugSystem")]
+        [InlineData("Debug-System")]
+        [InlineData("DEBUGSYSTEM")]
         public void TargetAliasShouldWork(string typeName)
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString($@"
@@ -549,7 +547,7 @@ namespace NLog.UnitTests.Targets
                 </targets>
             </nlog>");
 
-            var t = c.FindTargetByName<TraceTarget>("d");
+            var t = c.FindTargetByName<DebugSystemTarget>("d");
             Assert.NotNull(t);
         }
 

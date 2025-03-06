@@ -129,7 +129,6 @@ namespace NLog.Config
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ThreadNameLayoutRenderer>("threadname");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.TicksLayoutRenderer>("ticks");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.TimeLayoutRenderer>("time");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.TraceActivityIdLayoutRenderer>("activityid");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.VariableLayoutRenderer>("var");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("cached");
             factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("Cached");
@@ -202,8 +201,6 @@ namespace NLog.Config
             factory.TargetFactory.RegisterType<NLog.Targets.MethodCallTarget>("MethodCall");
             factory.TargetFactory.RegisterType<NLog.Targets.NullTarget>("Null");
             factory.RegisterType<NLog.Targets.TargetPropertyWithContext>();
-            factory.TargetFactory.RegisterType<NLog.Targets.TraceTarget>("Trace");
-            factory.TargetFactory.RegisterType<NLog.Targets.TraceTarget>("TraceSystem");
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.AsyncTargetWrapper>("AsyncWrapper");
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.AutoFlushTargetWrapper>("AutoFlushWrapper");
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.BufferingTargetWrapper>("BufferingWrapper");

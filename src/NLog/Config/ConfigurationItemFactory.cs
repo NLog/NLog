@@ -366,16 +366,19 @@ namespace NLog.Config
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         private void RegisterExternalItems()
         {
+            _layouts.RegisterNamedType("log4jxmleventlayout", "NLog.Layouts.Log4JXmlEventLayout, NLog.Targets.Network");
 #if !NET35 && !NET40
             _layouts.RegisterNamedType("microsoftconsolejsonlayout", "NLog.Extensions.Logging.MicrosoftConsoleJsonLayout, NLog.Extensions.Logging");
             _layoutRenderers.RegisterNamedType("configsetting", "NLog.Extensions.Logging.ConfigSettingLayoutRenderer, NLog.Extensions.Logging");
             _layoutRenderers.RegisterNamedType("microsoftconsolelayout", "NLog.Extensions.Logging.MicrosoftConsoleLayoutRenderer, NLog.Extensions.Logging");
 #endif
+            _layoutRenderers.RegisterNamedType("log4jxmlevent", "NLog.LayoutRenderers.Log4JXmlEventLayoutRenderer, NLog.Targets.Network");
             _layoutRenderers.RegisterNamedType("performancecounter", "NLog.LayoutRenderers.PerformanceCounterLayoutRenderer, NLog.PerformanceCounter");
             _layoutRenderers.RegisterNamedType("registry", "NLog.LayoutRenderers.RegistryLayoutRenderer, NLog.WindowsRegistry");
             _layoutRenderers.RegisterNamedType("windows-identity", "NLog.LayoutRenderers.WindowsIdentityLayoutRenderer, NLog.WindowsIdentity");
             _layoutRenderers.RegisterNamedType("rtblink", "NLog.Windows.Forms.RichTextBoxLinkLayoutRenderer, NLog.Windows.Forms");
             _layoutRenderers.RegisterNamedType("activity", "NLog.LayoutRenderers.ActivityTraceLayoutRenderer, NLog.DiagnosticSource");
+            _layoutRenderers.RegisterNamedType("activityid", "NLog.LayoutRenderers.TraceActivityIdLayoutRenderer, NLog.Targets.Trace");
             _targets.RegisterNamedType("diagnosticlistener", "NLog.Targets.DiagnosticListenerTarget, NLog.DiagnosticSource");
             _targets.RegisterNamedType("database", "NLog.Targets.DatabaseTarget, NLog.Database");
 #if NETSTANDARD
@@ -384,11 +387,20 @@ namespace NLog.Config
             _targets.RegisterNamedType("impersonatingwrapper", "NLog.Targets.Wrappers.ImpersonatingTargetWrapper, NLog.WindowsIdentity");
             _targets.RegisterNamedType("logreceiverservice", "NLog.Targets.LogReceiverWebServiceTarget, NLog.Wcf");
             _targets.RegisterNamedType("outputdebugstring", "NLog.Targets.OutputDebugStringTarget, NLog.OutputDebugString");
+            _targets.RegisterNamedType("network", "NLog.Targets.NetworkTarget, NLog.Targets.Network");
+            _targets.RegisterNamedType("chainsaw", "NLog.Targets.ChainsawTarget, NLog.Targets.Network");
+            _targets.RegisterNamedType("nlogviewer", "NLog.Targets.ChainsawTarget, NLog.Targets.Network");
+            _targets.RegisterNamedType("mail", "NLog.Targets.MailTarget, NLog.Targets.Mail");
+            _targets.RegisterNamedType("email", "NLog.Targets.MailTarget, NLog.Targets.Mail");
+            _targets.RegisterNamedType("smtp", "NLog.Targets.MailTarget, NLog.Targets.Mail");
             _targets.RegisterNamedType("performancecounter", "NLog.Targets.PerformanceCounterTarget, NLog.PerformanceCounter");
             _targets.RegisterNamedType("richtextbox", "NLog.Windows.Forms.RichTextBoxTarget, NLog.Windows.Forms");
             _targets.RegisterNamedType("messagebox", "NLog.Windows.Forms.MessageBoxTarget, NLog.Windows.Forms");
             _targets.RegisterNamedType("formcontrol", "NLog.Windows.Forms.FormControlTarget, NLog.Windows.Forms");
             _targets.RegisterNamedType("toolstripitem", "NLog.Windows.Forms.ToolStripItemTarget, NLog.Windows.Forms");
+            _targets.RegisterNamedType("trace", "NLog.Targets.TraceTarget, NLog.Targets.Trace");
+            _targets.RegisterNamedType("tracesystem", "NLog.Targets.TraceTarget, NLog.Targets.Trace");
+            _targets.RegisterNamedType("webservice", "NLog.Targets.WebServiceTarget, NLog.Targets.WebService");
         }
     }
 }

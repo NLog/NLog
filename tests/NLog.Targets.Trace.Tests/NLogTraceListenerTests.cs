@@ -32,22 +32,31 @@
 //
 
 #define DEBUG
+#define TRACE
 
-namespace NLog.UnitTests
+namespace NLog.Targets.Trace
 {
     using System;
     using System.Diagnostics;
     using System.Globalization;
     using System.Threading;
     using NLog.Config;
+    using NLog.LayoutRenderers;
     using Xunit;
 
-    public sealed class NLogTraceListenerTests : NLogTestBase, IDisposable
+    public sealed class NLogTraceListenerTests : IDisposable
     {
         private readonly CultureInfo previousCultureInfo;
 
         public NLogTraceListenerTests()
         {
+            LogManager.ThrowExceptions = true;
+            LogManager.Setup().SetupExtensions(ext =>
+            {
+                ext.RegisterLayoutRenderer<TraceActivityIdLayoutRenderer>();
+                ext.RegisterTarget<TraceTarget>();
+            });
+
             previousCultureInfo = Thread.CurrentThread.CurrentCulture;
             // set the culture info with the decimal separator (comma) different from InvariantCulture separator (point)
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
@@ -74,16 +83,16 @@ namespace NLog.UnitTests
             Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
 
             Trace.Write("Hello");
-            AssertDebugLastMessage("debug", "Logger1 Debug Hello  ");
+            AssertDebugLastMessage("Logger1 Debug Hello  ");
 
             Trace.Write("Hello", "Cat1");
-            AssertDebugLastMessage("debug", "Logger1 Debug Cat1: Hello  ");
+            AssertDebugLastMessage("Logger1 Debug Cat1: Hello  ");
 
             Trace.Write(3.1415);
-            AssertDebugLastMessage("debug", $"Logger1 Debug {3.1415}  ");
+            AssertDebugLastMessage($"Logger1 Debug {3.1415}  ");
 
             Trace.Write(3.1415, "Cat2");
-            AssertDebugLastMessage("debug", $"Logger1 Debug Cat2: {3.1415}  ");
+            AssertDebugLastMessage($"Logger1 Debug Cat2: {3.1415}  ");
         }
 
         [Fact]
@@ -101,16 +110,16 @@ namespace NLog.UnitTests
             Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
 
             Trace.WriteLine("Hello");
-            AssertDebugLastMessage("debug", "Logger1 Debug Hello  ");
+            AssertDebugLastMessage("Logger1 Debug Hello  ");
 
             Trace.WriteLine("Hello", "Cat1");
-            AssertDebugLastMessage("debug", "Logger1 Debug Cat1: Hello  ");
+            AssertDebugLastMessage("Logger1 Debug Cat1: Hello  ");
 
             Trace.WriteLine(3.1415);
-            AssertDebugLastMessage("debug", $"Logger1 Debug {3.1415}  ");
+            AssertDebugLastMessage($"Logger1 Debug {3.1415}  ");
 
             Trace.WriteLine(3.1415, "Cat2");
-            AssertDebugLastMessage("debug", $"Logger1 Debug Cat2: {3.1415}  ");
+            AssertDebugLastMessage($"Logger1 Debug Cat2: {3.1415}  ");
         }
 
         [Fact]
@@ -128,7 +137,7 @@ namespace NLog.UnitTests
             Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace });
 
             Trace.Write("Hello");
-            AssertDebugLastMessage("debug", "Logger1 Trace Hello  ");
+            AssertDebugLastMessage("Logger1 Trace Hello  ");
         }
 
         [Fact]
@@ -161,10 +170,10 @@ namespace NLog.UnitTests
             Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
 
             Trace.Fail("Message");
-            AssertDebugLastMessage("debug", "Logger1 Error Message  Error");
+            AssertDebugLastMessage("Logger1 Error Message  Error");
 
             Trace.Fail("Message", "Detailed Message");
-            AssertDebugLastMessage("debug", "Logger1 Error Message Detailed Message  Error");
+            AssertDebugLastMessage("Logger1 Error Message Detailed Message  Error");
         }
 
         [Fact]
@@ -182,7 +191,7 @@ namespace NLog.UnitTests
             Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1", AutoLoggerName = true });
 
             Trace.Write("Hello");
-            AssertDebugLastMessage("debug", GetType().FullName + " Debug Hello  ");
+            AssertDebugLastMessage(GetType().FullName + " Debug Hello  ");
         }
 
         [Fact]
@@ -200,10 +209,10 @@ namespace NLog.UnitTests
             ts.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace });
 
             ts.TraceData(TraceEventType.Critical, 123, 42);
-            AssertDebugLastMessage("debug", "MySource1 Fatal 42 123 Critical");
+            AssertDebugLastMessage("MySource1 Fatal 42 123 Critical");
 
             ts.TraceData(TraceEventType.Critical, 145, 42, 3.14, "foo");
-            AssertDebugLastMessage("debug", $"MySource1 Fatal 42, {3.14.ToString(CultureInfo.CurrentCulture)}, foo 145 Critical");
+            AssertDebugLastMessage($"MySource1 Fatal 42, {3.14.ToString(CultureInfo.CurrentCulture)}, foo 145 Critical");
         }
 
 #if MONO
@@ -225,10 +234,10 @@ namespace NLog.UnitTests
             ts.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace });
 
             ts.TraceInformation("Quick brown fox");
-            AssertDebugLastMessage("debug", "MySource1 Info Quick brown fox  Information");
+            AssertDebugLastMessage("MySource1 Info Quick brown fox  Information");
 
             ts.TraceInformation("Mary had {0} lamb", "a little");
-            AssertDebugLastMessage("debug", "MySource1 Info Mary had a little lamb  Information");
+            AssertDebugLastMessage("MySource1 Info Mary had a little lamb  Information");
         }
 
         [Fact]
@@ -246,28 +255,28 @@ namespace NLog.UnitTests
             ts.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace });
 
             ts.TraceEvent(TraceEventType.Information, 123, "Quick brown {0} jumps over the lazy {1}.", "fox", "dog");
-            AssertDebugLastMessage("debug", "MySource1 Info Quick brown fox jumps over the lazy dog. 123 Information");
+            AssertDebugLastMessage("MySource1 Info Quick brown fox jumps over the lazy dog. 123 Information");
 
             ts.TraceEvent(TraceEventType.Information, 123);
-            AssertDebugLastMessage("debug", "MySource1 Info  123 Information");
+            AssertDebugLastMessage("MySource1 Info  123 Information");
 
             ts.TraceEvent(TraceEventType.Verbose, 145, "Bar");
-            AssertDebugLastMessage("debug", "MySource1 Trace Bar 145 ");
+            AssertDebugLastMessage("MySource1 Trace Bar 145 ");
 
             ts.TraceEvent(TraceEventType.Error, 145, "Foo");
-            AssertDebugLastMessage("debug", "MySource1 Error Foo 145 Error");
+            AssertDebugLastMessage("MySource1 Error Foo 145 Error");
 
             ts.TraceEvent(TraceEventType.Suspend, 145, "Bar");
-            AssertDebugLastMessage("debug", "MySource1 Debug Bar 145 Suspend");
+            AssertDebugLastMessage("MySource1 Debug Bar 145 Suspend");
 
             ts.TraceEvent(TraceEventType.Resume, 145, "Foo");
-            AssertDebugLastMessage("debug", "MySource1 Debug Foo 145 Resume");
+            AssertDebugLastMessage("MySource1 Debug Foo 145 Resume");
 
             ts.TraceEvent(TraceEventType.Warning, 145, "Bar");
-            AssertDebugLastMessage("debug", "MySource1 Warn Bar 145 Warning");
+            AssertDebugLastMessage("MySource1 Warn Bar 145 Warning");
 
             ts.TraceEvent(TraceEventType.Critical, 145, "Foo");
-            AssertDebugLastMessage("debug", "MySource1 Fatal Foo 145 Critical");
+            AssertDebugLastMessage("MySource1 Fatal Foo 145 Critical");
         }
 
 #if MONO
@@ -290,10 +299,10 @@ namespace NLog.UnitTests
 
             // force all logs to be Warn, DefaultLogLevel has no effect on TraceSource
             ts.TraceInformation("Quick brown fox");
-            AssertDebugLastMessage("debug", "MySource1 Warn Quick brown fox  Information");
+            AssertDebugLastMessage("MySource1 Warn Quick brown fox  Information");
 
             ts.TraceInformation("Mary had {0} lamb", "a little");
-            AssertDebugLastMessage("debug", "MySource1 Warn Mary had a little lamb  Information");
+            AssertDebugLastMessage("MySource1 Warn Mary had a little lamb  Information");
         }
 
         [Fact]
@@ -312,10 +321,10 @@ namespace NLog.UnitTests
 
             // force all logs to be Warn, DefaultLogLevel has no effect on TraceSource
             ts.TraceEvent(TraceEventType.Error, 0, "Quick brown fox");
-            AssertDebugLastMessage("debug", "MySource1 Warn Quick brown fox  Error");
+            AssertDebugLastMessage("MySource1 Warn Quick brown fox  Error");
 
             ts.TraceInformation("Mary had {0} lamb", "a little");
-            AssertDebugLastMessage("debug", "MySource1 Warn Quick brown fox  Error");
+            AssertDebugLastMessage("MySource1 Warn Quick brown fox  Error");
         }
 
         [Fact]
@@ -335,13 +344,13 @@ namespace NLog.UnitTests
                 </nlog>");
 
                 Trace.WriteLine("Quick brown fox");
-                AssertDebugLastMessage("debug", "Logger1 Debug Quick brown fox  ");
+                AssertDebugLastMessage("Logger1 Debug Quick brown fox  ");
                 Trace.WriteLine(new ArgumentException("Mary had a little lamb"));
-                AssertDebugLastMessage("debug", "Logger1 Debug System.ArgumentException: Mary had a little lamb  ");
+                AssertDebugLastMessage("Logger1 Debug System.ArgumentException: Mary had a little lamb  ");
                 Trace.Write("Quick brown fox");
-                AssertDebugLastMessage("debug", "Logger1 Debug Quick brown fox  ");
+                AssertDebugLastMessage("Logger1 Debug Quick brown fox  ");
                 Trace.Write(new ArgumentException("Mary had a little lamb"));
-                AssertDebugLastMessage("debug", "Logger1 Debug System.ArgumentException: Mary had a little lamb  ");
+                AssertDebugLastMessage("Logger1 Debug System.ArgumentException: Mary had a little lamb  ");
                 Trace.Flush();
             }
             finally
@@ -389,7 +398,7 @@ namespace NLog.UnitTests
         {
             var logger = new LogFactory().Setup().LoadConfiguration(builder =>
             {
-                builder.ForLogger().WriteToTrace(layout: "${logger} ${level} ${message} ${event-properties:EventID} ${event-properties:EventType}", rawWrite: true);
+                builder.ForLogger().WriteTo(new TraceTarget() { Layout = "${logger} ${level} ${message} ${event-properties:EventID} ${event-properties:EventType}", RawWrite = true });
             }).GetLogger("MySource1");
 
             var sw = new System.IO.StringWriter();
@@ -461,6 +470,19 @@ namespace NLog.UnitTests
             {
                 Trace.Listeners.Clear();
             }
+        }
+
+        private static void AssertDebugLastMessage(string msg)
+        {
+            var debugTarget = LogManager.Configuration.FindTargetByName<DebugTarget>("debug");
+            Assert.Equal(msg, debugTarget.LastMessage);
+        }
+
+        private static void AssertDebugLastMessageContains(string targetName, string msg)
+        {
+            var debugTarget = LogManager.Configuration.FindTargetByName<DebugTarget>("debug");
+            Assert.True(debugTarget.LastMessage.Contains(msg),
+                $"Expected to find '{msg}' in last message value on '{targetName}', but found '{debugTarget.LastMessage}'");
         }
 
         private static TraceSource CreateTraceSource()
