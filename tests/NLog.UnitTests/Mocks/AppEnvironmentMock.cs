@@ -33,6 +33,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 using NLog.Internal.Fakeables;
 
@@ -41,12 +42,12 @@ namespace NLog.UnitTests.Mocks
     internal sealed class AppEnvironmentMock : IAppEnvironment
     {
         private readonly Func<string, bool> _fileexists;
-        private readonly Func<string, XmlReader> _fileload;
+        private readonly Func<string, TextReader> _loadTextFile;
 
-        public AppEnvironmentMock(Func<string, bool> fileExists, Func<string, XmlReader> fileLoad)
+        public AppEnvironmentMock(Func<string, bool> fileExists = null, Func<string, TextReader> loadTextFile = null)
         {
-            _fileexists = fileExists;
-            _fileload = fileLoad;
+            _fileexists = fileExists != null ? fileExists : (f) => throw new NotSupportedException("FileSystem unavailable");
+            _loadTextFile = loadTextFile != null ? loadTextFile : (f) => throw new NotSupportedException("FileSystem unavailable");
         }
 
         public int AppDomainId { get; set; }
@@ -81,9 +82,9 @@ namespace NLog.UnitTests.Mocks
             return _fileexists(path);
         }
 
-        public XmlReader LoadXmlFile(string path)
+        public TextReader LoadTextFile(string path)
         {
-            return _fileload(path);
+            return _loadTextFile(path);
         }
 
         public void SignalShutdown()

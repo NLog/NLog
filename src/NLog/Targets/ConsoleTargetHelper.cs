@@ -50,7 +50,7 @@ namespace NLog.Targets
             {
                 if (!Environment.UserInteractive)
                 {
-#if !NETSTANDARD
+#if NETFRAMEWORK
                     if (Internal.PlatformDetector.IsMono && Console.In is StreamReader)
                         return true;    // Extra bonus check for Mono, that doesn't support Environment.UserInteractive
 #endif

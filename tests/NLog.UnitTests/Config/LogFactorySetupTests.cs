@@ -676,7 +676,7 @@ namespace NLog.UnitTests.Config
         {
             // Arrange
             var xmlFile = new System.IO.StringReader("<nlog autoshutdown='false'></nlog>");
-            var appEnv = new Mocks.AppEnvironmentMock(f => true, f => System.Xml.XmlReader.Create(xmlFile));
+            var appEnv = new Mocks.AppEnvironmentMock(f => true, f => xmlFile);
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
             var logFactory = new LogFactory(configLoader);
 
@@ -706,7 +706,7 @@ namespace NLog.UnitTests.Config
         public void SetupBuilderLoadConfigurationFromFileMissingTest()
         {
             // Arrange
-            var appEnv = new Mocks.AppEnvironmentMock(f => false, f => null);
+            var appEnv = new Mocks.AppEnvironmentMock(f => false);
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
             var logFactory = new LogFactory(configLoader);
 
@@ -722,7 +722,7 @@ namespace NLog.UnitTests.Config
         {
             // Arrange
             var xmlFile = new System.IO.StringReader("<nlog autoshutdown='false'></nlog>");
-            var appEnv = new Mocks.AppEnvironmentMock(f => false, f => System.Xml.XmlReader.Create(xmlFile));
+            var appEnv = new Mocks.AppEnvironmentMock(f => false);
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
             var logFactory = new LogFactory(configLoader);
 
@@ -738,7 +738,7 @@ namespace NLog.UnitTests.Config
         {
             // Arrange
             var xmlFile = new System.IO.StringReader("<nlog autoshutdown='false'></nlog>");
-            var appEnv = new Mocks.AppEnvironmentMock(f => false, f => System.Xml.XmlReader.Create(xmlFile));
+            var appEnv = new Mocks.AppEnvironmentMock(f => false);
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
             var logFactory = new LogFactory(configLoader);
 
@@ -764,7 +764,7 @@ namespace NLog.UnitTests.Config
         {
             // Arrange
             var xmlFile = new System.IO.StringReader("<nlog autoshutdown='true'></nlog>");
-            var appEnv = new Mocks.AppEnvironmentMock(f => true, f => System.Xml.XmlReader.Create(xmlFile));
+            var appEnv = new Mocks.AppEnvironmentMock(f => true);
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
             var logFactory = new LogFactory(configLoader);
 
