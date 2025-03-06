@@ -65,7 +65,7 @@ namespace NLog.Targets.FileArchiveModes
 
         protected override DateAndSequenceArchive GenerateArchiveFileInfo(FileInfo archiveFile, FileNameTemplate fileTemplate)
         {
-            string archiveFileName = Path.GetFileName(archiveFile.FullName) ?? "";
+            string archiveFileName = Path.GetFileName(archiveFile.FullName) ?? string.Empty;
             string fileNameMask = fileTemplate.ReplacePattern("*");
             int lastIndexOfStar = fileNameMask.LastIndexOf('*');
 
