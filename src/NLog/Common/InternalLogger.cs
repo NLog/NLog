@@ -339,7 +339,7 @@ namespace NLog.Common
                     level.ToString(),
                     fieldSeparator,
                     fullMessage,
-                    ex != null ? " Exception: " : "",
+                    ex != null ? " Exception: " : string.Empty,
                     ex?.ToString() ?? "");
             }
             else
@@ -348,8 +348,8 @@ namespace NLog.Common
                     level.ToString(),
                     fieldSeparator,
                     fullMessage,
-                    ex != null ? " Exception: " : "",
-                    ex?.ToString() ?? "");
+                    ex != null ? " Exception: " : string.Empty,
+                    ex?.ToString() ?? string.Empty);
             }
         }
 

@@ -62,7 +62,7 @@ namespace NLog.Targets.FileArchiveModes
 
         protected override DateAndSequenceArchive GenerateArchiveFileInfo(FileInfo archiveFile, FileNameTemplate fileTemplate)
         {
-            string baseName = Path.GetFileName(archiveFile.FullName) ?? "";
+            string baseName = Path.GetFileName(archiveFile.FullName) ?? string.Empty;
             int trailerLength = fileTemplate.Template.Length - fileTemplate.EndAt;
             string number = baseName.Substring(fileTemplate.BeginAt, baseName.Length - trailerLength - fileTemplate.BeginAt);
             int num;

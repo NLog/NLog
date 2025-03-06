@@ -312,7 +312,7 @@ namespace NLog.Targets
 
                     if (simpleLayout.OriginalText.Contains('#'))
                     {
-                        var repairLegacyLayout = simpleLayout.OriginalText.Replace(".{#}", "").Replace("_{#}", "").Replace("-{#}", "").Replace("{#}", "").Replace(".{#", "").Replace("_{#", "").Replace("-{#", "").Replace("{#", "").Replace("#}", "").Replace("#", "");
+                        var repairLegacyLayout = simpleLayout.OriginalText.Replace(".{#}", string.Empty).Replace("_{#}", "").Replace("-{#}", "").Replace("{#}", "").Replace(".{#", "").Replace("_{#", "").Replace("-{#", "").Replace("{#", "").Replace("#}", "").Replace("#", "");
                         archiveSuffixFormat = _archiveSuffixFormat ?? _legacySequenceArchiveSuffixFormat;
                         value = new SimpleLayout(repairLegacyLayout);
                     }
@@ -1069,7 +1069,7 @@ namespace NLog.Targets
                 if (!string.IsNullOrEmpty(fileExt))
                     fileName = fileName.Substring(0, fileName.Length - fileExt.Length);
 
-                object fileLastModifiedObj = fileLastModified == default ? "" : (object)fileLastModified;
+                object fileLastModifiedObj = fileLastModified == default ? string.Empty : (object)fileLastModified;
                 try
                 {
                     newFileName = newFileName + fileName + string.Format(ArchiveSuffixFormat, sequenceNumber, fileLastModifiedObj) + fileExt;

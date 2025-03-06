@@ -69,9 +69,9 @@ namespace NLog.Targets.Wrappers
             if (WrappedTarget is null)
                 return GenerateTargetToString(true);
             else if (string.IsNullOrEmpty(Name))
-                return $"{GenerateTargetToString(true, "")}_{WrappedTarget}";
+                return $"{GenerateTargetToString(true, string.Empty)}_{WrappedTarget}";
             else
-                return $"{GenerateTargetToString(true, "")}_{WrappedTarget.GenerateTargetToString(false, Name)}";
+                return $"{GenerateTargetToString(true, string.Empty)}_{WrappedTarget.GenerateTargetToString(false, Name)}";
         }
 
         /// <inheritdoc/>
