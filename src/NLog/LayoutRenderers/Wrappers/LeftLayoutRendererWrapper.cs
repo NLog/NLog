@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/Left-layout-renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("left")]
-    [AmbientProperty("Truncate")]
+    [AmbientProperty(nameof(Truncate))]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     public sealed class LeftLayoutRendererWrapper : WrapperLayoutRendererBase
