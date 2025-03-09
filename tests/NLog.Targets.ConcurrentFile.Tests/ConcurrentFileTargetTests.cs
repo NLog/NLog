@@ -101,7 +101,7 @@ namespace NLog.UnitTests.Targets
             {
                 var fileTarget = new ConcurrentFileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                     OpenFileCacheTimeout = 0,
@@ -158,8 +158,8 @@ namespace NLog.UnitTests.Targets
                     {
                         var fileTarget = new ConcurrentFileTarget
                         {
-                            FileName = SimpleLayout.Escape(logFile),
-                            ArchiveFileName = SimpleLayout.Escape(arhiveFile),
+                            FileName = Layout.FromLiteral(logFile),
+                            ArchiveFileName = Layout.FromLiteral(arhiveFile),
                             ArchiveEvery = FileArchiveEveryPeriod.Year,
                             LineEnding = LineEndingMode.LF,
                             Layout = "${level} ${message}",
@@ -262,7 +262,7 @@ namespace NLog.UnitTests.Targets
             {
                 var fileTarget = new ConcurrentFileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                 };
@@ -292,7 +292,7 @@ namespace NLog.UnitTests.Targets
             {
                 var fileTarget = new ConcurrentFileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Encoding = Encoding.UTF8,
                     WriteBom = true,
@@ -588,7 +588,7 @@ namespace NLog.UnitTests.Targets
 
                     var fileTarget = new ConcurrentFileTarget
                     {
-                        FileName = SimpleLayout.Escape(logFile),
+                        FileName = Layout.FromLiteral(logFile),
                         LineEnding = LineEndingMode.LF,
                         Layout = layout,
                         OpenFileCacheTimeout = 0,
@@ -638,7 +638,7 @@ namespace NLog.UnitTests.Targets
                 var fileTarget = new ConcurrentFileTarget
                 {
                     DeleteOldFileOnStartup = false,
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}"
                 };
@@ -659,7 +659,7 @@ namespace NLog.UnitTests.Targets
                 fileTarget = new ConcurrentFileTarget
                 {
                     DeleteOldFileOnStartup = false,
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}"
                 };
@@ -678,7 +678,7 @@ namespace NLog.UnitTests.Targets
 
                 fileTarget = new ConcurrentFileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                     DeleteOldFileOnStartup = true
@@ -784,7 +784,7 @@ namespace NLog.UnitTests.Targets
                 var fileTarget = new ConcurrentFileTarget
                 {
                     ArchiveOldFileOnStartup = false,
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}"
                 };
@@ -804,7 +804,7 @@ namespace NLog.UnitTests.Targets
                 fileTarget = new ConcurrentFileTarget
                 {
                     ArchiveOldFileOnStartup = false,
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}"
                 };
@@ -829,7 +829,7 @@ namespace NLog.UnitTests.Targets
                 fileTarget = ft = new ConcurrentFileTarget
                 {
                     EnableArchiveFileCompression = enableCompression,
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                     ArchiveOldFileOnStartup = true,
@@ -881,7 +881,7 @@ namespace NLog.UnitTests.Targets
             {
                 return new ConcurrentFileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                     ArchiveOldFileOnStartupAboveSize = threshold,
@@ -927,7 +927,7 @@ namespace NLog.UnitTests.Targets
             {
                 return new ConcurrentFileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                     ArchiveOldFileOnStartupAboveSize = threshold,
@@ -977,7 +977,7 @@ namespace NLog.UnitTests.Targets
 
             var fileTarget = new ConcurrentFileTarget("file")
             {
-                FileName = SimpleLayout.Escape(logFile),
+                FileName = Layout.FromLiteral(logFile),
                 LineEnding = LineEndingMode.LF,
                 Layout = "${level} ${message}",
                 KeepFileOpen = false,
@@ -1027,7 +1027,7 @@ namespace NLog.UnitTests.Targets
                 var fileTarget = new ConcurrentFileTarget
                 {
                     DeleteOldFileOnStartup = false,
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     ReplaceFileContentsOnEachWrite = true,
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}"
@@ -2246,7 +2246,7 @@ namespace NLog.UnitTests.Targets
                 // Configure first time
                 var fileTarget = new ConcurrentFileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message}",
                     Header = header,
@@ -2269,7 +2269,7 @@ namespace NLog.UnitTests.Targets
                 // Configure second time
                 fileTarget = new ConcurrentFileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message}",
                     Header = header,
@@ -2830,7 +2830,7 @@ namespace NLog.UnitTests.Targets
             {
                 var fileTarget = new ConcurrentFileTarget
                 {
-                    FileName = SimpleLayout.Escape(invalidLogFileName),
+                    FileName = Layout.FromLiteral(invalidLogFileName),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                     OpenFileCacheTimeout = 0

@@ -48,9 +48,9 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/Cached-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("cached")]
-    [AmbientProperty("Cached")]
-    [AmbientProperty("ClearCache")]
-    [AmbientProperty("CachedSeconds")]
+    [AmbientProperty(nameof(Cached))]
+    [AmbientProperty(nameof(ClearCache))]
+    [AmbientProperty(nameof(CachedSeconds))]
     [ThreadAgnostic]
     public sealed class CachedLayoutRendererWrapper : WrapperLayoutRendererBase, IStringValueRenderer
     {
