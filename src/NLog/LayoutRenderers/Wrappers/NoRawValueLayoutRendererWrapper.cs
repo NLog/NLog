@@ -42,7 +42,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     /// <remarks>For performance and/or full (formatted) control of the output.</remarks>
     [LayoutRenderer("norawvalue")]
-    [AmbientProperty("NoRawValue")]
+    [AmbientProperty(nameof(NoRawValue))]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     public sealed class NoRawValueLayoutRendererWrapper : WrapperLayoutRendererBase
