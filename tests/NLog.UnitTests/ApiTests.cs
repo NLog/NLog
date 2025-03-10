@@ -135,15 +135,9 @@ namespace NLog.UnitTests
         [Fact]
         public void TypesInInternalNamespaceShouldBeInternalTest()
         {
-            var excludes = new HashSet<Type>
-            {
-                typeof(NLog.Internal.Xamarin.PreserveAttribute),
-            };
-
             var notInternalTypes = allTypes
                 .Where(t => t.Namespace != null && t.Namespace.Contains(".Internal"))
                 .Where(t => !t.IsNested && (t.IsVisible || t.IsPublic))
-                .Where(n => !excludes.Contains(n))
                 .Select(t => t.FullName)
                 .ToList();
 

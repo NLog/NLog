@@ -52,7 +52,7 @@ namespace NLog.Config
     ///
     /// Supports creating item-instance from their type-alias, when parsing NLog configuration
     /// </summary>
-    public class ConfigurationItemFactory
+    public sealed class ConfigurationItemFactory
     {
         private static ConfigurationItemFactory _defaultInstance;
 
@@ -88,16 +88,16 @@ namespace NLog.Config
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
         public ConfigurationItemFactory()
-            : this(LogManager.LogFactory.ServiceRepository, null)
+            : this(LogManager.LogFactory.ServiceRepository)
         {
         }
 
-        internal ConfigurationItemFactory(ServiceRepository serviceRepository, ConfigurationItemFactory globalDefaultFactory)
+        internal ConfigurationItemFactory(ServiceRepository serviceRepository)
         {
             _serviceRepository = Guard.ThrowIfNull(serviceRepository);
             _targets = new Factory<Target, TargetAttribute>(this);
             _filters = new Factory<Filter, FilterAttribute>(this);
-            _layoutRenderers = new LayoutRendererFactory(this, globalDefaultFactory?._layoutRenderers);
+            _layoutRenderers = new LayoutRendererFactory(this);
             _layouts = new Factory<Layout, LayoutAttribute>(this);
             _conditionMethods = new MethodFactory();
             _ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this);
@@ -112,6 +112,7 @@ namespace NLog.Config
                 _ambientProperties,
                 _timeSources,
             };
+            RegisterType<NLog.Config.LoggingRule>();
         }
 
         /// <summary>
@@ -123,39 +124,121 @@ namespace NLog.Config
         /// </remarks>
         public static ConfigurationItemFactory Default
         {
-            get => _defaultInstance ?? (_defaultInstance = BuildDefaultFactory());
+            get => _defaultInstance ?? (_defaultInstance = new ConfigurationItemFactory(LogManager.LogFactory.ServiceRepository));
             set => _defaultInstance = value;
         }
 
         /// <summary>
         /// Gets the <see cref="Target"/> factory.
         /// </summary>
-        public IFactory<Target> TargetFactory => _targets;
+        public IFactory<Target> TargetFactory
+        {
+            get
+            {
+                if (!_targets.Initialized)
+                    _targets.Initialize(() => RegisterAllTargets());
+                // Targets can depend on filters
+                if (!_filters.Initialized)
+                    _filters.Initialize(() => RegisterAllFilters());
+                // Targets can depend on conditions
+                if (!_conditionMethods.Initialized)
+                    _conditionMethods.Initialize(() => RegisterAllConditionMethods());
+                return _targets;
+            }
+        }
+
         /// <summary>
         /// Gets the <see cref="Layout"/> factory.
         /// </summary>
-        public IFactory<Layout> LayoutFactory => _layouts;
+        public IFactory<Layout> LayoutFactory
+        {
+            get
+            {
+                if (!_layouts.Initialized)
+                    _layouts.Initialize(() => RegisterAllLayouts());
+                return _layouts;
+            }
+        }
+
         /// <summary>
         /// Gets the <see cref="LayoutRenderer"/> factory.
         /// </summary>
-        public IFactory<LayoutRenderer> LayoutRendererFactory => _layoutRenderers;
+        public IFactory<LayoutRenderer> LayoutRendererFactory
+        {
+            get
+            {
+                if (!_layoutRenderers.Initialized)
+                    _layoutRenderers.Initialize(() => RegisterAllLayoutRenderers());
+                // When-LayoutRenderers depends on conditions
+                if (!_conditionMethods.Initialized)
+                    _conditionMethods.Initialize(() => RegisterAllConditionMethods());
+                return _layoutRenderers;
+            }
+        }
+
         /// <summary>
         /// Gets the ambient property factory.
         /// </summary>
-        public IFactory<LayoutRenderer> AmbientRendererFactory => _ambientProperties;
+        public IFactory<LayoutRenderer> AmbientRendererFactory
+        {
+            get
+            {
+                if (!_layoutRenderers.Initialized)
+                    _layoutRenderers.Initialize(() => RegisterAllLayoutRenderers());
+                // When-LayoutRenderers depends on conditions
+                if (!_conditionMethods.Initialized)
+                    _conditionMethods.Initialize(() => RegisterAllConditionMethods());
+                return _ambientProperties;
+            }
+        }
+
         /// <summary>
         /// Gets the <see cref="Filter"/> factory.
         /// </summary>
-        public IFactory<Filter> FilterFactory => _filters;
+        public IFactory<Filter> FilterFactory
+        {
+            get
+            {
+                if (!_filters.Initialized)
+                    _filters.Initialize(() => RegisterAllFilters());
+                // Filters can depend on conditions
+                if (!_conditionMethods.Initialized)
+                    _conditionMethods.Initialize(() => RegisterAllConditionMethods());
+                return _filters;
+            }
+        }
+
         /// <summary>
         /// Gets the <see cref="TimeSource"/> factory.
         /// </summary>
-        public IFactory<TimeSource> TimeSourceFactory => _timeSources;
-        internal MethodFactory ConditionMethodFactory => _conditionMethods;
+        public IFactory<TimeSource> TimeSourceFactory
+        {
+            get
+            {
+                if (!_timeSources.Initialized)
+                    _timeSources.Initialize(() => RegisterAllTimeSources());
+                return _timeSources;
+            }
+        }
+
+        internal MethodFactory ConditionMethodFactory
+        {
+            get
+            {
+                if (!_conditionMethods.Initialized)
+                    _conditionMethods.Initialize(() => RegisterAllConditionMethods());
+                return _conditionMethods;
+            }
+        }
 
         internal Factory<Target, TargetAttribute> GetTargetFactory() => _targets;
         internal Factory<Layout, LayoutAttribute> GetLayoutFactory() => _layouts;
         internal LayoutRendererFactory GetLayoutRendererFactory() => _layoutRenderers;
+        internal Factory<LayoutRenderer, AmbientPropertyAttribute> GetAmbientPropertyFactory() => _ambientProperties;
+        internal Factory<Filter, FilterAttribute> GetFilterFactory() => _filters;
+        internal Factory<TimeSource, TimeSourceAttribute> GetTimeSourceFactory() => _timeSources;
+        internal MethodFactory GetConditionMethodFactory() => _conditionMethods;
+
         internal ICollection<Type> ItemTypes
         {
             get
@@ -282,6 +365,7 @@ namespace NLog.Config
                 return new Dictionary<string, PropertyInfo>();
 
 #pragma warning disable CS0618 // Type or member is obsolete
+            InternalLogger.Debug("Object reflection needed to configure instance of type: {0}", itemType);
             return ResolveTypePropertiesLegacy(itemType);
 #pragma warning restore CS0618 // Type or member is obsolete
         }
@@ -292,7 +376,6 @@ namespace NLog.Config
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         private Dictionary<string, PropertyInfo> ResolveTypePropertiesLegacy(Type itemType)
         {
-            InternalLogger.Debug("Object reflection needed to configure instance of type: {0}", itemType);
             Dictionary<string, PropertyInfo> properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase);
             lock (SyncRoot)
             {
@@ -314,6 +397,7 @@ namespace NLog.Config
             if (itemCreator is null)
             {
 #pragma warning disable CS0618 // Type or member is obsolete
+                InternalLogger.Debug("Object reflection needed to create instance of type: {0}", itemType);
                 instance = ResolveCreateInstanceLegacy(itemType);
 #pragma warning restore CS0618 // Type or member is obsolete
             }
@@ -331,7 +415,6 @@ namespace NLog.Config
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         private object ResolveCreateInstanceLegacy(Type itemType)
         {
-            InternalLogger.Debug("Object reflection needed to create instance of type: {0}", itemType);
             Dictionary<string, PropertyInfo> properties = null;
             var itemProperties = new Func<Dictionary<string, PropertyInfo>>(() => properties ?? (properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase)));
             var itemFactory = new ItemFactory(itemProperties, () => Activator.CreateInstance(itemType));
@@ -343,42 +426,10 @@ namespace NLog.Config
             return itemFactory.ItemCreator.Invoke();
         }
 
-        /// <summary>
-        /// Builds the default configuration item factory.
-        /// </summary>
-        /// <returns>Default factory.</returns>
-        private static ConfigurationItemFactory BuildDefaultFactory()
+        private void RegisterAllTargets()
         {
-            var factory = new ConfigurationItemFactory(LogManager.LogFactory.ServiceRepository, null);
-            lock (SyncRoot)
-            {
-                AssemblyExtensionTypes.RegisterTypes(factory);
+            AssemblyExtensionTypes.RegisterTargetTypes(this);
 #pragma warning disable CS0618 // Type or member is obsolete
-                factory.RegisterExternalItems();
-#pragma warning restore CS0618 // Type or member is obsolete
-            }
-            return factory;
-        }
-
-        /// <summary>
-        /// Registers items in using late-bound types, so that we don't need a reference to the dll.
-        /// </summary>
-        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-        private void RegisterExternalItems()
-        {
-            _layouts.RegisterNamedType("log4jxmleventlayout", "NLog.Layouts.Log4JXmlEventLayout, NLog.Targets.Network");
-#if !NET35 && !NET40
-            _layouts.RegisterNamedType("microsoftconsolejsonlayout", "NLog.Extensions.Logging.MicrosoftConsoleJsonLayout, NLog.Extensions.Logging");
-            _layoutRenderers.RegisterNamedType("configsetting", "NLog.Extensions.Logging.ConfigSettingLayoutRenderer, NLog.Extensions.Logging");
-            _layoutRenderers.RegisterNamedType("microsoftconsolelayout", "NLog.Extensions.Logging.MicrosoftConsoleLayoutRenderer, NLog.Extensions.Logging");
-#endif
-            _layoutRenderers.RegisterNamedType("log4jxmlevent", "NLog.LayoutRenderers.Log4JXmlEventLayoutRenderer, NLog.Targets.Network");
-            _layoutRenderers.RegisterNamedType("performancecounter", "NLog.LayoutRenderers.PerformanceCounterLayoutRenderer, NLog.PerformanceCounter");
-            _layoutRenderers.RegisterNamedType("registry", "NLog.LayoutRenderers.RegistryLayoutRenderer, NLog.WindowsRegistry");
-            _layoutRenderers.RegisterNamedType("windows-identity", "NLog.LayoutRenderers.WindowsIdentityLayoutRenderer, NLog.WindowsIdentity");
-            _layoutRenderers.RegisterNamedType("rtblink", "NLog.Windows.Forms.RichTextBoxLinkLayoutRenderer, NLog.Windows.Forms");
-            _layoutRenderers.RegisterNamedType("activity", "NLog.LayoutRenderers.ActivityTraceLayoutRenderer, NLog.DiagnosticSource");
-            _layoutRenderers.RegisterNamedType("activityid", "NLog.LayoutRenderers.TraceActivityIdLayoutRenderer, NLog.Targets.Trace");
             _targets.RegisterNamedType("diagnosticlistener", "NLog.Targets.DiagnosticListenerTarget, NLog.DiagnosticSource");
             _targets.RegisterNamedType("database", "NLog.Targets.DatabaseTarget, NLog.Database");
 #if NETSTANDARD
@@ -401,6 +452,51 @@ namespace NLog.Config
             _targets.RegisterNamedType("trace", "NLog.Targets.TraceTarget, NLog.Targets.Trace");
             _targets.RegisterNamedType("tracesystem", "NLog.Targets.TraceTarget, NLog.Targets.Trace");
             _targets.RegisterNamedType("webservice", "NLog.Targets.WebServiceTarget, NLog.Targets.WebService");
+#pragma warning restore CS0618 // Type or member is obsolete
+        }
+
+        private void RegisterAllLayouts()
+        {
+            AssemblyExtensionTypes.RegisterLayoutTypes(this);
+#pragma warning disable CS0618 // Type or member is obsolete
+            _layouts.RegisterNamedType("log4jxmleventlayout", "NLog.Layouts.Log4JXmlEventLayout, NLog.Targets.Network");
+#if !NET35 && !NET40
+            _layouts.RegisterNamedType("microsoftconsolejsonlayout", "NLog.Extensions.Logging.MicrosoftConsoleJsonLayout, NLog.Extensions.Logging");
+#endif
+#pragma warning restore CS0618 // Type or member is obsolete
+        }
+
+        private void RegisterAllLayoutRenderers()
+        {
+            AssemblyExtensionTypes.RegisterLayoutRendererTypes(this);
+#pragma warning disable CS0618 // Type or member is obsolete
+#if !NET35 && !NET40
+            _layoutRenderers.RegisterNamedType("configsetting", "NLog.Extensions.Logging.ConfigSettingLayoutRenderer, NLog.Extensions.Logging");
+            _layoutRenderers.RegisterNamedType("microsoftconsolelayout", "NLog.Extensions.Logging.MicrosoftConsoleLayoutRenderer, NLog.Extensions.Logging");
+#endif
+            _layoutRenderers.RegisterNamedType("log4jxmlevent", "NLog.LayoutRenderers.Log4JXmlEventLayoutRenderer, NLog.Targets.Network");
+            _layoutRenderers.RegisterNamedType("performancecounter", "NLog.LayoutRenderers.PerformanceCounterLayoutRenderer, NLog.PerformanceCounter");
+            _layoutRenderers.RegisterNamedType("registry", "NLog.LayoutRenderers.RegistryLayoutRenderer, NLog.WindowsRegistry");
+            _layoutRenderers.RegisterNamedType("windows-identity", "NLog.LayoutRenderers.WindowsIdentityLayoutRenderer, NLog.WindowsIdentity");
+            _layoutRenderers.RegisterNamedType("rtblink", "NLog.Windows.Forms.RichTextBoxLinkLayoutRenderer, NLog.Windows.Forms");
+            _layoutRenderers.RegisterNamedType("activity", "NLog.LayoutRenderers.ActivityTraceLayoutRenderer, NLog.DiagnosticSource");
+            _layoutRenderers.RegisterNamedType("activityid", "NLog.LayoutRenderers.TraceActivityIdLayoutRenderer, NLog.Targets.Trace");
+#pragma warning restore CS0618 // Type or member is obsolete
+        }
+
+        private void RegisterAllFilters()
+        {
+            AssemblyExtensionTypes.RegisterFilterTypes(this);
+        }
+
+        private void RegisterAllConditionMethods()
+        {
+            AssemblyExtensionTypes.RegisterConditionTypes(this);
+        }
+
+        private void RegisterAllTimeSources()
+        {
+            AssemblyExtensionTypes.RegisterTimeSourceTypes(this);
         }
     }
 }

@@ -82,6 +82,26 @@ namespace NLog.Config
             }
         }
 
+        public bool Initialized { get; private set; }
+
+        public void Initialize(Action itemRegistration)
+        {
+            lock (ConfigurationItemFactory.SyncRoot)
+            {
+                if (Initialized)
+                    return;
+
+                try
+                {
+                    itemRegistration.Invoke();
+                }
+                finally
+                {
+                    Initialized = true;
+                }
+            }
+        }
+
         /// <summary>
         /// Registers the type.
         /// </summary>

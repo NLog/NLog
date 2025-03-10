@@ -52,10 +52,6 @@ namespace NLog.Config
     public interface IFactory<TBaseType> where TBaseType : class
     {
         /// <summary>
-        /// Registers type-creation with type-alias
-        /// </summary>
-        void RegisterType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(string typeAlias) where TType : TBaseType, new();
-        /// <summary>
         /// Tries to create an item instance with type-alias
         /// </summary>
         /// <returns>True if instance was created successfully, false otherwise.</returns>

@@ -38,199 +38,202 @@ namespace NLog.Config
     /// </summary>
     internal static class AssemblyExtensionTypes
     {
-        public static void RegisterTypes(ConfigurationItemFactory factory)
+        public static void RegisterTargetTypes(ConfigurationItemFactory factory)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
             factory.RegisterTypeProperties<NLog.Targets.TargetWithContext.TargetWithContextLayout>(() => null);
-            factory.RegisterTypeProperties<NLog.Layouts.CsvLayout.CsvHeaderLayout>(() => null);
-            factory.RegisterTypeProperties<NLog.Conditions.ConditionAndExpression>(() => null);
-            factory.RegisterTypeProperties<NLog.Conditions.ConditionExceptionExpression>(() => null);
-            factory.RegisterTypeProperties<NLog.Conditions.ConditionLayoutExpression>(() => null);
-            factory.RegisterTypeProperties<NLog.Conditions.ConditionLevelExpression>(() => null);
-            factory.RegisterTypeProperties<NLog.Conditions.ConditionLiteralExpression>(() => null);
-            factory.RegisterTypeProperties<NLog.Conditions.ConditionLoggerNameExpression>(() => null);
-            factory.RegisterTypeProperties<NLog.Conditions.ConditionMessageExpression>(() => null);
-            factory.RegisterTypeProperties<NLog.Conditions.ConditionMethodExpression>(() => null);
-            factory.RegisterTypeProperties<NLog.Conditions.ConditionNotExpression>(() => null);
-            factory.RegisterTypeProperties<NLog.Conditions.ConditionOrExpression>(() => null);
-            factory.RegisterTypeProperties<NLog.Conditions.ConditionRelationalExpression>(() => null);
-            factory.RegisterType<NLog.Config.LoggingRule>();
-            factory.FilterFactory.RegisterType<NLog.Filters.ConditionBasedFilter>("when");
-            factory.FilterFactory.RegisterType<NLog.Filters.WhenContainsFilter>("whenContains");
-            factory.FilterFactory.RegisterType<NLog.Filters.WhenEqualFilter>("whenEqual");
-            factory.FilterFactory.RegisterType<NLog.Filters.WhenNotContainsFilter>("whenNotContains");
-            factory.FilterFactory.RegisterType<NLog.Filters.WhenNotEqualFilter>("whenNotEqual");
-            factory.FilterFactory.RegisterType<NLog.Filters.WhenRepeatedFilter>("whenRepeated");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.AllEventPropertiesLayoutRenderer>("all-event-properties");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.AppDomainLayoutRenderer>("appdomain");
 #if NETFRAMEWORK
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.AppSettingLayoutRenderer>("appsetting");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.EventLogTarget>("EventLog");
 #endif
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.AssemblyVersionLayoutRenderer>("assembly-version");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.BaseDirLayoutRenderer>("basedir");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.CallSiteFileNameLayoutRenderer>("callsite-filename");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.CallSiteLayoutRenderer>("callsite");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.CallSiteLineNumberLayoutRenderer>("callsite-linenumber");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.CounterLayoutRenderer>("counter");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.CurrentDirLayoutRenderer>("currentdir");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.DateLayoutRenderer>("date");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.DbNullLayoutRenderer>("db-null");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.DirectorySeparatorLayoutRenderer>("dir-separator");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.EnvironmentLayoutRenderer>("environment");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.EnvironmentUserLayoutRenderer>("environment-user");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("event-properties");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("event-property");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("event-context");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ExceptionDataLayoutRenderer>("exceptiondata");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ExceptionDataLayoutRenderer>("exception-data");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ExceptionLayoutRenderer>("exception");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.FileContentsLayoutRenderer>("file-contents");
-            factory.RegisterTypeProperties<NLog.LayoutRenderers.FuncThreadAgnosticLayoutRenderer>(() => null);
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.GarbageCollectorInfoLayoutRenderer>("gc");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.GdcLayoutRenderer>("gdc");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.GuidLayoutRenderer>("guid");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.HostNameLayoutRenderer>("hostname");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.IdentityLayoutRenderer>("identity");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.InstallContextLayoutRenderer>("install-context");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LevelLayoutRenderer>("level");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LevelLayoutRenderer>("loglevel");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LiteralLayoutRenderer>("literal");
-            factory.RegisterTypeProperties<NLog.LayoutRenderers.LiteralWithRawValueLayoutRenderer>(() => null);
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("loggername");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("logger");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LongDateLayoutRenderer>("longdate");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.MachineNameLayoutRenderer>("machinename");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.MessageLayoutRenderer>("message");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.NewLineLayoutRenderer>("newline");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.NLogDirLayoutRenderer>("nlogdir");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessDirLayoutRenderer>("processdir");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessIdLayoutRenderer>("processid");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessInfoLayoutRenderer>("processinfo");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessNameLayoutRenderer>("processname");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessTimeLayoutRenderer>("processtime");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextIndentLayoutRenderer>("scopeindent");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("scopenested");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("ndc");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("ndlc");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("scopeproperty");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("mdc");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("mdlc");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextTimingLayoutRenderer>("scopetiming");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextTimingLayoutRenderer>("ndlctiming");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.SequenceIdLayoutRenderer>("sequenceid");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ShortDateLayoutRenderer>("shortdate");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.SpecialFolderApplicationDataLayoutRenderer>("userApplicationDataDir");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.SpecialFolderCommonApplicationDataLayoutRenderer>("commonApplicationDataDir");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.SpecialFolderLayoutRenderer>("specialfolder");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.SpecialFolderLocalApplicationDataLayoutRenderer>("userLocalApplicationDataDir");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.StackTraceLayoutRenderer>("stacktrace");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.TempDirLayoutRenderer>("tempdir");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ThreadIdLayoutRenderer>("threadid");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ThreadNameLayoutRenderer>("threadname");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.TicksLayoutRenderer>("ticks");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.TimeLayoutRenderer>("time");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.VariableLayoutRenderer>("var");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("cached");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("Cached");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("ClearCache");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("CachedSeconds");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.FileSystemNormalizeLayoutRendererWrapper>("filesystem-normalize");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.FileSystemNormalizeLayoutRendererWrapper>("FSNormalize");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper>("json-encode");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper>("JsonEncode");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.LeftLayoutRendererWrapper>("left");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.LeftLayoutRendererWrapper>("Truncate");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("lowercase");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("Lowercase");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("ToLower");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.NoRawValueLayoutRendererWrapper>("norawvalue");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.NoRawValueLayoutRendererWrapper>("NoRawValue");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.ObjectPathRendererWrapper>("Object-Path");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.ObjectPathRendererWrapper>("ObjectPath");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.OnExceptionLayoutRendererWrapper>("onexception");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.OnHasPropertiesLayoutRendererWrapper>("onhasproperties");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("pad");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("Padding");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("PadCharacter");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("FixedLength");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("AlignmentOnTruncation");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.ReplaceLayoutRendererWrapper>("replace");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.ReplaceNewLinesLayoutRendererWrapper>("replace-newlines");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.ReplaceNewLinesLayoutRendererWrapper>("ReplaceNewLines");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.RightLayoutRendererWrapper>("right");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.Rot13LayoutRendererWrapper>("rot13");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.SubstringLayoutRendererWrapper>("substring");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.TrimWhiteSpaceLayoutRendererWrapper>("trim-whitespace");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.TrimWhiteSpaceLayoutRendererWrapper>("TrimWhiteSpace");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("uppercase");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("Uppercase");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("ToUpper");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.UrlEncodeLayoutRendererWrapper>("url-encode");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.WhenEmptyLayoutRendererWrapper>("whenEmpty");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.WhenEmptyLayoutRendererWrapper>("WhenEmpty");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.WhenLayoutRendererWrapper>("when");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.WhenLayoutRendererWrapper>("When");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.WrapLineLayoutRendererWrapper>("wrapline");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.WrapLineLayoutRendererWrapper>("WrapLine");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper>("xml-encode");
-            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper>("XmlEncode");
-            factory.LayoutFactory.RegisterType<NLog.Layouts.CompoundLayout>("CompoundLayout");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.ColoredConsoleTarget>("ColoredConsole");
+            factory.RegisterType<NLog.Targets.ConsoleRowHighlightingRule>();
+            factory.GetTargetFactory().RegisterType<NLog.Targets.ConsoleTarget>("Console");
+            factory.RegisterType<NLog.Targets.ConsoleWordHighlightingRule>();
+            factory.GetTargetFactory().RegisterType<NLog.Targets.DebuggerTarget>("Debugger");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.DebugSystemTarget>("DebugSystem");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.DebugTarget>("Debug");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.FileTarget>("File");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.MemoryTarget>("Memory");
+            factory.RegisterType<NLog.Targets.MethodCallParameter>();
+            factory.GetTargetFactory().RegisterType<NLog.Targets.MethodCallTarget>("MethodCall");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.NullTarget>("Null");
+            factory.RegisterType<NLog.Targets.TargetPropertyWithContext>();
+            factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.AsyncTargetWrapper>("AsyncWrapper");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.AutoFlushTargetWrapper>("AutoFlushWrapper");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.BufferingTargetWrapper>("BufferingWrapper");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.FallbackGroupTarget>("FallbackGroup");
+            factory.RegisterType<NLog.Targets.Wrappers.FilteringRule>();
+            factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.FilteringTargetWrapper>("FilteringWrapper");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.GroupByTargetWrapper>("GroupByWrapper");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.LimitingTargetWrapper>("LimitingWrapper");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.PostFilteringTargetWrapper>("PostFilteringWrapper");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.RandomizeGroupTarget>("RandomizeGroup");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.RepeatingTargetWrapper>("RepeatingWrapper");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.RetryingTargetWrapper>("RetryingWrapper");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.RoundRobinGroupTarget>("RoundRobinGroup");
+            factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.SplitGroupTarget>("SplitGroup");
+        }
+
+        public static void RegisterLayoutTypes(ConfigurationItemFactory factory)
+        {
+            factory.RegisterTypeProperties<NLog.Layouts.CsvLayout.CsvHeaderLayout>(() => null);
+            factory.GetLayoutFactory().RegisterType<NLog.Layouts.CompoundLayout>("CompoundLayout");
             factory.RegisterType<NLog.Layouts.CsvColumn>();
-            factory.LayoutFactory.RegisterType<NLog.Layouts.CsvLayout>("CsvLayout");
-            factory.LayoutFactory.RegisterType<NLog.Layouts.JsonArrayLayout>("JsonArrayLayout");
+            factory.GetLayoutFactory().RegisterType<NLog.Layouts.CsvLayout>("CsvLayout");
+            factory.GetLayoutFactory().RegisterType<NLog.Layouts.JsonArrayLayout>("JsonArrayLayout");
             factory.RegisterType<NLog.Layouts.JsonAttribute>();
-            factory.LayoutFactory.RegisterType<NLog.Layouts.JsonLayout>("JsonLayout");
-            factory.LayoutFactory.RegisterType<NLog.Layouts.LayoutWithHeaderAndFooter>("LayoutWithHeaderAndFooter");
-            factory.LayoutFactory.RegisterType<NLog.Layouts.SimpleLayout>("SimpleLayout");
+            factory.GetLayoutFactory().RegisterType<NLog.Layouts.JsonLayout>("JsonLayout");
+            factory.GetLayoutFactory().RegisterType<NLog.Layouts.LayoutWithHeaderAndFooter>("LayoutWithHeaderAndFooter");
+            factory.GetLayoutFactory().RegisterType<NLog.Layouts.SimpleLayout>("SimpleLayout");
             factory.RegisterType<NLog.Layouts.ValueTypeLayoutInfo>();
             factory.RegisterType<NLog.Layouts.XmlAttribute>();
-            factory.LayoutFactory.RegisterType<NLog.Layouts.XmlLayout>("XmlLayout");
-            factory.TargetFactory.RegisterType<NLog.Targets.ColoredConsoleTarget>("ColoredConsole");
-            factory.RegisterType<NLog.Targets.ConsoleRowHighlightingRule>();
-            factory.TargetFactory.RegisterType<NLog.Targets.ConsoleTarget>("Console");
-            factory.RegisterType<NLog.Targets.ConsoleWordHighlightingRule>();
-            factory.TargetFactory.RegisterType<NLog.Targets.DebuggerTarget>("Debugger");
-            factory.TargetFactory.RegisterType<NLog.Targets.DebugSystemTarget>("DebugSystem");
-            factory.TargetFactory.RegisterType<NLog.Targets.DebugTarget>("Debug");
-#if NETFRAMEWORK
-            factory.TargetFactory.RegisterType<NLog.Targets.EventLogTarget>("EventLog");
-#endif
-            factory.TargetFactory.RegisterType<NLog.Targets.FileTarget>("File");
-            factory.TargetFactory.RegisterType<NLog.Targets.MemoryTarget>("Memory");
-            factory.RegisterType<NLog.Targets.MethodCallParameter>();
-            factory.TargetFactory.RegisterType<NLog.Targets.MethodCallTarget>("MethodCall");
-            factory.TargetFactory.RegisterType<NLog.Targets.NullTarget>("Null");
-            factory.RegisterType<NLog.Targets.TargetPropertyWithContext>();
-            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.AsyncTargetWrapper>("AsyncWrapper");
-            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.AutoFlushTargetWrapper>("AutoFlushWrapper");
-            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.BufferingTargetWrapper>("BufferingWrapper");
-            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.FallbackGroupTarget>("FallbackGroup");
-            factory.RegisterType<NLog.Targets.Wrappers.FilteringRule>();
-            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.FilteringTargetWrapper>("FilteringWrapper");
-            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.GroupByTargetWrapper>("GroupByWrapper");
-            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.LimitingTargetWrapper>("LimitingWrapper");
-            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.PostFilteringTargetWrapper>("PostFilteringWrapper");
-            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.RandomizeGroupTarget>("RandomizeGroup");
-            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.RepeatingTargetWrapper>("RepeatingWrapper");
-            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.RetryingTargetWrapper>("RetryingWrapper");
-            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.RoundRobinGroupTarget>("RoundRobinGroup");
-            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.SplitGroupTarget>("SplitGroup");
-            factory.TimeSourceFactory.RegisterType<NLog.Time.AccurateLocalTimeSource>("AccurateLocal");
-            factory.TimeSourceFactory.RegisterType<NLog.Time.AccurateUtcTimeSource>("AccurateUTC");
-            factory.TimeSourceFactory.RegisterType<NLog.Time.FastLocalTimeSource>("FastLocal");
-            factory.TimeSourceFactory.RegisterType<NLog.Time.FastUtcTimeSource>("FastUTC");
-            factory.ConditionMethodFactory.RegisterOneParameter("length", (logEvent, arg1) => NLog.Conditions.ConditionMethods.Length(arg1?.ToString()));
-            factory.ConditionMethodFactory.RegisterTwoParameters("equals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()));
-            factory.ConditionMethodFactory.RegisterTwoParameters("strequals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()));
-            factory.ConditionMethodFactory.RegisterThreeParameters("strequals", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
-            factory.ConditionMethodFactory.RegisterTwoParameters("contains", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString()));
-            factory.ConditionMethodFactory.RegisterThreeParameters("contains", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
-            factory.ConditionMethodFactory.RegisterTwoParameters("starts-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString()));
-            factory.ConditionMethodFactory.RegisterThreeParameters("starts-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
-            factory.ConditionMethodFactory.RegisterTwoParameters("ends-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString()));
-            factory.ConditionMethodFactory.RegisterThreeParameters("ends-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
+            factory.GetLayoutFactory().RegisterType<NLog.Layouts.XmlLayout>("XmlLayout");
+        }
 
-#pragma warning restore CS0618 // Type or member is obsolete
+        public static void RegisterLayoutRendererTypes(ConfigurationItemFactory factory)
+        {
+#if NETFRAMEWORK
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.AppSettingLayoutRenderer>("appsetting");
+#endif
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.AllEventPropertiesLayoutRenderer>("all-event-properties");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.AppDomainLayoutRenderer>("appdomain");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.AssemblyVersionLayoutRenderer>("assembly-version");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.BaseDirLayoutRenderer>("basedir");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.CallSiteFileNameLayoutRenderer>("callsite-filename");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.CallSiteLayoutRenderer>("callsite");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.CallSiteLineNumberLayoutRenderer>("callsite-linenumber");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.CounterLayoutRenderer>("counter");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.CurrentDirLayoutRenderer>("currentdir");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.DateLayoutRenderer>("date");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.DbNullLayoutRenderer>("db-null");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.DirectorySeparatorLayoutRenderer>("dir-separator");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.EnvironmentLayoutRenderer>("environment");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.EnvironmentUserLayoutRenderer>("environment-user");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("event-properties");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("event-property");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("event-context");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ExceptionDataLayoutRenderer>("exceptiondata");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ExceptionDataLayoutRenderer>("exception-data");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ExceptionLayoutRenderer>("exception");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.FileContentsLayoutRenderer>("file-contents");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.GarbageCollectorInfoLayoutRenderer>("gc");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.GdcLayoutRenderer>("gdc");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.GuidLayoutRenderer>("guid");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.HostNameLayoutRenderer>("hostname");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.IdentityLayoutRenderer>("identity");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.InstallContextLayoutRenderer>("install-context");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.LevelLayoutRenderer>("level");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.LevelLayoutRenderer>("loglevel");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.LiteralLayoutRenderer>("literal");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("loggername");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("logger");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.LongDateLayoutRenderer>("longdate");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.MachineNameLayoutRenderer>("machinename");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.MessageLayoutRenderer>("message");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.NewLineLayoutRenderer>("newline");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.NLogDirLayoutRenderer>("nlogdir");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ProcessDirLayoutRenderer>("processdir");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ProcessIdLayoutRenderer>("processid");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ProcessInfoLayoutRenderer>("processinfo");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ProcessNameLayoutRenderer>("processname");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ProcessTimeLayoutRenderer>("processtime");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextIndentLayoutRenderer>("scopeindent");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("scopenested");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("ndc");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("ndlc");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("scopeproperty");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("mdc");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("mdlc");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextTimingLayoutRenderer>("scopetiming");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextTimingLayoutRenderer>("ndlctiming");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.SequenceIdLayoutRenderer>("sequenceid");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ShortDateLayoutRenderer>("shortdate");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.SpecialFolderApplicationDataLayoutRenderer>("userApplicationDataDir");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.SpecialFolderCommonApplicationDataLayoutRenderer>("commonApplicationDataDir");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.SpecialFolderLayoutRenderer>("specialfolder");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.SpecialFolderLocalApplicationDataLayoutRenderer>("userLocalApplicationDataDir");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.StackTraceLayoutRenderer>("stacktrace");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.TempDirLayoutRenderer>("tempdir");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ThreadIdLayoutRenderer>("threadid");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ThreadNameLayoutRenderer>("threadname");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.TicksLayoutRenderer>("ticks");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.TimeLayoutRenderer>("time");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.VariableLayoutRenderer>("var");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("cached");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("Cached");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("ClearCache");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("CachedSeconds");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.FileSystemNormalizeLayoutRendererWrapper>("filesystem-normalize");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.FileSystemNormalizeLayoutRendererWrapper>("FSNormalize");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper>("json-encode");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper>("JsonEncode");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.LeftLayoutRendererWrapper>("left");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.LeftLayoutRendererWrapper>("Truncate");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("lowercase");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("Lowercase");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("ToLower");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.NoRawValueLayoutRendererWrapper>("norawvalue");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.NoRawValueLayoutRendererWrapper>("NoRawValue");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.ObjectPathRendererWrapper>("Object-Path");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.ObjectPathRendererWrapper>("ObjectPath");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.OnExceptionLayoutRendererWrapper>("onexception");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.OnHasPropertiesLayoutRendererWrapper>("onhasproperties");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("pad");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("Padding");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("PadCharacter");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("FixedLength");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("AlignmentOnTruncation");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.ReplaceLayoutRendererWrapper>("replace");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.ReplaceNewLinesLayoutRendererWrapper>("replace-newlines");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.ReplaceNewLinesLayoutRendererWrapper>("ReplaceNewLines");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.RightLayoutRendererWrapper>("right");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.Rot13LayoutRendererWrapper>("rot13");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.SubstringLayoutRendererWrapper>("substring");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.TrimWhiteSpaceLayoutRendererWrapper>("trim-whitespace");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.TrimWhiteSpaceLayoutRendererWrapper>("TrimWhiteSpace");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("uppercase");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("Uppercase");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("ToUpper");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.UrlEncodeLayoutRendererWrapper>("url-encode");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WhenEmptyLayoutRendererWrapper>("whenEmpty");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WhenEmptyLayoutRendererWrapper>("WhenEmpty");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WhenLayoutRendererWrapper>("when");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WhenLayoutRendererWrapper>("When");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WrapLineLayoutRendererWrapper>("wrapline");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WrapLineLayoutRendererWrapper>("WrapLine");
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper>("xml-encode");
+            factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper>("XmlEncode");
+        }
+
+        public static void RegisterFilterTypes(ConfigurationItemFactory factory)
+        {
+            factory.GetFilterFactory().RegisterType<NLog.Filters.ConditionBasedFilter>("when");
+            factory.GetFilterFactory().RegisterType<NLog.Filters.WhenContainsFilter>("whenContains");
+            factory.GetFilterFactory().RegisterType<NLog.Filters.WhenEqualFilter>("whenEqual");
+            factory.GetFilterFactory().RegisterType<NLog.Filters.WhenNotContainsFilter>("whenNotContains");
+            factory.GetFilterFactory().RegisterType<NLog.Filters.WhenNotEqualFilter>("whenNotEqual");
+            factory.GetFilterFactory().RegisterType<NLog.Filters.WhenRepeatedFilter>("whenRepeated");
+        }
+
+        public static void RegisterTimeSourceTypes(ConfigurationItemFactory factory)
+        {
+            factory.GetTimeSourceFactory().RegisterType<NLog.Time.AccurateLocalTimeSource>("AccurateLocal");
+            factory.GetTimeSourceFactory().RegisterType<NLog.Time.AccurateUtcTimeSource>("AccurateUTC");
+            factory.GetTimeSourceFactory().RegisterType<NLog.Time.FastLocalTimeSource>("FastLocal");
+            factory.GetTimeSourceFactory().RegisterType<NLog.Time.FastUtcTimeSource>("FastUTC");
+        }
+
+        public static void RegisterConditionTypes(ConfigurationItemFactory factory)
+        {
+            factory.GetConditionMethodFactory().RegisterOneParameter("length", (logEvent, arg1) => NLog.Conditions.ConditionMethods.Length(arg1?.ToString()));
+            factory.GetConditionMethodFactory().RegisterTwoParameters("equals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()));
+            factory.GetConditionMethodFactory().RegisterTwoParameters("strequals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()));
+            factory.GetConditionMethodFactory().RegisterThreeParameters("strequals", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
+            factory.GetConditionMethodFactory().RegisterTwoParameters("contains", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString()));
+            factory.GetConditionMethodFactory().RegisterThreeParameters("contains", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
+            factory.GetConditionMethodFactory().RegisterTwoParameters("starts-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString()));
+            factory.GetConditionMethodFactory().RegisterThreeParameters("starts-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
+            factory.GetConditionMethodFactory().RegisterTwoParameters("ends-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString()));
+            factory.GetConditionMethodFactory().RegisterThreeParameters("ends-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
         }
     }
 }

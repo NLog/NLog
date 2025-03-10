@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/Replace-NewLines-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("replace-newlines")]
-    [AmbientProperty("ReplaceNewLines")]
+    [AmbientProperty(nameof(ReplaceNewLines))]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     public sealed class ReplaceNewLinesLayoutRendererWrapper : WrapperLayoutRendererBase
@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers.Wrappers
         private const string UnixNewLine = "\n";
 
         /// <summary>
-        /// Gets or sets a value indicating the string that should be used for separating lines.
+        /// Gets or sets a value indicating the string that should be used to replace newlines.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public string Replacement
@@ -69,6 +69,11 @@ namespace NLog.LayoutRenderers.Wrappers
         }
         private string _replacement = " ";
         private bool _replaceWithNewLines;
+
+        /// <summary>
+        /// Gets or sets a value indicating the string that should be used to replace newlines.
+        /// </summary>
+        public string ReplaceNewLines { get => Replacement; set => Replacement = value; }
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)

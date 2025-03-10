@@ -393,7 +393,7 @@ namespace NLog.Targets
 
                 if (!string.IsNullOrEmpty(cs.ConnectionString?.Trim()))
                 {
-                    ConnectionString = SimpleLayout.Escape(cs.ConnectionString.Trim());
+                    ConnectionString = Layout.FromLiteral(cs.ConnectionString);
                 }
                 providerName = cs.ProviderName?.Trim() ?? string.Empty;
             }
@@ -450,7 +450,7 @@ namespace NLog.Targets
                     }
 
                     // ConnectionString was overriden by ConnectionString :)
-                    ConnectionString = SimpleLayout.Escape(connectionStringValue.ToString());
+                    ConnectionString = Layout.FromLiteral(connectionStringValue.ToString());
                 }
             }
             catch (Exception ex)

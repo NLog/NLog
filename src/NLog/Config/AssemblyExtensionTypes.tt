@@ -48,107 +48,34 @@ namespace NLog.Config
     /// </summary>
     internal static class AssemblyExtensionTypes
     {
-        public static void RegisterTypes(ConfigurationItemFactory factory)
-        {
-#pragma warning disable CS0618 // Type or member is obsolete
-            factory.RegisterTypeProperties<NLog.Targets.TargetWithContext.TargetWithContextLayout>(() => null);
-            factory.RegisterTypeProperties<NLog.Layouts.CsvLayout.CsvHeaderLayout>(() => null);
 <#
-    var types  = typeof(NLog.LogFactory).Assembly.GetTypes().OrderBy(t => t.ToString());
-
-    var netFramework = new string[]
-    {
+    string[] NetFrameworkOnly = new [] {
         "NLog.LayoutRenderers.AppSettingLayoutRenderer",
         "NLog.Targets.EventLogTarget",
     };
-
-    foreach(var type in types)
-    {
-        if (type.IsAbstract || type.IsPrimitive || !type.IsClass || type.IsNested)
-            continue;
-
-        if (netFramework.Contains(type.ToString()))
-        {
+    Type[] AllTypes = typeof(NLog.LogFactory).Assembly.GetTypes().Where(t => !t.IsAbstract && !t.IsPrimitive && t.IsClass && !t.IsNested && !NetFrameworkOnly.Contains(t.ToString())).OrderBy(t => t.ToString()).ToArray();
 #>
+        public static void RegisterTargetTypes(ConfigurationItemFactory factory)
+        {
+            factory.RegisterTypeProperties<NLog.Targets.TargetWithContext.TargetWithContextLayout>(() => null);
 #if NETFRAMEWORK
+            factory.GetTargetFactory().RegisterType<NLog.Targets.EventLogTarget>("EventLog");
+#endif
 <#
-        }
-
-        if (!type.IsPublic)
-        {
-            var configAttribute = type.GetCustomAttributes<NLog.Config.NLogConfigurationItemAttribute>(true);
-            if (configAttribute?.Any() == true)
-            {
-#>
-            factory.RegisterTypeProperties<<#= type #>>(() => null);
-<#
-            }
-        }
-        else if (typeof(NLog.Targets.Target).IsAssignableFrom(type))
+    foreach(var type in AllTypes)
+    {
+        if (typeof(NLog.Targets.Target).IsAssignableFrom(type))
         {
             var targetAttributes = type.GetCustomAttributes<NLog.Targets.TargetAttribute>(false);
             foreach (var targetAlias in targetAttributes)
             {
                 var targetAliasName = targetAlias.Name;
 #>
-            factory.TargetFactory.RegisterType<<#= type #>>("<#= targetAliasName #>");
+            factory.GetTargetFactory().RegisterType<<#= type #>>("<#= targetAliasName #>");
 <#
             }
         }
-        else if (typeof(NLog.Layouts.Layout).IsAssignableFrom(type))
-        {
-            var layoutAttributes = type.GetCustomAttributes<NLog.Layouts.LayoutAttribute>(false);
-            foreach (var layoutAlias in layoutAttributes)
-            {
-                var layoutAliasName = layoutAlias.Name;
-#>
-            factory.LayoutFactory.RegisterType<<#= type #>>("<#= layoutAliasName #>");
-<#
-            }
-        }
-        else if (typeof(NLog.LayoutRenderers.LayoutRenderer).IsAssignableFrom(type))
-        {
-            var layoutAttributes = type.GetCustomAttributes<NLog.LayoutRenderers.LayoutRendererAttribute>(false);
-            foreach (var layoutAlias in layoutAttributes)
-            {
-                var layoutAliasName = layoutAlias.Name;
-#>
-            factory.LayoutRendererFactory.RegisterType<<#= type #>>("<#= layoutAliasName #>");
-<#
-            }
-
-            var ambientAttributes = type.GetCustomAttributes<NLog.LayoutRenderers.AmbientPropertyAttribute>(false);
-            foreach (var layoutAlias in ambientAttributes)
-            {
-                var layoutAliasName = layoutAlias.Name;
-#>
-            factory.AmbientRendererFactory.RegisterType<<#= type #>>("<#= layoutAliasName #>");
-<#
-            }
-        }
-        else if (typeof(NLog.Filters.Filter).IsAssignableFrom(type))
-        {
-            var filterAttributes = type.GetCustomAttributes<NLog.Filters.FilterAttribute>(false);
-            foreach (var filterAlias in filterAttributes)
-            {
-                var filterName = filterAlias.Name;
-#>
-            factory.FilterFactory.RegisterType<<#= type #>>("<#= filterName #>");
-<#
-            }
-        }
-        else if (typeof(NLog.Time.TimeSource).IsAssignableFrom(type))
-        {
-            var timeSourceAttribute = type.GetCustomAttributes<NLog.Time.TimeSourceAttribute>(false);
-            foreach (var timeAlias in timeSourceAttribute)
-            {
-                var timeSourceName = timeAlias.Name;
-#>
-            factory.TimeSourceFactory.RegisterType<<#= type #>>("<#= timeSourceName #>");
-<#
-            }
-        }
-        else
+        else if (type.ToString().StartsWith("NLog.Targets"))
         {
             var configAttribute = type.GetCustomAttributes<NLog.Config.NLogConfigurationItemAttribute>(true);
             if (configAttribute?.Any() == true)
@@ -158,27 +85,155 @@ namespace NLog.Config
 <#
             }
         }
-
-        if (netFramework.Contains(type.ToString()))
-        {
+    }
 #>
-#endif
+        }
+
+        public static void RegisterLayoutTypes(ConfigurationItemFactory factory)
+        {
+            factory.RegisterTypeProperties<NLog.Layouts.CsvLayout.CsvHeaderLayout>(() => null);
 <#
+    foreach(var type in AllTypes)
+    {
+        if (typeof(NLog.Layouts.Layout).IsAssignableFrom(type))
+        {
+            var layoutAttributes = type.GetCustomAttributes<NLog.Layouts.LayoutAttribute>(false);
+            foreach (var layoutAlias in layoutAttributes)
+            {
+                var layoutAliasName = layoutAlias.Name;
+#>
+            factory.GetLayoutFactory().RegisterType<<#= type #>>("<#= layoutAliasName #>");
+<#
+            }
+        }
+        else if (type.ToString().StartsWith("NLog.Layouts"))
+        {
+            var configAttribute = type.GetCustomAttributes<NLog.Config.NLogConfigurationItemAttribute>(true);
+            if (configAttribute?.Any() == true)
+            {
+#>
+            factory.RegisterType<<#= type #>>();
+<#
+            }
         }
     }
 #>
-            factory.ConditionMethodFactory.RegisterOneParameter("length", (logEvent, arg1) => NLog.Conditions.ConditionMethods.Length(arg1?.ToString()));
-            factory.ConditionMethodFactory.RegisterTwoParameters("equals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()));
-            factory.ConditionMethodFactory.RegisterTwoParameters("strequals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()));
-            factory.ConditionMethodFactory.RegisterThreeParameters("strequals", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
-            factory.ConditionMethodFactory.RegisterTwoParameters("contains", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString()));
-            factory.ConditionMethodFactory.RegisterThreeParameters("contains", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
-            factory.ConditionMethodFactory.RegisterTwoParameters("starts-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString()));
-            factory.ConditionMethodFactory.RegisterThreeParameters("starts-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
-            factory.ConditionMethodFactory.RegisterTwoParameters("ends-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString()));
-            factory.ConditionMethodFactory.RegisterThreeParameters("ends-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
+        }
 
-#pragma warning restore CS0618 // Type or member is obsolete
+        public static void RegisterLayoutRendererTypes(ConfigurationItemFactory factory)
+        {
+#if NETFRAMEWORK
+            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.AppSettingLayoutRenderer>("appsetting");
+#endif
+<#
+    foreach(var type in AllTypes)
+    {
+        if (typeof(NLog.LayoutRenderers.LayoutRenderer).IsAssignableFrom(type))
+        {
+            var layoutAttributes = type.GetCustomAttributes<NLog.LayoutRenderers.LayoutRendererAttribute>(false);
+            foreach (var layoutAlias in layoutAttributes)
+            {
+                var layoutAliasName = layoutAlias.Name;
+#>
+            factory.GetLayoutRendererFactory().RegisterType<<#= type #>>("<#= layoutAliasName #>");
+<#
+            }
+
+            var ambientAttributes = type.GetCustomAttributes<NLog.LayoutRenderers.AmbientPropertyAttribute>(false);
+            foreach (var layoutAlias in ambientAttributes)
+            {
+                var layoutAliasName = layoutAlias.Name;
+#>
+            factory.GetAmbientPropertyFactory().RegisterType<<#= type #>>("<#= layoutAliasName #>");
+<#
+            }
+        }
+        else if (type.ToString().StartsWith("NLog.LayoutRenderers"))
+        {
+            var configAttribute = type.GetCustomAttributes<NLog.Config.NLogConfigurationItemAttribute>(true);
+            if (configAttribute?.Any() == true)
+            {
+#>
+            factory.RegisterType<<#= type #>>();
+<#
+            }
+        }
+    }
+#>
+        }
+
+        public static void RegisterFilterTypes(ConfigurationItemFactory factory)
+        {
+<#
+    foreach(var type in AllTypes)
+    {
+        if (typeof(NLog.Filters.Filter).IsAssignableFrom(type))
+        {
+            var filterAttributes = type.GetCustomAttributes<NLog.Filters.FilterAttribute>(false);
+            foreach (var filterAlias in filterAttributes)
+            {
+                var filterAliasName = filterAlias.Name;
+#>
+            factory.GetFilterFactory().RegisterType<<#= type #>>("<#= filterAliasName #>");
+<#
+            }
+        }
+        else if (type.ToString().StartsWith("NLog.Filters"))
+        {
+            var configAttribute = type.GetCustomAttributes<NLog.Config.NLogConfigurationItemAttribute>(true);
+            if (configAttribute?.Any() == true)
+            {
+#>
+            factory.RegisterType<<#= type #>>();
+<#
+            }
+        }
+    }
+#>
+        }
+
+        public static void RegisterTimeSourceTypes(ConfigurationItemFactory factory)
+        {
+<#
+    foreach(var type in AllTypes)
+    {
+        if (typeof(NLog.Time.TimeSource).IsAssignableFrom(type))
+        {
+            var timeSourceAttribute = type.GetCustomAttributes<NLog.Time.TimeSourceAttribute>(false);
+            foreach (var timeAlias in timeSourceAttribute)
+            {
+                var timeAliasName = timeAlias.Name;
+#>
+            factory.GetTimeSourceFactory().RegisterType<<#= type #>>("<#= timeAliasName #>");
+<#
+            }
+        }
+        else if (type.ToString().StartsWith("NLog.Time"))
+        {
+            var configAttribute = type.GetCustomAttributes<NLog.Config.NLogConfigurationItemAttribute>(true);
+            if (configAttribute?.Any() == true)
+            {
+#>
+            factory.RegisterType<<#= type #>>();
+<#
+            }
+        }
+    }
+#>
+        }
+
+        public static void RegisterConditionTypes(ConfigurationItemFactory factory)
+        {
+            factory.GetConditionMethodFactory().RegisterOneParameter("length", (logEvent, arg1) => NLog.Conditions.ConditionMethods.Length(arg1?.ToString()));
+            factory.GetConditionMethodFactory().RegisterTwoParameters("equals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()));
+            factory.GetConditionMethodFactory().RegisterTwoParameters("strequals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()));
+            factory.GetConditionMethodFactory().RegisterThreeParameters("strequals", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
+            factory.GetConditionMethodFactory().RegisterTwoParameters("contains", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString()));
+            factory.GetConditionMethodFactory().RegisterThreeParameters("contains", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
+            factory.GetConditionMethodFactory().RegisterTwoParameters("starts-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString()));
+            factory.GetConditionMethodFactory().RegisterThreeParameters("starts-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
+            factory.GetConditionMethodFactory().RegisterTwoParameters("ends-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString()));
+            factory.GetConditionMethodFactory().RegisterThreeParameters("ends-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
         }
     }
 }

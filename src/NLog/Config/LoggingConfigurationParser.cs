@@ -1278,6 +1278,11 @@ namespace NLog.Config
                 }
             }
 
+            if (nameof(SimpleLayout).Equals(expandedClassType, StringComparison.OrdinalIgnoreCase) && TryCreateSimpleLayoutInstance(element, out var simpleLayout))
+            {
+                return simpleLayout;
+            }
+
             var layoutInstance = FactoryCreateInstance(expandedClassType, ConfigurationItemFactory.Default.LayoutFactory);
             if (layoutInstance != null)
             {
@@ -1286,6 +1291,28 @@ namespace NLog.Config
             }
 
             return null;
+        }
+
+        private bool TryCreateSimpleLayoutInstance(ValidatedConfigurationElement element, out SimpleLayout simpleLayout)
+        {
+            if (!element.ValidChildren.Any())
+            {
+                var valueLookup = element.ValueLookup;
+                if (valueLookup.Count == 2)
+                {
+                    var simpleLayoutValue = (nameof(SimpleLayout.Text).Equals(valueLookup.First().Key, StringComparison.OrdinalIgnoreCase) ? (valueLookup.First().Value ?? string.Empty) : null) ??
+                                            (nameof(SimpleLayout.Text).Equals(valueLookup.Last().Key, StringComparison.OrdinalIgnoreCase) ? (valueLookup.Last().Value ?? string.Empty) : null);
+                    if (simpleLayoutValue != null)
+                    {
+                        var simpleLayoutText = ExpandSimpleVariables(simpleLayoutValue);
+                        simpleLayout = new SimpleLayout(simpleLayoutText, ConfigurationItemFactory.Default);
+                        return true;
+                    }
+                }
+            }
+
+            simpleLayout = null;
+            return false;
         }
 
         private Filter TryCreateFilterInstance(ValidatedConfigurationElement element, Type type)

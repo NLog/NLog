@@ -231,7 +231,7 @@ namespace NLog.Layouts
             for (int i = 0; i < Columns.Count; i++)
             {
                 CsvColumn col = Columns[i];
-                var columnLayout = new SimpleLayout(new LayoutRenderers.LayoutRenderer[] { new LayoutRenderers.LiteralLayoutRenderer(col.Name) }, col.Name, ConfigurationItemFactory.Default);
+                var columnLayout = Layout.FromLiteral(col.Name);
                 columnLayout.Initialize(LoggingConfiguration);
                 RenderColumnLayout(logEvent, columnLayout, col._quoting ?? Quoting, sb, i);
             }
