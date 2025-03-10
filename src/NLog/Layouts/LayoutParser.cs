@@ -52,21 +52,21 @@ namespace NLog.Layouts
     {
         private static readonly char[] SpecialTokens = new char[] { '$', '\\', '}', ':' };
 
-        internal static LayoutRenderer[] CompileLayout(string value, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions, out string text)
+        internal static LayoutRenderer[] CompileLayout(string value, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions, out string parsedText)
         {
-            if (value is null)
+            if (string.IsNullOrEmpty(value))
             {
-                text = string.Empty;
+                parsedText = string.Empty;
                 return ArrayHelper.Empty<LayoutRenderer>();
             }
             else if (value.Length < 128 && value.IndexOfAny(SpecialTokens) < 0)
             {
-                text = value;
+                parsedText = value;
                 return new LayoutRenderer[] { new LiteralLayoutRenderer(value) };
             }
             else
             {
-                return CompileLayout(configurationItemFactory, new SimpleStringReader(value), throwConfigExceptions, false, out text);
+                return CompileLayout(configurationItemFactory, new SimpleStringReader(value), throwConfigExceptions, false, out parsedText);
             }
         }
 
@@ -509,8 +509,8 @@ namespace NLog.Layouts
         {
             if (typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType))
             {
-                LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, stringReader, throwConfigExceptions, true, out var txt);
-                Layout nestedLayout = new SimpleLayout(renderers, txt, configurationItemFactory);
+                LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, stringReader, throwConfigExceptions, true, out var parsedTxt);
+                Layout nestedLayout = new SimpleLayout(renderers, parsedTxt);
 
                 if (propertyInfo.PropertyType.IsGenericType && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(Layout<>))
                 {
@@ -654,7 +654,7 @@ namespace NLog.Layouts
                     lr = ConvertToLiteral(lr);
                 }
 
-                newRenderer.Inner = new SimpleLayout(new[] { lr }, string.Empty, configurationItemFactory);
+                newRenderer.Inner = new SimpleLayout(new[] { lr }, string.Empty);
                 lr = newRenderer;
             }
 

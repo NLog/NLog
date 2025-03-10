@@ -297,9 +297,15 @@ namespace NLog.UnitTests.Layouts
 
         private static void AssertEscapeRoundTrips(string originalString)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             string escapedString = SimpleLayout.Escape(originalString);
+#pragma warning restore CS0618 // Type or member is obsolete
             SimpleLayout l = escapedString;
             string renderedString = l.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal(originalString, renderedString);
+
+            var stringLiteral = Layout.FromLiteral(originalString);
+            renderedString = stringLiteral.Render(LogEventInfo.CreateNullEvent());
             Assert.Equal(originalString, renderedString);
         }
 
@@ -551,7 +557,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void InvalidLayoutWithExistingRenderer_WillThrowIfExceptionThrowingIsOn()
         {
-            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
+            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
             LogManager.ThrowConfigExceptions = true;
             Assert.Throws<NLogConfigurationException>(() =>
             {
@@ -563,7 +569,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void UnknownPropertyInLayout_WillThrowIfExceptionThrowingIsOn()
         {
-            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
+            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
             LogManager.ThrowConfigExceptions = true;
 
             Assert.Throws<NLogConfigurationException>(() =>
@@ -612,7 +618,7 @@ namespace NLog.UnitTests.Layouts
 #endif
         public void LayoutWithListParamTest(string input, string propname, string expected)
         {
-            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
+            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
             SimpleLayout l = $@"${{layoutrenderer-with-list:{propname}={input}}}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
@@ -629,7 +635,7 @@ namespace NLog.UnitTests.Layouts
             //note flags enum already supported
 
             //can;t convert empty to int
-            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
+            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
             Assert.Throws<NLogConfigurationException>(() =>
             {
                 SimpleLayout l = $@"${{layoutrenderer-with-list:{propname}={input}}}";

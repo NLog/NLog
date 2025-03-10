@@ -342,7 +342,7 @@ namespace NLog
             if (!conditionMethod.IsStatic)
                 throw new ArgumentException($"{conditionMethod.Name} must be static", nameof(conditionMethod));
 
-            ConfigurationItemFactory.Default.ConditionMethodFactory.RegisterDefinition(name, conditionMethod);
+            ConfigurationItemFactory.Default.GetConditionMethodFactory().RegisterDefinition(name, conditionMethod);
             return setupBuilder;
         }
 
@@ -355,7 +355,7 @@ namespace NLog
         public static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, object> conditionMethod)
         {
             Guard.ThrowIfNull(conditionMethod);
-            ConfigurationItemFactory.Default.ConditionMethodFactory.RegisterNoParameters(name, (logEvent) => conditionMethod(logEvent));
+            ConfigurationItemFactory.Default.GetConditionMethodFactory().RegisterNoParameters(name, (logEvent) => conditionMethod(logEvent));
             return setupBuilder;
         }
 
@@ -368,7 +368,7 @@ namespace NLog
         public static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, Func<object> conditionMethod)
         {
             Guard.ThrowIfNull(conditionMethod);
-            ConfigurationItemFactory.Default.ConditionMethodFactory.RegisterNoParameters(name, (logEvent) => conditionMethod());
+            ConfigurationItemFactory.Default.GetConditionMethodFactory().RegisterNoParameters(name, (logEvent) => conditionMethod());
             return setupBuilder;
         }
 

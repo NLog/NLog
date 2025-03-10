@@ -65,7 +65,7 @@ namespace NLog.Targets
         /// </remarks>
         protected TargetWithLayout()
         {
-            Layout = new SimpleLayout(DefaultLayout, DefaultLayoutText, ConfigurationItemFactory.Default);
+            Layout = new SimpleLayout(DefaultLayout, DefaultLayoutText);
         }
 
         /// <summary>

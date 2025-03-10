@@ -79,7 +79,7 @@ namespace NLog.Targets
             set
             {
                 _fileName = value;
-                _fixedFileName = (value is SimpleLayout simpleLayout && simpleLayout.IsFixedText) ? simpleLayout.Text : null;
+                _fixedFileName = (value is SimpleLayout simpleLayout && simpleLayout.IsFixedText) ? simpleLayout.FixedText : null;
             }
         }
         private Layout _fileName;
