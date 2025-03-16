@@ -82,6 +82,29 @@ namespace NLog.Config
             }
         }
 
+        public bool Initialized { get; private set; }
+
+        public void Initialize(Action<bool> itemRegistration)
+        {
+            lock (ConfigurationItemFactory.SyncRoot)
+            {
+                if (Initialized)
+                    return;
+
+                try
+                {
+                    var skipCheckExists = _nameToMethodDetails.Count == 0;
+                    itemRegistration.Invoke(skipCheckExists);
+                }
+                finally
+                {
+                    Initialized = true;
+                }
+            }
+        }
+
+        public bool CheckTypeAliasExists(string typeAlias) => _nameToMethodDetails.ContainsKey(typeAlias);
+
         /// <summary>
         /// Registers the type.
         /// </summary>

@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/Filesystem-Normalize-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("filesystem-normalize")]
-    [AmbientProperty("FSNormalize")]
+    [AmbientProperty(nameof(FSNormalize))]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     public sealed class FileSystemNormalizeLayoutRendererWrapper : WrapperLayoutRendererBase

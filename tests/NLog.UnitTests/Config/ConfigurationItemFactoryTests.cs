@@ -44,7 +44,7 @@ namespace NLog.UnitTests.Config
         public void ConfigurationItemFactoryTargetTest()
         {
             var itemFactory = new ConfigurationItemFactory();
-            itemFactory.TargetFactory.RegisterType<MemoryTarget>(nameof(MemoryTarget));
+            itemFactory.GetTargetFactory().RegisterType<MemoryTarget>(nameof(MemoryTarget));
             itemFactory.TargetFactory.TryCreateInstance(nameof(MemoryTarget), out var result);
             Assert.IsType<MemoryTarget>(result);
         }

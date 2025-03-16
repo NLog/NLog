@@ -87,7 +87,7 @@ namespace NLog.UnitTests.Targets
             {
                 var fileTarget = new FileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                     OpenFileCacheTimeout = 0,
@@ -129,8 +129,8 @@ namespace NLog.UnitTests.Targets
                     {
                         var fileTarget = new FileTarget
                         {
-                            FileName = SimpleLayout.Escape(logFile),
-                            ArchiveFileName = SimpleLayout.Escape(arhiveFile),
+                            FileName = Layout.FromLiteral(logFile),
+                            ArchiveFileName = Layout.FromLiteral(arhiveFile),
                             ArchiveEvery = FileArchivePeriod.Year,
                             LineEnding = LineEndingMode.LF,
                             Layout = "${level} ${message}",
@@ -221,7 +221,7 @@ namespace NLog.UnitTests.Targets
             {
                 var fileTarget = new FileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                 };
@@ -251,7 +251,7 @@ namespace NLog.UnitTests.Targets
             {
                 var fileTarget = new FileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Encoding = Encoding.UTF8,
                     WriteBom = true,
@@ -545,7 +545,7 @@ namespace NLog.UnitTests.Targets
 
                     var fileTarget = new FileTarget
                     {
-                        FileName = SimpleLayout.Escape(logFile),
+                        FileName = Layout.FromLiteral(logFile),
                         LineEnding = LineEndingMode.LF,
                         Layout = layout,
                         OpenFileCacheTimeout = 0,
@@ -595,7 +595,7 @@ namespace NLog.UnitTests.Targets
                 var fileTarget = new FileTarget
                 {
                     DeleteOldFileOnStartup = false,
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}"
                 };
@@ -616,7 +616,7 @@ namespace NLog.UnitTests.Targets
                 fileTarget = new FileTarget
                 {
                     DeleteOldFileOnStartup = false,
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}"
                 };
@@ -635,7 +635,7 @@ namespace NLog.UnitTests.Targets
 
                 fileTarget = new FileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                     DeleteOldFileOnStartup = true
@@ -710,7 +710,7 @@ namespace NLog.UnitTests.Targets
                 {
                     ArchiveOldFileOnStartup = false,
                     ArchiveSuffixFormat = "",
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}"
                 };
@@ -730,7 +730,7 @@ namespace NLog.UnitTests.Targets
                 fileTarget = new FileTarget
                 {
                     ArchiveOldFileOnStartup = false,
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}"
                 };
@@ -754,7 +754,7 @@ namespace NLog.UnitTests.Targets
                 FileTarget ft;
                 fileTarget = ft = new FileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                     ArchiveOldFileOnStartup = true,
@@ -802,7 +802,7 @@ namespace NLog.UnitTests.Targets
             {
                 return new FileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                     ArchiveAboveSize = threshold,
@@ -848,7 +848,7 @@ namespace NLog.UnitTests.Targets
             {
                 return new FileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                     ArchiveAboveSize = threshold,
@@ -896,7 +896,7 @@ namespace NLog.UnitTests.Targets
 
             var fileTarget = new FileTarget("file")
             {
-                FileName = SimpleLayout.Escape(logFile),
+                FileName = Layout.FromLiteral(logFile),
                 LineEnding = LineEndingMode.LF,
                 Layout = "${level} ${message}",
                 KeepFileOpen = false,
@@ -945,7 +945,7 @@ namespace NLog.UnitTests.Targets
                 var fileTarget = new FileTarget
                 {
                     DeleteOldFileOnStartup = false,
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     ReplaceFileContentsOnEachWrite = true,
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}"
@@ -2099,7 +2099,7 @@ namespace NLog.UnitTests.Targets
                 // Configure first time
                 var fileTarget = new FileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message}",
                     Header = header,
@@ -2123,7 +2123,7 @@ namespace NLog.UnitTests.Targets
                 // Configure second time
                 fileTarget = new FileTarget
                 {
-                    FileName = SimpleLayout.Escape(logFile),
+                    FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message}",
                     Header = header,
@@ -2624,7 +2624,7 @@ namespace NLog.UnitTests.Targets
             {
                 var fileTarget = new FileTarget
                 {
-                    FileName = SimpleLayout.Escape(invalidLogFileName),
+                    FileName = Layout.FromLiteral(invalidLogFileName),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                     OpenFileCacheTimeout = 0

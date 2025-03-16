@@ -82,7 +82,7 @@ namespace NLog.Layouts
         protected internal LoggingConfiguration LoggingConfiguration { get; private set; }
 
         /// <summary>
-        /// Converts a given text to a <see cref="Layout" />.
+        /// Implicitly converts the specified string as LayoutRenderer-expression into a <see cref="Layout"/>.
         /// </summary>
         /// <param name="text">Text to be converted.</param>
         /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
@@ -92,7 +92,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
+        /// Parses the specified string as LayoutRenderer-expression into a <see cref="SimpleLayout"/>.
         /// </summary>
         /// <param name="layoutText">The layout string.</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>'
@@ -102,7 +102,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
+        /// Parses the specified string as LayoutRenderer-expression into a <see cref="SimpleLayout"/>.
         /// </summary>
         /// <param name="layoutText">The layout string.</param>
         /// <param name="configurationItemFactory">The NLog factories to use when resolving layout renderers.</param>
@@ -113,7 +113,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
+        /// Parses the specified string as LayoutRenderer-expression into a <see cref="SimpleLayout"/>.
         /// </summary>
         /// <param name="layoutText">The layout string.</param>
         /// <param name="throwConfigExceptions">Whether <see cref="NLogConfigurationException"/> should be thrown on parse errors (false = replace unrecognized tokens with a space).</param>
@@ -138,6 +138,17 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Create a <see cref="SimpleLayout"/> containing literal value
+        /// </summary>
+        public static Layout FromLiteral([Localizable(false)] string literalText)
+        {
+            if (string.IsNullOrEmpty(literalText))
+                return new SimpleLayout(ArrayHelper.Empty<NLog.LayoutRenderers.LayoutRenderer>(), string.Empty);
+            else
+                return new SimpleLayout(new[] { new NLog.LayoutRenderers.LiteralLayoutRenderer(literalText) }, literalText);
+        }
+
+        /// <summary>
         /// Create a <see cref="SimpleLayout"/> from a lambda method.
         /// </summary>
         /// <param name="layoutMethod">Method that renders the layout.</param>
@@ -149,7 +160,7 @@ namespace NLog.Layouts
 
             var name = $"{layoutMethod.Method?.DeclaringType?.ToString()}.{layoutMethod.Method?.Name}";
             var layoutRenderer = CreateFuncLayoutRenderer((l, c) => layoutMethod(l), options, name);
-            return new SimpleLayout(new[] { layoutRenderer }, layoutRenderer.LayoutRendererName, ConfigurationItemFactory.Default);
+            return new SimpleLayout(new[] { layoutRenderer }, layoutRenderer.LayoutRendererName);
         }
 
         internal static LayoutRenderers.FuncLayoutRenderer CreateFuncLayoutRenderer(Func<LogEventInfo, LoggingConfiguration, object> layoutMethod, LayoutRenderOptions options, string name)

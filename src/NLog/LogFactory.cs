@@ -251,9 +251,7 @@ namespace NLog
         {
             if (_config is null)
             {
-#pragma warning disable CS0618 // Type or member is obsolete
                 LogNLogAssemblyVersion();
-#pragma warning restore CS0618 // Type or member is obsolete
             }
 
             _config = config;
@@ -354,6 +352,7 @@ namespace NLog
                 InternalLogger.Debug(ex, "Not running in full trust");
             }
         }
+
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting
         /// unmanaged resources.

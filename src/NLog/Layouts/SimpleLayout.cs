@@ -59,11 +59,8 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class SimpleLayout : Layout, IUsesStackTrace
     {
-        private string _fixedText;
-        private string _layoutText;
-        private IRawValue _rawValueRenderer;
+        private readonly IRawValue _rawValueRenderer;
         private IStringValueRenderer _stringValueRenderer;
-        private readonly ConfigurationItemFactory _configurationItemFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleLayout" /> class.
@@ -99,49 +96,65 @@ namespace NLog.Layouts
         /// <param name="configurationItemFactory">The NLog factories to use when creating references to layout renderers.</param>
         /// <param name="throwConfigExceptions">Whether <see cref="NLogConfigurationException"/> should be thrown on parse errors.</param>
         internal SimpleLayout([Localizable(false)] string txt, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
+            : this(LayoutParser.CompileLayout(txt, configurationItemFactory, throwConfigExceptions, out var parsedTxt), parsedTxt)
         {
-            _configurationItemFactory = configurationItemFactory;
-            SetLayoutText(txt, throwConfigExceptions);
+            OriginalText = txt ?? string.Empty;
         }
 
-        internal SimpleLayout(LayoutRenderer[] renderers, [Localizable(false)] string text, ConfigurationItemFactory configurationItemFactory)
+        internal SimpleLayout(LayoutRenderer[] layoutRenderers, [Localizable(false)] string txt)
         {
-            _configurationItemFactory = configurationItemFactory;
-            OriginalText = text;
-            SetLayoutRenderers(renderers, text);
+            Text = txt ?? string.Empty;
+            OriginalText = txt ?? string.Empty;
+
+            _layoutRenderers = layoutRenderers ?? ArrayHelper.Empty<LayoutRenderer>();
+            _renderers = null;
+
+            FixedText = null;
+            _rawValueRenderer = null;
+            _stringValueRenderer = null;
+
+            if (_layoutRenderers.Length == 0)
+            {
+                FixedText = string.Empty;
+            }
+            else if (_layoutRenderers.Length == 1)
+            {
+                if (_layoutRenderers[0] is LiteralLayoutRenderer renderer)
+                {
+                    FixedText = renderer.Text;
+                }
+                else if (_layoutRenderers[0] is IStringValueRenderer stringValueRenderer)
+                {
+                    _stringValueRenderer = stringValueRenderer;
+                }
+
+                if (_layoutRenderers[0] is IRawValue rawValueRenderer)
+                {
+                    _rawValueRenderer = rawValueRenderer;
+                }
+            }
         }
 
         /// <summary>
-        /// Original text before compile to Layout renderes
+        /// Original text before parsing as Layout renderes.
         /// </summary>
-        public string OriginalText { get; private set; }
+        public string OriginalText { get; }
 
         /// <summary>
-        /// Gets or sets the layout text.
+        /// Gets or sets the layout text that could be parsed.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public string Text
-        {
-            get => _layoutText;
-            set => SetLayoutText(value);
-        }
-
-        private void SetLayoutText(string value, bool? throwConfigExceptions = null)
-        {
-            OriginalText = value;
-            var renderers = LayoutParser.CompileLayout(value, _configurationItemFactory, throwConfigExceptions, out var txt);
-            SetLayoutRenderers(renderers, txt);
-        }
+        public string Text { get; }
 
         /// <summary>
         /// Is the message fixed? (no Layout renderers used)
         /// </summary>
-        public bool IsFixedText => _fixedText != null;
+        public bool IsFixedText => FixedText != null;
 
         /// <summary>
         /// Get the fixed text. Only set when <see cref="IsFixedText"/> is <c>true</c>
         /// </summary>
-        public string FixedText => _fixedText;
+        public string FixedText { get; }
 
         /// <summary>
         /// Is the message a simple formatted string? (Can skip StringBuilder)
@@ -154,7 +167,7 @@ namespace NLog.Layouts
         [NLogConfigurationIgnoreProperty]
         public ReadOnlyCollection<LayoutRenderer> Renderers => _renderers ?? (_renderers = new ReadOnlyCollection<LayoutRenderer>(_layoutRenderers));
         private ReadOnlyCollection<LayoutRenderer> _renderers;
-        private LayoutRenderer[] _layoutRenderers;
+        private readonly LayoutRenderer[] _layoutRenderers;
 
         /// <summary>
         /// Gets a collection of <see cref="LayoutRenderer"/> objects that make up this layout.
@@ -167,7 +180,7 @@ namespace NLog.Layouts
         public new StackTraceUsage StackTraceUsage => base.StackTraceUsage;
 
         /// <summary>
-        /// Converts a text to a simple layout.
+        /// Implicitly converts the specified string as LayoutRenderer-expression into a <see cref="SimpleLayout"/>.
         /// </summary>
         /// <param name="text">Text to be converted.</param>
         /// <returns>A <see cref="SimpleLayout"/> object.</returns>
@@ -190,6 +203,7 @@ namespace NLog.Layouts
         /// Escaping is done by replacing all occurrences of
         /// '${' with '${literal:text=${}'
         /// </remarks>
+        [Obsolete("Instead use Layout.FromLiteral()")]
         public static string Escape([Localizable(false)] string text)
         {
             return text.Replace("${", @"${literal:text=\$\{}");
@@ -228,45 +242,7 @@ namespace NLog.Layouts
                 return ToStringWithNestedItems(_layoutRenderers, r => r.ToString());
             }
 
-            return Text ?? _fixedText ?? string.Empty;
-        }
-
-        internal void SetLayoutRenderers(LayoutRenderer[] layoutRenderers, string text)
-        {
-            _layoutRenderers = layoutRenderers ?? ArrayHelper.Empty<LayoutRenderer>();
-            _renderers = null;
-
-            _fixedText = null;
-            _rawValueRenderer = null;
-            _stringValueRenderer = null;
-
-            if (_layoutRenderers.Length == 0)
-            {
-                _fixedText = string.Empty;
-            }
-            else if (_layoutRenderers.Length == 1)
-            {
-                if (_layoutRenderers[0] is LiteralLayoutRenderer renderer)
-                {
-                    _fixedText = renderer.Text;
-                }
-                else if (_layoutRenderers[0] is IStringValueRenderer stringValueRenderer)
-                {
-                    _stringValueRenderer = stringValueRenderer;
-                }
-
-                if (_layoutRenderers[0] is IRawValue rawValueRenderer)
-                {
-                    _rawValueRenderer = rawValueRenderer;
-                }
-            }
-
-            _layoutText = text;
-
-            if (LoggingConfiguration != null)
-            {
-                PerformObjectScanning();
-            }
+            return Text;
         }
 
         /// <inheritdoc/>
@@ -419,7 +395,7 @@ namespace NLog.Layouts
         {
             if (IsFixedText)
             {
-                return _fixedText;
+                return FixedText;
             }
 
             if (_stringValueRenderer != null)
@@ -480,13 +456,14 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            if (IsFixedText)
+            if (FixedText is null)
             {
-                target.Append(_fixedText);
-                return;
+                RenderAllRenderers(logEvent, target);
             }
-
-            RenderAllRenderers(logEvent, target);
+            else
+            {
+                target.Append(FixedText);
+            }
         }
     }
 }

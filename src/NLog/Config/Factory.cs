@@ -36,7 +36,6 @@ namespace NLog.Config
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
     using NLog.Common;
     using NLog.Internal;
     using NLog.LayoutRenderers;
@@ -54,6 +53,8 @@ namespace NLog.Config
         private readonly Dictionary<string, Func<TBaseType>> _items;
         private readonly ConfigurationItemFactory _parentFactory;
 
+        public bool Initialized { get; private set; }
+
         internal Factory(ConfigurationItemFactory parentFactory)
         {
             _parentFactory = parentFactory;
@@ -61,6 +62,27 @@ namespace NLog.Config
         }
 
         private delegate Type GetTypeDelegate();
+
+        public void Initialize(Action<bool> itemRegistration)
+        {
+            lock (ConfigurationItemFactory.SyncRoot)
+            {
+                if (Initialized)
+                    return;
+
+                try
+                {
+                    var skipCheckExists = _items.Count == 0;
+                    itemRegistration.Invoke(skipCheckExists);
+                }
+                finally
+                {
+                    Initialized = true;
+                }
+            }
+        }
+
+        public bool CheckTypeAliasExists(string typeAlias) => _items.ContainsKey(typeAlias);
 
         /// <summary>
         /// Registers the type.
@@ -285,12 +307,10 @@ namespace NLog.Config
     internal sealed class LayoutRendererFactory : Factory<LayoutRenderer, LayoutRendererAttribute>
     {
         private readonly Dictionary<string, FuncLayoutRenderer> _funcRenderers = new Dictionary<string, FuncLayoutRenderer>(StringComparer.OrdinalIgnoreCase);
-        private readonly LayoutRendererFactory _globalDefaultFactory;
 
-        public LayoutRendererFactory(ConfigurationItemFactory parentFactory, LayoutRendererFactory globalDefaultFactory)
+        public LayoutRendererFactory(ConfigurationItemFactory parentFactory)
             : base(parentFactory)
         {
-            _globalDefaultFactory = globalDefaultFactory;
         }
 
         /// <inheritdoc/>
@@ -318,26 +338,13 @@ namespace NLog.Config
         public override bool TryCreateInstance(string typeAlias, out LayoutRenderer result)
         {
             //first try func renderers, as they should have the possibility to overwrite a current one.
-            FuncLayoutRenderer funcResult;
             typeAlias = FactoryExtensions.NormalizeName(typeAlias);
 
             if (_funcRenderers.Count > 0)
             {
                 lock (ConfigurationItemFactory.SyncRoot)
                 {
-                    if (_funcRenderers.TryGetValue(typeAlias, out funcResult))
-                    {
-                        result = funcResult;
-                        return true;
-                    }
-                }
-            }
-
-            if (_globalDefaultFactory?._funcRenderers?.Count > 0)
-            {
-                lock (ConfigurationItemFactory.SyncRoot)
-                {
-                    if (_globalDefaultFactory._funcRenderers.TryGetValue(typeAlias, out funcResult))
+                    if (_funcRenderers.TryGetValue(typeAlias, out var funcResult))
                     {
                         result = funcResult;
                         return true;

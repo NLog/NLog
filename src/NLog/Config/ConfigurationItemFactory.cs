@@ -52,7 +52,7 @@ namespace NLog.Config
     ///
     /// Supports creating item-instance from their type-alias, when parsing NLog configuration
     /// </summary>
-    public class ConfigurationItemFactory
+    public sealed class ConfigurationItemFactory
     {
         private static ConfigurationItemFactory _defaultInstance;
 
@@ -88,16 +88,16 @@ namespace NLog.Config
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
         public ConfigurationItemFactory()
-            : this(LogManager.LogFactory.ServiceRepository, null)
+            : this(LogManager.LogFactory.ServiceRepository)
         {
         }
 
-        internal ConfigurationItemFactory(ServiceRepository serviceRepository, ConfigurationItemFactory globalDefaultFactory)
+        internal ConfigurationItemFactory(ServiceRepository serviceRepository)
         {
             _serviceRepository = Guard.ThrowIfNull(serviceRepository);
             _targets = new Factory<Target, TargetAttribute>(this);
             _filters = new Factory<Filter, FilterAttribute>(this);
-            _layoutRenderers = new LayoutRendererFactory(this, globalDefaultFactory?._layoutRenderers);
+            _layoutRenderers = new LayoutRendererFactory(this);
             _layouts = new Factory<Layout, LayoutAttribute>(this);
             _conditionMethods = new MethodFactory();
             _ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this);
@@ -112,6 +112,7 @@ namespace NLog.Config
                 _ambientProperties,
                 _timeSources,
             };
+            RegisterType<NLog.Config.LoggingRule>();
         }
 
         /// <summary>
@@ -123,39 +124,121 @@ namespace NLog.Config
         /// </remarks>
         public static ConfigurationItemFactory Default
         {
-            get => _defaultInstance ?? (_defaultInstance = BuildDefaultFactory());
+            get => _defaultInstance ?? (_defaultInstance = new ConfigurationItemFactory(LogManager.LogFactory.ServiceRepository));
             set => _defaultInstance = value;
         }
 
         /// <summary>
         /// Gets the <see cref="Target"/> factory.
         /// </summary>
-        public IFactory<Target> TargetFactory => _targets;
+        public IFactory<Target> TargetFactory
+        {
+            get
+            {
+                if (!_targets.Initialized)
+                    _targets.Initialize(skipCheckExists => RegisterAllTargets(skipCheckExists));
+                // Targets can depend on filters
+                if (!_filters.Initialized)
+                    _filters.Initialize(skipCheckExists => RegisterAllFilters(skipCheckExists));
+                // Targets can depend on conditions
+                if (!_conditionMethods.Initialized)
+                    _conditionMethods.Initialize(skipCheckExists => RegisterAllConditionMethods(skipCheckExists));
+                return _targets;
+            }
+        }
+
         /// <summary>
         /// Gets the <see cref="Layout"/> factory.
         /// </summary>
-        public IFactory<Layout> LayoutFactory => _layouts;
+        public IFactory<Layout> LayoutFactory
+        {
+            get
+            {
+                if (!_layouts.Initialized)
+                    _layouts.Initialize(skipCheckExists => RegisterAllLayouts(skipCheckExists));
+                return _layouts;
+            }
+        }
+
         /// <summary>
         /// Gets the <see cref="LayoutRenderer"/> factory.
         /// </summary>
-        public IFactory<LayoutRenderer> LayoutRendererFactory => _layoutRenderers;
+        public IFactory<LayoutRenderer> LayoutRendererFactory
+        {
+            get
+            {
+                if (!_layoutRenderers.Initialized)
+                    _layoutRenderers.Initialize(skipCheckExists => RegisterAllLayoutRenderers(skipCheckExists));
+                // When-LayoutRenderers depends on conditions
+                if (!_conditionMethods.Initialized)
+                    _conditionMethods.Initialize(skipCheckExists => RegisterAllConditionMethods(skipCheckExists));
+                return _layoutRenderers;
+            }
+        }
+
         /// <summary>
         /// Gets the ambient property factory.
         /// </summary>
-        public IFactory<LayoutRenderer> AmbientRendererFactory => _ambientProperties;
+        public IFactory<LayoutRenderer> AmbientRendererFactory
+        {
+            get
+            {
+                if (!_layoutRenderers.Initialized)
+                    _layoutRenderers.Initialize(skipCheckExists => RegisterAllLayoutRenderers(skipCheckExists));
+                // When-LayoutRenderers depends on conditions
+                if (!_conditionMethods.Initialized)
+                    _conditionMethods.Initialize(skipCheckExists => RegisterAllConditionMethods(skipCheckExists));
+                return _ambientProperties;
+            }
+        }
+
         /// <summary>
         /// Gets the <see cref="Filter"/> factory.
         /// </summary>
-        public IFactory<Filter> FilterFactory => _filters;
+        public IFactory<Filter> FilterFactory
+        {
+            get
+            {
+                if (!_filters.Initialized)
+                    _filters.Initialize(skipCheckExists => RegisterAllFilters(skipCheckExists));
+                // Filters can depend on conditions
+                if (!_conditionMethods.Initialized)
+                    _conditionMethods.Initialize(skipCheckExists => RegisterAllConditionMethods(skipCheckExists));
+                return _filters;
+            }
+        }
+
         /// <summary>
         /// Gets the <see cref="TimeSource"/> factory.
         /// </summary>
-        public IFactory<TimeSource> TimeSourceFactory => _timeSources;
-        internal MethodFactory ConditionMethodFactory => _conditionMethods;
+        public IFactory<TimeSource> TimeSourceFactory
+        {
+            get
+            {
+                if (!_timeSources.Initialized)
+                    _timeSources.Initialize(skipCheckExists => RegisterAllTimeSources(skipCheckExists));
+                return _timeSources;
+            }
+        }
+
+        internal MethodFactory ConditionMethodFactory
+        {
+            get
+            {
+                if (!_conditionMethods.Initialized)
+                    _conditionMethods.Initialize(skipCheckExists => RegisterAllConditionMethods(skipCheckExists));
+                return _conditionMethods;
+            }
+        }
 
         internal Factory<Target, TargetAttribute> GetTargetFactory() => _targets;
         internal Factory<Layout, LayoutAttribute> GetLayoutFactory() => _layouts;
         internal LayoutRendererFactory GetLayoutRendererFactory() => _layoutRenderers;
+        internal Factory<LayoutRenderer, AmbientPropertyAttribute> GetAmbientPropertyFactory() => _ambientProperties;
+        internal Factory<Filter, FilterAttribute> GetFilterFactory() => _filters;
+        internal Factory<TimeSource, TimeSourceAttribute> GetTimeSourceFactory() => _timeSources;
+        internal MethodFactory GetConditionMethodFactory() => _conditionMethods;
+
         internal ICollection<Type> ItemTypes
         {
             get
@@ -282,6 +365,7 @@ namespace NLog.Config
                 return new Dictionary<string, PropertyInfo>();
 
 #pragma warning disable CS0618 // Type or member is obsolete
+            InternalLogger.Debug("Object reflection needed to configure instance of type: {0}", itemType);
             return ResolveTypePropertiesLegacy(itemType);
 #pragma warning restore CS0618 // Type or member is obsolete
         }
@@ -292,7 +376,6 @@ namespace NLog.Config
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         private Dictionary<string, PropertyInfo> ResolveTypePropertiesLegacy(Type itemType)
         {
-            InternalLogger.Debug("Object reflection needed to configure instance of type: {0}", itemType);
             Dictionary<string, PropertyInfo> properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase);
             lock (SyncRoot)
             {
@@ -314,6 +397,7 @@ namespace NLog.Config
             if (itemCreator is null)
             {
 #pragma warning disable CS0618 // Type or member is obsolete
+                InternalLogger.Debug("Object reflection needed to create instance of type: {0}", itemType);
                 instance = ResolveCreateInstanceLegacy(itemType);
 #pragma warning restore CS0618 // Type or member is obsolete
             }
@@ -331,7 +415,6 @@ namespace NLog.Config
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         private object ResolveCreateInstanceLegacy(Type itemType)
         {
-            InternalLogger.Debug("Object reflection needed to create instance of type: {0}", itemType);
             Dictionary<string, PropertyInfo> properties = null;
             var itemProperties = new Func<Dictionary<string, PropertyInfo>>(() => properties ?? (properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase)));
             var itemFactory = new ItemFactory(itemProperties, () => Activator.CreateInstance(itemType));
@@ -343,64 +426,108 @@ namespace NLog.Config
             return itemFactory.ItemCreator.Invoke();
         }
 
-        /// <summary>
-        /// Builds the default configuration item factory.
-        /// </summary>
-        /// <returns>Default factory.</returns>
-        private static ConfigurationItemFactory BuildDefaultFactory()
+        private void RegisterAllTargets(bool skipCheckExists)
         {
-            var factory = new ConfigurationItemFactory(LogManager.LogFactory.ServiceRepository, null);
-            lock (SyncRoot)
-            {
-                AssemblyExtensionTypes.RegisterTypes(factory);
+            AssemblyExtensionTypes.RegisterTargetTypes(this, skipCheckExists);
 #pragma warning disable CS0618 // Type or member is obsolete
-                factory.RegisterExternalItems();
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("diagnosticlistener"))
+                _targets.RegisterNamedType("diagnosticlistener", "NLog.Targets.DiagnosticListenerTarget, NLog.DiagnosticSource");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("database"))
+                _targets.RegisterNamedType("database", "NLog.Targets.DatabaseTarget, NLog.Database");
+#if NETSTANDARD
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("eventlog"))
+                _targets.RegisterNamedType("eventlog", "NLog.Targets.EventLogTarget, NLog.WindowsEventLog");
+#endif
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("impersonatingwrapper"))
+                _targets.RegisterNamedType("impersonatingwrapper", "NLog.Targets.Wrappers.ImpersonatingTargetWrapper, NLog.WindowsIdentity");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("logreceiverservice"))
+                _targets.RegisterNamedType("logreceiverservice", "NLog.Targets.LogReceiverWebServiceTarget, NLog.Wcf");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("outputdebugstring"))
+                _targets.RegisterNamedType("outputdebugstring", "NLog.Targets.OutputDebugStringTarget, NLog.OutputDebugString");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("network"))
+                _targets.RegisterNamedType("network", "NLog.Targets.NetworkTarget, NLog.Targets.Network");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("chainsaw"))
+                _targets.RegisterNamedType("chainsaw", "NLog.Targets.ChainsawTarget, NLog.Targets.Network");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("nlogviewer"))
+                _targets.RegisterNamedType("nlogviewer", "NLog.Targets.ChainsawTarget, NLog.Targets.Network");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("mail"))
+                _targets.RegisterNamedType("mail", "NLog.Targets.MailTarget, NLog.Targets.Mail");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("email"))
+                _targets.RegisterNamedType("email", "NLog.Targets.MailTarget, NLog.Targets.Mail");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("smtp"))
+                _targets.RegisterNamedType("smtp", "NLog.Targets.MailTarget, NLog.Targets.Mail");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("performancecounter"))
+                _targets.RegisterNamedType("performancecounter", "NLog.Targets.PerformanceCounterTarget, NLog.PerformanceCounter");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("richtextbox"))
+                _targets.RegisterNamedType("richtextbox", "NLog.Windows.Forms.RichTextBoxTarget, NLog.Windows.Forms");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("messagebox"))
+                _targets.RegisterNamedType("messagebox", "NLog.Windows.Forms.MessageBoxTarget, NLog.Windows.Forms");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("formcontrol"))
+                _targets.RegisterNamedType("formcontrol", "NLog.Windows.Forms.FormControlTarget, NLog.Windows.Forms");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("toolstripitem"))
+                _targets.RegisterNamedType("toolstripitem", "NLog.Windows.Forms.ToolStripItemTarget, NLog.Windows.Forms");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("trace"))
+                _targets.RegisterNamedType("trace", "NLog.Targets.TraceTarget, NLog.Targets.Trace");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("tracesystem"))
+                _targets.RegisterNamedType("tracesystem", "NLog.Targets.TraceTarget, NLog.Targets.Trace");
+            if (skipCheckExists || !_targets.CheckTypeAliasExists("webservice"))
+                _targets.RegisterNamedType("webservice", "NLog.Targets.WebServiceTarget, NLog.Targets.WebService");
 #pragma warning restore CS0618 // Type or member is obsolete
-            }
-            return factory;
         }
 
-        /// <summary>
-        /// Registers items in using late-bound types, so that we don't need a reference to the dll.
-        /// </summary>
-        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-        private void RegisterExternalItems()
+        private void RegisterAllLayouts(bool skipCheckExists)
         {
-            _layouts.RegisterNamedType("log4jxmleventlayout", "NLog.Layouts.Log4JXmlEventLayout, NLog.Targets.Network");
+            AssemblyExtensionTypes.RegisterLayoutTypes(this, skipCheckExists);
+#pragma warning disable CS0618 // Type or member is obsolete
+            if (skipCheckExists || !_layouts.CheckTypeAliasExists("log4jxmleventlayout"))
+                _layouts.RegisterNamedType("log4jxmleventlayout", "NLog.Layouts.Log4JXmlEventLayout, NLog.Targets.Network");
 #if !NET35 && !NET40
-            _layouts.RegisterNamedType("microsoftconsolejsonlayout", "NLog.Extensions.Logging.MicrosoftConsoleJsonLayout, NLog.Extensions.Logging");
-            _layoutRenderers.RegisterNamedType("configsetting", "NLog.Extensions.Logging.ConfigSettingLayoutRenderer, NLog.Extensions.Logging");
-            _layoutRenderers.RegisterNamedType("microsoftconsolelayout", "NLog.Extensions.Logging.MicrosoftConsoleLayoutRenderer, NLog.Extensions.Logging");
+            if (skipCheckExists || !_layouts.CheckTypeAliasExists("microsoftconsolejsonlayout"))
+                _layouts.RegisterNamedType("microsoftconsolejsonlayout", "NLog.Extensions.Logging.MicrosoftConsoleJsonLayout, NLog.Extensions.Logging");
 #endif
-            _layoutRenderers.RegisterNamedType("log4jxmlevent", "NLog.LayoutRenderers.Log4JXmlEventLayoutRenderer, NLog.Targets.Network");
-            _layoutRenderers.RegisterNamedType("performancecounter", "NLog.LayoutRenderers.PerformanceCounterLayoutRenderer, NLog.PerformanceCounter");
-            _layoutRenderers.RegisterNamedType("registry", "NLog.LayoutRenderers.RegistryLayoutRenderer, NLog.WindowsRegistry");
-            _layoutRenderers.RegisterNamedType("windows-identity", "NLog.LayoutRenderers.WindowsIdentityLayoutRenderer, NLog.WindowsIdentity");
-            _layoutRenderers.RegisterNamedType("rtblink", "NLog.Windows.Forms.RichTextBoxLinkLayoutRenderer, NLog.Windows.Forms");
-            _layoutRenderers.RegisterNamedType("activity", "NLog.LayoutRenderers.ActivityTraceLayoutRenderer, NLog.DiagnosticSource");
-            _layoutRenderers.RegisterNamedType("activityid", "NLog.LayoutRenderers.TraceActivityIdLayoutRenderer, NLog.Targets.Trace");
-            _targets.RegisterNamedType("diagnosticlistener", "NLog.Targets.DiagnosticListenerTarget, NLog.DiagnosticSource");
-            _targets.RegisterNamedType("database", "NLog.Targets.DatabaseTarget, NLog.Database");
-#if NETSTANDARD
-            _targets.RegisterNamedType("eventlog", "NLog.Targets.EventLogTarget, NLog.WindowsEventLog");
+#pragma warning restore CS0618 // Type or member is obsolete
+        }
+
+        private void RegisterAllLayoutRenderers(bool skipCheckExists)
+        {
+            AssemblyExtensionTypes.RegisterLayoutRendererTypes(this, skipCheckExists);
+#pragma warning disable CS0618 // Type or member is obsolete
+#if !NET35 && !NET40
+            if (skipCheckExists || !_layoutRenderers.CheckTypeAliasExists("configsetting"))
+                _layoutRenderers.RegisterNamedType("configsetting", "NLog.Extensions.Logging.ConfigSettingLayoutRenderer, NLog.Extensions.Logging");
+            if (skipCheckExists || !_layoutRenderers.CheckTypeAliasExists("microsoftconsolelayout"))
+                _layoutRenderers.RegisterNamedType("microsoftconsolelayout", "NLog.Extensions.Logging.MicrosoftConsoleLayoutRenderer, NLog.Extensions.Logging");
 #endif
-            _targets.RegisterNamedType("impersonatingwrapper", "NLog.Targets.Wrappers.ImpersonatingTargetWrapper, NLog.WindowsIdentity");
-            _targets.RegisterNamedType("logreceiverservice", "NLog.Targets.LogReceiverWebServiceTarget, NLog.Wcf");
-            _targets.RegisterNamedType("outputdebugstring", "NLog.Targets.OutputDebugStringTarget, NLog.OutputDebugString");
-            _targets.RegisterNamedType("network", "NLog.Targets.NetworkTarget, NLog.Targets.Network");
-            _targets.RegisterNamedType("chainsaw", "NLog.Targets.ChainsawTarget, NLog.Targets.Network");
-            _targets.RegisterNamedType("nlogviewer", "NLog.Targets.ChainsawTarget, NLog.Targets.Network");
-            _targets.RegisterNamedType("mail", "NLog.Targets.MailTarget, NLog.Targets.Mail");
-            _targets.RegisterNamedType("email", "NLog.Targets.MailTarget, NLog.Targets.Mail");
-            _targets.RegisterNamedType("smtp", "NLog.Targets.MailTarget, NLog.Targets.Mail");
-            _targets.RegisterNamedType("performancecounter", "NLog.Targets.PerformanceCounterTarget, NLog.PerformanceCounter");
-            _targets.RegisterNamedType("richtextbox", "NLog.Windows.Forms.RichTextBoxTarget, NLog.Windows.Forms");
-            _targets.RegisterNamedType("messagebox", "NLog.Windows.Forms.MessageBoxTarget, NLog.Windows.Forms");
-            _targets.RegisterNamedType("formcontrol", "NLog.Windows.Forms.FormControlTarget, NLog.Windows.Forms");
-            _targets.RegisterNamedType("toolstripitem", "NLog.Windows.Forms.ToolStripItemTarget, NLog.Windows.Forms");
-            _targets.RegisterNamedType("trace", "NLog.Targets.TraceTarget, NLog.Targets.Trace");
-            _targets.RegisterNamedType("tracesystem", "NLog.Targets.TraceTarget, NLog.Targets.Trace");
-            _targets.RegisterNamedType("webservice", "NLog.Targets.WebServiceTarget, NLog.Targets.WebService");
+            if (skipCheckExists || !_layoutRenderers.CheckTypeAliasExists("log4jxmlevent"))
+                _layoutRenderers.RegisterNamedType("log4jxmlevent", "NLog.LayoutRenderers.Log4JXmlEventLayoutRenderer, NLog.Targets.Network");
+            if (skipCheckExists || !_layoutRenderers.CheckTypeAliasExists("performancecounter"))
+                _layoutRenderers.RegisterNamedType("performancecounter", "NLog.LayoutRenderers.PerformanceCounterLayoutRenderer, NLog.PerformanceCounter");
+            if (skipCheckExists || !_layoutRenderers.CheckTypeAliasExists("registry"))
+                _layoutRenderers.RegisterNamedType("registry", "NLog.LayoutRenderers.RegistryLayoutRenderer, NLog.WindowsRegistry");
+            if (skipCheckExists || !_layoutRenderers.CheckTypeAliasExists("windowsidentity"))
+                _layoutRenderers.RegisterNamedType("windowsidentity", "NLog.LayoutRenderers.WindowsIdentityLayoutRenderer, NLog.WindowsIdentity");
+            if (skipCheckExists || !_layoutRenderers.CheckTypeAliasExists("rtblink"))
+                _layoutRenderers.RegisterNamedType("rtblink", "NLog.Windows.Forms.RichTextBoxLinkLayoutRenderer, NLog.Windows.Forms");
+            if (skipCheckExists || !_layoutRenderers.CheckTypeAliasExists("activity"))
+                _layoutRenderers.RegisterNamedType("activity", "NLog.LayoutRenderers.ActivityTraceLayoutRenderer, NLog.DiagnosticSource");
+            if (skipCheckExists || !_layoutRenderers.CheckTypeAliasExists("activityid"))
+                _layoutRenderers.RegisterNamedType("activityid", "NLog.LayoutRenderers.TraceActivityIdLayoutRenderer, NLog.Targets.Trace");
+#pragma warning restore CS0618 // Type or member is obsolete
+        }
+
+        private void RegisterAllFilters(bool skipCheckExists)
+        {
+            AssemblyExtensionTypes.RegisterFilterTypes(this, skipCheckExists);
+        }
+
+        private void RegisterAllConditionMethods(bool skipCheckExists)
+        {
+            AssemblyExtensionTypes.RegisterConditionTypes(this, skipCheckExists);
+        }
+
+        private void RegisterAllTimeSources(bool skipCheckExists)
+        {
+            AssemblyExtensionTypes.RegisterTimeSourceTypes(this, skipCheckExists);
         }
     }
 }

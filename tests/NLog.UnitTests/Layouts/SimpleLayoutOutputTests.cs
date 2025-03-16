@@ -62,7 +62,7 @@ namespace NLog.UnitTests.Layouts
             using (new NoThrowNLogExceptions())
             {
                 ConfigurationItemFactory configurationItemFactory = new ConfigurationItemFactory();
-                configurationItemFactory.LayoutRendererFactory.RegisterType<ThrowsExceptionRenderer>("throwsException");
+                configurationItemFactory.GetLayoutRendererFactory().RegisterType<ThrowsExceptionRenderer>("throwsException");
 
                 SimpleLayout l = new SimpleLayout("xx${throwsException}yy", configurationItemFactory);
                 string output = l.Render(LogEventInfo.CreateNullEvent());
@@ -86,7 +86,7 @@ namespace NLog.UnitTests.Layouts
             var l = new SimpleLayout("xx${level}yy");
             Assert.Equal("xx${level}yy", l.ToString());
 
-            var l2 = new SimpleLayout(ArrayHelper.Empty<LayoutRenderer>(), "someFakeText", ConfigurationItemFactory.Default);
+            var l2 = new SimpleLayout(ArrayHelper.Empty<LayoutRenderer>(), "someFakeText");
             Assert.Equal("someFakeText", l2.ToString());
 
             var l3 = new SimpleLayout("");
@@ -102,7 +102,7 @@ namespace NLog.UnitTests.Layouts
                         using (new NoThrowNLogExceptions())
                         {
                             ConfigurationItemFactory configurationItemFactory = new ConfigurationItemFactory();
-                            configurationItemFactory.LayoutRendererFactory.RegisterType<ThrowsExceptionRenderer>("throwsException");
+                            configurationItemFactory.GetLayoutRendererFactory().RegisterType<ThrowsExceptionRenderer>("throwsException");
 
                             SimpleLayout l = new SimpleLayout("xx${throwsException:msg1}yy${throwsException:msg2}zz", configurationItemFactory);
                             string output = l.Render(LogEventInfo.CreateNullEvent());
