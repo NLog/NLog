@@ -308,6 +308,36 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void SetupExtensionsRegisterTargetTypeOverrideTest()
+        {
+            try
+            {
+                // Arrange
+                NLog.Config.ConfigurationItemFactory.Default = null;
+                var logFactory = new LogFactory();
+
+                // Act
+                logFactory.Setup().SetupExtensions(ext => ext.RegisterTarget<MyExtensionNamespace.MyTarget>("Debug"));
+                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                    <targets>
+                        <target name='t' type='Debug' />
+                    </targets>
+                    <rules>
+                        <logger name='*' writeTo='t'>
+                        </logger>
+                    </rules>
+                </nlog>", null, logFactory);
+
+                // Assert
+                Assert.NotNull(logFactory.Configuration.FindTargetByName<MyExtensionNamespace.MyTarget>("t"));
+            }
+            finally
+            {
+                NLog.Config.ConfigurationItemFactory.Default = null;
+            }
+        }
+
+        [Fact]
         public void SetupExtensionsRegisterLayoutTest()
         {
             // Arrange

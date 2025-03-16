@@ -63,7 +63,7 @@ namespace NLog.Config
 
         private delegate Type GetTypeDelegate();
 
-        public void Initialize(Action itemRegistration)
+        public void Initialize(Action<bool> itemRegistration)
         {
             lock (ConfigurationItemFactory.SyncRoot)
             {
@@ -72,7 +72,8 @@ namespace NLog.Config
 
                 try
                 {
-                    itemRegistration.Invoke();
+                    var skipCheckExists = _items.Count == 0;
+                    itemRegistration.Invoke(skipCheckExists);
                 }
                 finally
                 {
@@ -80,6 +81,8 @@ namespace NLog.Config
                 }
             }
         }
+
+        public bool CheckTypeAliasExists(string typeAlias) => _items.ContainsKey(typeAlias);
 
         /// <summary>
         /// Registers the type.

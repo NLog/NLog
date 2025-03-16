@@ -55,11 +55,12 @@ namespace NLog.Config
     };
     Type[] AllTypes = typeof(NLog.LogFactory).Assembly.GetTypes().Where(t => !t.IsAbstract && !t.IsPrimitive && t.IsClass && !t.IsNested && !NetFrameworkOnly.Contains(t.ToString())).OrderBy(t => t.ToString()).ToArray();
 #>
-        public static void RegisterTargetTypes(ConfigurationItemFactory factory)
+        public static void RegisterTargetTypes(ConfigurationItemFactory factory, bool skipCheckExists)
         {
             factory.RegisterTypeProperties<NLog.Targets.TargetWithContext.TargetWithContextLayout>(() => null);
 #if NETFRAMEWORK
-            factory.GetTargetFactory().RegisterType<NLog.Targets.EventLogTarget>("EventLog");
+            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("EventLog"))
+                factory.GetTargetFactory().RegisterType<NLog.Targets.EventLogTarget>("EventLog");
 #endif
 <#
     foreach(var type in AllTypes)
@@ -71,7 +72,8 @@ namespace NLog.Config
             {
                 var targetAliasName = targetAlias.Name;
 #>
-            factory.GetTargetFactory().RegisterType<<#= type #>>("<#= targetAliasName #>");
+            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("<#= targetAliasName #>"))
+                factory.GetTargetFactory().RegisterType<<#= type #>>("<#= targetAliasName #>");
 <#
             }
         }
@@ -89,7 +91,7 @@ namespace NLog.Config
 #>
         }
 
-        public static void RegisterLayoutTypes(ConfigurationItemFactory factory)
+        public static void RegisterLayoutTypes(ConfigurationItemFactory factory, bool skipCheckExists)
         {
             factory.RegisterTypeProperties<NLog.Layouts.CsvLayout.CsvHeaderLayout>(() => null);
 <#
@@ -102,7 +104,8 @@ namespace NLog.Config
             {
                 var layoutAliasName = layoutAlias.Name;
 #>
-            factory.GetLayoutFactory().RegisterType<<#= type #>>("<#= layoutAliasName #>");
+            if (skipCheckExists || !factory.GetLayoutFactory().CheckTypeAliasExists("<#= layoutAliasName #>"))
+                factory.GetLayoutFactory().RegisterType<<#= type #>>("<#= layoutAliasName #>");
 <#
             }
         }
@@ -120,7 +123,7 @@ namespace NLog.Config
 #>
         }
 
-        public static void RegisterLayoutRendererTypes(ConfigurationItemFactory factory)
+        public static void RegisterLayoutRendererTypes(ConfigurationItemFactory factory, bool skipCheckExists)
         {
 #if NETFRAMEWORK
             factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.AppSettingLayoutRenderer>("appsetting");
@@ -135,7 +138,8 @@ namespace NLog.Config
             {
                 var layoutAliasName = layoutAlias.Name;
 #>
-            factory.GetLayoutRendererFactory().RegisterType<<#= type #>>("<#= layoutAliasName #>");
+            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("<#= layoutAliasName #>"))
+                factory.GetLayoutRendererFactory().RegisterType<<#= type #>>("<#= layoutAliasName #>");
 <#
             }
 
@@ -144,7 +148,8 @@ namespace NLog.Config
             {
                 var layoutAliasName = layoutAlias.Name;
 #>
-            factory.GetAmbientPropertyFactory().RegisterType<<#= type #>>("<#= layoutAliasName #>");
+            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("<#= layoutAliasName #>"))
+                factory.GetAmbientPropertyFactory().RegisterType<<#= type #>>("<#= layoutAliasName #>");
 <#
             }
         }
@@ -162,7 +167,7 @@ namespace NLog.Config
 #>
         }
 
-        public static void RegisterFilterTypes(ConfigurationItemFactory factory)
+        public static void RegisterFilterTypes(ConfigurationItemFactory factory, bool skipCheckExists)
         {
 <#
     foreach(var type in AllTypes)
@@ -174,7 +179,8 @@ namespace NLog.Config
             {
                 var filterAliasName = filterAlias.Name;
 #>
-            factory.GetFilterFactory().RegisterType<<#= type #>>("<#= filterAliasName #>");
+            if (skipCheckExists || !factory.GetFilterFactory().CheckTypeAliasExists("<#= filterAliasName #>"))
+                factory.GetFilterFactory().RegisterType<<#= type #>>("<#= filterAliasName #>");
 <#
             }
         }
@@ -192,7 +198,7 @@ namespace NLog.Config
 #>
         }
 
-        public static void RegisterTimeSourceTypes(ConfigurationItemFactory factory)
+        public static void RegisterTimeSourceTypes(ConfigurationItemFactory factory, bool skipCheckExists)
         {
 <#
     foreach(var type in AllTypes)
@@ -204,7 +210,8 @@ namespace NLog.Config
             {
                 var timeAliasName = timeAlias.Name;
 #>
-            factory.GetTimeSourceFactory().RegisterType<<#= type #>>("<#= timeAliasName #>");
+            if (skipCheckExists || !factory.GetTimeSourceFactory().CheckTypeAliasExists("<#= timeAliasName #>"))
+                factory.GetTimeSourceFactory().RegisterType<<#= type #>>("<#= timeAliasName #>");
 <#
             }
         }
@@ -222,18 +229,32 @@ namespace NLog.Config
 #>
         }
 
-        public static void RegisterConditionTypes(ConfigurationItemFactory factory)
+        public static void RegisterConditionTypes(ConfigurationItemFactory factory, bool skipCheckExists)
         {
-            factory.GetConditionMethodFactory().RegisterOneParameter("length", (logEvent, arg1) => NLog.Conditions.ConditionMethods.Length(arg1?.ToString()));
-            factory.GetConditionMethodFactory().RegisterTwoParameters("equals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()));
-            factory.GetConditionMethodFactory().RegisterTwoParameters("strequals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()));
-            factory.GetConditionMethodFactory().RegisterThreeParameters("strequals", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
-            factory.GetConditionMethodFactory().RegisterTwoParameters("contains", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString()));
-            factory.GetConditionMethodFactory().RegisterThreeParameters("contains", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
-            factory.GetConditionMethodFactory().RegisterTwoParameters("starts-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString()));
-            factory.GetConditionMethodFactory().RegisterThreeParameters("starts-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
-            factory.GetConditionMethodFactory().RegisterTwoParameters("ends-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString()));
-            factory.GetConditionMethodFactory().RegisterThreeParameters("ends-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
+            if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("length"))
+                factory.GetConditionMethodFactory().RegisterOneParameter("length", (logEvent, arg1) => NLog.Conditions.ConditionMethods.Length(arg1?.ToString()));
+            if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("equals"))
+                factory.GetConditionMethodFactory().RegisterTwoParameters("equals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()));
+            if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("strequals"))
+            {
+                factory.GetConditionMethodFactory().RegisterTwoParameters("strequals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()));
+                factory.GetConditionMethodFactory().RegisterThreeParameters("strequals", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
+            }
+            if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("contains"))
+            {
+                factory.GetConditionMethodFactory().RegisterTwoParameters("contains", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString()));
+                factory.GetConditionMethodFactory().RegisterThreeParameters("contains", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
+            }
+            if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("starts-with"))
+            {
+                factory.GetConditionMethodFactory().RegisterTwoParameters("starts-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString()));
+                factory.GetConditionMethodFactory().RegisterThreeParameters("starts-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
+            }
+            if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("ends-with"))
+            {
+                factory.GetConditionMethodFactory().RegisterTwoParameters("ends-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString()));
+                factory.GetConditionMethodFactory().RegisterThreeParameters("ends-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
+            }
         }
     }
 }
