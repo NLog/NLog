@@ -211,12 +211,9 @@ namespace NLog.Targets
         /// </summary>
         public IList<ConsoleRowHighlightingRule> DefaultConsoleRowHighlightingRules { get; } = new List<ConsoleRowHighlightingRule>()
         {
-            new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Error", ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Warn", ConsoleOutputColor.DarkMagenta, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Info", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Debug", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Trace", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Fatal", (evt) => evt.Level == LogLevel.Fatal), ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Error", (evt) => evt.Level == LogLevel.Error), ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Warn", (evt) => evt.Level == LogLevel.Warn), ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange),
         };
     }
 }

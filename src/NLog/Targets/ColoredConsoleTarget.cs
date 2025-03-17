@@ -141,12 +141,12 @@ namespace NLog.Targets
         /// </tr>
         /// <tr>
         /// <td>level == LogLevel.Error</td>
-        /// <td>Yellow</td>
+        /// <td>Red</td>
         /// <td>NoChange</td>
         /// </tr>
         /// <tr>
         /// <td>level == LogLevel.Warn</td>
-        /// <td>Magenta</td>
+        /// <td>Yellow</td>
         /// <td>NoChange</td>
         /// </tr>
         /// <tr>
