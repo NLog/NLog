@@ -164,8 +164,6 @@ namespace NLog.Config
                 factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ExceptionDataLayoutRenderer>("exception-data");
             if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("exception"))
                 factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ExceptionLayoutRenderer>("exception");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("file-contents"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.FileContentsLayoutRenderer>("file-contents");
             if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("gc"))
                 factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.GarbageCollectorInfoLayoutRenderer>("gc");
             if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("gdc"))
