@@ -89,13 +89,13 @@ namespace NLog.Targets
         /// <docgen category='Console Options' order='10' />
         [Obsolete("Replaced by StdErr to align with ColoredConsoleTarget. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Error { get => StdErr; set => StdErr = value; }
+        public bool Error { get => StdErr?.IsFixed == true && StdErr.FixedValue; set => StdErr = value; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        public bool StdErr { get; set; }
+        public Layout<bool> StdErr { get; set; }
 
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
@@ -212,8 +212,19 @@ namespace NLog.Targets
         {
             if (!_pauseLogging && !AutoFlush)
             {
-                var output = GetOutput();
-                output.Flush();
+                if ((StdErr?.IsFixed ?? true))
+                {
+                    var stdErr = StdErr?.FixedValue ?? false;
+                    var output = GetOutput(stdErr);
+                    output.Flush();
+                }
+                else
+                {
+                    var output = GetOutput(false);
+                    output.Flush();
+                    output = GetOutput(true);
+                    output.Flush();
+                }
             }
         }
 
@@ -254,7 +265,8 @@ namespace NLog.Targets
                 return;
             }
 
-            var output = GetOutput();
+            var stdErr = RenderLogEvent(StdErr, logEvent);
+            var output = GetOutput(stdErr);
             if (WriteBuffer)
             {
                 WriteBufferToOutput(output, layout, logEvent);
@@ -281,17 +293,28 @@ namespace NLog.Targets
 
         private void WriteBufferToOutput(IList<AsyncLogEventInfo> logEvents)
         {
-            var output = GetOutput();
             using (var targetBuffer = _reusableEncodingBuffer.Allocate())
             using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             {
                 int targetBufferPosition = 0;
+                bool stdErr = false;
+                var output = GetOutput(stdErr);
+
                 try
                 {
+
                     for (int i = 0; i < logEvents.Count; ++i)
                     {
+                        var logEvent = logEvents[i].LogEvent;
+                        if (stdErr != RenderLogEvent(StdErr, logEvent))
+                        {
+                            if (targetBufferPosition > 0)
+                                WriteBufferToOutput(output, targetBuffer.Result, targetBufferPosition);
+                            stdErr = !stdErr;
+                            output = GetOutput(stdErr);
+                        }
                         targetBuilder.Result.ClearBuilder();
-                        RenderLogEventToWriteBuffer(output, Layout, logEvents[i].LogEvent, targetBuilder.Result, targetBuffer.Result, ref targetBufferPosition);
+                        RenderLogEventToWriteBuffer(output, Layout, logEvent, targetBuilder.Result, targetBuffer.Result, ref targetBufferPosition);
                         logEvents[i].Continuation(null);
                     }
                 }
@@ -358,9 +381,9 @@ namespace NLog.Targets
             }
         }
 
-        private TextWriter GetOutput()
+        private static TextWriter GetOutput(bool stdErr)
         {
-            return StdErr ? Console.Error : Console.Out;
+            return stdErr ? Console.Error : Console.Out;
         }
     }
 }

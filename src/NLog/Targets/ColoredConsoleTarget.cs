@@ -115,13 +115,13 @@ namespace NLog.Targets
         /// <docgen category='Console Options' order='10' />
         [Obsolete("Replaced by StdErr to align with ConsoleTarget. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ErrorStream { get => StdErr; set => StdErr = value; }
+        public bool ErrorStream { get => StdErr?.IsFixed == true && StdErr.FixedValue; set => StdErr = value; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        public bool StdErr { get; set; }
+        public Layout<bool> StdErr { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to use default row highlighting rules.
@@ -258,11 +258,12 @@ namespace NLog.Targets
             {
                 try
                 {
-                    _disableColors = StdErr ? Console.IsErrorRedirected : Console.IsOutputRedirected;
+                    var stdErr = RenderLogEvent(StdErr, LogEventInfo.CreateNullEvent());
+                    _disableColors = stdErr ? Console.IsErrorRedirected : Console.IsOutputRedirected;
                     if (_disableColors)
                     {
                         InternalLogger.Info("{0}: Console output is redirected so no colors. Set DetectOutputRedirected=false to skip detection.", this);
-                        if (!AutoFlush && GetOutput() is StreamWriter streamWriter && !streamWriter.AutoFlush)
+                        if (!AutoFlush && GetOutput(stdErr) is StreamWriter streamWriter && !streamWriter.AutoFlush)
                         {
                             AutoFlush = true;
                         }
@@ -330,8 +331,19 @@ namespace NLog.Targets
         {
             if (!_pauseLogging && !AutoFlush)
             {
-                var output = GetOutput();
-                output.Flush();
+                if ((StdErr?.IsFixed ?? true))
+                {
+                    var stdErr = StdErr?.FixedValue ?? false;
+                    var output = GetOutput(stdErr);
+                    output.Flush();
+                }
+                else
+                {
+                    var output = GetOutput(false);
+                    output.Flush();
+                    output = GetOutput(true);
+                    output.Flush();
+                }
             }
         }
 
@@ -380,7 +392,8 @@ namespace NLog.Targets
                 newBackgroundColor = matchingRule.BackgroundColor != ConsoleOutputColor.NoChange ? (ConsoleColor)matchingRule.BackgroundColor : default(ConsoleColor?);
             }
 
-            var consoleStream = GetOutput();
+            var stdErr = RenderLogEvent(StdErr, logEvent);
+            var consoleStream = GetOutput(stdErr);
             if (ReferenceEquals(colorMessage, message) && !newForegroundColor.HasValue && !newBackgroundColor.HasValue)
             {
                 ConsoleTargetHelper.WriteLineThreadSafe(consoleStream, message, AutoFlush);
@@ -644,9 +657,9 @@ namespace NLog.Targets
             }
         }
 
-        private TextWriter GetOutput()
+        private static TextWriter GetOutput(bool stdErr)
         {
-            return StdErr ? Console.Error : Console.Out;
+            return stdErr ? Console.Error : Console.Out;
         }
     }
 }
