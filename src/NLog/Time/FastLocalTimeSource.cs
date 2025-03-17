@@ -39,7 +39,7 @@ namespace NLog.Time
     /// Fast local time source that is updated once per tick (15.6 milliseconds).
     /// </summary>
     [TimeSource("FastLocal")]
-    public class FastLocalTimeSource : CachedTimeSource
+    public sealed class FastLocalTimeSource : CachedTimeSource
     {
         /// <summary>
         /// Gets uncached local time directly from DateTime.Now.

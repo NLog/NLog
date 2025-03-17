@@ -39,7 +39,7 @@ namespace NLog.Time
     /// Fast UTC time source that is updated once per tick (15.6 milliseconds).
     /// </summary>
     [TimeSource("FastUTC")]
-    public class FastUtcTimeSource : CachedTimeSource
+    public sealed class FastUtcTimeSource : CachedTimeSource
     {
         /// <summary>
         /// Gets uncached UTC time directly from DateTime.UtcNow.

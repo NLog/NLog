@@ -67,11 +67,11 @@ namespace NLog.Layouts
         }
         private IValueFormatter _valueFormatter;
 
-        class LimitRecursionJsonConvert : IJsonConverter
+        private sealed class LimitRecursionJsonConvert : IJsonConverter
         {
-            readonly IJsonConverter _converter;
-            readonly Targets.DefaultJsonSerializer _serializer;
-            readonly Targets.JsonSerializeOptions _serializerOptions;
+            private readonly IJsonConverter _converter;
+            private readonly Targets.DefaultJsonSerializer _serializer;
+            private readonly Targets.JsonSerializeOptions _serializerOptions;
 
             public LimitRecursionJsonConvert(int maxRecursionLimit, bool escapeForwardSlash, IJsonConverter converter)
             {
