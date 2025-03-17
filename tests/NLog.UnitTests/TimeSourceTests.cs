@@ -99,7 +99,7 @@ namespace NLog.UnitTests
             Assert.Equal(expected, actual);
         }
 
-        class CustomTimeSource : TimeSource
+        private sealed class CustomTimeSource : TimeSource
         {
             public override DateTime Time => FromSystemTime(DateTime.UtcNow);
 

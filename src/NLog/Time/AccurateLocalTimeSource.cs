@@ -39,7 +39,7 @@ namespace NLog.Time
     /// Current local time retrieved directly from DateTime.Now.
     /// </summary>
     [TimeSource("AccurateLocal")]
-    public class AccurateLocalTimeSource : TimeSource
+    public sealed class AccurateLocalTimeSource : TimeSource
     {
         /// <summary>
         /// Gets current local time directly from DateTime.Now.

@@ -39,7 +39,7 @@ namespace NLog.Time
     /// Current UTC time retrieved directly from DateTime.UtcNow.
     /// </summary>
     [TimeSource("AccurateUTC")]
-    public class AccurateUtcTimeSource : TimeSource
+    public sealed class AccurateUtcTimeSource : TimeSource
     {
         /// <summary>
         /// Gets current UTC time directly from DateTime.UtcNow.
