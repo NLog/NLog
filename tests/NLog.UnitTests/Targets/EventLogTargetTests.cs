@@ -96,27 +96,6 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [InlineData(0)]
-        [InlineData(-1)]
-        public void ConfigurationShouldThrowException_WhenMaxMessageLengthIsNegativeOrZero(int maxMessageLength)
-        {
-            string configrationText = $@"
-            <nlog ThrowExceptions='true'>
-                <targets>
-                    <target type='EventLog' name='eventLog1' layout='${{message}}' maxmessagelength='{maxMessageLength}' />
-                </targets>
-                <rules>
-                      <logger name='*' writeTo='eventLog1'>
-                      </logger>
-                    </rules>
-            </nlog>";
-
-            NLogConfigurationException ex = Assert.Throws<NLogConfigurationException>(() => XmlLoggingConfiguration.CreateFromXmlString(configrationText));
-            Assert.Equal("MaxMessageLength cannot be zero or negative.", ex.InnerException.InnerException.Message);
-        }
-
-        [Theory]
-        [InlineData(0)] // Is multiple of 64, but less than the min value of 64
         [InlineData(65)] // Isn't multiple of 64
         [InlineData(4194304)] // Is multiple of 64, but bigger than the max value of 4194240
         public void Configuration_ShouldThrowException_WhenMaxKilobytesIsInvalid(long maxKilobytes)
@@ -131,23 +110,23 @@ namespace NLog.UnitTests.Targets
                 </rules>
             </nlog>";
 
-            NLogConfigurationException ex = Assert.Throws<NLogConfigurationException>(() => XmlLoggingConfiguration.CreateFromXmlString(configrationText));
-            Assert.Equal("MaxKilobytes must be a multiple of 64, and between 64 and 4194240", ex.InnerException.InnerException.Message);
+            NLogConfigurationException ex = Assert.Throws<NLogConfigurationException>(() => new LogFactory().Setup().LoadConfigurationFromXml(configrationText));
+            Assert.Equal("EventLog MaxKilobytes must be a multiple of 64, and between 64 and 4194240", ex.Message);
         }
 
         [Theory]
-        [InlineData(0)] // Is multiple of 64, but less than the min value of 64
         [InlineData(65)] // Isn't multiple of 64
         [InlineData(4194304)] // Is multiple of 64, but bigger than the max value of 4194240
         public void MaxKilobytes_ShouldThrowException_WhenMaxKilobytesIsInvalid(long maxKilobytes)
         {
-            ArgumentException ex = Assert.Throws<ArgumentException>(() =>
+            NLogConfigurationException ex = Assert.Throws<NLogConfigurationException>(() =>
             {
                 var target = new EventLogTarget();
                 target.MaxKilobytes = maxKilobytes;
+                target.Initialize(null);
             });
 
-            Assert.Equal("MaxKilobytes must be a multiple of 64, and between 64 and 4194240", ex.Message);
+            Assert.Equal("EventLog MaxKilobytes must be a multiple of 64, and between 64 and 4194240", ex.Message);
         }
 
         [Theory]
@@ -211,25 +190,12 @@ namespace NLog.UnitTests.Targets
                 MaxMessageLength = MaxMessageLength,
                 MaxKilobytes = newValue,
             };
-            eventLogMock.AssociateNewEventLog(target.Log, target.MachineName, target.GetFixedSource());
+
+            eventLogMock.AssociateNewEventLog(targetLog, ".", target.GetFixedSource());
 
             target.Install(new InstallationContext());
 
             Assert.Equal(expectedValue, eventLogMock.MaximumKilobytes);
-        }
-
-        [Theory]
-        [InlineData(0)]
-        [InlineData(-1)]
-        public void ShouldThrowException_WhenMaxMessageLengthSetNegativeOrZero(int maxMessageLength)
-        {
-            ArgumentException ex = Assert.Throws<ArgumentException>(() =>
-            {
-                var target = new EventLogTarget();
-                target.MaxMessageLength = maxMessageLength;
-            });
-
-            Assert.Equal("MaxMessageLength cannot be zero or negative.", ex.Message);
         }
 
         [Theory]
@@ -424,9 +390,9 @@ namespace NLog.UnitTests.Targets
 
             // Assert
             Assert.Equal(sourceName, deletedSourceName);
-            Assert.Equal(target.Log, createdLogName);
+            Assert.Equal(target.Log.ToString(), createdLogName);
             Assert.Single(eventLogMock.WrittenEntries);
-            Assert.Equal(target.Log, eventLogMock.WrittenEntries[0].Log);
+            Assert.Equal(target.Log.ToString(), eventLogMock.WrittenEntries[0].Log);
             Assert.Equal(sourceName, eventLogMock.WrittenEntries[0].Source);
             Assert.Equal("Hello", eventLogMock.WrittenEntries[0].Message);
         }
@@ -460,7 +426,7 @@ namespace NLog.UnitTests.Targets
             // Assert
             Assert.Equal(string.Empty, deletedSourceName);
             Assert.Equal(string.Empty, createdLogName);
-            Assert.Equal(target.Log, eventLogMock.WrittenEntries[0].Log);
+            Assert.Equal(target.Log.ToString(), eventLogMock.WrittenEntries[0].Log);
             Assert.Equal(sourceName, eventLogMock.WrittenEntries[0].Source);
             Assert.Equal($"Hello {sourceName}", eventLogMock.WrittenEntries[0].Message);
         }
@@ -484,7 +450,7 @@ namespace NLog.UnitTests.Targets
 
             logger.Log(logEvent);
 
-            var eventLog = new EventLog(target.Log);
+            var eventLog = new EventLog(target.Log.ToString());
             var entries = GetEventRecords(eventLog.Log).ToList();
 
             entries = entries.Where(a => a.ProviderName == sourceName).ToList();
@@ -515,7 +481,7 @@ namespace NLog.UnitTests.Targets
             LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             logger.Log(LogLevel.Error, "Simple Test Message");
-            var eventLog = new EventLog(target.Log);
+            var eventLog = new EventLog(target.Log.ToString());
             var entries = GetEventRecords(eventLog.Log).ToList();
             var expectedProviderName = target.GetFixedSource();
             var filtered = entries.Where(entry =>
@@ -543,7 +509,7 @@ namespace NLog.UnitTests.Targets
             theEvent.Properties["EventId"] = eventId;
             theEvent.Properties["Category"] = category;
             logger.Log(theEvent);
-            var eventLog = new EventLog(target.Log);
+            var eventLog = new EventLog(target.Log.ToString());
             var entries = GetEventRecords(eventLog.Log).ToList();
             var expectedProviderName = target.GetFixedSource();
             var filtered = entries.Where(entry =>

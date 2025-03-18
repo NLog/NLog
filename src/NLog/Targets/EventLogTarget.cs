@@ -101,7 +101,7 @@ namespace NLog.Targets
         /// Gets or sets the name of the machine on which Event Log service is running.
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
-        public string MachineName { get; set; } = ".";
+        public Layout MachineName { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that renders event ID.
@@ -135,25 +135,13 @@ namespace NLog.Targets
         /// Gets or sets the name of the Event Log to write to. This can be System, Application or any user-defined name.
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
-        public string Log { get; set; } = "Application";
+        public Layout Log { get; set; } = "Application";
 
         /// <summary>
         /// Gets or sets the message length limit to write to the Event Log.
         /// </summary>
-        /// <remarks><value>MaxMessageLength</value> cannot be zero or negative</remarks>
         /// <docgen category='Event Log Options' order='10' />
-        public int MaxMessageLength
-        {
-            get => _maxMessageLength;
-            set
-            {
-                if (value <= 0)
-                    throw new ArgumentException("MaxMessageLength cannot be zero or negative.");
-
-                _maxMessageLength = value;
-            }
-        }
-        private int _maxMessageLength = EventLogMaxMessageLength;
+        public Layout<int> MaxMessageLength { get; set; } = EventLogMaxMessageLength;
 
         /// <summary>
         /// Gets or sets the maximum Event log size in kilobytes.
@@ -163,18 +151,7 @@ namespace NLog.Targets
         /// If <c>null</c>, the value will not be specified while creating the Event log.
         /// </remarks>
         /// <docgen category='Event Log Options' order='10' />
-        public long? MaxKilobytes
-        {
-            get => _maxKilobytes;
-            set
-            {
-                if (value != null && (value < 64 || value > 4194240 || (value % 64 != 0))) // Event log API restrictions
-                    throw new ArgumentException("MaxKilobytes must be a multiple of 64, and between 64 and 4194240");
-
-                _maxKilobytes = value;
-            }
-        }
-        private long? _maxKilobytes;
+        public Layout<long> MaxKilobytes { get; set; }
 
         /// <summary>
         /// Gets or sets the action to take if the message is larger than the <see cref="MaxMessageLength"/> option.
@@ -199,14 +176,13 @@ namespace NLog.Targets
         public void Uninstall(InstallationContext installationContext)
         {
             var fixedSource = GetFixedSource();
-
             if (string.IsNullOrEmpty(fixedSource))
             {
                 InternalLogger.Debug("{0}: Skipping removing of event source because it contains layout renderers", this);
             }
             else
             {
-                _eventLogWrapper.DeleteEventSource(fixedSource, MachineName);
+                _eventLogWrapper.DeleteEventSource(fixedSource, ".");
             }
         }
 
@@ -220,19 +196,25 @@ namespace NLog.Targets
         public bool? IsInstalled(InstallationContext installationContext)
         {
             var fixedSource = GetFixedSource();
-
-            if (!string.IsNullOrEmpty(fixedSource))
+            if (string.IsNullOrEmpty(fixedSource))
             {
-                return _eventLogWrapper.SourceExists(fixedSource, MachineName);
+                InternalLogger.Debug("{0}: Unclear if event source exists because it contains layout renderers", this);
             }
-            InternalLogger.Debug("{0}: Unclear if event source exists because it contains layout renderers", this);
-            return null; //unclear!
+            else
+            {
+                return _eventLogWrapper.SourceExists(fixedSource, ".");
+            }
+            return null;
         }
 
         /// <inheritdoc/>
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
+
+            var maxKilobytes = MaxKilobytes?.IsFixed == true ? MaxKilobytes.FixedValue : 0;
+            if (maxKilobytes > 0 && (maxKilobytes < 64 || maxKilobytes > 4194240 || (maxKilobytes % 64 != 0))) // Event log API restrictions
+                throw new NLogConfigurationException("EventLog MaxKilobytes must be a multiple of 64, and between 64 and 4194240");
 
             CreateEventSourceIfNeeded(GetFixedSource(), false);
         }
@@ -254,20 +236,32 @@ namespace NLog.Targets
                 return;
             }
 
+            var eventLogName = RenderLogEvent(Log, logEvent);
+            if (string.IsNullOrEmpty(eventLogName))
+            {
+                InternalLogger.Warn("{0}: WriteEntry discarded because Log rendered as empty string", this);
+                return;
+            }
+
+            var eventLogMachine = RenderLogEvent(MachineName, logEvent);
+            if (string.IsNullOrEmpty(eventLogMachine))
+                eventLogMachine = ".";
+
             // limitation of EventLog API
-            if (message.Length > MaxMessageLength)
+            var maxMessageLength = RenderLogEvent(MaxMessageLength, logEvent, EventLogMaxMessageLength);
+            if (maxMessageLength > 0 && message.Length > maxMessageLength)
             {
                 if (OnOverflow == EventLogTargetOverflowAction.Truncate)
                 {
-                    message = message.Substring(0, MaxMessageLength);
-                    WriteEntry(eventLogSource, message, entryType, eventId, category);
+                    message = message.Substring(0, maxMessageLength);
+                    WriteEntry(eventLogSource, eventLogName, eventLogMachine, message, entryType, eventId, category);
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Split)
                 {
-                    for (int offset = 0; offset < message.Length; offset += MaxMessageLength)
+                    for (int offset = 0; offset < message.Length; offset += maxMessageLength)
                     {
-                        string chunk = message.Substring(offset, Math.Min(MaxMessageLength, (message.Length - offset)));
-                        WriteEntry(eventLogSource, chunk, entryType, eventId, category);
+                        string chunk = message.Substring(offset, Math.Min(maxMessageLength, (message.Length - offset)));
+                        WriteEntry(eventLogSource, eventLogName, eventLogMachine, chunk, entryType, eventId, category);
                     }
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Discard)
@@ -278,34 +272,34 @@ namespace NLog.Targets
             }
             else
             {
-                WriteEntry(eventLogSource, message, entryType, eventId, category);
+                WriteEntry(eventLogSource, eventLogName, eventLogMachine, message, entryType, eventId, category);
             }
         }
 
-        private void WriteEntry(string eventLogSource, string message, EventLogEntryType entryType, int eventId, short category)
+        private void WriteEntry(string eventLogSource, string eventLogName, string eventLogMachine, string message, EventLogEntryType entryType, int eventId, short category)
         {
             var isCacheUpToDate = _eventLogWrapper.IsEventLogAssociated &&
-                                  _eventLogWrapper.Log == Log &&
-                                  _eventLogWrapper.MachineName == MachineName &&
-                                  _eventLogWrapper.Source == eventLogSource;
+                                  _eventLogWrapper.Source == eventLogSource &&
+                                  string.Equals(_eventLogWrapper.Log, eventLogName, StringComparison.OrdinalIgnoreCase) &&
+                                  string.Equals(_eventLogWrapper.MachineName, eventLogMachine, StringComparison.OrdinalIgnoreCase);
 
             if (!isCacheUpToDate)
             {
-                InternalLogger.Debug("{0}: Refresh EventLog Source {1} and Log {2}", this, eventLogSource, Log);
+                InternalLogger.Debug("{0}: Refresh EventLog Source {1} and Log {2}", this, eventLogSource, eventLogName);
 
-                _eventLogWrapper.AssociateNewEventLog(Log, MachineName, eventLogSource);
+                _eventLogWrapper.AssociateNewEventLog(eventLogName, eventLogMachine, eventLogSource);
                 try
                 {
-                    if (!_eventLogWrapper.SourceExists(eventLogSource, MachineName))
+                    if (!_eventLogWrapper.SourceExists(eventLogSource, eventLogMachine))
                     {
                         InternalLogger.Warn("{0}: Source {1} does not exist", this, eventLogSource);
                     }
                     else
                     {
-                        var currentLogName = _eventLogWrapper.LogNameFromSourceName(eventLogSource, MachineName);
-                        if (!currentLogName.Equals(Log, StringComparison.OrdinalIgnoreCase))
+                        var currentLogName = _eventLogWrapper.LogNameFromSourceName(eventLogSource, eventLogMachine);
+                        if (!currentLogName.Equals(eventLogName, StringComparison.OrdinalIgnoreCase))
                         {
-                            InternalLogger.Debug("{0}: Source {1} should be mapped to Log {2}, but EventLog.LogNameFromSourceName returns {3}", this, eventLogSource, Log, currentLogName);
+                            InternalLogger.Debug("{0}: Source {1} should be mapped to Log {2}, but EventLog.LogNameFromSourceName returns {3}", this, eventLogSource, eventLogName, currentLogName);
                         }
                     }
                 }
@@ -314,7 +308,7 @@ namespace NLog.Targets
                     if (LogManager.ThrowExceptions)
                         throw;
 
-                    InternalLogger.Warn(ex, "{0}: Exception thrown when checking if Source {1} and LogName {2} are valid", this, eventLogSource, Log);
+                    InternalLogger.Warn(ex, "{0}: Exception thrown when checking if Source {1} and Log {2} are valid", this, eventLogSource, eventLogName);
                 }
             }
 
@@ -355,7 +349,13 @@ namespace NLog.Targets
         {
             if (Source is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
             {
-                return simpleLayout.FixedText;
+                if (MachineName is null || (MachineName is SimpleLayout machineLayout && machineLayout.IsFixedText && ".".Equals(machineLayout.FixedText)))
+                {
+                    if (Log is SimpleLayout logNameLayout && logNameLayout.IsFixedText)
+                    {
+                        return simpleLayout.FixedText;
+                    }
+                }
             }
             return null;
         }
@@ -374,46 +374,52 @@ namespace NLog.Targets
                 return;
             }
 
+            var eventLogName = RenderLogEvent(Log, LogEventInfo.CreateNullEvent());
+            var eventLogMachine = RenderLogEvent(MachineName, LogEventInfo.CreateNullEvent());
+            if (string.IsNullOrEmpty(eventLogMachine))
+                eventLogMachine = ".";
+            var maxKilobytes = RenderLogEvent(MaxKilobytes, LogEventInfo.CreateNullEvent(), 0);
+
             // if we throw anywhere, we remain non-operational
             try
             {
-                if (_eventLogWrapper.SourceExists(fixedSource, MachineName))
+                if (_eventLogWrapper.SourceExists(fixedSource, eventLogMachine))
                 {
-                    string currentLogName = _eventLogWrapper.LogNameFromSourceName(fixedSource, MachineName);
-                    if (!currentLogName.Equals(Log, StringComparison.OrdinalIgnoreCase))
+                    string currentLogName = _eventLogWrapper.LogNameFromSourceName(fixedSource, eventLogMachine);
+                    if (!currentLogName.Equals(eventLogName, StringComparison.OrdinalIgnoreCase))
                     {
-                        InternalLogger.Debug("{0}: Updating source {1} to use log {2}, instead of {3} (Computer restart is needed)", this, fixedSource, Log, currentLogName);
+                        InternalLogger.Debug("{0}: Updating source {1} to use log {2}, instead of {3} (Computer restart is needed)", this, fixedSource, eventLogName, currentLogName);
 
                         // re-create the association between Log and Source
-                        _eventLogWrapper.DeleteEventSource(fixedSource, MachineName);
+                        _eventLogWrapper.DeleteEventSource(fixedSource, eventLogMachine);
 
-                        var eventSourceCreationData = new EventSourceCreationData(fixedSource, Log)
+                        var eventSourceCreationData = new EventSourceCreationData(fixedSource, eventLogName)
                         {
-                            MachineName = MachineName
+                            MachineName = eventLogMachine
                         };
                         _eventLogWrapper.CreateEventSource(eventSourceCreationData);
                     }
                 }
                 else
                 {
-                    InternalLogger.Debug("{0}: Creating source {1} to use log {2}", this, fixedSource, Log);
-                    var eventSourceCreationData = new EventSourceCreationData(fixedSource, Log)
+                    InternalLogger.Debug("{0}: Creating source {1} to use log {2}", this, fixedSource, eventLogName);
+                    var eventSourceCreationData = new EventSourceCreationData(fixedSource, eventLogName)
                     {
-                        MachineName = MachineName
+                        MachineName = eventLogMachine
                     };
                     _eventLogWrapper.CreateEventSource(eventSourceCreationData);
                 }
 
-                _eventLogWrapper.AssociateNewEventLog(Log, MachineName, fixedSource);
+                _eventLogWrapper.AssociateNewEventLog(eventLogName, eventLogMachine, fixedSource);
 
-                if (MaxKilobytes.HasValue && _eventLogWrapper.MaximumKilobytes < MaxKilobytes)
+                if (maxKilobytes > 0 && _eventLogWrapper.MaximumKilobytes < maxKilobytes)
                 {
-                    _eventLogWrapper.MaximumKilobytes = MaxKilobytes.Value;
+                    _eventLogWrapper.MaximumKilobytes = maxKilobytes;
                 }
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "{0}: Error when connecting to EventLog. Source={1} in Log={2}", this, fixedSource, Log);
+                InternalLogger.Error(exception, "{0}: Error when connecting to EventLog. Source={1} in Log={2}", this, fixedSource, eventLogName);
                 if (alwaysThrowError || LogManager.ThrowExceptions)
                 {
                     throw;
