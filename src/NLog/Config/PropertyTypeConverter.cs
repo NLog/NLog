@@ -36,6 +36,7 @@ namespace NLog.Config
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using NLog.Internal;
 
     /// <summary>
@@ -56,7 +57,7 @@ namespace NLog.Config
             return new Dictionary<Type, Func<string, string, IFormatProvider, object>>()
             {
                 { typeof(System.Text.Encoding), (stringvalue, format, formatProvider) => ConvertToEncoding(stringvalue) },
-                { typeof(System.Globalization.CultureInfo), (stringvalue, format, formatProvider) => new System.Globalization.CultureInfo(stringvalue) },
+                { typeof(System.Globalization.CultureInfo), (stringvalue, format, formatProvider) => ConvertToCultureInfo(stringvalue) },
                 { typeof(Type), (stringvalue, format, formatProvider) => ConvertToType(stringvalue, true) },
                 { typeof(NLog.Targets.LineEndingMode), (stringvalue, format, formatProvider) => NLog.Targets.LineEndingMode.FromString(stringvalue) },
                 { typeof(LogLevel), (stringvalue, format, formatProvider) => LogLevel.FromString(stringvalue) },
@@ -193,6 +194,17 @@ namespace NLog.Config
 #else
             return new Guid(propertyString);
 #endif
+        }
+
+        private static object ConvertToCultureInfo(string stringValue)
+        {
+            if (StringHelpers.IsNullOrWhiteSpace(stringValue))
+                return null;
+            if (nameof(CultureInfo.InvariantCulture).Equals(stringValue, StringComparison.OrdinalIgnoreCase))
+                return CultureInfo.InvariantCulture;
+            if (nameof(CultureInfo.CurrentCulture).Equals(stringValue, StringComparison.CurrentCulture))
+                return CultureInfo.CurrentCulture;
+            return new CultureInfo(stringValue);
         }
 
         private static object ConvertToEncoding(string stringValue)
