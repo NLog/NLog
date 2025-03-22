@@ -77,8 +77,7 @@ namespace NLog.LayoutRenderers
             object value = GetValue();
             if (value != null || !string.IsNullOrEmpty(Format))
             {
-                var formatProvider = GetFormatProvider(logEvent, Culture);
-                builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
+                AppendFormattedValue(builder, logEvent, value, Format, Culture);
             }
         }
 

@@ -62,7 +62,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the culture used for rendering.
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
+        public CultureInfo Culture { get; set; }
 
         /// <summary>
         /// Gets or sets the date format. Can be any argument accepted by DateTime.ToString(format).

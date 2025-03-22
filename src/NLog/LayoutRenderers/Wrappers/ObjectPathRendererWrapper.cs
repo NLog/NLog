@@ -87,7 +87,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets the culture used for rendering.
         /// </summary>
         /// <docgen category="Layout Options" order="100"/>
-        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
+        public CultureInfo Culture { get; set; }
 
         /// <inheritdoc/>
         protected override string Transform(string text)
@@ -100,8 +100,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (TryGetRawPropertyValue(logEvent, out object propertyValue))
             {
-                var formatProvider = GetFormatProvider(logEvent, Culture);
-                builder.AppendFormattedValue(propertyValue, Format, formatProvider, ValueFormatter);
+                AppendFormattedValue(builder, logEvent, propertyValue, Format, Culture);
             }
         }
 

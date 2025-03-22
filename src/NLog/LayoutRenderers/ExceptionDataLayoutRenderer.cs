@@ -93,8 +93,7 @@ namespace NLog.LayoutRenderers
                 var value = primaryException.Data[Item];
                 if (value != null)
                 {
-                    var formatProvider = GetFormatProvider(logEvent, Culture);
-                    builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
+                    AppendFormattedValue(builder, logEvent, value, Format, Culture);
                 }
             }
         }

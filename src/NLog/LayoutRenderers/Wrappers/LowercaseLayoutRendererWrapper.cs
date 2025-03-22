@@ -72,7 +72,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets the culture used for rendering.
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
+        public CultureInfo Culture { get; set; }
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
@@ -80,7 +80,7 @@ namespace NLog.LayoutRenderers.Wrappers
             Inner.Render(logEvent, builder);
             if (Lowercase && builder.Length > orgLength)
             {
-                TransformToLowerCase(builder, orgLength);
+                TransformToLowerCase(builder, logEvent, orgLength);
             }
         }
 
@@ -90,9 +90,9 @@ namespace NLog.LayoutRenderers.Wrappers
             throw new NotSupportedException();
         }
 
-        private void TransformToLowerCase(StringBuilder target, int startPos)
+        private void TransformToLowerCase(StringBuilder target, LogEventInfo logEvent, int startPos)
         {
-            CultureInfo culture = Culture;
+            CultureInfo culture = GetCulture(logEvent, Culture);
             for (int i = startPos; i < target.Length; ++i)
             {
                 target[i] = char.ToLower(target[i], culture);

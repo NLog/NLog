@@ -70,7 +70,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the culture used for rendering.
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
+        public CultureInfo Culture { get; set; }
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
@@ -101,8 +101,7 @@ namespace NLog.LayoutRenderers
             var value = GetValue();
             if (value != null)
             {
-                var formatProvider = GetFormatProvider(logEvent, Culture);
-                builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
+                AppendFormattedValue(builder, logEvent, value, Format, Culture);
             }
         }
 

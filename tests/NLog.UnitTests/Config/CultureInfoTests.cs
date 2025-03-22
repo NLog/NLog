@@ -116,9 +116,13 @@ namespace NLog.UnitTests.Config
 
             var renderer = new EventPropertiesLayoutRenderer();
             renderer.Item = "ADouble";
+            renderer.Culture = null;
             string output = renderer.Render(logEventInfo);
-
             Assert.Equal(expected, output);
+
+            renderer.Culture = System.Globalization.CultureInfo.InvariantCulture;   // Wins over LogEventInfo.FormatProvider
+            output = renderer.Render(logEventInfo);
+            Assert.Equal("1.23", output);
         }
 
         [Fact]
@@ -164,9 +168,13 @@ namespace NLog.UnitTests.Config
             logEventInfo.Properties["ADouble"] = 1.23;
 
             var renderer = new AllEventPropertiesLayoutRenderer();
+            renderer.Culture = null;
             string output = renderer.Render(logEventInfo);
-
             Assert.Equal(expected, output);
+
+            renderer.Culture = System.Globalization.CultureInfo.InvariantCulture;   // Wins over LogEventInfo.FormatProvider
+            output = renderer.Render(logEventInfo);
+            Assert.Equal("ADouble=1.23", output);
         }
 
         private static LogEventInfo CreateLogEventInfo(string cultureName)

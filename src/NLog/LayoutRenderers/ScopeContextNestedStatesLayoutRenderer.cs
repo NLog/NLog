@@ -91,7 +91,7 @@ namespace NLog.LayoutRenderers
                 // Allows fast rendering of topframes=1
                 var topFrame = ScopeContext.PeekNestedState();
                 if (topFrame != null)
-                    builder.AppendFormattedValue(topFrame, Format, GetFormatProvider(logEvent, Culture), ValueFormatter);
+                    AppendFormattedValue(builder, logEvent, topFrame, Format, Culture);
                 return;
             }
 
@@ -117,7 +117,6 @@ namespace NLog.LayoutRenderers
         private void AppendNestedStates(StringBuilder builder, IList<object> messages, int startPos, int endPos, LogEventInfo logEvent)
         {
             bool formatAsJson = MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format, StringComparison.Ordinal);
-            var formatProvider = GetFormatProvider(logEvent, Culture);
 
             string separator = null;
             string itemSeparator = null;
@@ -136,11 +135,11 @@ namespace NLog.LayoutRenderers
                 {
                     builder.Append(currentSeparator);
                     if (formatAsJson)
-                        AppendJsonFormattedValue(messages[i], formatProvider, builder, separator, itemSeparator);
+                        AppendJsonFormattedValue(messages[i], Culture ?? CultureInfo.InvariantCulture, builder, separator, itemSeparator);
                     else if (messages[i] is IEnumerable<KeyValuePair<string, object>>)
                         builder.Append(Convert.ToString(messages[i]));   // Special support for Microsoft Extension Logging ILogger.BeginScope
                     else
-                        builder.AppendFormattedValue(messages[i], Format, formatProvider, ValueFormatter);
+                        AppendFormattedValue(builder, logEvent, messages[i], Format, Culture);
                     currentSeparator = itemSeparator ?? _separator?.Render(logEvent) ?? string.Empty;
                 }
             }

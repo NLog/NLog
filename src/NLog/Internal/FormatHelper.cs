@@ -40,44 +40,33 @@ namespace NLog.Internal
         /// <summary>
         /// Convert object to string
         /// </summary>
-        /// <param name="o">value</param>
+        /// <param name="value">value</param>
         /// <param name="formatProvider">format for conversion.</param>
         /// <returns></returns>
         /// <remarks>
-        /// If <paramref name="formatProvider"/> is <c>null</c> and <paramref name="o"/> isn't a <see cref="string"/> already, then the <see cref="LogFactory"/> will get a locked by <see cref="LogManager.Configuration"/>
+        /// If <paramref name="formatProvider"/> is <c>null</c> and <paramref name="value"/> isn't a <see cref="string"/> already, then the <see cref="LogFactory"/> will get a locked by <see cref="LogManager.Configuration"/>
         /// </remarks>
-        internal static string ConvertToString(object o, IFormatProvider formatProvider)
+        internal static string ConvertToString(object value, IFormatProvider formatProvider)
         {
+            if (value is string stringValue)
+                return stringValue;
+            if (value is null)
+                return string.Empty;
+
             // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
             if (formatProvider is null)
             {
-                if (SkipFormattableToString(o))
-                    return o?.ToString() ?? string.Empty;
-
-                if (o is IFormattable)
+                if (value is IFormattable)
                 {
                     formatProvider = LogManager.LogFactory.DefaultCultureInfo;
                 }
             }
 
-            return Convert.ToString(o, formatProvider);
-        }
-
-        private static bool SkipFormattableToString(object value)
-        {
-            switch (Convert.GetTypeCode(value))
-            {
-                case TypeCode.String: return true;
-                case TypeCode.Empty: return true;
-                default: return false;
-            }
+            return Convert.ToString(value, formatProvider);
         }
 
         internal static string TryFormatToString(object value, string format, IFormatProvider formatProvider)
         {
-            if (SkipFormattableToString(value))
-                return value?.ToString() ?? string.Empty;
-
             if (value is IFormattable formattable)
             {
                 return formattable.ToString(format, formatProvider);

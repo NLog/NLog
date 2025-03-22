@@ -183,6 +183,19 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected abstract void Append(StringBuilder builder, LogEventInfo logEvent);
 
+        internal void AppendFormattedValue(StringBuilder builder, LogEventInfo logEvent, object value, string format, CultureInfo culture)
+        {
+            if (format is null && value is string stringValue)
+            {
+                builder.Append(stringValue);
+            }
+            else
+            {
+                var formatProvider = GetFormatProvider(logEvent, culture);
+                builder.AppendFormattedValue(value, format, formatProvider, ValueFormatter);
+            }
+        }
+
         /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
@@ -205,7 +218,7 @@ namespace NLog.LayoutRenderers
         /// <returns></returns>
         protected IFormatProvider GetFormatProvider(LogEventInfo logEvent, IFormatProvider layoutCulture = null)
         {
-            return logEvent.FormatProvider ?? layoutCulture ?? LoggingConfiguration?.DefaultCultureInfo;
+            return layoutCulture ?? logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
         }
 
         /// <summary>
@@ -219,7 +232,7 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         protected CultureInfo GetCulture(LogEventInfo logEvent, CultureInfo layoutCulture = null)
         {
-            return logEvent.FormatProvider as CultureInfo ?? layoutCulture ?? LoggingConfiguration?.DefaultCultureInfo;
+            return layoutCulture ?? logEvent.FormatProvider as CultureInfo ?? LoggingConfiguration?.DefaultCultureInfo ?? CultureInfo.CurrentCulture;
         }
 
         /// <summary>

@@ -170,13 +170,6 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(otherDependency);
         }
 
-        private static void AssertCycleException<T>(LogFactory logFactory) where T : class
-        {
-            var ex = Assert.Throws<NLogDependencyResolveException>(() => logFactory.ServiceRepository.ResolveService<T>());
-            Assert.Contains("cycle", ex.Message, StringComparison.OrdinalIgnoreCase);
-            Assert.Equal(typeof(T), ex.ServiceType);
-        }
-
         private static void InitializeLogFactoryJsonConverter(LogFactory logFactory, string testValue, out Logger logger, out DebugTarget target)
         {
             logFactory.ServiceRepository.RegisterService(typeof(IJsonConverter), new MySimpleJsonConverter { Test = testValue });
