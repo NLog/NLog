@@ -544,8 +544,8 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>").LogFactory;
 
-            var loggerConfig = logFactory.BuildLoggerConfiguration("AAA", logFactory.Configuration?.GetLoggingRulesThreadSafe());
-            var targets = loggerConfig[LogLevel.Warn.Ordinal];
+            var loggerConfig = logFactory.BuildLoggerConfiguration("AAA");
+            var targets = loggerConfig[LogLevel.Warn.Ordinal] as TargetWithFilterChain;
             Assert.Equal("d1", targets.Target.Name);
             Assert.Equal("d2", targets.NextInChain.Target.Name);
             Assert.Equal("d3", targets.NextInChain.NextInChain.Target.Name);

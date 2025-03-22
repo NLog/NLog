@@ -117,11 +117,8 @@ namespace NLog.Internal
             return stackTraceUsage;
         }
 
-        static internal TargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, List<LoggingRule> loggingRules, LogLevel globalLogLevel)
+        static internal TargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, LoggingRule[] loggingRules, LogLevel globalLogLevel)
         {
-            if (loggingRules is null || loggingRules.Count == 0 || LogLevel.Off.Equals(globalLogLevel))
-                return TargetWithFilterChain.NoTargetsByLevel;
-
             TargetWithFilterChain[] targetsByLevel = TargetWithFilterChain.CreateLoggerConfiguration();
             TargetWithFilterChain[] lastTargetsByLevel = TargetWithFilterChain.CreateLoggerConfiguration();
             bool[] suppressedLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
@@ -130,7 +127,7 @@ namespace NLog.Internal
             return targetsFound ? targetsByLevel : TargetWithFilterChain.NoTargetsByLevel;
         }
 
-        static private bool GetTargetsByLevelForLogger(string name, List<LoggingRule> loggingRules, LogLevel globalLogLevel, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
+        static private bool GetTargetsByLevelForLogger(string name, LoggingRule[] loggingRules, LogLevel globalLogLevel, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
             IList<KeyValuePair<FilterResult?, IList<Filter>>> finalMinLevelWithFilters = null;
             bool targetsFound = false;

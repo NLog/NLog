@@ -108,10 +108,11 @@ namespace NLog.Config
         /// <summary>
         /// Gets the collection of logging rules.
         /// </summary>
-        public IList<LoggingRule> LoggingRules { get; } = new List<LoggingRule>();
+        public IList<LoggingRule> LoggingRules => _loggingRules;
+        private readonly List<LoggingRule> _loggingRules = new List<LoggingRule>();
 
-        internal List<LoggingRule> GetLoggingRulesThreadSafe() { lock (LoggingRules) return LoggingRules.ToList(); }
-        private void AddLoggingRulesThreadSafe(LoggingRule rule) { lock (LoggingRules) LoggingRules.Add(rule); }
+        internal LoggingRule[] GetLoggingRulesThreadSafe() { lock (_loggingRules) return _loggingRules.ToArray(); }
+        private void AddLoggingRulesThreadSafe(LoggingRule rule) { lock (_loggingRules) _loggingRules.Add(rule); }
 
         private bool TryGetTargetThreadSafe(string name, out Target target) { lock (_targets) return _targets.TryGetValue(name, out target); }
         private List<Target> GetAllTargetsThreadSafe() { lock (_targets) return _targets.Values.ToList(); }
@@ -442,7 +443,7 @@ namespace NLog.Config
                 return null;
 
             var loggingRules = GetLoggingRulesThreadSafe();
-            for (int i = loggingRules.Count - 1; i >= 0; i--)
+            for (int i = loggingRules.Length - 1; i >= 0; i--)
             {
                 if (string.Equals(loggingRules[i].RuleName, ruleName, StringComparison.OrdinalIgnoreCase))
                 {
@@ -1089,18 +1090,18 @@ namespace NLog.Config
             return true;
         }
 
-        /// <summary>
-        /// Change this method with NLog v6 to disconnect LogFactory from Targets/Layouts
-        /// - Remove LoggingRule-List-parameter
-        /// - Return ITargetWithFilterChain[]
-        /// </summary>
-        internal TargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, LogLevel globalLogLevel, List<LoggingRule> loggingRules)
+        internal ITargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, LogLevel globalLogLevel)
         {
+            if (LoggingRules.Count == 0 || LogLevel.Off.Equals(globalLogLevel))
+                return TargetWithFilterChain.NoTargetsByLevel;
+
+            var loggingRules = GetLoggingRulesThreadSafe();
             var targetsByLevel = TargetWithFilterChain.BuildLoggerConfiguration(loggerName, loggingRules, globalLogLevel);
             if (InternalLogger.IsDebugEnabled && !DumpTargetConfigurationForLogger(loggerName, targetsByLevel))
             {
                 InternalLogger.Debug("Targets not configured for Logger: {0}", loggerName);
             }
+
             return targetsByLevel ?? TargetWithFilterChain.NoTargetsByLevel;
         }
 
