@@ -127,9 +127,11 @@ namespace NLog.Config
         /// </summary>
         [Obsolete("Very exotic feature without any unit-tests, not sure if it works. Marked obsolete with NLog v5.3")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public IList<LoggingRule> ChildRules { get; } = new List<LoggingRule>();
+        public IList<LoggingRule> ChildRules => _childRules;
         [Obsolete("Very exotic feature without any unit-tests, not sure if it works. Marked obsolete with NLog v5.3")]
-        internal List<LoggingRule> GetChildRulesThreadSafe() { lock (ChildRules) return ChildRules.ToList(); }
+        private readonly List<LoggingRule> _childRules = new List<LoggingRule>();
+        [Obsolete("Very exotic feature without any unit-tests, not sure if it works. Marked obsolete with NLog v5.3")]
+        internal LoggingRule[] GetChildRulesThreadSafe() { lock (_childRules) return _childRules.ToArray(); }
         internal Target[] GetTargetsThreadSafe() { lock (_targets) return _targets.Count == 0 ? NLog.Internal.ArrayHelper.Empty<Target>() : _targets.ToArray(); }
         internal bool RemoveTargetThreadSafe(Target target) { lock (_targets) return _targets.Remove(target); }
 

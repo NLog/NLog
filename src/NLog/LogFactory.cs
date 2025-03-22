@@ -493,10 +493,9 @@ namespace NLog
                 purgeObsoleteLoggers = loggers.Count != _loggerCache.Count;
             }
 
-            var loggingRules = _config?.GetLoggingRulesThreadSafe();
             foreach (var logger in loggers)
             {
-                logger.SetConfiguration(BuildLoggerConfiguration(logger.Name, loggingRules));
+                logger.SetConfiguration(BuildLoggerConfiguration(logger.Name));
             }
 
             return purgeObsoleteLoggers;
@@ -678,15 +677,10 @@ namespace NLog
             ConfigurationChanged?.Invoke(this, e);
         }
 
-        /// <summary>
-        /// Change this method with NLog v6 to completely disconnect LogFactory from Targets/Layouts
-        /// - Remove LoggingRule-List-parameter
-        /// - Return ITargetWithFilterChain[]
-        /// </summary>
-        internal TargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, List<LoggingRule> loggingRules)
+        internal ITargetWithFilterChain[] BuildLoggerConfiguration(string loggerName)
         {
             var globalThreshold = IsLoggingEnabled() ? GlobalThreshold : LogLevel.Off;
-            return _config?.BuildLoggerConfiguration(loggerName, globalThreshold, loggingRules) ?? TargetWithFilterChain.NoTargetsByLevel;
+            return _config?.BuildLoggerConfiguration(loggerName, globalThreshold) ?? TargetWithFilterChain.NoTargetsByLevel;
         }
 
         /// <summary>
@@ -885,8 +879,7 @@ namespace NLog
                 }
 
                 var config = _config ?? (_loggerCache.Count == 0 ? Configuration : null);   // Only force load NLog-config with first logger
-                var loggingRules = config?.GetLoggingRulesThreadSafe();
-                newLogger.Initialize(name, BuildLoggerConfiguration(name, loggingRules), this);
+                newLogger.Initialize(name, BuildLoggerConfiguration(name), this);
                 if (config is null && _loggerCache.Count == 0)
                 {
                     InternalLogger.Info("NLog Configuration has not been loaded.");
@@ -1155,13 +1148,6 @@ namespace NLog
                     throw;
                 }
             }
-        }
-
-        private static void UnregisterEvents(IAppEnvironment appEnvironment)
-        {
-            if (appEnvironment is null) return;
-
-            appEnvironment.ProcessExit -= OnLoggerShutdown;
         }
 
         private static void OnLoggerShutdown(object sender, EventArgs args)
