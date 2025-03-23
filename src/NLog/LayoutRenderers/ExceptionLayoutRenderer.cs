@@ -73,8 +73,8 @@ namespace NLog.LayoutRenderers
 
         private static readonly Dictionary<ExceptionRenderingFormat, Action<ExceptionLayoutRenderer, StringBuilder, Exception, Exception>> _renderingfunctions = new Dictionary<ExceptionRenderingFormat, Action<ExceptionLayoutRenderer, StringBuilder, Exception, Exception>>()
         {
-            {ExceptionRenderingFormat.Message, (layout, sb, ex, aggex) => layout.AppendMessage(sb, ex)},
-            {ExceptionRenderingFormat.Type, (layout, sb, ex, aggex) => layout.AppendType(sb, ex)},
+            { ExceptionRenderingFormat.Message, (layout, sb, ex, aggex) => layout.AppendMessage(sb, ex)},
+            { ExceptionRenderingFormat.Type, (layout, sb, ex, aggex) => layout.AppendType(sb, ex)},
             { ExceptionRenderingFormat.ShortType, (layout, sb, ex, aggex) => layout.AppendShortType(sb, ex)},
             { ExceptionRenderingFormat.ToString, (layout, sb, ex, aggex) => layout.AppendToString(sb, ex)},
             { ExceptionRenderingFormat.Method, (layout, sb, ex, aggex) => layout.AppendMethod(sb, ex)},
@@ -355,11 +355,10 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception exception)
             {
-                var message =
-                    $"Exception in {typeof(ExceptionLayoutRenderer).FullName}.AppendMessage(): {exception.GetType().FullName}.";
-                sb.Append("NLog message: ");
-                sb.Append(message);
-                InternalLogger.Warn(exception, message);
+                InternalLogger.Warn(exception, "Exception-LayoutRenderer Could not output Message for Exception: {0}", ex.GetType());
+                sb.Append(ex.GetType().ToString());
+                sb.Append(" Message-property threw ");
+                sb.Append(exception.GetType().ToString());
             }
         }
 
@@ -385,7 +384,17 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose stack trace should be appended.</param>
         protected virtual void AppendStackTrace(StringBuilder sb, Exception ex)
         {
-            sb.Append(ex.StackTrace);
+            try
+            {
+                sb.Append(ex.StackTrace);
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "Exception-LayoutRenderer Could not output StackTrace for Exception: {0}", ex.GetType());
+                sb.Append(ex.GetType().ToString());
+                sb.Append(" StackTrace-property threw ");
+                sb.Append(exception.GetType().ToString());
+            }
         }
 
         /// <summary>
@@ -395,20 +404,25 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose call to ToString() should be appended.</param>
         protected virtual void AppendToString(StringBuilder sb, Exception ex)
         {
+            string exceptionMessage = string.Empty;
+            Exception innerException = null;
 
             try
             {
+                exceptionMessage = ex.Message;
+                innerException = ex.InnerException;
                 sb.Append(ex.ToString());
             }
             catch (Exception exception)
             {
-                var message =
-                    $"Exception in {typeof(ExceptionLayoutRenderer).FullName}.AppendToString(): {exception.GetType().FullName}.";
-                sb.Append("NLog message: ");
-                sb.Append(message);
-                InternalLogger.Warn(exception, message);
+                InternalLogger.Warn(exception, "Exception-LayoutRenderer Could not output ToString for Exception: {0}", ex.GetType());
+                sb.Append($"{ex.GetType()}: {exceptionMessage}");
+                if (innerException != null)
+                {
+                    sb.Append(Environment.NewLine);
+                    AppendToString(sb, innerException);
+                }
             }
-
         }
 
         /// <summary>
@@ -438,7 +452,17 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose source should be appended.</param>
         protected virtual void AppendSource(StringBuilder sb, Exception ex)
         {
-            sb.Append(ex.Source);
+            try
+            {
+                sb.Append(ex.Source);
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "Exception-LayoutRenderer Could not output Source for Exception: {0}", ex.GetType());
+                sb.Append(ex.GetType().ToString());
+                sb.Append(" Source-property threw ");
+                sb.Append(exception.GetType().ToString());
+            }            
         }
 
         /// <summary>
@@ -481,7 +505,14 @@ namespace NLog.LayoutRenderers
                 foreach (var key in ex.Data.Keys)
                 {
                     sb.Append(separator);
-                    sb.AppendFormat("{0}: {1}", key, ex.Data[key]);
+                    try
+                    {
+                        sb.AppendFormat("{0}: {1}", key, ex.Data[key]);
+                    }
+                    catch (Exception exception)
+                    {
+                        InternalLogger.Warn(exception, "Exception-LayoutRenderer Could not output Data-collection for Exception: {0}", ex.GetType());
+                    }
                     separator = ExceptionDataSeparator;
                 }
             }
