@@ -165,6 +165,8 @@ namespace NLog.Common
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         /// <param name="timeout">The timeout.</param>
         /// <returns>Wrapped continuation.</returns>
+        [Obsolete("Marked obsolete on NLog 6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static AsyncContinuation WithTimeout(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
             return new TimeoutContinuation(asyncContinuation, timeout).Function;

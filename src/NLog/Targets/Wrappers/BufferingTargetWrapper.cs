@@ -160,8 +160,22 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            WriteEventsInBuffer("Flush Async");
-            base.FlushAsync(asyncContinuation);
+            if (Monitor.TryEnter(_lockObject, 1500))
+            {
+                try
+                {
+                    WriteEventsInBuffer("Flush Async");
+                    base.FlushAsync(asyncContinuation);
+                }
+                finally
+                {
+                    Monitor.Exit(_lockObject);
+                }
+            }
+            else
+            {
+                asyncContinuation(new NLogRuntimeException($"Target {this} failed to flush after lock timeout."));
+            }
         }
 
         /// <inheritdoc/>
@@ -195,7 +209,22 @@ namespace NLog.Targets.Wrappers
                     }
                     else
                     {
-                        WriteEventsInBuffer("Closing Target");
+                        var lockTimeoutMs = OverflowAction == BufferingTargetWrapperOverflowAction.Discard ? 500 : 1500;
+                        if (Monitor.TryEnter(_lockObject, lockTimeoutMs))
+                        {
+                            try
+                            {
+                                WriteEventsInBuffer("Closing Target");
+                            }
+                            finally
+                            {
+                                Monitor.Exit(_lockObject);
+                            }
+                        }
+                        else
+                        {
+                            InternalLogger.Debug("{0}: Failed to flush after lock timeout", this);
+                        }
                     }
                 }
             }
@@ -219,7 +248,10 @@ namespace NLog.Targets.Wrappers
                 // roll over the oldest item.
                 if (OverflowAction == BufferingTargetWrapperOverflowAction.Flush)
                 {
-                    WriteEventsInBuffer("Exceeding BufferSize");
+                    lock (_lockObject)
+                    {
+                        WriteEventsInBuffer("Exceeding BufferSize");
+                    }
                 }
             }
             else
@@ -285,15 +317,12 @@ namespace NLog.Targets.Wrappers
                 return;
             }
 
-            lock (_lockObject)
+            AsyncLogEventInfo[] logEvents = _buffer.DequeueBatch(int.MaxValue);
+            if (logEvents.Length > 0)
             {
-                AsyncLogEventInfo[] logEvents = _buffer.DequeueBatch(int.MaxValue);
-                if (logEvents.Length > 0)
-                {
-                    if (reason != null)
-                        InternalLogger.Trace("{0}: Writing {1} events ({2})", this, logEvents.Length, reason);
-                    WrappedTarget.WriteAsyncLogEvents(logEvents);
-                }
+                if (reason != null)
+                    InternalLogger.Trace("{0}: Writing {1} events ({2})", this, logEvents.Length, reason);
+                WrappedTarget.WriteAsyncLogEvents(logEvents);
             }
         }
     }

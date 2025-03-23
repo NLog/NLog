@@ -72,6 +72,88 @@ namespace NLog.UnitTests
             Assert.NotNull(timeoutException);
         }
 
+#if !NET35 && !NET40
+        [Fact]
+        public void FlushAsync_NoConfig_IsCompleted()
+        {
+            var logFactory = new LogFactory();
+            var task = logFactory.FlushAsync(CancellationToken.None);
+            Assert.True(task.IsCompleted);
+            Assert.False(task.IsCanceled);
+            Assert.False(task.IsFaulted);
+        }
+
+        [Fact]
+        public void FlushAsync_EmptyConfig_IsCompleted()
+        {
+            var logFactory = new LogFactory();
+            logFactory.Configuration = new LoggingConfiguration();
+            var task = logFactory.FlushAsync(CancellationToken.None);
+            Assert.True(task.IsCompleted);
+            Assert.False(task.IsCanceled);
+            Assert.False(task.IsFaulted);
+        }
+
+        [Fact]
+        public void FlushAsync_SingleTarget_Async()
+        {
+            var logFactory = new LogFactory();
+            logFactory.Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteToMethodCall((evt, parms) => { }));
+            var task = logFactory.FlushAsync(CancellationToken.None);
+            Assert.True(task.Wait(5000));
+        }
+
+        [Fact]
+        public void FlushAsync_TargetTimeout_Async()
+        {
+            var logFactory = new LogFactory();
+            logFactory.Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteToMethodCall((evt, parms) => { System.Threading.Thread.Sleep(5000); }));
+            System.Threading.Tasks.Task.Run(() => logFactory.GetCurrentClassLogger().Info("Sleep")).Wait(25);
+            var task = logFactory.FlushAsync(new CancellationTokenSource(100).Token);
+            Assert.Throws<TimeoutException>(() => task.GetAwaiter().GetResult());
+        }
+#endif
+
+#if NET6_0_OR_GREATER
+        [Fact]
+        public void DisposeAsync_NoConfig_IsCompleted()
+        {
+            var logFactory = new LogFactory();
+            var task = logFactory.DisposeAsync();
+            Assert.True(task.IsCompleted);
+            Assert.False(task.IsCanceled);
+            Assert.False(task.IsFaulted);
+        }
+
+        [Fact]
+        public void DisposeAsync_EmptyConfig_IsCompleted()
+        {
+            var logFactory = new LogFactory();
+            logFactory.Configuration = new LoggingConfiguration();
+            var task = logFactory.DisposeAsync();
+            Assert.True(task.AsTask().Wait(5000));
+        }
+
+        [Fact]
+        public void DisposeAsync_SingleTarget_Async()
+        {
+            var logFactory = new LogFactory();
+            logFactory.Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteToMethodCall((evt, parms) => { }));
+            var task = logFactory.DisposeAsync();
+            Assert.True(task.AsTask().Wait(5000));
+        }
+
+        [Fact]
+        public void DisposeAsync_TargetTimeout_Async()
+        {
+            var logFactory = new LogFactory();
+            logFactory.Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteToMethodCall((evt, parms) => { System.Threading.Thread.Sleep(500); }));
+            System.Threading.Tasks.Task.Run(() => logFactory.GetCurrentClassLogger().Info("Sleep")).Wait(25);
+            var task = logFactory.DisposeAsync();
+            Assert.True(task.AsTask().Wait(5000));
+        }
+#endif
+
         [Fact]
         public void InvalidXMLConfiguration_DoesNotThrowErrorWhen_ThrowExceptionFlagIsNotSet()
         {

@@ -304,7 +304,8 @@ namespace NLog.Targets.Wrappers
         {
             StopLazyWriterThread();
 
-            if (Monitor.TryEnter(_writeLockObject, 500))
+            var lockTimeoutMs = OverflowAction == AsyncTargetWrapperOverflowAction.Discard ? 500 : 1500;
+            if (Monitor.TryEnter(_writeLockObject, lockTimeoutMs))
             {
                 try
                 {
@@ -314,6 +315,10 @@ namespace NLog.Targets.Wrappers
                 {
                     Monitor.Exit(_writeLockObject);
                 }
+            }
+            else
+            {
+                InternalLogger.Debug("{0}: Failed to flush after lock timeout", this);
             }
 
             if (OverflowAction == AsyncTargetWrapperOverflowAction.Block)
@@ -518,32 +523,37 @@ namespace NLog.Targets.Wrappers
 
         private void FlushEventsInQueue(object state)
         {
-            try
+            var asyncContinuation = state as AsyncContinuation;
+            if (Monitor.TryEnter(_writeLockObject, 1500))
             {
-                var asyncContinuation = state as AsyncContinuation;
-                lock (_writeLockObject)
+                try
                 {
                     WriteLogEventsInQueue(int.MaxValue, "Flush Async");
                     if (asyncContinuation != null)
                         base.FlushAsync(asyncContinuation);
                 }
-            }
-            catch (Exception exception)
-            {
+                catch (Exception exception)
+                {
 #if DEBUG
-                if (exception.MustBeRethrownImmediately())
-                {
-                    throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                }
+                    if (exception.MustBeRethrownImmediately())
+                    {
+                        throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+                    }
 #endif
-                InternalLogger.Error(exception, "{0}: Error in flush procedure.", this);
-            }
-            finally
-            {
-                if (TimeToSleepBetweenBatches <= 1 && !_requestQueue.IsEmpty)
-                {
-                    StartLazyWriterTimer();
+                    InternalLogger.Error(exception, "{0}: Error in flush procedure.", this);
                 }
+                finally
+                {
+                    Monitor.Exit(_writeLockObject);
+                    if (TimeToSleepBetweenBatches <= 1 && !_requestQueue.IsEmpty)
+                    {
+                        StartLazyWriterTimer();
+                    }
+                }
+            }
+            else
+            {
+                asyncContinuation(new NLogRuntimeException($"Target {this} failed to flush after lock timeout."));
             }
         }
 

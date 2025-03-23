@@ -34,12 +34,14 @@
 namespace NLog.Internal
 {
     using System;
+    using System.ComponentModel;
     using System.Threading;
     using NLog.Common;
 
     /// <summary>
     /// Wraps <see cref="AsyncContinuation"/> with a timeout.
     /// </summary>
+    [Obsolete("Marked obsolete on NLog 6.0")]
     internal sealed class TimeoutContinuation : IDisposable
     {
         private AsyncContinuation _asyncContinuation;

@@ -979,115 +979,74 @@ namespace NLog.Config
             InternalLogger.Debug("Unused target checking is completed. Total Rule Count: {0}, Total Target Count: {1}, Unused Target Count: {2}", LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
         }
 
-        internal bool FlushAllTargets(TimeSpan timeout, AsyncContinuation asyncContinuation, bool throwExceptions)
+        internal AsyncContinuation FlushAllTargets(AsyncContinuation flushCompletion)
         {
-            if (asyncContinuation != null)
+            var pendingTargets = GetAllTargetsToFlush();
+            if (pendingTargets.Count == 0)
             {
-                FlushAllTargetsAsync(this, asyncContinuation, timeout);
-                return true;
+                flushCompletion.Invoke(null);
+                return null;
             }
-            else
-            {
-                return FlushAllTargetsSync(this, timeout, throwExceptions);
-            }
-        }
 
-        /// <summary>
-        /// Flushes any pending log messages on all appenders.
-        /// </summary>
-        /// <param name="loggingConfiguration">Config containing Targets to Flush</param>
-        /// <param name="asyncContinuation">Flush completed notification (success / timeout)</param>
-        /// <param name="asyncTimeout">Optional timeout that guarantees that completed notification is called.</param>
-        /// <returns></returns>
-        private static AsyncContinuation FlushAllTargetsAsync(LoggingConfiguration loggingConfiguration, AsyncContinuation asyncContinuation, TimeSpan? asyncTimeout)
-        {
-            var pendingTargets = loggingConfiguration.GetAllTargetsToFlush();
+            InternalLogger.Trace("Flushing all {0} targets...", pendingTargets.Count);
 
-            AsynchronousAction<Target> flushAction = (target, cont) =>
+            Exception lastException = null;
+
+            Action<Target, Exception> flushAction = (t, ex) =>
             {
-                target.Flush(ex =>
+                if (ex != null)
+                {
+                    InternalLogger.Warn(ex, "Flush failed for target {0}(Name={1})", t.GetType(), t.Name);
+                }
+                bool completed = false;
+                lock (pendingTargets)
                 {
                     if (ex != null)
-                        InternalLogger.Warn(ex, "Flush failed for target {0}(Name={1})", target.GetType(), target.Name);
-                    lock (pendingTargets)
-                    {
-                        pendingTargets.Remove(target);
-                    }
-                    cont(ex);
-                });
+                        lastException = ex;
+                    if (pendingTargets.Remove(t) && pendingTargets.Count == 0)
+                        completed = true;
+                }
+                if (completed)
+                {
+                    if (lastException != null)
+                        InternalLogger.Warn("Flush completed with errors");
+                    else
+                        InternalLogger.Debug("Flush completed");
+                    flushCompletion.Invoke(lastException);
+                }
             };
-            AsyncContinuation flushContinuation = (ex) =>
+
+            foreach (var target in pendingTargets.ToArray())
+            {
+                var flushTarget = target;
+                AsyncHelpers.StartAsyncTask(s =>
+                {
+                    try
+                    {
+                        flushTarget.Flush(ex =>
+                        {
+                            flushAction(flushTarget, ex);
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        flushAction(flushTarget, ex);
+                        throw;
+                    }
+                }, null);
+            }
+
+            AsyncContinuation flushTimeoutHandler = (ex) =>
             {
                 lock (pendingTargets)
                 {
                     foreach (var pendingTarget in pendingTargets)
-                        InternalLogger.Debug("Flush timeout for target {0}(Name={1})", pendingTarget.GetType(), pendingTarget.Name);
+                        InternalLogger.Warn("Flush timeout for target {0}(Name={1})", pendingTarget.GetType(), pendingTarget.Name);
                     pendingTargets.Clear();
                 }
-                if (ex != null)
-                    InternalLogger.Warn(ex, "Flush completed with errors");
-                else
-                    InternalLogger.Debug("Flush completed");
-                asyncContinuation(ex);
             };
 
-            if (asyncTimeout.HasValue)
-            {
-                flushContinuation = AsyncHelpers.WithTimeout(flushContinuation, asyncTimeout.Value);
-            }
-            else
-            {
-                flushContinuation = AsyncHelpers.PreventMultipleCalls(flushContinuation);
-            }
-
-            InternalLogger.Trace("Flushing all {0} targets...", pendingTargets.Count);
-            AsyncHelpers.ForEachItemInParallel(pendingTargets, flushContinuation, flushAction);
-            return flushContinuation;
-        }
-
-        private static bool FlushAllTargetsSync(LoggingConfiguration oldConfig, TimeSpan timeout, bool throwExceptions)
-        {
-            Exception lastException = null;
-
-            try
-            {
-                ManualResetEvent flushCompletedEvent = new ManualResetEvent(false);
-
-                var flushContinuation = FlushAllTargetsAsync(oldConfig, (ex) =>
-                {
-                    if (ex != null)
-                        lastException = ex;
-                    flushCompletedEvent.Set();
-                }, null);
-
-                bool flushCompleted = flushCompletedEvent.WaitOne(timeout);
-                if (!flushCompleted)
-                    flushContinuation(new TimeoutException($"Timeout when flushing all targets, after waiting {timeout.TotalSeconds} seconds."));
-            }
-            catch (Exception ex)
-            {
-#if DEBUG
-                if (ex.MustBeRethrownImmediately())
-                    throw;  // Throwing exceptions here might crash the entire application (.NET 2.0 behavior)
-#endif
-
-                InternalLogger.Error(ex, "LogFactory failed to flush targets.");
-
-                if (throwExceptions)
-                    throw new NLogRuntimeException("Asynchronous exception has occurred.", ex);
-
-                return false;
-            }
-
-            if (lastException != null)
-            {
-                if (throwExceptions)
-                    throw new NLogRuntimeException("Asynchronous exception has occurred.", lastException);
-                else
-                    return false;
-            }
-
-            return true;
+            return flushTimeoutHandler;
         }
 
         internal ITargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, LogLevel globalLogLevel)
