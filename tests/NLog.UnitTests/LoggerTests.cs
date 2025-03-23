@@ -2365,16 +2365,15 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|hello from {\"Name\":\"Jane\", \"Childs\":[{\"Name\":\"James\"},{\"Name\":\"Mike\"}]}");
 
                 logger.Error("Test structured logging in {NLogVersion} for .NET {NETVersion}", "4.5-alpha01", new[] { 3.5, 4, 4.5 });
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|Test structured logging in \"4.5-alpha01\" for .NET 3.5, 4, 4.5");
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|Test structured logging in 4.5-alpha01 for .NET 3.5, 4, 4.5");
 
                 logger.Error("hello from {FamilyNames}", new Dictionary<int, string>() { { 1, "James" }, { 2, "Mike" }, { 3, "Jane" } });
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|hello from 1=\"James\", 2=\"Mike\", 3=\"Jane\"");
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|hello from 1=James, 2=Mike, 3=Jane");
 
                 logger.Error("message {a} {b}", 1, 2);
                 if (enabled == 1)
                 {
                     AssertDebugLastMessage("debug", "A|message 1 2");
-
                 }
 
                 logger.Error("message{a}{b}{c}", 1, 2, 3);
@@ -2383,20 +2382,17 @@ namespace NLog.UnitTests
                     AssertDebugLastMessage("debug", "A|message123");
                 }
 
-
                 logger.Error("message {a} {b} {c}", "1", "2", "3");
                 if (enabled == 1)
                 {
-                    //todo single quotes
-                    AssertDebugLastMessage("debug", "A|message \"1\" \"2\" \"3\"");
+                    AssertDebugLastMessage("debug", "A|message 1 2 3");
                 }
-
 
                 logger.Error("message{a}{b}{c}", 1, 2, 3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message123");
 
                 logger.Error("message{a,2}{b,-2}{c,1}{d,-1}{f,1}", 1, 2, 3, 4, "");
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|message 12 34\"\"");
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|message 12 34 ");
 
                 //todo other tests
 
@@ -2518,10 +2514,7 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
 
                 logger.Error(new Exception("test"), "message {Exception}", "from parameter");
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|message \"from parameter\"test");
-
-
-
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
 
                 //                logger.Error(delegate { return "message from lambda"; });
                 //                if (enabled == 1) AssertDebugLastMessage("debug", "A|message from lambda");
@@ -2614,7 +2607,7 @@ namespace NLog.UnitTests
 
             logger.Error("Login request from {Username} for {Application}", new Person("\"John\""), "BestApplicationEver");
 
-            AssertDebugLastMessage("debug", "Login request from \"John\" for \"BestApplicationEver\"{ \"Username\": \"\\\"John\\\"\", \"Application\": \"BestApplicationEver\" }");
+            AssertDebugLastMessage("debug", "Login request from \"John\" for BestApplicationEver{ \"Username\": \"\\\"John\\\"\", \"Application\": \"BestApplicationEver\" }");
         }
 
         [Fact]
@@ -2708,7 +2701,7 @@ namespace NLog.UnitTests
             dictionary.Add("key 2", 1.3m);
             LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "Logger", null, "{mybad}", new object[] { dictionary });
             var result = logEventInfo.FormattedMessage;
-            Assert.Contains("\"key1\"=13, \"key 2\"", result);
+            Assert.Contains("key1=13, key 2", result);
         }
 
         [Fact]

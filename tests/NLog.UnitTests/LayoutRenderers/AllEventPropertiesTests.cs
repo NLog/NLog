@@ -110,7 +110,7 @@ namespace NLog.UnitTests.Layouts
 
             var ev = new LogEventInfo(LogLevel.Info, null, null, "Hello Planet {@planet}", new object[] { planetProperties });
             var result = renderer.Render(ev);
-            Assert.Equal(@"planet=""Name""=""Earth"", ""PlanetType""=""Water-world""", result);
+            Assert.Equal(@"planet=Name=Earth, PlanetType=Water-world", result);
         }
 
         [Fact]

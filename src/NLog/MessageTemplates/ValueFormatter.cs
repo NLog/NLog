@@ -50,12 +50,15 @@ namespace NLog.MessageTemplates
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(2000);
         private readonly IServiceProvider _serviceProvider;
+        private readonly bool _legacyStringQuotes;
+
         private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceProvider.GetService<IJsonConverter>());
         private IJsonConverter _jsonConverter;
 
-        public ValueFormatter([NotNull] IServiceProvider serviceProvider)
+        public ValueFormatter([NotNull] IServiceProvider serviceProvider, bool legacyStringQuotes)
         {
             _serviceProvider = serviceProvider;
+            _legacyStringQuotes = legacyStringQuotes;
         }
 
         private const int MaxRecursionDepth = 2;
@@ -185,7 +188,7 @@ namespace NLog.MessageTemplates
                     }
                 case TypeCode.Char:
                     {
-                        bool includeQuotes = format != LiteralFormatSymbol;
+                        bool includeQuotes = _legacyStringQuotes && format != LiteralFormatSymbol;
                         if (includeQuotes) builder.Append('"');
                         builder.Append(value.ToChar(CultureInfo.InvariantCulture));
                         if (includeQuotes) builder.Append('"');
@@ -229,9 +232,9 @@ namespace NLog.MessageTemplates
                 builder.Append(Convert.ToString(value, formatProvider));
         }
 
-        private static void SerializeStringObject(string stringValue, string format, StringBuilder builder)
+        private void SerializeStringObject(string stringValue, string format, StringBuilder builder)
         {
-            bool includeQuotes = format != LiteralFormatSymbol;
+            bool includeQuotes = _legacyStringQuotes && format != LiteralFormatSymbol;
             if (includeQuotes) builder.Append('"');
             builder.Append(stringValue);
             if (includeQuotes) builder.Append('"');
