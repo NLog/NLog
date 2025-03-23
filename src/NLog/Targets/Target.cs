@@ -185,26 +185,37 @@ namespace NLog.Targets
 
             asyncContinuation = AsyncHelpers.PreventMultipleCalls(asyncContinuation);
 
-            lock (SyncRoot)
+            if (System.Threading.Monitor.TryEnter(SyncRoot, 15000))
             {
-                if (!IsInitialized)
-                {
-                    // In case target was Closed
-                    asyncContinuation(null);
-                    return;
-                }
-
                 try
                 {
-                    FlushAsync(asyncContinuation);
-                }
-                catch (Exception exception)
-                {
-                    if (ExceptionMustBeRethrown(exception))
-                        throw;
+                    if (!IsInitialized)
+                    {
+                        // In case target was Closed
+                        asyncContinuation(null);
+                        return;
+                    }
 
-                    asyncContinuation(exception);
+                    try
+                    {
+                        FlushAsync(asyncContinuation);
+                    }
+                    catch (Exception exception)
+                    {
+                        if (ExceptionMustBeRethrown(exception))
+                            throw;
+
+                        asyncContinuation(exception);
+                    }
                 }
+                finally
+                {
+                    System.Threading.Monitor.Exit(SyncRoot);
+                }
+            }
+            else
+            {
+                asyncContinuation(new NLogRuntimeException($"Target {this} failed to flush after lock timeout."));
             }
         }
 

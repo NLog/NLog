@@ -133,6 +133,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Marked obsolete on NLog 6.0")]
         public void ContinuationTimeoutTest()
         {
             RetryingIntegrationTest(3, () =>
@@ -165,6 +166,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Marked obsolete on NLog 6.0")]
         public void ContinuationTimeoutNotHitTest()
         {
             var exceptions = new List<Exception>();
@@ -192,8 +194,8 @@ namespace NLog.UnitTests
             Assert.Null(exceptions[0]);
         }
 
-
         [Fact]
+        [Obsolete("Marked obsolete on NLog 6.0")]
         public void ContinuationErrorTimeoutNotHitTest()
         {
             var exceptions = new List<Exception>();

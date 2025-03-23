@@ -51,6 +51,9 @@ namespace NLog
     /// Creates and manages instances of <see cref="NLog.Logger" /> objects.
     /// </summary>
     public class LogFactory : IDisposable
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+, IAsyncDisposable
+#endif
     {
         private static readonly TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
 
@@ -354,14 +357,50 @@ namespace NLog
         }
 
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting
-        /// unmanaged resources.
+        /// Shutdown logging
         /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+        /// <summary>
+        /// Flush any pending log messages, and shutdown logging
+        /// </summary>
+        public async System.Threading.Tasks.ValueTask DisposeAsync()
+        {
+            lock (_syncRoot)
+            {
+                if (_config is null || !_configLoaded || _isDisposing)
+                {
+                    DisposeInternal(false);
+                    return;
+                }
+            }
+
+            try
+            {
+                await FlushAsync(CancellationToken.None).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "LogFactory DisposeAsync Flush Failed.");
+            }
+
+            try
+            {
+                var disposeTimeout = System.Threading.Tasks.Task.Delay(DefaultFlushTimeout).ContinueWith(prevTask => throw new TimeoutException("LogFactory Dispose Timeout"));
+                await System.Threading.Tasks.TaskExtensions.Unwrap(System.Threading.Tasks.Task.WhenAny(System.Threading.Tasks.Task.Run(() => DisposeInternal()), disposeTimeout)).ConfigureAwait(false);
+                GC.SuppressFinalize(this);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "LogFactory DisposeAsync Failed.");
+            }
+        }
+#endif
 
         /// <summary>
         /// Begins configuration of the LogFactory options using fluent interface
@@ -582,35 +621,97 @@ namespace NLog
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
-            FlushInternal(timeout, asyncContinuation ?? (ex => { }));
+            FlushInternal(timeout, asyncContinuation);
         }
 
-        private void FlushInternal(TimeSpan flushTimeout, AsyncContinuation asyncContinuation)
+        private bool FlushInternal(TimeSpan flushTimeout, AsyncContinuation asyncContinuation)
         {
-            InternalLogger.Debug("LogFactory Flush with timeout={0} secs", flushTimeout.TotalSeconds);
+            InternalLogger.Debug("LogFactory Starting Flush with timeout={0} secs", flushTimeout.TotalSeconds);
 
             try
             {
                 LoggingConfiguration config;
                 lock (_syncRoot)
                 {
-                    config = _config; // Flush should not attempt to auto-load Configuration
+                    config = _config;   // Flush should not attempt to auto-load Configuration
+                    if (!_configLoaded)
+                        config = null;
                 }
+
                 if (config is null)
                 {
                     asyncContinuation?.Invoke(null);
+                    return true;
                 }
-                else
+
+                asyncContinuation = asyncContinuation is null ? null : AsyncHelpers.PreventMultipleCalls(asyncContinuation);
+
+                using (var waitForFlush = new ManualResetEvent(false))
                 {
-                    config.FlushAllTargets(flushTimeout, asyncContinuation, ThrowExceptions);
+                    var ev = waitForFlush;
+                    var flushTimeoutHandler = config.FlushAllTargets((ex) => { asyncContinuation?.Invoke(ex); ev?.Set(); });
+                    if (flushTimeoutHandler is null)
+                    {
+                        asyncContinuation?.Invoke(null);
+                        return true;
+                    }
+                    else
+                    {
+                        bool flushCompleted = waitForFlush.WaitOne(flushTimeout);
+                        ev = null;  // Avoid object-disposed on late flush completion
+                        flushTimeoutHandler.Invoke(null);
+                        asyncContinuation?.Invoke(flushCompleted ? null : new NLogRuntimeException("LogFactory Flush Timeout"));
+                        return flushCompleted;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 InternalLogger.Error(ex, "LogFactory failed to flush targets.");
                 asyncContinuation?.Invoke(ex);
+                return false;
             }
         }
+
+#if !NET35 && !NET40
+        /// <summary>
+        /// Flush any pending log messages
+        /// </summary>
+        public System.Threading.Tasks.Task FlushAsync(System.Threading.CancellationToken cancellationToken)
+        {
+            InternalLogger.Debug("LogFactory Starting Flush Async");
+
+            LoggingConfiguration config;
+            lock (_syncRoot)
+            {
+                config = _config;
+                if (config is null || !_configLoaded)
+                {
+#if NET45
+                    return System.Threading.Tasks.Task.FromResult<object>(null);
+#else
+                    return System.Threading.Tasks.Task.CompletedTask;
+#endif
+                }
+            }
+
+            var flushCompleted = new System.Threading.Tasks.TaskCompletionSource<bool>();
+            var flushTimeoutHandler = config.FlushAllTargets((ex) => flushCompleted.SetResult(true));
+            if (flushTimeoutHandler is null)
+            {
+#if NET45
+                return System.Threading.Tasks.Task.FromResult<object>(null);
+#else
+                return System.Threading.Tasks.Task.CompletedTask;
+#endif
+            }
+
+            var timeout = cancellationToken.CanBeCanceled ? -1 : (int)DefaultFlushTimeout.TotalMilliseconds;
+            var flushTimeout = System.Threading.Tasks.Task.Delay(timeout, cancellationToken).ContinueWith(prevTask => throw new TimeoutException("LogFactory Flush Timeout"));
+            flushTimeout.ContinueWith(prevTask => { flushTimeoutHandler.Invoke(null); flushCompleted.TrySetCanceled(); });
+            return System.Threading.Tasks.TaskExtensions.Unwrap(System.Threading.Tasks.Task.WhenAny(flushCompleted.Task, flushTimeout));
+        }
+#endif
 
         /// <summary>
         /// Suspends the logging, and returns object for using-scope so scope-exit calls <see cref="ResumeLogging"/>
@@ -688,7 +789,7 @@ namespace NLog
         /// </summary>
         private bool _isDisposing;
 
-        private void Close(TimeSpan flushTimeout)
+        private void DisposeInternal(bool closeConfig = true)
         {
             if (_isDisposing)
             {
@@ -710,45 +811,38 @@ namespace NLog
                     var oldConfig = _config;
                     if (_configLoaded && oldConfig != null)
                     {
-                        CloseOldConfig(flushTimeout, oldConfig);
+                        if (closeConfig)
+                            CloseOldConfig(oldConfig);
+                        else
+                            InternalLogger.Warn("Target flush timeout. One or more targets did not complete flush operation, skipping target close.");
                     }
                 }
                 finally
                 {
                     Monitor.Exit(_syncRoot);
+                    ConfigurationChanged = null;    // Release event listeners
                 }
             }
+            else
+            {
+                ConfigurationChanged = null;    // Release event listeners
+            }
 
-            ConfigurationChanged = null;    // Release event listeners
+            InternalLogger.Info("LogFactory has been disposed.");
         }
 
-        private void CloseOldConfig(TimeSpan flushTimeout, LoggingConfiguration oldConfig)
+        private void CloseOldConfig(LoggingConfiguration oldConfig)
         {
             try
             {
                 oldConfig.OnConfigurationAssigned(null);
-
-                bool attemptClose = true;
-
-                if (flushTimeout > TimeSpan.Zero)
-                {
-                    attemptClose = oldConfig.FlushAllTargets(flushTimeout, null, false);
-                }
 
                 // Disable all loggers, so things become quiet
                 _config = null;
                 _configLoaded = true;
                 ReconfigExistingLoggers();
 
-                if (!attemptClose)
-                {
-                    InternalLogger.Warn("Target flush timeout. One or more targets did not complete flush operation, skipping target close.");
-                }
-                else
-                {
-                    // Flush completed within timeout, lets try and close down
-                    oldConfig.Close();
-                }
+                oldConfig.Close();
 
                 OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(null, oldConfig));
             }
@@ -759,7 +853,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
+        /// Shutdown logging without flushing async
         /// </summary>
         /// <param name="disposing"><c>True</c> to release both managed and unmanaged resources;
         /// <c>false</c> to release only unmanaged resources.</param>
@@ -767,7 +861,7 @@ namespace NLog
         {
             if (disposing)
             {
-                Close(DefaultFlushTimeout);
+                DisposeInternal();
             }
         }
 
@@ -776,7 +870,7 @@ namespace NLog
         /// </summary>
         public void Shutdown()
         {
-            InternalLogger.Info("Shutdown() called. Logger closing...");
+            InternalLogger.Info("LogFactory shutting down ...");
             if (!_isDisposing && _configLoaded)
             {
                 lock (_syncRoot)
@@ -789,7 +883,7 @@ namespace NLog
                     ReconfigExistingLoggers();  // Disable all loggers, so things become quiet
                 }
             }
-            InternalLogger.Info("Logger has been closed down.");
+            InternalLogger.Info("LogFactory shutdown completed.");
         }
 
         /// <summary>
@@ -1180,20 +1274,22 @@ namespace NLog
                 //Exception: System.AppDomainUnloadedException
                 //Message: Attempted to access an unloaded AppDomain.
                 InternalLogger.Info("AppDomain Shutting down. LogFactory closing...");
-                // Domain-Unload has to complete in about 2 secs on Windows-platform, before being terminated.
-                // Other platforms like Linux will fail when trying to spin up new threads at domain unload.
-                var flushTimeout =
-                    PlatformDetector.IsWin32 ? TimeSpan.FromMilliseconds(1500) :
-                    TimeSpan.Zero;
-                Close(flushTimeout);
-                InternalLogger.Info("LogFactory has been closed.");
+                bool closeConfig = true;
+                if (PlatformDetector.IsWin32)
+                {
+                    // Domain-Unload has to complete in about 2 secs on Windows-platform, before being terminated.
+                    // Other platforms like Linux will fail when trying to spin up new threads at domain unload.
+                    closeConfig = FlushInternal(TimeSpan.FromMilliseconds(1500), null);
+                }
+
+                DisposeInternal(closeConfig);
             }
             catch (Exception ex)
             {
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                InternalLogger.Error(ex, "LogFactory failed to close properly.");
+                InternalLogger.Error(ex, "LogFactory failed to close down.");
             }
         }
     }
