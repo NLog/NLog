@@ -196,7 +196,7 @@ namespace NLog.UnitTests.MessageTemplates
 
         private static ValueFormatter CreateValueFormatter()
         {
-            return new ValueFormatter(LogManager.LogFactory.ServiceRepository);
+            return new ValueFormatter(LogManager.LogFactory.ServiceRepository, legacyStringQuotes: false);
         }
 
         [Fact]
@@ -335,7 +335,7 @@ namespace NLog.UnitTests.MessageTemplates
             StringBuilder builder = new StringBuilder();
             var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
-            Assert.Equal("\"str\"", builder.ToString());
+            Assert.Equal("str", builder.ToString());
         }
 
         [Fact]
@@ -355,7 +355,7 @@ namespace NLog.UnitTests.MessageTemplates
             StringBuilder builder = new StringBuilder();
             var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
-            var expectedValue = $"\"{typeof(Test).FullName}\"";
+            var expectedValue = $"{typeof(Test).FullName}";
             Assert.Equal(expectedValue, builder.ToString());
         }
 
@@ -376,7 +376,7 @@ namespace NLog.UnitTests.MessageTemplates
             StringBuilder builder = new StringBuilder();
             var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
-            Assert.Equal("\"t\"", builder.ToString());
+            Assert.Equal("t", builder.ToString());
         }
 
         [Theory]

@@ -143,6 +143,7 @@ namespace NLog.UnitTests.Config
                 var renderer = new ProcessInfoLayoutRenderer();
                 renderer.Property = ProcessInfoProperty.StartTime;
                 renderer.Format = "d";
+                renderer.Culture = null;
                 output = renderer.Render(logEventInfo);
 
                 Assert.Contains(expected, output);

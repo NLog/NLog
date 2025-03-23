@@ -196,7 +196,7 @@ namespace NLog.Config
 #endif
         }
 
-        private static object ConvertToCultureInfo(string stringValue)
+        internal static object ConvertToCultureInfo(string stringValue)
         {
             if (StringHelpers.IsNullOrWhiteSpace(stringValue))
                 return null;
@@ -207,7 +207,7 @@ namespace NLog.Config
             return new CultureInfo(stringValue);
         }
 
-        private static object ConvertToEncoding(string stringValue)
+        internal static object ConvertToEncoding(string stringValue)
         {
             stringValue = stringValue.Trim();
             if (string.Equals(stringValue, nameof(System.Text.Encoding.UTF8), StringComparison.OrdinalIgnoreCase))

@@ -72,7 +72,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets the culture used for rendering.
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public CultureInfo Culture { get; set; }
+        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)

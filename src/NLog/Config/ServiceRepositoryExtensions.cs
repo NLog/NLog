@@ -202,7 +202,7 @@ namespace NLog.Config
             serviceRepository.RegisterSingleton<IServiceProvider>(serviceRepository);
             serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(serviceRepository, false, false));
             serviceRepository.RegisterJsonConverter(new DefaultJsonSerializer(serviceRepository));
-            serviceRepository.RegisterValueFormatter(new MessageTemplates.ValueFormatter(serviceRepository));
+            serviceRepository.RegisterValueFormatter(new MessageTemplates.ValueFormatter(serviceRepository, legacyStringQuotes: false));
             serviceRepository.RegisterPropertyTypeConverter(PropertyTypeConverter.Instance);
             serviceRepository.RegisterObjectTypeTransformer(new ObjectReflectionCache(serviceRepository));
             return serviceRepository;

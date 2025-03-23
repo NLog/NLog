@@ -71,11 +71,11 @@ namespace NLog.Internal
                 { typeof(Layout), TryParseLayoutValue },
                 { typeof(SimpleLayout), TryParseLayoutValue },
                 { typeof(ConditionExpression), TryParseConditionValue },
-                { typeof(Encoding), TryParseEncodingValue },
+                { typeof(Encoding), (stringvalue, factory) => PropertyTypeConverter.ConvertToEncoding(stringvalue) },
                 { typeof(string), (stringvalue, factory) => stringvalue },
                 { typeof(int), (stringvalue, factory) => Convert.ChangeType(stringvalue.Trim(), TypeCode.Int32, CultureInfo.InvariantCulture) },
                 { typeof(bool), (stringvalue, factory) => Convert.ChangeType(stringvalue.Trim(), TypeCode.Boolean, CultureInfo.InvariantCulture) },
-                { typeof(CultureInfo), (stringvalue, factory) =>  TryParseCultureInfo(stringvalue) },
+                { typeof(CultureInfo), (stringvalue, factory) =>  PropertyTypeConverter.ConvertToCultureInfo(stringvalue) },
                 { typeof(Type),  (stringvalue, factory) => PropertyTypeConverter.ConvertToType(stringvalue.Trim(), true) },
                 { typeof(LineEndingMode), (stringvalue, factory) => LineEndingMode.FromString(stringvalue.Trim()) },
                 { typeof(Uri), (stringvalue, factory) => new Uri(stringvalue.Trim()) }
@@ -345,24 +345,6 @@ namespace NLog.Internal
                 result = null;
                 return false;
             }
-        }
-
-        private static object TryParseCultureInfo(string stringValue)
-        {
-            stringValue = stringValue?.Trim();
-            if (string.IsNullOrEmpty(stringValue))
-                return CultureInfo.InvariantCulture;
-            else
-                return new CultureInfo(stringValue);
-        }
-
-        private static object TryParseEncodingValue(string stringValue, ConfigurationItemFactory configurationItemFactory)
-        {
-            _ = configurationItemFactory;   // Discard unreferenced parameter
-            stringValue = stringValue.Trim();
-            if (string.Equals(stringValue, nameof(Encoding.UTF8), StringComparison.OrdinalIgnoreCase))
-                stringValue = Encoding.UTF8.WebName;  // Support utf8 without hyphen (And not just Utf-8)
-            return Encoding.GetEncoding(stringValue);
         }
 
         private static object TryParseLayoutValue(string stringValue, ConfigurationItemFactory configurationItemFactory)

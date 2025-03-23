@@ -68,7 +68,16 @@ namespace NLog
         /// </summary>
         public static ISetupSerializationBuilder RegisterValueFormatter(this ISetupSerializationBuilder setupBuilder, IValueFormatter valueFormatter)
         {
-            setupBuilder.LogFactory.ServiceRepository.RegisterValueFormatter(valueFormatter ?? new MessageTemplates.ValueFormatter(setupBuilder.LogFactory.ServiceRepository));
+            setupBuilder.LogFactory.ServiceRepository.RegisterValueFormatter(valueFormatter ?? new MessageTemplates.ValueFormatter(setupBuilder.LogFactory.ServiceRepository, legacyStringQuotes: false));
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Overrides the active <see cref="IValueFormatter"/> to use legacy-mode string-quotes (Before NLog v6)
+        /// </summary>
+        public static ISetupSerializationBuilder RegisterValueFormatterWithStringQuotes(this ISetupSerializationBuilder setupBuilder)
+        {
+            setupBuilder.LogFactory.ServiceRepository.RegisterValueFormatter(new MessageTemplates.ValueFormatter(setupBuilder.LogFactory.ServiceRepository, legacyStringQuotes: true));
             return setupBuilder;
         }
 

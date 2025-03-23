@@ -64,7 +64,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void RenderProcessTimeLayoutRenderer()
         {
-            var layout = "${processtime}";
+            var layout = "${processtime:Culture=InvariantCulture}";
             var timestamp = LogEventInfo.ZeroDate;
             System.Threading.Thread.Sleep(16);
             var logEvent = new LogEventInfo(LogLevel.Debug, "logger1", "message1");
