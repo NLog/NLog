@@ -37,7 +37,6 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
-    using NLog.Layouts;
 
     /// <summary>
     /// Stack trace renderer.
@@ -72,8 +71,17 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the stack frame separator string.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public string Separator { get => _separator?.OriginalText; set => _separator = new SimpleLayout(value ?? string.Empty); }
-        private SimpleLayout _separator = new SimpleLayout(" => ");
+        public string Separator
+        {
+            get => _separatorOriginal ?? _separator;
+            set
+            {
+                _separatorOriginal = value;
+                _separator = Layouts.SimpleLayout.Evaluate(value, LoggingConfiguration, throwConfigExceptions: false);
+            }
+        }
+        private string _separator = " => ";
+        private string _separatorOriginal;
 
         /// <summary>
         /// Logger should capture StackTrace, if it was not provided manually
@@ -103,6 +111,14 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+            if (_separatorOriginal != null)
+                _separator = Layouts.SimpleLayout.Evaluate(_separatorOriginal, LoggingConfiguration);
+        }
+
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (logEvent.StackTrace is null)
@@ -122,15 +138,15 @@ namespace NLog.LayoutRenderers
             switch (Format)
             {
                 case StackTraceFormat.Raw:
-                    AppendRaw(builder, stackFrameList, logEvent);
+                    AppendRaw(builder, stackFrameList);
                     break;
 
                 case StackTraceFormat.Flat:
-                    AppendFlat(builder, stackFrameList, logEvent);
+                    AppendFlat(builder, stackFrameList);
                     break;
 
                 case StackTraceFormat.DetailedFlat:
-                    AppendDetailedFlat(builder, stackFrameList, logEvent);
+                    AppendDetailedFlat(builder, stackFrameList);
                     break;
             }
         }
@@ -162,7 +178,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private void AppendRaw(StringBuilder builder, StackFrameList stackFrameList, LogEventInfo logEvent)
+        private void AppendRaw(StringBuilder builder, StackFrameList stackFrameList)
         {
             string separator = null;
             for (int i = 0; i < stackFrameList.Count; ++i)
@@ -170,14 +186,12 @@ namespace NLog.LayoutRenderers
                 builder.Append(separator);
                 StackFrame f = stackFrameList[i];
                 builder.Append(f.ToString());
-                separator = separator ?? _separator?.Render(logEvent) ?? string.Empty;
+                separator = separator ?? _separator ?? string.Empty;
             }
         }
 
-        private void AppendFlat(StringBuilder builder, StackFrameList stackFrameList, LogEventInfo logEvent)
+        private void AppendFlat(StringBuilder builder, StackFrameList stackFrameList)
         {
-            string separator = null;
-
             bool first = true;
             for (int i = 0; i < stackFrameList.Count; ++i)
             {
@@ -189,8 +203,7 @@ namespace NLog.LayoutRenderers
 
                 if (!first)
                 {
-                    separator = separator ?? _separator?.Render(logEvent) ?? string.Empty;
-                    builder.Append(separator);
+                    builder.Append(_separator);
                 }
 
                 var type = method.DeclaringType;
@@ -209,10 +222,8 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private void AppendDetailedFlat(StringBuilder builder, StackFrameList stackFrameList, LogEventInfo logEvent)
+        private void AppendDetailedFlat(StringBuilder builder, StackFrameList stackFrameList)
         {
-            string separator = null;
-
             bool first = true;
             for (int i = 0; i < stackFrameList.Count; ++i)
             {
@@ -224,8 +235,7 @@ namespace NLog.LayoutRenderers
 
                 if (!first)
                 {
-                    separator = separator ?? _separator?.Render(logEvent) ?? string.Empty;
-                    builder.Append(separator);
+                    builder.Append(_separator);
                 }
                 builder.Append('[');
                 builder.Append(method);

@@ -417,7 +417,7 @@ namespace NLog.Config
             try
             {
                 newFileName = ExpandSimpleVariables(newFileName);
-                newFileName = SimpleLayout.Evaluate(newFileName);
+                newFileName = SimpleLayout.Evaluate(newFileName, this);
                 var fullNewFileName = newFileName;
                 if (baseDirectory != null)
                 {

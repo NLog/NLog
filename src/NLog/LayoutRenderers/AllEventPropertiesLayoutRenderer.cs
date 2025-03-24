@@ -62,7 +62,6 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public AllEventPropertiesLayoutRenderer()
         {
-            Separator = ", ";
             Format = "[key]=[value]";
             Exclude = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         }
@@ -71,7 +70,17 @@ namespace NLog.LayoutRenderers
         /// Gets or sets string that will be used to separate key/value pairs.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public string Separator { get; set; }
+        public string Separator
+        {
+            get => _separatorOriginal ?? _separator;
+            set
+            {
+                _separatorOriginal = value;
+                _separator = Layouts.SimpleLayout.Evaluate(value, LoggingConfiguration, throwConfigExceptions: false);
+            }
+        }
+        private string _separator = ", ";
+        private string _separatorOriginal;
 
         /// <summary>
         /// Get or set if empty values should be included.
@@ -143,6 +152,14 @@ namespace NLog.LayoutRenderers
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+            if (_separatorOriginal != null)
+                _separator = Layouts.SimpleLayout.Evaluate(_separatorOriginal, LoggingConfiguration);
+        }
+
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (!logEvent.HasProperties && !IncludeScopeProperties)
@@ -194,7 +211,7 @@ namespace NLog.LayoutRenderers
 
             if (includeSeparator)
             {
-                builder.Append(Separator);
+                builder.Append(_separator);
             }
 
             if (nonStandardFormat)

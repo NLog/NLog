@@ -218,8 +218,7 @@ namespace NLog.Layouts
         /// values provided by the appropriate layout renderers.</returns>
         public static string Evaluate([Localizable(false)] string text, LogEventInfo logEvent)
         {
-            var layout = new SimpleLayout(text);
-            return layout.Render(logEvent);
+            return Evaluate(text, null, logEvent);
         }
 
         /// <summary>
@@ -231,7 +230,37 @@ namespace NLog.Layouts
         /// values provided by the appropriate layout renderers.</returns>
         public static string Evaluate([Localizable(false)] string text)
         {
-            return Evaluate(text, LogEventInfo.CreateNullEvent());
+            return Evaluate(text, null);
+        }
+
+        internal static string Evaluate(string text, LoggingConfiguration loggingConfiguration, LogEventInfo logEventInfo = null, bool? throwConfigExceptions = null)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(text))
+                    return string.Empty;
+
+                if (text.IndexOf('$') < 0 || text.IndexOf('{') < 0 || text.IndexOf('}') < 0)
+                    return text;
+
+                throwConfigExceptions = throwConfigExceptions ?? loggingConfiguration?.LogFactory.ThrowConfigExceptions;
+                var layout = Layout.FromString(text, throwConfigExceptions ?? LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions);
+                layout.Initialize(loggingConfiguration);
+                return layout.Render(logEventInfo ?? LogEventInfo.CreateNullEvent());
+            }
+            catch (NLogConfigurationException ex)
+            {
+                if (throwConfigExceptions ?? LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
+                    throw;
+
+                InternalLogger.Warn(ex, "Failed to Evaluate SimpleLayout: {0}", text);
+                return text;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Failed to Evaluate SimpleLayout: {0}", text);
+                return text;
+            }
         }
 
         /// <inheritdoc/>
