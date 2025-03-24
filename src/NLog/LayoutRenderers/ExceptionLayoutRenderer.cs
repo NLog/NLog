@@ -138,7 +138,6 @@ namespace NLog.LayoutRenderers
         public string InnerFormat
         {
             get => _innerFormat;
-
             set
             {
                 _innerFormat = value;
@@ -150,15 +149,33 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the separator used to concatenate parts specified in the Format.
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
-        public string Separator { get => _seperator; set => _seperator = new NLog.Layouts.SimpleLayout(value).Render(LogEventInfo.CreateNullEvent()); }
-        private string _seperator = " ";
+        public string Separator
+        {
+            get => _separatorOriginal ?? _separator;
+            set
+            {
+                _separatorOriginal = value;
+                _separator = Layouts.SimpleLayout.Evaluate(value, LoggingConfiguration, throwConfigExceptions: false);
+            }
+        }
+        private string _separator = " ";
+        private string _separatorOriginal;
 
         /// <summary>
         /// Gets or sets the separator used to concatenate exception data specified in the Format.
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
-        public string ExceptionDataSeparator { get => _exceptionDataSeparator; set => _exceptionDataSeparator = new NLog.Layouts.SimpleLayout(value).Render(LogEventInfo.CreateNullEvent()); }
+        public string ExceptionDataSeparator
+        {
+            get => _exceptionDataSeparatorOriginal ?? _exceptionDataSeparator;
+            set
+            {
+                _exceptionDataSeparatorOriginal = value;
+                _exceptionDataSeparator = Layouts.SimpleLayout.Evaluate(value, LoggingConfiguration, throwConfigExceptions: false);
+            }
+        }
         private string _exceptionDataSeparator = ";";
+        private string _exceptionDataSeparatorOriginal;
 
         /// <summary>
         /// Gets or sets the maximum number of inner exceptions to include in the output.
@@ -221,6 +238,16 @@ namespace NLog.LayoutRenderers
         private Exception GetTopException(LogEventInfo logEvent)
         {
             return BaseException ? logEvent.Exception?.GetBaseException() : logEvent.Exception;
+        }
+
+        /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+            if (_separatorOriginal != null)
+                _separator = Layouts.SimpleLayout.Evaluate(_separatorOriginal, LoggingConfiguration);
+            if (_exceptionDataSeparatorOriginal != null)
+                _exceptionDataSeparator = Layouts.SimpleLayout.Evaluate(_exceptionDataSeparatorOriginal, LoggingConfiguration);
         }
 
         /// <inheritdoc/>
@@ -335,7 +362,7 @@ namespace NLog.LayoutRenderers
                 if (builder.Length != beforeRenderLength)
                 {
                     currentLength = builder.Length;
-                    builder.Append(Separator);
+                    builder.Append(_separator);
                 }
             }
 
@@ -487,7 +514,7 @@ namespace NLog.LayoutRenderers
             if (aggregateException?.Data?.Count > 0 && !ReferenceEquals(ex, aggregateException))
             {
                 AppendData(builder, aggregateException);
-                builder.Append(Separator);
+                builder.Append(_separator);
             }
             AppendData(builder, ex);
         }
@@ -508,13 +535,13 @@ namespace NLog.LayoutRenderers
                     try
                     {
                         sb.AppendFormat("{0}: ", key);
+                        separator = _exceptionDataSeparator;
                         sb.AppendFormat("{0}", ex.Data[key]);
                     }
                     catch (Exception exception)
                     {
                         InternalLogger.Warn(exception, "Exception-LayoutRenderer Could not output Data-collection for Exception: {0}", ex.GetType());
                     }
-                    separator = ExceptionDataSeparator;
                 }
             }
         }
@@ -543,13 +570,22 @@ namespace NLog.LayoutRenderers
                 if (ExcludeDefaultProperties.Contains(property.Name))
                     continue;
 
-                var propertyValue = property.Value?.ToString();
-                if (string.IsNullOrEmpty(propertyValue))
-                    continue;
+                try
+                {
+                    var propertyValue = property.Value?.ToString();
+                    if (string.IsNullOrEmpty(propertyValue))
+                        continue;
 
-                sb.Append(separator);
-                sb.AppendFormat("{0}: {1}", property.Name, propertyValue);
-                separator = ExceptionDataSeparator;
+                    sb.Append(separator);
+                    sb.Append(property.Name);
+                    separator = _exceptionDataSeparator;
+                    sb.Append(": ");
+                    sb.AppendFormat("{0}", propertyValue);
+                }
+                catch (Exception exception)
+                {
+                    InternalLogger.Warn(exception, "Exception-LayoutRenderer Could not output Property-collection for Exception: {0}", ex.GetType());
+                }
             }
         }
 

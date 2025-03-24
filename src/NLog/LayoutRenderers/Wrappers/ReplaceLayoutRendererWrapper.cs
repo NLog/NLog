@@ -65,7 +65,17 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <value>The text search for.</value>
         /// <docgen category='Layout Options' order='10' />
         [RequiredParameter]
-        public string SearchFor { get; set; }
+        public string SearchFor
+        {
+            get => _searchForOriginal ?? _searchFor;
+            set
+            {
+                _searchForOriginal = value;
+                _searchFor = Layouts.SimpleLayout.Evaluate(value, LoggingConfiguration, throwConfigExceptions: false);
+            }
+        }
+        private string _searchFor;
+        private string _searchForOriginal;
 
         /// <summary>
         /// Gets or sets a value indicating whether regular expressions should be used.
@@ -79,7 +89,17 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>The replacement string.</value>
         /// <docgen category='Layout Options' order='10' />
-        public string ReplaceWith { get; set; } = string.Empty;
+        public string ReplaceWith
+        {
+            get => _replaceWithOriginal ?? _replaceWith;
+            set
+            {
+                _replaceWithOriginal = value;
+                _replaceWith = Layouts.SimpleLayout.Evaluate(value, LoggingConfiguration, throwConfigExceptions: false);
+            }
+        }
+        private string _replaceWith = string.Empty;
+        private string _replaceWithOriginal;
 
         /// <summary>
         /// Gets or sets the group name to replace when using regular expressions.
@@ -114,6 +134,11 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             base.InitializeLayoutRenderer();
 
+            if (_searchForOriginal != null)
+                _searchFor = Layouts.SimpleLayout.Evaluate(_searchForOriginal, LoggingConfiguration);
+            if (_replaceWithOriginal != null)
+                _replaceWith = Layouts.SimpleLayout.Evaluate(_replaceWithOriginal, LoggingConfiguration);
+
             _regexHelper = new RegexHelper()
             {
                 IgnoreCase = IgnoreCase,
@@ -121,9 +146,9 @@ namespace NLog.LayoutRenderers.Wrappers
                 CompileRegex = CompileRegex,
             };
             if (Regex)
-                _regexHelper.RegexPattern = SearchFor;
+                _regexHelper.RegexPattern = _searchFor;
             else
-                _regexHelper.SearchText = SearchFor;
+                _regexHelper.SearchText = _searchFor;
 
             if (!string.IsNullOrEmpty(ReplaceGroupName) && _regexHelper.Regex?.GetGroupNames()?.Contains(ReplaceGroupName) == false)
             {
@@ -136,12 +161,12 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (string.IsNullOrEmpty(ReplaceGroupName))
             {
-                return _regexHelper.Replace(text, ReplaceWith);
+                return _regexHelper.Replace(text, _replaceWith);
             }
             else
             {
                 if (_groupMatchEvaluator is null)
-                    _groupMatchEvaluator = m => ReplaceNamedGroup(ReplaceGroupName, ReplaceWith, m);
+                    _groupMatchEvaluator = m => ReplaceNamedGroup(ReplaceGroupName, _replaceWith, m);
                 return _regexHelper.Regex?.Replace(text, _groupMatchEvaluator) ?? text;
             }
         }

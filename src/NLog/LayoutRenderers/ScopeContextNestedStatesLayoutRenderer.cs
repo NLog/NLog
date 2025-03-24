@@ -38,7 +38,6 @@ namespace NLog.LayoutRenderers
     using System.Globalization;
     using System.Text;
     using NLog.Internal;
-    using NLog.Layouts;
 
     /// <summary>
     /// Renders the nested states from <see cref="ScopeContext"/> like a callstack
@@ -66,8 +65,17 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the separator to be used for concatenating nested logical context output.
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public string Separator { get => _separator?.OriginalText; set => _separator = new SimpleLayout(value ?? string.Empty); }
-        private SimpleLayout _separator = new SimpleLayout(" ");
+        public string Separator
+        {
+            get => _separatorOriginal ?? _separator;
+            set
+            {
+                _separatorOriginal = value;
+                _separator = Layouts.SimpleLayout.Evaluate(value, LoggingConfiguration, throwConfigExceptions: false);
+            }
+        }
+        private string _separator = " ";
+        private string _separatorOriginal;
 
         /// <summary>
         /// Gets or sets how to format each nested state. Ex. like JSON = @
@@ -80,6 +88,14 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
+
+        /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+            if (_separatorOriginal != null)
+                _separator = Layouts.SimpleLayout.Evaluate(_separatorOriginal, LoggingConfiguration);
+        }
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -121,7 +137,7 @@ namespace NLog.LayoutRenderers
             string itemSeparator = null;
             if (formatAsJson)
             {
-                separator = _separator?.Render(logEvent) ?? string.Empty;
+                separator = _separator ?? string.Empty;
                 builder.Append('[');
                 builder.Append(separator);
                 itemSeparator = "," + separator;
@@ -139,7 +155,7 @@ namespace NLog.LayoutRenderers
                         builder.Append(Convert.ToString(messages[i]));   // Special support for Microsoft Extension Logging ILogger.BeginScope
                     else
                         builder.AppendFormattedValue(messages[i], Format, formatProvider, ValueFormatter);
-                    currentSeparator = itemSeparator ?? _separator?.Render(logEvent) ?? string.Empty;
+                    currentSeparator = itemSeparator ?? _separator ?? string.Empty;
                 }
             }
             finally
