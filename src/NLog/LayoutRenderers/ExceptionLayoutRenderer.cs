@@ -507,7 +507,8 @@ namespace NLog.LayoutRenderers
                     sb.Append(separator);
                     try
                     {
-                        sb.AppendFormat("{0}: {1}", key, ex.Data[key]);
+                        sb.AppendFormat("{0}: ", key);
+                        sb.AppendFormat("{0}", ex.Data[key]);
                     }
                     catch (Exception exception)
                     {
