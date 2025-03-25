@@ -77,5 +77,17 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             // Assert
             Assert.Equal("BAR bar bar foobar barfoo bar BAR", result);
         }
+
+        [Fact]
+        public void ReplaceTestWithSecretVariable()
+        {
+            var memoryTarget = new NLog.Targets.MemoryTarget() { Layout = "${replace:inner=${message}:searchFor=${var:secret}:replaceWith=******" };
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml("<nlog><variable name='secret' value='secret' /></nlog>").
+                LoadConfiguration(cfg => cfg.ForLogger().WriteTo(memoryTarget)).LogFactory;
+
+            logFactory.GetLogger(nameof(ReplaceTestWithSecretVariable)).Info("My name is secret");
+            Assert.Single(memoryTarget.Logs);
+            Assert.Equal("My name is ******", memoryTarget.Logs[0]);
+        }
     }
 }

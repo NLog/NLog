@@ -58,14 +58,34 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <value>The text search for.</value>
         /// <docgen category='Layout Options' order='10' />
         [RequiredParameter]
-        public string SearchFor { get; set; }
+        public string SearchFor
+        {
+            get => _searchForOriginal ?? _searchFor;
+            set
+            {
+                _searchForOriginal = value;
+                _searchFor = Layouts.SimpleLayout.Evaluate(value, LoggingConfiguration, throwConfigExceptions: false);
+            }
+        }
+        private string _searchFor;
+        private string _searchForOriginal;
 
         /// <summary>
         /// Gets or sets the replacement string.
         /// </summary>
         /// <value>The replacement string.</value>
         /// <docgen category='Layout Options' order='10' />
-        public string ReplaceWith { get; set; } = string.Empty;
+        public string ReplaceWith
+        {
+            get => _replaceWithOriginal ?? _replaceWith;
+            set
+            {
+                _replaceWithOriginal = value;
+                _replaceWith = Layouts.SimpleLayout.Evaluate(value, LoggingConfiguration, throwConfigExceptions: false);
+            }
+        }
+        private string _replaceWith = string.Empty;
+        private string _replaceWithOriginal;
 
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case.
@@ -82,16 +102,26 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool WholeWords { get; set; }
 
         /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+            if (_searchForOriginal != null)
+                _searchFor = Layouts.SimpleLayout.Evaluate(_searchForOriginal, LoggingConfiguration);
+            if (_replaceWithOriginal != null)
+                _replaceWith = Layouts.SimpleLayout.Evaluate(_replaceWithOriginal, LoggingConfiguration);
+        }
+
+        /// <inheritdoc/>
         protected override string Transform(string text)
         {
             if (IgnoreCase || WholeWords)
             {
                 var stringComparer = IgnoreCase ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture;
-                return StringHelpers.Replace(text, SearchFor, ReplaceWith, stringComparer, WholeWords);
+                return StringHelpers.Replace(text, _searchFor, _replaceWith, stringComparer, WholeWords);
             }
             else
             {
-                return text.Replace(SearchFor, ReplaceWith);
+                return text.Replace(_searchFor, _replaceWith);
             }
         }
     }
