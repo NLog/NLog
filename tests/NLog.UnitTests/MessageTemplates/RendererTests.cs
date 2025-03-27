@@ -50,6 +50,7 @@ namespace NLog.UnitTests.MessageTemplates
         [InlineData(" message {1} {0} {0}", new object[] { 'a', 'b' }, " message b a a")]
         [InlineData("char {one}", new object[] { 'X' }, "char X")]
         [InlineData("char {one:l}", new object[] { 'X' }, "char X")]
+        [InlineData("char {@one}", new object[] { 'X' }, "char \"X\"")]
         [InlineData(" message {{{1}}} {0} {0}", new object[] { "a", "b" }, " message {b} a a")]
         [InlineData(" message {{{one}}} {two} {three}", new object[] { "a", "b", "c" }, " message {a} b c")]
         [InlineData(" message {{{1} {0} {0}}}", new object[] { "a", "b" }, " message {b a a}")]

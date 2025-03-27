@@ -709,6 +709,8 @@ namespace NLog
             var timeout = cancellationToken.CanBeCanceled ? -1 : (int)DefaultFlushTimeout.TotalMilliseconds;
             var flushTimeout = System.Threading.Tasks.Task.Delay(timeout, cancellationToken).ContinueWith(prevTask => throw new TimeoutException("LogFactory Flush Timeout"));
             flushTimeout.ContinueWith(prevTask => { flushTimeoutHandler.Invoke(null); flushCompleted.TrySetCanceled(); });
+            if (cancellationToken.IsCancellationRequested)
+                throw new TimeoutException("LogFactory Flush Timeout");
             return System.Threading.Tasks.TaskExtensions.Unwrap(System.Threading.Tasks.Task.WhenAny(flushCompleted.Task, flushTimeout));
         }
 #endif
