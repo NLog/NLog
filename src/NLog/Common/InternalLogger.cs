@@ -47,9 +47,7 @@ namespace NLog.Common
     ///
     /// Writes to file, console or custom text writer (see <see cref="InternalLogger.LogWriter"/>)
     /// </summary>
-    /// <remarks>
-    /// Don't use <see cref="ExceptionHelper.MustBeRethrown"/> as that can lead to recursive calls - stackoverflow
-    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Internal-Logging">Documentation on NLog Wiki</seealso>
     public static partial class InternalLogger
     {
         private static readonly object LockObject = new object();
