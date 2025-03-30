@@ -391,7 +391,7 @@ namespace NLog
 
             try
             {
-                var disposeTimeout = System.Threading.Tasks.Task.Delay(DefaultFlushTimeout).ContinueWith(prevTask => throw new TimeoutException("LogFactory Dispose Timeout"));
+                var disposeTimeout = System.Threading.Tasks.Task.Delay(DefaultFlushTimeout).ContinueWith(prevTask => throw new OperationCanceledException("LogFactory Dispose Timeout"));
                 await System.Threading.Tasks.TaskExtensions.Unwrap(System.Threading.Tasks.Task.WhenAny(System.Threading.Tasks.Task.Run(() => DisposeInternal()), disposeTimeout)).ConfigureAwait(false);
                 GC.SuppressFinalize(this);
             }
@@ -707,10 +707,8 @@ namespace NLog
             }
 
             var timeout = cancellationToken.CanBeCanceled ? -1 : (int)DefaultFlushTimeout.TotalMilliseconds;
-            var flushTimeout = System.Threading.Tasks.Task.Delay(timeout, cancellationToken).ContinueWith(prevTask => throw new TimeoutException("LogFactory Flush Timeout"));
+            var flushTimeout = System.Threading.Tasks.Task.Delay(timeout, cancellationToken).ContinueWith(prevTask => throw new OperationCanceledException("LogFactory Flush Timeout"));
             flushTimeout.ContinueWith(prevTask => { flushTimeoutHandler.Invoke(null); flushCompleted.TrySetCanceled(); });
-            if (cancellationToken.IsCancellationRequested)
-                throw new TimeoutException("LogFactory Flush Timeout");
             return System.Threading.Tasks.TaskExtensions.Unwrap(System.Threading.Tasks.Task.WhenAny(flushCompleted.Task, flushTimeout));
         }
 #endif

@@ -110,7 +110,7 @@ namespace NLog.UnitTests
             logFactory.Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteToMethodCall((evt, parms) => { System.Threading.Thread.Sleep(5000); }));
             System.Threading.Tasks.Task.Run(() => logFactory.GetCurrentClassLogger().Info("Sleep")).Wait(50);
             var task = logFactory.FlushAsync(new CancellationTokenSource(100).Token);
-            Assert.Throws<TimeoutException>(() => task.GetAwaiter().GetResult());
+            Assert.Throws<OperationCanceledException>(() => task.GetAwaiter().GetResult());
         }
 #endif
 
