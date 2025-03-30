@@ -37,20 +37,23 @@ namespace NLog.Internal.NetworkSenders
     using System.Net.Security;
     using System.Net.Sockets;
     using System.Security.Authentication;
+    using System.Security.Cryptography.X509Certificates;
 
     internal sealed class SslSocketProxy : ISocket, IDisposable
     {
-        readonly AsyncCallback _sendCompleted;
-        readonly SocketProxy _socketProxy;
-        readonly string _host;
-        readonly SslProtocols _sslProtocol;
+        private readonly AsyncCallback _sendCompleted;
+        private readonly SocketProxy _socketProxy;
+        private readonly string _host;
+        private readonly SslProtocols _sslProtocol;
+        private readonly X509Certificate2Collection _sslCertificateOverride;
         SslStream _sslStream;
 
-        public SslSocketProxy(string host, SslProtocols sslProtocol, SocketProxy socketProxy)
+        public SslSocketProxy(string host, SslProtocols sslProtocol, SocketProxy socketProxy, X509Certificate2Collection sslCertificateOverride)
         {
             _socketProxy = socketProxy;
             _host = host;
             _sslProtocol = sslProtocol;
+            _sslCertificateOverride = sslCertificateOverride;
             _sendCompleted = (ar) => SocketProxySendCompleted(ar);
         }
 
@@ -125,7 +128,7 @@ namespace NLog.Internal.NetworkSenders
                         ReadTimeout = 20000
                     };
 
-                    AuthenticateAsClient(_sslStream, _host, _sslProtocol);
+                    AuthenticateAsClient(_sslStream, _host, _sslProtocol, _sslCertificateOverride);
                 }
                 catch (SocketException ex)
                 {
@@ -161,21 +164,28 @@ namespace NLog.Internal.NetworkSenders
             return socketError;
         }
 
-        private static void AuthenticateAsClient(SslStream sslStream, string targetHost, SslProtocols enabledSslProtocols)
+        private static void AuthenticateAsClient(SslStream sslStream, string targetHost, SslProtocols enabledSslProtocols, X509Certificate2Collection sslCertificateOverride)
         {
-            if (enabledSslProtocols != SslProtocols.Default)
-                sslStream.AuthenticateAsClient(targetHost, null, enabledSslProtocols, false);
+            if (enabledSslProtocols != SslProtocols.Default || sslCertificateOverride != null)
+            {
+                sslStream.AuthenticateAsClient(targetHost, sslCertificateOverride?.Count > 0 ? sslCertificateOverride : null, enabledSslProtocols, false);
+            }
             else
+            {
                 sslStream.AuthenticateAsClient(targetHost);
+            }
         }
 
-        private static bool UserCertificateValidationCallback(object sender, object certificate, object chain, SslPolicyErrors sslPolicyErrors)
+        private bool UserCertificateValidationCallback(object sender, object certificate, object chain, SslPolicyErrors sslPolicyErrors)
         {
             if (sslPolicyErrors == SslPolicyErrors.None)
                 return true;
 
-            Common.InternalLogger.Debug("SSL certificate errors were encountered when establishing connection to the server: {0}, Certificate: {1}", sslPolicyErrors, certificate);
-            return false;
+            Common.InternalLogger.Warn("SSL certificate errors were encountered when establishing connection to the server: {0}, Certificate: {1}", sslPolicyErrors, certificate);
+            if (certificate is null)
+                return false;
+
+            return _sslCertificateOverride != null;
         }
 
         public bool SendAsync(SocketAsyncEventArgs args)

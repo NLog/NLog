@@ -34,6 +34,9 @@
 namespace NLog.Internal.NetworkSenders
 {
     using System;
+    using System.Net;
+    using System.Net.Security;
+    using System.Security.Cryptography.X509Certificates;
 
     /// <summary>
     /// Network sender which uses HTTP or HTTPS POST.
@@ -45,6 +48,8 @@ namespace NLog.Internal.NetworkSenders
         internal IWebRequestFactory HttpRequestFactory { get; set; } = WebRequestFactory.Instance;
 
         internal TimeSpan SendTimeout { get; set; }
+
+        internal X509Certificate2Collection SslCertificateOverride { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpNetworkSender"/> class.
@@ -68,6 +73,18 @@ namespace NLog.Internal.NetworkSenders
             if (SendTimeout > TimeSpan.Zero)
             {
                 webRequest.Timeout = (int)SendTimeout.TotalMilliseconds;
+            }
+
+            if (SslCertificateOverride != null)
+            {
+                if (webRequest is HttpWebRequest httpWebRequest)
+                {
+                    if (SslCertificateOverride.Count > 0)
+                        httpWebRequest.ClientCertificates = SslCertificateOverride;
+#if NET45_OR_GREATER || NETSTANDARD
+                    httpWebRequest.ServerCertificateValidationCallback = UserCertificateValidationCallback;
+#endif
+                }
             }
 
             AsyncCallback onResponse =
@@ -131,6 +148,18 @@ namespace NLog.Internal.NetworkSenders
             {
                 BeginRequest(nextRequest.Value);
             }
+        }
+
+        private static bool UserCertificateValidationCallback(object sender, object certificate, object chain, SslPolicyErrors sslPolicyErrors)
+        {
+            if (sslPolicyErrors == SslPolicyErrors.None)
+                return true;
+
+            Common.InternalLogger.Warn("SSL certificate errors were encountered when establishing connection to the server: {0}, Certificate: {1}", sslPolicyErrors, certificate);
+            if (certificate is null)
+                return false;
+
+            return true;
         }
     }
 }

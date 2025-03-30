@@ -35,6 +35,7 @@ namespace NLog.Internal.NetworkSenders
 {
     using System;
     using System.Net.Sockets;
+    using System.Security.Cryptography.X509Certificates;
     using NLog.Targets;
 
     /// <summary>
@@ -45,7 +46,7 @@ namespace NLog.Internal.NetworkSenders
         public static readonly INetworkSenderFactory Default = new NetworkSenderFactory();
 
         /// <inheritdoc/>
-        public QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime, TimeSpan sendTimeout)
+        public QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, X509Certificate2Collection sslCertificateOverride, TimeSpan keepAliveTime, TimeSpan sendTimeout)
         {
             if (url.StartsWith("tcp://", StringComparison.OrdinalIgnoreCase))
             {
@@ -56,6 +57,7 @@ namespace NLog.Internal.NetworkSenders
                     SslProtocols = sslProtocols,
                     KeepAliveTime = keepAliveTime,
                     SendTimeout = sendTimeout,
+                    SslCertificateOverride = sslCertificateOverride,
                 };
             }
 
@@ -68,6 +70,7 @@ namespace NLog.Internal.NetworkSenders
                     SslProtocols = sslProtocols,
                     KeepAliveTime = keepAliveTime,
                     SendTimeout = sendTimeout,
+                    SslCertificateOverride = sslCertificateOverride,
                 };
             }
 
@@ -80,6 +83,7 @@ namespace NLog.Internal.NetworkSenders
                     SslProtocols = sslProtocols,
                     KeepAliveTime = keepAliveTime,
                     SendTimeout = sendTimeout,
+                    SslCertificateOverride = sslCertificateOverride,
                 };
             }
 
@@ -120,6 +124,7 @@ namespace NLog.Internal.NetworkSenders
                     MaxQueueSize = maxQueueSize,
                     OnQueueOverflow = onQueueOverflow,
                     SendTimeout = sendTimeout,
+                    SslCertificateOverride = sslCertificateOverride,
                 };
             }
 
@@ -130,6 +135,7 @@ namespace NLog.Internal.NetworkSenders
                     MaxQueueSize = maxQueueSize,
                     OnQueueOverflow = onQueueOverflow,
                     SendTimeout = sendTimeout,
+                    SslCertificateOverride = sslCertificateOverride,
                 };
             }
 

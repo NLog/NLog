@@ -40,6 +40,7 @@ namespace NLog.Targets
     using NLog.Common;
     using NLog.Layouts;
     using NLog.Internal.NetworkSenders;
+    using System.Security.Cryptography.X509Certificates;
 
     /// <summary>
     /// NetworkTarget for sending messages over the network using TCP / UDP sockets
@@ -79,6 +80,9 @@ namespace NLog.Targets
 
         private readonly char[] _reusableEncodingBuffer = new char[32 * 1024];
         private readonly StringBuilder _reusableStringBuilder = new StringBuilder();
+
+        private readonly object _certificateCacheLock = new object();
+        private Dictionary<string, X509Certificate2Collection> _certificateCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTarget" /> class.
@@ -229,6 +233,18 @@ namespace NLog.Targets
         public System.Security.Authentication.SslProtocols SslProtocols { get; set; } = System.Security.Authentication.SslProtocols.None;
 
         /// <summary>
+        /// Gets or sets the file path to custom SSL certificate for TCP Socket SSL connections
+        /// </summary>
+        /// <docgen category='Connection Options' order='16' />
+        public Layout SslCertificateFile { get; set; }
+
+        /// <summary>
+        /// Gets or sets the password for the custom SSL certificate specified by <see cref="SslCertificateFile"/>
+        /// </summary>
+        /// <docgen category='Connection Options' order='16' />
+        public Layout SslCertificatePassword { get; set; }
+
+        /// <summary>
         /// The number of seconds a connection will remain idle before the first keep-alive probe is sent
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
@@ -308,6 +324,12 @@ namespace NLog.Targets
 
                 _currentSenderCache.Clear();
             }
+
+            if (_certificateCache?.Count > 0)
+            {
+                // Safe to reset without lock, since immutable collection
+                _certificateCache = null;
+            }
         }
 
         /// <summary>
@@ -363,7 +385,7 @@ namespace NLog.Targets
             LinkedListNode<NetworkSender> senderNode;
             try
             {
-                senderNode = GetCachedNetworkSender(address);
+                senderNode = GetCachedNetworkSender(address, logEvent.LogEvent);
             }
             catch (Exception ex)
             {
@@ -428,7 +450,7 @@ namespace NLog.Targets
 
                 try
                 {
-                    sender = CreateNetworkSender(address);
+                    sender = CreateNetworkSender(address, logEvent.LogEvent);
                 }
                 catch (Exception ex)
                 {
@@ -557,7 +579,7 @@ namespace NLog.Targets
             return payload;
         }
 
-        private LinkedListNode<NetworkSender> GetCachedNetworkSender(string address)
+        private LinkedListNode<NetworkSender> GetCachedNetworkSender(string address, LogEventInfo logEventInfo)
         {
             lock (_currentSenderCache)
             {
@@ -590,7 +612,7 @@ namespace NLog.Targets
                     }
                 }
 
-                NetworkSender sender = CreateNetworkSender(address);
+                NetworkSender sender = CreateNetworkSender(address, logEventInfo);
                 lock (_openNetworkSenders)
                 {
                     senderNode = _openNetworkSenders.AddLast(sender);
@@ -601,9 +623,13 @@ namespace NLog.Targets
             }
         }
 
-        private NetworkSender CreateNetworkSender(string address)
+        private NetworkSender CreateNetworkSender(string address, LogEventInfo logEventInfo)
         {
-            var sender = SenderFactory.Create(address, MaxQueueSize, OnQueueOverflow, MaxMessageSize, SslProtocols, TimeSpan.FromSeconds(KeepAliveTimeSeconds), TimeSpan.FromSeconds(SendTimeoutSeconds));
+            var sslCertificateFile = SslCertificateFile?.Render(logEventInfo);
+            var sslCertificatePassword = SslCertificatePassword?.Render(logEventInfo);
+            var sslCertificateOverride = LoadSslCertificateFromFile(sslCertificateFile, sslCertificatePassword);
+
+            var sender = SenderFactory.Create(address, MaxQueueSize, OnQueueOverflow, MaxMessageSize, SslProtocols, sslCertificateOverride, TimeSpan.FromSeconds(KeepAliveTimeSeconds), TimeSpan.FromSeconds(SendTimeoutSeconds));
             sender.Initialize();
             if (KeepConnection || LogEventDropped != null)
             {
@@ -637,6 +663,87 @@ namespace NLog.Targets
         private static void WriteBytesToNetworkSender(NetworkSender sender, byte[] payload, AsyncContinuation continuation)
         {
             sender.Send(payload, 0, payload.Length, continuation);
+        }
+
+        internal X509Certificate2Collection LoadSslCertificateFromFile(string sslCertificateFile, string sslCertificatePassword)
+        {
+            if (sslCertificateFile is null)
+                return null;    // NOSONAR
+
+            if (_certificateCache != null && _certificateCache.TryGetValue(sslCertificateFile, out var clientCertificates))
+                return clientCertificates;  // Safe to lookup without lock, since immutable collection
+
+            try
+            {
+                lock (_certificateCacheLock)
+                {
+                    if (_certificateCache?.TryGetValue(sslCertificateFile, out clientCertificates) == true)
+                        return clientCertificates;
+
+                    if (string.IsNullOrEmpty(sslCertificateFile))
+                    {
+                        clientCertificates = new X509Certificate2Collection();
+                    }
+                    else if (sslCertificateFile.EndsWith(".pem", StringComparison.OrdinalIgnoreCase))
+                    {
+                        InternalLogger.Debug("{0}: Loading SSL certificate from PEM-file: {1}", this, sslCertificateFile);
+                        var clientCertificate = LoadCertificateFromPem(sslCertificateFile);
+                        clientCertificates = new X509Certificate2Collection(clientCertificate);
+                    }
+                    else
+                    {
+                        InternalLogger.Debug("{0}: Loading SSL certificate from file: {1}", this, sslCertificateFile);
+                        clientCertificates = new X509Certificate2Collection(new X509Certificate2(sslCertificateFile, string.IsNullOrEmpty(sslCertificatePassword) ? null : sslCertificatePassword));
+                    }
+
+                    var certificateCache = new Dictionary<string, X509Certificate2Collection>((_certificateCache?.Count ?? 0) + 1);
+                    if (_certificateCache != null)
+                    {
+                        foreach (var existingCertificate in _certificateCache)
+                            certificateCache.Add(existingCertificate.Key, existingCertificate.Value);
+                    }
+                    certificateCache[sslCertificateFile] = clientCertificates;
+                    _certificateCache = certificateCache;
+                    return clientCertificates;
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: Failed loading SSL certificate from file: {1}", this, sslCertificateFile);
+                throw new NLogRuntimeException($"NetworkTarget: Failed loading SSL certificate from file: {sslCertificateFile}", ex);
+            }
+        }
+
+        private static X509Certificate2 LoadCertificateFromPem(string fileName)
+        {
+            using (var reader = new System.IO.StreamReader(new System.IO.FileStream(fileName, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read), System.Text.Encoding.UTF8))
+            {
+                var pem = reader.ReadToEnd();
+                string base64 = GetBase64FromPem(pem);
+                byte[] certBytes = Convert.FromBase64String(base64);
+                return new X509Certificate2(certBytes);
+            }
+        }
+
+        private static string GetBase64FromPem(string pem)
+        {
+            const string header = "-----BEGIN CERTIFICATE-----";
+            const string footer = "-----END CERTIFICATE-----";
+
+            int start = pem.IndexOf(header, StringComparison.Ordinal) + header.Length;
+            if (start <= header.Length)
+            {
+                throw new NLogRuntimeException("Invalid PEM format: Missing BEGIN CERTIFICATE header");
+            }
+
+            int end = pem.IndexOf(footer, start, StringComparison.Ordinal);
+            if (end <= start)
+            {
+                throw new NLogRuntimeException("Invalid PEM format: Missing END CERTIFICATE footer");
+            }
+            string base64 = pem.Substring(start, end - start);
+            base64 = base64.Replace("\r", "").Replace("\n", "").Trim();
+            return base64;
         }
     }
 }

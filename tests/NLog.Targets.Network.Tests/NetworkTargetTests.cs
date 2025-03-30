@@ -1180,6 +1180,9 @@ namespace NLog.Targets.Network
         [InlineData("tls", SslProtocols.Tls)]
         [InlineData("tls11", SslProtocols.Tls11)]
         [InlineData("tls,tls11", SslProtocols.Tls11 | SslProtocols.Tls)]
+#if NET6_0_OR_GREATER
+        [InlineData("Tls13", SslProtocols.Tls13)]
+#endif
         public void SslProtocolsConfigTest(string sslOptions, SslProtocols expected)
         {
             var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterTarget<NetworkTarget>())
@@ -1193,6 +1196,48 @@ namespace NLog.Targets.Network
             Assert.Equal(expected, target.SslProtocols);
 
             logFactory.Shutdown();
+        }
+
+        [Fact]
+        public void InvalidSslCertificateFilePath()
+        {
+            var senderFactory = new MyQueudSenderFactory();
+
+            var target = new NetworkTarget();
+            target.Address = "tcp://${logger}.company.lan/";
+            target.SenderFactory = senderFactory;
+            target.Layout = "${message}";
+            target.KeepConnection = true;
+            target.SslProtocols = SslProtocols.Tls12;
+            target.SslCertificateFile = "{Invalid-Certificate-Path}";
+            target.SslCertificatePassword = "";
+
+            using (var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory)
+            {
+                var exception = Assert.Throws<NLogRuntimeException>(() => logFactory.GetCurrentClassLogger().Info("Fails because invalid SSL certificate path"));
+                Assert.Contains("SSL", exception.Message);
+            }
+        }
+
+        [Fact]
+        public void EmptySslCertificateFilePath()
+        {
+            var senderFactory = new MyQueudSenderFactory();
+            senderFactory.FailCounter = 1;
+
+            var target = new NetworkTarget();
+            target.Address = "tcp://[Invalid-SSL-Host]";
+            target.SenderFactory = senderFactory;
+            target.Layout = "${message}";
+            target.KeepConnection = true;
+            target.SslProtocols = SslProtocols.Tls12;
+            target.SslCertificateFile = "";
+            target.SslCertificatePassword = "";
+
+            using (var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory)
+            {
+                Assert.Throws<UriFormatException>(() => logFactory.GetCurrentClassLogger().Info("Fails because invalid SSL Host Address"));
+            }
         }
 
         [Theory]
@@ -1307,7 +1352,7 @@ namespace NLog.Targets.Network
             internal StringWriter Log = new StringWriter();
             private int _idCounter;
 
-            public QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime, TimeSpan sendTimeout)
+            public QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, SslProtocols sslProtocols, System.Security.Cryptography.X509Certificates.X509Certificate2Collection sslCertificateOverride, TimeSpan keepAliveTime, TimeSpan sendTimeout)
             {
                 var sender = new MyQueudNetworkSender(url, ++_idCounter, Log, this) { MaxQueueSize = maxQueueSize, OnQueueOverflow = onQueueOverflow };
                 Senders.Add(sender);
@@ -1331,7 +1376,7 @@ namespace NLog.Targets.Network
             public MemoryStream MemoryStream { get; } = new MemoryStream();
 
             public MyQueudNetworkSender(string url, int id, TextWriter log, MyQueudSenderFactory senderFactory)
-                : base(url)
+                : base(new Uri(url).ToString())
             {
                 _id = id;
                 _log = log;
