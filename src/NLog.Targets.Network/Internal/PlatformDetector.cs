@@ -62,6 +62,8 @@ namespace NLog.Targets.Internal
                 return PlatformOS.MacOSX;
             if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
                 return PlatformOS.Windows;
+            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Create("ANDROID")))
+                return PlatformOS.Linux;
 #endif
             return PlatformOS.Unknown;
         }

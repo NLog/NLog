@@ -36,6 +36,7 @@ namespace NLog.Internal.NetworkSenders
     using System;
     using System.IO;
     using System.Net.Sockets;
+    using System.Security.Cryptography.X509Certificates;
     using NLog.Common;
     using NLog.Targets.Internal;
 
@@ -64,6 +65,8 @@ namespace NLog.Internal.NetworkSenders
         internal AddressFamily AddressFamily { get; set; }
 
         internal System.Security.Authentication.SslProtocols SslProtocols { get; set; }
+
+        internal X509Certificate2Collection SslCertificateOverride { get; set; }
 
         internal TimeSpan KeepAliveTime { get; set; }
 
@@ -94,7 +97,7 @@ namespace NLog.Internal.NetworkSenders
 
             if (SslProtocols != System.Security.Authentication.SslProtocols.None)
             {
-                return new SslSocketProxy(host, SslProtocols, socketProxy);
+                return new SslSocketProxy(host, SslProtocols, socketProxy, SslCertificateOverride);
             }
 
             return socketProxy;

@@ -34,6 +34,7 @@
 namespace NLog.Internal.NetworkSenders
 {
     using System;
+    using System.Security.Cryptography.X509Certificates;
     using NLog.Targets;
 
     /// <summary>
@@ -49,11 +50,12 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="onQueueOverflow">The overflow action when reaching maximum queue size.</param>
         /// <param name="maxMessageSize">The maximum message size.</param>
         /// <param name="sslProtocols">SSL protocols for TCP</param>
+        /// <param name="sslCertificateOverride">SSL Certificate override</param>
         /// <param name="keepAliveTime">KeepAliveTime for TCP</param>
         /// <param name="sendTimeout">SendTimeout for TCP</param>
         /// <returns>
         /// A newly created network sender.
         /// </returns>
-        QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime, TimeSpan sendTimeout);
+        QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, X509Certificate2Collection sslCertificateOverride, TimeSpan keepAliveTime, TimeSpan sendTimeout);
     }
 }
