@@ -57,7 +57,7 @@ namespace NLog.LayoutRenderers
     {
         private static readonly DateTime log4jDateBase = new DateTime(1970, 1, 1);
 
-        private static readonly string dummyNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
+        private static readonly string dummyNamespace = "https://nlog-project.org/dummynamespace/" + Guid.NewGuid();
         private static readonly string dummyNamespaceRemover = " xmlns:log4j=\"" + dummyNamespace + "\"";
 
         private readonly ScopeContextNestedStatesLayoutRenderer _scopeNestedLayoutRenderer = new ScopeContextNestedStatesLayoutRenderer();

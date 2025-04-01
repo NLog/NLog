@@ -31,12 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System.Linq;
-
 namespace NLog.UnitTests
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Reflection;
     using System.Text;
     using NLog.Config;
@@ -47,8 +46,8 @@ namespace NLog.UnitTests
     /// </summary>
     public class ApiTests : NLogTestBase
     {
-        private Type[] allTypes;
-        private Assembly nlogAssembly = typeof(LogManager).Assembly;
+        private readonly Type[] allTypes;
+        private readonly Assembly nlogAssembly = typeof(LogManager).Assembly;
         private readonly Dictionary<Type, int> typeUsageCount = new Dictionary<Type, int>();
 
         public ApiTests()
@@ -274,21 +273,19 @@ namespace NLog.UnitTests
             // Do NOT add more incorrect class-names to this exlusion-list
             HashSet<string> oldFaultyClassNames = new HashSet<string>()
             {
-                "GarbageCollectorInfoLayoutRenderer",
-                "ScopeContextNestedStatesLayoutRenderer",
-                "ScopeContextPropertyLayoutRenderer",
-                "ScopeContextTimingLayoutRenderer",
-                "ScopeContextIndentLayoutRenderer",
-                "TraceActivityIdLayoutRenderer",
-                "SpecialFolderApplicationDataLayoutRenderer",
-                "SpecialFolderCommonApplicationDataLayoutRenderer",
-                "SpecialFolderLocalApplicationDataLayoutRenderer",
-                "DirectorySeparatorLayoutRenderer",
-                "LiteralWithRawValueLayoutRenderer",
-                "LocalIpAddressLayoutRenderer",
-                "VariableLayoutRenderer",
-                "ObjectPathRendererWrapper",
-                "PaddingLayoutRendererWrapper",
+                nameof(NLog.LayoutRenderers.GarbageCollectorInfoLayoutRenderer),
+                nameof(NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer),
+                nameof(NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer),
+                nameof(NLog.LayoutRenderers.ScopeContextTimingLayoutRenderer),
+                nameof(NLog.LayoutRenderers.ScopeContextIndentLayoutRenderer),
+                nameof(NLog.LayoutRenderers.SpecialFolderApplicationDataLayoutRenderer),
+                nameof(NLog.LayoutRenderers.SpecialFolderCommonApplicationDataLayoutRenderer),
+                nameof(NLog.LayoutRenderers.SpecialFolderLocalApplicationDataLayoutRenderer),
+                nameof(NLog.LayoutRenderers.DirectorySeparatorLayoutRenderer),
+                nameof(NLog.LayoutRenderers.LiteralWithRawValueLayoutRenderer),
+                nameof(NLog.LayoutRenderers.VariableLayoutRenderer),
+                nameof(NLog.LayoutRenderers.Wrappers.ObjectPathRendererWrapper),
+                nameof(NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper),
             };
 
             foreach (Type type in allTypes)

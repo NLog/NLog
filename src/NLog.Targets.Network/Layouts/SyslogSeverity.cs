@@ -1,4 +1,4 @@
-//
+﻿//
 // Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 //
 // All rights reserved.
@@ -31,44 +31,33 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Targets
+namespace NLog.Layouts
 {
-    using NLog.Config;
-    using NLog.Layouts;
-    using NLog.Targets.Internal;
-
-    /// <summary>
-    /// Represents a parameter for the <see cref="Log4JXmlEventLayout"/>
-    /// </summary>
-    [NLogConfigurationItem]
-    public class Log4JXmlEventParameter
+    /// <summary>Syslog severities</summary>
+    public enum SyslogSeverity
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Log4JXmlEventParameter" /> class.
-        /// </summary>
-        public Log4JXmlEventParameter()
-        {
-        }
+        /// <summary>Emergency severity</summary>
+        Emergency = 0,
 
-        /// <summary>
-        /// Gets or sets viewer parameter name.
-        /// </summary>
-        /// <docgen category='Layout Options' order='1' />
-        [RequiredParameter]
-        public string Name { get => _name; set => _name = XmlHelpers.RemoveInvalidXmlChars(value); }
-        private string _name;
+        /// <summary>Alert severity</summary>
+        Alert = 1,
 
-        /// <summary>
-        /// Gets or sets the layout that should be use to calculate the value for the parameter.
-        /// </summary>
-        /// <docgen category='Layout Options' order='10' />
-        [RequiredParameter]
-        public Layout Layout { get; set; }
+        /// <summary>Critical severity</summary>
+        Critical = 2,
 
-        /// <summary>
-        /// Gets or sets whether an attribute with empty value should be included in the output
-        /// </summary>
-        /// <docgen category='Layout Options' order='100' />
-        public bool IncludeEmptyValue { get; set; }
+        /// <summary>Error severity</summary>
+        Error = 3,
+
+        /// <summary>Warning severity</summary>
+        Warning = 4,
+
+        /// <summary>Notice severity</summary>
+        Notice = 5,
+
+        /// <summary>Informational severity</summary>
+        Informational = 6,
+
+        /// <summary>Debug severity</summary>
+        Debug = 7
     }
 }
