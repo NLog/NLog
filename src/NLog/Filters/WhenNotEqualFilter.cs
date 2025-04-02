@@ -69,8 +69,8 @@ namespace NLog.Filters
             StringComparison comparisonType = IgnoreCase
                                                   ? StringComparison.OrdinalIgnoreCase
                                                   : StringComparison.Ordinal;
-
-            if (!Layout.Render(logEvent).Equals(CompareTo, comparisonType))
+            string result = Layout.Render(logEvent, cacheLayoutResult: false);
+            if (!result.Equals(CompareTo, comparisonType))
             {
                 return Action;
             }
