@@ -75,7 +75,7 @@ namespace NLog.Config
         {
             object serviceInstance = TryGetService(serviceType);
             if (serviceInstance is null)
-                throw new NLogDependencyResolveException("Instance of class must be registered", serviceType);
+                throw new NLogDependencyResolveException($"Service Provider cannot resolve type {serviceType}", serviceType);
 
             return serviceInstance;
         }

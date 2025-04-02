@@ -74,15 +74,15 @@ namespace NLog.Config
                 }
                 catch (Exception ex)
                 {
-                    if (ex.MustBeRethrown())
+                    if (ex.MustBeRethrownImmediately())
                         throw;
 
-                    throw new NLogDependencyResolveException(ex.Message, ex, typeof(T));
+                    throw new NLogDependencyResolveException($"Service Provider cannot resolve type {typeof(T)} - {ex.Message}", ex, typeof(T));
                 }
 
                 if (ReferenceEquals(externalServiceProvider, serviceProvider))
                 {
-                    throw new NLogDependencyResolveException("Instance of class must be registered", typeof(T));
+                    throw new NLogDependencyResolveException($"Service Provider cannot resolve type {typeof(T)}", typeof(T));
                 }
 
                 // External IServiceProvider can be dangerous to use from Logging-library and can lead to deadlock or stackoverflow
@@ -100,7 +100,7 @@ namespace NLog.Config
             {
                 var service = (serviceProvider ?? LogManager.LogFactory.ServiceRepository).GetService(typeof(T)) as T;
                 if (service is null)
-                    throw new NLogDependencyResolveException("Instance of class is unavailable", typeof(T));
+                    throw new NLogDependencyResolveException($"Service Provider cannot resolve type {typeof(T)}", typeof(T));
 
                 return service;
             }
@@ -109,14 +109,14 @@ namespace NLog.Config
                 if (ex.ServiceType == typeof(T))
                     throw;
 
-                throw new NLogDependencyResolveException(ex.Message, ex, typeof(T));
+                throw new NLogDependencyResolveException($"Service Provider cannot resolve type {typeof(T)} - {ex.Message}", ex, typeof(T));
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown())
+                if (ex.MustBeRethrownImmediately())
                     throw;
 
-                throw new NLogDependencyResolveException(ex.Message, ex, typeof(T));
+                throw new NLogDependencyResolveException($"Service Provider cannot resolve type {typeof(T)} - {ex.Message}", ex, typeof(T));
             }
         }
 
