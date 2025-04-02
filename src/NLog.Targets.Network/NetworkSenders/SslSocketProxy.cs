@@ -134,13 +134,13 @@ namespace NLog.Internal.NetworkSenders
                 {
                     if (proxyArgs != null)
                         proxyArgs.SocketError = ex.SocketErrorCode;
+                    NLog.Common.InternalLogger.Error(ex, "NetworkTarget: Failed to complete SSL handshake");
                 }
                 catch (Exception ex)
                 {
                     if (proxyArgs != null)
-                    {
                         proxyArgs.SocketError = GetSocketError(ex);
-                    }
+                    NLog.Common.InternalLogger.Error(ex, "NetworkTarget: Failed to complete SSL handshake");
                 }
                 finally
                 {

@@ -39,7 +39,6 @@ namespace NLog.Layouts
     using System.Text;
     using NLog.Config;
     using NLog.LayoutRenderers;
-    using NLog.Targets;
 
     /// <summary>
     /// A specialized layout that renders Log4j-compatible XML events.

@@ -341,6 +341,7 @@ namespace NLog.Targets
         {
             string address = RenderLogEvent(Address, logEvent.LogEvent);
             byte[] payload = GetBytesToWrite(logEvent.LogEvent);
+            byte[] header = GetHeaderToWrite(logEvent.LogEvent, address, payload);
             int messageSize = payload.Length;
 
             InternalLogger.Trace("{0}: Sending {1} bytes to address: '{2}'", this, messageSize, address);
@@ -372,15 +373,15 @@ namespace NLog.Targets
 
             if (KeepConnection)
             {
-                WriteBytesToCachedNetworkSender(address, payload, logEvent);
+                WriteBytesToCachedNetworkSender(address, header, payload, logEvent);
             }
             else
             {
-                WriteBytesToNewNetworkSender(address, payload, logEvent);
+                WriteBytesToNewNetworkSender(address, header, payload, logEvent);
             }
         }
 
-        private void WriteBytesToCachedNetworkSender(string address, byte[] payload, AsyncLogEventInfo logEvent)
+        private void WriteBytesToCachedNetworkSender(string address, byte[] header, byte[] payload, AsyncLogEventInfo logEvent)
         {
             LinkedListNode<NetworkSender> senderNode;
             try
@@ -397,6 +398,7 @@ namespace NLog.Targets
             WriteBytesToNetworkSender(
                 senderNode.Value,
                 payload,
+                header,
                 ex =>
                 {
                     if (ex != null)
@@ -410,7 +412,7 @@ namespace NLog.Targets
                 });
         }
 
-        private void WriteBytesToNewNetworkSender(string address, byte[] payload, AsyncLogEventInfo logEvent)
+        private void WriteBytesToNewNetworkSender(string address, byte[] header, byte[] payload, AsyncLogEventInfo logEvent)
         {
             NetworkSender sender;
             LinkedListNode<NetworkSender> linkedListNode;
@@ -465,6 +467,7 @@ namespace NLog.Targets
             WriteBytesToNetworkSender(
                 sender,
                 payload,
+                header,
                 ex =>
                 {
                     lock (_openNetworkSenders)
@@ -510,7 +513,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets the bytes to be written.
+        /// Gets the payload bytes to be written.
         /// </summary>
         /// <param name="logEvent">Log event.</param>
         /// <returns>Byte array.</returns>
@@ -524,6 +527,18 @@ namespace NLog.Targets
             }
 
             return payload;
+        }
+
+        /// <summary>
+        /// Gets the header bytes to be written.
+        /// </summary>
+        /// <param name="logEvent">Log event.</param>
+        /// <param name="address">network address.</param>
+        /// <param name="payload">Payload buffer.</param>
+        /// <returns>Byte array.</returns>
+        protected virtual byte[] GetHeaderToWrite(LogEventInfo logEvent, string address, byte[] payload)
+        {
+            return null;
         }
 
         private byte[] RenderBytesToWrite(LogEventInfo logEvent)
@@ -660,8 +675,10 @@ namespace NLog.Targets
             }
         }
 
-        private static void WriteBytesToNetworkSender(NetworkSender sender, byte[] payload, AsyncContinuation continuation)
+        private static void WriteBytesToNetworkSender(NetworkSender sender, byte[] payload, byte[] header, AsyncContinuation continuation)
         {
+            if (header?.Length > 0)
+                sender.Send(header, 0, header.Length, continuation);
             sender.Send(payload, 0, payload.Length, continuation);
         }
 
@@ -716,7 +733,7 @@ namespace NLog.Targets
 
         private static X509Certificate2 LoadCertificateFromPem(string fileName)
         {
-            using (var reader = new System.IO.StreamReader(new System.IO.FileStream(fileName, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read), System.Text.Encoding.UTF8))
+            using (var reader = new System.IO.StreamReader(new System.IO.FileStream(fileName, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read), Encoding.UTF8))
             {
                 var pem = reader.ReadToEnd();
                 string base64 = GetBase64FromPem(pem);
