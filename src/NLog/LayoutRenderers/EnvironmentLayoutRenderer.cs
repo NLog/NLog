@@ -77,7 +77,7 @@ namespace NLog.LayoutRenderers
             if (simpleLayout is null)
                 return string.Empty;
             if (simpleLayout.IsFixedText || simpleLayout.IsSimpleStringText)
-                return simpleLayout.Render(logEvent);
+                return simpleLayout.Render(logEvent, cacheLayoutResult: false);
             return null;
         }
 

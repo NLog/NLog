@@ -123,7 +123,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Contents of inner layout.</returns>
         protected virtual string RenderInner(LogEventInfo logEvent)
         {
-            return Inner?.Render(logEvent) ?? string.Empty;
+            return Inner?.Render(logEvent, cacheLayoutResult: false) ?? string.Empty;
         }
     }
 }
