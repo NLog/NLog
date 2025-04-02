@@ -88,7 +88,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void InjectBaseDirAndCheckConfigPathsTest()
         {
             string fakeBaseDir = @"y:\root\";
-            var appEnvironment = new Mocks.AppEnvironmentMock(null, null);
+            var appEnvironment = new Mocks.AppEnvironmentMock(null);
             appEnvironment.AppDomainBaseDirectory = fakeBaseDir;
             var baseLayoutRenderer = new NLog.LayoutRenderers.BaseDirLayoutRenderer(appEnvironment);
 
@@ -102,7 +102,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var tempDir = System.IO.Path.GetTempPath();
             var processPath = CurrentProcessPath;
 
-            var appEnvironment = new Mocks.AppEnvironmentMock(null, null);
+            var appEnvironment = new Mocks.AppEnvironmentMock(null);
             appEnvironment.AppDomainBaseDirectory = tempDir;
             appEnvironment.UserTempFilePath = tempDir;
             appEnvironment.CurrentProcessFilePath = processPath;
@@ -120,7 +120,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void BaseDir_FixFilePathForNet9_WhenLongUNC()
         {
-            var appEnvironment = new Mocks.AppEnvironmentMock(null, null);
+            var appEnvironment = new Mocks.AppEnvironmentMock(null);
             appEnvironment.AppDomainBaseDirectory = @"\\?\UNC\major\tom\groundcontrol\bin\Development\net9.0\NLog.config";
             var baseLayoutRenderer = new NLog.LayoutRenderers.BaseDirLayoutRenderer(appEnvironment);
 
