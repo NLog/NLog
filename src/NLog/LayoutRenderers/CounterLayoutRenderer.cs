@@ -90,7 +90,7 @@ namespace NLog.LayoutRenderers
                 return currentValue;
             }
 
-            var sequenceName = Sequence.Render(logEvent);
+            var sequenceName = Sequence.Render(logEvent, cacheLayoutResult: false);
             lock (Sequences)
             {
                 if (!Sequences.TryGetValue(sequenceName, out var nextValue))
