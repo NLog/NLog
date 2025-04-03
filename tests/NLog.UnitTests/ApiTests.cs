@@ -1,4 +1,4 @@
-//
+﻿//
 // Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 //
 // All rights reserved.
@@ -36,8 +36,11 @@ namespace NLog.UnitTests
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Diagnostics;
+    using System.IO;
     using System.Reflection;
     using System.Text;
+    using System.Text.RegularExpressions;
     using NLog.Config;
     using Xunit;
 
@@ -49,7 +52,7 @@ namespace NLog.UnitTests
         private readonly Type[] allTypes;
         private readonly Assembly nlogAssembly = typeof(LogManager).Assembly;
         private readonly Dictionary<Type, int> typeUsageCount = new Dictionary<Type, int>();
-
+        
         public ApiTests()
         {
             allTypes = typeof(LogManager).Assembly.GetTypes();
@@ -465,6 +468,66 @@ namespace NLog.UnitTests
             }
 
             Assert.Empty(missingTypes);
+        }
+
+        [Fact]
+        public void ShouldNotHaveExplicitStaticConstructors()
+        {
+            // Known explicit satic constructors that are need to be replaced with best apporoach
+            HashSet<string> KnownStaticConstructors = new HashSet<string>
+            {
+                "LogFactory.cs",            //nameof(NLog.LogFactory)
+                "ConcurrentFileTarget.cs",  //NLog.Targets.ConcurrentFile
+                "DatabaseTargetTests.cs",   //NLog.Database.DatabaseTargetTests
+                "ProcessRunner.cs",         //NLog.Targets.ConcurrentFile.Tests.ProcessRunner
+                "LogManagerTests.cs",       //nameof(NLog.UnitTests.LogManagerTests)
+            };
+
+
+            var staticConstructorPattern = new Regex(
+                @"static\s+\w+\s*\(\s*\)",
+                RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
+            var files = Directory.GetFiles(GetSolutionSourceDirectory(), "*.cs", SearchOption.AllDirectories);
+            var foundConstructors = files
+                .SelectMany(file =>
+                {
+                    var lines = File.ReadAllLines(file);
+                    return lines
+                        .Select((line, index) => new { line, index })
+                        .Where(x => staticConstructorPattern.IsMatch(x.line))
+                        .Select(x => new
+                        {
+                            FilePath = Path.GetFileName(file),
+                            LineNumber = x.index + 1,
+                            ConstructorSignature = x.line.Trim()
+                        });
+                })
+                .ToList();
+            var newConstructors = foundConstructors
+                                  .Where(c => !KnownStaticConstructors.Contains($"{c.FilePath}"))
+                                  .ToList();
+            if (newConstructors.Count > 0)
+            {
+                var message = $"Found new explicit static constructors in:\n" +
+                              string.Join("\n", newConstructors.Select(x => $"  - {x}"));
+
+                Assert.Fail(message);
+            }
+            else
+            {
+                Debug.WriteLine("No new explicit static constructors found. Test passed!");
+            }
+        }
+
+        private static string GetSolutionSourceDirectory()
+        {
+            string currentDir = AppContext.BaseDirectory;
+            while (currentDir != null && !Directory.Exists(Path.Combine(currentDir, "NLog")))
+            {
+                currentDir = Directory.GetParent(currentDir)?.FullName;
+            }
+            return currentDir != null ? Path.Combine(currentDir, "NLog") : throw new DirectoryNotFoundException("Could not find 'NLog' directory.");
         }
     }
 }
