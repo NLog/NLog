@@ -508,13 +508,13 @@ namespace NLog.LayoutRenderers
                     try
                     {
                         sb.AppendFormat("{0}: ", key);
+                        separator = ExceptionDataSeparator;
                         sb.AppendFormat("{0}", ex.Data[key]);
                     }
                     catch (Exception exception)
                     {
                         InternalLogger.Warn(exception, "Exception-LayoutRenderer Could not output Data-collection for Exception: {0}", ex.GetType());
                     }
-                    separator = ExceptionDataSeparator;
                 }
             }
         }
@@ -543,13 +543,22 @@ namespace NLog.LayoutRenderers
                 if (ExcludeDefaultProperties.Contains(property.Name))
                     continue;
 
-                var propertyValue = property.Value?.ToString();
-                if (string.IsNullOrEmpty(propertyValue))
-                    continue;
+                try
+                {
+                    var propertyValue = property.Value?.ToString();
+                    if (string.IsNullOrEmpty(propertyValue))
+                        continue;
 
-                sb.Append(separator);
-                sb.AppendFormat("{0}: {1}", property.Name, propertyValue);
-                separator = ExceptionDataSeparator;
+                    sb.Append(separator);
+                    sb.Append(property.Name);
+                    separator = _exceptionDataSeparator;
+                    sb.Append(": ");
+                    sb.AppendFormat("{0}", propertyValue);
+                }
+                catch (Exception exception)
+                {
+                    InternalLogger.Warn(exception, "Exception-LayoutRenderer Could not output Property-collection for Exception: {0}", ex.GetType());
+                }
             }
         }
 
