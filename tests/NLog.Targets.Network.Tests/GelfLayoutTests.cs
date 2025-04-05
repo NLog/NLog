@@ -39,7 +39,7 @@ namespace NLog.Targets.Network
 
     public class GelfLayoutTests
     {
-        private static string HostName = ResolveHostname();
+        private static readonly string HostName = ResolveHostname();
 
         public GelfLayoutTests()
         {
@@ -54,7 +54,6 @@ namespace NLog.Targets.Network
         public void CanRenderGelf()
         {
             var gelfLayout = new GelfLayout();
-            gelfLayout.GelfFields.Add(new TargetPropertyWithContext("_LoggerName", "${logger}"));
 
             var memTarget = new NLog.Targets.MemoryTarget() { Layout = gelfLayout };
             using (var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(memTarget)).LogFactory)
@@ -83,12 +82,14 @@ namespace NLog.Targets.Network
                         + "\"short_message\":\"{1}\","
                         + "\"timestamp\":{2},"
                         + "\"level\":{3},"
-                        + "\"_LoggerName\":\"{4}\""
+                        + "\"_logLevel\":\"{4}\","
+                        + "\"_logger\":\"{5}\""
                         + "}}",
                     HostName,
                     message,
                     expectedDateTime,
                     (int)GelfLayout.ToSyslogSeverity(logLevel),
+                    logLevel,
                     loggerName);
 
                 Assert.Equal(expectedGelf, renderedGelf);
@@ -196,13 +197,65 @@ namespace NLog.Targets.Network
         }
 
         [Fact]
+        public void CanRenderEventProperties()
+        {
+            var gelfLayout = new GelfLayout();
+            gelfLayout.GelfFields.Add(new TargetPropertyWithContext(" ThreadId ", "${threadid}") { PropertyType = typeof(int) });
+            gelfLayout.IncludeEventProperties = true;
+            gelfLayout.IncludeProperties.Add("RequestId");
+
+            var memTarget = new NLog.Targets.MemoryTarget() { Layout = gelfLayout };
+            using (var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(memTarget).WithAsync()).LogFactory)
+            {
+                var loggerName = "TestLogger";
+                var dateTime = DateTime.Now;
+                var message = "hello, {world} from {RequestId} :)";
+                var logLevel = LogLevel.Info;
+                var requestId = Guid.NewGuid();
+
+                var logEvent = new LogEventInfo
+                {
+                    TimeStamp = dateTime,
+                    LoggerName = loggerName,
+                    Level = logLevel,
+                    Message = message,
+                    Parameters = new object[] { "Gelf", requestId },
+                };
+
+                logFactory.GetLogger(loggerName).Log(logEvent);
+                logFactory.Flush();
+                Assert.Single(memTarget.Logs);
+                var renderedGelf = memTarget.Logs[0];
+
+                int threadId = System.Threading.Thread.CurrentThread.ManagedThreadId;
+                var expectedDateTime = GelfLayout.ToUnixTimeStamp(dateTime);
+                var expectedGelf = string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                    "{{" + "\"version\":\"1.1\","
+                        + "\"host\":\"{0}\","
+                        + "\"short_message\":\"hello, Gelf from {5} :)\","
+                        + "\"timestamp\":{2},"
+                        + "\"level\":{3},"
+                        + "\"_ThreadId\":{4},"
+                        + "\"_RequestId\":\"{5}\""
+                        + "}}",
+                    HostName,
+                    message,
+                    expectedDateTime,
+                    (int)GelfLayout.ToSyslogSeverity(logLevel),
+                    threadId,
+                    requestId);
+                Assert.Equal(expectedGelf, renderedGelf);
+            }
+        }
+
+        [Fact]
         public void CanRenderScopeContext()
         {
             var gelfLayout = new GelfLayout();
-            gelfLayout.GelfFields.Add(new TargetPropertyWithContext("ThreadId", "${threadid}") { PropertyType = typeof(int) });
+            gelfLayout.GelfFields.Add(new TargetPropertyWithContext(" ThreadId ", "${threadid}") { PropertyType = typeof(int) });
             gelfLayout.IncludeEventProperties = true;
             gelfLayout.IncludeScopeProperties = true;
-            gelfLayout.IncludeProperties.Add("RequestId");
+            gelfLayout.ExcludeProperties.Add("World");
 
             var memTarget = new NLog.Targets.MemoryTarget() { Layout = gelfLayout };
             using (var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(memTarget).WithAsync()).LogFactory)

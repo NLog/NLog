@@ -120,7 +120,7 @@ namespace NLog.Layouts
         private static readonly LayoutRenderer _enableThreadAgnosticImmutable = new ExceptionDataLayoutRenderer() { Item = string.Empty };
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SyslogLayout" /> class.
+        /// Initializes a new instance of the <see cref="GelfLayout" /> class.
         /// </summary>
         public GelfLayout()
         {
@@ -133,7 +133,7 @@ namespace NLog.Layouts
         {
             if (GelfFields.Count == 0)
             {
-                GelfFields.Add(new TargetPropertyWithContext("_loglevel", "${level}"));
+                GelfFields.Add(new TargetPropertyWithContext("_logLevel", "${level}"));
                 GelfFields.Add(new TargetPropertyWithContext("_logger", "${logger}"));
                 GelfFields.Add(new TargetPropertyWithContext("_exceptionType", "${exception:Format=Type}") { IncludeEmptyValue = false });
                 GelfFields.Add(new TargetPropertyWithContext("_exceptionMessage", "${exception:Format=Message}") { IncludeEmptyValue = false });
@@ -218,7 +218,7 @@ namespace NLog.Layouts
             var fullMessage = GelfFullMessage?.Render(logEvent) ?? string.Empty;
             if (string.IsNullOrEmpty(fullMessage) && shortMessage.Length > ShortMessageMaxLength)
                 fullMessage = shortMessage;
-            else if (fullMessage.Length < ShortMessageMaxLength && string.Equals(fullMessage, shortMessage, StringComparison.Ordinal))
+            else if (fullMessage?.Length < ShortMessageMaxLength && string.Equals(fullMessage, shortMessage, StringComparison.Ordinal))
                 fullMessage = string.Empty;
             if (!string.IsNullOrEmpty(fullMessage))
             {
@@ -349,9 +349,9 @@ namespace NLog.Layouts
             {
                 for (int i = 0; i < scopeProperties.Count; ++i)
                 {
-                    if (string.Equals(scopeProperties[i].Key, gelfFieldName, StringComparison.OrdinalIgnoreCase))
+                    if (gelfFieldName.Equals(scopeProperties[i].Key, StringComparison.OrdinalIgnoreCase))
                         return true;
-                    if (normalPropertyName != null && string.Equals(scopeProperties[i].Key, normalPropertyName, StringComparison.OrdinalIgnoreCase))
+                    if (normalPropertyName?.Equals(scopeProperties[i].Key, StringComparison.OrdinalIgnoreCase) == true)
                         return true;
                 }
             }
@@ -415,14 +415,6 @@ namespace NLog.Layouts
                 }
 
                 return scopePropertyList;
-            }
-
-            if (scopeProperties is ICollection<KeyValuePair<string, object>> scopePropertyCollection)
-            {
-                if (IncludeProperties?.Count > 0)
-                    return scopePropertyCollection.Where(p => IncludeProperties.Contains(p.Key)).ToList();
-                else
-                    return scopePropertyCollection.Count > 0 ? scopePropertyCollection.ToList() : null;
             }
 
             if (IncludeProperties?.Count > 0)

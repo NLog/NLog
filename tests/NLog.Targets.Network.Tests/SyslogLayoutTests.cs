@@ -39,9 +39,9 @@ namespace NLog.Targets.Network
 
     public class SyslogLayoutTests
     {
-        private static string HostName = ResolveHostname();
-        private static string ProcessName = ResolveProcessName();
-        private static int ProcessId = ResolveProcessId();
+        private static readonly string HostName = ResolveHostname();
+        private static readonly string ProcessName = ResolveProcessName();
+        private static readonly int ProcessId = ResolveProcessId();
 
         public SyslogLayoutTests()
         {

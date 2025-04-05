@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Targets.Network.Targets
+namespace NLog.Targets
 {
     using System.Collections.Generic;
     using NLog.Config;
@@ -87,6 +87,16 @@ namespace NLog.Targets.Network.Targets
             {
                 // Fixed GelfLayout
             }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GelfTarget" /> class.
+        /// </summary>
+        public GelfTarget()
+        {
+            LineEnding = LineEndingMode.Null; // Graylog Server oftens uses NUL-byte as message-delimiter for TCP (but prevents using compression)
+            NewLine = false;    // LineEnding must be explicit enabled when using TCP
+            Layout = _gelfLayout;
         }
     }
 }

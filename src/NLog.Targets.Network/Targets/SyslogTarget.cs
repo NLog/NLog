@@ -94,7 +94,7 @@ namespace NLog.Targets
         public List<TargetPropertyWithContext> StructuredDataParams => _syslogLayout.StructuredDataParams;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NetworkTarget" /> class.
+        /// Initializes a new instance of the <see cref="SyslogTarget" /> class.
         /// </summary>
         public SyslogTarget()
         {
@@ -114,6 +114,7 @@ namespace NLog.Targets
                 return Encoding.ASCII.GetBytes($"{octetCount} ");
             }
 
+            // Skip octet framing for UDP protocols by returning null
             return null;
         }
 
