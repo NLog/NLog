@@ -234,6 +234,7 @@ namespace NLog.Layouts
         /// </remarks>
         /// <docgen category='Layout Options' order='100' />
         [Obsolete("Marked obsolete with NLog 5.5. Should never escape forward slash")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EscapeForwardSlash { get; set; }
 
         /// <inheritdoc/>

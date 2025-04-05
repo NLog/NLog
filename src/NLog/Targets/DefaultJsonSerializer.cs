@@ -95,9 +95,10 @@ namespace NLog.Targets
             }
             else if (value is string str)
             {
+                var escapeUnicode = options.EscapeUnicode;
                 foreach (var chr in str)
                 {
-                    if (RequiresJsonEscape(chr, options.EscapeUnicode))
+                    if (RequiresJsonEscape(chr, escapeUnicode))
                     {
                         StringBuilder sb = new StringBuilder(str.Length + 4);
                         sb.Append('"');

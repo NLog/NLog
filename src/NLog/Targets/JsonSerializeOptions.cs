@@ -71,6 +71,7 @@ namespace NLog.Targets
         /// Should forward slashes be escaped? If true, / will be converted to \/
         /// </summary>
         [Obsolete("Marked obsolete with NLog 5.5. Should never escape forward slash")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EscapeForwardSlash { get; set; }
 
         /// <summary>
