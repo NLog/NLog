@@ -34,6 +34,7 @@
 namespace NLog.Layouts
 {
     using System;
+    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
 
@@ -133,7 +134,8 @@ namespace NLog.Layouts
         /// If not set explicitly then the value of the parent will be used as default.
         /// </remarks>
         /// <docgen category='Layout Options' order='100' />
-        [Obsolete("Marked obsolete with NLog 5.5. Should never escape forward slash")]
+        [Obsolete("Marked obsolete since forward slash are valid JSON. Marked obsolete with NLog v5.4")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EscapeForwardSlash { get; set; }
 
         /// <summary>

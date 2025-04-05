@@ -34,6 +34,7 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
+    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
 
@@ -70,6 +71,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </remarks>
         /// <docgen category="Layout Options" order="10"/>
         [Obsolete("Marked obsolete with NLog 5.5. Should never escape forward slash")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EscapeForwardSlash { get; set; }
 
         /// <inheritdoc/>
