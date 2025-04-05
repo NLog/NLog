@@ -162,7 +162,7 @@ namespace NLog.Layouts
                 layout.Render(logEvent, sb);
                 if (beforeValueLength != sb.Length)
                 {
-                    NLog.Targets.DefaultJsonSerializer.PerformJsonEscapeWhenNeeded(sb, beforeValueLength, true, false);
+                    NLog.Targets.DefaultJsonSerializer.PerformJsonEscapeWhenNeeded(sb, beforeValueLength, true);
                     sb.Append('"');
                 }
             }

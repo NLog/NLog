@@ -39,9 +39,9 @@ namespace NLog.Targets.Network
 
     public class SyslogLayoutTests
     {
-        private static string HostName = ResolveHostname();
-        private static string ProcessName = ResolveProcessName();
-        private static int ProcessId = ResolveProcessId();
+        private static readonly string HostName = ResolveHostname();
+        private static readonly string ProcessName = ResolveProcessName();
+        private static readonly int ProcessId = ResolveProcessId();
 
         public SyslogLayoutTests()
         {
@@ -66,7 +66,7 @@ namespace NLog.Targets.Network
                 var timestamp = string.Format(System.Globalization.CultureInfo.InvariantCulture, dateFormat, logEvent.TimeStamp);
 
                 Assert.Single(memTarget.Logs);
-                Assert.Equal($"<134>{timestamp} {HostName} {ProcessName}[{ProcessId}]: {logEvent.Message}", memTarget.Logs[0]);
+                Assert.Equal($"<14>{timestamp} {HostName} {ProcessName}[{ProcessId}]: {logEvent.Message}", memTarget.Logs[0]);
             }
         }
 
@@ -84,7 +84,7 @@ namespace NLog.Targets.Network
                 var timestamp = string.Format(System.Globalization.CultureInfo.InvariantCulture, dateFormat, logEvent.TimeStamp);
 
                 Assert.Single(memTarget.Logs);
-                Assert.Equal($"<134>{timestamp} {HostName} {ProcessName}[{ProcessId}]: Hello World Goodbye World", memTarget.Logs[0]);
+                Assert.Equal($"<14>{timestamp} {HostName} {ProcessName}[{ProcessId}]: Hello World Goodbye World", memTarget.Logs[0]);
             }
         }
 
@@ -126,7 +126,7 @@ namespace NLog.Targets.Network
                 var timestamp = string.Format(System.Globalization.CultureInfo.InvariantCulture, dateFormat, logEvent.TimeStamp);
 
                 Assert.Single(memTarget.Logs);
-                Assert.Equal($"<134>{timestamp} Hello_World Destroy_World[Goodbye_World]: {logEvent.Message}", memTarget.Logs[0]);
+                Assert.Equal($"<14>{timestamp} Hello_World Destroy_World[Goodbye_World]: {logEvent.Message}", memTarget.Logs[0]);
             }
         }
 
@@ -141,7 +141,7 @@ namespace NLog.Targets.Network
                 logger.Log(logEvent);
 
                 Assert.Single(memTarget.Logs);
-                Assert.Equal($"<134>1 {logEvent.TimeStamp:o} {HostName} {ProcessName} {ProcessId} - {logEvent.Message}", memTarget.Logs[0]);
+                Assert.Equal($"<14>1 {logEvent.TimeStamp:o} {HostName} {ProcessName} {ProcessId} - {logEvent.Message}", memTarget.Logs[0]);
             }
         }
 
@@ -156,7 +156,7 @@ namespace NLog.Targets.Network
                 logger.Log(logEvent);
 
                 Assert.Single(memTarget.Logs);
-                Assert.Equal($"<134>1 {logEvent.TimeStamp:o} {HostName} {ProcessName} {ProcessId} - Hello World\r\nGoodbye World", memTarget.Logs[0]);
+                Assert.Equal($"<14>1 {logEvent.TimeStamp:o} {HostName} {ProcessName} {ProcessId} - Hello World\r\nGoodbye World", memTarget.Logs[0]);
             }
         }
 
@@ -192,7 +192,7 @@ namespace NLog.Targets.Network
                 logger.Log(logEvent);
 
                 Assert.Single(memTarget.Logs);
-                Assert.Equal($"<134>1 {logEvent.TimeStamp:o} {HostName} {ProcessName} {ProcessId} - {logEvent.Message}", memTarget.Logs[0]);
+                Assert.Equal($"<14>1 {logEvent.TimeStamp:o} {HostName} {ProcessName} {ProcessId} - {logEvent.Message}", memTarget.Logs[0]);
             }
         }
 
@@ -200,20 +200,22 @@ namespace NLog.Targets.Network
         public void SyslogLayout_Rfc5424_StructuredData()
         {
             var syslogLayout = new SyslogLayout() { Rfc5424 = true };
-            syslogLayout.StructuredDataParams.Add(new TargetPropertyWithContext(" Hello World ", " Goodbye World "));
+            syslogLayout.StructuredDataParams.Add(new TargetPropertyWithContext(" ThreadId ", " ${threadid} "));
             syslogLayout.IncludeEventProperties = true;
 
             var memTarget = new NLog.Targets.MemoryTarget() { Layout = syslogLayout };
-            using (var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(memTarget)).LogFactory)
+            using (var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(memTarget).WithAsync()).LogFactory)
             {
                 var guid = Guid.NewGuid();
 
                 var logger = logFactory.GetCurrentClassLogger();
                 var logEvent = LogEventInfo.Create(LogLevel.Info, null, null, "Hello {World} with {CorrelationKey}", new object[] { "\nEarth\n", guid });
                 logger.Log(logEvent);
+                logFactory.Flush();
 
+                int threadId = System.Threading.Thread.CurrentThread.ManagedThreadId;
                 Assert.Single(memTarget.Logs);
-                Assert.Equal($"<134>1 {logEvent.TimeStamp:o} {HostName} {ProcessName} {ProcessId} - [meta World=\" Earth \" CorrelationKey=\"{guid}\" Hello_World=\" Goodbye World \"] {logEvent.FormattedMessage}", memTarget.Logs[0]);
+                Assert.Equal($"<14>1 {logEvent.TimeStamp:o} {HostName} {ProcessName} {ProcessId} - [meta World=\" Earth \" CorrelationKey=\"{guid}\" ThreadId=\" {threadId} \"] {logEvent.FormattedMessage}", memTarget.Logs[0]);
             }
         }
 

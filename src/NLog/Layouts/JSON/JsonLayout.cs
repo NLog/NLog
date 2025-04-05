@@ -56,7 +56,7 @@ namespace NLog.Layouts
 
         private LimitRecursionJsonConvert JsonConverter
         {
-            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, EscapeForwardSlash, ResolveService<IJsonConverter>()));
+            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, ResolveService<IJsonConverter>()));
             set => _jsonConverter = value;
         }
         private LimitRecursionJsonConvert _jsonConverter;
@@ -73,11 +73,11 @@ namespace NLog.Layouts
             private readonly Targets.DefaultJsonSerializer _serializer;
             private readonly Targets.JsonSerializeOptions _serializerOptions;
 
-            public LimitRecursionJsonConvert(int maxRecursionLimit, bool escapeForwardSlash, IJsonConverter converter)
+            public LimitRecursionJsonConvert(int maxRecursionLimit, IJsonConverter converter)
             {
                 _converter = converter;
                 _serializer = converter as Targets.DefaultJsonSerializer;
-                _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit), EscapeForwardSlash = escapeForwardSlash };
+                _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit) };
             }
 
             public bool SerializeObject(object value, StringBuilder builder)
@@ -107,7 +107,8 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(JsonAttribute), "attribute")]
-        public IList<JsonAttribute> Attributes { get; } = new List<JsonAttribute>();
+        public IList<JsonAttribute> Attributes => _attributes;
+        private readonly List<JsonAttribute> _attributes = new List<JsonAttribute>();
 
         /// <summary>
         /// Gets or sets the option to suppress the extra spaces in the output json
@@ -232,12 +233,8 @@ namespace NLog.Layouts
         /// If not set explicitly then the value of the parent will be used as default.
         /// </remarks>
         /// <docgen category='Layout Options' order='100' />
-        public bool EscapeForwardSlash
-        {
-            get => _escapeForwardSlashInternal ?? false;
-            set => _escapeForwardSlashInternal = value;
-        }
-        private bool? _escapeForwardSlashInternal;
+        [Obsolete("Marked obsolete with NLog 5.5. Should never escape forward slash")]
+        public bool EscapeForwardSlash { get; set; }
 
         /// <inheritdoc/>
         protected override void InitializeLayout()
@@ -255,20 +252,9 @@ namespace NLog.Layouts
 
             _precalculateLayouts = (IncludeScopeProperties || IncludeEventProperties) ? null : ResolveLayoutPrecalculation(Attributes.Select(atr => atr.Layout));
 
-            if (_escapeForwardSlashInternal.HasValue && Attributes?.Count > 0)
+            if (_attributes.Count > 0)
             {
-                foreach (var attribute in Attributes)
-                {
-                    if (!attribute.EscapeForwardSlashInternal.HasValue)
-                    {
-                        attribute.EscapeForwardSlash = _escapeForwardSlashInternal.Value;
-                    }
-                }
-            }
-
-            if (Attributes?.Count > 0)
-            {
-                foreach (var attribute in Attributes)
+                foreach (var attribute in _attributes)
                 {
                     if (!attribute.IncludeEmptyValue && !attribute.Encode && attribute.Layout is JsonLayout jsonLayout && !jsonLayout._renderEmptyObject.HasValue)
                     {
@@ -313,13 +299,10 @@ namespace NLog.Layouts
         {
             int orgLength = sb.Length;
 
-            //Memory profiling pointed out that using a foreach-loop was allocating
-            //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < Attributes.Count; i++)
+            foreach (var attribute in _attributes)
             {
-                var attrib = Attributes[i];
                 int beforeAttribLength = sb.Length;
-                if (!RenderAppendJsonPropertyValue(attrib, logEvent, sb, beforeAttribLength == orgLength))
+                if (!RenderAppendJsonPropertyValue(attribute, logEvent, sb, beforeAttribLength == orgLength))
                 {
                     sb.Length = beforeAttribLength;
                 }
@@ -387,7 +370,7 @@ namespace NLog.Layouts
             sb.Append(beginJsonMessage ? _beginJsonMessage : _beginJsonPropertyName);
 
             if (ensureStringEscape)
-                Targets.DefaultJsonSerializer.AppendStringEscape(sb, propName, false, false);
+                Targets.DefaultJsonSerializer.AppendStringEscape(sb, propName, false);
             else
                 sb.Append(propName);
 
@@ -464,7 +447,7 @@ namespace NLog.Layouts
                 // Overrides MaxRecursionLimit as message-template tells us it is unsafe
                 int originalStart = sb.Length;
                 ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
-                PerformJsonEscapeIfNeeded(sb, originalStart, EscapeForwardSlash);
+                PerformJsonEscapeIfNeeded(sb, originalStart);
             }
             else
             {
@@ -472,7 +455,7 @@ namespace NLog.Layouts
             }
         }
 
-        private static void PerformJsonEscapeIfNeeded(StringBuilder sb, int valueStart, bool escapeForwardSlash)
+        private static void PerformJsonEscapeIfNeeded(StringBuilder sb, int valueStart)
         {
             var builderLength = sb.Length;
             if (builderLength - valueStart <= 2)
@@ -480,12 +463,12 @@ namespace NLog.Layouts
 
             for (int i = valueStart + 1; i < builderLength - 1; ++i)
             {
-                if (Targets.DefaultJsonSerializer.RequiresJsonEscape(sb[i], false, escapeForwardSlash))
+                if (Targets.DefaultJsonSerializer.RequiresJsonEscape(sb[i], false))
                 {
                     var jsonEscape = sb.ToString(valueStart + 1, sb.Length - valueStart - 2);
                     sb.Length = valueStart;
                     sb.Append('"');
-                    Targets.DefaultJsonSerializer.AppendStringEscape(sb, jsonEscape, false, escapeForwardSlash);
+                    Targets.DefaultJsonSerializer.AppendStringEscape(sb, jsonEscape, false);
                     sb.Append('"');
                     break;
                 }

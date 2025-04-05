@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NLog.Config;
+using NLog.LayoutRenderers;
 using NLog.Targets;
 
 namespace NLog.Layouts
@@ -10,7 +11,10 @@ namespace NLog.Layouts
     /// <summary>
     /// A specialized layout that renders Syslog-formatted events in format Rfc3164 / Rfc5424
     /// </summary>
-    public class SyslogLayout : Layout
+    [Layout("SyslogLayout")]
+    [ThreadAgnostic]
+    [AppDomainFixedOutput]
+    public class SyslogLayout : CompoundLayout
     {
         private const string Rfc5424DefaultVersion = "1";
         private const string Rfc3164TimestampFormat = "{0:MMM} {0,11:d HH:mm:ss}";
@@ -119,7 +123,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Device Facility
         /// </summary>
-        public SyslogFacility SyslogFacility { get; set; } = SyslogFacility.Local0;
+        public SyslogFacility SyslogFacility { get; set; } = SyslogFacility.User;
 
         /// <summary>
         /// Gets or sets the prefix for StructuredData when <see cref="Rfc5424"/> = true
@@ -140,6 +144,12 @@ namespace NLog.Layouts
         private KeyValuePair<SyslogFacility, Dictionary<SyslogSeverity, string>> _priValueMapping;
 
         /// <summary>
+        /// Disables <see cref="ThreadAgnosticAttribute"/> to capture volatile LogEvent-properties from active thread context
+        /// </summary>
+        public LayoutRenderer DisableThreadAgnostic => IncludeEventProperties ? _enableThreadAgnosticImmutable : null;
+        private static readonly LayoutRenderer _enableThreadAgnosticImmutable = new ExceptionDataLayoutRenderer() { Item = string.Empty };
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SyslogLayout" /> class.
         /// </summary>
         public SyslogLayout()
@@ -147,6 +157,42 @@ namespace NLog.Layouts
             SyslogHostName = "${hostname}";
             SyslogAppName = "${processname}";
             SyslogProcessId = "${processid}";
+        }
+
+        /// <inheritdoc/>
+        protected override void InitializeLayout()
+        {
+            // CompoundLayout includes optimization, so only doing precalculate/caching of relevant Layouts (instead of the entire SysLog-message)
+            Layouts.Clear();
+            if (!IncludeEventProperties)
+            {
+                if (SyslogTimestamp != null)
+                    Layouts.Add(SyslogTimestamp);
+                if (SyslogHostName != null)
+                    Layouts.Add(SyslogHostName);
+                if (SyslogAppName != null)
+                    Layouts.Add(SyslogAppName);
+                if (SyslogProcessId != null)
+                    Layouts.Add(SyslogProcessId);
+                if (SyslogMessageId != null)
+                    Layouts.Add(SyslogMessageId);
+                if (SyslogMessage != null)
+                    Layouts.Add(SyslogMessage);
+                if (SyslogSeverity != null)
+                    Layouts.Add(SyslogSeverity);
+                if (StructuredDataId != null)
+                    Layouts.Add(StructuredDataId);                
+                for (int i = 0; i < StructuredDataParams.Count; ++i)
+                    Layouts.Add(StructuredDataParams[i].Layout);
+            }
+
+            base.InitializeLayout();
+        }
+
+        /// <inheritdoc/>
+        protected override void CloseLayout()
+        {
+            ValueFormatter = null;
         }
 
         /// <inheritdoc/>
@@ -428,33 +474,41 @@ namespace NLog.Layouts
         /// </remarks>
         private static bool IsAscii(char c) => (uint)c <= '\x007f';
 
-        private static readonly Dictionary<LogLevel, SyslogSeverity> _severityMapping = new Dictionary<LogLevel, SyslogSeverity>
+        private static readonly SyslogSeverity[] _severityMapping = new []
         {
-            { LogLevel.Fatal, Layouts.SyslogSeverity.Emergency },
-            { LogLevel.Error, Layouts.SyslogSeverity.Error },
-            { LogLevel.Warn, Layouts.SyslogSeverity.Warning },
-            { LogLevel.Info, Layouts.SyslogSeverity.Informational },
-            { LogLevel.Debug, Layouts.SyslogSeverity.Debug },
-            { LogLevel.Trace, Layouts.SyslogSeverity.Debug }
+            NLog.Layouts.SyslogSeverity.Debug,
+            NLog.Layouts.SyslogSeverity.Debug,
+            NLog.Layouts.SyslogSeverity.Informational,
+            NLog.Layouts.SyslogSeverity.Warning,
+            NLog.Layouts.SyslogSeverity.Error,
+            NLog.Layouts.SyslogSeverity.Emergency,
+            NLog.Layouts.SyslogSeverity.Emergency,
         };
 
         private static SyslogSeverity ResolveSyslogSeverity(LogLevel logLevel)
         {
-            return _severityMapping[logLevel];
+            try
+            {
+                return _severityMapping[logLevel.Ordinal];
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return NLog.Layouts.SyslogSeverity.Emergency;
+            }
         }
 
         private static Dictionary<SyslogSeverity, string> ResolveFacilityMapper(SyslogFacility facility)
         {
             return (new SyslogSeverity[]
             {
-                    Layouts.SyslogSeverity.Emergency,
-                    Layouts.SyslogSeverity.Alert,
-                    Layouts.SyslogSeverity.Critical,
-                    Layouts.SyslogSeverity.Error,
-                    Layouts.SyslogSeverity.Warning,
-                    Layouts.SyslogSeverity.Notice,
-                    Layouts.SyslogSeverity.Informational,
-                    Layouts.SyslogSeverity.Debug
+                    NLog.Layouts.SyslogSeverity.Emergency,
+                    NLog.Layouts.SyslogSeverity.Alert,
+                    NLog.Layouts.SyslogSeverity.Critical,
+                    NLog.Layouts.SyslogSeverity.Error,
+                    NLog.Layouts.SyslogSeverity.Warning,
+                    NLog.Layouts.SyslogSeverity.Notice,
+                    NLog.Layouts.SyslogSeverity.Informational,
+                    NLog.Layouts.SyslogSeverity.Debug
             }).ToDictionary(s => s, s => ResolvePriHeader(facility, s));
         }
 
