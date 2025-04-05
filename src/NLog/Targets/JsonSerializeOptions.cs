@@ -44,21 +44,21 @@ namespace NLog.Targets
         /// <summary>
         /// Add quotes around object keys?
         /// </summary>
-        [Obsolete("Marked obsolete on NLog 5.0.")]
+        [Obsolete("Marked obsolete with NLog 5.0.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool QuoteKeys { get; set; } = true;
 
         /// <summary>
         /// Format provider for value
         /// </summary>
-        [Obsolete("Marked obsolete on NLog 5.0. Should always be InvariantCulture.")]
+        [Obsolete("Marked obsolete with NLog 5.0. Should always be InvariantCulture.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IFormatProvider FormatProvider { get; set; }
 
         /// <summary>
         /// Format string for value
         /// </summary>
-        [Obsolete("Marked obsolete on NLog 5.0. Should always be InvariantCulture.")]
+        [Obsolete("Marked obsolete with NLog 5.0. Should always be InvariantCulture.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Format { get; set; }
 
@@ -70,6 +70,7 @@ namespace NLog.Targets
         /// <summary>
         /// Should forward slashes be escaped? If true, / will be converted to \/
         /// </summary>
+        [Obsolete("Marked obsolete with NLog 5.5. Should never escape forward slash")]
         public bool EscapeForwardSlash { get; set; }
 
         /// <summary>

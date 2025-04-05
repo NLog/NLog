@@ -88,7 +88,7 @@ namespace NLog.Layouts
                 else
                 {
                     var builder = new System.Text.StringBuilder();
-                    Targets.DefaultJsonSerializer.AppendStringEscape(builder, value, false, false);
+                    Targets.DefaultJsonSerializer.AppendStringEscape(builder, value, false);
                     _name = builder.ToString();
                 }
             }
@@ -133,8 +133,8 @@ namespace NLog.Layouts
         /// If not set explicitly then the value of the parent will be used as default.
         /// </remarks>
         /// <docgen category='Layout Options' order='100' />
-        public bool EscapeForwardSlash { get => EscapeForwardSlashInternal ?? false; set => EscapeForwardSlashInternal = value; }
-        internal bool? EscapeForwardSlashInternal { get; private set; }
+        [Obsolete("Marked obsolete with NLog 5.5. Should never escape forward slash")]
+        public bool EscapeForwardSlash { get; set; }
 
         /// <summary>
         /// Gets or sets whether an attribute with empty value should be included in the output
@@ -170,7 +170,7 @@ namespace NLog.Layouts
 
                 if (Encode)
                 {
-                    Targets.DefaultJsonSerializer.PerformJsonEscapeWhenNeeded(builder, orgLength, EscapeUnicode, EscapeForwardSlash);
+                    Targets.DefaultJsonSerializer.PerformJsonEscapeWhenNeeded(builder, orgLength, EscapeUnicode);
                     builder.Append('"');
                 }
             }

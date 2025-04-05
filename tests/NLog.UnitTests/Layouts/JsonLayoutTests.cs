@@ -1043,7 +1043,7 @@ namespace NLog.UnitTests.Layouts
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
-                 <layout type=""JsonLayout"" IncludeAllProperties='true' escapeForwardSlash='true'>
+                 <layout type=""JsonLayout"" IncludeAllProperties='true'>
                  </layout>
                 </target>
             </targets>
@@ -1051,7 +1051,6 @@ namespace NLog.UnitTests.Layouts
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>").LogFactory;
-
 
             var logger = logFactory.GetLogger("A");
 
@@ -1061,7 +1060,7 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo1);
 
-            logFactory.AssertDebugLastMessage("{ \"InvalidCharacters\": [\"|\",\"#\",\"{\",\"}\",\"%\",\"&\",\"\\\"\",\"~\",\"+\",\"\\\\\",\"\\/\",\":\",\"*\",\"?\",\"<\",\">\"] }");
+            logFactory.AssertDebugLastMessage("{ \"InvalidCharacters\": [\"|\",\"#\",\"{\",\"}\",\"%\",\"&\",\"\\\"\",\"~\",\"+\",\"\\\\\",\"/\",\":\",\"*\",\"?\",\"<\",\">\"] }");
         }
 
         [Fact]
@@ -1106,7 +1105,6 @@ namespace NLog.UnitTests.Layouts
                 <target name='debug' type='Debug'  >
                   <layout type='JsonLayout' escapeForwardSlash='false' includeAllProperties='true'>
                     <attribute name='myurl1' layout='${event-properties:myurl}' />
-                    <attribute name='myurl2' layout='${event-properties:myurl}' escapeForwardSlash='true' />
                   </layout>
                 </target>
             </targets>
@@ -1121,7 +1119,7 @@ namespace NLog.UnitTests.Layouts
             logEventInfo1.Properties.Add("myurl", "http://hello.world.com/");
             logger.Debug(logEventInfo1);
 
-            logFactory.AssertDebugLastMessage("{ \"myurl1\": \"http://hello.world.com/\", \"myurl2\": \"http:\\/\\/hello.world.com\\/\", \"myurl\": \"http://hello.world.com/\" }");
+            logFactory.AssertDebugLastMessage("{ \"myurl1\": \"http://hello.world.com/\", \"myurl\": \"http://hello.world.com/\" }");
         }
 
         [Fact]
