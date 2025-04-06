@@ -40,6 +40,7 @@ namespace NLog.Targets.AtomicFile.Tests
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
+    using System.Text;
     using System.Threading;
     using NLog.Common;
     using NLog.Targets;
@@ -123,7 +124,7 @@ namespace NLog.Targets.AtomicFile.Tests
 
 #if !DISABLE_FILE_INTERNAL_LOGGING
             var logWriter = new StringWriter { NewLine = Environment.NewLine };
-            NLog.Common.InternalLogger.LogLevel = LogLevel.Trace;
+            NLog.Common.InternalLogger.LogLevel = LogLevel.Warn;
             NLog.Common.InternalLogger.LogFile = Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex));
             NLog.Common.InternalLogger.LogWriter = logWriter;
             NLog.Common.InternalLogger.LogToConsole = true;
@@ -283,9 +284,37 @@ namespace NLog.Targets.AtomicFile.Tests
                 catch (Exception ex)
                 {
                     var reoderProblem = equalsWhenReorderd is null ? "Dunno" : (equalsWhenReorderd == true ? "Yes" : "No");
-                    throw new InvalidOperationException($"Error when comparing path {tempPath} for process {currentProcess}. Is this a recording problem? {reoderProblem}", ex);
+                    throw new InvalidOperationException($"Error when comparing path {tempPath} for process {currentProcess}. Is this a reordering problem? {reoderProblem}", ex);
                 }
             }
+#if !DISABLE_FILE_INTERNAL_LOGGING
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                Console.WriteLine();
+
+                StringBuilder sb = new StringBuilder();
+                sb.Append(ex.Message);
+
+                for (int i = 0; i < numProcesses; i++)
+                {
+                    var internalLogFile = Path.Combine(tempPath, string.Format("Internal_{0}.txt", i));
+                    if (File.Exists(internalLogFile))
+                    {
+                        sb.AppendFormat(" MultiProcessId={0}", numProcesses);
+                        sb.AppendLine();
+                        foreach (var line in File.ReadAllLines(internalLogFile))
+                            sb.AppendLine(line);
+                        sb.AppendLine();
+                    }
+                }
+
+                if (sb.Length > ex.Message.Length)
+                    throw new InvalidOperationException(sb.ToString(), ex);
+                else
+                    throw;
+            }
+#endif
             finally
             {
                 try
@@ -306,11 +335,17 @@ namespace NLog.Targets.AtomicFile.Tests
         [InlineData(5, 4000, "none")]
         [InlineData(10, 2000, "none")]
 #if !MONO
-        // MONO Doesn't work well with global mutex, and it is needed for successful concurrent archive operations
+        // Linux doesn't work well with concurrent archive operations
         [InlineData(2, 500, "none|archive")]
 #endif
         public void SimpleConcurrentTest(int numProcesses, int numLogs, string mode)
         {
+            if (mode.Contains("archive") && IsLinux())
+            {
+                Console.WriteLine("[SKIP] ConcurrentWritesMultiProcessTests.SimpleConcurrentTest Concurrent archive not supported on Linux");
+                return;
+            }
+
             for (int i = 1; i <= 3; ++i)
             {
                 try
@@ -361,6 +396,12 @@ namespace NLog.Targets.AtomicFile.Tests
             string mode = args[3];
 
             MultiProcessExecutor(processIndex, fileName, numLogsString, mode);
+        }
+
+        protected static bool IsLinux()
+        {
+            var val = Environment.GetEnvironmentVariable("WINDIR");
+            return string.IsNullOrEmpty(val);
         }
     }
 }
