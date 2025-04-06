@@ -1,5 +1,6 @@
 using NLog;
-using NLog.Win32.Targets;
+using NLog.Config;
+using NLog.Targets;
 
 class Example
 {
@@ -8,7 +9,9 @@ class Example
         ColoredConsoleTarget target = new ColoredConsoleTarget();
         target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${message}";
 
-        NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
         Logger logger = LogManager.GetLogger("Example");
         logger.Trace("trace log message");

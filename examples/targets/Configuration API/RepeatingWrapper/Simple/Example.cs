@@ -1,9 +1,7 @@
-using System;
-
 using NLog;
+using NLog.Config;
 using NLog.Targets;
 using NLog.Targets.Wrappers;
-using System.Diagnostics;
 
 class Example
 {
@@ -16,7 +14,9 @@ class Example
         target.WrappedTarget = wrappedTarget;
         target.RepeatCount = 3;
 
-        NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
         Logger logger = LogManager.GetLogger("Example");
         logger.Debug("log message");

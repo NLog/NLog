@@ -1,13 +1,11 @@
 using NLog;
 using NLog.Config;
-using NLog.Win32.Targets;
+using NLog.Targets;
 
 class Example
 {
     static void Main(string[] args)
     {
-        NLog.Internal.InternalLogger.LogToConsole = true;
-
         MSMQTarget target = new MSMQTarget();
         target.Queue = ".\\private$\\nlog";
         target.Label = "${message}";
@@ -15,7 +13,9 @@ class Example
         target.CreateQueueIfNotExists = true;
         target.Recoverable = true;
 
-        SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
         Logger l = LogManager.GetLogger("AAA");
         l.Error("This is an error. It goes to .\\private$\\nlog queue.");
