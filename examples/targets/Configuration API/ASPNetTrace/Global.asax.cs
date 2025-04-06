@@ -2,6 +2,7 @@ using System;
 using System.Web;
 
 using NLog;
+using NLog.Config;
 using NLog.Targets;
 
 namespace SomeWebApplication
@@ -19,7 +20,9 @@ namespace SomeWebApplication
             ASPNetTraceTarget target = new ASPNetTraceTarget();
             target.Layout = "${logger} ${message}";
 
-            NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+            LoggingConfiguration nlogConfig = new LoggingConfiguration();
+            nlogConfig.AddRuleForAllLevels(target);
+            LogManager.Configuration = nlogConfig;
         }
     }
 }

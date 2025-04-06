@@ -1,5 +1,6 @@
 using NLog;
-using NLog.Win32.Targets;
+using NLog.Config;
+using NLog.Targets;
 
 class Example
 {
@@ -21,7 +22,10 @@ class Example
                     ConsoleOutputColor.Yellow, // foreground color
                     ConsoleOutputColor.DarkBlue) // background color
                 );
-        NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
         // LogManager.Configuration = new NLog.Config.XmlLoggingConfiguration("ColoredConsoleTargetRowHighlighting.nlog");
 
