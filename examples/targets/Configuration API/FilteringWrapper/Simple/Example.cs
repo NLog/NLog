@@ -1,9 +1,7 @@
-using System;
-
 using NLog;
+using NLog.Config;
 using NLog.Targets;
 using NLog.Targets.Wrappers;
-using System.Diagnostics;
 
 class Example
 {
@@ -17,7 +15,9 @@ class Example
 
         filteringTarget.Condition = "contains('${message}','1')";
 
-        NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(filteringTarget, LogLevel.Debug);
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(filteringTarget);
+        LogManager.Configuration = nlogConfig;
 
         Logger logger = LogManager.GetLogger("Example");
         logger.Debug("log message 0");
