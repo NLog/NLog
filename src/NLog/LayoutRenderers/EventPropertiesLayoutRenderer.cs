@@ -90,6 +90,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets whether to perform case-sensitive property-name lookup
         /// </summary>
+        /// <docgen category='Layout Options' order='100' />
         public bool IgnoreCase
         {
             get => _ignoreCase;

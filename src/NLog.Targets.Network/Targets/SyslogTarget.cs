@@ -77,8 +77,8 @@ namespace NLog.Targets
         /// <inheritdoc cref="SyslogLayout.SyslogMessage"/>
         public Layout SyslogMessage { get => _syslogLayout.SyslogMessage; set => _syslogLayout.SyslogMessage = value; }
 
-        /// <inheritdoc cref="SyslogLayout.SyslogSeverity"/>
-        public Layout<SyslogSeverity> SyslogSeverity { get => _syslogLayout.SyslogSeverity; set => _syslogLayout.SyslogSeverity = value; }
+        /// <inheritdoc cref="SyslogLayout.SyslogLevel"/>
+        public Layout<SyslogLevel> SyslogLevel { get => _syslogLayout.SyslogLevel; set => _syslogLayout.SyslogLevel = value; }
 
         /// <inheritdoc cref="SyslogLayout.SyslogFacility"/>
         public SyslogFacility SyslogFacility { get => _syslogLayout.SyslogFacility; set => _syslogLayout.SyslogFacility = value; }

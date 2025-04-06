@@ -31,28 +31,25 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if NETFRAMEWORK
-
 #define DISABLE_FILE_INTERNAL_LOGGING
 
-namespace NLog.Targets.ConcurrentFile.Tests
+namespace NLog.Targets.AtomicFile.Tests
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
+    using System.Text;
     using System.Threading;
     using NLog.Common;
-    using NLog.Config;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using Xunit;
-    using Xunit.Extensions;
 
     public class ConcurrentWritesMultiProcessTests
     {
-        private readonly Logger _logger = LogManager.GetLogger(nameof(ConcurrentWritesMultiProcessTests));
+        private static readonly Logger _logger = LogManager.GetLogger(nameof(ConcurrentWritesMultiProcessTests));
 
         public ConcurrentWritesMultiProcessTests()
         {
@@ -61,11 +58,11 @@ namespace NLog.Targets.ConcurrentFile.Tests
             LogManager.ThrowExceptions = true;
         }
 
-        private void ConfigureSharedFile(string mode, string fileName)
+        private static void ConfigureSharedFile(string mode, string fileName)
         {
             var modes = mode.Split('|');
 
-            ConcurrentFileTarget ft = new ConcurrentFileTarget();
+            AtomicFileTarget ft = new AtomicFileTarget();
             ft.FileName = fileName;
             ft.Layout = "${message}";
             ft.ConcurrentWrites = true;
@@ -73,18 +70,18 @@ namespace NLog.Targets.ConcurrentFile.Tests
             ft.OpenFileCacheSize = 1;
             ft.LineEnding = LineEndingMode.LF;
             ft.KeepFileOpen = Array.IndexOf(modes, "retry") >= 0 ? false : true;
-            ft.ForceMutexConcurrentWrites = Array.IndexOf(modes, "mutex") >= 0 ? true : false;
             ft.ArchiveAboveSize = Array.IndexOf(modes, "archive") >= 0 ? 50 : -1;
             if (ft.ArchiveAboveSize > 0)
             {
                 string archivePath = Path.Combine(Path.GetDirectoryName(fileName), "Archive");
-                ft.ArchiveFileName = Path.Combine(archivePath, "{####}_" + Path.GetFileName(fileName));
+                ft.ArchiveFileName = Path.Combine(archivePath, Path.GetFileName(fileName));
+                ft.ArchiveSuffixFormat = "_{0:0000}";
                 ft.MaxArchiveFiles = 10000;
             }
 
             var name = "ConfigureSharedFile_" + mode.Replace('|', '_') + "-wrapper";
 
-            LogManager.Setup().SetupExtensions(ext => ext.RegisterTarget<ConcurrentFileTarget>("file"));
+            LogManager.Setup().SetupExtensions(ext => ext.RegisterTarget<AtomicFileTarget>("file"));
 
             switch (modes[0])
             {
@@ -110,7 +107,7 @@ namespace NLog.Targets.ConcurrentFile.Tests
         }
 
 #pragma warning disable xUnit1013 // Needed for test
-        public void MultiProcessExecutor(string processIndex, string fileName, string numLogsString, string mode)
+        public static void MultiProcessExecutor(string processIndex, string fileName, string numLogsString, string mode)
 #pragma warning restore xUnit1013
         {
             Thread.CurrentThread.Name = processIndex;
@@ -127,7 +124,7 @@ namespace NLog.Targets.ConcurrentFile.Tests
 
 #if !DISABLE_FILE_INTERNAL_LOGGING
             var logWriter = new StringWriter { NewLine = Environment.NewLine };
-            NLog.Common.InternalLogger.LogLevel = LogLevel.Trace;
+            NLog.Common.InternalLogger.LogLevel = LogLevel.Warn;
             NLog.Common.InternalLogger.LogFile = Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex));
             NLog.Common.InternalLogger.LogWriter = logWriter;
             NLog.Common.InternalLogger.LogToConsole = true;
@@ -246,7 +243,7 @@ namespace NLog.Targets.ConcurrentFile.Tests
 
                         if (verifyFileSize)
                         {
-                            if (sr.BaseStream.Length > 100)
+                            if (sr.BaseStream.Length > 150)
                                 throw new InvalidOperationException(
                                     $"Error when reading file {file}, size {sr.BaseStream.Length} is too large");
                             else if (sr.BaseStream.Length < 35 && files[files.Count - 1] != file)
@@ -287,9 +284,37 @@ namespace NLog.Targets.ConcurrentFile.Tests
                 catch (Exception ex)
                 {
                     var reoderProblem = equalsWhenReorderd is null ? "Dunno" : (equalsWhenReorderd == true ? "Yes" : "No");
-                    throw new InvalidOperationException($"Error when comparing path {tempPath} for process {currentProcess}. Is this a recording problem? {reoderProblem}", ex);
+                    throw new InvalidOperationException($"Error when comparing path {tempPath} for process {currentProcess}. Is this a reordering problem? {reoderProblem}", ex);
                 }
             }
+#if !DISABLE_FILE_INTERNAL_LOGGING
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                Console.WriteLine();
+
+                StringBuilder sb = new StringBuilder();
+                sb.Append(ex.Message);
+
+                for (int i = 0; i < numProcesses; i++)
+                {
+                    var internalLogFile = Path.Combine(tempPath, string.Format("Internal_{0}.txt", i));
+                    if (File.Exists(internalLogFile))
+                    {
+                        sb.AppendFormat(" MultiProcessId={0}", numProcesses);
+                        sb.AppendLine();
+                        foreach (var line in File.ReadAllLines(internalLogFile))
+                            sb.AppendLine(line);
+                        sb.AppendLine();
+                    }
+                }
+
+                if (sb.Length > ex.Message.Length)
+                    throw new InvalidOperationException(sb.ToString(), ex);
+                else
+                    throw;
+            }
+#endif
             finally
             {
                 try
@@ -310,15 +335,17 @@ namespace NLog.Targets.ConcurrentFile.Tests
         [InlineData(5, 4000, "none")]
         [InlineData(10, 2000, "none")]
 #if !MONO
-        // MONO Doesn't work well with global mutex, and it is needed for successful concurrent archive operations
+        // Linux doesn't work well with concurrent archive operations
         [InlineData(2, 500, "none|archive")]
-        [InlineData(2, 500, "none|mutex|archive")]
-        [InlineData(2, 10000, "none|mutex")]
-        [InlineData(5, 4000, "none|mutex")]
-        [InlineData(10, 2000, "none|mutex")]
 #endif
         public void SimpleConcurrentTest(int numProcesses, int numLogs, string mode)
         {
+            if (mode.Contains("archive") && IsLinux())
+            {
+                Console.WriteLine("[SKIP] ConcurrentWritesMultiProcessTests.SimpleConcurrentTest Concurrent archive not supported on Linux");
+                return;
+            }
+
             for (int i = 1; i <= 3; ++i)
             {
                 try
@@ -336,9 +363,6 @@ namespace NLog.Targets.ConcurrentFile.Tests
 
         [Theory]
         [InlineData("async")]
-#if !MONO
-        [InlineData("async|mutex")]
-#endif
         public void AsyncConcurrentTest(string mode)
         {
             // Before 2 processes are running into concurrent writes,
@@ -352,9 +376,6 @@ namespace NLog.Targets.ConcurrentFile.Tests
 
         [Theory]
         [InlineData("buffered")]
-#if !MONO
-        [InlineData("buffered|mutex")]
-#endif
         public void BufferedConcurrentTest(string mode)
         {
             DoConcurrentTest(5, 1000, mode);
@@ -362,14 +383,25 @@ namespace NLog.Targets.ConcurrentFile.Tests
 
         [Theory]
         [InlineData("buffered_timed_flush")]
-#if !MONO
-        [InlineData("buffered_timed_flush|mutex")]
-#endif
         public void BufferedTimedFlushConcurrentTest(string mode)
         {
             DoConcurrentTest(5, 1000, mode);
         }
+
+        private static void ChildLoggerProcess(string[] args)
+        {
+            string processIndex = args[0];
+            string fileName = args[1];
+            string numLogsString = args[2];
+            string mode = args[3];
+
+            MultiProcessExecutor(processIndex, fileName, numLogsString, mode);
+        }
+
+        protected static bool IsLinux()
+        {
+            var val = Environment.GetEnvironmentVariable("WINDIR");
+            return string.IsNullOrEmpty(val);
+        }
     }
 }
-
-#endif

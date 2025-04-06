@@ -31,15 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if NETFRAMEWORK
-
-namespace NLog.Targets.ConcurrentFile.Tests
+namespace NLog.Targets.AtomicFile.Tests
 {
     using System;
     using System.CodeDom.Compiler;
     using System.Diagnostics;
     using System.IO;
+    using System.Linq;
     using System.Text;
+    using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CSharp;
     using Xunit;
 
@@ -51,12 +51,13 @@ namespace NLog.Targets.ConcurrentFile.Tests
 using System;
 using System.Reflection;
 
-class C1
+public static class C1
 {
-    static int Main(string[] args)
+    public static int Main(string[] args)
     {
         try
         {
+            Console.WriteLine(""Starting..."");
             if (args.Length < 3)
                 throw new Exception(""Usage: Runner.exe \""AssemblyName\"" \""ClassName\"" \""MethodName\"" \""Parameter1...N\"""");
 
@@ -87,6 +88,8 @@ class C1
         }
     }
 }";
+
+#if NETFRAMEWORK
             CSharpCodeProvider provider = new CSharpCodeProvider();
             var options = new CompilerParameters();
             options.OutputAssembly = "Runner.exe";
@@ -96,8 +99,33 @@ class C1
             // See https://stackoverflow.com/questions/875723/how-to-debug-break-in-codedom-compiled-code
             options.TempFiles = new TempFileCollection(Environment.GetEnvironmentVariable("TEMP"), true);
             var results = provider.CompileAssemblyFromSource(options, sourceCode);
-            Assert.False(results.Errors.HasWarnings);
-            Assert.False(results.Errors.HasErrors);
+#else
+            var compilation = CSharpCompilation
+                .Create(
+                    "Runner.dll",
+                    new[] { CSharpSyntaxTree.ParseText(sourceCode) },
+                    references: Basic.Reference.Assemblies.ReferenceAssemblies.NetStandard20);
+
+            var outputAssembly = Path.Combine(Path.GetDirectoryName(typeof(ProcessRunner).Assembly.Location), "Runner.dll");
+            if (System.IO.File.Exists(outputAssembly))
+                System.IO.File.Delete(outputAssembly);
+            using (var stream = new FileStream(outputAssembly, FileMode.CreateNew))
+            //using (var stream = new MemoryStream())
+            {
+                var result = compilation.Emit(stream);
+                var failures = result.Diagnostics.Where(diagnostic => diagnostic.IsWarningAsError || diagnostic.Severity == Microsoft.CodeAnalysis.DiagnosticSeverity.Error).ToList();
+                Assert.True(failures.Count == 0, string.Join(Environment.NewLine, failures));
+                Assert.True(result.Success);
+            }
+            var outputRuntimeConfig = Path.Combine(Path.GetDirectoryName(typeof(ProcessRunner).Assembly.Location), "Runner.runtimeconfig.json");
+            if (System.IO.File.Exists(outputRuntimeConfig))
+                System.IO.File.Delete(outputRuntimeConfig);
+            using (var streamReader = new StreamReader(Path.Combine(Path.GetDirectoryName(typeof(ProcessRunner).Assembly.Location), typeof(ProcessRunner).Assembly.GetName().Name) + ".runtimeconfig.json"))
+            using (var streamWriter = new StreamWriter(outputRuntimeConfig))
+            {
+                streamWriter.Write(streamReader.ReadToEnd());
+            }
+#endif
         }
 
         public static Process SpawnMethod(Type type, string methodName, params string[] p)
@@ -105,8 +133,8 @@ class C1
             string assemblyName = type.Assembly.FullName;
             string typename = type.FullName;
             StringBuilder sb = new StringBuilder();
-#if MONO
-            sb.AppendFormat("\"{0}\" ", Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Runner.exe"));
+#if !NETFRAMEWORK
+            sb.AppendFormat("exec \"{0}\" ", Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Runner.dll"));
 #endif
             sb.AppendFormat("\"{0}\" \"{1}\" \"{2}\"", assemblyName, typename, methodName);
             foreach (string s in p)
@@ -119,10 +147,10 @@ class C1
 
             Process proc = new Process();
             proc.StartInfo.Arguments = sb.ToString();
-#if MONO
-            proc.StartInfo.FileName = "mono";
-#else
+#if NETFRAMEWORK
             proc.StartInfo.FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Runner.exe");
+#else
+            proc.StartInfo.FileName = "dotnet";
 #endif
             proc.StartInfo.UseShellExecute = false;
             proc.StartInfo.CreateNoWindow = true;
@@ -134,5 +162,3 @@ class C1
         }
     }
 }
-
-#endif

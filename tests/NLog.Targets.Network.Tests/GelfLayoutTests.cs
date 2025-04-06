@@ -88,7 +88,7 @@ namespace NLog.Targets.Network
                     HostName,
                     message,
                     expectedDateTime,
-                    (int)GelfLayout.ToSyslogSeverity(logLevel),
+                    (int)GelfLayout.ToSyslogLevel(logLevel),
                     logLevel,
                     loggerName);
 
@@ -139,7 +139,7 @@ namespace NLog.Targets.Network
                     HostName,
                     message,
                     expectedDateTime,
-                    (int)GelfLayout.ToSyslogSeverity(logLevel),
+                    (int)GelfLayout.ToSyslogLevel(logLevel),
                     facility,
                     loggerName);
 
@@ -190,7 +190,7 @@ namespace NLog.Targets.Network
                     HostName,
                     message,
                     expectedDateTime,
-                    (int)GelfLayout.ToSyslogSeverity(logLevel),
+                    (int)GelfLayout.ToSyslogLevel(logLevel),
                     threadId);
                 Assert.Equal(expectedGelf, renderedGelf);
             }
@@ -241,7 +241,7 @@ namespace NLog.Targets.Network
                     HostName,
                     message,
                     expectedDateTime,
-                    (int)GelfLayout.ToSyslogSeverity(logLevel),
+                    (int)GelfLayout.ToSyslogLevel(logLevel),
                     threadId,
                     requestId);
                 Assert.Equal(expectedGelf, renderedGelf);
@@ -297,7 +297,7 @@ namespace NLog.Targets.Network
                     HostName,
                     message,
                     expectedDateTime,
-                    (int)GelfLayout.ToSyslogSeverity(logLevel),
+                    (int)GelfLayout.ToSyslogLevel(logLevel),
                     threadId,
                     requestId);
                 Assert.Equal(expectedGelf, renderedGelf);

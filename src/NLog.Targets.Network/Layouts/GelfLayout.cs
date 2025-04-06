@@ -234,7 +234,7 @@ namespace NLog.Layouts
             target.Append(_completeJsonPropertyName);
             target.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, "{0}", unixTimestamp);
 
-            var gelfSeverity = ToSyslogSeverity(logEvent.Level);
+            var gelfSeverity = ToSyslogLevel(logEvent.Level);
             target.Append(_beginJsonPropertyName);
             target.Append("level");
             target.Append(_completeJsonPropertyName);
@@ -453,7 +453,7 @@ namespace NLog.Layouts
             return Convert.ToDecimal(timeStamp.ToUniversalTime().Subtract(UnixDateStart).TotalSeconds);
         }
 
-        internal static SyslogSeverity ToSyslogSeverity(LogLevel logLevel)
+        internal static SyslogLevel ToSyslogLevel(LogLevel logLevel)
         {
             try
             {
@@ -461,19 +461,19 @@ namespace NLog.Layouts
             }
             catch (IndexOutOfRangeException)
             {
-                return SyslogSeverity.Emergency;
+                return SyslogLevel.Emergency;
             }
         }
 
-        private static readonly SyslogSeverity[] _logLevelMapping = new []
+        private static readonly SyslogLevel[] _logLevelMapping = new []
         {
-            NLog.Layouts.SyslogSeverity.Debug,
-            NLog.Layouts.SyslogSeverity.Debug,
-            NLog.Layouts.SyslogSeverity.Informational,
-            NLog.Layouts.SyslogSeverity.Warning,
-            NLog.Layouts.SyslogSeverity.Error,
-            NLog.Layouts.SyslogSeverity.Emergency,
-            NLog.Layouts.SyslogSeverity.Emergency,
+            NLog.Layouts.SyslogLevel.Debug,
+            NLog.Layouts.SyslogLevel.Debug,
+            NLog.Layouts.SyslogLevel.Informational,
+            NLog.Layouts.SyslogLevel.Warning,
+            NLog.Layouts.SyslogLevel.Error,
+            NLog.Layouts.SyslogLevel.Emergency,
+            NLog.Layouts.SyslogLevel.Emergency,
         };
 
         private readonly string _beginJsonMessage = "{\"";

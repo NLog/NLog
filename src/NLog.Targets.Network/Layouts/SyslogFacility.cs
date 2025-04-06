@@ -36,40 +36,40 @@ namespace NLog.Layouts
     /// <summary>Syslog facilities</summary>
     public enum SyslogFacility
     {
-        /// <summary>Kernel messages</summary>
+        /// <summary>Kernel messages - LOG_KERN</summary>
         Kernel = 0,
 
-        /// <summary>Random user-level messages</summary>
+        /// <summary>Random user-level messages - LOG_USER</summary>
         User = 1,
 
-        /// <summary>Mail system</summary>
+        /// <summary>Mail system - LOG_MAIL</summary>
         Mail = 2,
 
-        /// <summary>System daemons</summary>
+        /// <summary>System daemons - LOG_DAEMON</summary>
         Daemons = 3,
 
-        /// <summary>Security/authorization messages</summary>
+        /// <summary>Security/authorization messages - LOG_AUTH</summary>
         Authorization = 4,
 
-        /// <summary>Messages generated internally by syslogd</summary>
+        /// <summary>Messages generated internally by syslogd - LOG_SYSLOG</summary>
         Syslog = 5,
 
-        /// <summary>Line printer subsystem</summary>
+        /// <summary>Line printer subsystem - LOG_LPR</summary>
         Printer = 6,
 
-        /// <summary>Network news subsystem</summary>
+        /// <summary>Network news subsystem - LOG_NEWS</summary>
         News = 7,
 
-        /// <summary>UUCP subsystem</summary>
+        /// <summary>UUCP subsystem - LOG_UUCP</summary>
         Uucp = 8,
 
-        /// <summary>Clock (cron/at) daemon</summary>
+        /// <summary>Clock (cron/at) daemon - LOG_CRON</summary>
         Clock = 9,
 
-        /// <summary>Security/authorization messages (private)</summary>
+        /// <summary>Security/authorization messages (private) - LOG_AUTHPRIV</summary>
         Authorization2 = 10,
 
-        /// <summary>FTP daemon</summary>
+        /// <summary>FTP daemon - LOG_FTP</summary>
         Ftp = 11,
 
         /// <summary>NTP subsystem</summary>
@@ -84,28 +84,28 @@ namespace NLog.Layouts
         /// <summary>Clock daemon</summary>
         Clock2 = 15,
 
-        /// <summary>Reserved for local use</summary>
+        /// <summary>Reserved for local use - LOG_LOCAL0</summary>
         Local0 = 16,
 
-        /// <summary>Reserved for local use</summary>
+        /// <summary>Reserved for local use - LOG_LOCAL1</summary>
         Local1 = 17,
 
-        /// <summary>Reserved for local use</summary>
+        /// <summary>Reserved for local use - LOG_LOCAL2</summary>
         Local2 = 18,
 
-        /// <summary>Reserved for local use</summary>
+        /// <summary>Reserved for local use - LOG_LOCAL3</summary>
         Local3 = 19,
 
-        /// <summary>Reserved for local use</summary>
+        /// <summary>Reserved for local use - LOG_LOCAL4</summary>
         Local4 = 20,
 
-        /// <summary>Reserved for local use</summary>
+        /// <summary>Reserved for local use - LOG_LOCAL5</summary>
         Local5 = 21,
 
-        /// <summary>Reserved for local use</summary>
+        /// <summary>Reserved for local use - LOG_LOCAL6</summary>
         Local6 = 22,
 
-        /// <summary>Reserved for local use</summary>
+        /// <summary>Reserved for local use - LOG_LOCAL7</summary>
         Local7 = 23
     }
 }
