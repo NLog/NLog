@@ -24,6 +24,10 @@ if ($isWindows -or $Env:WinDir)
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
+	dotnet test ./tests/NLog.Targets.AtomicFile.Tests/ --configuration release
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+
 	dotnet test ./tests/NLog.AutoReloadConfig.Tests/ --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
@@ -76,6 +80,10 @@ if ($isWindows -or $Env:WinDir)
 else
 {
 	dotnet test ./tests/NLog.Database.Tests/ --framework net6.0 --configuration release
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+
+	dotnet test ./tests/NLog.Targets.AtomicFile.Tests/ --framework net8.0 --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 

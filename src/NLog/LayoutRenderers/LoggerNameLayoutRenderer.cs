@@ -58,6 +58,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets a value indicating whether to render prefix of logger name (the part before the trailing dot character).
         /// </summary>
+        /// <docgen category='Layout Options' order='10' />
         public bool PrefixName { get; set; }
 
         /// <inheritdoc/>

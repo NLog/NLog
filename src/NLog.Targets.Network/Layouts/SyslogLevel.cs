@@ -33,31 +33,31 @@
 
 namespace NLog.Layouts
 {
-    /// <summary>Syslog severities</summary>
-    public enum SyslogSeverity
+    /// <summary>Syslog Log Levels for severity</summary>
+    public enum SyslogLevel
     {
-        /// <summary>Emergency severity</summary>
+        /// <summary>System is unusable - LOG_EMERG</summary>
         Emergency = 0,
 
-        /// <summary>Alert severity</summary>
+        /// <summary>Action must be taken immediately - LOG_ALERT</summary>
         Alert = 1,
 
-        /// <summary>Critical severity</summary>
+        /// <summary>Critical conditions - LOG_CRIT</summary>
         Critical = 2,
 
-        /// <summary>Error severity</summary>
+        /// <summary>Error conditions - LOG_ERR</summary>
         Error = 3,
 
-        /// <summary>Warning severity</summary>
+        /// <summary>Warning conditions - LOG_WARNING</summary>
         Warning = 4,
 
-        /// <summary>Notice severity</summary>
+        /// <summary>Normal but significant condition - LOG_NOTICE</summary>
         Notice = 5,
 
-        /// <summary>Informational severity</summary>
+        /// <summary>Informational severity - LOG_INFO</summary>
         Informational = 6,
 
-        /// <summary>Debug severity</summary>
+        /// <summary>Debug messages - LOG_DEBUG</summary>
         Debug = 7
     }
 }

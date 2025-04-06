@@ -118,7 +118,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Message Severity
         /// </summary>
-        public Layout<SyslogSeverity> SyslogSeverity { get; set; } = Layout<SyslogSeverity>.FromMethod(l => ResolveSyslogSeverity(l.Level), LayoutRenderOptions.ThreadAgnostic);
+        public Layout<SyslogLevel> SyslogLevel { get; set; } = Layout<SyslogLevel>.FromMethod(l => ToSyslogLevel(l.Level), LayoutRenderOptions.ThreadAgnostic);
 
         /// <summary>
         /// Device Facility
@@ -141,7 +141,7 @@ namespace NLog.Layouts
         [ArrayParameter(typeof(TargetPropertyWithContext), "StructuredDataParam")]
         public List<TargetPropertyWithContext> StructuredDataParams { get; } = new List<TargetPropertyWithContext>();
 
-        private KeyValuePair<SyslogFacility, Dictionary<SyslogSeverity, string>> _priValueMapping;
+        private KeyValuePair<SyslogFacility, Dictionary<SyslogLevel, string>> _priValueMapping;
 
         /// <summary>
         /// Disables <see cref="ThreadAgnosticAttribute"/> to capture volatile LogEvent-properties from active thread context
@@ -178,8 +178,8 @@ namespace NLog.Layouts
                     Layouts.Add(SyslogMessageId);
                 if (SyslogMessage != null)
                     Layouts.Add(SyslogMessage);
-                if (SyslogSeverity != null)
-                    Layouts.Add(SyslogSeverity);
+                if (SyslogLevel != null)
+                    Layouts.Add(SyslogLevel);
                 if (StructuredDataId != null)
                     Layouts.Add(StructuredDataId);                
                 for (int i = 0; i < StructuredDataParams.Count; ++i)
@@ -206,17 +206,17 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            var severity = SyslogSeverity.RenderValue(logEvent);
+            var syslogLevel = SyslogLevel.RenderValue(logEvent);
             var facility = SyslogFacility;
 
             var priValueMapper = _priValueMapping;
             if (priValueMapper.Key != facility || priValueMapper.Value is null)
             {
-                priValueMapper = new KeyValuePair<SyslogFacility, Dictionary<SyslogSeverity, string>>(facility, ResolveFacilityMapper(facility));
+                priValueMapper = new KeyValuePair<SyslogFacility, Dictionary<SyslogLevel, string>>(facility, ResolveFacilityMapper(facility));
                 _priValueMapping = priValueMapper;
             }
 
-            var priValue = priValueMapper.Value[severity];
+            var priValue = priValueMapper.Value[syslogLevel];
             var hostName = _hostNameString ?? EscapePropertyName(SyslogHostName?.Render(logEvent) ?? string.Empty, HostNameMaxLength);
             var appName = _appNameString ?? EscapePropertyName(SyslogAppName?.Render(logEvent) ?? string.Empty, AppNameMaxLength);
             var processId = _processIdString ?? EscapePropertyName(SyslogProcessId?.Render(logEvent) ?? string.Empty, ProcessIdMaxLength);
@@ -474,45 +474,45 @@ namespace NLog.Layouts
         /// </remarks>
         private static bool IsAscii(char c) => (uint)c <= '\x007f';
 
-        private static readonly SyslogSeverity[] _severityMapping = new []
+        private static readonly SyslogLevel[] _loglevelMappings = new []
         {
-            NLog.Layouts.SyslogSeverity.Debug,
-            NLog.Layouts.SyslogSeverity.Debug,
-            NLog.Layouts.SyslogSeverity.Informational,
-            NLog.Layouts.SyslogSeverity.Warning,
-            NLog.Layouts.SyslogSeverity.Error,
-            NLog.Layouts.SyslogSeverity.Emergency,
-            NLog.Layouts.SyslogSeverity.Emergency,
+            NLog.Layouts.SyslogLevel.Debug,
+            NLog.Layouts.SyslogLevel.Debug,
+            NLog.Layouts.SyslogLevel.Informational,
+            NLog.Layouts.SyslogLevel.Warning,
+            NLog.Layouts.SyslogLevel.Error,
+            NLog.Layouts.SyslogLevel.Emergency,
+            NLog.Layouts.SyslogLevel.Emergency,
         };
 
-        private static SyslogSeverity ResolveSyslogSeverity(LogLevel logLevel)
+        private static SyslogLevel ToSyslogLevel(LogLevel logLevel)
         {
             try
             {
-                return _severityMapping[logLevel.Ordinal];
+                return _loglevelMappings[logLevel.Ordinal];
             }
             catch (IndexOutOfRangeException)
             {
-                return NLog.Layouts.SyslogSeverity.Emergency;
+                return NLog.Layouts.SyslogLevel.Emergency;
             }
         }
 
-        private static Dictionary<SyslogSeverity, string> ResolveFacilityMapper(SyslogFacility facility)
+        private static Dictionary<SyslogLevel, string> ResolveFacilityMapper(SyslogFacility facility)
         {
-            return (new SyslogSeverity[]
+            return (new SyslogLevel[]
             {
-                    NLog.Layouts.SyslogSeverity.Emergency,
-                    NLog.Layouts.SyslogSeverity.Alert,
-                    NLog.Layouts.SyslogSeverity.Critical,
-                    NLog.Layouts.SyslogSeverity.Error,
-                    NLog.Layouts.SyslogSeverity.Warning,
-                    NLog.Layouts.SyslogSeverity.Notice,
-                    NLog.Layouts.SyslogSeverity.Informational,
-                    NLog.Layouts.SyslogSeverity.Debug
+                    NLog.Layouts.SyslogLevel.Emergency,
+                    NLog.Layouts.SyslogLevel.Alert,
+                    NLog.Layouts.SyslogLevel.Critical,
+                    NLog.Layouts.SyslogLevel.Error,
+                    NLog.Layouts.SyslogLevel.Warning,
+                    NLog.Layouts.SyslogLevel.Notice,
+                    NLog.Layouts.SyslogLevel.Informational,
+                    NLog.Layouts.SyslogLevel.Debug
             }).ToDictionary(s => s, s => ResolvePriHeader(facility, s));
         }
 
-        private static string ResolvePriHeader(SyslogFacility facility, SyslogSeverity severity)
+        private static string ResolvePriHeader(SyslogFacility facility, SyslogLevel severity)
         {
             var priVal = (int)facility * 8 + (int)severity;
             return $"<{priVal}>";
