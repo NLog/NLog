@@ -36,11 +36,9 @@ namespace NLog.UnitTests
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Diagnostics;
-    using System.IO;
     using System.Reflection;
+    using System.Runtime.CompilerServices;
     using System.Text;
-    using System.Text.RegularExpressions;
     using NLog.Config;
     using Xunit;
 
@@ -473,61 +471,96 @@ namespace NLog.UnitTests
         [Fact]
         public void ShouldNotHaveExplicitStaticConstructors()
         {
-            // Known explicit satic constructors that are need to be replaced with best apporoach
-            HashSet<string> KnownStaticConstructors = new HashSet<string>
+            // Known allowed explicit static constructors (full type names)
+            var knownStaticConstructors = new HashSet<string>
             {
-                "LogFactory.cs",            //nameof(NLog.LogFactory)
-                "ConcurrentFileTarget.cs",  //NLog.Targets.ConcurrentFile
-                "DatabaseTargetTests.cs",   //NLog.Database.DatabaseTargetTests
-                "ProcessRunner.cs",         //NLog.Targets.ConcurrentFile.Tests.ProcessRunner
-                "LogManagerTests.cs",       //nameof(NLog.UnitTests.LogManagerTests)
-            };
+                "NLog.LogFactory",
+                "NLog.Targets.ConcurrentFileTarget",
+                "NLog.UnitTests.DatabaseTargetTests",
+                "NLog.Targets.ConcurrentFile.Tests.ProcessRunner",
+                "NLog.UnitTests.LogManagerTests",
 
-
-            var staticConstructorPattern = new Regex(
-                @"static\s+\w+\s*\(\s*\)",
-                RegexOptions.Compiled | RegexOptions.CultureInvariant);
-
-            var files = Directory.GetFiles(GetSolutionSourceDirectory(), "*.cs", SearchOption.AllDirectories);
-            var foundConstructors = files
-                .SelectMany(file =>
+                // Likely compiler generated or false-positives.
+                "NLog.GlobalDiagnosticsContext",
+                "NLog.LogEventInfo",
+                "NLog.Logger",
+                "NLog.LogLevel",
+                "NLog.LogManager",
+                "NLog.ScopeContext",
+                "NLog.Time.TimeSource",
+                "NLog.Targets.ConsoleRowHighlightingRule",
+                "NLog.Targets.ConsoleTargetHelper",
+                "NLog.Targets.DefaultJsonSerializer",
+                "NLog.Targets.FileTarget",
+                "NLog.Targets.LineEndingMode",
+                "NLog.Targets.FileArchiveHandlers.DisabledFileArchiveHandler",
+                "NLog.MessageTemplates.MessageTemplateParameters",
+                "NLog.MessageTemplates.TemplateEnumerator",
+                "NLog.MessageTemplates.ValueFormatter",
+                "NLog.Layouts.LayoutParser",
+                "NLog.Layouts.ValueTypeLayoutInfo",
+                "NLog.Layouts.XmlElementBase",
+                "NLog.LayoutRenderers.AllEventPropertiesLayoutRenderer",
+                "NLog.LayoutRenderers.CounterLayoutRenderer",
+                "NLog.LayoutRenderers.ExceptionLayoutRenderer",
+                "NLog.LayoutRenderers.LevelLayoutRenderer",
+                "NLog.Internal.AppendBuilderCreator",
+                "NLog.Internal.CallSiteInformation",
+                "NLog.Internal.ExceptionMessageFormatProvider",
+                "NLog.Internal.FactoryHelper",
+                "NLog.Internal.LogMessageStringFormatter",
+                "NLog.Internal.LogMessageTemplateFormatter",
+                "NLog.Internal.PathHelpers",
+                "NLog.Internal.PropertiesDictionary",
+                "NLog.Internal.PropertyHelper",
+                "NLog.Internal.SingleCallContinuation",
+                "NLog.Internal.StackTraceUsageUtils",
+                "NLog.Internal.StringBuilderExt",
+                "NLog.Internal.TargetWithFilterChain",
+                "NLog.Internal.UrlHelper",
+                "NLog.Internal.XmlHelper",
+                "NLog.Config.ConfigurationItemFactory",
+                "NLog.Config.InstallationContext",
+                "NLog.Config.LoggingRuleLevelFilter",
+                "NLog.Config.PropertyTypeConverter",
+                "NLog.Conditions.ConditionExpression",
+                "NLog.Conditions.ConditionRelationalExpression",
+                "NLog.Conditions.ConditionTokenizer",
+                "NLog.Common.InternalLogger",
+                "NLog.Internal.ObjectReflectionCache+ObjectPropertyList",
+                "NLog.Internal.ObjectReflectionCache+ObjectPropertyInfos",
+                "NLog.Internal.ObjectReflectionCache+EmptyDictionaryEnumerator",
+                "NLog.Internal.PropertiesDictionary+PropertyKeyComparer",
+                "NLog.Internal.SingleItemOptimizedHashSet`1+ReferenceEqualityComparer",
+                "NLog.Config.LoggerNameMatcher+NoneLoggerNameMatcher",
+                "NLog.Config.LoggerNameMatcher+AllLoggerNameMatcher",
+                "NLog.Config.LoggingConfigurationParser+ValidatedConfigurationElement"
+            };     
+            var assembly = typeof(NLog.LogFactory).Assembly;
+            var typesWithStaticConstructors = assembly.GetTypes()
+                // Exclude compiler-generated types (e.g., lambdas, nested <>c classes)
+                .Where(type => !type.IsDefined(typeof(CompilerGeneratedAttribute), inherit: false))
+                .Select(type => new
                 {
-                    var lines = File.ReadAllLines(file);
-                    return lines
-                        .Select((line, index) => new { line, index })
-                        .Where(x => staticConstructorPattern.IsMatch(x.line))
-                        .Select(x => new
-                        {
-                            FilePath = Path.GetFileName(file),
-                            LineNumber = x.index + 1,
-                            ConstructorSignature = x.line.Trim()
-                        });
+                    TypeName = type.FullName,
+                    StaticConstructor = type.TypeInitializer
                 })
+
+                // Check for non-compiler-generated static constructors
+                .Where(t => t.StaticConstructor != null
+                             && !t.StaticConstructor.IsDefined(typeof(CompilerGeneratedAttribute), inherit: false))
+                .Select(t => t.TypeName)
+                .Distinct()
                 .ToList();
-            var newConstructors = foundConstructors
-                                  .Where(c => !KnownStaticConstructors.Contains($"{c.FilePath}"))
-                                  .ToList();
+
+            var newConstructors = typesWithStaticConstructors
+                .Where(type => !knownStaticConstructors.Contains(type))
+                .ToList();
+
             if (newConstructors.Count > 0)
             {
-                var message = $"Found new explicit static constructors in:\n" +
-                              string.Join("\n", newConstructors.Select(x => $"  - {x}"));
-
-                Assert.Fail(message);
+                Assert.Fail($"Found new explicit static constructors in:\n{string.Join("\n", newConstructors)}");
             }
-            else
-            {
-                Debug.WriteLine("No new explicit static constructors found. Test passed!");
-            }
-        }
-
-        private static string GetSolutionSourceDirectory()
-        {
-            string currentDir = AppContext.BaseDirectory;
-            while (currentDir != null && !Directory.Exists(Path.Combine(currentDir, "NLog")))
-            {
-                currentDir = Directory.GetParent(currentDir)?.FullName;
-            }
-            return currentDir != null ? Path.Combine(currentDir, "NLog") : throw new DirectoryNotFoundException("Could not find 'NLog' directory.");
         }
     }
 }
