@@ -107,10 +107,10 @@ namespace NLog.LayoutRenderers
 #endif
 
         /// <summary>
-        /// Enables capture of ScopeContext-properties from active thread context
+        /// Disables <see cref="ThreadAgnosticAttribute"/> to capture ScopeContext-properties from active thread context
         /// </summary>
-        public LayoutRenderer FixScopeContext => IncludeScopeProperties ? _fixScopeContext : null;
-        private static readonly LayoutRenderer _fixScopeContext = new ScopeContextPropertyLayoutRenderer() { Item = string.Empty };
+        public LayoutRenderer DisableThreadAgnostic => IncludeScopeProperties ? _disableThreadAgnostic : null;
+        private static readonly LayoutRenderer _disableThreadAgnostic = new ScopeContextPropertyLayoutRenderer() { Item = string.Empty };
 
         /// <summary>
         /// Gets or sets how key/value pairs will be formatted.

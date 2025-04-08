@@ -1,6 +1,6 @@
 using NLog;
+using NLog.Config;
 using NLog.Targets;
-using System.Text;
 
 class Example
 {
@@ -10,9 +10,11 @@ class Example
         target.Layout = "${longdate} ${logger} ${message}";
         target.FileName = "${basedir}/logs/logfile.txt";
         target.KeepFileOpen = false;
-        target.Encoding = Encoding.UTF8;
+        target.Encoding = System.Text.Encoding.UTF8;
 
-        NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
         Logger logger = LogManager.GetLogger("Example");
         logger.Debug("log message");

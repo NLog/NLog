@@ -1,4 +1,5 @@
 using NLog;
+using NLog.Config;
 using NLog.Targets;
 
 class Example
@@ -20,7 +21,9 @@ class Example
         target.Parameters.Add(new DatabaseParameterInfo("CALLSITE", "${callsite:filename=true}"));
         target.Parameters.Add(new DatabaseParameterInfo("MESSAGE", "${message}"));
         
-        NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
         Logger logger = LogManager.GetLogger("Example");
         logger.Debug("log message");

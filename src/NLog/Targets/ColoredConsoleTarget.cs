@@ -218,6 +218,7 @@ namespace NLog.Targets
         /// <summary>
         /// Support NO_COLOR=1 environment variable. See also <see href="https://no-color.org/" />
         /// </summary>
+        /// <docgen category='Console Options' order='10' />
         public Layout<bool> NoColor { get; set; } = Layout<bool>.FromMethod((evt) => new string[] { "1", "TRUE" }.Contains(NLog.Internal.EnvironmentHelper.GetSafeEnvironmentVariable("NO_COLOR")?.Trim().ToUpper()));
 
         /// <summary>

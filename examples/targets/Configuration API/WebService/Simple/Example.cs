@@ -1,4 +1,5 @@
 using NLog;
+using NLog.Config;
 using NLog.Targets;
 
 class Example
@@ -15,7 +16,9 @@ class Example
         target.Parameters.Add(new MethodCallParameter("n2", "${logger}"));
         target.Parameters.Add(new MethodCallParameter("n3", "${level}"));
 
-        NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
         Logger logger = LogManager.GetLogger("Example");
         logger.Trace("log message 1");
@@ -24,5 +27,7 @@ class Example
         logger.Warn("log message 4");
         logger.Error("log message 5");
         logger.Fatal("log message 6");
+
+        LogManager.Flush();
     }
 }

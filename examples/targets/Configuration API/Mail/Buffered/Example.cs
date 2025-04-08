@@ -1,6 +1,7 @@
 using System;
 
 using NLog;
+using NLog.Config;
 using NLog.Targets;
 using NLog.Targets.Wrappers;
 
@@ -21,9 +22,11 @@ class Example
             target.Subject = "sample subject";
             target.Body = "${message}${newline}";
 
-            BufferingTargetWrapper buffer = new BufferingTargetWrapper(target, 5);
+            BufferingTargetWrapper bufferTarget = new BufferingTargetWrapper(target, 5);
 
-            NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(buffer, LogLevel.Debug);
+            LoggingConfiguration nlogConfig = new LoggingConfiguration();
+            nlogConfig.AddRuleForAllLevels(bufferTarget);
+            LogManager.Configuration = nlogConfig;
 
             Console.WriteLine("Sending...");
             Logger logger = LogManager.GetLogger("Example");
@@ -42,7 +45,6 @@ class Example
         catch (Exception ex)
         {
             Console.WriteLine("EX: {0}", ex);
-                
         }
     }
 }

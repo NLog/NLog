@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.UnitTests.Targets
+namespace NLog.Targets.ConcurrentFile.Tests
 {
     using System;
     using System.Collections.Generic;

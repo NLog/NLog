@@ -1,9 +1,6 @@
-using System;
-
 using NLog;
+using NLog.Config;
 using NLog.Targets;
-using NLog.Win32.Targets;
-using System.Diagnostics;
 
 class Example
 {
@@ -13,10 +10,12 @@ class Example
         target.AutoCreate = true;
         target.CategoryName = "My category";
         target.CounterName = "My counter";
-        target.CounterType = PerformanceCounterType.NumberOfItems32;
+        target.CounterType = System.Diagnostics.PerformanceCounterType.NumberOfItems32;
         target.InstanceName = "My instance";
 
-        NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
         Logger logger = LogManager.GetLogger("Example");
         logger.Debug("log message");

@@ -1,9 +1,7 @@
-using System;
-
 using NLog;
+using NLog.Config;
 using NLog.Targets;
-using NLog.Targets.Compound;
-using System.Diagnostics;
+using NLog.Targets.Wrappers;
 
 class Example
 {
@@ -15,7 +13,6 @@ class Example
         FileTarget file2 = new FileTarget();
         file2.FileName = "\\\\server2\\share\\file1.txt";
 
-
         // write to server1, if it fails switch to server2
         FallbackTarget target = new FallbackTarget();
 
@@ -23,7 +20,9 @@ class Example
         target.Targets.Add(file1);
         target.Targets.Add(file2);
 
-        NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
         Logger logger = LogManager.GetLogger("Example");
         logger.Debug("log message");

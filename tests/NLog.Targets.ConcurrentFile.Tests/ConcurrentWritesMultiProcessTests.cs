@@ -35,7 +35,7 @@
 
 #define DISABLE_FILE_INTERNAL_LOGGING
 
-namespace NLog.UnitTests.Targets
+namespace NLog.Targets.ConcurrentFile.Tests
 {
     using System;
     using System.Collections.Generic;
@@ -52,7 +52,7 @@ namespace NLog.UnitTests.Targets
 
     public class ConcurrentWritesMultiProcessTests
     {
-        private readonly Logger _logger = LogManager.GetLogger("NLog.UnitTests.Targets.ConcurrentWritesMultiProcessTests");
+        private readonly Logger _logger = LogManager.GetLogger(nameof(ConcurrentWritesMultiProcessTests));
 
         public ConcurrentWritesMultiProcessTests()
         {
@@ -275,9 +275,9 @@ namespace NLog.UnitTests.Targets
                         {
                             if (equalLength)
                             {
-                                var reodered = receivedNumbers.OrderBy(i => i);
+                                var reordered = receivedNumbers.OrderBy(i => i);
 
-                                equalsWhenReorderd = expected.SequenceEqual(reodered);
+                                equalsWhenReorderd = expected.SequenceEqual(reordered);
                             }
 
                             Assert.Equal(string.Join(",", expected), string.Join(",", receivedNumbers));

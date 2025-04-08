@@ -73,6 +73,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating the string that should be used to replace newlines.
         /// </summary>
+        /// <docgen category='Layout Options' order='50' />
         public string ReplaceNewLines { get => Replacement; set => Replacement = value; }
 
         /// <inheritdoc/>

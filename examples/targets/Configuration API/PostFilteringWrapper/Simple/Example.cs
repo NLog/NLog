@@ -1,9 +1,7 @@
-using System;
-
 using NLog;
+using NLog.Config;
 using NLog.Targets;
 using NLog.Targets.Wrappers;
-using System.Diagnostics;
 
 class Example
 {
@@ -18,12 +16,10 @@ class Example
         // set up default filter
         postFilteringTarget.DefaultFilter = "level >= LogLevel.Info";
 
-        FilteringRule rule;
-
         // if there are any warnings in the buffer
         // dump the messages whose level is Debug or higher
 
-        rule = new FilteringRule();
+        FilteringRule rule = new FilteringRule();
         rule.Exists = "level >= LogLevel.Warn";
         rule.Filter = "level >= LogLevel.Debug";
 
@@ -33,7 +29,9 @@ class Example
         target.BufferSize = 100;
         target.WrappedTarget = postFilteringTarget;
 
-        NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
         Logger logger = LogManager.GetLogger("Example");
         logger.Debug("log message");

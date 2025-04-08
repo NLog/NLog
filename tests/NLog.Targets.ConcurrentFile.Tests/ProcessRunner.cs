@@ -33,9 +33,8 @@
 
 #if NETFRAMEWORK
 
-namespace NLog.UnitTests
+namespace NLog.Targets.ConcurrentFile.Tests
 {
-
     using System;
     using System.CodeDom.Compiler;
     using System.Diagnostics;

@@ -1,6 +1,6 @@
 using NLog;
+using NLog.Config;
 using NLog.Targets;
-using NLog.Targets.Wrappers;
 
 class Example
 {
@@ -13,10 +13,9 @@ class Example
         target.ArchiveAboveSize = 10 * 1024; // archive files greater than 10 KB
         target.ArchiveNumbering = FileTarget.ArchiveNumberingMode.Sequence;
 
-        // this speeds up things when no other processes are writing to the file
-        target.ConcurrentWrites = true;
-
-        NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
         Logger logger = LogManager.GetLogger("Example");
         

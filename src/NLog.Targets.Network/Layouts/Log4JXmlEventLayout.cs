@@ -51,6 +51,7 @@ namespace NLog.Layouts
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/Log4JXmlEventLayout">Documentation on NLog Wiki</seealso>
     [Layout("Log4JXmlEventLayout")]
+    [Layout("Log4JXmlLayout")]
     [ThreadAgnostic]
     public class Log4JXmlEventLayout : Layout
     {

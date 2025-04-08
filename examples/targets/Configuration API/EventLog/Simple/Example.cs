@@ -1,6 +1,6 @@
 using NLog;
+using NLog.Config;
 using NLog.Targets;
-using NLog.Win32.Targets;
 
 class Example
 {
@@ -11,7 +11,9 @@ class Example
         target.Log = "Application";
         target.Layout = "${logger}: ${message} ${exception}";
 
-        NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
         Logger logger = LogManager.GetLogger("Example");
         logger.Debug("log message");

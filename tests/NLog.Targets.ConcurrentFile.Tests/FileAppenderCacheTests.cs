@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.UnitTests.Internal.FileAppenders
+namespace NLog.Targets.ConcurrentFile.Tests
 {
     using System;
     using System.IO;

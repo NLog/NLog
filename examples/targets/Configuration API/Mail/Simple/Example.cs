@@ -1,6 +1,7 @@
 using System;
 
 using NLog;
+using NLog.Config;
 using NLog.Targets;
 
 class Example
@@ -17,7 +18,9 @@ class Example
             target.To = "jaak@jkowalski.net";
             target.Subject = "sample subject";
 
-            NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+            LoggingConfiguration nlogConfig = new LoggingConfiguration();
+            nlogConfig.AddRuleForAllLevels(target);
+            LogManager.Configuration = nlogConfig;
 
             Console.WriteLine("Sending...");
             Logger logger = LogManager.GetLogger("Example");
@@ -27,7 +30,6 @@ class Example
         catch (Exception ex)
         {
             Console.WriteLine("EX: {0}", ex);
-                
         }
     }
 }

@@ -149,7 +149,7 @@ namespace NLog.Targets
             set
             {
                 _lineEnding = value;
-                NewLine = value != null;
+                NewLine = value?.NewLineCharacters?.Length > 0;
             }
         }
         private LineEndingMode _lineEnding = LineEndingMode.CRLF;

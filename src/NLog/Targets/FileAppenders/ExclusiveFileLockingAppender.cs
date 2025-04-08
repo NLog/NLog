@@ -169,7 +169,7 @@ namespace NLog.Targets.FileAppenders
 
         private long? RefreshCountedFileSize()
         {
-            return (_fileTarget.ArchiveAboveSize > 0 && _fileStream is FileStream) ? _fileStream.Length : default(long?);
+            return (_fileTarget.ArchiveAboveSize > 0 && _fileTarget.GetType().Equals(typeof(FileTarget))) ? _fileStream.Length : default(long?);
         }
 
         private void SafeCloseFile(string filepath, ref Stream fileStream)

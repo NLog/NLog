@@ -30,7 +30,9 @@ namespace ASPNetBufferingWrapper
             rule.Filter = "level >= LogLevel.Debug";
             postfilteringTarget.Rules.Add(rule);
 
-            SimpleConfigurator.ConfigureForTargetLogging(aspnetBufferingTarget, LogLevel.Debug);
+            LoggingConfiguration nlogConfig = new LoggingConfiguration();
+            nlogConfig.AddRuleForAllLevels(aspnetBufferingTarget);
+            LogManager.Configuration = nlogConfig;
         }
 
         protected void Application_End(object sender, EventArgs e)

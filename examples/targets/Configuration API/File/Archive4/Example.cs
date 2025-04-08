@@ -1,7 +1,6 @@
 using NLog;
+using NLog.Config;
 using NLog.Targets;
-using NLog.Targets.Wrappers;
-using System.Threading;
 
 class Example
 {
@@ -17,10 +16,9 @@ class Example
         target.MaxArchiveFiles = 3;
         target.ArchiveAboveSize = 10000;
 
-        // this speeds up things when no other processes are writing to the file
-        target.ConcurrentWrites = true;
-
-        NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
         Logger logger = LogManager.GetLogger("Example");
 
@@ -57,7 +55,7 @@ class Example
             logger.Debug("log message {i}", i);
             logger.Error("log message {i}", i);
             logger.Fatal("log message {i}", i);
-            Thread.Sleep(100);
+            System.Threading.Thread.Sleep(100);
         }
     }
 }

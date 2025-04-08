@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NLog.Config;
+using NLog.LayoutRenderers;
 using NLog.Targets;
 
 namespace NLog.Layouts
@@ -10,7 +11,10 @@ namespace NLog.Layouts
     /// <summary>
     /// A specialized layout that renders Syslog-formatted events in format Rfc3164 / Rfc5424
     /// </summary>
-    public class SyslogLayout : Layout
+    [Layout("SyslogLayout")]
+    [ThreadAgnostic]
+    [AppDomainFixedOutput]
+    public class SyslogLayout : CompoundLayout
     {
         private const string Rfc5424DefaultVersion = "1";
         private const string Rfc3164TimestampFormat = "{0:MMM} {0,11:d HH:mm:ss}";
@@ -114,12 +118,12 @@ namespace NLog.Layouts
         /// <summary>
         /// Message Severity
         /// </summary>
-        public Layout<SyslogSeverity> SyslogSeverity { get; set; } = Layout<SyslogSeverity>.FromMethod(l => ResolveSyslogSeverity(l.Level), LayoutRenderOptions.ThreadAgnostic);
+        public Layout<SyslogLevel> SyslogLevel { get; set; } = Layout<SyslogLevel>.FromMethod(l => ToSyslogLevel(l.Level), LayoutRenderOptions.ThreadAgnostic);
 
         /// <summary>
         /// Device Facility
         /// </summary>
-        public SyslogFacility SyslogFacility { get; set; } = SyslogFacility.Local0;
+        public SyslogFacility SyslogFacility { get; set; } = SyslogFacility.User;
 
         /// <summary>
         /// Gets or sets the prefix for StructuredData when <see cref="Rfc5424"/> = true
@@ -137,7 +141,13 @@ namespace NLog.Layouts
         [ArrayParameter(typeof(TargetPropertyWithContext), "StructuredDataParam")]
         public List<TargetPropertyWithContext> StructuredDataParams { get; } = new List<TargetPropertyWithContext>();
 
-        private KeyValuePair<SyslogFacility, Dictionary<SyslogSeverity, string>> _priValueMapping;
+        private KeyValuePair<SyslogFacility, Dictionary<SyslogLevel, string>> _priValueMapping;
+
+        /// <summary>
+        /// Disables <see cref="ThreadAgnosticAttribute"/> to capture volatile LogEvent-properties from active thread context
+        /// </summary>
+        public LayoutRenderer DisableThreadAgnostic => IncludeEventProperties ? _enableThreadAgnosticImmutable : null;
+        private static readonly LayoutRenderer _enableThreadAgnosticImmutable = new ExceptionDataLayoutRenderer() { Item = string.Empty };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SyslogLayout" /> class.
@@ -147,6 +157,42 @@ namespace NLog.Layouts
             SyslogHostName = "${hostname}";
             SyslogAppName = "${processname}";
             SyslogProcessId = "${processid}";
+        }
+
+        /// <inheritdoc/>
+        protected override void InitializeLayout()
+        {
+            // CompoundLayout includes optimization, so only doing precalculate/caching of relevant Layouts (instead of the entire SysLog-message)
+            Layouts.Clear();
+            if (!IncludeEventProperties)
+            {
+                if (SyslogTimestamp != null)
+                    Layouts.Add(SyslogTimestamp);
+                if (SyslogHostName != null)
+                    Layouts.Add(SyslogHostName);
+                if (SyslogAppName != null)
+                    Layouts.Add(SyslogAppName);
+                if (SyslogProcessId != null)
+                    Layouts.Add(SyslogProcessId);
+                if (SyslogMessageId != null)
+                    Layouts.Add(SyslogMessageId);
+                if (SyslogMessage != null)
+                    Layouts.Add(SyslogMessage);
+                if (SyslogLevel != null)
+                    Layouts.Add(SyslogLevel);
+                if (StructuredDataId != null)
+                    Layouts.Add(StructuredDataId);                
+                for (int i = 0; i < StructuredDataParams.Count; ++i)
+                    Layouts.Add(StructuredDataParams[i].Layout);
+            }
+
+            base.InitializeLayout();
+        }
+
+        /// <inheritdoc/>
+        protected override void CloseLayout()
+        {
+            ValueFormatter = null;
         }
 
         /// <inheritdoc/>
@@ -160,17 +206,17 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            var severity = SyslogSeverity.RenderValue(logEvent);
+            var syslogLevel = SyslogLevel.RenderValue(logEvent);
             var facility = SyslogFacility;
 
             var priValueMapper = _priValueMapping;
             if (priValueMapper.Key != facility || priValueMapper.Value is null)
             {
-                priValueMapper = new KeyValuePair<SyslogFacility, Dictionary<SyslogSeverity, string>>(facility, ResolveFacilityMapper(facility));
+                priValueMapper = new KeyValuePair<SyslogFacility, Dictionary<SyslogLevel, string>>(facility, ResolveFacilityMapper(facility));
                 _priValueMapping = priValueMapper;
             }
 
-            var priValue = priValueMapper.Value[severity];
+            var priValue = priValueMapper.Value[syslogLevel];
             var hostName = _hostNameString ?? EscapePropertyName(SyslogHostName?.Render(logEvent) ?? string.Empty, HostNameMaxLength);
             var appName = _appNameString ?? EscapePropertyName(SyslogAppName?.Render(logEvent) ?? string.Empty, AppNameMaxLength);
             var processId = _processIdString ?? EscapePropertyName(SyslogProcessId?.Render(logEvent) ?? string.Empty, ProcessIdMaxLength);
@@ -428,37 +474,45 @@ namespace NLog.Layouts
         /// </remarks>
         private static bool IsAscii(char c) => (uint)c <= '\x007f';
 
-        private static readonly Dictionary<LogLevel, SyslogSeverity> _severityMapping = new Dictionary<LogLevel, SyslogSeverity>
+        private static readonly SyslogLevel[] _loglevelMappings = new []
         {
-            { LogLevel.Fatal, Layouts.SyslogSeverity.Emergency },
-            { LogLevel.Error, Layouts.SyslogSeverity.Error },
-            { LogLevel.Warn, Layouts.SyslogSeverity.Warning },
-            { LogLevel.Info, Layouts.SyslogSeverity.Informational },
-            { LogLevel.Debug, Layouts.SyslogSeverity.Debug },
-            { LogLevel.Trace, Layouts.SyslogSeverity.Debug }
+            NLog.Layouts.SyslogLevel.Debug,
+            NLog.Layouts.SyslogLevel.Debug,
+            NLog.Layouts.SyslogLevel.Informational,
+            NLog.Layouts.SyslogLevel.Warning,
+            NLog.Layouts.SyslogLevel.Error,
+            NLog.Layouts.SyslogLevel.Emergency,
+            NLog.Layouts.SyslogLevel.Emergency,
         };
 
-        private static SyslogSeverity ResolveSyslogSeverity(LogLevel logLevel)
+        private static SyslogLevel ToSyslogLevel(LogLevel logLevel)
         {
-            return _severityMapping[logLevel];
+            try
+            {
+                return _loglevelMappings[logLevel.Ordinal];
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return NLog.Layouts.SyslogLevel.Emergency;
+            }
         }
 
-        private static Dictionary<SyslogSeverity, string> ResolveFacilityMapper(SyslogFacility facility)
+        private static Dictionary<SyslogLevel, string> ResolveFacilityMapper(SyslogFacility facility)
         {
-            return (new SyslogSeverity[]
+            return (new SyslogLevel[]
             {
-                    Layouts.SyslogSeverity.Emergency,
-                    Layouts.SyslogSeverity.Alert,
-                    Layouts.SyslogSeverity.Critical,
-                    Layouts.SyslogSeverity.Error,
-                    Layouts.SyslogSeverity.Warning,
-                    Layouts.SyslogSeverity.Notice,
-                    Layouts.SyslogSeverity.Informational,
-                    Layouts.SyslogSeverity.Debug
+                    NLog.Layouts.SyslogLevel.Emergency,
+                    NLog.Layouts.SyslogLevel.Alert,
+                    NLog.Layouts.SyslogLevel.Critical,
+                    NLog.Layouts.SyslogLevel.Error,
+                    NLog.Layouts.SyslogLevel.Warning,
+                    NLog.Layouts.SyslogLevel.Notice,
+                    NLog.Layouts.SyslogLevel.Informational,
+                    NLog.Layouts.SyslogLevel.Debug
             }).ToDictionary(s => s, s => ResolvePriHeader(facility, s));
         }
 
-        private static string ResolvePriHeader(SyslogFacility facility, SyslogSeverity severity)
+        private static string ResolvePriHeader(SyslogFacility facility, SyslogLevel severity)
         {
             var priVal = (int)facility * 8 + (int)severity;
             return $"<{priVal}>";
