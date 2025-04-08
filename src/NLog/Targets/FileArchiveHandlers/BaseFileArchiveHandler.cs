@@ -307,12 +307,12 @@ namespace NLog.Targets.FileArchiveHandlers
 
             if (lastLength > 0)
             {
-                return filename.Substring(0, lastStart) + "*" + filename.Substring(lastStart + lastLength, filename.Length - lastStart - lastLength) + fileext;
+                var prefix = filename.Substring(0, lastStart);
+                var suffix = filename.Substring(lastStart + lastLength, filename.Length - lastStart - lastLength);
+                return string.IsNullOrEmpty(suffix) ? string.Concat(prefix, "*", fileext) : string.Concat(prefix, "*", suffix, "*", fileext);
             }
-            else
-            {
-                return filename + "*" + fileext;
-            }
+
+            return string.Concat(filename, "*", fileext);
         }
 
         protected bool DeleteOldArchiveFile(string filepath)
