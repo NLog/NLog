@@ -73,8 +73,6 @@ namespace NLog.Targets.AtomicFile.Tests
             ft.ArchiveAboveSize = Array.IndexOf(modes, "archive") >= 0 ? 50 : -1;
             if (ft.ArchiveAboveSize > 0)
             {
-                string archivePath = Path.Combine(Path.GetDirectoryName(fileName), "Archive");
-                ft.ArchiveFileName = Path.Combine(archivePath, Path.GetFileName(fileName));
                 ft.ArchiveSuffixFormat = "_{0:0000}";
                 ft.MaxArchiveFiles = 10000;
             }
@@ -124,7 +122,7 @@ namespace NLog.Targets.AtomicFile.Tests
 
 #if !DISABLE_FILE_INTERNAL_LOGGING
             var logWriter = new StringWriter { NewLine = Environment.NewLine };
-            NLog.Common.InternalLogger.LogLevel = LogLevel.Warn;
+            NLog.Common.InternalLogger.LogLevel = LogLevel.Debug;
             NLog.Common.InternalLogger.LogFile = Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex));
             NLog.Common.InternalLogger.LogWriter = logWriter;
             NLog.Common.InternalLogger.LogToConsole = true;
@@ -211,8 +209,9 @@ namespace NLog.Targets.AtomicFile.Tests
                     processes[i] = null;
                 }
 
-                var files = new System.Collections.Generic.List<string>(Directory.GetFiles(archivePath));
-                files.Add(logFile);
+                var files = new System.Collections.Generic.List<string>(new DirectoryInfo(tempPath).GetFiles("test_*.txt").Select(f => f.FullName));
+                if (files.Count == 0)
+                    files.Add(logFile);
 
                 bool verifyFileSize = files.Count > 1;
 
@@ -243,7 +242,7 @@ namespace NLog.Targets.AtomicFile.Tests
 
                         if (verifyFileSize)
                         {
-                            if (sr.BaseStream.Length > 150)
+                            if (sr.BaseStream.Length > 120)
                                 throw new InvalidOperationException(
                                     $"Error when reading file {file}, size {sr.BaseStream.Length} is too large");
                             else if (sr.BaseStream.Length < 35 && files[files.Count - 1] != file)
