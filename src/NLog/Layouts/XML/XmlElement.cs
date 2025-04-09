@@ -96,5 +96,15 @@ namespace NLog.Layouts
             get => base.LayoutWrapper.XmlEncode;
             set => base.LayoutWrapper.XmlEncode = value;
         }
+
+        /// <summary>
+        /// Wraps the element value in a CDATA section instead of escaping XML characters.
+        /// </summary>
+        public bool WrapValueInCData
+        {
+            get => LayoutWrapper.WrapInCData;
+            set => LayoutWrapper.WrapInCData = value;
+        }
+
     }
 }

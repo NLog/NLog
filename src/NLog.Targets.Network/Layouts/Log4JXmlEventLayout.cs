@@ -45,7 +45,7 @@ namespace NLog.Layouts
     /// </summary>
     /// <remarks>
     /// <para>
-    /// This layout is not meant to be used explicitly. Instead you can use ${log4jxmlevent} layout renderer.
+    /// This layout is not meant to be used explicitly. Instead you can use ${log4jxmlevent} layout 
     /// </para>
     /// <a href="https://github.com/NLog/NLog/wiki/Log4JXmlEventLayout">See NLog Wiki</a>
     /// </remarks>
@@ -55,28 +55,110 @@ namespace NLog.Layouts
     [ThreadAgnostic]
     public class Log4JXmlEventLayout : Layout
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Log4JXmlEventLayout" /> class.
-        /// </summary>
-        public Log4JXmlEventLayout()
-        {
-            Renderer = new Log4JXmlEventLayoutRenderer();
-            Parameters = new List<Log4JXmlEventParameter>();
-            Renderer.Parameters = Parameters;
-        }
+
+        private static readonly DateTime log4jDateBase = new DateTime(1970, 1, 1);
+        private readonly ScopeContextNestedStatesLayoutRenderer _scopeNestedLayoutRenderer = new ScopeContextNestedStatesLayoutRenderer();
+        private IList<Log4JXmlEventParameter> _parameters = new List<Log4JXmlEventParameter>();
+
 
         /// <summary>
-        /// Gets the <see cref="Log4JXmlEventLayoutRenderer"/> instance that renders log events.
+        ///
         /// </summary>
-        public Log4JXmlEventLayoutRenderer Renderer { get; }
+        public XmlLayout InnerXml { get; } = new XmlLayout();
+
+        /// <summary>
+        ///
+        /// </summary>
+        protected override void InitializeLayout()
+        {
+            InnerXml.Attributes.Clear();
+            InnerXml.Elements.Clear();
+
+            InnerXml.ElementName = "log4j:event";
+
+            InnerXml.Attributes.Add(new XmlAttribute("logger", LoggerName));
+            InnerXml.Attributes.Add(new XmlAttribute("level", "${level:uppercase=true}") { IncludeEmptyValue = true });
+            InnerXml.Attributes.Add(new XmlAttribute("timestamp", Layout.FromMethod(evt => (long)(evt.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, LayoutRenderOptions.ThreadAgnostic)));
+            InnerXml.Attributes.Add(new XmlAttribute("thread", "${threadid}") { IncludeEmptyValue = true });
+
+            InnerXml.Elements.Add(new XmlElement("log4j:message", FormattedMessage ?? "${message}"));
+            InnerXml.Elements.Add(new XmlElement("log4j:throwable", "${exception:format=ToString}")
+            {
+                WrapValueInCData = WriteThrowableCData
+            });
+
+            if (IncludeCallSite || IncludeSourceInfo)
+            {
+                var locationInfo = new XmlElement("log4j:locationInfo", null)
+                {
+                    Attributes =
+                    {
+                        new XmlAttribute("class", "${callsite:methodName=false}"),
+                        new XmlAttribute("method", "${callsite:className=false}")
+                    }
+                };
+
+                if (IncludeSourceInfo)
+                {
+                    locationInfo.Attributes.Add(new XmlAttribute("file", "${callsite-filename}"));
+                    locationInfo.Attributes.Add(new XmlAttribute("line", "${callsite-linenumber}"));
+                }
+
+                InnerXml.Elements.Add(locationInfo);
+            }
+
+            if (IncludeScopeNested)
+            {
+                InnerXml.Elements.Add(new XmlElement("log4j:NDC", "${scopenested}"));
+            }
+
+            var dataProperties = new XmlElement("log4j:properties", null)
+            {
+                PropertiesElementName = "log4j:data",
+                PropertiesElementKeyAttribute = "name",
+                PropertiesElementValueAttribute = "value",
+                IncludeEventProperties = IncludeEventProperties,
+                IncludeScopeProperties = IncludeScopeProperties
+            };
+
+            foreach (var parameter in Parameters)
+            {
+                var propertyElement = new XmlElement("log4j:data", null)
+                {
+                    IncludeEmptyValue = parameter.IncludeEmptyValue
+                };
+
+                propertyElement.Attributes.Add(new XmlAttribute("name", parameter.Name));
+                propertyElement.Attributes.Add(new XmlAttribute("value", parameter.Layout));
+                dataProperties.Elements.Add(propertyElement);
+            }
+
+
+            var appProperty = new XmlElement("log4j:data", null);
+            appProperty.Attributes.Add(new XmlAttribute("name", "log4japp"));
+            appProperty.Attributes.Add(new XmlAttribute("value", AppInfo));
+            dataProperties.Elements.Add(appProperty);
+
+            var machineProperty = new XmlElement("log4j:data", null);
+            machineProperty.Attributes.Add(new XmlAttribute("name", "log4jmachinename"));
+            machineProperty.Attributes.Add(new XmlAttribute("value", "${machinename}"));
+            dataProperties.Elements.Add(machineProperty);
+
+            InnerXml.Elements.Add(dataProperties);
+
+            base.InitializeLayout();
+        }
 
         /// <summary>
         /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a named parameter.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(Log4JXmlEventParameter), "parameter")]
-        public IList<Log4JXmlEventParameter> Parameters { get => Renderer.Parameters; set => Renderer.Parameters = value; }
+        public IList<Log4JXmlEventParameter> Parameters
+        {
+            get => _parameters;
+            set => _parameters = value ?? new List<Log4JXmlEventParameter>();
+        }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
@@ -84,8 +166,7 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeEventProperties
         {
-            get => Renderer.IncludeEventProperties;
-            set => Renderer.IncludeEventProperties = value;
+            get; set;
         }
 
         /// <summary>
@@ -94,9 +175,14 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeProperties
         {
-            get => Renderer.IncludeScopeProperties;
-            set => Renderer.IncludeScopeProperties = value;
+            get; set;
         }
+
+        /// <summary>
+        ///  Gets or sets whether the log4j:throwable xml-element should be written as CDATA
+        /// </summary>
+        /// <docgen category='Layout Options' order='50' />
+        public bool WriteThrowableCData { get; set; }
 
         /// <summary>
         /// Gets or sets whether to include log4j:NDC in output from <see cref="ScopeContext"/> nested context.
@@ -104,9 +190,42 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeNested
         {
-            get => Renderer.IncludeScopeNested;
-            set => Renderer.IncludeScopeNested = value;
+            get; set;
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        [Obsolete("Non standard extension to the Log4j-XML format. Marked obsolete with NLog 6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IncludeNLogData { get; set; }
+
+        /// <summary>
+        /// Obsolete and replaced by <see cref="NdcItemSeparator"/> with NLog v5.
+        ///
+        /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        [Obsolete("Replaced by NdcItemSeparator. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string NdlcItemSeparator { get => ScopeNestedSeparator; set => ScopeNestedSeparator = value; }
+
+        /// <summary>
+        /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        public string ScopeNestedSeparator
+        {
+            get => _scopeNestedLayoutRenderer.Separator;
+            set => _scopeNestedLayoutRenderer.Separator = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        public string NdcItemSeparator { get => ScopeNestedSeparator; set => ScopeNestedSeparator = value; }
 
         /// <summary>
         /// Obsolete and replaced by <see cref="IncludeEventProperties"/> with NLog v5.
@@ -126,13 +245,13 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IncludeMdc { get => Renderer.IncludeMdc; set => Renderer.IncludeMdc = value; }
+        public bool IncludeMdc { get; set; }
 
         /// <summary>
         /// Gets or sets whether to include log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public bool IncludeNdc { get => Renderer.IncludeNdc; set => Renderer.IncludeNdc = value; }
+        public bool IncludeNdc { get => IncludeNdc; set => IncludeNdc = value; }
 
         /// <summary>
         /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
@@ -142,7 +261,7 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IncludeMdlc { get => Renderer.IncludeMdlc; set => Renderer.IncludeMdlc = value; }
+        public bool IncludeMdlc { get => IncludeMdlc; set => IncludeMdlc = value; }
 
         /// <summary>
         /// Obsolete and replaced by <see cref="IncludeNdc"/> with NLog v5.
@@ -152,17 +271,13 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IncludeNdlc { get => Renderer.IncludeNdlc; set => Renderer.IncludeNdlc = value; }
+        public bool IncludeNdlc { get => IncludeNdlc; set => IncludeNdlc = value; }
 
         /// <summary>
         /// Gets or sets the log4j:event logger-xml-attribute. Default: ${logger}
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public Layout LoggerName
-        {
-            get => Renderer.LoggerName;
-            set => Renderer.LoggerName = value;
-        }
+        public Layout LoggerName { get; set; } = "${logger}";
 
         /// <summary>
         /// Gets or sets the log4j:event message-xml-element. Default: ${message}
@@ -170,8 +285,7 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='100' />
         public Layout FormattedMessage
         {
-            get => Renderer.FormattedMessage;
-            set => Renderer.FormattedMessage = value;
+            get; set;
         }
 
         /// <summary>
@@ -180,18 +294,7 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='100' />
         public Layout AppInfo
         {
-            get => Renderer.AppInfo;
-            set => Renderer.AppInfo = value;
-        }
-
-        /// <summary>
-        ///  Gets or sets whether the log4j:throwable xml-element should be written as CDATA
-        /// </summary>
-        /// <docgen category='Layout Options' order='100' />
-        public bool WriteThrowableCData
-        {
-            get => Renderer.WriteThrowableCData;
-            set => Renderer.WriteThrowableCData = value;
+            get; set;
         }
 
         /// <summary>
@@ -200,8 +303,7 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='100' />
         public bool IncludeCallSite
         {
-            get => Renderer.IncludeCallSite;
-            set => Renderer.IncludeCallSite = value;
+            get;set;
         }
 
         /// <summary>
@@ -210,20 +312,21 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='100' />
         public bool IncludeSourceInfo
         {
-            get => Renderer.IncludeSourceInfo;
-            set => Renderer.IncludeSourceInfo = value;
+            get; set;
         }
 
         /// <inheritdoc/>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            return Renderer.Render(logEvent);
+            var sb = new StringBuilder(1024);
+            RenderFormattedMessage(logEvent, sb);
+            return sb.ToString();
         }
 
         /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            Renderer.AppendBuilder(logEvent, target);
+            InnerXml.Render(logEvent, target);
         }
     }
 }

@@ -58,6 +58,12 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool XmlEncode { get; set; } = true;
 
         /// <summary>
+        /// Indicates whether the rendered value should be wrapped in <![CDATA[ ... ]]> section.
+        /// </summary>
+        public bool WrapInCData { get; set; } = false;
+
+
+        /// <summary>
         /// Gets or sets a value indicating whether to transform newlines (\r\n) into (&#13;&#10;)
         /// </summary>
         /// <docgen category="Layout Options" order="10"/>
@@ -67,7 +73,13 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
             Inner.Render(logEvent, builder);
-            if (XmlEncode)
+            if (WrapInCData)
+            {
+                var cdataWrapped = $"<![CDATA[{builder.ToString(orgLength, builder.Length - orgLength)}]]>";
+                builder.Length = orgLength;
+                builder.Append(cdataWrapped);
+            }
+            else if (XmlEncode)
             {
                 XmlHelper.PerformXmlEscapeWhenNeeded(builder, orgLength, XmlEncodeNewlines);
             }

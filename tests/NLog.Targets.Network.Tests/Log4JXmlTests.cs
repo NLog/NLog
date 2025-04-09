@@ -51,7 +51,6 @@ namespace NLog.Targets.Network
             LogManager.ThrowExceptions = true;
             LogManager.Setup().SetupExtensions(ext =>
             {
-                ext.RegisterLayoutRenderer<Log4JXmlEventLayoutRenderer>();
                 ext.RegisterLayout<Log4JXmlEventLayout>();
             });
         }
@@ -62,13 +61,23 @@ namespace NLog.Targets.Network
             var logFactory = new LogFactory().Setup()
                 .LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
-                <targets>
-                    <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeNdlc=true:includeMdc=true:IncludeNdc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true:loggerName=${logger}:formattedMessage=${message}}' />
-                </targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>").LogFactory;
+  <targets>
+    <target name='debug' type='Debug'>
+<layout type='Log4JXmlEventLayout'
+        includeCallSite='true'
+        includeSourceInfo='true'
+        includeScopeNested='true'
+        includeScopeProperties='true'
+        includeEventProperties='true'
+        ndcItemSeparator='::'
+        appInfo='${appdomain}(${processid})' />
+    </target>
+  </targets>
+  <rules>
+    <logger name='*' minlevel='Debug' writeTo='debug' />
+  </rules>
+</nlog>
+").LogFactory;
 
             ScopeContext.Clear();
 
@@ -225,19 +234,20 @@ namespace NLog.Targets.Network
                     }
                 },
             };
-            log4jLayout.Renderer.AppInfo = "MyApp";
+            log4jLayout.AppInfo = "MyApp";
             var logEventInfo = new LogEventInfo
             {
                 LoggerName = "MyLOgger",
                 TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56, DateTimeKind.Utc),
                 Level = LogLevel.Info,
                 Message = "hello, <{0}>",
-                Parameters = new[] { "world" },
+                Parameters = new[] { "world" }
             };
 
             var threadid = Environment.CurrentManagedThreadId;
             var machinename = Environment.MachineName;
-            Assert.Equal($"<log4j:event logger=\"MyLOgger\" level=\"INFO\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>hello, &lt;world&gt;</log4j:message><log4j:properties><log4j:data name=\"mt\" value=\"hello, &lt;{{0}}&gt;\" /><log4j:data name=\"log4japp\" value=\"MyApp\" /><log4j:data name=\"log4jmachinename\" value=\"{machinename}\" /></log4j:properties></log4j:event>", log4jLayout.Render(logEventInfo));
+            var test = log4jLayout.Render(logEventInfo);
+            Assert.Equal($"<log4j:event logger=\"MyLOgger\" level=\"INFO\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>hello, &lt;world&gt;</log4j:message><log4j:properties><log4j:data name=\"mt\" value=\"hello, &lt;{{0}}&gt;\"/><log4j:data name=\"log4japp\" value=\"MyApp\"/><log4j:data name=\"log4jmachinename\" value=\"{machinename}\"/></log4j:properties></log4j:event>", log4jLayout.Render(logEventInfo));
         }
 
         [Fact]
