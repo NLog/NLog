@@ -61,6 +61,7 @@ namespace NLog.Internal
                     InternalLogger.Debug("Ignoring assembly location because code base is unknown: '{0}' ({1})", assembly.CodeBase, assemblyFullName);
                     return string.Empty;
                 }
+#pragma warning restore SYSLIB0012 // Type or member is obsolete
 
                 var assemblyLocation = System.IO.Path.GetDirectoryName(assemblyCodeBase.LocalPath);
                 if (string.IsNullOrEmpty(assemblyLocation))

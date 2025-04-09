@@ -246,7 +246,7 @@ namespace NLog.UnitTests.Config
             // Arrange
             var xml = @"<nlog>
                     <targets>
-                        <target name='debug' type='Debug' layout='${message}' />
+                        <target name='debug' xsi:type='Debug' layout='${message}' />
                     </targets>
                     <rules>
                         <logger name='*' minlevel='debug' appendto='debug' filterDefaultAction='ignore'>
