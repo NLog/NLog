@@ -474,11 +474,8 @@ namespace NLog.UnitTests
             // Known allowed explicit static constructors (full type names)
             var knownStaticConstructors = new HashSet<string>
             {
+                // Explicit static constructors
                 "NLog.LogFactory",
-                "NLog.Targets.ConcurrentFileTarget",
-                "NLog.UnitTests.DatabaseTargetTests",
-                "NLog.Targets.ConcurrentFile.Tests.ProcessRunner",
-                "NLog.UnitTests.LogManagerTests",
 
                 // Likely compiler generated or false-positives.
                 "NLog.GlobalDiagnosticsContext",
