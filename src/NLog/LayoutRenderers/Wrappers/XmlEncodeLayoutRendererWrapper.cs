@@ -62,6 +62,11 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public bool WrapInCData { get; set; } = false;
 
+        /// <summary>
+        /// Remove Imvalid Xml Characters from inner
+        /// </summary>
+        public bool RemoveInvalidXml { get; set; } = true;
+
 
         /// <summary>
         /// Gets or sets a value indicating whether to transform newlines (\r\n) into (&#13;&#10;)
@@ -73,12 +78,17 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
             Inner.Render(logEvent, builder);
+
+            if (RemoveInvalidXml)
+            {
+                XmlHelper.RemoveInvalidXmlIfNeeded(builder, orgLength);
+            }
+
             if (WrapInCData)
             {
-                var cdataWrapped = $"<![CDATA[{builder.ToString(orgLength, builder.Length - orgLength)}]]>";
-                builder.Length = orgLength;
-                builder.Append(cdataWrapped);
+                XmlHelper.WrapInCData(builder, orgLength);
             }
+
             else if (XmlEncode)
             {
                 XmlHelper.PerformXmlEscapeWhenNeeded(builder, orgLength, XmlEncodeNewlines);
@@ -88,6 +98,11 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc/>
         protected override string Transform(string text)
         {
+            if (WrapInCData)
+            {
+                return $"<![CDATA[{text}]]>";
+            }
+
             if (XmlEncode)
             {
                 return XmlHelper.EscapeXmlString(text, XmlEncodeNewlines);

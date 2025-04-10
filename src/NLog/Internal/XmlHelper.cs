@@ -445,5 +445,77 @@ namespace NLog.Internal
         }
 
         private static readonly char[] DecimalScientificExponent = new[] { 'e', 'E' };
+
+        internal static bool ContainsInvalidXmlChars(StringBuilder text, int startPos = 0)
+        {
+            for (int i = startPos; i < text.Length; i++)
+            {
+                // Check if this character is the start of a surrogate pair
+                if (char.IsHighSurrogate(text[i]) && i + 1 < text.Length && char.IsLowSurrogate(text[i + 1]))
+                {
+                    int codePoint = char.ConvertToUtf32(text[i], text[i + 1]);
+                    if (!IsValidXmlChar(codePoint))
+                        return true;
+
+                    i++; // skip the low surrogate
+                }
+                else
+                {
+                    int codePoint = text[i];
+                    if (!IsValidXmlChar(codePoint))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+        private static bool IsValidXmlChar(int codePoint)
+        {
+            return
+                (codePoint == 0x9) ||
+                (codePoint == 0xA) ||
+                (codePoint == 0xD) ||
+                (codePoint >= 0x20 && codePoint <= 0xD7FF) ||
+                (codePoint >= 0xE000 && codePoint <= 0xFFFD) ||
+                (codePoint >= 0x10000 && codePoint <= 0x10FFFF);
+        }
+
+        internal static bool ContainsInvalidXmlChars(string text)
+        {
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (char.IsHighSurrogate(text[i]) && i + 1 < text.Length && char.IsLowSurrogate(text[i + 1]))
+                {
+                    int codePoint = char.ConvertToUtf32(text[i], text[i + 1]);
+                    if (!IsValidXmlChar(codePoint))
+                        return true;
+                    i++;
+                }
+                else
+                {
+                    if (!IsValidXmlChar(text[i]))
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        public static void RemoveInvalidXmlIfNeeded(StringBuilder builder, int orgLength)
+        {
+            if (ContainsInvalidXmlChars(builder, orgLength))
+            {
+                var cleanedText = XmlConvertToStringSafe(builder.ToString(orgLength, builder.Length - orgLength));
+                builder.Length = orgLength;
+                builder.Append(cleanedText);
+            }
+        }
+
+        public static void WrapInCData(StringBuilder builder, int orgLength)
+        {
+            var content = builder.ToString(orgLength, builder.Length - orgLength);
+            builder.Length = orgLength;
+            builder.Append($"<![CDATA[{content}]]>");
+        }
+
     }
 }

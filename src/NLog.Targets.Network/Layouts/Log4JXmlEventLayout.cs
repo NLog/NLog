@@ -109,7 +109,8 @@ namespace NLog.Layouts
 
             if (IncludeScopeNested)
             {
-                InnerXml.Elements.Add(new XmlElement("log4j:NDC", "${scopenested}"));
+                _scopeNestedLayoutRenderer.Separator = ScopeNestedSeparator;
+                InnerXml.Elements.Add(new XmlElement("log4j:NDC", "${scopenested}")); ;
             }
 
             var dataProperties = new XmlElement("log4j:properties", null)
@@ -173,10 +174,8 @@ namespace NLog.Layouts
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public bool IncludeScopeProperties
-        {
-            get; set;
-        }
+        public bool IncludeScopeProperties { get => _includeScopeProperties ?? (_includeMdlc == true || _includeMdc == true); set => _includeScopeProperties = value; }
+        private bool? _includeScopeProperties;
 
         /// <summary>
         ///  Gets or sets whether the log4j:throwable xml-element should be written as CDATA
@@ -188,10 +187,8 @@ namespace NLog.Layouts
         /// Gets or sets whether to include log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public bool IncludeScopeNested
-        {
-            get; set;
-        }
+        public bool IncludeScopeNested { get => _includeScopeNested ?? (_includeNdlc == true || _includeNdc == true); set => _includeScopeNested = value; }
+        private bool? _includeScopeNested;
 
         /// <summary>
         /// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
@@ -245,13 +242,15 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IncludeMdc { get; set; }
+        public bool IncludeMdc { get => _includeMdc ?? false; set => _includeMdc = value; }
+        private bool? _includeMdc;
 
         /// <summary>
         /// Gets or sets whether to include log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public bool IncludeNdc { get => IncludeNdc; set => IncludeNdc = value; }
+        public bool IncludeNdc { get => _includeNdc ?? false; set => _includeNdc = value; }
+        private bool? _includeNdc;
 
         /// <summary>
         /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
@@ -261,7 +260,8 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IncludeMdlc { get => IncludeMdlc; set => IncludeMdlc = value; }
+        public bool IncludeMdlc { get => _includeMdlc ?? false; set => _includeMdlc = value; }
+        private bool? _includeMdlc;
 
         /// <summary>
         /// Obsolete and replaced by <see cref="IncludeNdc"/> with NLog v5.
@@ -269,9 +269,10 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by IncludeNdc. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IncludeNdlc { get => IncludeNdlc; set => IncludeNdlc = value; }
+        public bool IncludeNdlc { get => _includeNdlc ?? false; set => _includeNdlc = value; }
+        private bool? _includeNdlc;
 
         /// <summary>
         /// Gets or sets the log4j:event logger-xml-attribute. Default: ${logger}
