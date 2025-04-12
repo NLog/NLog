@@ -44,8 +44,6 @@ namespace NLog.Layouts
     /// A specialized layout that renders Log4j-compatible XML events.
     /// </summary>
     /// <remarks>
-    /// <para>
-    /// </para>
     /// <a href="https://github.com/NLog/NLog/wiki/Log4JXmlEventLayout">See NLog Wiki</a>
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/Log4JXmlEventLayout">Documentation on NLog Wiki</seealso>
