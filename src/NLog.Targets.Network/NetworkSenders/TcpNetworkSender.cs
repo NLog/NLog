@@ -72,6 +72,8 @@ namespace NLog.Internal.NetworkSenders
 
         internal TimeSpan SendTimeout { get; set; }
 
+        internal bool NoDelay { get; set; }
+
         /// <summary>
         /// Creates the socket with given parameters.
         /// </summary>
@@ -79,20 +81,25 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="addressFamily">The address family.</param>
         /// <param name="socketType">Type of the socket.</param>
         /// <param name="protocolType">Type of the protocol.</param>
-        /// <param name="sendTimeout">Socket SendTimeout.</param>
+        /// 
         /// <returns>Instance of <see cref="ISocket" /> which represents the socket.</returns>
-        protected internal virtual ISocket CreateSocket(string host, AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType, TimeSpan sendTimeout)
+        protected internal virtual ISocket CreateSocket(string host, AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
         {
             var socketProxy = new SocketProxy(addressFamily, socketType, protocolType);
+
+            if (NoDelay)
+            {
+                socketProxy.UnderlyingSocket.NoDelay = true;
+            }
 
             if (KeepAliveTime.TotalSeconds >= 1.0 && EnableKeepAliveSuccessful != false)
             {
                 EnableKeepAliveSuccessful = TryEnableKeepAlive(socketProxy.UnderlyingSocket, (int)KeepAliveTime.TotalSeconds);
             }
 
-            if (sendTimeout > TimeSpan.Zero)
+            if (SendTimeout > TimeSpan.Zero)
             {
-                socketProxy.UnderlyingSocket.SendTimeout = (int)sendTimeout.TotalMilliseconds;
+                socketProxy.UnderlyingSocket.SendTimeout = (int)SendTimeout.TotalMilliseconds;
             }
 
             if (SslProtocols != System.Security.Authentication.SslProtocols.None)
@@ -179,7 +186,7 @@ namespace NLog.Internal.NetworkSenders
             args.Completed += _socketOperationCompletedAsync;
             args.UserToken = null;
 
-            _socket = CreateSocket(uri.Host, args.RemoteEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp, SendTimeout);
+            _socket = CreateSocket(uri.Host, args.RemoteEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             base.BeginInitialize();
 
             bool asyncOperation = false;

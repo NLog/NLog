@@ -89,7 +89,7 @@ namespace NLog.Targets.Network
             Assert.Equal("HttpHappyPathTestLogger|test message1|", requestedString);
             Assert.Equal("POST", mock.Method);
 
-            networkSenderFactoryMock.Received(1).Create("http://test.with.mock", 1234, NetworkTargetQueueOverflowAction.Block, 0, SslProtocols.None, null, TimeSpan.Zero, TimeSpan.Zero);
+            networkSenderFactoryMock.Received(1).Create("http://test.with.mock", null, networkTarget);
 
             // Cleanup
             mock.Dispose();
@@ -135,7 +135,7 @@ namespace NLog.Targets.Network
             Assert.Equal("HttpHappyPathTestLogger|test message2|", requestedString);
             Assert.Equal("POST", mock.Method);
 
-            networkSenderFactoryMock.Received(1).Create("http://test.with.mock", 1234, NetworkTargetQueueOverflowAction.Block, 0, SslProtocols.None, null, TimeSpan.Zero, TimeSpan.Zero); // Only created one HttpNetworkSender
+            networkSenderFactoryMock.Received(1).Create("http://test.with.mock", null, networkTarget); // Only created one HttpNetworkSender
 
             // Cleanup
             mock.Dispose();
@@ -146,7 +146,7 @@ namespace NLog.Targets.Network
         {
             var networkSenderFactoryMock = Substitute.For<INetworkSenderFactory>();
 
-            networkSenderFactoryMock.Create(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<NetworkTargetQueueOverflowAction>(), Arg.Any<int>(), Arg.Any<SslProtocols>(), Arg.Any<X509Certificate2Collection>(), Arg.Any<TimeSpan>(), Arg.Any<TimeSpan>())
+            networkSenderFactoryMock.Create(Arg.Any<string>(), Arg.Any<X509Certificate2Collection>(), Arg.Any<NetworkTarget>())
                 .Returns(url => new HttpNetworkSender(url.Arg<string>())
                 {
                     HttpRequestFactory = new WebRequestFactoryMock(webRequestMock)

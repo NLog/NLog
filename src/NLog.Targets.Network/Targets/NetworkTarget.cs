@@ -251,10 +251,15 @@ namespace NLog.Targets
         public int KeepAliveTimeSeconds { get; set; }
 
         /// <summary>
-        /// The number of seconds a TCP socket send-operation will block before timeout error. Default wait forever when network cable unplugged and tcp-buffer becomes full.
+        /// The number of seconds a TCP socket send-operation will block before timeout error. Default = 100 secs (0 = wait forever when network cable unplugged and tcp-buffer becomes full).
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        public int SendTimeoutSeconds { get; set; }
+        public int SendTimeoutSeconds { get; set; } = 100;
+
+        /// <summary>
+        /// Gets or sets whether to disable the delayed ACK timer, and avoid delay of 200 ms. Default = true.
+        /// </summary>
+        public bool NoDelay { get; set; } = true;
 
         /// <summary>
         /// Type of compression for protocol payload. Useful for UDP where datagram max-size is 8192 bytes.
@@ -644,7 +649,7 @@ namespace NLog.Targets
             var sslCertificatePassword = SslCertificatePassword?.Render(logEventInfo);
             var sslCertificateOverride = LoadSslCertificateFromFile(sslCertificateFile, sslCertificatePassword);
 
-            var sender = SenderFactory.Create(address, MaxQueueSize, OnQueueOverflow, MaxMessageSize, SslProtocols, sslCertificateOverride, TimeSpan.FromSeconds(KeepAliveTimeSeconds), TimeSpan.FromSeconds(SendTimeoutSeconds));
+            var sender = SenderFactory.Create(address, sslCertificateOverride, this);
             sender.Initialize();
             if (KeepConnection || LogEventDropped != null)
             {
