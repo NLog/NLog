@@ -46,17 +46,18 @@ namespace NLog.Internal.NetworkSenders
         public static readonly INetworkSenderFactory Default = new NetworkSenderFactory();
 
         /// <inheritdoc/>
-        public QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, X509Certificate2Collection sslCertificateOverride, TimeSpan keepAliveTime, TimeSpan sendTimeout)
+        public QueuedNetworkSender Create(string url, X509Certificate2Collection sslCertificateOverride, NetworkTarget networkTarget)
         {
             if (url.StartsWith("tcp://", StringComparison.OrdinalIgnoreCase))
             {
                 return new TcpNetworkSender(url, AddressFamily.Unspecified)
                 {
-                    MaxQueueSize = maxQueueSize,
-                    OnQueueOverflow = onQueueOverflow,
-                    SslProtocols = sslProtocols,
-                    KeepAliveTime = keepAliveTime,
-                    SendTimeout = sendTimeout,
+                    MaxQueueSize = networkTarget.MaxQueueSize,
+                    OnQueueOverflow = networkTarget.OnQueueOverflow,
+                    NoDelay = networkTarget.NoDelay,
+                    KeepAliveTime = TimeSpan.FromSeconds(networkTarget.KeepAliveTimeSeconds),
+                    SendTimeout = TimeSpan.FromSeconds(networkTarget.SendTimeoutSeconds),
+                    SslProtocols = networkTarget.SslProtocols,
                     SslCertificateOverride = sslCertificateOverride,
                 };
             }
@@ -65,11 +66,12 @@ namespace NLog.Internal.NetworkSenders
             {
                 return new TcpNetworkSender(url, AddressFamily.InterNetwork)
                 {
-                    MaxQueueSize = maxQueueSize,
-                    OnQueueOverflow = onQueueOverflow,
-                    SslProtocols = sslProtocols,
-                    KeepAliveTime = keepAliveTime,
-                    SendTimeout = sendTimeout,
+                    MaxQueueSize = networkTarget.MaxQueueSize,
+                    OnQueueOverflow = networkTarget.OnQueueOverflow,
+                    NoDelay = networkTarget.NoDelay,
+                    KeepAliveTime = TimeSpan.FromSeconds(networkTarget.KeepAliveTimeSeconds),
+                    SendTimeout = TimeSpan.FromSeconds(networkTarget.SendTimeoutSeconds),
+                    SslProtocols = networkTarget.SslProtocols,
                     SslCertificateOverride = sslCertificateOverride,
                 };
             }
@@ -78,11 +80,12 @@ namespace NLog.Internal.NetworkSenders
             {
                 return new TcpNetworkSender(url, AddressFamily.InterNetworkV6)
                 {
-                    MaxQueueSize = maxQueueSize,
-                    OnQueueOverflow = onQueueOverflow,
-                    SslProtocols = sslProtocols,
-                    KeepAliveTime = keepAliveTime,
-                    SendTimeout = sendTimeout,
+                    MaxQueueSize = networkTarget.MaxQueueSize,
+                    OnQueueOverflow = networkTarget.OnQueueOverflow,
+                    NoDelay = networkTarget.NoDelay,
+                    KeepAliveTime = TimeSpan.FromSeconds(networkTarget.KeepAliveTimeSeconds),
+                    SendTimeout = TimeSpan.FromSeconds(networkTarget.SendTimeoutSeconds),
+                    SslProtocols = networkTarget.SslProtocols,
                     SslCertificateOverride = sslCertificateOverride,
                 };
             }
@@ -91,9 +94,9 @@ namespace NLog.Internal.NetworkSenders
             {
                 return new UdpNetworkSender(url, AddressFamily.Unspecified)
                 {
-                    MaxQueueSize = maxQueueSize,
-                    OnQueueOverflow = onQueueOverflow,
-                    MaxMessageSize = maxMessageSize,
+                    MaxQueueSize = networkTarget.MaxQueueSize,
+                    OnQueueOverflow = networkTarget.OnQueueOverflow,
+                    MaxMessageSize = networkTarget.MaxMessageSize,
                 };
             }
 
@@ -101,9 +104,9 @@ namespace NLog.Internal.NetworkSenders
             {
                 return new UdpNetworkSender(url, AddressFamily.InterNetwork)
                 {
-                    MaxQueueSize = maxQueueSize,
-                    OnQueueOverflow = onQueueOverflow,
-                    MaxMessageSize = maxMessageSize,
+                    MaxQueueSize = networkTarget.MaxQueueSize,
+                    OnQueueOverflow = networkTarget.OnQueueOverflow,
+                    MaxMessageSize = networkTarget.MaxMessageSize,
                 };
             }
 
@@ -111,9 +114,9 @@ namespace NLog.Internal.NetworkSenders
             {
                 return new UdpNetworkSender(url, AddressFamily.InterNetworkV6)
                 {
-                    MaxQueueSize = maxQueueSize,
-                    OnQueueOverflow = onQueueOverflow,
-                    MaxMessageSize = maxMessageSize,
+                    MaxQueueSize = networkTarget.MaxQueueSize,
+                    OnQueueOverflow = networkTarget.OnQueueOverflow,
+                    MaxMessageSize = networkTarget.MaxMessageSize,
                 };
             }
 
@@ -121,9 +124,9 @@ namespace NLog.Internal.NetworkSenders
             {
                 return new HttpNetworkSender(url)
                 {
-                    MaxQueueSize = maxQueueSize,
-                    OnQueueOverflow = onQueueOverflow,
-                    SendTimeout = sendTimeout,
+                    MaxQueueSize = networkTarget.MaxQueueSize,
+                    OnQueueOverflow = networkTarget.OnQueueOverflow,
+                    SendTimeout = TimeSpan.FromSeconds(networkTarget.SendTimeoutSeconds),
                     SslCertificateOverride = sslCertificateOverride,
                 };
             }
@@ -132,9 +135,9 @@ namespace NLog.Internal.NetworkSenders
             {
                 return new HttpNetworkSender(url)
                 {
-                    MaxQueueSize = maxQueueSize,
-                    OnQueueOverflow = onQueueOverflow,
-                    SendTimeout = sendTimeout,
+                    MaxQueueSize = networkTarget.MaxQueueSize,
+                    OnQueueOverflow = networkTarget.OnQueueOverflow,
+                    SendTimeout = TimeSpan.FromSeconds(networkTarget.SendTimeoutSeconds),
                     SslCertificateOverride = sslCertificateOverride,
                 };
             }
