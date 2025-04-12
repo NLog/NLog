@@ -37,7 +37,6 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.ComponentModel;
     using NLog.Config;
-    using NLog.LayoutRenderers;
     using NLog.Layouts;
 
     /// <summary>
@@ -94,8 +93,8 @@ namespace NLog.Targets
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeNLogData
         {
-            get => Renderer.IncludeNLogData;
-            set => Renderer.IncludeNLogData = value;
+            get => _log4JLayout.IncludeNLogData;
+            set => _log4JLayout.IncludeNLogData = value;
         }
 
         /// <summary>
@@ -104,8 +103,8 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='10' />
         public Layout LoggerName
         {
-            get => Renderer.LoggerName;
-            set => Renderer.LoggerName = value;
+            get => _log4JLayout.LoggerName;
+            set => _log4JLayout.LoggerName = value;
         }
 
         /// <summary>
@@ -114,8 +113,8 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='10' />
         public Layout FormattedMessage
         {
-            get => Renderer.FormattedMessage;
-            set => Renderer.FormattedMessage = value;
+            get => _log4JLayout.FormattedMessage;
+            set => _log4JLayout.FormattedMessage = value;
         }
 
         /// <summary>
@@ -124,8 +123,8 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='10' />
         public Layout AppInfo
         {
-            get => Renderer.AppInfo;
-            set => Renderer.AppInfo = value;
+            get => _log4JLayout.AppInfo;
+            set => _log4JLayout.AppInfo = value;
         }
 
         /// <summary>
@@ -134,8 +133,8 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeCallSite
         {
-            get => Renderer.IncludeCallSite;
-            set => Renderer.IncludeCallSite = value;
+            get => _log4JLayout.IncludeCallSite;
+            set => _log4JLayout.IncludeCallSite = value;
         }
 
         /// <summary>
@@ -144,8 +143,8 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeSourceInfo
         {
-            get => Renderer.IncludeSourceInfo;
-            set => Renderer.IncludeSourceInfo = value;
+            get => _log4JLayout.IncludeSourceInfo;
+            set => _log4JLayout.IncludeSourceInfo = value;
         }
 
         /// <summary>
@@ -157,8 +156,8 @@ namespace NLog.Targets
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdc
         {
-            get => Renderer.IncludeMdc;
-            set => Renderer.IncludeMdc = value;
+            get => _log4JLayout.IncludeMdc;
+            set => _log4JLayout.IncludeMdc = value;
         }
 
         /// <summary>
@@ -167,33 +166,33 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeNdc
         {
-            get => Renderer.IncludeNdc;
-            set => Renderer.IncludeNdc = value;
+            get => _log4JLayout.IncludeNdc;
+            set => _log4JLayout.IncludeNdc = value;
         }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public bool IncludeEventProperties { get => Renderer.IncludeEventProperties; set => Renderer.IncludeEventProperties = value; }
+        public bool IncludeEventProperties { get => _log4JLayout.IncludeEventProperties; set => _log4JLayout.IncludeEventProperties = value; }
 
         /// <summary>
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public bool IncludeScopeProperties { get => Renderer.IncludeScopeProperties; set => Renderer.IncludeScopeProperties = value; }
+        public bool IncludeScopeProperties { get => _log4JLayout.IncludeScopeProperties; set => _log4JLayout.IncludeScopeProperties = value; }
 
         /// <summary>
         /// Gets or sets whether to include log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public bool IncludeScopeNested { get => Renderer.IncludeScopeNested; set => Renderer.IncludeScopeNested = value; }
+        public bool IncludeScopeNested { get => _log4JLayout.IncludeScopeNested; set => _log4JLayout.IncludeScopeNested = value; }
 
         /// <summary>
         /// Gets or sets the separator for <see cref="ScopeContext"/> operation-states-stack.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public string ScopeNestedSeparator { get => Renderer.ScopeNestedSeparator; set => Renderer.ScopeNestedSeparator = value; }
+        public string ScopeNestedSeparator { get => _log4JLayout.ScopeNestedSeparator; set => _log4JLayout.ScopeNestedSeparator = value; }
 
         /// <summary>
         /// Obsolete and replaced by <see cref="IncludeEventProperties"/> with NLog v5.
@@ -211,7 +210,7 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IncludeMdlc { get => Renderer.IncludeMdlc; set => Renderer.IncludeMdlc = value; }
+        public bool IncludeMdlc { get => _log4JLayout.IncludeMdlc; set => _log4JLayout.IncludeMdlc = value; }
 
         /// <summary>
         /// Obsolete and replaced by <see cref="IncludeNdc"/> with NLog v5.
@@ -220,7 +219,7 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeNdc. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IncludeNdlc { get => Renderer.IncludeNdlc; set => Renderer.IncludeNdlc = value; }
+        public bool IncludeNdlc { get => _log4JLayout.IncludeNdlc; set => _log4JLayout.IncludeNdlc = value; }
 
         /// <summary>
         /// Obsolete and replaced by <see cref="NdcItemSeparator"/> with NLog v5.
@@ -229,7 +228,7 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by NdcItemSeparator. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string NdlcItemSeparator { get => Renderer.NdlcItemSeparator; set => Renderer.NdlcItemSeparator = value; }
+        public string NdlcItemSeparator { get => _log4JLayout.NdlcItemSeparator; set => _log4JLayout.NdlcItemSeparator = value; }
 
         /// <summary>
         /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.
@@ -237,8 +236,8 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='10' />
         public string NdcItemSeparator
         {
-            get => Renderer.NdcItemSeparator;
-            set => Renderer.NdcItemSeparator = value;
+            get => _log4JLayout.NdcItemSeparator;
+            set => _log4JLayout.NdcItemSeparator = value;
         }
 
         /// <summary>
@@ -248,11 +247,6 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(Log4JXmlEventParameter), "parameter")]
         public IList<Log4JXmlEventParameter> Parameters => _log4JLayout.Parameters;
-
-        /// <summary>
-        /// Gets the layout renderer which produces Log4j-compatible XML events.
-        /// </summary>
-        public Log4JXmlEventLayoutRenderer Renderer => _log4JLayout.Renderer;
 
         /// <summary>
         /// Gets or sets the instance of <see cref="Log4JXmlEventLayout"/> that is used to format log messages.

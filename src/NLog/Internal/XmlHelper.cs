@@ -445,5 +445,19 @@ namespace NLog.Internal
         }
 
         private static readonly char[] DecimalScientificExponent = new[] { 'e', 'E' };
+
+        public static void RemoveInvalidXmlIfNeeded(StringBuilder builder, int orgLength)
+        {
+                var cleanedText = RemoveInvalidXmlChars(builder.ToString(orgLength, builder.Length - orgLength));
+                builder.Length = orgLength;
+                builder.Append(cleanedText);
+        }
+
+        public static void WrapInCData(StringBuilder builder, int orgLength)
+        {
+            var content = builder.ToString(orgLength, builder.Length - orgLength);
+            builder.Length = orgLength;
+            builder.Append($"<![CDATA[{content}]]>");
+        }
     }
 }
