@@ -60,7 +60,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Indicates whether the rendered value should be wrapped in <![CDATA[ ... ]]> section.
         /// </summary>
-        public bool WrapInCData { get; set; } = false;
+        public bool CDataEncode { get; set; } = false;
 
         /// <summary>
         /// Remove Imvalid Xml Characters from inner
@@ -84,7 +84,7 @@ namespace NLog.LayoutRenderers.Wrappers
                 XmlHelper.RemoveInvalidXmlIfNeeded(builder, orgLength);
             }
 
-            if (WrapInCData)
+            if (CDataEncode)
             {
                 XmlHelper.WrapInCData(builder, orgLength);
             }
@@ -98,7 +98,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc/>
         protected override string Transform(string text)
         {
-            if (WrapInCData)
+            if (CDataEncode)
             {
                 return $"<![CDATA[{text}]]>";
             }

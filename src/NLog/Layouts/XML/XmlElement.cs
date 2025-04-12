@@ -102,12 +102,12 @@ namespace NLog.Layouts
         /// </summary>
         public bool WrapValueInCData
         {
-            get => LayoutWrapper.WrapInCData;
-            set => LayoutWrapper.WrapInCData = value;
+            get => LayoutWrapper.CDataEncode;
+            set => LayoutWrapper.CDataEncode = value;
         }
 
         /// <summary>
-        /// Wraps the element value in a CDATA section instead of escaping XML characters.
+        /// Removes Invalid XMl characters from the element value. 
         /// </summary>
         public bool RemoveInvalidXmlChar
         {

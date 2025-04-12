@@ -57,18 +57,15 @@ namespace NLog.Layouts
     {
 
         private static readonly DateTime log4jDateBase = new DateTime(1970, 1, 1);
-        private readonly ScopeContextNestedStatesLayoutRenderer _scopeNestedLayoutRenderer = new ScopeContextNestedStatesLayoutRenderer();
         private IList<Log4JXmlEventParameter> _parameters = new List<Log4JXmlEventParameter>();
 
 
         /// <summary>
-        ///
+        /// Gets inner XML layout.
         /// </summary>
         public XmlLayout InnerXml { get; } = new XmlLayout();
 
-        /// <summary>
-        ///
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeLayout()
         {
             InnerXml.Attributes.Clear();
@@ -84,7 +81,8 @@ namespace NLog.Layouts
             InnerXml.Elements.Add(new XmlElement("log4j:message", FormattedMessage ?? "${message}"));
             InnerXml.Elements.Add(new XmlElement("log4j:throwable", "${exception:format=ToString}")
             {
-                WrapValueInCData = WriteThrowableCData
+                WrapValueInCData = WriteThrowableCData,
+                Encode = ThrowableEncode,
             });
 
             if (IncludeCallSite || IncludeSourceInfo)
@@ -109,8 +107,9 @@ namespace NLog.Layouts
 
             if (IncludeScopeNested)
             {
-                _scopeNestedLayoutRenderer.Separator = ScopeNestedSeparator;
-                InnerXml.Elements.Add(new XmlElement("log4j:NDC", "${scopenested}")); ;
+                var separator = ScopeNestedSeparator;
+                Layout scopeNested = string.IsNullOrEmpty(separator) ? "${scopenested}" : ("${scopenested:separator=" + separator + "}");
+                InnerXml.Elements.Add(new XmlElement("log4j:NDC", scopeNested));
             }
 
             var dataProperties = new XmlElement("log4j:properties", null)
@@ -165,10 +164,7 @@ namespace NLog.Layouts
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public bool IncludeEventProperties
-        {
-            get; set;
-        }
+        public bool IncludeEventProperties { get; set; }
 
         /// <summary>
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
@@ -212,11 +208,7 @@ namespace NLog.Layouts
         /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public string ScopeNestedSeparator
-        {
-            get => _scopeNestedLayoutRenderer.Separator;
-            set => _scopeNestedLayoutRenderer.Separator = value;
-        }
+        public string ScopeNestedSeparator { get; set; }
 
         /// <summary>
         /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.
@@ -284,37 +276,30 @@ namespace NLog.Layouts
         /// Gets or sets the log4j:event message-xml-element. Default: ${message}
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public Layout FormattedMessage
-        {
-            get; set;
-        }
+        public Layout FormattedMessage { get; set; }
 
         /// <summary>
         /// Gets or sets the log4j:event log4japp-xml-element. By default it's the friendly name of the current AppDomain.
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public Layout AppInfo
-        {
-            get; set;
-        }
+        public Layout AppInfo { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include call site (class and method name) in the information sent over the network.
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public bool IncludeCallSite
-        {
-            get;set;
-        }
+        public bool IncludeCallSite { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include source info (file name and line number) in the information sent over the network.
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public bool IncludeSourceInfo
-        {
-            get; set;
-        }
+        public bool IncludeSourceInfo { get; set; }
+
+        /// <summary>
+        /// Disable XML escaping for the log4j:throwable value. Use with caution!
+        /// </summary>
+        public bool ThrowableEncode { get; set; } = true;
 
         /// <inheritdoc/>
         protected override string GetFormattedMessage(LogEventInfo logEvent)

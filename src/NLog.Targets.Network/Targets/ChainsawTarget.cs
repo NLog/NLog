@@ -85,17 +85,17 @@ namespace NLog.Targets
             Name = name;
         }
 
-        ///// <summary>
-        ///// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
-        ///// </summary>
-        ///// <docgen category='Layout Options' order='10' />
-        //[Obsolete("Non standard extension to the Log4j-XML format. Marked obsolete with NLog 6.0")]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public bool IncludeNLogData
-        //{
-        //    get => _log4JLayout.IncludeNLogData;
-        //    set => _log4JLayout.IncludeNLogData = value;
-        //}
+        /// <summary>
+        /// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        [Obsolete("Non standard extension to the Log4j-XML format. Marked obsolete with NLog 6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IncludeNLogData
+        {
+            get => _log4JLayout.IncludeNLogData;
+            set => _log4JLayout.IncludeNLogData = value;
+        }
 
         /// <summary>
         /// Gets or sets the log4j:event logger-xml-attribute. Default: ${logger}
