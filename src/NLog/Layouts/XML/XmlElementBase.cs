@@ -559,7 +559,7 @@ namespace NLog.Layouts
                 if (beforeValueLength > MaxXmlLength)
                     break;
 
-                if (!property.HasNameAndValue)
+                if (string.IsNullOrEmpty(property.Name) || (!IncludeEmptyValue && StringHelpers.IsNullOrEmptyString(property.Value)))
                     continue;
 
                 var propertyTypeCode = property.TypeCode;

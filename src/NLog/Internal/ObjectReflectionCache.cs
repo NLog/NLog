@@ -293,7 +293,6 @@ namespace NLog.Internal
                 public TypeCode TypeCode => Value is null ? TypeCode.Empty : _typecode;
                 private readonly TypeCode _typecode;
                 public bool HasNameAndValue => Name != null && Value != null;
-
                 public PropertyValue(string name, object value, TypeCode typeCode)
                 {
                     Name = name;
@@ -304,15 +303,29 @@ namespace NLog.Internal
                 public PropertyValue(object owner, PropertyInfo propertyInfo)
                 {
                     Name = propertyInfo.Name;
-                    Value = propertyInfo.GetValue(owner, null);
                     _typecode = TypeCode.Object;
+                    try
+                    {
+                        Value = propertyInfo.GetValue(owner, null);
+                    }
+                    catch
+                    {
+                        Value = null;
+                    }
                 }
 
                 public PropertyValue(object owner, FastPropertyLookup fastProperty)
                 {
                     Name = fastProperty.Name;
-                    Value = fastProperty.ValueLookup(owner, null);
                     _typecode = fastProperty.TypeCode;
+                    try
+                    {
+                        Value = fastProperty.ValueLookup(owner, null);
+                    }
+                    catch
+                    {
+                        Value = null;
+                    }
                 }
             }
 
