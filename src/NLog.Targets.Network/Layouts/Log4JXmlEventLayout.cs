@@ -45,7 +45,6 @@ namespace NLog.Layouts
     /// </summary>
     /// <remarks>
     /// <para>
-    /// This layout is not meant to be used explicitly. Instead you can use ${log4jxmlevent} layout 
     /// </para>
     /// <a href="https://github.com/NLog/NLog/wiki/Log4JXmlEventLayout">See NLog Wiki</a>
     /// </remarks>
@@ -81,7 +80,7 @@ namespace NLog.Layouts
             InnerXml.Elements.Add(new XmlElement("log4j:message", FormattedMessage ?? "${message}"));
             InnerXml.Elements.Add(new XmlElement("log4j:throwable", "${exception:format=ToString}")
             {
-                WrapValueInCData = WriteThrowableCData,
+                CDataEncode  = WriteThrowableCData,
                 Encode = ThrowableEncode,
             });
 
