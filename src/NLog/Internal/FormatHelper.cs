@@ -71,13 +71,17 @@ namespace NLog.Internal
             {
                 return formattable.ToString(format, formatProvider);
             }
+            else if (value is IConvertible convertible)
+            {
+                return convertible.ToString(formatProvider);
+            }
             else if (value is System.Collections.IEnumerable)
             {
                 return null;
             }
             else
             {
-                return value?.ToString() ?? string.Empty;
+                return value?.ToString();
             }
         }
     }
