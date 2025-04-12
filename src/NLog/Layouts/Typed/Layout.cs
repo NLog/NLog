@@ -191,8 +191,7 @@ namespace NLog.Layouts
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             var objectValue = IsFixed ? FixedObjectValue : RenderObjectValue(logEvent, null);
-            var formatProvider = logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
-            return Convert.ToString(objectValue, formatProvider);
+            return FormatHelper.TryFormatToString(objectValue, null, CultureInfo.InvariantCulture) ?? string.Empty;
         }
 
         /// <inheritdoc/>
