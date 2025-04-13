@@ -54,7 +54,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
-        public string Name { get => _name; set => _name = XmlHelpers.RemoveInvalidXmlChars(value); }
+        public string Name { get => _name; set => _name = value; }
         private string _name;
 
         /// <summary>
