@@ -65,10 +65,10 @@ namespace NLog.Layouts
         public IList<Layout> Items { get; } = new List<Layout>();
 
         /// <summary>
-        /// Gets or sets the option to suppress the extra spaces in the output json
+        /// Gets or sets the option to suppress the extra spaces in the output json. Default: true
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public bool SuppressSpaces { get; set; }
+        public bool SuppressSpaces { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the option to render the empty object value {}

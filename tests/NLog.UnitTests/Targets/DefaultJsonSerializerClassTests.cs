@@ -110,7 +110,7 @@ namespace NLog.UnitTests.Targets
             var jsonSerializer = new DefaultJsonSerializer(logFactory.ServiceRepository);
             jsonSerializer.SerializeObject(testObject, sb, options);
             const string expectedValue =
-                @"{""S"":""sample"", ""Excluded"":""Skipped"", ""Included"":{""IncludedString"":""serialized""}}";
+                @"{""S"":""sample"",""Excluded"":""Skipped"",""Included"":{""IncludedString"":""serialized""}}";
             Assert.Equal(expectedValue, sb.ToString());
         }
 
@@ -128,7 +128,7 @@ namespace NLog.UnitTests.Targets
             var jsonSerializer = new DefaultJsonSerializer(logFactory.ServiceRepository);
             jsonSerializer.SerializeObject(testObject, sb, options);
             const string expectedValue =
-                @"{""S"":""sample"", ""Excluded"":""Skipped"", ""Included"":{""IncludedString"":""serialized""}}";
+                @"{""S"":""sample"",""Excluded"":""Skipped"",""Included"":{""IncludedString"":""serialized""}}";
             Assert.Equal(expectedValue, sb.ToString());
         }
     }
