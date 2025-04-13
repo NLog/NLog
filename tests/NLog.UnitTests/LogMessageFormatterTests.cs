@@ -41,7 +41,7 @@ namespace NLog.UnitTests
     public class LogMessageFormatterTests : NLogTestBase
     {
         [Fact]
-        public void ExtensionsLoggingFormatTest()
+        public void ExtensionsLoggingFormatJsonTest()
         {
             LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "MyLogger", "Login request from {Username} for {Application}", new[]
             {
@@ -74,7 +74,7 @@ namespace NLog.UnitTests
 
             var logger = logFactory.GetLogger("A");
             logger.Log(logEventInfo);
-            logFactory.AssertDebugLastMessage("{ \"LogMessage\": \"Login request from {Username} for {Application}\", \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
+            logFactory.AssertDebugLastMessage("{\"LogMessage\":\"Login request from {Username} for {Application}\",\"Username\":\"John\",\"Application\":\"BestApplicationEver\"}");
 
             Assert.Equal("Login request from John for BestApplicationEver", logEventInfo.FormattedMessage);
 
@@ -85,7 +85,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
-        public void ExtensionsLoggingPreFormatTest()
+        public void ExtensionsLoggingPreFormatJsonTest()
         {
             LogEventInfo logEventInfo1 = new LogEventInfo(LogLevel.Info, "MyLogger", "Login request from John for BestApplicationEver", "Login request from {Username} for {Application}", new[]
             {
@@ -128,7 +128,7 @@ namespace NLog.UnitTests
             var result1 = debugTarget.Layout.Render(logEventInfo1);
             Assert.NotSame(result1, debugTarget.LastMessage);
 
-            logFactory.AssertDebugLastMessage("{ \"LogMessage\": \"Login request from {Username} for {Application}\", \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
+            logFactory.AssertDebugLastMessage("{\"LogMessage\":\"Login request from {Username} for {Application}\",\"Username\":\"John\",\"Application\":\"BestApplicationEver\"}");
 
             Assert.Equal("Login request from John for BestApplicationEver", logEventInfo1.FormattedMessage);
 
@@ -139,7 +139,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
-        public void NormalStringFormatTest()
+        public void NormalStringFormatJsonTest()
         {
             LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "MyLogger", null, "{0:X} - Login request from {1} for {2} with userid {0}", new object[]
             {
@@ -164,7 +164,7 @@ namespace NLog.UnitTests
 
             var logger = logFactory.GetLogger("A");
             logger.Log(logEventInfo);
-            logFactory.AssertDebugLastMessage("{ \"LogMessage\": \"{0:X} - Login request from {1} for {2} with userid {0}\" }");
+            logFactory.AssertDebugLastMessage("{\"LogMessage\":\"{0:X} - Login request from {1} for {2} with userid {0}\"}");
 
             Assert.Equal("2A - Login request from John for BestApplicationEver with userid 42", logEventInfo.FormattedMessage);
 
@@ -175,7 +175,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
-        public void MessageTemplateFormatTest()
+        public void MessageTemplateFormatJsonTest()
         {
             LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "MyLogger", null, "Login request from {@Username} for {Application:l}", new object[]
             {
@@ -199,7 +199,7 @@ namespace NLog.UnitTests
 
             var logger = logFactory.GetLogger("A");
             logger.Log(logEventInfo);
-            logFactory.AssertDebugLastMessage("{ \"LogMessage\": \"Login request from {@Username} for {Application:l}\", \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
+            logFactory.AssertDebugLastMessage("{\"LogMessage\":\"Login request from {@Username} for {Application:l}\",\"Username\":\"John\",\"Application\":\"BestApplicationEver\"}");
 
             Assert.Equal("Login request from \"John\" for BestApplicationEver", logEventInfo.FormattedMessage);
 

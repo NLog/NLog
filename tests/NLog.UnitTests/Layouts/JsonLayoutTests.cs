@@ -43,8 +43,8 @@ namespace NLog.UnitTests.Layouts
 
     public class JsonLayoutTests : NLogTestBase
     {
-        private const string ExpectedIncludeAllPropertiesWithExcludes = "{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": true, \"NullProp\": null, \"DateTimeProp\": \"2345-01-23T12:34:56Z\" }";
-        private const string ExpectedExcludeEmptyPropertiesWithExcludes = "{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": true, \"DateTimeProp\": \"2345-01-23T12:34:56Z\", \"NoEmptyProp4\": \"hello\\\"\" }";
+        private const string ExpectedIncludeAllPropertiesWithExcludes = "{\"StringProp\":\"ValueA\",\"IntProp\":123,\"DoubleProp\":123.123,\"DecimalProp\":123.123,\"BoolProp\":true,\"NullProp\":null,\"DateTimeProp\":\"2345-01-23T12:34:56Z\"}";
+        private const string ExpectedExcludeEmptyPropertiesWithExcludes = "{\"StringProp\":\"ValueA\",\"IntProp\":123,\"DoubleProp\":123.123,\"DecimalProp\":123.123,\"BoolProp\":true,\"DateTimeProp\":\"2345-01-23T12:34:56Z\",\"NoEmptyProp4\":\"hello\\\"\"}";
 
         [Fact]
         public void JsonLayoutRendering()
@@ -66,7 +66,7 @@ namespace NLog.UnitTests.Layouts
                 Message = "hello, world"
             };
 
-            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"hello, world\" }", jsonLayout.Render(logEventInfo));
+            Assert.Equal("{\"date\":\"2010-01-01 12:34:56.0000\",\"level\":\"Info\",\"message\":\"hello, world\"}", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -157,7 +157,7 @@ namespace NLog.UnitTests.Layouts
                 Message = "\"hello, world\""
             };
 
-            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"\\\"hello, world\\\"\" }", jsonLayout.Render(logEventInfo));
+            Assert.Equal("{\"date\":\"2010-01-01 12:34:56.0000\",\"level\":\"Info\",\"message\":\"\\\"hello, world\\\"\"}", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -180,7 +180,7 @@ namespace NLog.UnitTests.Layouts
                 Message = "hello,\n\r world"
             };
 
-            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"hello,\\n\\r world\" }", jsonLayout.Render(logEventInfo));
+            Assert.Equal("{\"date\":\"2010-01-01 12:34:56.0000\",\"level\":\"Info\",\"message\":\"hello,\\n\\r world\"}", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -203,7 +203,7 @@ namespace NLog.UnitTests.Layouts
                 Message = "{ \"hello\" : \"world\" }"
             };
 
-            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": { \"hello\" : \"world\" } }", jsonLayout.Render(logEventInfo));
+            Assert.Equal("{\"date\":\"2010-01-01 12:34:56.0000\",\"level\":\"Info\",\"message\":{ \"hello\" : \"world\" }}", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -226,7 +226,7 @@ namespace NLog.UnitTests.Layouts
                 Message = "{ \"hello\" : \"world\" }"
             };
 
-            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"{ \\\"hello\\\" : \\\"world\\\" }\" }", jsonLayout.Render(logEventInfo));
+            Assert.Equal("{\"date\":\"2010-01-01 12:34:56.0000\",\"level\":\"Info\",\"message\":\"{ \\\"hello\\\" : \\\"world\\\" }\"}", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -249,7 +249,7 @@ namespace NLog.UnitTests.Layouts
                 Message = "{ \"hello\" : \"world\" }"
             };
 
-            Assert.Equal("{ \"date\": \"2010-01-01T12:34:56Z\", \"level\": \"Info\", \"message\": \"{ \\\"hello\\\" : \\\"world\\\" }\" }", jsonLayout.Render(logEventInfo));
+            Assert.Equal("{\"date\":\"2010-01-01T12:34:56Z\",\"level\":\"Info\",\"message\":\"{ \\\"hello\\\" : \\\"world\\\" }\"}", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -345,7 +345,7 @@ namespace NLog.UnitTests.Layouts
             };
 
             var json = jsonLayout.Render(logEventInfo);
-            Assert.Equal("{ \"type\": \"NLog.NLogRuntimeException\", \"message\": \"test\", \"innerException\": { \"type\": \"System.NullReferenceException\", \"message\": \"null is bad!\" } }", json);
+            Assert.Equal("{\"type\":\"NLog.NLogRuntimeException\",\"message\":\"test\",\"innerException\":{\"type\":\"System.NullReferenceException\",\"message\":\"null is bad!\"}}", json);
         }
 
         [Fact]
@@ -378,7 +378,7 @@ namespace NLog.UnitTests.Layouts
             };
 
             var json = jsonLayout.Render(logEventInfo);
-            Assert.Equal("{ \"type\": \"NLog.NLogRuntimeException\", \"message\": \"test\" }", json);
+            Assert.Equal("{\"type\":\"NLog.NLogRuntimeException\",\"message\":\"test\"}", json);
 
         }
 
@@ -412,7 +412,7 @@ namespace NLog.UnitTests.Layouts
             };
 
             var json = jsonLayout.Render(logEventInfo);
-            Assert.Equal("{ \"type\": \"NLog.NLogRuntimeException\", \"message\": \"test\", \"innerException\": { } }", json);
+            Assert.Equal("{\"type\":\"NLog.NLogRuntimeException\",\"message\":\"test\",\"innerException\":{}}", json);
 
         }
 
@@ -467,7 +467,7 @@ namespace NLog.UnitTests.Layouts
             };
 
             var json = jsonLayout.Render(logEventInfo);
-            Assert.Equal("{ \"time\": \"2016-10-30 13:30:55.0000\", \"level\": \"INFO\", \"nested\": { \"message\": \"this is message\", \"exception\": \"test\" } }", json);
+            Assert.Equal("{\"time\":\"2016-10-30 13:30:55.0000\",\"level\":\"INFO\",\"nested\":{\"message\":\"this is message\",\"exception\":\"test\"}}", json);
         }
 
         [Fact]
@@ -496,7 +496,7 @@ namespace NLog.UnitTests.Layouts
 
             var logEventInfo = new LogEventInfo();
             logEventInfo.Properties.Add(@"fo""o", "bar");
-            Assert.Equal(@"{ ""fo\""o"": ""bar"" }", jsonLayout.Render(logEventInfo));
+            Assert.Equal(@"{""fo\""o"":""bar""}", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -505,7 +505,7 @@ namespace NLog.UnitTests.Layouts
             var jsonLayout = new JsonLayout();
             jsonLayout.Attributes.Add(new JsonAttribute(@"fo""o", "bar"));
 
-            Assert.Equal(@"{ ""fo\""o"": ""bar"" }", jsonLayout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.Equal(@"{""fo\""o"":""bar""}", jsonLayout.Render(LogEventInfo.CreateNullEvent()));
         }
 
         [Fact]
@@ -575,7 +575,7 @@ namespace NLog.UnitTests.Layouts
                 data = new Dictionary<int, string>() { { 42, "Hello" } }
             };
 
-            Assert.Equal(@"{ ""Message"": {""data"":{}} }", jsonLayout.Render(logEventInfo));
+            Assert.Equal(@"{""Message"":{""data"":{}}}", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -843,7 +843,7 @@ namespace NLog.UnitTests.Layouts
 
             logFactory.Flush();
 
-            logFactory.AssertDebugLastMessage(@"{ ""scope"": " + ExpectedIncludeAllPropertiesWithExcludes + " }");
+            logFactory.AssertDebugLastMessage(@"{""scope"":" + ExpectedIncludeAllPropertiesWithExcludes + "}");
         }
 
         /// <summary>
@@ -942,7 +942,7 @@ namespace NLog.UnitTests.Layouts
             logFactory.Flush();
 
             // Assert
-            logFactory.AssertDebugLastMessage(@"{ ""properties"": " + ExpectedIncludeAllPropertiesWithExcludes + " }");
+            logFactory.AssertDebugLastMessage(@"{""properties"":" + ExpectedIncludeAllPropertiesWithExcludes + "}");
         }
 
         /// <summary>
@@ -973,7 +973,7 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo1);
 
-            logFactory.AssertDebugLastMessage("{ \"nestedObject\": [{\"val\":1, \"val2\":\"value2\"},{\"val3\":3, \"val4\":\"value4\"}] }");
+            logFactory.AssertDebugLastMessage("{\"nestedObject\":[{\"val\":1,\"val2\":\"value2\"},{\"val3\":3,\"val4\":\"value4\"}]}");
 
             var logEventInfo2 = new LogEventInfo();
 
@@ -981,7 +981,7 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo2);
 
-            logFactory.AssertDebugLastMessage("{ \"nestedObject\": {\"val\":1, \"val2\":\"value2\"} }");
+            logFactory.AssertDebugLastMessage("{\"nestedObject\":{\"val\":1,\"val2\":\"value2\"}}");
 
             var logEventInfo3 = new LogEventInfo();
 
@@ -989,7 +989,7 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo3);
 
-            logFactory.AssertDebugLastMessage("{ \"nestedObject\": [[\"{ val = 1, val2 = value2 }\"]] }");  // Allows nested collection, but then only ToString
+            logFactory.AssertDebugLastMessage("{\"nestedObject\":[[\"{ val = 1, val2 = value2 }\"]]}");  // Allows nested collection, but then only ToString
         }
 
         [Fact]
@@ -1017,7 +1017,7 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo1);
 
-            logFactory.AssertDebugLastMessage("{ \"nestedObject\": [\"{ val = 1, val2 = value2 }\",\"{ val3 = 3, val4 = value5 }\"] }");  // Allows single collection recursion
+            logFactory.AssertDebugLastMessage("{\"nestedObject\":[\"{ val = 1, val2 = value2 }\",\"{ val3 = 3, val4 = value5 }\"]}");  // Allows single collection recursion
 
             var logEventInfo2 = new LogEventInfo();
 
@@ -1025,7 +1025,7 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo2);
 
-            logFactory.AssertDebugLastMessage("{ \"nestedObject\": \"{ val = 1, val2 = value2 }\" }");    // Never object recursion, only ToString
+            logFactory.AssertDebugLastMessage("{\"nestedObject\":\"{ val = 1, val2 = value2 }\"}");    // Never object recursion, only ToString
 
             var logEventInfo3 = new LogEventInfo();
 
@@ -1033,7 +1033,7 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo3);
 
-            logFactory.AssertDebugLastMessage("{ \"nestedObject\": [[]] }");  // No support for nested collections
+            logFactory.AssertDebugLastMessage("{\"nestedObject\":[[]]}");  // No support for nested collections
         }
 
         [Fact]
@@ -1060,7 +1060,7 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo1);
 
-            logFactory.AssertDebugLastMessage("{ \"InvalidCharacters\": [\"|\",\"#\",\"{\",\"}\",\"%\",\"&\",\"\\\"\",\"~\",\"+\",\"\\\\\",\"/\",\":\",\"*\",\"?\",\"<\",\">\"] }");
+            logFactory.AssertDebugLastMessage("{\"InvalidCharacters\":[\"|\",\"#\",\"{\",\"}\",\"%\",\"&\",\"\\\"\",\"~\",\"+\",\"\\\\\",\"/\",\":\",\"*\",\"?\",\"<\",\">\"]}");
         }
 
         [Fact]
@@ -1093,7 +1093,7 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo1);
 
-            logFactory.AssertDebugLastMessage("{ \"DoubleNaN\": \"NaN\", \"DoubleInfPositive\": \"Infinity\", \"DoubleInfNegative\": \"-Infinity\", \"FloatNaN\": \"NaN\", \"FloatInfPositive\": \"Infinity\", \"FloatInfNegative\": \"-Infinity\" }");
+            logFactory.AssertDebugLastMessage("{\"DoubleNaN\":\"NaN\",\"DoubleInfPositive\":\"Infinity\",\"DoubleInfNegative\":\"-Infinity\",\"FloatNaN\":\"NaN\",\"FloatInfPositive\":\"Infinity\",\"FloatInfNegative\":\"-Infinity\"}");
         }
 
         [Fact]
@@ -1119,7 +1119,7 @@ namespace NLog.UnitTests.Layouts
             logEventInfo1.Properties.Add("myurl", "http://hello.world.com/");
             logger.Debug(logEventInfo1);
 
-            logFactory.AssertDebugLastMessage("{ \"myurl1\": \"http://hello.world.com/\", \"myurl\": \"http://hello.world.com/\" }");
+            logFactory.AssertDebugLastMessage("{\"myurl1\":\"http://hello.world.com/\",\"myurl\":\"http://hello.world.com/\"}");
         }
 
         [Fact]
@@ -1140,7 +1140,7 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties["RequestId"] = expectedValue;
 
             var actualValue = jsonLayout.Render(logEventInfo);
-            Assert.Equal($"{{ \"BadObject\": {{\"Recursive\":[\"Hello\"], \"WeirdProperty\":\"System.Action\"}}, \"RequestId\": \"{expectedValue}\" }}", actualValue);
+            Assert.Equal($"{{\"BadObject\":{{\"Recursive\":[\"Hello\"],\"WeirdProperty\":\"System.Action\"}},\"RequestId\":\"{expectedValue}\"}}", actualValue);
         }
 
         class BadObject

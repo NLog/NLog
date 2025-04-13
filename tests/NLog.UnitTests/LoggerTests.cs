@@ -2548,7 +2548,7 @@ namespace NLog.UnitTests
 
             logger.Error("Login request from {@Username} for {$Application}", new Person("John"), "BestApplicationEver");
 
-            AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {@Username} for {$Application}\", \"Username\": {\"Name\":\"John\"}, \"Application\": \"BestApplicationEver\" }");
+            AssertDebugLastMessage("debug", "{\"LogMessage\":\"Login request from {@Username} for {$Application}\",\"Username\":{\"Name\":\"John\"},\"Application\":\"BestApplicationEver\"}");
         }
 
         /// <summary>
@@ -2579,7 +2579,7 @@ namespace NLog.UnitTests
             logger.Error("Login request from {@Username} for {$Application}", new Person("John"), sb);
             sb.Clear();
             LogManager.Flush();
-            AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {@Username} for {$Application}\", \"Username\": {\"Name\":\"John\"}, \"Application\": \"BestApplicationEver\" }");
+            AssertDebugLastMessage("debug", "{\"LogMessage\":\"Login request from {@Username} for {$Application}\",\"Username\":{\"Name\":\"John\"},\"Application\":\"BestApplicationEver\"}");
         }
 
         /// <summary>
@@ -2594,7 +2594,7 @@ namespace NLog.UnitTests
                         <target name='debug' type='Debug'  >
                               <layout type='CompoundLayout'>
                                 <layout type='SimpleLayout' text='${message}' />
-                                <layout type='JsonLayout' IncludeAllProperties='true' maxRecursionLimit='0' />
+                                <layout type='JsonLayout' IncludeAllProperties='true' maxRecursionLimit='0' suppressSpaces='false' />
                               </layout>
                         </target>
                     </targets>

@@ -52,8 +52,41 @@ namespace NLog.MessageTemplates
         private readonly IServiceProvider _serviceProvider;
         private readonly bool _legacyStringQuotes;
 
-        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceProvider.GetService<IJsonConverter>());
+        private IJsonConverter JsonConverter
+        {
+            get => _jsonConverter ?? (_jsonConverter = JsonConverterWithSpaces.CreateJsonConverter(_serviceProvider.GetService<IJsonConverter>()));
+        }
         private IJsonConverter _jsonConverter;
+
+        private sealed class JsonConverterWithSpaces : IJsonConverter
+        {
+            private readonly Targets.DefaultJsonSerializer _serializer;
+            private readonly Targets.JsonSerializeOptions _serializerOptions;
+            private readonly Targets.JsonSerializeOptions _exceptionSerializerOptions;
+
+            public static IJsonConverter CreateJsonConverter(IJsonConverter jsonConverter)
+            {
+                if (jsonConverter is Targets.DefaultJsonSerializer defaultJsonConverter)
+                    return new JsonConverterWithSpaces(defaultJsonConverter);
+                else
+                    return jsonConverter;
+            }
+
+            private JsonConverterWithSpaces(Targets.DefaultJsonSerializer jsonConverter)
+            {
+                _serializer = jsonConverter;
+                _serializerOptions = new Targets.JsonSerializeOptions() { SuppressSpaces = false };
+                _exceptionSerializerOptions = new Targets.JsonSerializeOptions() { SuppressSpaces = false, SanitizeDictionaryKeys = true };
+            }
+
+            public bool SerializeObject(object value, StringBuilder builder)
+            {
+                if (value is Exception)
+                    return _serializer.SerializeObject(value, builder, _exceptionSerializerOptions);
+                else
+                    return _serializer.SerializeObject(value, builder, _serializerOptions);
+            }
+        }
 
         public ValueFormatter([NotNull] IServiceProvider serviceProvider, bool legacyStringQuotes)
         {

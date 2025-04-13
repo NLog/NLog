@@ -59,7 +59,7 @@ namespace NLog.UnitTests.Layouts
                 Message = "hello\n world",
             };
 
-            Assert.Equal("[ \"2010-01-01T12:34:56Z\", \"Info\", \"hello\\n world\" ]", jsonLayout.Render(logEventInfo));
+            Assert.Equal("[\"2010-01-01T12:34:56Z\",\"Info\",\"hello\\n world\"]", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -90,7 +90,7 @@ namespace NLog.UnitTests.Layouts
             };
             logFactory.GetCurrentClassLogger().Log(logEventInfo);
 
-            logFactory.AssertDebugLastMessage("[ \"2010-01-01T12:34:56Z\", \"Info\", \"hello\\n world\" ]");
+            logFactory.AssertDebugLastMessage("[\"2010-01-01T12:34:56Z\",\"Info\",\"hello\\n world\"]");
         }
 
         [Fact]
@@ -135,7 +135,7 @@ namespace NLog.UnitTests.Layouts
                 Message = "hello\n world",
             };
 
-            Assert.Equal("[ ]", jsonLayout.Render(logEventInfo));
+            Assert.Equal("[]", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -180,7 +180,7 @@ namespace NLog.UnitTests.Layouts
                 Message = "hello\n world",
             };
 
-            Assert.Equal("[ { \"date\": \"2010-01-01 12:34:56.0000\" }, { \"level\": \"Info\" }, { \"message\": \"hello\\n world\" } ]", jsonLayout.Render(logEventInfo));
+            Assert.Equal("[{\"date\":\"2010-01-01 12:34:56.0000\"},{\"level\":\"Info\"},{\"message\":\"hello\\n world\"}]", jsonLayout.Render(logEventInfo));
         }
     }
 }

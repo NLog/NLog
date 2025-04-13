@@ -686,7 +686,8 @@ namespace NLog.Targets
         {
             destination.Append('{');
 
-            bool first = true;
+            string jsonPropertyDelimeter = null;
+
             foreach (var propertyValue in objectPropertyList)
             {
                 var originalLength = destination.Length;
@@ -696,10 +697,7 @@ namespace NLog.Targets
                     if (!propertyValue.HasNameAndValue)
                         continue;
 
-                    if (!first)
-                    {
-                        destination.Append(", ");
-                    }
+                    destination.Append(jsonPropertyDelimeter);
 
                     QuoteValue(destination, propertyValue.Name);
                     destination.Append(':');
@@ -708,19 +706,18 @@ namespace NLog.Targets
                     if (objTypeCode != TypeCode.Object)
                     {
                         SerializeSimpleTypeCodeValue((IConvertible)propertyValue.Value, objTypeCode, destination, options);
-                        first = false;
                     }
                     else
                     {
                         if (!SerializeObject(propertyValue.Value, destination, options, objectsInPath, depth + 1))
                         {
                             destination.Length = originalLength;
-                        }
-                        else
-                        {
-                            first = false;
+                            continue;
                         }
                     }
+
+                    if (jsonPropertyDelimeter is null)
+                        jsonPropertyDelimeter = options.SuppressSpaces ? "," : ", ";
                 }
                 catch
                 {

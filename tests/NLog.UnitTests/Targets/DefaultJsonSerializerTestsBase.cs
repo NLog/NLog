@@ -372,7 +372,7 @@ namespace NLog.UnitTests.Targets
             dictionary.Add("key 2", 1.3m);
             dictionary.Add("level", LogLevel.Info);
             var actual = SerializeObject(dictionary);
-            Assert.Equal("{\"key 2\":1.3, \"level\":\"Info\"}", actual);
+            Assert.Equal("{\"key 2\":1.3,\"level\":\"Info\"}", actual);
         }
 
         [Fact]
@@ -393,7 +393,7 @@ namespace NLog.UnitTests.Targets
 
             var readonlyDictionary = new Internal.ReadOnlyExpandoTestDictionary(dictionary);
             var actual = SerializeObject(readonlyDictionary);
-            Assert.Equal("{\"key 2\":1.3, \"level\":\"Info\"}", actual);
+            Assert.Equal("{\"key 2\":1.3,\"level\":\"Info\"}", actual);
         }
 #endif
 
@@ -476,7 +476,7 @@ namespace NLog.UnitTests.Targets
 
             object1.Linked = object2;
             var actual = SerializeObject(object1);
-            Assert.Equal("{\"Name\":\"object1\", \"Linked\":{\"Name\":\"object2\"}}", actual);
+            Assert.Equal("{\"Name\":\"object1\",\"Linked\":{\"Name\":\"object2\"}}", actual);
         }
 
         [Fact]
@@ -499,7 +499,7 @@ namespace NLog.UnitTests.Targets
             var list = new[] { object1, object2 };
 
             var actual = SerializeObject(list);
-            Assert.Equal("[{\"Name\":\"object1\", \"Linked\":{\"Name\":\"object2\"}},{\"Name\":\"object2\"}]", actual);
+            Assert.Equal("[{\"Name\":\"object1\",\"Linked\":{\"Name\":\"object2\"}},{\"Name\":\"object2\"}]", actual);
         }
 
         [Fact]
@@ -535,7 +535,7 @@ namespace NLog.UnitTests.Targets
         {
             var object1 = new { Id = 123, Name = "test name" };
             var actual = SerializeObject(object1);
-            Assert.Equal("{\"Id\":123, \"Name\":\"test name\"}", actual);
+            Assert.Equal("{\"Id\":123,\"Name\":\"test name\"}", actual);
         }
 
         /// <summary>
@@ -572,7 +572,7 @@ namespace NLog.UnitTests.Targets
             object1.Id = 123;
             object1.Name = "test name";
             var actual = SerializeObject(object1);
-            Assert.Equal("{\"Id\":123, \"Name\":\"test name\"}", actual);
+            Assert.Equal("{\"Id\":123,\"Name\":\"test name\"}", actual);
         }
 
         [Fact]
@@ -580,7 +580,7 @@ namespace NLog.UnitTests.Targets
         {
             var object1 = new MyDynamicClass();
             var actual = SerializeObject(object1);
-            Assert.Equal("{\"Id\":123, \"Name\":\"test name\"}", actual);
+            Assert.Equal("{\"Id\":123,\"Name\":\"test name\"}", actual);
         }
 
         private class MyDynamicClass : DynamicObject
