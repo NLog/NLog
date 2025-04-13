@@ -352,7 +352,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void InnerExceptionTest_Serialize()
+        public void InnerExceptionTest_JsonSerialize()
         {
             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>

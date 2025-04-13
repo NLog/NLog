@@ -52,6 +52,7 @@ namespace NLog.UnitTests.Layouts
                     new SimpleLayout("|Before| "),
                     new JsonLayout
                     {
+                        SuppressSpaces = false,
                         Attributes =
                         {
                             new JsonAttribute("short_date", "${shortdate}"),
@@ -153,7 +154,7 @@ namespace NLog.UnitTests.Layouts
       <layout type='CompoundLayout'>
         <layout type='SimpleLayout' text='Long date - ${longdate}' />
         <layout type='SimpleLayout' text='|Before| ' />
-        <layout type='JsonLayout'>
+        <layout type='JsonLayout' suppressSpaces='false'>
           <attribute name='short_date' layout='${shortdate}' />
           <attribute name='message' layout='${message}' />
         </layout>

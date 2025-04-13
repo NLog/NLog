@@ -137,7 +137,7 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Debug("msg");
 
             var lastMessage = GetDebugLastMessage("debug", logFactory);
-            Assert.Equal("{ \"short date\": \"Debug\", \"message\": \"msg\" }", lastMessage);
+            Assert.Equal("{\"short date\":\"Debug\",\"message\":\"msg\"}", lastMessage);
         }
 
         [Fact]

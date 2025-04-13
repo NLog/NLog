@@ -63,7 +63,7 @@ namespace NLog.Targets
         public string Format { get; set; }
 
         /// <summary>
-        /// Should non-ascii characters be encoded
+        /// Should non-ascii characters be encoded. Default: false
         /// </summary>
         public bool EscapeUnicode { get; set; }
 
@@ -75,9 +75,14 @@ namespace NLog.Targets
         public bool EscapeForwardSlash { get; set; }
 
         /// <summary>
-        /// Serialize enum as string value
+        /// Serialize enum as string value. Default: false
         /// </summary>
         public bool EnumAsInteger { get; set; }
+
+        /// <summary>
+        /// Gets or sets the option to suppress the extra spaces in the output json. Default: true
+        /// </summary>
+        public bool SuppressSpaces { get; set; } = true;
 
         /// <summary>
         /// Should dictionary keys be sanitized. All characters must either be letters, numbers or underscore character (_).

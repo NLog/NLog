@@ -56,7 +56,7 @@ namespace NLog.Layouts
 
         private LimitRecursionJsonConvert JsonConverter
         {
-            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, ResolveService<IJsonConverter>()));
+            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, SuppressSpaces, ResolveService<IJsonConverter>()));
             set => _jsonConverter = value;
         }
         private LimitRecursionJsonConvert _jsonConverter;
@@ -73,11 +73,11 @@ namespace NLog.Layouts
             private readonly Targets.DefaultJsonSerializer _serializer;
             private readonly Targets.JsonSerializeOptions _serializerOptions;
 
-            public LimitRecursionJsonConvert(int maxRecursionLimit, IJsonConverter converter)
+            public LimitRecursionJsonConvert(int maxRecursionLimit, bool suppressSpaces, IJsonConverter converter)
             {
                 _converter = converter;
                 _serializer = converter as Targets.DefaultJsonSerializer;
-                _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit) };
+                _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit), SuppressSpaces = suppressSpaces, SanitizeDictionaryKeys = true };
             }
 
             public bool SerializeObject(object value, StringBuilder builder)
@@ -111,7 +111,7 @@ namespace NLog.Layouts
         private readonly List<JsonAttribute> _attributes = new List<JsonAttribute>();
 
         /// <summary>
-        /// Gets or sets the option to suppress the extra spaces in the output json
+        /// Gets or sets the option to suppress the extra spaces in the output json. Default: true
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
         public bool SuppressSpaces
@@ -126,7 +126,7 @@ namespace NLog.Layouts
                 }
             }
         }
-        private bool _suppressSpaces;
+        private bool _suppressSpaces = true;
 
         /// <summary>
         /// Gets or sets the option to render the empty object value {}
@@ -147,6 +147,8 @@ namespace NLog.Layouts
                 if (_indentJson != value)
                 {
                     _indentJson = value;
+                    if (_indentJson)
+                        _suppressSpaces = false;
                     RefreshJsonDelimiters();
                 }
             }
@@ -253,14 +255,15 @@ namespace NLog.Layouts
 
             _precalculateLayouts = (IncludeScopeProperties || IncludeEventProperties) ? null : ResolveLayoutPrecalculation(Attributes.Select(atr => atr.Layout));
 
-            if (_attributes.Count > 0)
+            foreach (var attribute in _attributes)
             {
-                foreach (var attribute in _attributes)
+                if (!attribute.Encode && attribute.Layout is JsonLayout jsonLayout)
                 {
-                    if (!attribute.IncludeEmptyValue && !attribute.Encode && attribute.Layout is JsonLayout jsonLayout && !jsonLayout._renderEmptyObject.HasValue)
-                    {
+                    if (!attribute.IncludeEmptyValue && !jsonLayout._renderEmptyObject.HasValue)
                         jsonLayout.RenderEmptyObject = false;
-                    }
+
+                    if (!SuppressSpaces || IndentJson)
+                        jsonLayout.SuppressSpaces = false;
                 }
             }
         }
@@ -378,10 +381,10 @@ namespace NLog.Layouts
             sb.Append(_completeJsonPropertyName);
         }
 
-        private string _beginJsonMessage = "{ \"";
-        private string _completeJsonMessage = " }";
-        private string _beginJsonPropertyName = ", \"";
-        private string _completeJsonPropertyName = "\": ";
+        private string _beginJsonMessage = "{\"";
+        private string _completeJsonMessage = "}";
+        private string _beginJsonPropertyName = ",\"";
+        private string _completeJsonPropertyName = "\":";
 
         private void RefreshJsonDelimiters()
         {
