@@ -632,6 +632,7 @@ namespace NLog.Targets
                     }
                 }
 
+                InternalLogger.Debug("{0}: Creating NetworkServer to address: {1}", this, address);
                 NetworkSender sender = CreateNetworkSender(address, logEventInfo);
                 lock (_openNetworkSenders)
                 {
