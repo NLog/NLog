@@ -48,7 +48,7 @@ namespace NLog.Targets
     using NLog.Targets.FileArchiveHandlers;
 
     /// <summary>
-    /// FileTarget for writing formatted messages to one or more text files.
+    /// FileTarget for writing formatted messages to one or more log-files.
     /// </summary>
     /// <remarks>
     /// <a href="https://github.com/nlog/nlog/wiki/File-target">See NLog Wiki</a>

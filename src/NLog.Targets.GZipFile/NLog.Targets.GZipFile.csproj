@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net35;net46;net8.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
 
-    <Title>NLog.Targets.AtomicFile</Title>
+    <Title>NLog.Targets.GZipFile</Title>
     <Company>NLog</Company>
-    <Description>FileTarget with support for atomic append where multiple processes can write to the same file</Description>
-    <Product>NLog.Targets.AtomicFile v$(ProductVersion)</Product>
+    <Description>FileTarget with support for writing GZip FileStream</Description>
+    <Product>NLog.Targets.GZipFile v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
     <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
@@ -16,7 +16,7 @@
       FileTarget Docs:
       https://github.com/NLog/NLog/wiki/File-target
     </PackageReleaseNotes>
-    <PackageTags>NLog;File;Archive;NTFS;logging;log</PackageTags>
+    <PackageTags>NLog;File;Archive;GZip;logging;log</PackageTags>
     <PackageIcon>N.png</PackageIcon>
     <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
     <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
@@ -38,22 +38,17 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <Title>NLog.Targets.AtomicFile for .NET Framework 4.6</Title>
+    <Title>NLog.Targets.GZipFile for .NET Framework 4.6</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Title>NLog.Targets.AtomicFile for .NET Framework 4.5</Title>
+    <Title>NLog.Targets.GZipFile for .NET Framework 4.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
-    <Title>NLog.Targets.AtomicFile for .NET Framework 3.5</Title>
-    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
-    <Title>NLog.Targets.AtomicFile for NET8</Title>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <Title>NLog.Targets.GZipFile for NetStandard 2.0</Title>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
@@ -62,11 +57,6 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -83,10 +73,6 @@
     <None Include="N.png" Pack="true" PackagePath="" visible="false" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
-    <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
-  </ItemGroup>
-  
   <Target Name="DownloadMissingContent" BeforeTargets="GenerateNuspec">
     <DownloadFile SourceUrl="https://nlog-project.org/N.png" DestinationFolder="$(MSBuildThisFileDirectory)" />
   </Target>
