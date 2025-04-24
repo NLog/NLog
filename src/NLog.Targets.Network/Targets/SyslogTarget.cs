@@ -111,12 +111,26 @@ namespace NLog.Targets
             if (address?.StartsWith("tcp", System.StringComparison.OrdinalIgnoreCase) == true)
             {
                 var octetCount = payload.Length;
-                return Encoding.ASCII.GetBytes($"{octetCount} ");
+                return GenerateOctetHeader(octetCount);
             }
 
             // Skip octet framing for UDP protocols by returning null
             return null;
         }
+
+        private static byte[] GenerateOctetHeader(int octetCount)
+        {
+            if (octetCount < OctetHeaders.Length)
+            {
+                var headerBytes = OctetHeaders[octetCount];
+                if (headerBytes is null)
+                    OctetHeaders[octetCount] = headerBytes = Encoding.ASCII.GetBytes($"{octetCount} ");
+                return headerBytes;
+            }
+
+            return Encoding.ASCII.GetBytes($"{octetCount} ");
+        }
+        private static readonly byte[][] OctetHeaders = new byte[4046][];
 
         /// <inheritdoc/>
         public override Layout Layout
