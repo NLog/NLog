@@ -77,6 +77,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Targets.AtomicFile", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Targets.AtomicFile.Tests", "..\tests\NLog.Targets.AtomicFile.Tests\NLog.Targets.AtomicFile.Tests.csproj", "{2365D168-476A-4239-9086-71DC8F5A2B75}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Targets.GZipFile", "NLog.Targets.GZipFile\NLog.Targets.GZipFile.csproj", "{D21F3DA2-B45C-4CBC-A392-03ACA2021CC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Targets.GZipFile.Tests", "..\tests\NLog.Targets.GZipFile.Tests\NLog.Targets.GZipFile.Tests.csproj", "{DED8D8EC-B0E6-4F2C-9BB8-744FA34230B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -187,6 +191,14 @@ Global
 		{2365D168-476A-4239-9086-71DC8F5A2B75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2365D168-476A-4239-9086-71DC8F5A2B75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2365D168-476A-4239-9086-71DC8F5A2B75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D21F3DA2-B45C-4CBC-A392-03ACA2021CC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D21F3DA2-B45C-4CBC-A392-03ACA2021CC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D21F3DA2-B45C-4CBC-A392-03ACA2021CC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D21F3DA2-B45C-4CBC-A392-03ACA2021CC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DED8D8EC-B0E6-4F2C-9BB8-744FA34230B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DED8D8EC-B0E6-4F2C-9BB8-744FA34230B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DED8D8EC-B0E6-4F2C-9BB8-744FA34230B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DED8D8EC-B0E6-4F2C-9BB8-744FA34230B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -216,6 +228,8 @@ Global
 		{877F835E-4D1E-45D8-95AD-AC2F0E3764C7} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
 		{C767E563-82AB-4545-8904-B31E4CF86C2E} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
 		{2365D168-476A-4239-9086-71DC8F5A2B75} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
+		{D21F3DA2-B45C-4CBC-A392-03ACA2021CC1} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
+		{DED8D8EC-B0E6-4F2C-9BB8-744FA34230B5} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B4C8E9F-1E2F-4AB3-993A-8776CFA08DC0}
