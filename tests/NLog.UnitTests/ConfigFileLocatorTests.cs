@@ -121,7 +121,9 @@ namespace NLog.UnitTests
             var result = fileLoader.Load(logFactory, filename);
 
             // Assert
+#pragma warning disable CS0618 // Type or member is obsolete
             Assert.Equal(expected, result?.FileNamesToWatch.First());
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         public static IEnumerable<object[]> GetConfigFile_absolutePath_loads_testData()

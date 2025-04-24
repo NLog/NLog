@@ -36,6 +36,7 @@ namespace NLog.Config
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.ComponentModel;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -103,6 +104,8 @@ namespace NLog.Config
         /// <summary>
         /// Gets the collection of file names which should be watched for changes by NLog.
         /// </summary>
+        [Obsolete("NLog LogFactory no longer supports FileWatcher. Marked obsolete with NLog v6")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual IEnumerable<string> FileNamesToWatch => ArrayHelper.Empty<string>();
 
         /// <summary>
