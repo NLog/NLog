@@ -32,7 +32,7 @@
 //
 
 
-namespace NLog.AutoReloadConfig.Tests
+namespace NLog.UnitTests.Config
 {
     using System;
     using System.IO;
@@ -71,7 +71,7 @@ namespace NLog.AutoReloadConfig.Tests
                 string configFilePath = Path.Combine(tempDir, nameof(TestNoAutoReload) + ".nlog");
                 WriteConfigFile(configFilePath, config1);
 
-                var logger = logFactory.Setup().SetupMonitorForAutoReload().LoadConfigurationFromFile(configFilePath).GetCurrentClassLogger();
+                var logger = logFactory.Setup().LoadConfigurationFromFile(configFilePath).GetCurrentClassLogger();
 
                 Assert.False(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
 
@@ -119,7 +119,7 @@ namespace NLog.AutoReloadConfig.Tests
                 string configFilePath = Path.Combine(tempDir, nameof(TestAutoReloadOnFileChange) + ".nlog");
                 WriteConfigFile(configFilePath, config1);
 
-                var logger = logFactory.Setup().SetupMonitorForAutoReload().LoadConfigurationFromFile(configFilePath).GetCurrentClassLogger();
+                var logger = logFactory.Setup().LoadConfigurationFromFile(configFilePath).GetCurrentClassLogger();
 
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
 
@@ -179,7 +179,7 @@ namespace NLog.AutoReloadConfig.Tests
                 WriteConfigFile(configFilePath, config1);
                 string otherFilePath = Path.Combine(tempDir, "other.nlog");
 
-                var logger = logFactory.Setup().SetupMonitorForAutoReload().LoadConfigurationFromFile(configFilePath).GetCurrentClassLogger();
+                var logger = logFactory.Setup().LoadConfigurationFromFile(configFilePath).GetCurrentClassLogger();
 
                 logger.Debug("aaa");
                 AssertDebugLastMessage("aaa", logFactory);
@@ -246,7 +246,7 @@ namespace NLog.AutoReloadConfig.Tests
                 WriteConfigFile(configFilePath, config1);
                 string otherFilePath = Path.Combine(tempPath, "other.nlog");
 
-                var logger = logFactory.Setup().SetupMonitorForAutoReload().LoadConfigurationFromFile(configFilePath).GetCurrentClassLogger();
+                var logger = logFactory.Setup().LoadConfigurationFromFile(configFilePath).GetCurrentClassLogger();
 
                 logger.Debug("aaa");
                 AssertDebugLastMessage("aaa", logFactory);
@@ -316,7 +316,7 @@ namespace NLog.AutoReloadConfig.Tests
                 string includedConfigFilePath = Path.Combine(tempDir, "included.nlog");
                 WriteConfigFile(includedConfigFilePath, includedConfig1);
 
-                var logger = logFactory.Setup().SetupMonitorForAutoReload().LoadConfigurationFromFile(mainConfigFilePath).GetCurrentClassLogger();
+                var logger = logFactory.Setup().LoadConfigurationFromFile(mainConfigFilePath).GetCurrentClassLogger();
 
                 logger.Debug("aaa");
                 AssertDebugLastMessage("aaa", logFactory);
@@ -375,7 +375,7 @@ namespace NLog.AutoReloadConfig.Tests
                 string includedConfigFilePath = Path.Combine(tempDir, "included.nlog");
                 WriteConfigFile(includedConfigFilePath, includedConfig1);
 
-                var logger = logFactory.Setup().SetupMonitorForAutoReload().LoadConfigurationFromFile(mainConfigFilePath).GetCurrentClassLogger();
+                var logger = logFactory.Setup().LoadConfigurationFromFile(mainConfigFilePath).GetCurrentClassLogger();
 
                 logger.Debug("aaa");
                 AssertDebugLastMessage("aaa", logFactory);
@@ -440,7 +440,7 @@ namespace NLog.AutoReloadConfig.Tests
                 string included2ConfigFilePath = Path.Combine(tempDir, "included2.nlog");
                 WriteConfigFile(included2ConfigFilePath, included2Config1);
 
-                var logger = logFactory.Setup().SetupMonitorForAutoReload().LoadConfigurationFromFile(mainConfigFilePath).GetCurrentClassLogger();
+                var logger = logFactory.Setup().LoadConfigurationFromFile(mainConfigFilePath).GetCurrentClassLogger();
 
                 logger.Debug("aaa");
                 AssertDebugLastMessage("aaa", logFactory);
@@ -504,7 +504,7 @@ namespace NLog.AutoReloadConfig.Tests
                 string included2ConfigFilePath = Path.Combine(tempDir, "included2.nlog");
                 WriteConfigFile(included2ConfigFilePath, included2Config1);
 
-                var logger = logFactory.Setup().SetupMonitorForAutoReload().LoadConfigurationFromFile(mainConfigFilePath).GetCurrentClassLogger();
+                var logger = logFactory.Setup().LoadConfigurationFromFile(mainConfigFilePath).GetCurrentClassLogger();
 
                 logger.Debug("aaa");
                 AssertDebugLastMessage("aaa", logFactory);
