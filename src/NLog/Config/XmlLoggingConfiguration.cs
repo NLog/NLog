@@ -38,6 +38,7 @@ namespace NLog.Config
     using System.ComponentModel;
     using System.IO;
     using System.Linq;
+    using System.Threading;
     using System.Xml;
     using JetBrains.Annotations;
     using NLog.Common;
@@ -52,6 +53,7 @@ namespace NLog.Config
     /// </remarks>
     public class XmlLoggingConfiguration : LoggingConfigurationParser
     {
+        private static readonly Dictionary<LogFactory, AutoReloadConfigFileWatcher> _watchers = new Dictionary<LogFactory, AutoReloadConfigFileWatcher>();
         private readonly Dictionary<string, bool> _fileMustAutoReloadLookup = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         private string _originalFileName;
@@ -147,13 +149,7 @@ namespace NLog.Config
         /// </summary>
         public bool AutoReload
         {
-            get
-            {
-                if (_fileMustAutoReloadLookup.Count == 0)
-                    return false;
-                else
-                    return _fileMustAutoReloadLookup.Values.Any(mustAutoReload => mustAutoReload);
-            }
+            get => AutoReloadFileNames.Any();
             set
             {
                 var autoReloadFiles = _fileMustAutoReloadLookup.Keys.ToList();
@@ -167,16 +163,21 @@ namespace NLog.Config
         /// This is the list of configuration files processed.
         /// If the <c>autoReload</c> attribute is not set it returns empty collection.
         /// </summary>
-        public override IEnumerable<string> FileNamesToWatch
+        public IEnumerable<string> AutoReloadFileNames
         {
             get
             {
                 if (_fileMustAutoReloadLookup.Count == 0)
                     return ArrayHelper.Empty<string>();
-                else 
+                else
                     return _fileMustAutoReloadLookup.Where(entry => entry.Value).Select(entry => entry.Key);
             }
         }
+
+        /// <inheritdoc/>
+        [Obsolete("Replaced by AutoReloadFileNames. Marked obsolete with NLog v6")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override IEnumerable<string> FileNamesToWatch => AutoReloadFileNames;
 
         /// <summary>
         /// Loads the NLog LoggingConfiguration from its original configuration file and returns the new <see cref="LoggingConfiguration" /> object.
@@ -194,6 +195,51 @@ namespace NLog.Config
             }
 
             return base.Reload();
+        }
+
+        /// <inheritdoc />
+        protected internal override void OnConfigurationAssigned(LogFactory logFactory)
+        {
+            base.OnConfigurationAssigned(logFactory);
+
+            try
+            {
+                var configFactory = logFactory ?? LogFactory ?? NLog.LogManager.LogFactory;
+
+                AutoReloadConfigFileWatcher fileWatcher = null;
+                lock (_watchers)
+                {
+                    _watchers.TryGetValue(configFactory, out fileWatcher);
+                }
+
+                if (logFactory is null || !AutoReload)
+                {
+                    if (fileWatcher != null)
+                    {
+                        InternalLogger.Info("AutoReload Config File Monitor stopping, since no active configuration");
+                        fileWatcher.Dispose();
+                    }
+                }
+                else
+                {
+                    InternalLogger.Debug("AutoReload Config File Monitor refreshing after configuration changed");
+                    if (fileWatcher is null || fileWatcher.IsDisposed)
+                    {
+                        InternalLogger.Info("AutoReload Config File Monitor starting");
+                        fileWatcher = new AutoReloadConfigFileWatcher(configFactory);
+                        lock (_watchers)
+                        {
+                            _watchers[configFactory] = fileWatcher;
+                        }
+                    }
+
+                    fileWatcher.RefreshFileWatcher(AutoReloadFileNames);
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "AutoReload Config File Monitor failed to refresh after configuration changed.");
+            }
         }
 
         /// <summary>
@@ -511,6 +557,152 @@ namespace NLog.Config
         public override string ToString()
         {
             return $"{base.ToString()}, FilePath={_originalFileName}";
+        }
+
+
+        private sealed class AutoReloadConfigFileWatcher : IDisposable
+        {
+            private readonly LogFactory _logFactory;
+            private readonly MultiFileWatcher _fileWatcher = new MultiFileWatcher();
+            private readonly object _lockObject = new object();
+            private Timer _reloadTimer;
+            private bool _isDisposing;
+
+            internal bool IsDisposed => _isDisposing;
+
+            public AutoReloadConfigFileWatcher(LogFactory logFactory)
+            {
+                _logFactory = logFactory;
+                _fileWatcher.FileChanged += FileWatcher_FileChanged;
+            }
+
+            private void FileWatcher_FileChanged(object sender, System.IO.FileSystemEventArgs e)
+            {
+                lock (_lockObject)
+                {
+                    if (_isDisposing)
+                        return;
+
+                    var reloadTimer = _reloadTimer;
+                    if (reloadTimer is null)
+                    {
+                        var currentConfig = _logFactory.Configuration;
+                        if (currentConfig is null)
+                            return;
+
+                        _reloadTimer = new Timer((s) => ReloadTimer(s), currentConfig, 1000, Timeout.Infinite);
+                    }
+                    else
+                    {
+                        reloadTimer.Change(1000, Timeout.Infinite);
+                    }
+                }
+            }
+
+            private void ReloadTimer(object state)
+            {
+                if (_isDisposing)
+                {
+                    return; //timer was disposed already.
+                }
+
+                LoggingConfiguration oldConfig = (LoggingConfiguration)state;
+
+                InternalLogger.Info("AutoReload Config File Monitor reloading configuration...");
+
+                lock (_lockObject)
+                {
+                    if (_isDisposing)
+                    {
+                        return; //timer was disposed already.
+                    }
+
+                    var currentTimer = _reloadTimer;
+                    if (currentTimer != null)
+                    {
+                        _reloadTimer = null;
+                        currentTimer.Dispose();
+                    }
+                }
+
+                LoggingConfiguration newConfig = null;
+
+                try
+                {
+                    var currentConfig = _logFactory.Configuration;
+                    if (!ReferenceEquals(currentConfig, oldConfig))
+                    {
+                        InternalLogger.Debug("AutoReload Config File Monitor skipping reload, since existing NLog config has changed.");
+                        return;
+                    }
+
+                    newConfig = oldConfig.Reload();
+                    if (newConfig is null || ReferenceEquals(newConfig, oldConfig))
+                    {
+                        InternalLogger.Debug("AutoReload Config File Monitor skipping reload, since new configuration has not changed.");
+                        return;
+                    }
+
+                    currentConfig = _logFactory.Configuration;
+                    if (!ReferenceEquals(currentConfig, oldConfig))
+                    {
+                        InternalLogger.Debug("AutoReload Config File Monitor skipping reload, since existing NLog config has changed.");
+                        return;
+                    }
+                }
+                catch (Exception exception)
+                {
+                    InternalLogger.Warn(exception, "AutoReload Config File Monitor failed to reload NLog LoggingConfiguration.");
+                    return;
+                }
+
+                try
+                {
+                    TryUnwatchConfigFile();
+                    _logFactory.Configuration = newConfig;
+                }
+                catch (Exception exception)
+                {
+                    InternalLogger.Warn(exception, "AutoReload Config File Monitor failed to activate new NLog LoggingConfiguration.");
+                    _fileWatcher.Watch((oldConfig as XmlLoggingConfiguration)?.AutoReloadFileNames ?? ArrayHelper.Empty<string>());
+
+                }
+            }
+
+            public void RefreshFileWatcher(IEnumerable<string> fileNamesToWatch)
+            {
+                _fileWatcher.Watch(fileNamesToWatch);
+            }
+
+            public void Dispose()
+            {
+                _isDisposing = true;
+                _fileWatcher.FileChanged -= FileWatcher_FileChanged;
+                lock (_lockObject)
+                {
+                    var reloadTimer = _reloadTimer;
+                    _reloadTimer = null;
+                    reloadTimer?.Dispose();
+                }
+                _fileWatcher.Dispose();
+            }
+
+            private void TryUnwatchConfigFile()
+            {
+                try
+                {
+                    _fileWatcher?.StopWatching();
+                }
+                catch (Exception exception)
+                {
+                    InternalLogger.Warn(exception, "AutoReload Config File Monitor failed to stop file watcher.");
+
+                    if (LogManager.ThrowExceptions || _logFactory.ThrowExceptions)
+                    {
+                        throw;
+                    }
+                }
+            }
         }
     }
 }

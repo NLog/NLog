@@ -95,8 +95,8 @@ namespace NLog.UnitTests.Config
                 logger.Debug("aaa");
                 AssertDebugLastMessage("debug", "aaa", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Single(logFactory.Configuration.FileNamesToWatch);
-                Assert.Equal(configFilePath, logFactory.Configuration.FileNamesToWatch.FirstOrDefault());
+                Assert.Single(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Equal(configFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames.FirstOrDefault());
 
                 WriteConfigFileAndReload(logFactory, configFilePath, badConfig);
 
@@ -104,8 +104,8 @@ namespace NLog.UnitTests.Config
                 // Assert that config1 is still loaded.
                 AssertDebugLastMessage("debug", "bbb", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Single(logFactory.Configuration.FileNamesToWatch);
-                Assert.Equal(configFilePath, logFactory.Configuration.FileNamesToWatch.FirstOrDefault());
+                Assert.Single(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Equal(configFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames.FirstOrDefault());
 
                 WriteConfigFileAndReload(logFactory, configFilePath, config2);
 
@@ -113,8 +113,8 @@ namespace NLog.UnitTests.Config
                 // Assert that config2 is loaded.
                 AssertDebugLastMessage("debug", "[ccc]", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Single(logFactory.Configuration.FileNamesToWatch);
-                Assert.Equal(configFilePath, logFactory.Configuration.FileNamesToWatch.FirstOrDefault());
+                Assert.Single(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Equal(configFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames.FirstOrDefault());
             }
             finally
             {
@@ -158,8 +158,8 @@ namespace NLog.UnitTests.Config
                 logger.Debug("aaa");
                 AssertDebugLastMessage("debug", "aaa", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Single(logFactory.Configuration.FileNamesToWatch);
-                Assert.Equal(configFilePath, logFactory.Configuration.FileNamesToWatch.FirstOrDefault());
+                Assert.Single(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Equal(configFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames.FirstOrDefault());
 
                 File.Move(configFilePath, otherFilePath);
                 logFactory.Setup().ReloadConfiguration();
@@ -167,8 +167,8 @@ namespace NLog.UnitTests.Config
                 // Assert that config1 is still loaded.
                 AssertDebugLastMessage("debug", "bbb", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Single(logFactory.Configuration.FileNamesToWatch);
-                Assert.Equal(configFilePath, logFactory.Configuration.FileNamesToWatch.FirstOrDefault());
+                Assert.Single(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Equal(configFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames.FirstOrDefault());
 
                 WriteConfigFile(otherFilePath, config2);
                 File.Move(otherFilePath, configFilePath);
@@ -178,8 +178,8 @@ namespace NLog.UnitTests.Config
                 // Assert that config2 is loaded.
                 AssertDebugLastMessage("debug", "[ccc]", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Single(logFactory.Configuration.FileNamesToWatch);
-                Assert.Equal(configFilePath, logFactory.Configuration.FileNamesToWatch.FirstOrDefault());
+                Assert.Single(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Equal(configFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames.FirstOrDefault());
             }
             finally
             {
@@ -222,8 +222,8 @@ namespace NLog.UnitTests.Config
                 logger.Debug("aaa");
                 AssertDebugLastMessage("debug", "aaa", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Single(logFactory.Configuration.FileNamesToWatch);
-                Assert.Equal(configFilePath, logFactory.Configuration.FileNamesToWatch.FirstOrDefault());
+                Assert.Single(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Equal(configFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames.FirstOrDefault());
 
                 File.Delete(configFilePath);
                 logFactory.Setup().ReloadConfiguration();
@@ -232,8 +232,8 @@ namespace NLog.UnitTests.Config
                 // Assert that config1 is still loaded.
                 AssertDebugLastMessage("debug", "bbb", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Single(logFactory.Configuration.FileNamesToWatch);
-                Assert.Equal(configFilePath, logFactory.Configuration.FileNamesToWatch.FirstOrDefault());
+                Assert.Single(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Equal(configFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames.FirstOrDefault());
 
                 WriteConfigFile(otherFilePath, config2);
                 File.Copy(otherFilePath, configFilePath);
@@ -244,8 +244,8 @@ namespace NLog.UnitTests.Config
                 // Assert that config2 is loaded.
                 AssertDebugLastMessage("debug", "[ccc]", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Single(logFactory.Configuration.FileNamesToWatch);
-                Assert.Equal(configFilePath, logFactory.Configuration.FileNamesToWatch.FirstOrDefault());
+                Assert.Single(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Equal(configFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames.FirstOrDefault());
             }
             finally
             {
@@ -296,7 +296,7 @@ namespace NLog.UnitTests.Config
                 logger.Debug("aaa");
                 AssertDebugLastMessage("debug", "aaa", logFactory);
                 Assert.False(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Empty(logFactory.Configuration.FileNamesToWatch);
+                Assert.Empty(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
 
                 WriteConfigFileAndReload(logFactory, mainConfigFilePath, mainConfig2);
 
@@ -304,7 +304,7 @@ namespace NLog.UnitTests.Config
                 // Assert that mainConfig2 has been loaded.
                 AssertDebugLastMessage("debug", "", logFactory);
                 Assert.False(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Empty(logFactory.Configuration.FileNamesToWatch);
+                Assert.Empty(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
                 logger.Info("bbb");
                 AssertDebugLastMessage("debug", "bbb", logFactory);
 
@@ -315,7 +315,7 @@ namespace NLog.UnitTests.Config
                 // Assert that includedConfig2 has been loaded.
                 AssertDebugLastMessage("debug", "[ccc]", logFactory);
                 Assert.False(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Empty(logFactory.Configuration.FileNamesToWatch);
+                Assert.Empty(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
             }
             finally
             {
@@ -362,8 +362,8 @@ namespace NLog.UnitTests.Config
                 logger.Debug("aaa");
                 AssertDebugLastMessage("debug", "aaa", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Single(logFactory.Configuration.FileNamesToWatch);
-                Assert.Equal(includedConfigFilePath, logFactory.Configuration.FileNamesToWatch.FirstOrDefault());
+                Assert.Single(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Equal(includedConfigFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames.FirstOrDefault());
 
                 WriteConfigFileAndReload(logFactory, includedConfigFilePath, includedConfig2);
 
@@ -371,8 +371,8 @@ namespace NLog.UnitTests.Config
                 // Assert that includedConfig2 is loaded.
                 AssertDebugLastMessage("debug", "[ccc]", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Single(logFactory.Configuration.FileNamesToWatch);
-                Assert.Equal(includedConfigFilePath, logFactory.Configuration.FileNamesToWatch.FirstOrDefault());
+                Assert.Single(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Equal(includedConfigFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames.FirstOrDefault());
             }
             finally
             {
@@ -429,9 +429,9 @@ namespace NLog.UnitTests.Config
                 logger.Debug("aaa");
                 AssertDebugLastMessage("debug", "aaa", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.NotEmpty(logFactory.Configuration.FileNamesToWatch);
-                Assert.Contains(mainConfigFilePath, logFactory.Configuration.FileNamesToWatch);
-                Assert.Contains(included1ConfigFilePath, logFactory.Configuration.FileNamesToWatch);
+                Assert.NotEmpty(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Contains(mainConfigFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Contains(included1ConfigFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
 
                 WriteConfigFileAndReload(logFactory, mainConfigFilePath, mainConfig2);
 
@@ -439,9 +439,9 @@ namespace NLog.UnitTests.Config
                 // Assert that mainConfig2 is loaded (which refers to included2.nlog).
                 AssertDebugLastMessage("debug", "[bbb]", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.NotEmpty(logFactory.Configuration.FileNamesToWatch);
-                Assert.Contains(mainConfigFilePath, logFactory.Configuration.FileNamesToWatch);
-                Assert.Contains(included2ConfigFilePath, logFactory.Configuration.FileNamesToWatch);
+                Assert.NotEmpty(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Contains(mainConfigFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Contains(included2ConfigFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
 
                 WriteConfigFileAndReload(logFactory, included2ConfigFilePath, included2Config2);
 
@@ -449,9 +449,9 @@ namespace NLog.UnitTests.Config
                 // Assert that included2Config2 is loaded.
                 AssertDebugLastMessage("debug", "(ccc)", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.NotEmpty(logFactory.Configuration.FileNamesToWatch);
-                Assert.Contains(mainConfigFilePath, logFactory.Configuration.FileNamesToWatch);
-                Assert.Contains(included2ConfigFilePath, logFactory.Configuration.FileNamesToWatch);
+                Assert.NotEmpty(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Contains(mainConfigFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Contains(included2ConfigFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
             }
             finally
             {
@@ -508,9 +508,9 @@ namespace NLog.UnitTests.Config
                 logger.Debug("aaa");
                 AssertDebugLastMessage("debug", "aaa", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.NotEmpty(logFactory.Configuration.FileNamesToWatch);
-                Assert.Contains(mainConfigFilePath, logFactory.Configuration.FileNamesToWatch);
-                Assert.Contains(included1ConfigFilePath, logFactory.Configuration.FileNamesToWatch);
+                Assert.NotEmpty(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Contains(mainConfigFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Contains(included1ConfigFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
 
                 WriteConfigFileAndReload(logFactory, mainConfigFilePath, mainConfig2);
 
@@ -518,8 +518,8 @@ namespace NLog.UnitTests.Config
                 // Assert that mainConfig2 is loaded (which refers to included2.nlog).
                 AssertDebugLastMessage("debug", "[bbb]", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Single(logFactory.Configuration.FileNamesToWatch);
-                Assert.Equal(mainConfigFilePath, logFactory.Configuration.FileNamesToWatch.FirstOrDefault());
+                Assert.Single(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Equal(mainConfigFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames.FirstOrDefault());
 
                 WriteConfigFileAndReload(logFactory, included2ConfigFilePath, included2Config2);
 
@@ -527,8 +527,8 @@ namespace NLog.UnitTests.Config
                 // Assert that included2Config2 has been loaded.
                 AssertDebugLastMessage("debug", "(ccc)", logFactory);
                 Assert.True(((XmlLoggingConfiguration)logFactory.Configuration).AutoReload);
-                Assert.Single(logFactory.Configuration.FileNamesToWatch);
-                Assert.Equal(mainConfigFilePath, logFactory.Configuration.FileNamesToWatch.FirstOrDefault());
+                Assert.Single(((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames);
+                Assert.Equal(mainConfigFilePath, ((XmlLoggingConfiguration)logFactory.Configuration).AutoReloadFileNames.FirstOrDefault());
             }
             finally
             {
@@ -700,7 +700,9 @@ namespace NLog.UnitTests.Config
                     config = logFactory.Configuration;
                     Assert.NotNull(config);
                     Assert.Empty(config.AllTargets);        // Failed to load
+#pragma warning disable CS0618 // Type or member is obsolete
                     Assert.Single(config.FileNamesToWatch); // But file-watcher is active
+#pragma warning restore CS0618 // Type or member is obsolete
 
                     WriteConfigFile(nlogConfigFile, validXmlConfig);
                     config = logFactory.Configuration.Reload();

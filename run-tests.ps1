@@ -28,10 +28,6 @@ if ($isWindows -or $Env:WinDir)
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
-	dotnet test ./tests/NLog.AutoReloadConfig.Tests/ --configuration release
-	if (-Not $LastExitCode -eq 0)
-		{ exit $LastExitCode }
-
 	dotnet test ./tests/NLog.RegEx.Tests/ --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
@@ -84,10 +80,6 @@ else
 		{ exit $LastExitCode }
 
 	dotnet test ./tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj --framework net8.0 --configuration release --runtime linux-x64
-	if (-Not $LastExitCode -eq 0)
-		{ exit $LastExitCode }
-
-	dotnet test ./tests/NLog.AutoReloadConfig.Tests/ --framework net6.0 --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
