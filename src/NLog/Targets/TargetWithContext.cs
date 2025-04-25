@@ -563,10 +563,19 @@ namespace NLog.Targets
         }
 
         [ThreadAgnostic]
-        internal sealed class TargetWithContextLayout : Layout, IIncludeContext, IUsesStackTrace
+        internal sealed class TargetWithContextLayout : Layout, IIncludeContext, IUsesStackTrace, IStringValueRenderer
         {
-            public Layout TargetLayout { get => _targetLayout; set => _targetLayout = ReferenceEquals(this, value) ? _targetLayout : value; }
+            public Layout TargetLayout
+            {
+                get => _targetLayout;
+                set
+                {
+                    _targetLayout = ReferenceEquals(this, value) ? _targetLayout : value;
+                    _targetStringLayout = _targetLayout as IStringValueRenderer;
+                }
+            }
             private Layout _targetLayout;
+            private IStringValueRenderer _targetStringLayout;
 
             /// <summary>Internal Layout that allows capture of <see cref="ScopeContext"/> properties-dictionary</summary>
             internal LayoutScopeContextProperties ScopeContextPropertiesLayout { get; }
@@ -724,6 +733,11 @@ namespace NLog.Targets
             protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
             {
                 TargetLayout?.Render(logEvent, target);
+            }
+
+            string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
+            {
+                return _targetStringLayout?.GetFormattedString(logEvent);
             }
 
             public class LayoutScopeContextProperties : Layout
