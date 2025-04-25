@@ -128,6 +128,7 @@ namespace NLog.Config
 #if NETFRAMEWORK
             factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.AppSettingLayoutRenderer>("appsetting");
 #endif
+            factory.RegisterTypeProperties<NLog.LayoutRenderers.LiteralWithRawValueLayoutRenderer>(() => null);
 <#
     foreach(var type in AllTypes)
     {

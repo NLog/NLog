@@ -215,10 +215,8 @@ namespace NLog.Config
                 var nameAttribute = itemType.GetFirstCustomAttribute<Filters.FilterAttribute>();
                 return !string.IsNullOrEmpty(nameAttribute?.Name);
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         private static bool IsNLogItemTypeAlreadyRegistered(ConfigurationItemFactory factory, Type itemType, string itemNamePrefix)
@@ -227,39 +225,35 @@ namespace NLog.Config
             {
                 return false;
             }
-            else if (IsNLogItemTypeAlreadyRegistered<IFactory<Layouts.Layout>, Layouts.Layout, Layouts.LayoutAttribute>(factory.LayoutFactory, itemType, itemNamePrefix))
+            else if (typeof(Layouts.Layout).IsAssignableFrom(itemType))
             {
-                return true;
+                return IsNLogItemTypeAlreadyRegistered<Layouts.Layout, Layouts.LayoutAttribute>(factory.LayoutFactory, itemType, itemNamePrefix);
             }
-            else if (IsNLogItemTypeAlreadyRegistered<IFactory<LayoutRenderers.LayoutRenderer>, LayoutRenderers.LayoutRenderer, LayoutRenderers.LayoutRendererAttribute>(factory.LayoutRendererFactory, itemType, itemNamePrefix))
+            else if (typeof(LayoutRenderers.LayoutRenderer).IsAssignableFrom(itemType))
             {
-                return true;
+                return IsNLogItemTypeAlreadyRegistered<LayoutRenderers.LayoutRenderer, LayoutRenderers.LayoutRendererAttribute>(factory.LayoutRendererFactory, itemType, itemNamePrefix);
             }
-            else if (IsNLogItemTypeAlreadyRegistered<IFactory<Targets.Target>, Targets.Target, Targets.TargetAttribute>(factory.TargetFactory, itemType, itemNamePrefix))
+            else if (typeof(Targets.Target).IsAssignableFrom(itemType))
             {
-                return true;
+                return IsNLogItemTypeAlreadyRegistered<Targets.Target, Targets.TargetAttribute>(factory.TargetFactory, itemType, itemNamePrefix);
             }
-            else if (IsNLogItemTypeAlreadyRegistered<IFactory<Filters.Filter>, Filters.Filter, Filters.FilterAttribute>(factory.FilterFactory, itemType, itemNamePrefix))
+            else if (typeof(Filters.Filter).IsAssignableFrom(itemType))
             {
-                return true;
+                return IsNLogItemTypeAlreadyRegistered<Filters.Filter, Filters.FilterAttribute>(factory.FilterFactory, itemType, itemNamePrefix);
             }
 
             return false;
         }
 
-        private static bool IsNLogItemTypeAlreadyRegistered<TFactory, TBaseType, TAttribute>(TFactory factory, Type itemType, string itemNamePrefix)
+        private static bool IsNLogItemTypeAlreadyRegistered<TBaseType, TAttribute>(IFactory<TBaseType> factory, Type itemType, string itemNamePrefix)
             where TAttribute : NameBaseAttribute
-            where TFactory : IFactory<TBaseType>
             where TBaseType : class
         {
-            if (typeof(TBaseType).IsAssignableFrom(itemType))
+            var nameAttribute = itemType.GetFirstCustomAttribute<TAttribute>();
+            if (!string.IsNullOrEmpty(nameAttribute?.Name))
             {
-                var nameAttribute = itemType.GetFirstCustomAttribute<TAttribute>();
-                if (!string.IsNullOrEmpty(nameAttribute?.Name))
-                {
-                    var typeAlias = string.IsNullOrEmpty(itemNamePrefix) ? nameAttribute.Name : itemNamePrefix + nameAttribute.Name;
-                    return factory.TryCreateInstance(typeAlias, out var _);
-                }
+                var typeAlias = string.IsNullOrEmpty(itemNamePrefix) ? nameAttribute.Name : itemNamePrefix + nameAttribute.Name;
+                return factory.TryCreateInstance(typeAlias, out var _);
             }
             return false;
         }
