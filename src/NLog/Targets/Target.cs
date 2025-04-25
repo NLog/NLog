@@ -705,9 +705,11 @@ namespace NLog.Targets
             if (layout is null || logEvent is null)
                 return null;    // Signal that input was wrong
 
-            if (layout is SimpleLayout simpleLayout && (simpleLayout.IsFixedText || simpleLayout.IsSimpleStringText))
+            if (layout is IStringValueRenderer stringLayout)
             {
-                return simpleLayout.Render(logEvent, false);
+                var result = stringLayout.GetFormattedString(logEvent);
+                if (result != null)
+                    return result;
             }
 
             if (TryGetCachedValue(layout, logEvent, out var value))

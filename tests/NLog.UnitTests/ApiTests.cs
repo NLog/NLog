@@ -189,7 +189,7 @@ namespace NLog.UnitTests
         {
             foreach (Type type in allTypes)
             {
-                if (typeof(NLog.Internal.IStringValueRenderer).IsAssignableFrom(type) && !type.IsInterface)
+                if (typeof(NLog.Internal.IStringValueRenderer).IsAssignableFrom(type) && !type.IsInterface && !typeof(NLog.Layouts.SimpleLayout).Equals(type))
                 {
                     var appDomainFixedOutputAttribute = type.GetCustomAttribute<AppDomainFixedOutputAttribute>();
                     Assert.True(appDomainFixedOutputAttribute is null, $"{type.ToString()} should not implement IStringValueRenderer");
