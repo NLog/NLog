@@ -156,13 +156,6 @@ namespace NLog.Targets
             _fileAppenderCache = fileAppenderCache;
         }
 
-#if !NET35 && !NET40
-        static ConcurrentFileTarget()
-        {
-            FileCompressor = new ZipArchiveFileCompressor();
-        }
-#endif
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ConcurrentFileTarget" /> class.
         /// </summary>
@@ -675,6 +668,9 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Archival Options' order='50' />
         public static IFileCompressor FileCompressor { get; set; }
+#if !NET35 && !NET40
+            = new ZipArchiveFileCompressor();
+#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
