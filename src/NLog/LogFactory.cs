@@ -90,14 +90,53 @@ namespace NLog
         /// </remarks>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
-        private static event EventHandler<EventArgs> LoggerShutdown;
+        private static event EventHandler<EventArgs> _loggerShutdown;
 
         /// <summary>
-        /// Initializes static members of the LogManager class.
+        /// Event that is raised when the logging system is shutting down.
         /// </summary>
-        static LogFactory()
+        public static event EventHandler<EventArgs> LoggerShutdown
         {
-            RegisterEvents(DefaultAppEnvironment);
+            add
+            {
+                if (_loggerShutdown == null && DefaultAppEnvironment != null)
+                {
+                    try
+                    {
+                        DefaultAppEnvironment.ProcessExit += OnLoggerShutdown;
+                        InternalLogger.Debug("Registered shutdown event handler for ProcessExit.");
+                    }
+                    catch (Exception exception)
+                    {
+                        InternalLogger.Warn(exception, "Error registering ProcessExit event handler.");
+                        if (exception.MustBeRethrown())
+                        {
+                            throw;
+                        }
+                    }
+                }
+                _loggerShutdown += value;
+            }
+            remove
+            {
+                _loggerShutdown -= value;
+                if (_loggerShutdown == null && DefaultAppEnvironment != null)
+                {
+                    try
+                    {
+                        DefaultAppEnvironment.ProcessExit -= OnLoggerShutdown;
+                        InternalLogger.Debug("Unregistered shutdown event handler for ProcessExit.");
+                    }
+                    catch (Exception exception)
+                    {
+                        InternalLogger.Warn(exception, "Error unregistering ProcessExit event handler.");
+                        if (exception.MustBeRethrown())
+                        {
+                            throw;
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -1225,44 +1264,17 @@ namespace NLog
             }
         }
 
-        private static void RegisterEvents(IAppEnvironment appEnvironment)
-        {
-            if (appEnvironment is null) return;
-
-            try
-            {
-                appEnvironment.ProcessExit += OnLoggerShutdown;
-            }
-            catch (Exception exception)
-            {
-                InternalLogger.Warn(exception, "Error setting up termination events.");
-
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-            }
-        }
-
         private static void OnLoggerShutdown(object sender, EventArgs args)
         {
             try
             {
-                LoggerShutdown?.Invoke(sender, args);
+                _loggerShutdown?.Invoke(sender, args);
             }
             catch (Exception ex)
             {
                 if (ex.MustBeRethrownImmediately())
                     throw;
                 InternalLogger.Error(ex, "LogFactory failed to shutdown properly.");
-            }
-            finally
-            {
-                LoggerShutdown = null;
-                if (defaultAppEnvironment != null)
-                {
-                    defaultAppEnvironment.ProcessExit -= OnLoggerShutdown;  // Unregister from AppDomain
-                }
             }
         }
 

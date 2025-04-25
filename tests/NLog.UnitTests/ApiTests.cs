@@ -520,6 +520,7 @@ namespace NLog.UnitTests
                 "NLog.Config.InstallationContext",
                 "NLog.Config.LoggingRuleLevelFilter",
                 "NLog.Config.PropertyTypeConverter",
+                "NLog.Config.XmlLoggingConfiguration",
                 "NLog.Conditions.ConditionExpression",
                 "NLog.Conditions.ConditionRelationalExpression",
                 "NLog.Conditions.ConditionTokenizer",
@@ -532,9 +533,9 @@ namespace NLog.UnitTests
                 "NLog.Config.LoggerNameMatcher+NoneLoggerNameMatcher",
                 "NLog.Config.LoggerNameMatcher+AllLoggerNameMatcher",
                 "NLog.Config.LoggingConfigurationParser+ValidatedConfigurationElement"
-            };     
-            var assembly = typeof(NLog.LogFactory).Assembly;
-            var typesWithStaticConstructors = assembly.GetTypes()
+            };
+
+            var typesWithStaticConstructors = allTypes
                 // Exclude compiler-generated types (e.g., lambdas, nested <>c classes)
                 .Where(type => !type.IsDefined(typeof(CompilerGeneratedAttribute), inherit: false))
                 .Select(type => new
