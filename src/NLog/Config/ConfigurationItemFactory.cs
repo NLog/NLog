@@ -112,7 +112,7 @@ namespace NLog.Config
                 _ambientProperties,
                 _timeSources,
             };
-            RegisterType<NLog.Config.LoggingRule>();
+            RegisterType<LoggingRule>();
         }
 
         /// <summary>
@@ -136,13 +136,21 @@ namespace NLog.Config
             get
             {
                 if (!_targets.Initialized)
+                {
                     _targets.Initialize(skipCheckExists => RegisterAllTargets(skipCheckExists));
-                // Targets can depend on filters
-                if (!_filters.Initialized)
-                    _filters.Initialize(skipCheckExists => RegisterAllFilters(skipCheckExists));
-                // Targets can depend on conditions
-                if (!_conditionMethods.Initialized)
-                    _conditionMethods.Initialize(skipCheckExists => RegisterAllConditionMethods(skipCheckExists));
+                    // Targets can depend on filters
+                    if (!_filters.Initialized)
+                        _filters.Initialize(skipCheckExists => RegisterAllFilters(skipCheckExists));
+                    // Targets can depend on conditions
+                    if (!_conditionMethods.Initialized)
+                        _conditionMethods.Initialize(skipCheckExists => RegisterAllConditionMethods(skipCheckExists));
+                    // Targets can depend on layouts
+                    if (!_layouts.Initialized)
+                        _layouts.Initialize(skipCheckExists => RegisterAllLayouts(skipCheckExists));
+                    // Targets can depend on layoutrenderers
+                    if (!_layoutRenderers.Initialized)
+                        _layoutRenderers.Initialize(skipCheckExists => RegisterAllLayoutRenderers(skipCheckExists));
+                }
                 return _targets;
             }
         }
@@ -155,7 +163,15 @@ namespace NLog.Config
             get
             {
                 if (!_layouts.Initialized)
+                {
                     _layouts.Initialize(skipCheckExists => RegisterAllLayouts(skipCheckExists));
+                    // Layout can depend on layoutrenderers
+                    if (!_layoutRenderers.Initialized)
+                        _layoutRenderers.Initialize(skipCheckExists => RegisterAllLayoutRenderers(skipCheckExists));
+                    // When-LayoutRenderers depends on conditions
+                    if (!_conditionMethods.Initialized)
+                        _conditionMethods.Initialize(skipCheckExists => RegisterAllConditionMethods(skipCheckExists));
+                }
                 return _layouts;
             }
         }

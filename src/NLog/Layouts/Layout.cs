@@ -371,6 +371,7 @@ namespace NLog.Layouts
             var objectGraphTypes = new HashSet<Type>(objectGraphScannerList.Select(o => o.GetType()));
             objectGraphTypes.Remove(typeof(SimpleLayout));
             objectGraphTypes.Remove(typeof(NLog.LayoutRenderers.LiteralLayoutRenderer));
+            objectGraphTypes.Remove(typeof(NLog.LayoutRenderers.LiteralWithRawValueLayoutRenderer));
 
             // determine whether the layout is thread-agnostic
             // layout is thread agnostic if it is thread-agnostic and

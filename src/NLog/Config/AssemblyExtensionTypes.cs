@@ -124,6 +124,7 @@ namespace NLog.Config
 #if NETFRAMEWORK
             factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.AppSettingLayoutRenderer>("appsetting");
 #endif
+            factory.RegisterTypeProperties<NLog.LayoutRenderers.LiteralWithRawValueLayoutRenderer>(() => null);
             if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("all-event-properties"))
                 factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.AllEventPropertiesLayoutRenderer>("all-event-properties");
             if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("appdomain"))
