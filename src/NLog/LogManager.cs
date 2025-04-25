@@ -38,7 +38,6 @@ namespace NLog
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Runtime.CompilerServices;
-
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -51,13 +50,19 @@ namespace NLog
     /// </remarks>
     public static class LogManager
     {
-        private static readonly LogFactory factory = new LogFactory();
-
         /// <summary>
         /// Gets the <see cref="NLog.LogFactory" /> instance used in the <see cref="LogManager"/>.
         /// </summary>
-        /// <remarks>Could be used to pass the to other methods</remarks>
-        public static LogFactory LogFactory => factory;
+        public static LogFactory LogFactory => _logFactory ?? CreateLogFactorySingleton();
+        private static LogFactory _logFactory;
+
+        private static LogFactory CreateLogFactorySingleton()
+        {
+            var logFactory = new LogFactory();
+            if (!(System.Threading.Interlocked.CompareExchange(ref _logFactory, logFactory, null) is null))
+                logFactory.Dispose();   // Raced by other thread, so dispose instance not needed
+            return _logFactory;
+        }
 
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> changes. Both when assigned to new config or config unloaded.
@@ -67,8 +72,8 @@ namespace NLog
         /// </remarks>
         public static event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged
         {
-            add => factory.ConfigurationChanged += value;
-            remove => factory.ConfigurationChanged -= value;
+            add => LogFactory.ConfigurationChanged += value;
+            remove => LogFactory.ConfigurationChanged -= value;
         }
 
         /// <summary>
@@ -77,8 +82,8 @@ namespace NLog
         /// </summary>
         public static bool ThrowExceptions
         {
-            get => factory.ThrowExceptions;
-            set => factory.ThrowExceptions = value;
+            get => LogFactory.ThrowExceptions;
+            set => LogFactory.ThrowExceptions = value;
         }
 
         /// <summary>
@@ -92,8 +97,8 @@ namespace NLog
         /// </remarks>
         public static bool? ThrowConfigExceptions
         {
-            get => factory.ThrowConfigExceptions;
-            set => factory.ThrowConfigExceptions = value;
+            get => LogFactory.ThrowConfigExceptions;
+            set => LogFactory.ThrowConfigExceptions = value;
         }
 
         /// <summary>
@@ -101,8 +106,8 @@ namespace NLog
         /// </summary>
         public static bool KeepVariablesOnReload
         {
-            get => factory.KeepVariablesOnReload;
-            set => factory.KeepVariablesOnReload = value;
+            get => LogFactory.KeepVariablesOnReload;
+            set => LogFactory.KeepVariablesOnReload = value;
         }
 
         /// <summary>
@@ -111,8 +116,8 @@ namespace NLog
         /// </summary>
         public static bool AutoShutdown
         {
-            get => factory.AutoShutdown;
-            set => factory.AutoShutdown = value;
+            get => LogFactory.AutoShutdown;
+            set => LogFactory.AutoShutdown = value;
         }
 
         /// <summary>
@@ -123,8 +128,8 @@ namespace NLog
         /// </remarks>
         public static LoggingConfiguration Configuration
         {
-            get => factory.Configuration;
-            set => factory.Configuration = value;
+            get => LogFactory.Configuration;
+            set => LogFactory.Configuration = value;
         }
 
         /// <summary>
@@ -132,8 +137,8 @@ namespace NLog
         /// </summary>
         public static LogLevel GlobalThreshold
         {
-            get => factory.GlobalThreshold;
-            set => factory.GlobalThreshold = value;
+            get => LogFactory.GlobalThreshold;
+            set => LogFactory.GlobalThreshold = value;
         }
 
         /// <summary>
@@ -162,8 +167,7 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static LogFactory LoadConfiguration(string configFile)
         {
-            factory.LoadConfiguration(configFile);
-            return factory;
+            return LogFactory.LoadConfiguration(configFile);
         }
 
         /// <summary>
@@ -188,7 +192,7 @@ namespace NLog
         public static Logger GetCurrentClassLogger()
         {
             var className = StackTraceUsageUtils.GetClassFullName(new System.Diagnostics.StackFrame(1, false));
-            return factory.GetLogger(className);
+            return LogFactory.GetLogger(className);
         }
 
         /// <summary>
@@ -208,7 +212,7 @@ namespace NLog
         public static Logger GetCurrentClassLogger([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
             var className = StackTraceUsageUtils.GetClassFullName(new System.Diagnostics.StackFrame(1, false));
-            return factory.GetLogger(className, loggerType);
+            return LogFactory.GetLogger(className, loggerType);
         }
 
         /// <summary>
@@ -217,7 +221,7 @@ namespace NLog
         /// <returns>Null logger which discards all log messages.</returns>
         public static Logger CreateNullLogger()
         {
-            return factory.CreateNullLogger();
+            return LogFactory.CreateNullLogger();
         }
 
         /// <summary>
@@ -227,7 +231,7 @@ namespace NLog
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         public static Logger GetLogger(string name)
         {
-            return factory.GetLogger(name);
+            return LogFactory.GetLogger(name);
         }
 
         /// <summary>
@@ -243,7 +247,7 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Logger GetLogger(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
-            return factory.GetLogger(name, loggerType);
+            return LogFactory.GetLogger(name, loggerType);
         }
 
         /// <summary>
@@ -253,7 +257,7 @@ namespace NLog
         /// </summary>
         public static void ReconfigExistingLoggers()
         {
-            factory.ReconfigExistingLoggers();
+            LogFactory.ReconfigExistingLoggers();
         }
 
         /// <summary>
@@ -264,7 +268,7 @@ namespace NLog
         /// <param name="purgeObsoleteLoggers">Purge garbage collected logger-items from the cache</param>
         public static void ReconfigExistingLoggers(bool purgeObsoleteLoggers)
         {
-            factory.ReconfigExistingLoggers(purgeObsoleteLoggers);
+            LogFactory.ReconfigExistingLoggers(purgeObsoleteLoggers);
         }
 
         /// <summary>
@@ -272,7 +276,7 @@ namespace NLog
         /// </summary>
         public static void Flush()
         {
-            factory.Flush();
+            LogFactory.Flush();
         }
 
         /// <summary>
@@ -281,7 +285,7 @@ namespace NLog
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public static void Flush(TimeSpan timeout)
         {
-            factory.Flush(timeout);
+            LogFactory.Flush(timeout);
         }
 
         /// <summary>
@@ -290,7 +294,7 @@ namespace NLog
         /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public static void Flush(int timeoutMilliseconds)
         {
-            factory.Flush(timeoutMilliseconds);
+            LogFactory.Flush(timeoutMilliseconds);
         }
 
         /// <summary>
@@ -299,7 +303,7 @@ namespace NLog
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public static void Flush(AsyncContinuation asyncContinuation)
         {
-            factory.Flush(asyncContinuation);
+            LogFactory.Flush(asyncContinuation);
         }
 
         /// <summary>
@@ -309,7 +313,7 @@ namespace NLog
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public static void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
-            factory.Flush(asyncContinuation, timeout);
+            LogFactory.Flush(asyncContinuation, timeout);
         }
 
         /// <summary>
@@ -319,7 +323,7 @@ namespace NLog
         /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public static void Flush(AsyncContinuation asyncContinuation, int timeoutMilliseconds)
         {
-            factory.Flush(asyncContinuation, timeoutMilliseconds);
+            LogFactory.Flush(asyncContinuation, timeoutMilliseconds);
         }
 
         /// <summary>
@@ -336,7 +340,7 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static IDisposable DisableLogging()
         {
-            return factory.SuspendLogging();
+            return LogFactory.SuspendLogging();
         }
 
         /// <summary>
@@ -351,7 +355,7 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void EnableLogging()
         {
-            factory.ResumeLogging();
+            LogFactory.ResumeLogging();
         }
 
         /// <summary>
@@ -365,7 +369,7 @@ namespace NLog
         /// To be used with C# <c>using ()</c> statement.</returns>
         public static IDisposable SuspendLogging()
         {
-            return factory.SuspendLogging();
+            return LogFactory.SuspendLogging();
         }
 
         /// <summary>
@@ -377,7 +381,7 @@ namespace NLog
         /// </remarks>
         public static void ResumeLogging()
         {
-            factory.ResumeLogging();
+            LogFactory.ResumeLogging();
         }
 
         /// <summary>
@@ -391,7 +395,7 @@ namespace NLog
         /// <see langword="false"/> otherwise.</returns>
         public static bool IsLoggingEnabled()
         {
-            return factory.IsLoggingEnabled();
+            return LogFactory.IsLoggingEnabled();
         }
 
         /// <summary>
@@ -399,7 +403,7 @@ namespace NLog
         /// </summary>
         public static void Shutdown()
         {
-            factory.Shutdown();
+            LogFactory.Shutdown();
         }
     }
 }
