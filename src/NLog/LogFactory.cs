@@ -95,7 +95,7 @@ namespace NLog
         /// <summary>
         /// Event that is raised when the logging system is shutting down.
         /// </summary>
-        public static event EventHandler<EventArgs> LoggerShutdown
+        internal static event EventHandler<EventArgs> LoggerShutdown
         {
             add
             {
@@ -103,8 +103,8 @@ namespace NLog
                 {
                     try
                     {
-                        DefaultAppEnvironment.ProcessExit += OnLoggerShutdown;
                         InternalLogger.Debug("Registered shutdown event handler for ProcessExit.");
+                        DefaultAppEnvironment.ProcessExit += OnLoggerShutdown;
                     }
                     catch (Exception exception)
                     {
@@ -124,8 +124,8 @@ namespace NLog
                 {
                     try
                     {
-                        DefaultAppEnvironment.ProcessExit -= OnLoggerShutdown;
                         InternalLogger.Debug("Unregistered shutdown event handler for ProcessExit.");
+                        DefaultAppEnvironment.ProcessExit -= OnLoggerShutdown;
                     }
                     catch (Exception exception)
                     {

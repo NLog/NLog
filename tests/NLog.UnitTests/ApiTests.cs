@@ -530,6 +530,7 @@ namespace NLog.UnitTests
                 "NLog.Internal.ObjectReflectionCache+EmptyDictionaryEnumerator",
                 "NLog.Internal.PropertiesDictionary+PropertyKeyComparer",
                 "NLog.Internal.SingleItemOptimizedHashSet`1+ReferenceEqualityComparer",
+                "NLog.Internal.ArrayHelper+EmptyArray`1",
                 "NLog.Config.LoggerNameMatcher+NoneLoggerNameMatcher",
                 "NLog.Config.LoggerNameMatcher+AllLoggerNameMatcher",
                 "NLog.Config.LoggingConfigurationParser+ValidatedConfigurationElement"
