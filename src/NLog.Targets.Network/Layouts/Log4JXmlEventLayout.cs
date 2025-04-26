@@ -170,12 +170,6 @@ namespace NLog.Layouts
         private bool? _includeScopeProperties;
 
         /// <summary>
-        ///  Gets or sets whether the log4j:throwable xml-element should be written as CDATA
-        /// </summary>
-        /// <docgen category='Layout Options' order='50' />
-        public bool WriteThrowableCData { get; set; }
-
-        /// <summary>
         /// Gets or sets whether to include log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -279,6 +273,12 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
         public Layout AppInfo { get; set; }
+
+        /// <summary>
+        ///  Gets or sets whether the log4j:throwable xml-element should be written as CDATA
+        /// </summary>
+        /// <docgen category='Layout Options' order='50' />
+        public bool WriteThrowableCData { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include call site (class and method name) in the information sent over the network.

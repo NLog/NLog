@@ -474,32 +474,19 @@ namespace NLog.Internal
 #endif
         }
 
-        public static void EnsureValidCDataContent(StringBuilder builder, int orgLength)
+        public static void EscapeCDataIfNeeded(StringBuilder builder, int orgLength)
         {
-            bool needsFix = false;
-
             for (int i = orgLength; i + 2 < builder.Length; ++i)
             {
                 if (builder[i] == ']' && builder[i + 1] == ']' && builder[i + 2] == '>')
                 {
-                    needsFix = true;
+                    var escapedCData = builder.ToString(i, builder.Length - i)
+                          .Replace("]]>", "]]]]><![CDATA[>");
+                    builder.Length = i;
+                    builder.Append(escapedCData);
                     break;
                 }
             }
-
-            if (needsFix)
-            {
-                for (int i = orgLength; i + 2 < builder.Length; ++i)
-                {
-                    if (builder[i] == ']' && builder[i + 1] == ']' && builder[i + 2] == '>')
-                    {
-                        builder.Remove(i, 3); 
-                        builder.Insert(i, "]]]]><![CDATA[>"); 
-                        break;
-                    }
-                }
-            }
-            builder.Append("]]>");
         }
 
 

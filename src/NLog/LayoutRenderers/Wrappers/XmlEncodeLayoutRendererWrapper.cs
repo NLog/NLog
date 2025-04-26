@@ -74,19 +74,20 @@ namespace NLog.LayoutRenderers.Wrappers
             if (CDataEncode)
             {
                 builder.Append("<![CDATA[");
-                orgLength = builder.Length; 
+                orgLength = builder.Length;
             }
 
             Inner.Render(logEvent, builder);
 
-            if (CDataEncode)
-            {
-                XmlHelper.EnsureValidCDataContent(builder, orgLength);
-            }
-
             XmlHelper.RemoveInvalidXmlIfNeeded(builder, orgLength);
 
-            if (!CDataEncode && XmlEncode)
+            if (CDataEncode)
+            {
+                XmlHelper.EscapeCDataIfNeeded(builder, orgLength);
+                builder.Append("]]>");
+            }
+
+            else if (XmlEncode)
             {
                 XmlHelper.PerformXmlEscapeWhenNeeded(builder, orgLength, XmlEncodeNewlines);
             }
