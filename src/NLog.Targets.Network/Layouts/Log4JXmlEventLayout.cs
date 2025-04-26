@@ -38,7 +38,6 @@ namespace NLog.Layouts
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
-    using NLog.LayoutRenderers;
 
     /// <summary>
     /// A specialized layout that renders Log4j-compatible XML events.
@@ -50,111 +49,17 @@ namespace NLog.Layouts
     [Layout("Log4JXmlEventLayout")]
     [Layout("Log4JXmlLayout")]
     [ThreadAgnostic]
-    public class Log4JXmlEventLayout : Layout
+    public class Log4JXmlEventLayout : CompoundLayout
     {
-
-        private static readonly DateTime log4jDateBase = new DateTime(1970, 1, 1);
-        private IList<Log4JXmlEventParameter> _parameters = new List<Log4JXmlEventParameter>();
-
-
-        /// <summary>
-        /// Gets inner XML layout.
-        /// </summary>
-        public XmlLayout InnerXml { get; } = new XmlLayout();
-
-        /// <inheritdoc/>
-        protected override void InitializeLayout()
-        {
-            InnerXml.Attributes.Clear();
-            InnerXml.Elements.Clear();
-
-            InnerXml.ElementName = "log4j:event";
-
-            InnerXml.Attributes.Add(new XmlAttribute("logger", LoggerName));
-            InnerXml.Attributes.Add(new XmlAttribute("level", "${level:uppercase=true}") { IncludeEmptyValue = true });
-            InnerXml.Attributes.Add(new XmlAttribute("timestamp", Layout.FromMethod(evt => (long)(evt.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, LayoutRenderOptions.ThreadAgnostic)));
-            InnerXml.Attributes.Add(new XmlAttribute("thread", "${threadid}") { IncludeEmptyValue = true });
-
-            InnerXml.Elements.Add(new XmlElement("log4j:message", FormattedMessage ?? "${message}"));
-            InnerXml.Elements.Add(new XmlElement("log4j:throwable", "${exception:format=ToString}")
-            {
-                CDataEncode  = WriteThrowableCData,
-            });
-
-            if (IncludeCallSite || IncludeSourceInfo)
-            {
-                var locationInfo = new XmlElement("log4j:locationInfo", null)
-                {
-                    Attributes =
-                    {
-                        new XmlAttribute("class", "${callsite:methodName=false}"),
-                        new XmlAttribute("method", "${callsite:className=false}")
-                    }
-                };
-
-                if (IncludeSourceInfo)
-                {
-                    locationInfo.Attributes.Add(new XmlAttribute("file", "${callsite-filename}"));
-                    locationInfo.Attributes.Add(new XmlAttribute("line", "${callsite-linenumber}"));
-                }
-
-                InnerXml.Elements.Add(locationInfo);
-            }
-
-            if (IncludeScopeNested)
-            {
-                var separator = ScopeNestedSeparator;
-                Layout scopeNested = string.IsNullOrEmpty(separator) ? "${scopenested}" : ("${scopenested:separator=" + separator + "}");
-                InnerXml.Elements.Add(new XmlElement("log4j:NDC", scopeNested));
-            }
-
-            var dataProperties = new XmlElement("log4j:properties", null)
-            {
-                PropertiesElementName = "log4j:data",
-                PropertiesElementKeyAttribute = "name",
-                PropertiesElementValueAttribute = "value",
-                IncludeEventProperties = IncludeEventProperties,
-                IncludeScopeProperties = IncludeScopeProperties
-            };
-
-            foreach (var parameter in Parameters)
-            {
-                var propertyElement = new XmlElement("log4j:data", null)
-                {
-                    IncludeEmptyValue = parameter.IncludeEmptyValue
-                };
-
-                propertyElement.Attributes.Add(new XmlAttribute("name", parameter.Name));
-                propertyElement.Attributes.Add(new XmlAttribute("value", parameter.Layout));
-                dataProperties.Elements.Add(propertyElement);
-            }
-
-
-            var appProperty = new XmlElement("log4j:data", null);
-            appProperty.Attributes.Add(new XmlAttribute("name", "log4japp"));
-            appProperty.Attributes.Add(new XmlAttribute("value", AppInfo));
-            dataProperties.Elements.Add(appProperty);
-
-            var machineProperty = new XmlElement("log4j:data", null);
-            machineProperty.Attributes.Add(new XmlAttribute("name", "log4jmachinename"));
-            machineProperty.Attributes.Add(new XmlAttribute("value", "${machinename}"));
-            dataProperties.Elements.Add(machineProperty);
-
-            InnerXml.Elements.Add(dataProperties);
-
-            base.InitializeLayout();
-        }
+        private static readonly DateTime UnixDateStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        private readonly XmlLayout _innerXml = new XmlLayout() { ElementName = "log4j:event" };
 
         /// <summary>
         /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a named parameter.
         /// </summary>
         [ArrayParameter(typeof(Log4JXmlEventParameter), "parameter")]
-        public IList<Log4JXmlEventParameter> Parameters
-        {
-            get => _parameters;
-            set => _parameters = value ?? new List<Log4JXmlEventParameter>();
-        }
+        public IList<Log4JXmlEventParameter> Parameters { get; } = new List<Log4JXmlEventParameter>();
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
@@ -180,7 +85,7 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [Obsolete("Non standard extension to the Log4j-XML format. Marked obsolete with NLog 6.0")]
+        [Obsolete("Non standard extension to the Log4j-XML format. Marked obsolete with NLog v5.4")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeNLogData { get; set; }
 
@@ -260,25 +165,51 @@ namespace NLog.Layouts
         /// Gets or sets the log4j:event logger-xml-attribute. Default: ${logger}
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public Layout LoggerName { get; set; } = "${logger}";
+        public Layout LoggerName { get => _loggerName.Layout; set => _loggerName.Layout = value; }
+        private readonly XmlAttribute _loggerName = new XmlAttribute("logger", "${logger}");
+
+        private readonly XmlAttribute _levelValue = new XmlAttribute("level", "${level:uppercase=true}");
+
+        private readonly XmlAttribute _timestampValue = new XmlAttribute("timestamp", Layout.FromMethod(evt => (long)(evt.TimeStamp.ToUniversalTime() - UnixDateStart).TotalMilliseconds, LayoutRenderOptions.ThreadAgnostic));
+
+        private readonly XmlAttribute _threadIdValue = new XmlAttribute("thread", "${threadid}");
 
         /// <summary>
         /// Gets or sets the log4j:event message-xml-element. Default: ${message}
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public Layout FormattedMessage { get; set; }
+        public Layout FormattedMessage { get => _formattedMessage.Layout; set => _formattedMessage.Layout = value; }
+        private readonly XmlElement _formattedMessage = new XmlElement("log4j:message", "${message}");
 
         /// <summary>
         /// Gets or sets the log4j:event log4japp-xml-element. By default it's the friendly name of the current AppDomain.
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public Layout AppInfo { get; set; }
+        public Layout AppInfo { get => _log4jAppName.Attributes[1].Layout; set => _log4jAppName.Attributes[1].Layout = value; }
+        private readonly XmlElement _log4jAppName = new XmlElement("log4j:data", null)
+        {
+            Attributes =
+            {
+                new XmlAttribute("name", "log4japp"),
+                new XmlAttribute("value", "${appdomain:format=Friendly}(${processid})")
+            }
+        };
+
+        private readonly XmlElement _log4jMachineName = new XmlElement("log4j:data", null)
+        {
+            Attributes =
+            {
+                new XmlAttribute("name", "log4jmachinename"),
+                new XmlAttribute("value", "${hostname}")
+            }
+        };
 
         /// <summary>
         ///  Gets or sets whether the log4j:throwable xml-element should be written as CDATA
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
-        public bool WriteThrowableCData { get; set; }
+        public bool WriteThrowableCData { get => _exceptionThrowable.CDataEncode; set => _exceptionThrowable.CDataEncode = value; }
+        private readonly XmlElement _exceptionThrowable = new XmlElement("log4j:throwable", "${exception:format=ToString}");
 
         /// <summary>
         /// Gets or sets a value indicating whether to include call site (class and method name) in the information sent over the network.
@@ -293,6 +224,106 @@ namespace NLog.Layouts
         public bool IncludeSourceInfo { get; set; }
 
         /// <inheritdoc/>
+        protected override void InitializeLayout()
+        {
+            _innerXml.Attributes.Clear();
+            _innerXml.Elements.Clear();
+
+            _innerXml.Attributes.Add(_loggerName);
+            _innerXml.Attributes.Add(_levelValue);
+            _innerXml.Attributes.Add(_timestampValue);
+            _innerXml.Attributes.Add(_threadIdValue);
+
+            _innerXml.Elements.Add(_formattedMessage);
+            _innerXml.Elements.Add(_exceptionThrowable);
+
+            if (IncludeCallSite || IncludeSourceInfo)
+            {
+                var locationInfo = new XmlElement("log4j:locationInfo", null)
+                {
+                    Attributes =
+                    {
+                        new XmlAttribute("class", "${callsite:methodName=false}"),
+                        new XmlAttribute("method", "${callsite:className=false}")
+                    }
+                };
+
+                if (IncludeSourceInfo)
+                {
+                    locationInfo.Attributes.Add(new XmlAttribute("file", "${callsite-filename}"));
+                    locationInfo.Attributes.Add(new XmlAttribute("line", "${callsite-linenumber}"));
+                }
+
+                _innerXml.Elements.Add(locationInfo);
+            }
+
+#pragma warning disable CS0618 // Type or member is obsolete
+            if (IncludeNLogData)
+            {
+                _innerXml.Elements.Add(new XmlElement("nlog:eventSequenceNumber", "${sequenceid}"));
+                _innerXml.Elements.Add(new XmlElement("nlog:locationInfo", null)
+                {
+                    Attributes =
+                    {
+                        new XmlAttribute("assembly", "${callsite:fileName=true:className=false:methodName=false}")
+                    }
+                });
+                _innerXml.Elements.Add(new XmlElement("nlog:properties", null)
+                {
+                    PropertiesElementName = "nlog:data",
+                    PropertiesElementKeyAttribute = "name",
+                    PropertiesElementValueAttribute = "value",
+                    IncludeEventProperties = true,
+                });
+            }
+#pragma warning restore CS0618 // Type or member is obsolete
+
+            if (IncludeScopeNested)
+            {
+                var separator = ScopeNestedSeparator;
+                Layout scopeNested = string.IsNullOrEmpty(separator) ? "${scopenested}" : ("${scopenested:separator=" + separator.Replace(":", "\\:") + "}");
+                _innerXml.Elements.Add(new XmlElement("log4j:NDC", scopeNested));
+            }
+
+            var dataProperties = new XmlElement("log4j:properties", null)
+            {
+                PropertiesElementName = "log4j:data",
+                PropertiesElementKeyAttribute = "name",
+                PropertiesElementValueAttribute = "value",
+                IncludeEventProperties = IncludeEventProperties,
+                IncludeScopeProperties = IncludeScopeProperties
+            };
+
+            foreach (var parameter in Parameters)
+            {
+                var propertyElement = new XmlElement("log4j:data", null)
+                {
+                    IncludeEmptyValue = parameter.IncludeEmptyValue,
+                    Attributes =
+                    {
+                        new XmlAttribute("name", parameter.Name),
+                        new XmlAttribute("value", parameter.Layout),
+                    }
+                };
+                dataProperties.Elements.Add(propertyElement);
+            }
+
+            dataProperties.Elements.Add(_log4jAppName);
+            dataProperties.Elements.Add(_log4jMachineName);
+
+            _innerXml.Elements.Add(dataProperties);
+
+            // CompoundLayout includes optimization, so only doing precalculate/caching of relevant Layouts (instead of the entire LOG4J-message)
+            Layouts.Clear();
+            foreach (var xmlAttribute in _innerXml.Attributes)
+                Layouts.Add(xmlAttribute.Layout);
+            foreach (var xmlElement in _innerXml.Elements)
+                Layouts.Add(xmlElement);
+
+            base.InitializeLayout();
+        }
+
+        /// <inheritdoc/>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             var sb = new StringBuilder(1024);
@@ -303,7 +334,7 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            InnerXml.Render(logEvent, target);
+            _innerXml.Render(logEvent, target);
         }
     }
 }

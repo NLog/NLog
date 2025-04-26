@@ -51,14 +51,14 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class XmlEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Gets or sets whether output should be encoded with Xml-string escaping.
+        /// Gets or sets whether output should be encoded with XML-string escaping.
         /// </summary>
         /// <remarks>Ensures always valid XML, but gives a performance hit</remarks>
         /// <docgen category="Layout Options" order="10"/>
         public bool XmlEncode { get; set; } = true;
 
         /// <summary>
-        /// Indicates whether the rendered value should be wrapped in <![CDATA[ ... ]]> section.
+        /// Gets or sets whether output should be wrapped using CDATA section instead of XML-string escaping
         /// </summary>
         public bool CDataEncode { get; set; } = false;
 
@@ -86,13 +86,11 @@ namespace NLog.LayoutRenderers.Wrappers
                 XmlHelper.EscapeCDataIfNeeded(builder, orgLength);
                 builder.Append("]]>");
             }
-
             else if (XmlEncode)
             {
                 XmlHelper.PerformXmlEscapeWhenNeeded(builder, orgLength, XmlEncodeNewlines);
             }
         }
-
 
         /// <inheritdoc/>
         protected override string Transform(string text)

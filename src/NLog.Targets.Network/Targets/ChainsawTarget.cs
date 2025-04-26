@@ -89,7 +89,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [Obsolete("Non standard extension to the Log4j-XML format. Marked obsolete with NLog 6.0")]
+        [Obsolete("Non standard extension to the Log4j-XML format. Marked obsolete with NLog v5.4")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeNLogData
         {
