@@ -90,14 +90,14 @@ namespace NLog.LayoutRenderers.Wrappers
 
             if (TryGetStringValue(out var innerLayout, out var whenEmptyLayout))
             {
-                var innerValue = innerLayout.Render(logEvent, cacheLayoutResult: false);
+                var innerValue = innerLayout.Render(logEvent);
                 if (!string.IsNullOrEmpty(innerValue))
                 {
                     return innerValue;
                 }
 
                 // render WhenEmpty when the inner layout was empty
-                return whenEmptyLayout.Render(logEvent, cacheLayoutResult: false);
+                return whenEmptyLayout.Render(logEvent);
             }
 
             _skipStringValueRenderer = true;
@@ -129,7 +129,7 @@ namespace NLog.LayoutRenderers.Wrappers
             }
             else
             {
-                var innerResult = Inner?.Render(logEvent, cacheLayoutResult: false); // Beware this can be very expensive call
+                var innerResult = Inner?.Render(logEvent); // Beware this can be very expensive call
                 if (!string.IsNullOrEmpty(innerResult))
                 {
                     value = null;

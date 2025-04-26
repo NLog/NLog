@@ -267,7 +267,7 @@ namespace NLog.Layouts
 
             public object RenderObjectValue(LogEventInfo logEvent, StringBuilder stringBuilder)
             {
-                return _innerLayout.Render(logEvent, false);
+                return _innerLayout.Render(logEvent);
             }
 
             public override string ToString()

@@ -57,7 +57,7 @@ namespace NLog.Layouts
     [Layout("SimpleLayout")]
     [ThreadAgnostic]
     [AppDomainFixedOutput]
-    public class SimpleLayout : Layout, IUsesStackTrace, IStringValueRenderer
+    public sealed class SimpleLayout : Layout, IUsesStackTrace, IStringValueRenderer
     {
         private readonly IRawValue _rawValueRenderer;
         private IStringValueRenderer _stringValueRenderer;
@@ -286,11 +286,9 @@ namespace NLog.Layouts
                 catch (Exception exception)
                 {
                     //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
-
-                    //check for performance
                     if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
                     {
-                        InternalLogger.Warn(exception, "Exception in '{0}.InitializeLayout()'", renderer.GetType().FullName);
+                        InternalLogger.Warn(exception, "Exception in '{0}.Initialize()'", renderer.GetType());
                     }
 
                     if (exception.MustBeRethrown())
@@ -306,70 +304,49 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         public override void Precalculate(LogEventInfo logEvent)
         {
-            if (MustPrecalculateLayoutValue(logEvent))
+            if (PrecalculateMustRenderLayoutValue(logEvent))
             {
-                Render(logEvent);
+                using (var localTarget = new AppendBuilderCreator(true))
+                {
+                    RenderFormattedMessage(logEvent, localTarget.Builder);
+                    logEvent.AddCachedLayoutValue(this, localTarget.Builder.ToString());
+                }
             }
         }
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            if (MustPrecalculateLayoutValue(logEvent))
+            if (PrecalculateMustRenderLayoutValue(logEvent))
             {
-                PrecalculateBuilderInternal(logEvent, target, null);
+                RenderFormattedMessage(logEvent, target);
+                logEvent.AddCachedLayoutValue(this, target.ToString());
             }
         }
 
-        private bool MustPrecalculateLayoutValue(LogEventInfo logEvent)
+        private bool PrecalculateMustRenderLayoutValue(LogEventInfo logEvent)
         {
-            return _rawValueRenderer is null
-                ? (!ThreadAgnostic || ThreadAgnosticImmutable)
-                : !IsRawValueImmutable(logEvent);
-        }
-
-        private bool IsRawValueImmutable(LogEventInfo logEvent)
-        {
-            try
+            if (!IsInitialized)
             {
-                if (!IsInitialized)
-                {
-                    Initialize(LoggingConfiguration);
-                }
+                Initialize(LoggingConfiguration);
+            }
 
-                if (ThreadAgnostic)
-                {
-                    if (ThreadAgnosticImmutable)
-                    {
-                        // If raw value doesn't have the ability to mutate, then we can skip precalculate
-                        var success = _rawValueRenderer.TryGetRawValue(logEvent, out var value);
-                        if (success && IsRawValueImmutable(value))
-                            return true;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                }
+            if (ThreadAgnostic && !ThreadAgnosticImmutable)
+                return false;
 
+            if (_rawValueRenderer != null && TryGetRawValue(logEvent, out var rawValue) && IsRawValueImmutable(rawValue))
+                return false;   // If raw value is immutable, then we can skip precalculate-caching
+
+            if (logEvent.TryGetCachedLayoutValue(this, out var _))
+                return false;
+
+            if (IsSimpleStringText)
+            {
+                var cachedLayout = GetFormattedMessage(logEvent);
+                logEvent.AddCachedLayoutValue(this, cachedLayout);
                 return false;
             }
-            catch (Exception exception)
-            {
-                //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
 
-                //check for performance
-                if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
-                {
-                    InternalLogger.Warn(exception, "Exception in precalculate using '{0}.TryGetRawValue()'", _rawValueRenderer?.GetType());
-                }
-
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-
-                return false;
-            }
+            return true;
         }
 
         private static bool IsRawValueImmutable(object value)
@@ -380,38 +357,42 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         internal override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
         {
-            if (_rawValueRenderer != null)
+            if (_rawValueRenderer is null)
             {
-                try
+                rawValue = null;
+                return false;
+            }
+            return TryGetSafeRawValue(logEvent, out rawValue);
+        }
+
+        private bool TryGetSafeRawValue(LogEventInfo logEvent, out object rawValue)
+        {
+            try
+            {
+                if (!IsInitialized)
                 {
-                    if (!IsInitialized)
-                    {
-                        Initialize(LoggingConfiguration);
-                    }
-
-                    if ((!ThreadAgnostic || ThreadAgnosticImmutable) && logEvent.TryGetCachedLayoutValue(this, out _))
-                    {
-                        rawValue = null;
-                        return false;    // Raw-Value has been precalculated, so not available
-                    }
-
-                    var success = _rawValueRenderer.TryGetRawValue(logEvent, out rawValue);
-                    return success;
+                    Initialize(LoggingConfiguration);
                 }
-                catch (Exception exception)
+
+                if ((!ThreadAgnostic || ThreadAgnosticImmutable) && logEvent.TryGetCachedLayoutValue(this, out _))
                 {
-                    //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
+                    rawValue = null;
+                    return false;    // Raw-Value has been precalculated, so not available
+                }
 
-                    //check for performance
-                    if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
-                    {
-                        InternalLogger.Warn(exception, "Exception in TryGetRawValue using '{0}.TryGetRawValue()'", _rawValueRenderer?.GetType());
-                    }
+                return _rawValueRenderer.TryGetRawValue(logEvent, out rawValue);
+            }
+            catch (Exception exception)
+            {
+                //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
+                if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
+                {
+                    InternalLogger.Warn(exception, "Exception in TryGetRawValue using '{0}.TryGetRawValue()'", _rawValueRenderer?.GetType());
+                }
 
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
+                if (exception.MustBeRethrown())
+                {
+                    throw;
                 }
             }
 
@@ -423,63 +404,48 @@ namespace NLog.Layouts
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             if (IsFixedText)
-            {
                 return FixedText;
-            }
 
-            if (_stringValueRenderer != null)
-            {
-                try
-                {
-                    string stringValue = _stringValueRenderer.GetFormattedString(logEvent);
-                    if (stringValue != null)
-                        return stringValue;
-
-                    _stringValueRenderer = null;    // Optimization is not possible
-                }
-                catch (Exception exception)
-                {
-                    //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
-                    //check for performance
-                    if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
-                    {
-                        InternalLogger.Warn(exception, "Exception in '{0}.GetFormattedString()'", _stringValueRenderer.GetType().FullName);
-                    }
-
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-                }
-            }
-
-            return RenderAllocateBuilder(logEvent);
+            string stringValue = string.Empty;
+            if (_stringValueRenderer is null || !TryGetSafeStringValue(logEvent, out stringValue))
+                return RenderAllocateBuilder(logEvent);
+            else
+                return stringValue;
         }
 
-        private void RenderAllRenderers(LogEventInfo logEvent, StringBuilder target)
+        private bool TryGetSafeStringValue(LogEventInfo logEvent, out string stringValue)
         {
-            foreach (var renderer in _layoutRenderers)
+            try
             {
-                try
+                if (!IsInitialized)
                 {
-                    renderer.RenderAppendBuilder(logEvent, target);
+                    Initialize(LoggingConfiguration);
                 }
-                catch (Exception exception)
+
+                stringValue = _stringValueRenderer.GetFormattedString(logEvent);
+                if (stringValue is null)
                 {
-                    //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
+                    _stringValueRenderer = null;    // Optimization is not possible
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception exception)
+            {
+                //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
+                if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
+                {
+                    InternalLogger.Warn(exception, "Exception in '{0}.GetFormattedString()'", _stringValueRenderer?.GetType());
+                }
 
-                    //check for performance
-                    if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
-                    {
-                        InternalLogger.Warn(exception, "Exception in '{0}.Append()'", renderer.GetType().FullName);
-                    }
-
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
+                if (exception.MustBeRethrown())
+                {
+                    throw;
                 }
             }
+
+            stringValue = null;
+            return false;
         }
 
         /// <inheritdoc/>
@@ -487,7 +453,10 @@ namespace NLog.Layouts
         {
             if (FixedText is null)
             {
-                RenderAllRenderers(logEvent, target);
+                foreach (var renderer in _layoutRenderers)
+                {
+                    renderer.RenderAppendBuilder(logEvent, target);
+                }
             }
             else
             {
@@ -500,7 +469,7 @@ namespace NLog.Layouts
             if (IsFixedText)
                 return FixedText;
             if (IsSimpleStringText)
-                return Render(logEvent, false);
+                return Render(logEvent);
             return null;
         }
     }

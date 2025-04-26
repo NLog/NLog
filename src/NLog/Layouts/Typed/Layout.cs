@@ -238,7 +238,7 @@ namespace NLog.Layouts
             return new Layout<T>(layoutMethod, options);
         }
 
-        private void PrecalculateInnerLayout(LogEventInfo logEvent, StringBuilder target)
+        private void PrecalculateInnerLayout(LogEventInfo logEvent, [CanBeNull] StringBuilder target)
         {
             if (IsFixed || (_layoutValue.ThreadAgnostic && !_layoutValue.ThreadAgnosticImmutable))
                 return;

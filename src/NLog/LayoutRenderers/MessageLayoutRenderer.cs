@@ -131,7 +131,7 @@ namespace NLog.LayoutRenderers
 
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
-            if (WithException && logEvent.Exception != null)
+            if (WithException)
                 return null;
             else
                 return (Raw ? logEvent.Message : logEvent.FormattedMessage) ?? string.Empty;
