@@ -1257,9 +1257,9 @@ namespace NLog
             finally
             {
                 _loggerShutdown = null;
-                if (DefaultAppEnvironment != null)
+                if (defaultAppEnvironment != null)
                 {
-                    DefaultAppEnvironment.ProcessExit -= OnLoggerShutdown;
+                    defaultAppEnvironment.ProcessExit -= OnLoggerShutdown; // Unregister from AppDomain
                 }
             }
         }
