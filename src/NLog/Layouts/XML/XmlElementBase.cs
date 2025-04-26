@@ -420,11 +420,9 @@ namespace NLog.Layouts
 
                     var propertyValue = prop.Value;
                     if (!string.IsNullOrEmpty(prop.Format) && propertyValue is IFormattable formattedProperty)
-                        propertyValue = formattedProperty.ToString(prop.Format,
-                            logEventInfo.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
+                        propertyValue = formattedProperty.ToString(prop.Format, System.Globalization.CultureInfo.InvariantCulture);
                     else if (prop.CaptureType == MessageTemplates.CaptureType.Stringify)
-                        propertyValue = Convert.ToString(prop.Value ?? string.Empty,
-                            logEventInfo.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
+                        propertyValue = Convert.ToString(prop.Value ?? string.Empty, System.Globalization.CultureInfo.InvariantCulture);
 
                     AppendXmlPropertyObjectValue(prop.Name, propertyValue, sb, orgLength, default(SingleItemOptimizedHashSet<object>), 0);
                 }

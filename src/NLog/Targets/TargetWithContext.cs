@@ -558,7 +558,7 @@ namespace NLog.Targets
             }
 
             // Make snapshot of the context value
-            serializedValue = Convert.ToString(value, logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
+            serializedValue = Convert.ToString(value, System.Globalization.CultureInfo.InvariantCulture);
             return true;
         }
 
