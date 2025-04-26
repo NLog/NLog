@@ -43,7 +43,7 @@ namespace NLog.Config
     {
         void Clear();
 
-        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         void ScanTypes(Type[] types, string assemblyName, string itemNamePrefix);
 
         void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix);
@@ -57,6 +57,7 @@ namespace NLog.Config
         /// <summary>
         /// Registers type-creation with type-alias
         /// </summary>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.5")]
         void RegisterType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(string typeAlias) where TType : TBaseType, new();
         /// <summary>
         /// Tries to create an item instance with type-alias
