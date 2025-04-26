@@ -95,46 +95,24 @@ namespace NLog
         /// <summary>
         /// Event that is raised when the logging system is shutting down.
         /// </summary>
-        internal static event EventHandler<EventArgs> LoggerShutdown
+        private static event EventHandler<EventArgs> LoggerShutdown
         {
             add
             {
-                if (_loggerShutdown == null && DefaultAppEnvironment != null)
+                if (_loggerShutdown is null && DefaultAppEnvironment != null)
                 {
-                    try
-                    {
-                        InternalLogger.Debug("Registered shutdown event handler for ProcessExit.");
-                        DefaultAppEnvironment.ProcessExit += OnLoggerShutdown;
-                    }
-                    catch (Exception exception)
-                    {
-                        InternalLogger.Warn(exception, "Error registering ProcessExit event handler.");
-                        if (exception.MustBeRethrown())
-                        {
-                            throw;
-                        }
-                    }
+                    InternalLogger.Debug("Registered shutdown event handler for ProcessExit.");
+                    DefaultAppEnvironment.ProcessExit += OnLoggerShutdown;
                 }
                 _loggerShutdown += value;
             }
             remove
             {
                 _loggerShutdown -= value;
-                if (_loggerShutdown == null && DefaultAppEnvironment != null)
+                if (_loggerShutdown is null && DefaultAppEnvironment != null)
                 {
-                    try
-                    {
-                        InternalLogger.Debug("Unregistered shutdown event handler for ProcessExit.");
-                        DefaultAppEnvironment.ProcessExit -= OnLoggerShutdown;
-                    }
-                    catch (Exception exception)
-                    {
-                        InternalLogger.Warn(exception, "Error unregistering ProcessExit event handler.");
-                        if (exception.MustBeRethrown())
-                        {
-                            throw;
-                        }
-                    }
+                    InternalLogger.Debug("Unregistered shutdown event handler for ProcessExit.");
+                    DefaultAppEnvironment.ProcessExit -= OnLoggerShutdown;
                 }
             }
         }
