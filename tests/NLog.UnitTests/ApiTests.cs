@@ -50,7 +50,7 @@ namespace NLog.UnitTests
         private readonly Type[] allTypes;
         private readonly Assembly nlogAssembly = typeof(LogManager).Assembly;
         private readonly Dictionary<Type, int> typeUsageCount = new Dictionary<Type, int>();
-        
+
         public ApiTests()
         {
             allTypes = typeof(LogManager).Assembly.GetTypes();
