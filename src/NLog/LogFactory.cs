@@ -1245,7 +1245,7 @@ namespace NLog
         {
             try
             {
-                _loggerShutdown?.Invoke(sender, args);
+                _loggerShutdown?.Invoke(null, args);
             }
             catch (Exception ex)
             {
