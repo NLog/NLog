@@ -448,16 +448,70 @@ namespace NLog.Internal
 
         public static void RemoveInvalidXmlIfNeeded(StringBuilder builder, int orgLength)
         {
-                var cleanedText = RemoveInvalidXmlChars(builder.ToString(orgLength, builder.Length - orgLength));
+#if !NET35
+            bool containsInvalid = false;
+            for (int i = orgLength; i < builder.Length; ++i)
+            {
+                if (!XmlConvert.IsXmlChar(builder[i]))
+                {
+                    containsInvalid = true;
+                    break;
+                }
+            }
+
+            if (containsInvalid)
+            {
+                var text = builder.ToString(orgLength, builder.Length - orgLength);
+                var cleanedText = RemoveInvalidXmlChars(text);
                 builder.Length = orgLength;
                 builder.Append(cleanedText);
+            }
+#else
+    var text = builder.ToString(orgLength, builder.Length - orgLength);
+    var cleanedText = RemoveInvalidXmlChars(text);
+    builder.Length = orgLength;
+    builder.Append(cleanedText);
+#endif
         }
 
-        public static void WrapInCData(StringBuilder builder, int orgLength)
+        public static void EnsureValidCDataContent(StringBuilder builder, int orgLength)
         {
-            var content = builder.ToString(orgLength, builder.Length - orgLength);
-            builder.Length = orgLength;
-            builder.Append($"<![CDATA[{content}]]>");
+            bool needsFix = false;
+
+            for (int i = orgLength; i + 2 < builder.Length; ++i)
+            {
+                if (builder[i] == ']' && builder[i + 1] == ']' && builder[i + 2] == '>')
+                {
+                    needsFix = true;
+                    break;
+                }
+            }
+
+            if (needsFix)
+            {
+                for (int i = orgLength; i + 2 < builder.Length; ++i)
+                {
+                    if (builder[i] == ']' && builder[i + 1] == ']' && builder[i + 2] == '>')
+                    {
+                        builder.Remove(i, 3); 
+                        builder.Insert(i, "]]]]><![CDATA[>"); 
+                        break;
+                    }
+                }
+            }
+            builder.Append("]]>");
+        }
+
+
+        public static string WrapInCData(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return "<![CDATA[]]>";
+
+            if (text.Contains("]]>"))
+                text = text.Replace("]]>", "]]]]><![CDATA[>");
+
+            return $"<![CDATA[{text}]]>";
         }
     }
 }

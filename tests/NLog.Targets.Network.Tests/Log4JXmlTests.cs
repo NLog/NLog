@@ -451,30 +451,5 @@ namespace NLog.Targets.Network
             Assert.NotNull(goodString);
             Assert.Contains("abc", goodString);
         }
-
-        [Fact]
-        public void Log4JXmlEventLayout_ThrowableRawAppend_WritesUnescaped()
-        {
-            var layout = new Log4JXmlEventLayout
-            {
-                WriteThrowableCData = false,
-                ThrowableEncode = false,
-                AppInfo = "TestApp",
-            };
-
-            var logEvent = new LogEventInfo(LogLevel.Error, "TestLogger", "Error occurred")
-            {
-                Exception = new Exception("Boom < & >")
-            };
-
-            var result = layout.Render(logEvent);
-
-            Assert.Contains("<log4j:throwable>", result);
-            Assert.DoesNotContain("<![CDATA[", result);
-            Assert.DoesNotContain("&lt;", result);     // Not escaped
-            Assert.Contains("Boom < & >", result);     // Raw content
-            Assert.Contains("</log4j:throwable>", result);
-        }
-
     }
 }

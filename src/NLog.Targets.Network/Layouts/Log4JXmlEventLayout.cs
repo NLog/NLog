@@ -79,7 +79,6 @@ namespace NLog.Layouts
             InnerXml.Elements.Add(new XmlElement("log4j:throwable", "${exception:format=ToString}")
             {
                 CDataEncode  = WriteThrowableCData,
-                Encode = ThrowableEncode,
             });
 
             if (IncludeCallSite || IncludeSourceInfo)
@@ -292,11 +291,6 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
         public bool IncludeSourceInfo { get; set; }
-
-        /// <summary>
-        /// Disable XML escaping for the log4j:throwable value. Use with caution!
-        /// </summary>
-        public bool ThrowableEncode { get; set; } = true;
 
         /// <inheritdoc/>
         protected override string GetFormattedMessage(LogEventInfo logEvent)

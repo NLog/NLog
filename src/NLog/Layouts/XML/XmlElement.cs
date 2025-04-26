@@ -105,15 +105,5 @@ namespace NLog.Layouts
             get => LayoutWrapper.CDataEncode;
             set => LayoutWrapper.CDataEncode = value;
         }
-
-        /// <summary>
-        /// Removes Invalid XMl characters from the element value. 
-        /// </summary>
-        public bool RemoveInvalidXmlChar
-        {
-            get => LayoutWrapper.RemoveInvalidXml;
-            set => LayoutWrapper.RemoveInvalidXml = value;
-        }
-
     }
 }
