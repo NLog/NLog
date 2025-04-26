@@ -1254,6 +1254,14 @@ namespace NLog
                     throw;
                 InternalLogger.Error(ex, "LogFactory failed to shutdown properly.");
             }
+            finally
+            {
+                _loggerShutdown = null;
+                if (DefaultAppEnvironment != null)
+                {
+                    DefaultAppEnvironment.ProcessExit -= OnLoggerShutdown;
+                }
+            }
         }
 
         private void OnStopLogging(object sender, EventArgs args)
