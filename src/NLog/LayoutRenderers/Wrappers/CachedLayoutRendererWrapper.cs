@@ -134,7 +134,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (Cached)
             {
-                var newCacheKey = CacheKey?.Render(logEvent, cacheLayoutResult: false) ?? string.Empty;
+                var newCacheKey = CacheKey?.Render(logEvent) ?? string.Empty;
                 var cachedValue = LookupValidCachedValue(logEvent, newCacheKey);
 
                 if (cachedValue is null)

@@ -75,6 +75,7 @@ namespace NLog.UnitTests.Layouts
         {
             var l = new SimpleLayout("xx${threadid}yy");
             var ev = LogEventInfo.CreateNullEvent();
+            l.Precalculate(ev);
             string output1 = l.Render(ev);
             string output2 = l.Render(ev);
             Assert.Same(output1, output2);
@@ -182,8 +183,9 @@ namespace NLog.UnitTests.Layouts
         public void TryGetRawValue_MultipleLayoutRender_ShouldGiveNullRawValue()
         {
             // Arrange
-            SimpleLayout l = "${sequenceid} ";
+            SimpleLayout l = "${sequenceid}${threadid}";
             var logEventInfo = LogEventInfo.CreateNullEvent();
+            l.Precalculate(logEventInfo);
 
             // Act
             var success = l.TryGetRawValue(logEventInfo, out var value);

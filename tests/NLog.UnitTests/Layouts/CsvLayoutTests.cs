@@ -319,6 +319,9 @@ namespace NLog.UnitTests.Layouts
                 Message = "hello, world"
             };
 
+            csvLayout.Precalculate(e1);
+            csvLayout.Precalculate(e2);
+
             var r11 = csvLayout.Render(e1);
             var r12 = csvLayout.Render(e1);
             var r21 = csvLayout.Render(e2);

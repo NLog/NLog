@@ -62,7 +62,7 @@ namespace NLog.Filters
             StringComparison comparison = IgnoreCase
                                               ? StringComparison.OrdinalIgnoreCase
                                               : StringComparison.Ordinal;
-            string result = Layout.Render(logEvent, cacheLayoutResult: false);
+            string result = Layout.Render(logEvent);
             if (result.IndexOf(Substring, comparison) < 0)
             {
                 return Action;

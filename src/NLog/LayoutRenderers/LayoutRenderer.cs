@@ -156,18 +156,18 @@ namespace NLog.LayoutRenderers
         /// <param name="builder">The layout render output is appended to builder</param>
         internal void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder builder)
         {
-            if (!_isInitialized)
-            {
-                Initialize();
-            }
-
             try
             {
+                if (!_isInitialized)
+                {
+                    Initialize();
+                }
+
                 Append(builder, logEvent);
             }
             catch (Exception exception)
             {
-                InternalLogger.Warn(exception, "Exception in layout renderer.");
+                InternalLogger.Warn(exception, "Exception in '{0}.Append()'", GetType());
 
                 if (exception.MustBeRethrown())
                 {

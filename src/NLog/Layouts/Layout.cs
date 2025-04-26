@@ -175,13 +175,11 @@ namespace NLog.Layouts
         /// Precalculates the layout for the specified log event and stores the result
         /// in per-log event cache.
         ///
-        /// Only if the layout doesn't have [ThreadAgnostic] and doesn't contain layouts with [ThreadAgnostic].
+        /// Skips context capture when Layout have [ThreadAgnostic], and only contains layouts with [ThreadAgnostic].
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <remarks>
-        /// Calling this method enables you to store the log event in a buffer
-        /// and/or potentially evaluate it in another thread even though the
-        /// layout may contain thread-dependent renderer.
+        /// Override this method to make it conditional whether to capture Layout output-value for <paramref name="logEvent"/>
         /// </remarks>
         public virtual void Precalculate(LogEventInfo logEvent)
         {
@@ -189,7 +187,7 @@ namespace NLog.Layouts
             {
                 using (var localTarget = new AppendBuilderCreator(true))
                 {
-                    RenderAppendBuilder(logEvent, localTarget.Builder, true);
+                    PrecalculateCachedLayoutValue(logEvent, localTarget.Builder);
                 }
             }
         }
@@ -202,34 +200,20 @@ namespace NLog.Layouts
         /// <returns>The formatted output as string.</returns>
         public string Render(LogEventInfo logEvent)
         {
-            return Render(logEvent, true);
-        }
-
-        internal string Render(LogEventInfo logEvent, bool cacheLayoutResult)
-        {
             if (!IsInitialized)
             {
                 Initialize(LoggingConfiguration);
             }
 
-            bool lookupCacheLayout = !ThreadAgnostic || ThreadAgnosticImmutable;
-            if (lookupCacheLayout)
+            if (!ThreadAgnostic || ThreadAgnosticImmutable)
             {
-                object cachedValue;
-                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+                if (logEvent.TryGetCachedLayoutValue(this, out var cachedValue))
                 {
                     return cachedValue?.ToString() ?? string.Empty;
                 }
             }
 
-            string layoutValue = GetFormattedMessage(logEvent) ?? string.Empty;
-            if (lookupCacheLayout && cacheLayoutResult)
-            {
-                // Would be nice to only do this in Precalculate(), but we need to ensure internal cache
-                // is updated for custom Layouts that overrides Precalculate (without calling base.Precalculate)
-                logEvent.AddCachedLayoutValue(this, layoutValue);
-            }
-            return layoutValue;
+            return GetFormattedMessage(logEvent) ?? string.Empty;
         }
 
         /// <summary>
@@ -240,7 +224,21 @@ namespace NLog.Layouts
         /// <param name="target">Appends the formatted output to target</param>
         public void Render(LogEventInfo logEvent, StringBuilder target)
         {
-            RenderAppendBuilder(logEvent, target, false);
+            if (!IsInitialized)
+            {
+                Initialize(LoggingConfiguration);
+            }
+
+            if (!ThreadAgnostic || ThreadAgnosticImmutable)
+            {
+                if (logEvent.TryGetCachedLayoutValue(this, out var cachedValue))
+                {
+                    target.Append(cachedValue?.ToString());
+                    return;
+                }
+            }
+
+            RenderFormattedMessage(logEvent, target);
         }
 
         internal virtual void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
@@ -248,14 +246,7 @@ namespace NLog.Layouts
             Precalculate(logEvent); // Allow custom Layouts to also work
         }
 
-        /// <summary>
-        /// Optimized version of <see cref="Render(LogEventInfo)"/> that works best when
-        /// override of <see cref="RenderFormattedMessage(LogEventInfo, StringBuilder)"/> is available.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <param name="target">Appends the string representing log event to target</param>
-        /// <param name="cacheLayoutResult">Should rendering result be cached on LogEventInfo</param>
-        private void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder target, bool cacheLayoutResult)
+        private void PrecalculateCachedLayoutValue(LogEventInfo logEvent, StringBuilder target)
         {
             if (!IsInitialized)
             {
@@ -264,26 +255,11 @@ namespace NLog.Layouts
 
             if (!ThreadAgnostic || ThreadAgnosticImmutable)
             {
-                object cachedValue;
-                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
-                {
-                    target.Append(cachedValue?.ToString());
-                    return;
-                }
-            }
-            else
-            {
-                cacheLayoutResult = false;
-            }
+                if (logEvent.TryGetCachedLayoutValue(this, out var _))
+                    return; // Precalculate already captured
 
-            using (var localTarget = new AppendBuilderCreator(target, cacheLayoutResult))
-            {
-                RenderFormattedMessage(logEvent, localTarget.Builder);
-                if (cacheLayoutResult)
-                {
-                    // when needed as it generates garbage
-                    logEvent.AddCachedLayoutValue(this, localTarget.Builder.ToString());
-                }
+                RenderFormattedMessage(logEvent, target);
+                logEvent.AddCachedLayoutValue(this, target.ToString());
             }
         }
 
@@ -508,14 +484,14 @@ namespace NLog.Layouts
             {
                 if (precalculateLayout is null)
                 {
-                    RenderAppendBuilder(logEvent, target, true);
+                    PrecalculateCachedLayoutValue(logEvent, target);
                 }
                 else
                 {
                     foreach (var layout in precalculateLayout)
                     {
+                        target.ClearBuilder();
                         layout.PrecalculateBuilder(logEvent, target);
-                        target.Length = 0;
                     }
                 }
             }
