@@ -445,5 +445,60 @@ namespace NLog.Internal
         }
 
         private static readonly char[] DecimalScientificExponent = new[] { 'e', 'E' };
+
+        public static void RemoveInvalidXmlIfNeeded(StringBuilder builder, int orgLength)
+        {
+#if !NET35
+            bool containsInvalid = false;
+            for (int i = orgLength; i < builder.Length; ++i)
+            {
+                if (!XmlConvert.IsXmlChar(builder[i]))
+                {
+                    containsInvalid = true;
+                    break;
+                }
+            }
+
+            if (containsInvalid)
+            {
+                var text = builder.ToString(orgLength, builder.Length - orgLength);
+                var cleanedText = RemoveInvalidXmlChars(text);
+                builder.Length = orgLength;
+                builder.Append(cleanedText);
+            }
+#else
+    var text = builder.ToString(orgLength, builder.Length - orgLength);
+    var cleanedText = RemoveInvalidXmlChars(text);
+    builder.Length = orgLength;
+    builder.Append(cleanedText);
+#endif
+        }
+
+        public static void EscapeCDataIfNeeded(StringBuilder builder, int orgLength)
+        {
+            for (int i = orgLength; i + 2 < builder.Length; ++i)
+            {
+                if (builder[i] == ']' && builder[i + 1] == ']' && builder[i + 2] == '>')
+                {
+                    var escapedCData = builder.ToString(i, builder.Length - i)
+                          .Replace("]]>", "]]]]><![CDATA[>");
+                    builder.Length = i;
+                    builder.Append(escapedCData);
+                    break;
+                }
+            }
+        }
+
+
+        public static string WrapInCData(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return "<![CDATA[]]>";
+
+            if (text.Contains("]]>"))
+                text = text.Replace("]]>", "]]]]><![CDATA[>");
+
+            return $"<![CDATA[{text}]]>";
+        }
     }
 }
