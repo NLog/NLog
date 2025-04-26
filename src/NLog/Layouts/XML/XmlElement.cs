@@ -88,7 +88,7 @@ namespace NLog.Layouts
         public Layout Layout { get => Value; set => Value = value; }
 
         /// <summary>
-        /// Gets or sets whether output should be encoded with Xml-string escaping, or be treated as valid xml-element-value
+        /// Gets or sets whether output should be encoded with XML-string escaping, or be treated as valid xml-element-value
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
         public bool Encode
@@ -98,7 +98,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Wraps the element value in a CDATA section instead of escaping XML characters.
+        /// Gets or sets whether output should be wrapped using CDATA section instead of XML-string escaping
         /// </summary>
         public bool CDataEncode 
         {
