@@ -56,7 +56,10 @@ namespace NLog.Layouts
 
         private LimitRecursionJsonConvert JsonConverter
         {
-            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, EscapeForwardSlash, ResolveService<IJsonConverter>()));
+            get => _jsonConverter ??
+#pragma warning disable CS0618 // Type or member is obsolete
+                (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, EscapeForwardSlash, ResolveService<IJsonConverter>()));
+#pragma warning restore CS0618 // Type or member is obsolete
             set => _jsonConverter = value;
         }
         private LimitRecursionJsonConvert _jsonConverter;
@@ -77,7 +80,13 @@ namespace NLog.Layouts
             {
                 _converter = converter;
                 _serializer = converter as Targets.DefaultJsonSerializer;
-                _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit), EscapeForwardSlash = escapeForwardSlash };
+                _serializerOptions = new Targets.JsonSerializeOptions()
+                {
+                    MaxRecursionLimit = Math.Max(0, maxRecursionLimit),
+#pragma warning disable CS0618 // Type or member is obsolete
+                    EscapeForwardSlash = escapeForwardSlash
+#pragma warning restore CS0618 // Type or member is obsolete
+                };
             }
 
             public bool SerializeObject(object value, StringBuilder builder)
@@ -232,6 +241,8 @@ namespace NLog.Layouts
         /// If not set explicitly then the value of the parent will be used as default.
         /// </remarks>
         /// <docgen category='Layout Options' order='100' />
+        [Obsolete("Marked obsolete with NLog 5.5. Should never escape forward slash")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EscapeForwardSlash
         {
             get => _escapeForwardSlashInternal ?? false;
@@ -466,7 +477,10 @@ namespace NLog.Layouts
                 // Overrides MaxRecursionLimit as message-template tells us it is unsafe
                 int originalStart = sb.Length;
                 ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
-                PerformJsonEscapeIfNeeded(sb, originalStart, EscapeForwardSlash);
+#pragma warning disable CS0618 // Type or member is obsolete
+                bool escapeForwardSlash = EscapeForwardSlash;
+#pragma warning restore CS0618 // Type or member is obsolete
+                PerformJsonEscapeIfNeeded(sb, originalStart, escapeForwardSlash);
             }
             else
             {
