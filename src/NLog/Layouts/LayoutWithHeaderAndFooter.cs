@@ -64,7 +64,7 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            return Layout.Render(logEvent);
+            return Layout.Render(logEvent, cacheLayoutResult: false);
         }
 
         /// <inheritdoc/>

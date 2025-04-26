@@ -947,7 +947,7 @@ namespace NLog.Targets
 
             protected override string GetFormattedMessage(LogEventInfo logEvent)
             {
-                return TargetLayout?.Render(logEvent) ?? string.Empty;
+                return TargetLayout?.Render(logEvent, cacheLayoutResult: false) ?? string.Empty;
             }
 
             protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
