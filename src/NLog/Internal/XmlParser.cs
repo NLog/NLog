@@ -304,18 +304,11 @@ namespace NLog.Internal
 
             while (_xmlSource.MoveNext())
             {
-                if (_xmlSource.Current != '-')
-                    continue;
-                if (_xmlSource.Peek() != '-')
+                if (!SkipChar('-'))
                     continue;
 
-                _xmlSource.MoveNext();
-                _xmlSource.MoveNext();
-                if (_xmlSource.Current == '>')
-                {
-                    _xmlSource.MoveNext();
+                if (SkipChar('-') && SkipChar('>'))
                     break;
-                }
             }
 
             SkipWhiteSpaces();
@@ -359,7 +352,7 @@ namespace NLog.Internal
                     _xmlSource.MoveNext();
 
                     attributes = attributes ?? new List<KeyValuePair<string, string>>();
-                    attributes.Add(new KeyValuePair<string, string>(attName.ToString(), attValue.ToString()));
+                    attributes.Add(new KeyValuePair<string, string>(attName, attValue));
 
                     SkipWhiteSpaces();
                 }
@@ -403,8 +396,10 @@ namespace NLog.Internal
                     if (_stringBuilder.Length != 0)
                         throw new XmlParserException($"Invalid XML document. Cannot parse XML start-tag with character: {chr}");
                 }
-                else if (!char.IsLetter(chr) && !char.IsDigit(chr) && chr != '_' && chr != '-' && chr != '.' && chr != ':')
+                else if (!IsValidXmlNameChar(chr))
+                {
                     throw new XmlParserException($"Invalid XML document. Cannot parse XML start-tag with character: {chr}");
+                }
 
                 _stringBuilder.Append(chr);
             } while (_xmlSource.MoveNext());
@@ -459,8 +454,10 @@ namespace NLog.Internal
                         break;
                     throw new XmlParserException($"Invalid XML document. Cannot parse attribute-name with white-space");
                 }
-                else if (!includeSpaces && !char.IsLetter(chr) && !char.IsDigit(chr) && chr != '_' && chr != '-' && chr != '.' && chr != ':')
+                else if (!includeSpaces && !IsValidXmlNameChar(chr))
+                {
                     throw new XmlParserException($"Invalid XML document. Cannot parse attribute-name with character: {chr}");
+                }
 
                 if (chr == '<' && (!includeSpaces || expectedChar == '<'))
                     throw new XmlParserException($"Invalid XML document. Cannot parse value with '<'");
@@ -513,6 +510,23 @@ namespace NLog.Internal
             return trimEnd ? value.TrimEnd(ArrayHelper.Empty<char>()) : value;
         }
 
+        private static bool IsValidXmlNameChar(char chr)
+        {
+            if (char.IsLetter(chr) || char.IsDigit(chr))
+                return true;
+
+            switch (chr)
+            {
+                case '_':
+                case '-':
+                case '.':
+                case ':':
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
         private int TryParseUnicodeValue()
         {
             int unicode = '\0';
@@ -527,6 +541,9 @@ namespace NLog.Internal
                 unicode *= 10;
                 unicode += _xmlSource.Current - '0';
             }
+
+            if (unicode >= '\uffff')
+                throw new XmlParserException("Invalid XML document. Unicode value exceeds maximum allowed value");
 
             return unicode;
         }
@@ -547,6 +564,9 @@ namespace NLog.Internal
                 else
                     unicode += _xmlSource.Current - '0';
             }
+
+            if (unicode >= '\uffff')
+                throw new XmlParserException("Invalid XML document. Unicode value exceeds maximum allowed value");
 
             return unicode;
         }
@@ -571,7 +591,7 @@ namespace NLog.Internal
             return false;
         }
 
-        private static Dictionary<string, string> _specialTokens = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> _specialTokens = new Dictionary<string, string>()
         {
             { "amp", "&" },
             { "AMP", "&" },

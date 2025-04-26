@@ -516,6 +516,7 @@ namespace NLog.UnitTests
                 "NLog.Internal.TargetWithFilterChain",
                 "NLog.Internal.UrlHelper",
                 "NLog.Internal.XmlHelper",
+                "NLog.Internal.XmlParser",
                 "NLog.Config.ConfigurationItemFactory",
                 "NLog.Config.InstallationContext",
                 "NLog.Config.LoggingRuleLevelFilter",

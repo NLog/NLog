@@ -48,15 +48,17 @@ namespace NLog.Internal
         const char LOW_SURROGATE_START = '\udc00';
         const char LOW_SURROGATE_END = '\udfff';
 
-        private static bool XmlConvertIsXmlChar(char chr)
+        internal static bool XmlConvertIsXmlChar(char chr)
         {
-            if (chr > '\u001f' && chr < HIGH_SURROGATE_START)
-                return true;
+            return (chr > '\u001f' && chr < HIGH_SURROGATE_START) || ExoticIsXmlChar(chr);
+        }
 
-            if (chr == '\u0009' || chr == '\u000a' || chr == '\u000d')
-                return true;
+        private static bool ExoticIsXmlChar(char chr)
+        {
+            if (chr < '\u0020')
+                return chr == '\u0009' || chr == '\u000a' || chr == '\u000d';
 
-            if (chr >= HIGH_SURROGATE_START && chr <= HIGH_SURROGATE_END)
+            if (XmlConvertIsHighSurrogate(chr) || XmlConvertIsLowSurrogate(chr))
                 return false;
 
             if (chr == '\ufffe' || chr == '\uffff')
@@ -478,49 +480,35 @@ namespace NLog.Internal
 
         public static void RemoveInvalidXmlIfNeeded(StringBuilder builder, int orgLength)
         {
-#if !NET35
-            bool containsInvalid = false;
             for (int i = orgLength; i < builder.Length; ++i)
             {
-                if (!XmlConvert.IsXmlChar(builder[i]))
+                if (!XmlConvertIsXmlChar(builder[i]))
                 {
-                    containsInvalid = true;
+                    var text = builder.ToString(i, builder.Length - i);
+                    builder.Length = i;
+                    text = RemoveInvalidXmlChars(text);
+                    builder.Append(text);
                     break;
                 }
             }
-
-            if (containsInvalid)
-            {
-                var text = builder.ToString(orgLength, builder.Length - orgLength);
-                var cleanedText = RemoveInvalidXmlChars(text);
-                builder.Length = orgLength;
-                builder.Append(cleanedText);
-            }
-#else
-    var text = builder.ToString(orgLength, builder.Length - orgLength);
-    var cleanedText = RemoveInvalidXmlChars(text);
-    builder.Length = orgLength;
-    builder.Append(cleanedText);
-#endif
         }
 
         public static void EscapeCDataIfNeeded(StringBuilder builder, int orgLength)
         {
-            for (int i = orgLength; i + 2 < builder.Length; ++i)
+            for (int i = orgLength; i < builder.Length; ++i)
             {
-                if (builder[i] == ']' && builder[i + 1] == ']' && builder[i + 2] == '>')
+                if (builder[i] == ']' && i + 2 < builder.Length && builder[i + 1] == ']' && builder[i + 2] == '>')
                 {
-                    var escapedCData = builder.ToString(i, builder.Length - i)
-                          .Replace("]]>", "]]]]><![CDATA[>");
+                    var text = builder.ToString(i, builder.Length - i);
                     builder.Length = i;
-                    builder.Append(escapedCData);
+                    text = text.Replace("]]>", "]]]]><![CDATA[>");
+                    builder.Append(text);
                     break;
                 }
             }
         }
 
-
-        public static string WrapInCData(string text)
+        public static string EscapeCData(string text)
         {
             if (string.IsNullOrEmpty(text))
                 return "<![CDATA[]]>";

@@ -40,6 +40,18 @@ namespace NLog.UnitTests.Internal
 
     public class XmlParserTests
     {
+        [Fact]
+        public void XmlConvertIsXmlCharTest()
+        {
+            for (char ch = '\0'; ch < char.MaxValue; ++ch)
+            {
+                var expected = System.Xml.XmlConvert.IsXmlChar(ch);
+                var actual = XmlHelper.XmlConvertIsXmlChar(ch);
+                if (expected != actual)
+                    Assert.True(expected == actual, $"{ch} ({(int)ch})");
+            }
+        }
+
         [Theory]
         [InlineData("")]
         [InlineData(" ")]
@@ -135,7 +147,9 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog><!-></nlog>")]
         [InlineData("<nlog><!></nlog>")]
         [InlineData("<nlog>&#12Z;</nlog>")]
+        [InlineData("<nlog>&#1234567;</nlog>")]
         [InlineData("<nlog>&#x12Z;</nlog>")]
+        [InlineData("<nlog>&#xffffff;</nlog>")]
         [InlineData("<nlog>&quop;</nlog>")]
         [InlineData("<nlog>&quot</nlog>")]
         public void XmlParse_InvalidDocument(string xmlSource)
@@ -259,9 +273,10 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog><![CDATA[\n\n]]></nlog>", "\n\n")]
         [InlineData("<nlog> <![CDATA[\n\n]]> </nlog>", "\n\n")]
         [InlineData("<nlog>\n<![CDATA[\n\n]]>\n</nlog>", "\n\n")]
-        [InlineData("<nlog>\n<![CDATA[<cdata>]]>\n</nlog>", "<cdata>")]
-        [InlineData("<nlog>\n<!--CDATA-->\n<![CDATA[<cdata>]]>\n</nlog>", "<cdata>")]
-        [InlineData("<nlog><!--CDATA--><!--CDATA--><![CDATA[<cd]]>a<!--CDATA--><!--CDATA--><![CDATA[ta>]]></nlog>", "<cdata>")]
+        [InlineData("<nlog>\n<![CDATA[<CDATA>]]>\n</nlog>", "<CDATA>")]
+        [InlineData("<nlog>\n<!--CDATA-->\n<![CDATA[<CDATA>]]>\n</nlog>", "<CDATA>")]
+        [InlineData("<nlog><!--CDATA--><!--CDATA--><![CDATA[<CD]]>A<!--CDATA--><!--CDATA--><![CDATA[TA>]]></nlog>", "<CDATA>")]
+        [InlineData("<nlog><![CDATA[<![CDATA[]]>]]<![CDATA[>]]></nlog>", "<![CDATA[]]>")]
         public void XmlParse_InnerText_Tokens(string xmlSource, string value)
         {
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
