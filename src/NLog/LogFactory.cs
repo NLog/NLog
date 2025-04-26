@@ -97,7 +97,7 @@ namespace NLog
         {
             add
             {
-                if (_loggerShutdown is null && DefaultAppEnvironment != null)
+                if (_loggerShutdown is null)
                 {
                     InternalLogger.Debug("Registered shutdown event handler for ProcessExit.");
                     DefaultAppEnvironment.ProcessExit += OnLoggerShutdown;
@@ -107,10 +107,10 @@ namespace NLog
             remove
             {
                 _loggerShutdown -= value;
-                if (_loggerShutdown is null && DefaultAppEnvironment != null)
+                if (_loggerShutdown is null && defaultAppEnvironment != null)
                 {
                     InternalLogger.Debug("Unregistered shutdown event handler for ProcessExit.");
-                    DefaultAppEnvironment.ProcessExit -= OnLoggerShutdown;
+                    defaultAppEnvironment.ProcessExit -= OnLoggerShutdown;
                 }
             }
         }
