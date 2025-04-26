@@ -91,7 +91,7 @@ namespace NLog
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
         /// <summary>
-        /// Event that is raised when the current Process / AppDomain is shutting down.
+        /// Event that is raised when the current Process / AppDomain terminates.
         /// </summary>
         private static event EventHandler<EventArgs> LoggerShutdown
         {
