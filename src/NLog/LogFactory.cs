@@ -1259,7 +1259,7 @@ namespace NLog
                 _loggerShutdown = null;
                 if (defaultAppEnvironment != null)
                 {
-                    defaultAppEnvironment.ProcessExit -= OnLoggerShutdown; // Unregister from AppDomain
+                    defaultAppEnvironment.ProcessExit -= OnLoggerShutdown;  // Unregister from AppDomain
                 }
             }
         }
