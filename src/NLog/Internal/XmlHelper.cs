@@ -36,20 +36,51 @@ namespace NLog.Internal
     using System;
     using System.Globalization;
     using System.Text;
-    using System.Xml;
 
     /// <summary>
     ///  Helper class for XML
     /// </summary>
     internal static class XmlHelper
     {
-        // found on https://stackoverflow.com/questions/397250/unicode-regex-invalid-xml-characters/961504#961504
-        // filters control characters but allows only properly-formed surrogate sequences
-#if NET35
-        private static readonly System.Text.RegularExpressions.Regex InvalidXmlChars = new System.Text.RegularExpressions.Regex(
-            @"(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\uFEFF\uFFFE\uFFFF]",
-            System.Text.RegularExpressions.RegexOptions.Compiled);
-#endif
+        const char HIGH_SURROGATE_START = '\ud800';
+        const char HIGH_SURROGATE_END = '\udbff';
+
+        const char LOW_SURROGATE_START = '\udc00';
+        const char LOW_SURROGATE_END = '\udfff';
+
+        internal static bool XmlConvertIsXmlChar(char chr)
+        {
+            return (chr > '\u001f' && chr < HIGH_SURROGATE_START) || ExoticIsXmlChar(chr);
+        }
+
+        private static bool ExoticIsXmlChar(char chr)
+        {
+            if (chr < '\u0020')
+                return chr == '\u0009' || chr == '\u000a' || chr == '\u000d';
+
+            if (XmlConvertIsHighSurrogate(chr) || XmlConvertIsLowSurrogate(chr))
+                return false;
+
+            if (chr == '\ufffe' || chr == '\uffff')
+                return false;
+
+            return true;
+        }
+
+        public static bool XmlConvertIsHighSurrogate(char chr)
+        {
+            return chr >= HIGH_SURROGATE_START && chr <= HIGH_SURROGATE_END;
+        }
+
+        public static bool XmlConvertIsLowSurrogate(char chr)
+        {
+            return chr >= LOW_SURROGATE_START && chr <= LOW_SURROGATE_END;
+        }
+
+        public static bool XmlConvertIsXmlSurrogatePair(char lowChar, char highChar)
+        {
+            return XmlConvertIsHighSurrogate(highChar) && XmlConvertIsLowSurrogate(lowChar);
+        }
 
         /// <summary>
         /// removes any unusual unicode characters that can't be encoded into XML
@@ -59,14 +90,13 @@ namespace NLog.Internal
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
 
-#if !NET35
             int length = text.Length;
             for (int i = 0; i < length; ++i)
             {
                 char ch = text[i];
-                if (!XmlConvert.IsXmlChar(ch))
+                if (!XmlConvertIsXmlChar(ch))
                 {
-                    if (i + 1 < text.Length && XmlConvert.IsXmlSurrogatePair(text[i + 1], ch))
+                    if (i + 1 < text.Length && XmlConvertIsXmlSurrogatePair(text[i + 1], ch))
                     {
                         ++i;
                     }
@@ -76,13 +106,10 @@ namespace NLog.Internal
                     }
                 }
             }
+
             return text;
-#else
-            return InvalidXmlChars.Replace(text, string.Empty);
-#endif
         }
 
-#if !NET35
         /// <summary>
         /// Cleans string of any invalid XML chars found
         /// </summary>
@@ -94,14 +121,13 @@ namespace NLog.Internal
             for (int i = 0; i < text.Length; ++i)
             {
                 char ch = text[i];
-                if (XmlConvert.IsXmlChar(ch))
+                if (XmlConvertIsXmlChar(ch))
                 {
                     sb.Append(ch);
                 }
             }
             return sb.ToString();
         }
-#endif
 
         internal static void PerformXmlEscapeWhenNeeded(StringBuilder builder, int startPos, bool xmlEncodeNewlines)
         {
@@ -226,29 +252,35 @@ namespace NLog.Internal
 
         internal static string XmlConvertToString(float value)
         {
-            if (float.IsNaN(value))
-                return XmlConvert.ToString(value);
-
-            if (float.IsInfinity(value))
+            if (float.IsInfinity(value) || float.IsNaN(value))
                 return Convert.ToString(value, CultureInfo.InvariantCulture);
-
-            return EnsureDecimalPlace(XmlConvert.ToString(value));
+            else
+                return EnsureDecimalPlace(value.ToString("R", NumberFormatInfo.InvariantInfo));
         }
 
         internal static string XmlConvertToString(double value)
         {
-            if (double.IsNaN(value))
-                return XmlConvert.ToString(value);
-
-            if (double.IsInfinity(value))
+            if (double.IsInfinity(value) || double.IsNaN(value))
                 return Convert.ToString(value, CultureInfo.InvariantCulture);
-
-            return EnsureDecimalPlace(XmlConvert.ToString(value));
+            else
+                return EnsureDecimalPlace(value.ToString("R", NumberFormatInfo.InvariantInfo));
         }
 
         internal static string XmlConvertToString(decimal value)
         {
-            return EnsureDecimalPlace(XmlConvert.ToString(value));
+            return EnsureDecimalPlace(value.ToString(null, NumberFormatInfo.InvariantInfo));
+        }
+
+        /// <summary>
+        /// Converts DateTime to ISO 8601 format in UTC timezone.
+        /// </summary>
+        internal static string XmlConvertToString(DateTime value)
+        {
+            if (value.Kind == DateTimeKind.Unspecified)
+                value = new DateTime(value.Ticks, DateTimeKind.Utc);
+            else
+                value = value.ToUniversalTime();
+            return value.ToString("yyyy-MM-ddTHH:mm:ss.FFFFFFFK");
         }
 
         /// <summary>
@@ -385,23 +417,23 @@ namespace NLog.Internal
             switch (objTypeCode)
             {
                 case TypeCode.Boolean:
-                    return XmlConvert.ToString(value.ToBoolean(CultureInfo.InvariantCulture));   // boolean as lowercase
+                    return value.ToBoolean(CultureInfo.InvariantCulture) ? "true" : "false";   // boolean as lowercase
                 case TypeCode.Byte:
-                    return XmlConvert.ToString(value.ToByte(CultureInfo.InvariantCulture));
+                    return value.ToByte(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.SByte:
-                    return XmlConvert.ToString(value.ToSByte(CultureInfo.InvariantCulture));
+                    return value.ToSByte(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.Int16:
-                    return XmlConvert.ToString(value.ToInt16(CultureInfo.InvariantCulture));
+                    return value.ToInt16(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.Int32:
-                    return XmlConvert.ToString(value.ToInt32(CultureInfo.InvariantCulture));
+                    return value.ToInt32(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.Int64:
-                    return XmlConvert.ToString(value.ToInt64(CultureInfo.InvariantCulture));
+                    return value.ToInt64(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.UInt16:
-                    return XmlConvert.ToString(value.ToUInt16(CultureInfo.InvariantCulture));
+                    return value.ToUInt16(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.UInt32:
-                    return XmlConvert.ToString(value.ToUInt32(CultureInfo.InvariantCulture));
+                    return value.ToUInt32(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.UInt64:
-                    return XmlConvert.ToString(value.ToUInt64(CultureInfo.InvariantCulture));
+                    return value.ToUInt64(CultureInfo.InvariantCulture).ToString(null, NumberFormatInfo.InvariantInfo);
                 case TypeCode.Single:
                     return XmlConvertToString(value.ToSingle(CultureInfo.InvariantCulture));
                 case TypeCode.Double:
@@ -409,7 +441,7 @@ namespace NLog.Internal
                 case TypeCode.Decimal:
                     return XmlConvertToString(value.ToDecimal(CultureInfo.InvariantCulture));
                 case TypeCode.DateTime:
-                    return XmlConvert.ToString(value.ToDateTime(CultureInfo.InvariantCulture), XmlDateTimeSerializationMode.Utc);
+                    return XmlConvertToString(value.ToDateTime(CultureInfo.InvariantCulture));
                 case TypeCode.Char:
                     return safeConversion ? RemoveInvalidXmlChars(value.ToString(CultureInfo.InvariantCulture)) : value.ToString(CultureInfo.InvariantCulture);
                 case TypeCode.String:
@@ -448,49 +480,35 @@ namespace NLog.Internal
 
         public static void RemoveInvalidXmlIfNeeded(StringBuilder builder, int orgLength)
         {
-#if !NET35
-            bool containsInvalid = false;
             for (int i = orgLength; i < builder.Length; ++i)
             {
-                if (!XmlConvert.IsXmlChar(builder[i]))
+                if (!XmlConvertIsXmlChar(builder[i]))
                 {
-                    containsInvalid = true;
+                    var text = builder.ToString(i, builder.Length - i);
+                    builder.Length = i;
+                    text = RemoveInvalidXmlChars(text);
+                    builder.Append(text);
                     break;
                 }
             }
-
-            if (containsInvalid)
-            {
-                var text = builder.ToString(orgLength, builder.Length - orgLength);
-                var cleanedText = RemoveInvalidXmlChars(text);
-                builder.Length = orgLength;
-                builder.Append(cleanedText);
-            }
-#else
-    var text = builder.ToString(orgLength, builder.Length - orgLength);
-    var cleanedText = RemoveInvalidXmlChars(text);
-    builder.Length = orgLength;
-    builder.Append(cleanedText);
-#endif
         }
 
         public static void EscapeCDataIfNeeded(StringBuilder builder, int orgLength)
         {
-            for (int i = orgLength; i + 2 < builder.Length; ++i)
+            for (int i = orgLength; i < builder.Length; ++i)
             {
-                if (builder[i] == ']' && builder[i + 1] == ']' && builder[i + 2] == '>')
+                if (builder[i] == ']' && i + 2 < builder.Length && builder[i + 1] == ']' && builder[i + 2] == '>')
                 {
-                    var escapedCData = builder.ToString(i, builder.Length - i)
-                          .Replace("]]>", "]]]]><![CDATA[>");
+                    var text = builder.ToString(i, builder.Length - i);
                     builder.Length = i;
-                    builder.Append(escapedCData);
+                    text = text.Replace("]]>", "]]]]><![CDATA[>");
+                    builder.Append(text);
                     break;
                 }
             }
         }
 
-
-        public static string WrapInCData(string text)
+        public static string EscapeCData(string text)
         {
             if (string.IsNullOrEmpty(text))
                 return "<![CDATA[]]>";

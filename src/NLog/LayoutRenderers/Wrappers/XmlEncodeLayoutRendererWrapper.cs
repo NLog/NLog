@@ -97,7 +97,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (CDataEncode)
             {
-                return XmlHelper.WrapInCData(text);
+                return XmlHelper.EscapeCData(text);
             }
 
             if (XmlEncode)

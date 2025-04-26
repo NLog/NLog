@@ -37,7 +37,6 @@ namespace NLog.Config
     using System.Collections.Generic;
     using System.IO;
     using System.Security;
-    using System.Xml;
     using NLog.Common;
     using NLog.Internal;
     using NLog.Internal.Fakeables;
@@ -132,27 +131,22 @@ namespace NLog.Config
         {
             InternalLogger.Debug("Reading config from XML file: {0}", configFile);
 
-            using (var xmlReader = _appEnvironment.LoadXmlFile(configFile))
+            using (var textReader = _appEnvironment.LoadTextFile(configFile))
             {
-                return LoadXmlLoggingConfiguration(xmlReader, configFile, logFactory);
-            }
-        }
+                try
+                {
+                    return new XmlLoggingConfiguration(textReader, configFile, logFactory);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.MustBeRethrown() || (logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions))
+                        throw;
 
-        private LoggingConfiguration LoadXmlLoggingConfiguration(XmlReader xmlReader, string configFile, LogFactory logFactory)
-        {
-            try
-            {
-                return new XmlLoggingConfiguration(xmlReader, configFile, logFactory);
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrown() || (logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions))
-                    throw;
+                    if (ThrowXmlConfigExceptions(configFile, ex is XmlParserException, logFactory, out var autoReload))
+                        throw;
 
-                if (ThrowXmlConfigExceptions(configFile, xmlReader, logFactory, out var autoReload))
-                    throw;
-
-                return CreateEmptyDefaultConfig(configFile, logFactory, autoReload);
+                    return CreateEmptyDefaultConfig(configFile, logFactory, autoReload);
+                }
             }
         }
 
@@ -161,7 +155,7 @@ namespace NLog.Config
             return new XmlLoggingConfiguration($"<nlog autoReload='{autoReload}'></nlog>", configFile, logFactory);    // Empty default config, but monitors file
         }
 
-        private bool ThrowXmlConfigExceptions(string configFile, XmlReader xmlReader, LogFactory logFactory, out bool autoReload)
+        private static bool ThrowXmlConfigExceptions(string configFile, bool invalidXml, LogFactory logFactory, out bool autoReload)
         {
             autoReload = false;
 
@@ -172,7 +166,7 @@ namespace NLog.Config
 
                 var fileContent = File.ReadAllText(configFile);
 
-                if (xmlReader.ReadState == ReadState.Error)
+                if (invalidXml)
                 {
                     // Avoid reacting to throwExceptions="true" that only exists in comments, only check when invalid xml
                     if (ScanForBooleanParameter(fileContent, "throwExceptions", true))

@@ -113,7 +113,7 @@ namespace NLog.UnitTests
         public void GetConfigFile_absolutePath_loads(string filename, string accepts, string expected, string baseDir)
         {
             // Arrange
-            var appEnvMock = new AppEnvironmentMock(f => f == accepts, f => System.Xml.XmlReader.Create(new StringReader(@"<nlog autoreload=""true""></nlog>"))) { AppDomainBaseDirectory = baseDir };
+            var appEnvMock = new AppEnvironmentMock(f => f == accepts, f => new StringReader(@"<nlog autoreload=""true""></nlog>")) { AppDomainBaseDirectory = baseDir };
             var fileLoader = new LoggingConfigurationFileLoader(appEnvMock);
             var logFactory = new LogFactory(fileLoader);
 
@@ -145,7 +145,7 @@ namespace NLog.UnitTests
         public void LoadConfigFile_EmptyEnvironment_UseCurrentDirectory()
         {
             // Arrange
-            var appEnvMock = new AppEnvironmentMock(f => true, f => null);
+            var appEnvMock = new AppEnvironmentMock(f => true);
             var fileLoader = new LoggingConfigurationFileLoader(appEnvMock);
 
             // Act
@@ -163,7 +163,7 @@ namespace NLog.UnitTests
         {
             // Arrange
             var tmpDir = Path.GetTempPath();
-            var appEnvMock = new AppEnvironmentMock(f => true, f => null)
+            var appEnvMock = new AppEnvironmentMock(f => true)
             {
                 AppDomainBaseDirectory = Path.Combine(tmpDir, "BaseDir"),
 #if NETFRAMEWORK
@@ -190,7 +190,7 @@ namespace NLog.UnitTests
         {
             // Arrange
             var tmpDir = Path.GetTempPath();
-            var appEnvMock = new AppEnvironmentMock(f => true, f => null)
+            var appEnvMock = new AppEnvironmentMock(f => true)
             {
                 AppDomainBaseDirectory = Path.Combine(tmpDir, "BaseDir"),
 #if NETFRAMEWORK
@@ -218,7 +218,7 @@ namespace NLog.UnitTests
         {
             // Arrange
             var tmpDir = Path.GetTempPath();
-            var appEnvMock = new AppEnvironmentMock(f => true, f => null)
+            var appEnvMock = new AppEnvironmentMock(f => true)
             {
                 AppDomainBaseDirectory = Path.Combine(tmpDir, "BaseDir"),
 #if NETFRAMEWORK
@@ -245,7 +245,7 @@ namespace NLog.UnitTests
         {
             // Arrange
             var tmpDir = Path.GetTempPath();
-            var appEnvMock = new AppEnvironmentMock(f => true, f => null)
+            var appEnvMock = new AppEnvironmentMock(f => true)
             {
                 AppDomainBaseDirectory = Path.Combine(tmpDir, "BaseDir"),
 #if NETFRAMEWORK
@@ -276,7 +276,7 @@ namespace NLog.UnitTests
         {
             // Arrange
             var tmpDir = "/var/tmp/";
-            var appEnvMock = new AppEnvironmentMock(f => true, f => null)
+            var appEnvMock = new AppEnvironmentMock(f => true)
             {
                 AppDomainBaseDirectory = Path.Combine(tmpDir, "BaseDir"),
 #if NETFRAMEWORK
@@ -317,7 +317,7 @@ namespace NLog.UnitTests
             </nlog>";
 
             // Arrange
-            var appEnvMock = new AppEnvironmentMock(f => true, f => throw new NLogConfigurationException("Never allow loading config"));
+            var appEnvMock = new AppEnvironmentMock(f => true, f => throw new NLogConfigurationException("Never allow loading config file"));
             var fileLoader = new LoggingConfigurationFileLoader(appEnvMock);
             var logFactory = new LogFactory(fileLoader).Setup().LoadConfigurationFromXml(nlogConfigXml).LogFactory;
 

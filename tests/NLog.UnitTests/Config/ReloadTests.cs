@@ -679,8 +679,8 @@ namespace NLog.UnitTests.Config
                         <logger name='*' minlevel='Debug' writeTo='debug' />
                     </rules>
                 </nlog>";
-            var invalidXmlConfig = @"<nlog autoReload='true' internalLogLevel='debug' internalLogLevel='error'>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+            var invalidXmlConfig = @"<nlog autoReload='true' internalLogLevel='error'>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></target>
                 </nlog>";
 
             string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());

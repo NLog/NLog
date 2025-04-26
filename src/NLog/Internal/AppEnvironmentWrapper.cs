@@ -37,7 +37,6 @@ namespace NLog.Internal.Fakeables
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
-    using System.Xml;
     using NLog.Common;
 
     internal sealed class AppEnvironmentWrapper : IAppEnvironment
@@ -103,11 +102,9 @@ namespace NLog.Internal.Fakeables
             return File.Exists(path);
         }
 
-        /// <inheritdoc/>
-        public XmlReader LoadXmlFile(string path)
+        public TextReader LoadTextFile(string path)
         {
-            path = FixFilePathWithLongUNC(path);
-            return XmlReader.Create(path);
+            return new StreamReader(path);
         }
 
         /// <summary>

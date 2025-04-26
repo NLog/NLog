@@ -1,4 +1,4 @@
-//
+﻿//
 // Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 //
 // All rights reserved.
@@ -31,20 +31,39 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Internal.Fakeables
+namespace NLog.Config
 {
-    using System.IO;
+    using System;
 
     /// <summary>
-    /// Abstract calls to FileSystem
+    /// Exception thrown during XML parsing
     /// </summary>
-    internal interface IFileSystem
+    public sealed class XmlParserException : NLogConfigurationException
     {
-        /// <summary>Determines whether the specified file exists.</summary>
-        /// <param name="path">The file to check.</param>
-        bool FileExists(string path);
-        /// <summary>Returns the content of the specified text-file</summary>
-        /// <param name="path">The file to load.</param>
-        TextReader LoadTextFile(string path);
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlParserException" /> class.
+        /// </summary>
+        public XmlParserException()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlParserException" /> class.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        public XmlParserException(string message)
+            : base(message)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlParserException" /> class.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="innerException">The inner exception.</param>
+        public XmlParserException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
     }
 }
