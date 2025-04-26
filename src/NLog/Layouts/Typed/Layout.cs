@@ -573,9 +573,11 @@ namespace NLog.Layouts
 
         private string RenderStringValue(LogEventInfo logEvent, StringBuilder stringBuilder, string previousStringValue)
         {
-            if (_innerLayout is SimpleLayout simpleLayout && simpleLayout.IsSimpleStringText)
+            if (_innerLayout is IStringValueRenderer stringLayout)
             {
-                return simpleLayout.Render(logEvent, false);
+                var result = stringLayout.GetFormattedString(logEvent);
+                if (result != null)
+                    return result;
             }
 
             if (stringBuilder?.Length == 0)

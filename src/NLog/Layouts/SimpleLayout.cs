@@ -57,7 +57,7 @@ namespace NLog.Layouts
     [Layout("SimpleLayout")]
     [ThreadAgnostic]
     [AppDomainFixedOutput]
-    public class SimpleLayout : Layout, IUsesStackTrace
+    public class SimpleLayout : Layout, IUsesStackTrace, IStringValueRenderer
     {
         private string _fixedText;
         private string _layoutText;
@@ -487,6 +487,15 @@ namespace NLog.Layouts
             }
 
             RenderAllRenderers(logEvent, target);
+        }
+
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
+        {
+            if (IsFixedText)
+                return FixedText;
+            if (IsSimpleStringText)
+                return Render(logEvent, false);
+            return null;
         }
     }
 }
