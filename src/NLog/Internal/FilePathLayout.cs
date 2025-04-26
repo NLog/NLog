@@ -147,7 +147,7 @@ namespace NLog.Internal
         {
             if (reusableBuilder is null)
             {
-                return _layout.Render(logEvent);
+                return _layout.Render(logEvent, cacheLayoutResult: false);
             }
             else
             {

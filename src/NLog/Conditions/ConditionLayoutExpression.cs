@@ -76,7 +76,7 @@ namespace NLog.Conditions
         protected override object EvaluateNode(LogEventInfo context)
         {
             if (_simpleLayout.IsSimpleStringText || !_simpleLayout.ThreadAgnostic)
-                return _simpleLayout.Render(context);
+                return _simpleLayout.Render(context, cacheLayoutResult: false);
 
             var stringBuilder = System.Threading.Interlocked.Exchange(ref _fastObjectPool, null) ?? new StringBuilder();
             try
