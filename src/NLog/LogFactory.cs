@@ -90,10 +90,8 @@ namespace NLog
         /// </remarks>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
-        private static event EventHandler<EventArgs> _loggerShutdown;
-
         /// <summary>
-        /// Event that is raised when the logging system is shutting down.
+        /// Event that is raised when the current Process / AppDomain is shutting down.
         /// </summary>
         private static event EventHandler<EventArgs> LoggerShutdown
         {
@@ -116,6 +114,7 @@ namespace NLog
                 }
             }
         }
+        private static event EventHandler<EventArgs> _loggerShutdown;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
