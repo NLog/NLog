@@ -90,15 +90,31 @@ namespace NLog
         /// </remarks>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
-        private static event EventHandler<EventArgs> LoggerShutdown;
-
         /// <summary>
-        /// Initializes static members of the LogManager class.
+        /// Event that is raised when the current Process / AppDomain terminates.
         /// </summary>
-        static LogFactory()
+        private static event EventHandler<EventArgs> LoggerShutdown
         {
-            RegisterEvents(DefaultAppEnvironment);
+            add
+            {
+                if (_loggerShutdown is null)
+                {
+                    InternalLogger.Debug("Registered shutdown event handler for ProcessExit.");
+                    DefaultAppEnvironment.ProcessExit += OnLoggerShutdown;
+                }
+                _loggerShutdown += value;
+            }
+            remove
+            {
+                _loggerShutdown -= value;
+                if (_loggerShutdown is null && defaultAppEnvironment != null)
+                {
+                    InternalLogger.Debug("Unregistered shutdown event handler for ProcessExit.");
+                    defaultAppEnvironment.ProcessExit -= OnLoggerShutdown;
+                }
+            }
         }
+        private static event EventHandler<EventArgs> _loggerShutdown;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
@@ -1225,30 +1241,11 @@ namespace NLog
             }
         }
 
-        private static void RegisterEvents(IAppEnvironment appEnvironment)
-        {
-            if (appEnvironment is null) return;
-
-            try
-            {
-                appEnvironment.ProcessExit += OnLoggerShutdown;
-            }
-            catch (Exception exception)
-            {
-                InternalLogger.Warn(exception, "Error setting up termination events.");
-
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-            }
-        }
-
         private static void OnLoggerShutdown(object sender, EventArgs args)
         {
             try
             {
-                LoggerShutdown?.Invoke(sender, args);
+                _loggerShutdown?.Invoke(null, args);
             }
             catch (Exception ex)
             {
@@ -1258,7 +1255,7 @@ namespace NLog
             }
             finally
             {
-                LoggerShutdown = null;
+                _loggerShutdown = null;
                 if (defaultAppEnvironment != null)
                 {
                     defaultAppEnvironment.ProcessExit -= OnLoggerShutdown;  // Unregister from AppDomain
