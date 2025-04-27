@@ -395,20 +395,20 @@ namespace NLog.Config
 
         internal static IEnumerable<KeyValuePair<string, string>> GetAutoLoadingFileLocations()
         {
-            var nlogAssembly = typeof(LogFactory).Assembly;
-            var nlogAssemblyLocation = PathHelpers.TrimDirectorySeparators(System.IO.Path.GetDirectoryName(AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly)));
-            InternalLogger.Debug("Auto loading based on NLog-Assembly found location: {0}", nlogAssemblyLocation);
-            if (!string.IsNullOrEmpty(nlogAssemblyLocation))
-                yield return new KeyValuePair<string, string>(nlogAssemblyLocation, nameof(nlogAssemblyLocation));
+            var nlogAssemblyLocation = AssemblyHelpers.GetAssemblyFileLocation(typeof(LogFactory).Assembly);
+            var nlogAssemblyDirectory = string.IsNullOrEmpty(nlogAssemblyLocation) ? nlogAssemblyLocation : PathHelpers.TrimDirectorySeparators(System.IO.Path.GetDirectoryName(nlogAssemblyLocation));
+            InternalLogger.Debug("Auto loading based on NLog-Assembly found location: {0}", nlogAssemblyDirectory);
+            if (!string.IsNullOrEmpty(nlogAssemblyDirectory))
+                yield return new KeyValuePair<string, string>(nlogAssemblyDirectory, nameof(nlogAssemblyLocation));
 
             var entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(LogFactory.DefaultAppEnvironment.EntryAssemblyLocation);
             InternalLogger.Debug("Auto loading based on GetEntryAssembly-Assembly found location: {0}", entryAssemblyLocation);
-            if (!string.IsNullOrEmpty(entryAssemblyLocation) && !string.Equals(entryAssemblyLocation, nlogAssemblyLocation, StringComparison.OrdinalIgnoreCase))
+            if (!string.IsNullOrEmpty(entryAssemblyLocation) && !string.Equals(entryAssemblyLocation, nlogAssemblyDirectory, StringComparison.OrdinalIgnoreCase))
                 yield return new KeyValuePair<string, string>(entryAssemblyLocation, nameof(entryAssemblyLocation));
 
             var baseDirectory = PathHelpers.TrimDirectorySeparators(LogFactory.DefaultAppEnvironment.AppDomainBaseDirectory);
             InternalLogger.Debug("Auto loading based on AppDomain-BaseDirectory found location: {0}", baseDirectory);
-            if (!string.IsNullOrEmpty(baseDirectory) && !string.Equals(baseDirectory, nlogAssemblyLocation, StringComparison.OrdinalIgnoreCase))
+            if (!string.IsNullOrEmpty(baseDirectory) && !string.Equals(baseDirectory, nlogAssemblyDirectory, StringComparison.OrdinalIgnoreCase) && !string.Equals(baseDirectory, entryAssemblyLocation, StringComparison.OrdinalIgnoreCase))
                 yield return new KeyValuePair<string, string>(baseDirectory, nameof(baseDirectory));
         }
 
