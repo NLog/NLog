@@ -82,7 +82,7 @@ namespace NLog.Config
             }
         }
 
-        public bool CheckTypeAliasExists(string typeAlias) => _items.ContainsKey(typeAlias);
+        public bool CheckTypeAliasExists(string typeAlias) => _items.ContainsKey(FactoryExtensions.NormalizeName(typeAlias));
 
         /// <summary>
         /// Registers the type.

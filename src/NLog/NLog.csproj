@@ -31,9 +31,9 @@ NLog v6.0 Preview1 with the following major changes:
 
 - Support AOT builds without build warnings.
 - New FileTarget without ConcurrentWrites support, but still support KeepFileOpen true / false.
-- Moved old FileTarget into new nuget-packagge NLog.Targets.ConcurrentFile.
-- Created new NLog.Targets.AtomicFile that supports ConcurrentWrites for NET8 on both Windows / Linux.
-- Created new NLog.Targets.GZipFile that uses GZipStream for writing directly to compressed files.
+- Moved old FileTarget into new nuget-package NLog.Targets.ConcurrentFile.
+- Created new nuget-package NLog.Targets.AtomicFile that supports ConcurrentWrites for NET8 on both Windows / Linux.
+- Created new nuget-package NLog.Targets.GZipFile that uses GZipStream for writing directly to compressed files.
 - Moved MailTarget into the new nuget-package NLog.Targets.Mail.
 - Moved NetworkTarget into the new nuget-package NLog.Targets.Network.
 - New GelfTarget introduced for the new nuget-package NLog.Targets.Network.
