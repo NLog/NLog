@@ -80,7 +80,7 @@ namespace NLog.Config
             var serviceInstance = DefaultResolveInstance(serviceType, null);
             if (serviceInstance is null && serviceType.IsAbstract())
             {
-                throw new NLogDependencyResolveException("Instance of class must be registered", serviceType);
+                throw new NLogDependencyResolveException("Type not registered in Service Provider", serviceType);
             }
             return serviceInstance;
         }
@@ -113,7 +113,7 @@ namespace NLog.Config
                     if (seenTypes is null)
                         return null;
                     else
-                        throw new NLogDependencyResolveException("Instance of class must be registered", itemType);
+                        throw new NLogDependencyResolveException("Type not registered in Service Provider", itemType);
                 }
 
                 // Do not hold lock while resolving types to avoid deadlock on initialization of type static members
@@ -160,12 +160,12 @@ namespace NLog.Config
                     var ctors = itemType.GetConstructors();
                     if (ctors.Length == 0)
                     {
-                        throw new NLogDependencyResolveException("No public constructor", itemType);
+                        throw new NLogDependencyResolveException("No public constructor available", itemType);
                     }
 
                     if (ctors.Length > 1)
                     {
-                        throw new NLogDependencyResolveException("Multiple public constructor are not supported if there isn't a default constructor'", itemType);
+                        throw new NLogDependencyResolveException("Found multiple public constructors", itemType);
                     }
 
                     var ctor = ctors[0];
@@ -181,7 +181,7 @@ namespace NLog.Config
             }
             catch (MissingMethodException exception)
             {
-                throw new NLogDependencyResolveException("Is the required permission granted?", exception, itemType);
+                throw new NLogDependencyResolveException("Failed to resolve public constructor", exception, itemType);
             }
             finally
             {
@@ -200,7 +200,7 @@ namespace NLog.Config
                 var parameterType = param.ParameterType;
                 if (seenTypes.Contains(parameterType))
                 {
-                    throw new NLogDependencyResolveException("There is a cycle", parameterType);
+                    throw new NLogDependencyResolveException("Constructor cycle detected", parameterType);
                 }
 
                 seenTypes.Add(parameterType);
