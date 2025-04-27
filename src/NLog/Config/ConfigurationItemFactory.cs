@@ -291,6 +291,31 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete since dynamic assembly loading is not compatible with publish as trimmed application.
+        /// Registers named items from the assembly.
+        /// </summary>
+        /// <param name="assembly">The assembly.</param>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterItemsFromAssembly(Assembly assembly)
+        {
+            AssemblyLoader.LoadAssembly(this, assembly, string.Empty);
+        }
+
+        /// <summary>
+        /// Obsolete since dynamic assembly loading is not compatible with publish as trimmed application.
+        /// Registers named items from the assembly.
+        /// </summary>
+        /// <param name="assembly">The assembly.</param>
+        /// <param name="itemNamePrefix">Item name prefix.</param>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterItemsFromAssembly(Assembly assembly, string itemNamePrefix)
+        {
+            AssemblyLoader.LoadAssembly(this, assembly, itemNamePrefix);
+        }
+
+        /// <summary>
         /// Clears the contents of all factories.
         /// </summary>
         public void Clear()
