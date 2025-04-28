@@ -166,7 +166,7 @@ namespace NLog.Targets.FileArchiveHandlers
             if (previousFileLastModified.HasValue && (previousFileLastModified > fileLastWriteTime || fileLastWriteTime >= firstLogEvent.TimeStamp))
                 fileLastWriteTime = previousFileLastModified.Value;
 
-            var archiveNextSequenceNo = ResolveNextArchiveSequenceNo(archiveFileName, fileLastWriteTime);
+            var archiveNextSequenceNo = ResolveNextArchiveSequenceNo(archiveFileName, newFileInfo, fileLastWriteTime);
             string archiveFullPath = BuildArchiveFilePath(archiveFileName, archiveNextSequenceNo, fileLastWriteTime);
 
             if (!File.Exists(archiveFullPath))
@@ -239,7 +239,7 @@ namespace NLog.Targets.FileArchiveHandlers
             }
         }
 
-        private int ResolveNextArchiveSequenceNo(string archiveFileName, DateTime fileLastWriteTime)
+        private int ResolveNextArchiveSequenceNo(string archiveFileName, FileInfo newFileInfo, DateTime fileLastWriteTime)
         {
             // Archive operation triggered, how to resolve the next archive-sequence-number ?
             //  - Old version was able to "parse" the file-names of the archive-folder and "guess" the next sequence number
@@ -251,7 +251,11 @@ namespace NLog.Targets.FileArchiveHandlers
             var directoryInfo = new DirectoryInfo(archiveDirectory);
             if (!directoryInfo.Exists)
             {
-                directoryInfo.Create();
+                if (_fileTarget.CreateDirs)
+                {
+                    InternalLogger.Debug("{0}: Creating archive directory: {1}", _fileTarget, archiveDirectory);
+                    directoryInfo.Create();
+                }
             }
 
             var archiveWildCardFileName = Path.GetFileName(archiveFilePath).Replace(int.MaxValue.ToString(), "*");
@@ -273,6 +277,9 @@ namespace NLog.Targets.FileArchiveHandlers
             var sequenceNo = GetMaxArchiveSequenceNo(archiveFiles, fileWildcardStartIndex, fileWildcardEndIndex);
             if (sequenceNo.HasValue)
                 return sequenceNo.Value + 1;
+
+            if (string.Equals(directoryInfo.FullName, newFileInfo.DirectoryName, StringComparison.OrdinalIgnoreCase) && string.Equals(Path.GetFileName(archiveFileName), newFileInfo.Name, StringComparison.OrdinalIgnoreCase))
+                return 1;   // Same folder archive
 
             return 0;
         }

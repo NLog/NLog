@@ -2692,7 +2692,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void FileTarget_ArchiveAboveSize_RollWhenFull()
+        public void FileTarget_ArchiveAboveSize_NewStyle_RollWhenFull()
         {
             var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "Application");
@@ -2727,6 +2727,57 @@ namespace NLog.UnitTests.Targets
                 AssertFileContents(logFile + "_02.log", "eeee\nffff\n", Encoding.UTF8);
                 AssertFileContents(logFile + "_03.log", "gggg\n", Encoding.UTF8);
                 Assert.Equal(maxArchiveFiles, tempDirectory.GetFiles().Length);
+            }
+            finally
+            {
+                if (tempDirectory.Exists)
+                {
+                    tempDirectory.Delete(true);
+                }
+            }
+        }
+
+        [Fact]
+        public void FileTarget_ArchiveAboveSize_OldStyle_RollWhenFull()
+        {
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+            var logFile = Path.Combine(tempDir, "${shortdate}");
+            var tempDirectory = new DirectoryInfo(tempDir);
+            var maxArchiveFiles = 2;
+
+            try
+            {
+                var fileTarget = new FileTarget
+                {
+                    FileName = logFile + ".log",
+                    ArchiveFileName = logFile + ".log",
+                    ArchiveSuffixFormat = "_{0:00}",
+                    Layout = "${message}",
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveAboveSize = 7,
+                    MaxArchiveFiles = maxArchiveFiles,
+                };
+
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+
+                logger.Debug("aaaa");
+                logger.Debug("bbbb");    // Not roll (new style so all agree when rolling)
+                logger.Debug("cccc");    // Roll
+                logger.Debug("dddd");    // Not roll (new style so all agree when rolling)
+                logger.Debug("eeee");    // Roll
+                logger.Debug("ffff");    // Not roll (new style so all agree when rolling)
+                logger.Debug("gggg");    // Roll
+
+                LogManager.Configuration = null;    // Flush
+
+                var logFileName = SimpleLayout.Evaluate(logFile);
+
+                Assert.True(File.Exists(logFileName + ".log"));
+                Assert.False(File.Exists(logFileName + "_01.log"));
+                AssertFileContents(logFileName + ".log", "gggg\n", Encoding.UTF8);
+                AssertFileContents(logFileName + "_02.log", "cccc\ndddd\n", Encoding.UTF8);
+                AssertFileContents(logFileName + "_03.log", "eeee\nffff\n", Encoding.UTF8);
+                Assert.Equal(maxArchiveFiles + 1, tempDirectory.GetFiles().Length);
             }
             finally
             {
