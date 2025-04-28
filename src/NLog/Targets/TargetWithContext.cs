@@ -562,6 +562,24 @@ namespace NLog.Targets
             return true;
         }
 
+        /// <summary>
+        /// Returns the captured snapshot of <see cref="NestedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <returns>Collection with NDLC context if any, else null</returns>
+        [Obsolete("Replaced by GetScopeContextNested. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected IList<object> GetContextNdlc(LogEventInfo logEvent) => GetScopeContextNested(logEvent);
+
+        /// <summary>
+        /// Returns the captured snapshot of <see cref="MappedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <returns>Dictionary with MDLC context if any, else null</returns>
+        [Obsolete("Replaced by GetScopeContextProperties. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected IDictionary<string, object> GetContextMdlc(LogEventInfo logEvent) => GetScopeContextProperties(logEvent);
+
         [ThreadAgnostic]
         internal sealed class TargetWithContextLayout : Layout, IIncludeContext, IUsesStackTrace, IStringValueRenderer
         {
