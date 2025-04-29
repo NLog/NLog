@@ -4,6 +4,38 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.0 Preview 1 (2025/04/27)
+
+**Major Changes**
+
+- Support AOT builds without build warnings.
+- New FileTarget without ConcurrentWrites support, but still support KeepFileOpen true / false.
+- Moved old FileTarget into the new nuget-package NLog.Targets.ConcurrentFile.
+- Created new nuget-package NLog.Targets.AtomicFile that supports ConcurrentWrites for NET8 on both Windows / Linux.
+- Created new nuget-package NLog.Targets.GZipFile that uses GZipStream for writing directly to compressed files.
+- Moved MailTarget into the new nuget-package NLog.Targets.Mail.
+- Moved NetworkTarget into the new nuget-package NLog.Targets.Network.
+- New GelfTarget introduced for the new nuget-package NLog.Targets.Network.
+- New SyslogTarget introduced for the new nuget-package NLog.Targets.Network.
+- Moved TraceTarget and NLogTraceListener into the new nuget-package NLog.Targets.Trace.
+- Moved WebServiceTarget into the new nuget-package NLog.Targets.WebService
+- Removed dependency on System.Text.RegularExpressions and introduced new nuget-package NLog.RegEx.
+- Removed dependency on System.Xml.XmlReader by implementing own internal basic XML-Parser.
+
+NLog v6.0 release notes: https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html
+
+List of all [NLog 6.0 Pull Requests](https://github.com/NLog/NLog/pulls?q=is%3Apr+is%3Amerged+milestone:%226.0%22)
+
+- [Breaking Changes](https://github.com/NLog/NLog/pulls?q=is%3Apr+label%3A%22breaking%20change%22+is%3Amerged+milestone:%226.0%22)
+
+- [Breaking Behavior Changes](https://github.com/NLog/NLog/pulls?q=is%3Apr+label%3A%22breaking%20behavior%20change%22+is%3Amerged+milestone:%226.0%22)
+
+- [Features](https://github.com/NLog/NLog/pulls?q=is%3Apr+label%3A%22Feature%22+is%3Amerged+milestone:%226.0%22)
+
+- [Improvements](https://github.com/NLog/NLog/pulls?q=is%3Apr+label%3A%22Enhancement%22+is%3Amerged+milestone:%226.0%22)
+
+- [Performance](https://github.com/NLog/NLog/pulls?q=is%3Apr+label%3A%22Performance%22+is%3Amerged+milestone:%226.0%22)
+
 ### Version 5.3.4 (2024/09/12)
 
 **Improvements**
