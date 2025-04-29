@@ -10,19 +10,21 @@ Date format: (year/month/day)
 
 - Support AOT builds without build warnings.
 - New FileTarget without ConcurrentWrites support, but still support KeepFileOpen true / false.
-- Moved old FileTarget into new nuget-package NLog.Targets.ConcurrentFile.
+- Moved old FileTarget into the new nuget-package NLog.Targets.ConcurrentFile.
 - Created new nuget-package NLog.Targets.AtomicFile that supports ConcurrentWrites for NET8 on both Windows / Linux.
 - Created new nuget-package NLog.Targets.GZipFile that uses GZipStream for writing directly to compressed files.
 - Moved MailTarget into the new nuget-package NLog.Targets.Mail.
 - Moved NetworkTarget into the new nuget-package NLog.Targets.Network.
 - New GelfTarget introduced for the new nuget-package NLog.Targets.Network.
 - New SyslogTarget introduced for the new nuget-package NLog.Targets.Network.
-- Moved TraceTarget into the new nuget-package NLog.Targets.Trace.
+- Moved TraceTarget and NLogTraceListener into the new nuget-package NLog.Targets.Trace.
 - Moved WebServiceTarget into the new nuget-package NLog.Targets.WebService
 - Removed dependency on System.Text.RegularExpressions and introduced new nuget-package NLog.RegEx.
 - Removed dependency on System.Xml.XmlReader by implementing own internal basic XML-Parser.
 
-NLog v6.0 release notes: https://nlog-project.org/2025/04/27/nlog-6-0-major-changes.html
+NLog v6.0 release notes: https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html
+
+List of all [NLog 6.0 Pull Requests](https://github.com/NLog/NLog/pulls?q=is%3Apr+is%3Amerged+milestone:%226.0%22)
 
 - [Breaking Changes](https://github.com/NLog/NLog/pulls?q=is%3Apr+label%3A%22breaking%20change%22+is%3Amerged+milestone:%226.0%22)
 
