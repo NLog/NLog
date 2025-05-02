@@ -124,6 +124,38 @@ namespace NLog
             return this;
         }
 
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Sets multiple per-event context properties on the logging event.
+        /// </summary>
+        /// <param name="properties">The properties to set.</param>
+        public LogEventBuilder Properties(params ReadOnlySpan<(string, object)> properties)
+        {
+            if (_logEvent is null)
+                return this;
+
+            if (_logEvent.Parameters is null)
+            {
+                var eventProperties = _logEvent.CreateOrUpdatePropertiesInternal(false, null);
+                if (eventProperties is null)
+                {
+                    // Now allocate PropertiesDictionary and copy from properties
+                    var messageProperties = new MessageTemplates.MessageTemplateParameter[properties.Length];
+                    for (int i = 0; i < properties.Length; ++i)
+                    {
+                        messageProperties[i] = new MessageTemplates.MessageTemplateParameter(properties[i].Item1, properties[i].Item2, null);
+                    }
+                    _logEvent.CreateOrUpdatePropertiesInternal(false, messageProperties);
+                    return this;
+                }
+            }
+
+            foreach (var property in properties)
+                _logEvent.Properties[property.Item1] = property.Item2;
+            return this;
+        }
+#endif
+
         /// <summary>
         /// Sets the <paramref name="exception"/> information of the logging event.
         /// </summary>
@@ -236,6 +268,24 @@ namespace NLog
             }
             return this;
         }
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Sets the log message and parameters for formatting on the logging event.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public LogEventBuilder Message([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            if (_logEvent != null)
+            {
+                _logEvent.Message = message;
+                _logEvent.Parameters = args.IsEmpty ? null : args.ToArray();
+            }
+            return this;
+        }
+#endif
 
         /// <summary>
         /// Sets the log message and parameters for formatting on the logging event.

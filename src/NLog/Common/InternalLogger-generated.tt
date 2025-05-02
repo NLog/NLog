@@ -33,9 +33,9 @@
 
 namespace NLog.Common
 {
-    using JetBrains.Annotations;
     using System;
     using System.ComponentModel;
+    using JetBrains.Annotations;
 
     public static partial class InternalLogger
     {
@@ -55,6 +55,33 @@ namespace NLog.Common
     foreach(var level in levels)
     {
 #>
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the <#=level#> level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void <#=level#>([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            if (Is<#=level#>Enabled)
+                Write(null, LogLevel.<#=level#>, message, args.IsEmpty ? null : args.ToArray());
+        }
+
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the <#=level#> level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void <#=level#>(Exception ex, [Localizable(false)] string message, params ReadOnlySpan<object> args)
+        {
+            if (Is<#=level#>Enabled)
+                Write(ex, LogLevel.<#=level#>, message, args.IsEmpty ? null : args.ToArray());
+        }
+#endif
 
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the <#=level#> level.
