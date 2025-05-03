@@ -57,6 +57,7 @@ for:
         - image: Ubuntu2204
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      MSBUILDTERMINALLOGGER: off
       FrameworkPathOverride: /usr/lib/mono/4.6.1-api/
     build_script:
     - ps: dotnet --version
