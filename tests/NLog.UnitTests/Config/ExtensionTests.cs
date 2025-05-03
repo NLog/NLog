@@ -63,6 +63,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionTest1()
         {
+            ConfigurationItemFactory.Default = null;
+
             Assert.NotNull(typeof(FooLayout));
 
             var configuration = new LogFactory().Setup().LoadConfigurationFromXml(@"
@@ -108,6 +110,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionTest2()
         {
+            ConfigurationItemFactory.Default = null;
+
             var configuration = new LogFactory().Setup().LoadConfigurationFromXml(@"
 <nlog throwExceptions='true'>
     <extensions>
@@ -155,6 +159,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionWithPrefixLoadTwiceTest()
         {
+            ConfigurationItemFactory.Default = null;
+
             var configuration = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterAssembly(extensionAssemblyName1))
                 .LoadConfigurationFromXml(@"
 <nlog throwExceptions='true'>
@@ -203,6 +209,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionWithPrefixTest()
         {
+            ConfigurationItemFactory.Default = null;
+
             var configuration = new LogFactory().Setup().LoadConfigurationFromXml(@"
 <nlog throwExceptions='true'>
     <extensions>
@@ -246,6 +254,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionTest4()
         {
+            ConfigurationItemFactory.Default = null;
+
             Assert.NotNull(typeof(FooLayout));
 
             var configuration = new LogFactory().Setup().LoadConfigurationFromXml(@"
@@ -304,6 +314,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionTest_extensions_not_top_and_used()
         {
+            ConfigurationItemFactory.Default = null;
+
             Assert.NotNull(typeof(FooLayout));
 
             var configuration = new LogFactory().Setup().LoadConfigurationFromXml(@"
@@ -351,6 +363,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionShouldThrowNLogConfiguratonExceptionWhenRegisteringInvalidType()
         {
+            ConfigurationItemFactory.Default = null;
+
             var configXml = @"
 <nlog throwConfigExceptions='true'>
     <extensions>
@@ -375,6 +389,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionShouldThrowNLogConfiguratonExceptionWhenRegisteringInvalidAssemblyFile()
         {
+            ConfigurationItemFactory.Default = null;
+
             var configXml = @"
 <nlog throwConfigExceptions='true'>
     <extensions>
@@ -387,6 +403,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionShouldNotThrowWhenRegisteringInvalidTypeIfThrowConfigExceptionsFalse()
         {
+            ConfigurationItemFactory.Default = null;
+
             var configXml = @"
 <nlog throwConfigExceptions='false'>
     <extensions>
@@ -401,6 +419,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionShouldNotThrowWhenRegisteringInvalidAssemblyIfThrowConfigExceptionsFalse()
         {
+            ConfigurationItemFactory.Default = null;
+
             var configXml = @"
 <nlog throwConfigExceptions='false'>
     <extensions>
@@ -414,6 +434,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionShouldNotThrowWhenRegisteringInvalidAssemblyFileIfThrowConfigExceptionsFalse()
         {
+            ConfigurationItemFactory.Default = null;
+
             var configXml = @"
 <nlog throwConfigExceptions='false'>
     <extensions>
@@ -427,6 +449,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void CustomXmlNamespaceTest()
         {
+            ConfigurationItemFactory.Default = null;
+
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true' xmlns:foo='http://bar'>
     <targets>
@@ -442,6 +466,8 @@ namespace NLog.UnitTests.Config
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public void Extension_should_be_auto_loaded_when_following_NLog_dll_format()
         {
+            ConfigurationItemFactory.Default = null;
+
             var fileLocations = AssemblyExtensionLoader.GetAutoLoadingFileLocations().ToArray();
             Assert.NotEmpty(fileLocations);
             Assert.NotNull(fileLocations[0].Key);
@@ -466,6 +492,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionTypeWithAssemblyNameCanLoad()
         {
+            ConfigurationItemFactory.Default = null;
+
             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
 <nlog throwExceptions='true'>
 <targets>
@@ -483,6 +511,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ImplicitConversionOperatorTest()
         {
+            ConfigurationItemFactory.Default = null;
+
             var config = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
     <extensions>
@@ -507,6 +537,8 @@ namespace NLog.UnitTests.Config
         {
             try
             {
+                ConfigurationItemFactory.Default = null;
+
                 LoadManuallyLoadedExtensionDll();
 
                 InternalLogger.LogLevel = LogLevel.Trace;
@@ -545,7 +577,7 @@ namespace NLog.UnitTests.Config
         public void FullyQualifiedExtensionTest()
         {
             // Arrange
-
+            ConfigurationItemFactory.Default = null;
             LoadManuallyLoadedExtensionDll();
 
             // Act

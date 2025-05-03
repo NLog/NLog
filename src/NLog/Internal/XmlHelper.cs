@@ -280,7 +280,7 @@ namespace NLog.Internal
                 value = new DateTime(value.Ticks, DateTimeKind.Utc);
             else
                 value = value.ToUniversalTime();
-            return value.ToString("yyyy-MM-ddTHH:mm:ss.FFFFFFFK");
+            return value.ToString("yyyy-MM-ddTHH:mm:ss.FFFFFFFK", CultureInfo.InvariantCulture);
         }
 
         /// <summary>

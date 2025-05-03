@@ -1010,7 +1010,7 @@ namespace NLog
                     {
                         throw new NLogRuntimeException($"GetLogger / GetCurrentClassLogger with type '{loggerType}' could not create instance of NLog Logger");
                     }
-                    else if (ThrowExceptions)
+                    else if (ThrowExceptions || LogManager.ThrowExceptions)
                     {
                         throw new NLogRuntimeException($"GetLogger / GetCurrentClassLogger with type '{loggerType}' does not inherit from NLog Logger");
                     }

@@ -2225,31 +2225,38 @@ namespace NLog.UnitTests
         [InlineData(null, "OrderId", "@Client")]
         public void MixedStructuredEventsConfigTest(bool? parseMessageTemplates, string param1, string param2)
         {
-            LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
-            var logger = LogManager.GetLogger("A");
-            logger.Debug("Process order {" + param1 + "} for {" + param2 + "}", 13424, new { ClientId = 3001, ClientName = "John Doe" });
+            try
+            {
+                LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
+                var logger = LogManager.GetLogger("A");
+                logger.Debug("Process order {" + param1 + "} for {" + param2 + "}", 13424, new { ClientId = 3001, ClientName = "John Doe" });
 
-            string param1Value;
-            if (param1.StartsWith("$"))
-            {
-                param1Value = "\"13424\"";
-            }
-            else
-            {
-                param1Value = "13424";
-            }
+                string param1Value;
+                if (param1.StartsWith("$"))
+                {
+                    param1Value = "\"13424\"";
+                }
+                else
+                {
+                    param1Value = "13424";
+                }
 
-            string param2Value;
-            if (param2.StartsWith("@"))
-            {
-                param2Value = "{\"ClientId\":3001, \"ClientName\":\"John Doe\"}";
-            }
-            else
-            {
-                param2Value = "{ ClientId = 3001, ClientName = John Doe }";
-            }
+                string param2Value;
+                if (param2.StartsWith("@"))
+                {
+                    param2Value = "{\"ClientId\":3001, \"ClientName\":\"John Doe\"}";
+                }
+                else
+                {
+                    param2Value = "{ ClientId = 3001, ClientName = John Doe }";
+                }
 
-            AssertDebugLastMessage("debug", $"A|Process order {param1Value} for {param2Value}");
+                AssertDebugLastMessage("debug", $"A|Process order {param1Value} for {param2Value}");
+            }
+            finally
+            {
+                ConfigurationItemFactory.Default.ParseMessageTemplates = null;
+            }
         }
 
         [Fact]
@@ -2285,17 +2292,24 @@ namespace NLog.UnitTests
         [InlineData(null)]
         public void TooManyStructuredParametersShouldKeepBeInParamList(bool? parseMessageTemplates)
         {
-            LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
-            var target = new MyTarget();
-            LogManager.Configuration.AddRuleForAllLevels(target);
-            LogManager.ReconfigExistingLoggers();
+            try
+            {
+                LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
+                var target = new MyTarget();
+                LogManager.Configuration.AddRuleForAllLevels(target);
+                LogManager.ReconfigExistingLoggers();
 
-            var logger = LogManager.GetLogger("A");
-            logger.Debug("Hello World {0}", "world", "universe");
+                var logger = LogManager.GetLogger("A");
+                logger.Debug("Hello World {0}", "world", "universe");
 
-            Assert.Equal(2, target.LastEvent.Parameters.Length);
-            Assert.Equal("world", target.LastEvent.Parameters[0]);
-            Assert.Equal("universe", target.LastEvent.Parameters[1]);
+                Assert.Equal(2, target.LastEvent.Parameters.Length);
+                Assert.Equal("world", target.LastEvent.Parameters[0]);
+                Assert.Equal("universe", target.LastEvent.Parameters[1]);
+            }
+            finally
+            {
+                ConfigurationItemFactory.Default.ParseMessageTemplates = null;
+            }
         }
 
         [Theory]
@@ -2306,24 +2320,31 @@ namespace NLog.UnitTests
         [InlineData(null, null)]
         public void StructuredEventsConfigTest(bool? parseMessageTemplates, bool? overrideParseMessageTemplates)
         {
-            LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
-
-            if (parseMessageTemplates.HasValue)
+            try
             {
-                Assert.Equal(ConfigurationItemFactory.Default.ParseMessageTemplates, parseMessageTemplates.Value);
-            }
+                LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
 
-            if (overrideParseMessageTemplates.HasValue)
+                if (parseMessageTemplates.HasValue)
+                {
+                    Assert.Equal(ConfigurationItemFactory.Default.ParseMessageTemplates, parseMessageTemplates.Value);
+                }
+
+                if (overrideParseMessageTemplates.HasValue)
+                {
+                    ConfigurationItemFactory.Default.ParseMessageTemplates = overrideParseMessageTemplates.Value;
+                }
+
+                var logger = LogManager.GetLogger("A");
+                logger.Debug("Hello World {0}", new object[] { null });
+                if (parseMessageTemplates == true || overrideParseMessageTemplates == true)
+                    AssertDebugLastMessage("debug", "A|Hello World NULL");
+                else
+                    AssertDebugLastMessage("debug", "A|Hello World ");
+            }
+            finally
             {
-                ConfigurationItemFactory.Default.ParseMessageTemplates = overrideParseMessageTemplates.Value;
+                ConfigurationItemFactory.Default.ParseMessageTemplates = null;
             }
-
-            var logger = LogManager.GetLogger("A");
-            logger.Debug("Hello World {0}", new object[] { null });
-            if (parseMessageTemplates == true || overrideParseMessageTemplates == true)
-                AssertDebugLastMessage("debug", "A|Hello World NULL");
-            else
-                AssertDebugLastMessage("debug", "A|Hello World ");
         }
 
         [Fact]
