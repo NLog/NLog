@@ -1,7 +1,7 @@
 version: 6.0.0-{build} # Only change for mayor versions (e.g. 7.0)
 image:
   - Visual Studio 2022
-  - Ubuntu2004
+  - Ubuntu2204
 configuration: Release
 build: false
 test: false
@@ -54,9 +54,10 @@ for:
   -
     matrix:
       only:
-        - image: Ubuntu2004
+        - image: Ubuntu2204
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      MSBUILDTERMINALLOGGER: off
       FrameworkPathOverride: /usr/lib/mono/4.6.1-api/
     build_script:
     - ps: dotnet --version

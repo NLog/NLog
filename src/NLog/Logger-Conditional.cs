@@ -36,6 +36,7 @@ namespace NLog
     using System;
     using System.ComponentModel;
     using System.Diagnostics;
+    using System.Runtime.CompilerServices;
     using JetBrains.Annotations;
 
     /// <content>
@@ -102,6 +103,21 @@ namespace NLog
             Debug(exception, message, args);
         }
 
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        [Conditional("DEBUG")]
+        [MessageTemplateFormatMethod("message")]
+        public void ConditionalDebug(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            Debug(exception, message, args);
+        }
+#endif
+
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Debug</c> level.
         /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
@@ -151,6 +167,19 @@ namespace NLog
             Debug(message, args);
         }
 
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        /// <param name="args">Arguments to format.</param>
+        [Conditional("DEBUG")]
+        [MessageTemplateFormatMethod("message")]
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            Debug(message, args);
+        }
+#endif
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameter and formatting it with the supplied format provider.
@@ -250,9 +279,13 @@ namespace NLog
         /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug(object value)
         {
-            Debug(value);
+            Debug<object>(value);
         }
 
         /// <summary>
@@ -261,9 +294,13 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug(IFormatProvider formatProvider, object value)
         {
-            Debug(formatProvider, value);
+            Debug<object>(formatProvider, value);
         }
 
         /// <summary>
@@ -273,10 +310,14 @@ namespace NLog
         /// <param name="arg1">First argument to format.</param>
         /// <param name="arg2">Second argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2)
         {
-            Debug(message, arg1, arg2);
+            Debug<object, object>(message, arg1, arg2);
         }
 
         /// <summary>
@@ -287,10 +328,14 @@ namespace NLog
         /// <param name="arg2">Second argument to format.</param>
         /// <param name="arg3">Third argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3)
         {
-            Debug(message, arg1, arg2, arg3);
+            Debug<object, object, object>(message, arg1, arg2, arg3);
         }
 
         /// <summary>
@@ -300,10 +345,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
-            Debug(formatProvider, message, argument);
+            Debug<bool>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -312,10 +361,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
-            Debug(message, argument);
+            Debug<bool>(message, argument);
         }
 
         /// <summary>
@@ -325,10 +378,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
-            Debug(formatProvider, message, argument);
+            Debug<char>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -337,10 +394,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
-            Debug(message, argument);
+            Debug<char>(message, argument);
         }
 
         /// <summary>
@@ -350,10 +411,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
-            Debug(formatProvider, message, argument);
+            Debug<byte>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -362,10 +427,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
-            Debug(message, argument);
+            Debug<byte>(message, argument);
         }
 
         /// <summary>
@@ -375,10 +444,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument)
         {
-            Debug(formatProvider, message, argument);
+            Debug<string>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -387,10 +460,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, string argument)
         {
-            Debug(message, argument);
+            Debug<string>(message, argument);
         }
 
         /// <summary>
@@ -400,10 +477,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
-            Debug(formatProvider, message, argument);
+            Debug<int>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -412,10 +493,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
-            Debug(message, argument);
+            Debug<int>(message, argument);
         }
 
         /// <summary>
@@ -425,10 +510,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
-            Debug(formatProvider, message, argument);
+            Debug<long>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -437,10 +526,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
-            Debug(message, argument);
+            Debug<long>(message, argument);
         }
 
         /// <summary>
@@ -450,10 +543,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
-            Debug(formatProvider, message, argument);
+            Debug<float>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -462,10 +559,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
-            Debug(message, argument);
+            Debug<float>(message, argument);
         }
 
         /// <summary>
@@ -475,10 +576,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
-            Debug(formatProvider, message, argument);
+            Debug<double>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -487,10 +592,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
-            Debug(message, argument);
+            Debug<double>(message, argument);
         }
 
         /// <summary>
@@ -500,10 +609,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
-            Debug(formatProvider, message, argument);
+            Debug<decimal>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -512,10 +625,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
-            Debug(message, argument);
+            Debug<decimal>(message, argument);
         }
 
         /// <summary>
@@ -525,10 +642,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument)
         {
-            Debug(formatProvider, message, argument);
+            Debug<object>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -537,10 +658,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, object argument)
         {
-            Debug(message, argument);
+            Debug<object>(message, argument);
         }
 
         #endregion
@@ -596,6 +721,21 @@ namespace NLog
             Trace(exception, message, args);
         }
 
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        [Conditional("DEBUG")]
+        [MessageTemplateFormatMethod("message")]
+        public void ConditionalTrace(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            Trace(exception, message, args);
+        }
+#endif
+
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Trace</c> level.
         /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
@@ -645,6 +785,20 @@ namespace NLog
         {
             Trace(message, args);
         }
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters.
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        /// <param name="args">Arguments to format.</param>
+        [Conditional("DEBUG")]
+        [MessageTemplateFormatMethod("message")]
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            Trace(message, args);
+        }
+#endif
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameter and formatting it with the supplied format provider.
@@ -744,9 +898,13 @@ namespace NLog
         /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace(object value)
         {
-            Trace(value);
+            Trace<object>(value);
         }
 
         /// <summary>
@@ -755,9 +913,13 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace(IFormatProvider formatProvider, object value)
         {
-            Trace(formatProvider, value);
+            Trace<object>(formatProvider, value);
         }
 
         /// <summary>
@@ -767,10 +929,14 @@ namespace NLog
         /// <param name="arg1">First argument to format.</param>
         /// <param name="arg2">Second argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2)
         {
-            Trace(message, arg1, arg2);
+            Trace<object, object>(message, arg1, arg2);
         }
 
         /// <summary>
@@ -781,10 +947,14 @@ namespace NLog
         /// <param name="arg2">Second argument to format.</param>
         /// <param name="arg3">Third argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3)
         {
-            Trace(message, arg1, arg2, arg3);
+            Trace<object, object, object>(message, arg1, arg2, arg3);
         }
 
         /// <summary>
@@ -794,10 +964,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
-            Trace(formatProvider, message, argument);
+            Trace<bool>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -806,10 +980,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
-            Trace(message, argument);
+            Trace<bool>(message, argument);
         }
 
         /// <summary>
@@ -819,10 +997,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
-            Trace(formatProvider, message, argument);
+            Trace<char>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -831,10 +1013,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
-            Trace(message, argument);
+            Trace<char>(message, argument);
         }
 
         /// <summary>
@@ -844,10 +1030,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
-            Trace(formatProvider, message, argument);
+            Trace<byte>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -856,10 +1046,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
-            Trace(message, argument);
+            Trace<byte>(message, argument);
         }
 
         /// <summary>
@@ -869,10 +1063,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument)
         {
-            Trace(formatProvider, message, argument);
+            Trace<string>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -881,10 +1079,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, string argument)
         {
-            Trace(message, argument);
+            Trace<string>(message, argument);
         }
 
         /// <summary>
@@ -894,10 +1096,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
-            Trace(formatProvider, message, argument);
+            Trace<int>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -906,10 +1112,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
-            Trace(message, argument);
+            Trace<int>(message, argument);
         }
 
         /// <summary>
@@ -919,10 +1129,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
-            Trace(formatProvider, message, argument);
+            Trace<long>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -931,10 +1145,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
-            Trace(message, argument);
+            Trace<long>(message, argument);
         }
 
         /// <summary>
@@ -944,10 +1162,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
-            Trace(formatProvider, message, argument);
+            Trace<float>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -956,10 +1178,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
-            Trace(message, argument);
+            Trace<float>(message, argument);
         }
 
         /// <summary>
@@ -969,10 +1195,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
-            Trace(formatProvider, message, argument);
+            Trace<double>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -981,10 +1211,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
-            Trace(message, argument);
+            Trace<double>(message, argument);
         }
 
         /// <summary>
@@ -994,10 +1228,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
-            Trace(formatProvider, message, argument);
+            Trace<decimal>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -1006,10 +1244,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
-            Trace(message, argument);
+            Trace<decimal>(message, argument);
         }
 
         /// <summary>
@@ -1019,10 +1261,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument)
         {
-            Trace(formatProvider, message, argument);
+            Trace<object>(formatProvider, message, argument);
         }
 
         /// <summary>
@@ -1031,10 +1277,14 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, object argument)
         {
-            Trace(message, argument);
+            Trace<object>(message, argument);
         }
 
 

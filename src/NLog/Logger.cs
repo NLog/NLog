@@ -382,6 +382,44 @@ namespace NLog
             }
         }
 
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Writes the diagnostic message at the specified level using the specified parameters.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(level);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(level, Name, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Log(LogLevel level, Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(level);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(level, Name, exception, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+#endif
+
         /// <summary>
         /// Writes the diagnostic message and exception at the specified level.
         /// </summary>

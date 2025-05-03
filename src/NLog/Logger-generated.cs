@@ -139,7 +139,6 @@ namespace NLog
             if (IsTraceEnabled)
             {
                 Guard.ThrowIfNull(messageFunc);
-
                 WriteToTargets(LogLevel.Trace, messageFunc());
             }
         }
@@ -184,6 +183,41 @@ namespace NLog
                 WriteToTargets(LogLevel.Trace, message, args);
             }
         }
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Trace([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(LogLevel.Trace);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(LogLevel.Trace, Name, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Trace(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(LogLevel.Trace);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(LogLevel.Trace, Name, exception, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+#endif
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Trace</c> level.
@@ -377,7 +411,6 @@ namespace NLog
             if (IsDebugEnabled)
             {
                 Guard.ThrowIfNull(messageFunc);
-
                 WriteToTargets(LogLevel.Debug, messageFunc());
             }
         }
@@ -422,6 +455,41 @@ namespace NLog
                 WriteToTargets(LogLevel.Debug, message, args);
             }
         }
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Debug([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(LogLevel.Debug);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(LogLevel.Debug, Name, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Debug(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(LogLevel.Debug);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(LogLevel.Debug, Name, exception, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+#endif
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Debug</c> level.
@@ -615,7 +683,6 @@ namespace NLog
             if (IsInfoEnabled)
             {
                 Guard.ThrowIfNull(messageFunc);
-
                 WriteToTargets(LogLevel.Info, messageFunc());
             }
         }
@@ -660,6 +727,41 @@ namespace NLog
                 WriteToTargets(LogLevel.Info, message, args);
             }
         }
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Info([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(LogLevel.Info);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(LogLevel.Info, Name, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Info</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Info(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(LogLevel.Info);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(LogLevel.Info, Name, exception, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+#endif
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Info</c> level.
@@ -853,7 +955,6 @@ namespace NLog
             if (IsWarnEnabled)
             {
                 Guard.ThrowIfNull(messageFunc);
-
                 WriteToTargets(LogLevel.Warn, messageFunc());
             }
         }
@@ -898,6 +999,41 @@ namespace NLog
                 WriteToTargets(LogLevel.Warn, message, args);
             }
         }
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Warn([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(LogLevel.Warn);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(LogLevel.Warn, Name, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Warn</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Warn(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(LogLevel.Warn);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(LogLevel.Warn, Name, exception, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+#endif
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Warn</c> level.
@@ -1091,7 +1227,6 @@ namespace NLog
             if (IsErrorEnabled)
             {
                 Guard.ThrowIfNull(messageFunc);
-
                 WriteToTargets(LogLevel.Error, messageFunc());
             }
         }
@@ -1136,6 +1271,41 @@ namespace NLog
                 WriteToTargets(LogLevel.Error, message, args);
             }
         }
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Error([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(LogLevel.Error);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(LogLevel.Error, Name, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Error</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Error(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(LogLevel.Error);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(LogLevel.Error, Name, exception, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+#endif
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Error</c> level.
@@ -1329,7 +1499,6 @@ namespace NLog
             if (IsFatalEnabled)
             {
                 Guard.ThrowIfNull(messageFunc);
-
                 WriteToTargets(LogLevel.Fatal, messageFunc());
             }
         }
@@ -1374,6 +1543,41 @@ namespace NLog
                 WriteToTargets(LogLevel.Fatal, message, args);
             }
         }
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Fatal([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(LogLevel.Fatal);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(LogLevel.Fatal, Name, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Fatal(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(LogLevel.Fatal);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(LogLevel.Fatal, Name, exception, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+#endif
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Fatal</c> level.

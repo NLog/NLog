@@ -35,6 +35,7 @@ namespace NLog
 {
     using System;
     using System.ComponentModel;
+    using System.Runtime.CompilerServices;
     using JetBrains.Annotations;
 
     /// <content>
@@ -50,6 +51,9 @@ namespace NLog
         /// </summary>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(object value);
 
         /// <summary>
@@ -58,6 +62,9 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(IFormatProvider formatProvider, object value);
 
         /// <summary>
@@ -68,6 +75,9 @@ namespace NLog
         /// <param name="arg2">Second argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2);
 
         /// <summary>
@@ -79,6 +89,9 @@ namespace NLog
         /// <param name="arg3">Third argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3);
 
         /// <summary>
@@ -89,6 +102,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument);
 
         /// <summary>
@@ -98,6 +114,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, bool argument);
 
         /// <summary>
@@ -108,6 +127,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument);
 
         /// <summary>
@@ -117,6 +139,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, char argument);
 
         /// <summary>
@@ -127,6 +152,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument);
 
         /// <summary>
@@ -136,6 +164,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, byte argument);
 
         /// <summary>
@@ -146,6 +177,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument);
 
         /// <summary>
@@ -155,6 +189,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, string argument);
 
         /// <summary>
@@ -165,6 +202,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument);
 
         /// <summary>
@@ -174,6 +214,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, int argument);
 
         /// <summary>
@@ -184,6 +227,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument);
 
         /// <summary>
@@ -193,6 +239,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, long argument);
 
         /// <summary>
@@ -203,6 +252,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument);
 
         /// <summary>
@@ -212,6 +264,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, float argument);
 
         /// <summary>
@@ -222,6 +277,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument);
 
         /// <summary>
@@ -231,6 +289,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, double argument);
 
         /// <summary>
@@ -241,6 +302,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument);
 
         /// <summary>
@@ -250,6 +314,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, decimal argument);
 
         /// <summary>
@@ -260,6 +327,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument);
 
         /// <summary>
@@ -269,6 +339,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, object argument);
 
         /// <summary>
@@ -279,6 +352,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>s
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument);
 
         /// <summary>
@@ -288,6 +364,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, sbyte argument);
 
         /// <summary>
@@ -298,6 +377,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument);
 
         /// <summary>
@@ -307,6 +389,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, uint argument);
 
         /// <summary>
@@ -317,6 +402,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument);
 
         /// <summary>
@@ -326,6 +414,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, ulong argument);
 
         #endregion
@@ -337,6 +428,9 @@ namespace NLog
         /// </summary>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(object value);
 
         /// <summary>
@@ -345,6 +439,9 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(IFormatProvider formatProvider, object value);
 
         /// <summary>
@@ -355,6 +452,9 @@ namespace NLog
         /// <param name="arg2">Second argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2);
 
         /// <summary>
@@ -366,6 +466,9 @@ namespace NLog
         /// <param name="arg3">Third argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3);
 
         /// <summary>
@@ -376,6 +479,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument);
 
         /// <summary>
@@ -385,6 +491,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, bool argument);
 
         /// <summary>
@@ -395,6 +504,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument);
 
         /// <summary>
@@ -404,6 +516,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, char argument);
 
         /// <summary>
@@ -414,6 +529,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument);
 
         /// <summary>
@@ -423,6 +541,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, byte argument);
 
         /// <summary>
@@ -433,6 +554,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument);
 
         /// <summary>
@@ -442,6 +566,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, string argument);
 
         /// <summary>
@@ -452,6 +579,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument);
 
         /// <summary>
@@ -461,6 +591,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, int argument);
 
         /// <summary>
@@ -471,6 +604,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument);
 
         /// <summary>
@@ -480,6 +616,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, long argument);
 
         /// <summary>
@@ -490,6 +629,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument);
 
         /// <summary>
@@ -499,6 +641,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, float argument);
 
         /// <summary>
@@ -509,6 +654,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument);
 
         /// <summary>
@@ -518,6 +666,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, double argument);
 
         /// <summary>
@@ -528,6 +679,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument);
 
         /// <summary>
@@ -537,6 +691,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, decimal argument);
 
         /// <summary>
@@ -547,6 +704,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument);
 
         /// <summary>
@@ -556,6 +716,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, object argument);
 
         /// <summary>
@@ -566,6 +729,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument);
 
         /// <summary>
@@ -575,6 +741,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, sbyte argument);
 
         /// <summary>
@@ -585,6 +754,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument);
 
         /// <summary>
@@ -594,6 +766,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, uint argument);
 
         /// <summary>
@@ -604,6 +779,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument);
 
         /// <summary>
@@ -613,6 +791,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, ulong argument);
 
         #endregion
@@ -624,6 +805,9 @@ namespace NLog
         /// </summary>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(object value);
 
         /// <summary>
@@ -632,6 +816,9 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(IFormatProvider formatProvider, object value);
 
         /// <summary>
@@ -642,6 +829,9 @@ namespace NLog
         /// <param name="arg2">Second argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2);
 
         /// <summary>
@@ -653,6 +843,9 @@ namespace NLog
         /// <param name="arg3">Third argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3);
 
         /// <summary>
@@ -663,6 +856,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument);
 
         /// <summary>
@@ -672,6 +868,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, bool argument);
 
         /// <summary>
@@ -682,6 +881,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument);
 
         /// <summary>
@@ -691,6 +893,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, char argument);
 
         /// <summary>
@@ -701,6 +906,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument);
 
         /// <summary>
@@ -710,6 +918,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, byte argument);
 
         /// <summary>
@@ -720,6 +931,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument);
 
         /// <summary>
@@ -729,6 +943,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, string argument);
 
         /// <summary>
@@ -739,6 +956,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument);
 
         /// <summary>
@@ -748,6 +968,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, int argument);
 
         /// <summary>
@@ -758,6 +981,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument);
 
         /// <summary>
@@ -767,6 +993,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, long argument);
 
         /// <summary>
@@ -777,6 +1006,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument);
 
         /// <summary>
@@ -786,6 +1018,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, float argument);
 
         /// <summary>
@@ -796,6 +1031,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument);
 
         /// <summary>
@@ -805,6 +1043,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, double argument);
 
         /// <summary>
@@ -815,6 +1056,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument);
 
         /// <summary>
@@ -824,6 +1068,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, decimal argument);
 
         /// <summary>
@@ -834,6 +1081,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument);
 
         /// <summary>
@@ -843,6 +1093,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, object argument);
 
         /// <summary>
@@ -853,6 +1106,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument);
 
         /// <summary>
@@ -862,6 +1118,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, sbyte argument);
 
         /// <summary>
@@ -872,6 +1131,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument);
 
         /// <summary>
@@ -881,6 +1143,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, uint argument);
 
         /// <summary>
@@ -891,6 +1156,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument);
 
         /// <summary>
@@ -900,6 +1168,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Info([Localizable(false)][StructuredMessageTemplate] string message, ulong argument);
 
         #endregion
@@ -911,6 +1182,9 @@ namespace NLog
         /// </summary>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(object value);
 
         /// <summary>
@@ -919,6 +1193,9 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(IFormatProvider formatProvider, object value);
 
         /// <summary>
@@ -929,6 +1206,9 @@ namespace NLog
         /// <param name="arg2">Second argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2);
 
         /// <summary>
@@ -940,6 +1220,9 @@ namespace NLog
         /// <param name="arg3">Third argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3);
 
         /// <summary>
@@ -950,6 +1233,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument);
 
         /// <summary>
@@ -959,6 +1245,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, bool argument);
 
         /// <summary>
@@ -969,6 +1258,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument);
 
         /// <summary>
@@ -978,6 +1270,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, char argument);
 
         /// <summary>
@@ -988,6 +1283,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument);
 
         /// <summary>
@@ -997,6 +1295,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, byte argument);
 
         /// <summary>
@@ -1007,6 +1308,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument);
 
         /// <summary>
@@ -1016,6 +1320,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, string argument);
 
         /// <summary>
@@ -1026,6 +1333,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument);
 
         /// <summary>
@@ -1035,6 +1345,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, int argument);
 
         /// <summary>
@@ -1045,6 +1358,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument);
 
         /// <summary>
@@ -1054,6 +1370,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, long argument);
 
         /// <summary>
@@ -1064,6 +1383,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument);
 
         /// <summary>
@@ -1073,6 +1395,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, float argument);
 
         /// <summary>
@@ -1083,6 +1408,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument);
 
         /// <summary>
@@ -1092,6 +1420,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, double argument);
 
         /// <summary>
@@ -1102,6 +1433,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument);
 
         /// <summary>
@@ -1111,6 +1445,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, decimal argument);
 
         /// <summary>
@@ -1121,6 +1458,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument);
 
         /// <summary>
@@ -1130,6 +1470,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, object argument);
 
         /// <summary>
@@ -1140,6 +1483,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument);
 
         /// <summary>
@@ -1149,6 +1495,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, sbyte argument);
 
         /// <summary>
@@ -1159,6 +1508,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument);
 
         /// <summary>
@@ -1168,6 +1520,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, uint argument);
 
         /// <summary>
@@ -1178,6 +1533,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument);
 
         /// <summary>
@@ -1187,6 +1545,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, ulong argument);
 
         #endregion
@@ -1198,6 +1559,9 @@ namespace NLog
         /// </summary>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(object value);
 
         /// <summary>
@@ -1206,6 +1570,9 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(IFormatProvider formatProvider, object value);
 
         /// <summary>
@@ -1216,6 +1583,9 @@ namespace NLog
         /// <param name="arg2">Second argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2);
 
         /// <summary>
@@ -1227,6 +1597,9 @@ namespace NLog
         /// <param name="arg3">Third argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3);
 
         /// <summary>
@@ -1237,6 +1610,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument);
 
         /// <summary>
@@ -1245,6 +1621,9 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, bool argument);
 
         /// <summary>
@@ -1255,6 +1634,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument);
 
         /// <summary>
@@ -1264,6 +1646,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, char argument);
 
         /// <summary>
@@ -1274,6 +1659,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument);
 
         /// <summary>
@@ -1282,6 +1670,9 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, byte argument);
 
         /// <summary>
@@ -1292,6 +1683,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument);
 
         /// <summary>
@@ -1301,6 +1695,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, string argument);
 
         /// <summary>
@@ -1311,6 +1708,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument);
 
         /// <summary>
@@ -1320,6 +1720,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, int argument);
 
         /// <summary>
@@ -1330,6 +1733,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument);
 
         /// <summary>
@@ -1339,6 +1745,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, long argument);
 
         /// <summary>
@@ -1349,6 +1758,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument);
 
         /// <summary>
@@ -1357,6 +1769,9 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, float argument);
 
         /// <summary>
@@ -1367,6 +1782,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument);
 
         /// <summary>
@@ -1376,6 +1794,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, double argument);
 
         /// <summary>
@@ -1386,6 +1807,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument);
 
         /// <summary>
@@ -1395,6 +1819,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, decimal argument);
 
         /// <summary>
@@ -1405,6 +1832,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument);
 
         /// <summary>
@@ -1414,6 +1844,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, object argument);
 
         /// <summary>
@@ -1424,6 +1857,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument);
 
         /// <summary>
@@ -1433,6 +1869,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, sbyte argument);
 
         /// <summary>
@@ -1443,6 +1882,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument);
 
         /// <summary>
@@ -1452,6 +1894,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, uint argument);
 
         /// <summary>
@@ -1462,6 +1907,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument);
 
         /// <summary>
@@ -1471,6 +1919,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Error([Localizable(false)][StructuredMessageTemplate] string message, ulong argument);
 
         #endregion
@@ -1482,6 +1933,9 @@ namespace NLog
         /// </summary>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(object value);
 
         /// <summary>
@@ -1490,6 +1944,9 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(IFormatProvider formatProvider, object value);
 
         /// <summary>
@@ -1500,6 +1957,9 @@ namespace NLog
         /// <param name="arg2">Second argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2);
 
         /// <summary>
@@ -1511,6 +1971,9 @@ namespace NLog
         /// <param name="arg3">Third argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3);
 
         /// <summary>
@@ -1521,6 +1984,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument);
 
         /// <summary>
@@ -1530,6 +1996,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, bool argument);
 
         /// <summary>
@@ -1540,6 +2009,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument);
 
         /// <summary>
@@ -1549,6 +2021,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, char argument);
 
         /// <summary>
@@ -1559,6 +2034,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument);
 
         /// <summary>
@@ -1568,6 +2046,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, byte argument);
 
         /// <summary>
@@ -1578,6 +2059,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument);
 
         /// <summary>
@@ -1587,6 +2071,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, string argument);
 
         /// <summary>
@@ -1597,6 +2084,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument);
 
         /// <summary>
@@ -1606,6 +2096,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, int argument);
 
         /// <summary>
@@ -1616,6 +2109,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument);
 
         /// <summary>
@@ -1625,6 +2121,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, long argument);
 
         /// <summary>
@@ -1635,6 +2134,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument);
 
         /// <summary>
@@ -1644,6 +2146,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, float argument);
 
         /// <summary>
@@ -1654,6 +2159,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument);
 
         /// <summary>
@@ -1663,6 +2171,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, double argument);
 
         /// <summary>
@@ -1673,6 +2184,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument);
 
         /// <summary>
@@ -1681,6 +2195,9 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, decimal argument);
 
         /// <summary>
@@ -1691,6 +2208,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument);
 
         /// <summary>
@@ -1700,6 +2220,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, object argument);
 
         /// <summary>
@@ -1710,6 +2233,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument);
 
         /// <summary>
@@ -1719,6 +2245,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, sbyte argument);
 
         /// <summary>
@@ -1729,6 +2258,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument);
 
         /// <summary>
@@ -1738,6 +2270,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, uint argument);
 
         /// <summary>
@@ -1748,6 +2283,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument);
 
         /// <summary>
@@ -1757,6 +2295,9 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        [OverloadResolutionPriority(-1)]
+#endif
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, ulong argument);
 
         #endregion

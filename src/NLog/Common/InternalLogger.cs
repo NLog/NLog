@@ -181,6 +181,35 @@ namespace NLog.Common
             Write(null, level, message, args);
         }
 
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the specified level.
+        /// </summary>
+        /// <param name="level">Log level.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Log(LogLevel level, [Localizable(false)] string message, params ReadOnlySpan<object> args)
+        {
+            if (IsLogLevelEnabled(level))
+                Write(null, level, message, args.IsEmpty ? null : args.ToArray());
+        }
+
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the specified level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="level">Log level.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Log(Exception ex, LogLevel level, [Localizable(false)] string message, params ReadOnlySpan<object> args)
+        {
+            if (IsLogLevelEnabled(level))
+                Write(ex, level, message, args.IsEmpty ? null : args.ToArray());
+        }
+#endif
+
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the specified level.
         /// </summary>

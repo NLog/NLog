@@ -311,7 +311,7 @@ namespace NLog.UnitTests.Fluent
             Assert.Throws<ArgumentNullException>(() => new LogEventBuilder(logger, null));
 
             var logBuilder = new LogEventBuilder(logger);
-            Assert.Throws<ArgumentNullException>(() => logBuilder.Properties(null));
+            Assert.Throws<ArgumentNullException>(() => logBuilder.Properties((KeyValuePair<string, object>[])null));
             Assert.Throws<ArgumentNullException>(() => logBuilder.Property(null, "b"));
         }
 

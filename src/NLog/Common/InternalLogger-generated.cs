@@ -70,6 +70,33 @@ namespace NLog.Common
         public static bool IsFatalEnabled => IsLogLevelEnabled(LogLevel.Fatal);
 
 
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Trace([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            if (IsTraceEnabled)
+                Write(null, LogLevel.Trace, message, args.IsEmpty ? null : args.ToArray());
+        }
+
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Trace(Exception ex, [Localizable(false)] string message, params ReadOnlySpan<object> args)
+        {
+            if (IsTraceEnabled)
+                Write(ex, LogLevel.Trace, message, args.IsEmpty ? null : args.ToArray());
+        }
+#endif
+
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
@@ -183,6 +210,33 @@ namespace NLog.Common
             if (IsTraceEnabled)
                 Write(ex, LogLevel.Trace, messageFunc(), null);
         }
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Debug level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Debug([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            if (IsDebugEnabled)
+                Write(null, LogLevel.Debug, message, args.IsEmpty ? null : args.ToArray());
+        }
+
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Debug level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Debug(Exception ex, [Localizable(false)] string message, params ReadOnlySpan<object> args)
+        {
+            if (IsDebugEnabled)
+                Write(ex, LogLevel.Debug, message, args.IsEmpty ? null : args.ToArray());
+        }
+#endif
 
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Debug level.
@@ -298,6 +352,33 @@ namespace NLog.Common
                 Write(ex, LogLevel.Debug, messageFunc(), null);
         }
 
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Info level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Info([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            if (IsInfoEnabled)
+                Write(null, LogLevel.Info, message, args.IsEmpty ? null : args.ToArray());
+        }
+
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Info level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Info(Exception ex, [Localizable(false)] string message, params ReadOnlySpan<object> args)
+        {
+            if (IsInfoEnabled)
+                Write(ex, LogLevel.Info, message, args.IsEmpty ? null : args.ToArray());
+        }
+#endif
+
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Info level.
         /// </summary>
@@ -411,6 +492,33 @@ namespace NLog.Common
             if (IsInfoEnabled)
                 Write(ex, LogLevel.Info, messageFunc(), null);
         }
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Warn level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Warn([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            if (IsWarnEnabled)
+                Write(null, LogLevel.Warn, message, args.IsEmpty ? null : args.ToArray());
+        }
+
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Warn level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Warn(Exception ex, [Localizable(false)] string message, params ReadOnlySpan<object> args)
+        {
+            if (IsWarnEnabled)
+                Write(ex, LogLevel.Warn, message, args.IsEmpty ? null : args.ToArray());
+        }
+#endif
 
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Warn level.
@@ -526,6 +634,33 @@ namespace NLog.Common
                 Write(ex, LogLevel.Warn, messageFunc(), null);
         }
 
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Error level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Error([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            if (IsErrorEnabled)
+                Write(null, LogLevel.Error, message, args.IsEmpty ? null : args.ToArray());
+        }
+
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Error level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Error(Exception ex, [Localizable(false)] string message, params ReadOnlySpan<object> args)
+        {
+            if (IsErrorEnabled)
+                Write(ex, LogLevel.Error, message, args.IsEmpty ? null : args.ToArray());
+        }
+#endif
+
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Error level.
         /// </summary>
@@ -640,6 +775,33 @@ namespace NLog.Common
                 Write(ex, LogLevel.Error, messageFunc(), null);
         }
 
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Fatal level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Fatal([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            if (IsFatalEnabled)
+                Write(null, LogLevel.Fatal, message, args.IsEmpty ? null : args.ToArray());
+        }
+
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Fatal level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Fatal(Exception ex, [Localizable(false)] string message, params ReadOnlySpan<object> args)
+        {
+            if (IsFatalEnabled)
+                Write(ex, LogLevel.Fatal, message, args.IsEmpty ? null : args.ToArray());
+        }
+#endif
+
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Fatal level.
         /// </summary>
@@ -753,6 +915,5 @@ namespace NLog.Common
             if (IsFatalEnabled)
                 Write(ex, LogLevel.Fatal, messageFunc(), null);
         }
-
     }
 }
