@@ -41,14 +41,14 @@ namespace NLog.UnitTests
         [Fact]
         public void GetCurrentClassLoggerTest()
         {
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = new LogFactory().GetCurrentClassLogger();
             Assert.Equal("NLog.UnitTests.GetLoggerTests", logger.Name);
         }
 
         [Fact]
         public void GetCurrentClassLoggerLambdaTest()
         {
-            System.Linq.Expressions.Expression<Func<Logger>> sum = () => LogManager.GetCurrentClassLogger();
+            System.Linq.Expressions.Expression<Func<Logger>> sum = () => new LogFactory().GetCurrentClassLogger();
             var logger = sum.Compile().Invoke();
             Assert.Equal("NLog.UnitTests.GetLoggerTests", logger.Name);
         }
@@ -133,14 +133,13 @@ namespace NLog.UnitTests
             }
         }
 
-
         [Fact]
         [Obsolete("Replaced by GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]
         public void InvalidLoggerConfiguration_NotThrowsThrowExceptions_NotThrows()
         {
             using (new NoThrowNLogExceptions())
             {
-                var result = LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
+                var result = new LogFactory().GetCurrentClassLogger(typeof(InvalidLogger));
                 Assert.NotNull(result);
             }
         }
@@ -152,7 +151,7 @@ namespace NLog.UnitTests
             LogManager.ThrowExceptions = true;
             Assert.Throws<NLogRuntimeException>(() =>
             {
-                LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
+                new LogFactory().GetCurrentClassLogger(typeof(InvalidLogger));
             });
         }
 
