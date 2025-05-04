@@ -193,11 +193,9 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Trace([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
         {
-            var targetsForLevel = GetTargetsForLevel(LogLevel.Trace);
-            if (targetsForLevel != null)
+            if (IsTraceEnabled)
             {
-                var logEvent = LogEventInfo.Create(LogLevel.Trace, Name, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteToTargetsWithSpan(LogLevel.Trace, null, Factory.DefaultCultureInfo, message, args);
             }
         }
 
@@ -210,11 +208,9 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Trace(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
         {
-            var targetsForLevel = GetTargetsForLevel(LogLevel.Trace);
-            if (targetsForLevel != null)
+            if (IsTraceEnabled)
             {
-                var logEvent = LogEventInfo.Create(LogLevel.Trace, Name, exception, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteToTargetsWithSpan(LogLevel.Trace, exception, Factory.DefaultCultureInfo, message, args);
             }
         }
 #endif
@@ -275,7 +271,11 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Trace, null, formatProvider, message, argument);
+#else
                 WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument });
+#endif
             }
         }
 
@@ -290,7 +290,11 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Trace, null, Factory.DefaultCultureInfo, message, argument);
+#else
                 WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+#endif
             }
         }
 
@@ -308,7 +312,11 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Trace, null, formatProvider, message, argument1, argument2);
+#else
                 WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument1, argument2 });
+#endif
             }
         }
 
@@ -325,7 +333,11 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Trace, null, Factory.DefaultCultureInfo, message, argument1, argument2);
+#else
                 WriteToTargets(LogLevel.Trace, message, new object[] { argument1, argument2 });
+#endif
             }
         }
 
@@ -345,7 +357,11 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Trace, null, formatProvider, message, argument1, argument2, argument3);
+#else
                 WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument1, argument2, argument3 });
+#endif
             }
         }
 
@@ -364,7 +380,11 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Trace, null, Factory.DefaultCultureInfo, message, argument1, argument2, argument3);
+#else
                 WriteToTargets(LogLevel.Trace, message, new object[] { argument1, argument2, argument3 });
+#endif
             }
         }
 
@@ -465,11 +485,9 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Debug([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
         {
-            var targetsForLevel = GetTargetsForLevel(LogLevel.Debug);
-            if (targetsForLevel != null)
+            if (IsDebugEnabled)
             {
-                var logEvent = LogEventInfo.Create(LogLevel.Debug, Name, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteToTargetsWithSpan(LogLevel.Debug, null, Factory.DefaultCultureInfo, message, args);
             }
         }
 
@@ -482,11 +500,9 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Debug(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
         {
-            var targetsForLevel = GetTargetsForLevel(LogLevel.Debug);
-            if (targetsForLevel != null)
+            if (IsDebugEnabled)
             {
-                var logEvent = LogEventInfo.Create(LogLevel.Debug, Name, exception, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteToTargetsWithSpan(LogLevel.Debug, exception, Factory.DefaultCultureInfo, message, args);
             }
         }
 #endif
@@ -547,7 +563,11 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Debug, null, formatProvider, message, argument);
+#else
                 WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument });
+#endif
             }
         }
 
@@ -562,7 +582,11 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Debug, null, Factory.DefaultCultureInfo, message, argument);
+#else
                 WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+#endif
             }
         }
 
@@ -580,7 +604,11 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Debug, null, formatProvider, message, argument1, argument2);
+#else
                 WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument1, argument2 });
+#endif
             }
         }
 
@@ -597,7 +625,11 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Debug, null, Factory.DefaultCultureInfo, message, argument1, argument2);
+#else
                 WriteToTargets(LogLevel.Debug, message, new object[] { argument1, argument2 });
+#endif
             }
         }
 
@@ -617,7 +649,11 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Debug, null, formatProvider, message, argument1, argument2, argument3);
+#else
                 WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument1, argument2, argument3 });
+#endif
             }
         }
 
@@ -636,7 +672,11 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Debug, null, Factory.DefaultCultureInfo, message, argument1, argument2, argument3);
+#else
                 WriteToTargets(LogLevel.Debug, message, new object[] { argument1, argument2, argument3 });
+#endif
             }
         }
 
@@ -737,11 +777,9 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Info([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
         {
-            var targetsForLevel = GetTargetsForLevel(LogLevel.Info);
-            if (targetsForLevel != null)
+            if (IsInfoEnabled)
             {
-                var logEvent = LogEventInfo.Create(LogLevel.Info, Name, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteToTargetsWithSpan(LogLevel.Info, null, Factory.DefaultCultureInfo, message, args);
             }
         }
 
@@ -754,11 +792,9 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Info(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
         {
-            var targetsForLevel = GetTargetsForLevel(LogLevel.Info);
-            if (targetsForLevel != null)
+            if (IsInfoEnabled)
             {
-                var logEvent = LogEventInfo.Create(LogLevel.Info, Name, exception, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteToTargetsWithSpan(LogLevel.Info, exception, Factory.DefaultCultureInfo, message, args);
             }
         }
 #endif
@@ -819,7 +855,11 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Info, null, formatProvider, message, argument);
+#else
                 WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument });
+#endif
             }
         }
 
@@ -834,7 +874,11 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Info, null, Factory.DefaultCultureInfo, message, argument);
+#else
                 WriteToTargets(LogLevel.Info, message, new object[] { argument });
+#endif
             }
         }
 
@@ -852,7 +896,11 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Info, null, formatProvider, message, argument1, argument2);
+#else
                 WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument1, argument2 });
+#endif
             }
         }
 
@@ -869,7 +917,11 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Info, null, Factory.DefaultCultureInfo, message, argument1, argument2);
+#else
                 WriteToTargets(LogLevel.Info, message, new object[] { argument1, argument2 });
+#endif
             }
         }
 
@@ -889,7 +941,11 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Info, null, formatProvider, message, argument1, argument2, argument3);
+#else
                 WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument1, argument2, argument3 });
+#endif
             }
         }
 
@@ -908,7 +964,11 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Info, null, Factory.DefaultCultureInfo, message, argument1, argument2, argument3);
+#else
                 WriteToTargets(LogLevel.Info, message, new object[] { argument1, argument2, argument3 });
+#endif
             }
         }
 
@@ -1009,11 +1069,9 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Warn([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
         {
-            var targetsForLevel = GetTargetsForLevel(LogLevel.Warn);
-            if (targetsForLevel != null)
+            if (IsWarnEnabled)
             {
-                var logEvent = LogEventInfo.Create(LogLevel.Warn, Name, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteToTargetsWithSpan(LogLevel.Warn, null, Factory.DefaultCultureInfo, message, args);
             }
         }
 
@@ -1026,11 +1084,9 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Warn(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
         {
-            var targetsForLevel = GetTargetsForLevel(LogLevel.Warn);
-            if (targetsForLevel != null)
+            if (IsWarnEnabled)
             {
-                var logEvent = LogEventInfo.Create(LogLevel.Warn, Name, exception, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteToTargetsWithSpan(LogLevel.Warn, exception, Factory.DefaultCultureInfo, message, args);
             }
         }
 #endif
@@ -1091,7 +1147,11 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Warn, null, formatProvider, message, argument);
+#else
                 WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument });
+#endif
             }
         }
 
@@ -1106,7 +1166,11 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Warn, null, Factory.DefaultCultureInfo, message, argument);
+#else
                 WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+#endif
             }
         }
 
@@ -1124,7 +1188,11 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Warn, null, formatProvider, message, argument1, argument2);
+#else
                 WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument1, argument2 });
+#endif
             }
         }
 
@@ -1141,7 +1209,11 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Warn, null, Factory.DefaultCultureInfo, message, argument1, argument2);
+#else
                 WriteToTargets(LogLevel.Warn, message, new object[] { argument1, argument2 });
+#endif
             }
         }
 
@@ -1161,7 +1233,11 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Warn, null, formatProvider, message, argument1, argument2, argument3);
+#else
                 WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument1, argument2, argument3 });
+#endif
             }
         }
 
@@ -1180,7 +1256,11 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Warn, null, Factory.DefaultCultureInfo, message, argument1, argument2, argument3);
+#else
                 WriteToTargets(LogLevel.Warn, message, new object[] { argument1, argument2, argument3 });
+#endif
             }
         }
 
@@ -1281,11 +1361,9 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Error([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
         {
-            var targetsForLevel = GetTargetsForLevel(LogLevel.Error);
-            if (targetsForLevel != null)
+            if (IsErrorEnabled)
             {
-                var logEvent = LogEventInfo.Create(LogLevel.Error, Name, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteToTargetsWithSpan(LogLevel.Error, null, Factory.DefaultCultureInfo, message, args);
             }
         }
 
@@ -1298,11 +1376,9 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Error(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
         {
-            var targetsForLevel = GetTargetsForLevel(LogLevel.Error);
-            if (targetsForLevel != null)
+            if (IsErrorEnabled)
             {
-                var logEvent = LogEventInfo.Create(LogLevel.Error, Name, exception, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteToTargetsWithSpan(LogLevel.Error, exception, Factory.DefaultCultureInfo, message, args);
             }
         }
 #endif
@@ -1363,7 +1439,11 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Error, null, formatProvider, message, argument);
+#else
                 WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument });
+#endif
             }
         }
 
@@ -1378,7 +1458,11 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Error, null, Factory.DefaultCultureInfo, message, argument);
+#else
                 WriteToTargets(LogLevel.Error, message, new object[] { argument });
+#endif
             }
         }
 
@@ -1396,7 +1480,11 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Error, null, formatProvider, message, argument1, argument2);
+#else
                 WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument1, argument2 });
+#endif
             }
         }
 
@@ -1413,7 +1501,11 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Error, null, Factory.DefaultCultureInfo, message, argument1, argument2);
+#else
                 WriteToTargets(LogLevel.Error, message, new object[] { argument1, argument2 });
+#endif
             }
         }
 
@@ -1433,7 +1525,11 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Error, null, formatProvider, message, argument1, argument2, argument3);
+#else
                 WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument1, argument2, argument3 });
+#endif
             }
         }
 
@@ -1452,7 +1548,11 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Error, null, Factory.DefaultCultureInfo, message, argument1, argument2, argument3);
+#else
                 WriteToTargets(LogLevel.Error, message, new object[] { argument1, argument2, argument3 });
+#endif
             }
         }
 
@@ -1553,11 +1653,9 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Fatal([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
         {
-            var targetsForLevel = GetTargetsForLevel(LogLevel.Fatal);
-            if (targetsForLevel != null)
+            if (IsFatalEnabled)
             {
-                var logEvent = LogEventInfo.Create(LogLevel.Fatal, Name, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteToTargetsWithSpan(LogLevel.Fatal, null, Factory.DefaultCultureInfo, message, args);
             }
         }
 
@@ -1570,11 +1668,9 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Fatal(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
         {
-            var targetsForLevel = GetTargetsForLevel(LogLevel.Fatal);
-            if (targetsForLevel != null)
+            if (IsFatalEnabled)
             {
-                var logEvent = LogEventInfo.Create(LogLevel.Fatal, Name, exception, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteToTargetsWithSpan(LogLevel.Fatal, exception, Factory.DefaultCultureInfo, message, args);
             }
         }
 #endif
@@ -1635,7 +1731,11 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Fatal, null, formatProvider, message, argument);
+#else
                 WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument });
+#endif
             }
         }
 
@@ -1650,7 +1750,11 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Fatal, null, Factory.DefaultCultureInfo, message, argument);
+#else
                 WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+#endif
             }
         }
 
@@ -1668,7 +1772,11 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Fatal, null, formatProvider, message, argument1, argument2);
+#else
                 WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument1, argument2 });
+#endif
             }
         }
 
@@ -1685,7 +1793,11 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Fatal, null, Factory.DefaultCultureInfo, message, argument1, argument2);
+#else
                 WriteToTargets(LogLevel.Fatal, message, new object[] { argument1, argument2 });
+#endif
             }
         }
 
@@ -1705,7 +1817,11 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Fatal, null, formatProvider, message, argument1, argument2, argument3);
+#else
                 WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument1, argument2, argument3 });
+#endif
             }
         }
 
@@ -1724,7 +1840,11 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+                WriteToTargetsWithSpan(LogLevel.Fatal, null, Factory.DefaultCultureInfo, message, argument1, argument2, argument3);
+#else
                 WriteToTargets(LogLevel.Fatal, message, new object[] { argument1, argument2, argument3 });
+#endif
             }
         }
 

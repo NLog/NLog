@@ -52,20 +52,20 @@ namespace NLog.Internal
         /// <summary>
         /// When true: Do not fallback to StringBuilder.Format for positional templates
         /// </summary>
-        private readonly bool _forceTemplateRenderer;
+        private readonly bool _forceMessageTemplateRenderer;
         private readonly bool _singleTargetOnly;
 
         /// <summary>
         /// New formatter
         /// </summary>
         /// <param name="logFactory"></param>
-        /// <param name="forceTemplateRenderer">When true: Do not fallback to StringBuilder.Format for positional templates</param>
+        /// <param name="forceMessageTemplateRenderer">When true: Do not fallback to StringBuilder.Format for positional templates</param>
         /// <param name="singleTargetOnly"></param>
         /// 
-        public LogMessageTemplateFormatter([NotNull] LogFactory logFactory, bool forceTemplateRenderer, bool singleTargetOnly)
+        public LogMessageTemplateFormatter([NotNull] LogFactory logFactory, bool forceMessageTemplateRenderer, bool singleTargetOnly)
         {
             _logFactory = logFactory;
-            _forceTemplateRenderer = forceTemplateRenderer;
+            _forceMessageTemplateRenderer = forceMessageTemplateRenderer;
             _singleTargetOnly = singleTargetOnly;
             MessageFormatter = FormatMessage;
         }
@@ -75,7 +75,7 @@ namespace NLog.Internal
         /// </summary>
         public LogMessageFormatter MessageFormatter { get; }
 
-        public bool? EnableMessageTemplateParser => _forceTemplateRenderer ? true : default(bool?);
+        public bool? EnableMessageTemplateParser => _forceMessageTemplateRenderer ? true : default(bool?);
 
         /// <inheritDoc/>
         public bool HasProperties(LogEventInfo logEvent)
@@ -138,39 +138,103 @@ namespace NLog.Internal
         /// <param name="messageTemplateParameters">Parameters for the holes.</param>
         private void Render(string template, IFormatProvider formatProvider, object[] parameters, StringBuilder sb, out IList<MessageTemplateParameter> messageTemplateParameters)
         {
+            messageTemplateParameters = null;
+
+            TemplateEnumerator templateEnumerator = new TemplateEnumerator(template);
+            if (!templateEnumerator.MoveNext() || (templateEnumerator.Current.MaybePositionalTemplate && !_forceMessageTemplateRenderer))
+            {
+                // string.Format when not message-template for structured logging
+                sb.AppendFormat(formatProvider, template, parameters);
+                return;
+            }
+
+            // Handle message-template-format or string-format or mixed-format
             int pos = 0;
             int holeIndex = 0;
             int holeStartPosition = 0;
-            messageTemplateParameters = null;
             int originalLength = sb.Length;
 
-            TemplateEnumerator templateEnumerator = new TemplateEnumerator(template);
-            while (templateEnumerator.MoveNext())
+            do
             {
-                if (holeIndex == 0 && !_forceTemplateRenderer && templateEnumerator.Current.MaybePositionalTemplate && sb.Length == originalLength)
-                {
-                    // Not a structured template
-                    sb.AppendFormat(formatProvider, template, parameters);
-                    return;
-                }
-
                 var literal = templateEnumerator.Current.Literal;
                 sb.Append(template, pos, literal.Print);
                 pos += literal.Print;
                 if (literal.Skip == 0)
                 {
                     pos++;
+                    continue;
+                }
+
+                pos += literal.Skip;
+                var hole = templateEnumerator.Current.Hole;
+                if (hole.Alignment != 0)
+                    holeStartPosition = sb.Length;
+                if (hole.Index != -1 && messageTemplateParameters is null)
+                {
+                    holeIndex++;
+                    RenderHolePositional(sb, hole, formatProvider, parameters[hole.Index]);
                 }
                 else
                 {
+                    var holeParameter = parameters[holeIndex];
+                    if (messageTemplateParameters is null)
+                    {
+                        messageTemplateParameters = new MessageTemplateParameter[parameters.Length];
+                        if (holeIndex != 0)
+                        {
+                            // rewind and try again
+                            templateEnumerator = new TemplateEnumerator(template);
+                            sb.Length = originalLength;
+                            holeIndex = 0;
+                            pos = 0;
+                            continue;
+                        }
+                    }
+                    messageTemplateParameters[holeIndex++] = new MessageTemplateParameter(hole.Name, holeParameter, hole.Format, hole.CaptureType);
+                    RenderHole(sb, hole, formatProvider, holeParameter);
+                }
+                if (hole.Alignment != 0)
+                    RenderPadding(sb, hole.Alignment, holeStartPosition);
+            } while (templateEnumerator.MoveNext());
+
+            messageTemplateParameters = VerifyMessageTemplateParameters(messageTemplateParameters, holeIndex);
+        }
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        internal string Render(ref TemplateEnumerator templateEnumerator, IFormatProvider formatProvider, in ReadOnlySpan<object> parameters, out IList<MessageTemplateParameter> messageTemplateParameters)
+        {
+            // Handle message-template-format or string-format or mixed-format
+            messageTemplateParameters = null;
+
+            using (var builder = _builderPool.Acquire())
+            {
+                var sb = builder.Item;
+
+                string template = templateEnumerator.Template;
+                int pos = 0;
+                int holeStartPosition = 0;
+                int holeIndex = 0;
+
+                do
+                {
+                    var literal = templateEnumerator.Current.Literal;
+                    sb.Append(template, pos, literal.Print);
+                    pos += literal.Print;
+                    if (literal.Skip == 0)
+                    {
+                        pos++;
+                        continue;
+                    }
+
                     pos += literal.Skip;
                     var hole = templateEnumerator.Current.Hole;
+
                     if (hole.Alignment != 0)
                         holeStartPosition = sb.Length;
                     if (hole.Index != -1 && messageTemplateParameters is null)
                     {
                         holeIndex++;
-                        RenderHole(sb, hole, formatProvider, parameters[hole.Index], true);
+                        RenderHolePositional(sb, hole, formatProvider, parameters[hole.Index]);
                     }
                     else
                     {
@@ -182,7 +246,7 @@ namespace NLog.Internal
                             {
                                 // rewind and try again
                                 templateEnumerator = new TemplateEnumerator(template);
-                                sb.Length = originalLength;
+                                sb.ClearBuilder();
                                 holeIndex = 0;
                                 pos = 0;
                                 continue;
@@ -193,9 +257,16 @@ namespace NLog.Internal
                     }
                     if (hole.Alignment != 0)
                         RenderPadding(sb, hole.Alignment, holeStartPosition);
-                }
-            }
+                } while (templateEnumerator.MoveNext());
 
+                messageTemplateParameters = VerifyMessageTemplateParameters(messageTemplateParameters, holeIndex);
+                return sb.ToString();
+            }
+        }
+#endif
+
+        private static IList<MessageTemplateParameter> VerifyMessageTemplateParameters(IList<MessageTemplateParameter> messageTemplateParameters, int holeIndex)
+        {
             if (messageTemplateParameters != null && holeIndex != messageTemplateParameters.Count)
             {
                 var truncateParameters = new MessageTemplateParameter[holeIndex];
@@ -203,24 +274,36 @@ namespace NLog.Internal
                     truncateParameters[i] = messageTemplateParameters[i];
                 messageTemplateParameters = truncateParameters;
             }
+
+            return messageTemplateParameters;
         }
 
-        private void RenderHole(StringBuilder sb, Hole hole, IFormatProvider formatProvider, object value, bool legacy = false)
-        {
-            RenderHole(sb, hole.CaptureType, hole.Format, formatProvider, value, legacy);
-        }
-
-        private void RenderHole(StringBuilder sb, CaptureType captureType, string holeFormat, IFormatProvider formatProvider, object value, bool legacy = false)
+        private void RenderHolePositional(StringBuilder sb, in Hole hole, IFormatProvider formatProvider, object value)
         {
             if (value is null)
             {
                 sb.Append("NULL");
-                return;
             }
-
-            if (captureType == CaptureType.Normal && legacy)
+            else if (hole.CaptureType == CaptureType.Normal)
             {
-                MessageTemplates.ValueFormatter.FormatToString(value, holeFormat, formatProvider, sb);
+                MessageTemplates.ValueFormatter.FormatToString(value, hole.Format, formatProvider, sb);
+            }
+            else
+            {
+                RenderHole(sb, hole.CaptureType, hole.Format, formatProvider, value);
+            }
+        }
+
+        private void RenderHole(StringBuilder sb, in Hole hole, IFormatProvider formatProvider, object value)
+        {
+            RenderHole(sb, hole.CaptureType, hole.Format, formatProvider, value);
+        }
+
+        private void RenderHole(StringBuilder sb, CaptureType captureType, string holeFormat, IFormatProvider formatProvider, object value)
+        {
+            if (value is null)
+            {
+                sb.Append("NULL");
             }
             else
             {
