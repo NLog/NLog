@@ -36,13 +36,25 @@ namespace NLog.MessageTemplates
     /// <summary>
     /// Combines Literal and Hole
     /// </summary>
-    internal struct LiteralHole
+    internal
+#if !NETFRAMEWORK
+        readonly
+#endif
+        struct LiteralHole
     {
         /// <summary>Literal</summary>
-        public Literal Literal; // Not readonly to avoid struct-copy, and to avoid VerificationException when medium-trust AppDomain
+        public
+#if !NETFRAMEWORK
+            readonly
+#endif
+            Literal Literal; // Not readonly to avoid struct-copy, and to avoid VerificationException when medium-trust AppDomain
         /// <summary>Hole</summary>
         /// <remarks>Uninitialized when <see cref="MessageTemplates.Literal.Skip"/> = 0.</remarks>
-        public Hole Hole;       // Not readonly to avoid struct-copy, and to avoid VerificationException when medium-trust AppDomain
+        public
+#if !NETFRAMEWORK
+            readonly
+#endif
+            Hole Hole;       // Not readonly to avoid struct-copy, and to avoid VerificationException when medium-trust AppDomain
 
         public LiteralHole(Literal literal, Hole hole)
         {

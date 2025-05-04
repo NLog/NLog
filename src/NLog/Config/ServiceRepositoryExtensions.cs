@@ -170,12 +170,12 @@ namespace NLog.Config
             return serviceRepository;
         }
 
-        internal static ServiceRepository ParseMessageTemplates(this ServiceRepository serviceRepository, bool? enable)
+        internal static ServiceRepository ParseMessageTemplates(this ServiceRepository serviceRepository, LogFactory logFactory, bool? enable)
         {
             if (enable == true)
             {
                 NLog.Common.InternalLogger.Debug("Message Template Format always enabled");
-                serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(serviceRepository, true, false));
+                serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(logFactory, true, false));
             }
             else if (enable == false)
             {
@@ -186,7 +186,7 @@ namespace NLog.Config
             {
                 //null = auto
                 NLog.Common.InternalLogger.Debug("Message Template Auto Format enabled");
-                serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(serviceRepository, false, false));
+                serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(logFactory, false, false));
             }
             return serviceRepository;
         }
@@ -197,10 +197,11 @@ namespace NLog.Config
             return messageFormatter?.EnableMessageTemplateParser;
         }
 
-        internal static ServiceRepository RegisterDefaults(this ServiceRepository serviceRepository)
+        internal static ServiceRepository RegisterDefaults(this ServiceRepository serviceRepository, LogFactory logFactory)
         {
+            // Maybe also include active TimeSource ? Could also be done with LogFactory extension-methods
             serviceRepository.RegisterSingleton<IServiceProvider>(serviceRepository);
-            serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(serviceRepository, false, false));
+            serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(logFactory, false, false));
             serviceRepository.RegisterJsonConverter(new DefaultJsonSerializer(serviceRepository));
             serviceRepository.RegisterValueFormatter(new MessageTemplates.ValueFormatter(serviceRepository, legacyStringQuotes: false));
             serviceRepository.RegisterPropertyTypeConverter(PropertyTypeConverter.Instance);

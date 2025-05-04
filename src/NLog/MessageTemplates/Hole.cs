@@ -36,7 +36,11 @@ namespace NLog.MessageTemplates
     /// <summary>
     /// A hole that will be replaced with a value
     /// </summary>
-    internal struct Hole
+    internal
+#if !NETFRAMEWORK
+        readonly
+#endif
+        struct Hole
     {
         /// <summary>
         /// Constructor

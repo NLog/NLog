@@ -271,7 +271,11 @@ namespace NLog.Internal
             return fastLookup;
         }
 
-        internal struct ObjectPropertyList : IEnumerable<ObjectPropertyList.PropertyValue>
+        internal
+#if !NETFRAMEWORK
+            readonly
+#endif
+            struct ObjectPropertyList : IEnumerable<ObjectPropertyList.PropertyValue>
         {
             internal static readonly StringComparer NameComparer = StringComparer.Ordinal;
             private static readonly FastPropertyLookup[] CreateIDictionaryEnumerator = new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => ((IDictionary<string, object>)o).GetEnumerator()) };
@@ -279,7 +283,11 @@ namespace NLog.Internal
             private readonly PropertyInfo[] _properties;
             private readonly FastPropertyLookup[] _fastLookup;
 
-            public struct PropertyValue
+            public
+#if !NETFRAMEWORK
+            readonly
+#endif
+                struct PropertyValue
             {
                 public readonly string Name;
                 public readonly object Value;
@@ -509,7 +517,11 @@ namespace NLog.Internal
             }
         }
 
-        internal struct FastPropertyLookup
+        internal
+#if !NETFRAMEWORK
+            readonly
+#endif
+            struct FastPropertyLookup
         {
             public readonly string Name;
             public readonly ReflectionHelpers.LateBoundMethod ValueLookup;

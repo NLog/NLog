@@ -287,7 +287,7 @@ namespace NLog.Config
         public bool? ParseMessageTemplates
         {
             get => _serviceRepository.ResolveParseMessageTemplates();
-            set => _serviceRepository.ParseMessageTemplates(value);
+            set => _serviceRepository.ParseMessageTemplates(LogManager.LogFactory, value);
         }
 
         /// <summary>
@@ -484,7 +484,7 @@ namespace NLog.Config
             SafeRegisterNamedType(_targets, "database", "NLog.Targets.DatabaseTarget, NLog.Database", skipCheckExists);
             SafeRegisterNamedType(_targets, "atomfile", "NLog.Targets.AtomicFileTarget, NLog.Targets.AtomicFile", skipCheckExists);
             SafeRegisterNamedType(_targets, "atomicfile", "NLog.Targets.AtomicFileTarget, NLog.Targets.AtomicFile", skipCheckExists);
-#if NETSTANDARD
+#if !NETFRAMEWORK
             SafeRegisterNamedType(_targets, "eventlog", "NLog.Targets.EventLogTarget, NLog.WindowsEventLog", skipCheckExists);
 #endif
             SafeRegisterNamedType(_targets, "impersonatingwrapper", "NLog.Targets.Wrappers.ImpersonatingTargetWrapper, NLog.WindowsIdentity", skipCheckExists);

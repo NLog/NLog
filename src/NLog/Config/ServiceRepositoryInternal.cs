@@ -49,13 +49,9 @@ namespace NLog.Config
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceRepositoryInternal"/> class.
         /// </summary>
-        internal ServiceRepositoryInternal(bool resetGlobalCache = false)
+        internal ServiceRepositoryInternal(LogFactory logFactory)
         {
-            if (resetGlobalCache)
-                ConfigurationItemFactory.Default = null;    //build new global factory
-
-            this.RegisterDefaults();
-            // Maybe also include active TimeSource ? Could also be done with LogFactory extension-methods
+            this.RegisterDefaults(logFactory);
         }
 
         public override void RegisterService(Type type, object instance)

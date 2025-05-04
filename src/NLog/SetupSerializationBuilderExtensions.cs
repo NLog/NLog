@@ -50,7 +50,7 @@ namespace NLog
         /// </summary>
         public static ISetupSerializationBuilder ParseMessageTemplates(this ISetupSerializationBuilder setupBuilder, bool? enable)
         {
-            setupBuilder.LogFactory.ServiceRepository.ParseMessageTemplates(enable);
+            setupBuilder.LogFactory.ServiceRepository.ParseMessageTemplates(setupBuilder.LogFactory, enable);
             return setupBuilder;
         }
 

@@ -64,7 +64,7 @@ namespace NLog
         /// </remarks>
         internal readonly object _syncRoot = new object();
         private readonly LoggerCache _loggerCache = new LoggerCache();
-        [NotNull] private ServiceRepositoryInternal _serviceRepository = new ServiceRepositoryInternal();
+        [NotNull] private ServiceRepositoryInternal _serviceRepository;
         private IAppEnvironment _currentAppEnvironment;
         internal LoggingConfiguration _config;
         internal LogMessageFormatter ActiveMessageFormatter;
@@ -122,8 +122,7 @@ namespace NLog
         public LogFactory()
             : this(new LoggingConfigurationFileLoader(DefaultAppEnvironment))
         {
-            _serviceRepository.TypeRegistered += ServiceRepository_TypeRegistered;
-            RefreshMessageFormatter();
+
         }
 
         /// <summary>
@@ -150,6 +149,9 @@ namespace NLog
             _configLoader = configLoader;
             _currentAppEnvironment = appEnvironment;
             LoggerShutdown += OnStopLogging;
+            _serviceRepository = new ServiceRepositoryInternal(this);
+            _serviceRepository.TypeRegistered += ServiceRepository_TypeRegistered;
+            RefreshMessageFormatter();
         }
 
         internal static IAppEnvironment DefaultAppEnvironment
@@ -165,6 +167,12 @@ namespace NLog
             get => _currentAppEnvironment ?? DefaultAppEnvironment;
             set => _currentAppEnvironment = value;
         }
+
+        /// <summary>
+        /// Repository of interfaces used by NLog to allow override for dependency injection
+        /// </summary>
+        [NotNull]
+        public ServiceRepository ServiceRepository => _serviceRepository;
 
         /// <summary>
         /// Gets or sets a value indicating whether exceptions should be thrown. See also <see cref="ThrowConfigExceptions"/>.
@@ -281,21 +289,6 @@ namespace NLog
             InternalLogger.Info("Configuration initialized.");
         }
 
-        /// <summary>
-        /// Repository of interfaces used by NLog to allow override for dependency injection
-        /// </summary>
-        [NotNull]
-        public ServiceRepository ServiceRepository
-        {
-            get => _serviceRepository;
-            internal set
-            {
-                _serviceRepository.TypeRegistered -= ServiceRepository_TypeRegistered;
-                _serviceRepository = (value as ServiceRepositoryInternal) ?? new ServiceRepositoryInternal(true);
-                _serviceRepository.TypeRegistered += ServiceRepository_TypeRegistered;
-            }
-        }
-
         private void ServiceRepository_TypeRegistered(object sender, ServiceRepositoryUpdateEventArgs e)
         {
             _config?.CheckForMissingServiceTypes(e.ServiceType);
@@ -312,7 +305,7 @@ namespace NLog
             ActiveMessageFormatter = messageFormatter.FormatMessage;
             if (messageFormatter is LogMessageTemplateFormatter templateFormatter)
             {
-                SingleTargetMessageFormatter = new LogMessageTemplateFormatter(_serviceRepository, templateFormatter.EnableMessageTemplateParser == true, true).FormatMessage;
+                SingleTargetMessageFormatter = new LogMessageTemplateFormatter(this, templateFormatter.EnableMessageTemplateParser == true, true).FormatMessage;
             }
             else
             {

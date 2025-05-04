@@ -136,11 +136,19 @@ namespace NLog.Internal
         /// </summary>
         /// <typeparam name="TKey">The type of the key.</typeparam>
         /// <typeparam name="TValue">The type of the value.</typeparam>
-        public struct ReadOnlySingleBucketDictionary<TKey, TValue> : IDictionary<TKey, TValue>
+        public
+#if !NETFRAMEWORK
+            readonly
+#endif
+            struct ReadOnlySingleBucketDictionary<TKey, TValue> : IDictionary<TKey, TValue>
         {
-            KeyValuePair<TKey, TValue>? _singleBucket;  // Not readonly to avoid struct-copy, and to avoid VerificationException when medium-trust AppDomain
-            readonly Dictionary<TKey, TValue> _multiBucket;
-            readonly IEqualityComparer<TKey> _comparer;
+            private
+#if !NETFRAMEWORK
+                readonly
+#endif
+                KeyValuePair<TKey, TValue>? _singleBucket;  // Not readonly to avoid struct-copy, and to avoid VerificationException when medium-trust AppDomain
+            private readonly Dictionary<TKey, TValue> _multiBucket;
+            private readonly IEqualityComparer<TKey> _comparer;
             public IEqualityComparer<TKey> Comparer => _comparer;
 
             public ReadOnlySingleBucketDictionary(KeyValuePair<TKey, TValue> singleBucket)
