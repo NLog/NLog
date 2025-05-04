@@ -287,7 +287,7 @@ namespace NLog.Config
                     yield return Path.ChangeExtension(configurationFile.Replace(vshostSubStr, "."), ".nlog");
                 }
             }
-#if NETSTANDARD
+#if !NETFRAMEWORK
             else
             {
                 if (string.IsNullOrEmpty(entryAssemblyLocation))

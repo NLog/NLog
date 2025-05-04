@@ -197,7 +197,7 @@ namespace NLog.Config
                 ConfigurationItemFactory.Default.AssemblyLoader.ScanForAutoLoadExtensions(ConfigurationItemFactory.Default);
             }
 
-            _serviceRepository.ParseMessageTemplates(parseMessageTemplates);
+            _serviceRepository.ParseMessageTemplates(LogFactory, parseMessageTemplates);
         }
 
         /// <summary>

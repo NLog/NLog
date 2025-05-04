@@ -36,7 +36,11 @@ namespace NLog.MessageTemplates
     /// <summary>
     /// A fixed value
     /// </summary>
-    internal struct Literal
+    internal
+#if !NETFRAMEWORK
+        readonly
+#endif
+        struct Literal
     {
         /// <summary>Number of characters from the original template to copy at the current position.</summary>
         /// <remarks>This can be 0 when the template starts with a hole or when there are multiple consecutive holes.</remarks>

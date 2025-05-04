@@ -40,7 +40,11 @@ namespace NLog.Internal
     /// <summary>
     /// Ensures that IDictionary.GetEnumerator returns DictionaryEntry values
     /// </summary>
-    internal struct DictionaryEntryEnumerable : IEnumerable<DictionaryEntry>
+    internal
+#if !NETFRAMEWORK
+        readonly
+#endif
+        struct DictionaryEntryEnumerable : IEnumerable<DictionaryEntry>
     {
         private readonly IDictionary _dictionary;
 
@@ -64,7 +68,11 @@ namespace NLog.Internal
             return GetEnumerator();
         }
 
-        internal struct DictionaryEntryEnumerator : IEnumerator<DictionaryEntry>
+        internal
+#if !NETFRAMEWORK
+            readonly
+#endif
+            struct DictionaryEntryEnumerator : IEnumerator<DictionaryEntry>
         {
             private readonly IDictionaryEnumerator _entryEnumerator;
 

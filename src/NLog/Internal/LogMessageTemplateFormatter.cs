@@ -44,9 +44,9 @@ namespace NLog.Internal
     internal sealed class LogMessageTemplateFormatter : ILogMessageFormatter
     {
         private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
-        private readonly IServiceProvider _serviceProvider;
+        private readonly LogFactory _logFactory;
 
-        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = _serviceProvider.GetService<IValueFormatter>());
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = _logFactory.ServiceRepository.GetService<IValueFormatter>());
         private IValueFormatter _valueFormatter;
 
         /// <summary>
@@ -58,12 +58,13 @@ namespace NLog.Internal
         /// <summary>
         /// New formatter
         /// </summary>
-        /// <param name="serviceProvider"></param>
+        /// <param name="logFactory"></param>
         /// <param name="forceTemplateRenderer">When true: Do not fallback to StringBuilder.Format for positional templates</param>
         /// <param name="singleTargetOnly"></param>
-        public LogMessageTemplateFormatter([NotNull] IServiceProvider serviceProvider, bool forceTemplateRenderer, bool singleTargetOnly)
+        /// 
+        public LogMessageTemplateFormatter([NotNull] LogFactory logFactory, bool forceTemplateRenderer, bool singleTargetOnly)
         {
-            _serviceProvider = serviceProvider;
+            _logFactory = logFactory;
             _forceTemplateRenderer = forceTemplateRenderer;
             _singleTargetOnly = singleTargetOnly;
             MessageFormatter = FormatMessage;
@@ -86,7 +87,7 @@ namespace NLog.Internal
             {
                 // Perform quick check for valid message template parameter names (No support for rewind if mixed message-template)
                 TemplateEnumerator holeEnumerator = new TemplateEnumerator(logEvent.Message);
-                if (holeEnumerator.MoveNext() && holeEnumerator.Current.MaybePositionalTemplate)
+                if (!holeEnumerator.MoveNext() || holeEnumerator.Current.MaybePositionalTemplate)
                 {
                     return false;   // Skip allocation of PropertiesDictionary
                 }
@@ -99,7 +100,7 @@ namespace NLog.Internal
         {
             if (_singleTargetOnly)
             {
-                Render(logEvent.Message, logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, builder, out _);
+                Render(logEvent.Message, logEvent.FormatProvider ?? _logFactory.DefaultCultureInfo ?? CultureInfo.CurrentCulture, logEvent.Parameters, builder, out _);
             }
             else
             {
@@ -123,7 +124,7 @@ namespace NLog.Internal
 
         private void AppendToBuilder(LogEventInfo logEvent, StringBuilder builder)
         {
-            Render(logEvent.Message, logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, builder, out var messageTemplateParameterList);
+            Render(logEvent.Message, logEvent.FormatProvider ?? _logFactory.DefaultCultureInfo ?? CultureInfo.CurrentCulture, logEvent.Parameters, builder, out var messageTemplateParameterList);
             logEvent.CreateOrUpdatePropertiesInternal(false, messageTemplateParameterList ?? ArrayHelper.Empty<MessageTemplateParameter>());
         }
 

@@ -81,7 +81,7 @@ namespace NLog.Internal.NetworkSenders
                 {
                     if (SslCertificateOverride.Count > 0)
                         httpWebRequest.ClientCertificates = SslCertificateOverride;
-#if NET45_OR_GREATER || NETSTANDARD
+#if NET45_OR_GREATER || !NETFRAMEWORK
                     httpWebRequest.ServerCertificateValidationCallback = UserCertificateValidationCallback;
 #endif
                 }

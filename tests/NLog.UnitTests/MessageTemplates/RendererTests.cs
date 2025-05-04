@@ -130,7 +130,7 @@ namespace NLog.UnitTests.MessageTemplates
         private static void RenderAndTest(string input, CultureInfo culture, object[] args, string expected)
         {
             var logEventInfoAlways = new LogEventInfo(LogLevel.Info, "Logger", culture, input, args);
-            logEventInfoAlways.SetMessageFormatter(new NLog.Internal.LogMessageTemplateFormatter(LogManager.LogFactory.ServiceRepository, true, false).MessageFormatter, null);
+            logEventInfoAlways.SetMessageFormatter(new NLog.Internal.LogMessageTemplateFormatter(LogManager.LogFactory, true, false).MessageFormatter, null);
             var templateAlways = logEventInfoAlways.MessageTemplateParameters;
             Assert.Equal(expected, logEventInfoAlways.FormattedMessage);
         }
