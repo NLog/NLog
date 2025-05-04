@@ -638,7 +638,7 @@ namespace NLog.Config
             _layoutRenderers.RegisterNamedType("activity", "NLog.LayoutRenderers.ActivityTraceLayoutRenderer, NLog.DiagnosticSource");
             _targets.RegisterNamedType("diagnosticlistener", "NLog.Targets.DiagnosticListenerTarget, NLog.DiagnosticSource");
             _targets.RegisterNamedType("database", "NLog.Targets.DatabaseTarget, NLog.Database");
-#if NETSTANDARD
+#if !NETFRAMEWORK
             _targets.RegisterNamedType("eventlog", "NLog.Targets.EventLogTarget, NLog.WindowsEventLog");
 #endif
             _targets.RegisterNamedType("impersonatingwrapper", "NLog.Targets.Wrappers.ImpersonatingTargetWrapper, NLog.WindowsIdentity");
