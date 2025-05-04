@@ -54,6 +54,8 @@ namespace NLog.MessageTemplates
         private LiteralHole _current;
         private const short Zero = 0;
 
+        public string Template => _template;
+
         /// <summary>
         /// Parse a template.
         /// </summary>

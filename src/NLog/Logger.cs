@@ -251,7 +251,7 @@ namespace NLog
                     logEvent.LoggerName = Name;
                 if (logEvent.FormatProvider is null)
                     logEvent.FormatProvider = Factory.DefaultCultureInfo;
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteLogEventToTargets(logEvent, targetsForLevel);
             }
         }
 
@@ -269,7 +269,7 @@ namespace NLog
                     logEvent.LoggerName = Name;
                 if (logEvent.FormatProvider is null)
                     logEvent.FormatProvider = Factory.DefaultCultureInfo;
-                WriteToTargets(wrapperType, logEvent, targetsForLevel);
+                WriteLogEventToTargets(wrapperType, logEvent, targetsForLevel);
             }
         }
 
@@ -382,44 +382,6 @@ namespace NLog
             }
         }
 
-
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified parameters.
-        /// </summary>
-        /// <param name="level">The log level.</param>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="args">Arguments to format.</param>
-        [MessageTemplateFormatMethod("message")]
-        public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
-        {
-            var targetsForLevel = GetTargetsForLevel(level);
-            if (targetsForLevel != null)
-            {
-                var logEvent = LogEventInfo.Create(level, Name, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
-                WriteToTargets(logEvent, targetsForLevel);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the specified level.
-        /// </summary>
-        /// <param name="level">The log level.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="args">Arguments to format.</param>
-        [MessageTemplateFormatMethod("message")]
-        public void Log(LogLevel level, Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
-        {
-            var targetsForLevel = GetTargetsForLevel(level);
-            if (targetsForLevel != null)
-            {
-                var logEvent = LogEventInfo.Create(level, Name, exception, Factory.DefaultCultureInfo, message, args.IsEmpty ? null : args.ToArray());
-                WriteToTargets(logEvent, targetsForLevel);
-            }
-        }
-#endif
-
         /// <summary>
         /// Writes the diagnostic message and exception at the specified level.
         /// </summary>
@@ -448,10 +410,18 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
         {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+            var targetsForLevel = GetTargetsForLevelSafe(level);
+            if (targetsForLevel != null)
+            {
+                WriteToTargetsWithSpan(targetsForLevel, level, null, formatProvider, message, argument);
+            }
+#else
             if (IsEnabled(level))
             {
                 WriteToTargets(level, formatProvider, message, new object[] { argument });
             }
+#endif
         }
 
         /// <summary>
@@ -464,10 +434,18 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument>(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
         {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+            var targetsForLevel = GetTargetsForLevelSafe(level);
+            if (targetsForLevel != null)
+            {
+                WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, argument);
+            }
+#else
             if (IsEnabled(level))
             {
                 WriteToTargets(level, message, new object[] { argument });
             }
+#endif
         }
 
         /// <summary>
@@ -483,10 +461,18 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument1, TArgument2>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
         {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+            var targetsForLevel = GetTargetsForLevelSafe(level);
+            if (targetsForLevel != null)
+            {
+                WriteToTargetsWithSpan(targetsForLevel, level, null, formatProvider, message, argument1, argument2);
+            }
+#else
             if (IsEnabled(level))
             {
                 WriteToTargets(level, formatProvider, message, new object[] { argument1, argument2 });
             }
+#endif
         }
 
         /// <summary>
@@ -501,10 +487,18 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument1, TArgument2>(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
         {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+            var targetsForLevel = GetTargetsForLevelSafe(level);
+            if (targetsForLevel != null)
+            {
+                WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, argument1, argument2);
+            }
+#else
             if (IsEnabled(level))
             {
                 WriteToTargets(level, message, new object[] { argument1, argument2 });
             }
+#endif
         }
 
         /// <summary>
@@ -522,10 +516,18 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+            var targetsForLevel = GetTargetsForLevelSafe(level);
+            if (targetsForLevel != null)
+            {
+                WriteToTargetsWithSpan(targetsForLevel, level, null, formatProvider, message, argument1, argument2, argument3);
+            }
+#else
             if (IsEnabled(level))
             {
                 WriteToTargets(level, formatProvider, message, new object[] { argument1, argument2, argument3 });
             }
+#endif
         }
 
         /// <summary>
@@ -542,11 +544,94 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+            var targetsForLevel = GetTargetsForLevelSafe(level);
+            if (targetsForLevel != null)
+            {
+                WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, argument1, argument2, argument3);
+            }
+#else
             if (IsEnabled(level))
             {
                 WriteToTargets(level, message, new object[] { argument1, argument2, argument3 });
             }
+#endif
         }
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Writes the diagnostic message at the specified level using the specified parameters.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevelSafe(level);
+            if (targetsForLevel != null)
+            {
+                WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, args);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="args">Arguments to format.</param>
+        [MessageTemplateFormatMethod("message")]
+        public void Log(LogLevel level, Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevelSafe(level);
+            if (targetsForLevel != null)
+            {
+                WriteToTargetsWithSpan(targetsForLevel, level, exception, Factory.DefaultCultureInfo, message, args);
+            }
+        }
+
+        private void WriteToTargetsWithSpan(LogLevel level, Exception exception, IFormatProvider formatProvider, string message, params ReadOnlySpan<object> args)
+        {
+            var targetsForLevel = GetTargetsForLevel(level);
+            if (targetsForLevel != null)
+            {
+                WriteToTargetsWithSpan(targetsForLevel, level, exception, formatProvider, message, args);
+            }
+        }
+
+        private void WriteToTargetsWithSpan(ITargetWithFilterChain targetsForLevel, LogLevel level, Exception exception, IFormatProvider formatProvider, string message, params ReadOnlySpan<object> args)
+        {
+            if (Factory.AutoMessageTemplateFormatter is null || !LogEventInfo.NeedToPreformatMessage(args))
+            {
+                // Deferred message formatting and capturing of Properties
+                var logEvent = LogEventInfo.Create(level, Name, exception, formatProvider, message, args.IsEmpty ? null : args.ToArray());
+                WriteLogEventToTargets(logEvent, targetsForLevel);
+            }
+            else
+            {
+                // Pre-format upfront and skip parameter-object[]-array-allocation when possible
+                var templateEnumerator = new MessageTemplates.TemplateEnumerator(message);
+                if (templateEnumerator.MoveNext() && !templateEnumerator.Current.MaybePositionalTemplate)
+                {
+                    // Convert parameters into Properties and skip Parameters-array-allocation (Like with Microsoft Extension Logging)
+                    var formattedMessage = Factory.AutoMessageTemplateFormatter.Render(ref templateEnumerator, formatProvider, in args, out var messageTemplateParameters);
+                    var logEvent = new LogEventInfo(level, Name, formattedMessage, message, messageTemplateParameters);
+                    logEvent.Exception = exception;
+                    WriteLogEventToTargets(logEvent, targetsForLevel);
+                }
+                else
+                {
+                    // Pre-format using string.Format, and provide Parameters-array for Targets that fallback to Parameters-array when no Properties
+                    var logEvent = LogEventInfo.Create(level, Name, exception, formatProvider, message, args.ToArray());
+                    logEvent.MessageFormatter = LogMessageStringFormatter.Default.MessageFormatter; // Force string.Format since confirmed
+                    WriteLogEventToTargets(logEvent, targetsForLevel);
+                }
+            }
+        }
+#endif
+        #endregion
 
         private LogEventInfo PrepareLogEventInfo(LogEventInfo logEvent)
         {
@@ -562,9 +647,6 @@ namespace NLog
             }
             return logEvent;
         }
-
-        #endregion
-
 
         /// <summary>
         /// Runs the provided action. If the action throws, the exception is logged at <c>Error</c> level. The exception is not propagated outside of this method.
@@ -718,7 +800,7 @@ namespace NLog
             if (targetsForLevel != null)
             {
                 var logEvent = LogEventInfo.Create(level, Name, formatProvider, message, args);
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteLogEventToTargets(logEvent, targetsForLevel);
             }
         }
 
@@ -730,7 +812,7 @@ namespace NLog
                 // please note that this overload calls the overload of LogEventInfo.Create with object[] parameter on purpose -
                 // to avoid unnecessary string.Format (in case of calling Create(LogLevel, string, IFormatProvider, object))
                 var logEvent = LogEventInfo.Create(level, Name, Factory.DefaultCultureInfo, message, (object[])null);
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteLogEventToTargets(logEvent, targetsForLevel);
             }
         }
 
@@ -740,7 +822,7 @@ namespace NLog
             if (targetsForLevel != null)
             {
                 var logEvent = LogEventInfo.Create(level, Name, formatProvider, value);
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteLogEventToTargets(logEvent, targetsForLevel);
             }
         }
 
@@ -753,7 +835,7 @@ namespace NLog
                 var logEvent = message is null && ex != null && !(args?.Length > 0) ?
                     LogEventInfo.Create(level, Name, ExceptionMessageFormatProvider.Instance, ex) :
                     LogEventInfo.Create(level, Name, ex, Factory.DefaultCultureInfo, message, args);
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteLogEventToTargets(logEvent, targetsForLevel);
             }
         }
 
@@ -763,11 +845,11 @@ namespace NLog
             if (targetsForLevel != null)
             {
                 var logEvent = LogEventInfo.Create(level, Name, ex, formatProvider, message, args);
-                WriteToTargets(logEvent, targetsForLevel);
+                WriteLogEventToTargets(logEvent, targetsForLevel);
             }
         }
 
-        private void WriteToTargets([NotNull] LogEventInfo logEvent, [NotNull] ITargetWithFilterChain targetsForLevel)
+        private void WriteLogEventToTargets([NotNull] LogEventInfo logEvent, [NotNull] ITargetWithFilterChain targetsForLevel)
         {
             try
             {
@@ -787,7 +869,7 @@ namespace NLog
             }
         }
 
-        private void WriteToTargets(Type wrapperType, [NotNull] LogEventInfo logEvent, [NotNull] ITargetWithFilterChain targetsForLevel)
+        private void WriteLogEventToTargets(Type wrapperType, [NotNull] LogEventInfo logEvent, [NotNull] ITargetWithFilterChain targetsForLevel)
         {
             try
             {

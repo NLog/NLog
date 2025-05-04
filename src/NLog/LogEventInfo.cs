@@ -614,15 +614,10 @@ namespace NLog
             // we need to preformat message if it contains any parameters which could possibly
             // do logging in their ToString()
             if (parameters is null || parameters.Length == 0)
-            {
                 return false;
-            }
 
             if (parameters.Length > 5)
-            {
-                // too many parameters, too costly to check
-                return true;
-            }
+                return true;    // too many parameters, too costly to check
 
             foreach (var parameter in parameters)
             {
@@ -632,6 +627,25 @@ namespace NLog
 
             return false;
         }
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        internal static bool NeedToPreformatMessage(in ReadOnlySpan<object> parameters)
+        {
+            if (parameters.IsEmpty)
+                return false;
+
+            if (parameters.Length > 5)
+                return true;    // too many parameters, too costly to check
+
+            foreach (var parameter in parameters)
+            {
+                if (!IsSafeToDeferFormatting(parameter))
+                    return true;
+            }
+
+            return false;
+        }
+#endif
 
         private static bool IsSafeToDeferFormatting(object value)
         {

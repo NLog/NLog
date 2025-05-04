@@ -69,6 +69,7 @@ namespace NLog
         internal LoggingConfiguration _config;
         internal LogMessageFormatter ActiveMessageFormatter;
         internal LogMessageFormatter SingleTargetMessageFormatter;
+        internal LogMessageTemplateFormatter AutoMessageTemplateFormatter;
         private LogLevel _globalThreshold = LogLevel.MinLevel;
         private bool _configLoaded;
         private int _supendLoggingCounter;
@@ -305,11 +306,14 @@ namespace NLog
             ActiveMessageFormatter = messageFormatter.FormatMessage;
             if (messageFormatter is LogMessageTemplateFormatter templateFormatter)
             {
-                SingleTargetMessageFormatter = new LogMessageTemplateFormatter(this, templateFormatter.EnableMessageTemplateParser == true, true).FormatMessage;
+                var logMessageTemplateFormatter = new LogMessageTemplateFormatter(this, templateFormatter.EnableMessageTemplateParser == true, true);
+                SingleTargetMessageFormatter = logMessageTemplateFormatter.FormatMessage;
+                AutoMessageTemplateFormatter = templateFormatter.EnableMessageTemplateParser == true ? null : logMessageTemplateFormatter;
             }
             else
             {
                 SingleTargetMessageFormatter = null;
+                AutoMessageTemplateFormatter = null;
             }
         }
 

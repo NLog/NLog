@@ -56,7 +56,7 @@ namespace NLog.MessageTemplates
 #endif
             Hole Hole;       // Not readonly to avoid struct-copy, and to avoid VerificationException when medium-trust AppDomain
 
-        public LiteralHole(Literal literal, Hole hole)
+        public LiteralHole(in Literal literal, in Hole hole)
         {
             Literal = literal;
             Hole = hole;

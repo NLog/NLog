@@ -252,7 +252,7 @@ namespace NLog
         {
             if (logger.IsDebugEnabled)
             {
-                logger.Debug(message, new object[] { argument });
+                logger.Debug<object>(message, argument);
             }
         }
 
@@ -271,7 +271,7 @@ namespace NLog
         {
             if (logger.IsDebugEnabled)
             {
-                logger.Debug(message, new object[] { argument1, argument2 });
+                logger.Debug<object, object>(message, argument1, argument2);
             }
         }
 
@@ -292,7 +292,7 @@ namespace NLog
         {
             if (logger.IsDebugEnabled)
             {
-                logger.Debug(message, new object[] { argument1, argument2, argument3 });
+                logger.Debug<object, object, object>(message, argument1, argument2, argument3);
             }
         }
 
@@ -419,7 +419,7 @@ namespace NLog
         {
             if (logger.IsTraceEnabled)
             {
-                logger.Trace(message, new object[] { argument });
+                logger.Trace<object>(message, argument);
             }
         }
 
@@ -438,7 +438,7 @@ namespace NLog
         {
             if (logger.IsTraceEnabled)
             {
-                logger.Trace(message, new object[] { argument1, argument2 });
+                logger.Trace<object, object>(message, argument1, argument2);
             }
         }
 
@@ -459,7 +459,7 @@ namespace NLog
         {
             if (logger.IsTraceEnabled)
             {
-                logger.Trace(message, new object[] { argument1, argument2, argument3 });
+                logger.Trace<object, object, object>(message, argument1, argument2, argument3);
             }
         }
 
