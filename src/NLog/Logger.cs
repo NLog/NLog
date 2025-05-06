@@ -689,7 +689,7 @@ namespace NLog
         /// <param name="func">Function to run.</param>
         /// <param name="fallback">Fallback value to return in case of exception.</param>
         /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
-        public T? Swallow<T>(Func<T> func, T? fallback)
+        public T? Swallow<T>(Func<T?> func, T? fallback)
         {
             try
             {

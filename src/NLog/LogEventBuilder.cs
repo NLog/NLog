@@ -392,7 +392,7 @@ namespace NLog
                 logEvent.Level = logLevel;
             }
 
-            if (logEvent.Message is null && logEvent.Exception != null && _logger.IsEnabled(logEvent.Level))
+            if ((logEvent.Message is null || ReferenceEquals(logEvent.Message, string.Empty)) && logEvent.Exception != null && _logger.IsEnabled(logEvent.Level))
             {
                 logEvent.FormatProvider = NLog.Internal.ExceptionMessageFormatProvider.Instance;
                 logEvent.Message = "{0}";

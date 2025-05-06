@@ -580,7 +580,7 @@ namespace NLog
             GetCallSiteInformationInternal().SetCallerInfo(callerClassName, callerMemberName, callerFilePath, callerLineNumber);
         }
 
-        internal void AddCachedLayoutValue(Layout layout, object value)
+        internal void AddCachedLayoutValue(Layout layout, object? value)
         {
             if (_layoutCache is null)
             {

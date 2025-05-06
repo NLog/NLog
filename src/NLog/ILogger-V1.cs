@@ -936,7 +936,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument);
+        void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string? argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level using the specified value as a parameter.
@@ -948,7 +948,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Info([Localizable(false)][StructuredMessageTemplate] string message, string argument);
+        void Info([Localizable(false)][StructuredMessageTemplate] string message, string? argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level using the specified value as a parameter and formatting it with the supplied format provider.
@@ -1564,7 +1564,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(object value);
+        void Error(object? value);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level.
@@ -1575,7 +1575,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(IFormatProvider formatProvider, object value);
+        void Error(IFormatProvider? formatProvider, object? value);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
@@ -1588,7 +1588,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2);
+        void Error([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
@@ -1602,7 +1602,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3);
+        void Error([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2, object? arg3);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter and formatting it with the supplied format provider.
@@ -1615,7 +1615,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument);
+        void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter.
@@ -1639,7 +1639,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument);
+        void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter.
@@ -1664,7 +1664,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument);
+        void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter.
@@ -1688,7 +1688,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument);
+        void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string? argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter.
@@ -1700,7 +1700,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error([Localizable(false)][StructuredMessageTemplate] string message, string argument);
+        void Error([Localizable(false)][StructuredMessageTemplate] string message, string? argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter and formatting it with the supplied format provider.
@@ -1713,7 +1713,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument);
+        void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter.
@@ -1738,7 +1738,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument);
+        void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter.
@@ -1763,7 +1763,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument);
+        void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter.
@@ -1787,7 +1787,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument);
+        void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter.
@@ -1812,7 +1812,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument);
+        void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter.
@@ -1837,7 +1837,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument);
+        void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object? argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter.
@@ -1862,7 +1862,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument);
+        void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter.
@@ -1887,7 +1887,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument);
+        void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter.
@@ -1912,7 +1912,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument);
+        void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified value as a parameter.

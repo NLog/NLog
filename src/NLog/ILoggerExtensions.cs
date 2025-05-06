@@ -54,19 +54,9 @@ namespace NLog
         /// Starts building a log event with the specified <see cref="LogLevel"/>.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
-        /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
-        public static LogEventBuilder ForLogEvent([NotNull] this ILogger logger)
-        {
-            return new LogEventBuilder(logger);
-        }
-
-        /// <summary>
-        /// Starts building a log event with the specified <see cref="LogLevel"/>.
-        /// </summary>
-        /// <param name="logger">The logger to write the log event to.</param>
         /// <param name="logLevel">The log level. When not</param>
         /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
-        public static LogEventBuilder ForLogEvent([NotNull] this ILogger logger, LogLevel logLevel)
+        public static LogEventBuilder ForLogEvent([NotNull] this ILogger logger, LogLevel? logLevel = null)
         {
             return logLevel is null ? new LogEventBuilder(logger) : new LogEventBuilder(logger, logLevel);
         }
