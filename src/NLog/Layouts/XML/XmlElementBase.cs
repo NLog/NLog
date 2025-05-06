@@ -406,7 +406,7 @@ namespace NLog.Layouts
                 return;
 
             bool checkExcludeProperties = ExcludeProperties.Count > 0;
-            using (var propertyEnumerator = logEventInfo.CreateOrUpdatePropertiesInternal().GetPropertyEnumerator())
+            using (var propertyEnumerator = logEventInfo.TryCreatePropertiesInternal().GetPropertyEnumerator())
             {
                 while (propertyEnumerator.MoveNext())
                 {

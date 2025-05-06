@@ -66,6 +66,7 @@ For all config options and platform support, check https://nlog-project.org/conf
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <EnableTrimAnalyzer Condition=" '$(TargetFramework)' == 'netstandard2.1' ">true</EnableTrimAnalyzer>
     <IsTrimmable Condition=" '$(TargetFramework)' == 'netstandard2.1' ">true</IsTrimmable>
+    <LangVersion>9</LangVersion>
     <LangVersion Condition=" '$(TargetFramework)' == 'netstandard2.1' ">13</LangVersion>
   </PropertyGroup>
 
