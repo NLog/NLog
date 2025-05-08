@@ -33,6 +33,8 @@
 
 #if !NET35 && !NET40 && !NET45
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -43,10 +45,10 @@ namespace NLog.Internal
     /// </summary>
     internal abstract class ScopeContextAsyncState : IDisposable
     {
-        public IScopeContextAsyncState Parent { get; }
+        public IScopeContextAsyncState? Parent { get; }
         private bool _disposed;
 
-        protected ScopeContextAsyncState(IScopeContextAsyncState parent)
+        protected ScopeContextAsyncState(IScopeContextAsyncState? parent)
         {
             Parent = parent;
         }
@@ -66,28 +68,28 @@ namespace NLog.Internal
     /// </summary>
     internal interface IScopeContextAsyncState : IDisposable
     {
-        IScopeContextAsyncState Parent { get; }
-        object NestedState { get; }
+        IScopeContextAsyncState? Parent { get; }
+        object? NestedState { get; }
         long NestedStateTimestamp { get; }
-        IReadOnlyCollection<KeyValuePair<string, object>> CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector);
-        IList<object> CaptureNestedContext(ref ScopeContextNestedStateCollector contextCollector);
+        IReadOnlyCollection<KeyValuePair<string, object?>>? CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector);
+        IList<object>? CaptureNestedContext(ref ScopeContextNestedStateCollector contextCollector);
     }
 
     struct ScopeContextPropertyCollector
     {
-        IReadOnlyCollection<KeyValuePair<string, object>> _allProperties;
-        List<KeyValuePair<string, object>> _propertyCollector;
+        IReadOnlyCollection<KeyValuePair<string, object?>>? _allProperties;
+        List<KeyValuePair<string, object?>> _propertyCollector;
 
         public bool IsCollectorEmpty => _allProperties is null || (_allProperties.Count == 0 && _propertyCollector is null);
 
         public bool IsCollectorInactive => _allProperties is null;
 
-        public ScopeContextPropertyCollector(List<KeyValuePair<string, object>> propertyCollector = null)
+        public ScopeContextPropertyCollector(List<KeyValuePair<string, object?>> propertyCollector)
         {
             _allProperties = _propertyCollector = propertyCollector;
         }
 
-        public IReadOnlyCollection<KeyValuePair<string, object>> StartCaptureProperties(IScopeContextAsyncState state)
+        public IReadOnlyCollection<KeyValuePair<string, object?>> StartCaptureProperties(IScopeContextAsyncState? state)
         {
             while (state != null)
             {
@@ -100,7 +102,7 @@ namespace NLog.Internal
             return CaptureCompleted(null);
         }
 
-        public IReadOnlyCollection<KeyValuePair<string, object>> CaptureCompleted(IReadOnlyCollection<KeyValuePair<string, object>> properties)
+        public IReadOnlyCollection<KeyValuePair<string, object?>> CaptureCompleted(IReadOnlyCollection<KeyValuePair<string, object?>>? properties)
         {
             if (_allProperties?.Count > 0)
             {
@@ -108,7 +110,7 @@ namespace NLog.Internal
                 {
                     if (_propertyCollector is null)
                     {
-                        return _allProperties = MergeUniqueProperties(properties);
+                        return _allProperties = MergeUniqueProperties(_allProperties, properties);
                     }
 
                     AddProperties(properties);
@@ -121,19 +123,19 @@ namespace NLog.Internal
                 if (properties?.Count > 0)
                     return _allProperties = EnsureUniqueProperties(properties);
                 else
-                    return _allProperties = Array.Empty<KeyValuePair<string, object>>();
+                    return _allProperties = Array.Empty<KeyValuePair<string, object?>>();
             }
         }
 
-        private IReadOnlyCollection<KeyValuePair<string, object>> MergeUniqueProperties(IReadOnlyCollection<KeyValuePair<string, object>> properties)
+        private static IReadOnlyCollection<KeyValuePair<string, object?>> MergeUniqueProperties(IReadOnlyCollection<KeyValuePair<string, object?>> currentProperties, IReadOnlyCollection<KeyValuePair<string, object?>> properties)
         {
-            var scopeProperties = new Dictionary<string, object>(_allProperties.Count + properties.Count, ScopeContext.DefaultComparer);
+            var scopeProperties = new Dictionary<string, object?>(currentProperties.Count + properties.Count, ScopeContext.DefaultComparer);
             ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(properties, scopeProperties);
-            ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(_allProperties, scopeProperties);
+            ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(currentProperties, scopeProperties);
             return scopeProperties;
         }
 
-        private static IReadOnlyCollection<KeyValuePair<string, object>> EnsureUniqueProperties(IReadOnlyCollection<KeyValuePair<string, object>> properties)
+        private static IReadOnlyCollection<KeyValuePair<string, object?>> EnsureUniqueProperties(IReadOnlyCollection<KeyValuePair<string, object?>> properties)
         {
             var scopePropertyCount = properties.Count;
             if (scopePropertyCount > 1)
@@ -143,9 +145,9 @@ namespace NLog.Internal
                 {
                     return properties;
                 }
-                else if (scopePropertyCount > 10 || !ScopeContextPropertyEnumerator<object>.HasUniqueCollectionKeys(properties, ScopeContext.DefaultComparer))
+                else if (scopePropertyCount > 10 || !ScopeContextPropertyEnumerator<object?>.HasUniqueCollectionKeys(properties, ScopeContext.DefaultComparer))
                 {
-                    var scopeProperties = new Dictionary<string, object>(Math.Min(scopePropertyCount, 10), ScopeContext.DefaultComparer);
+                    var scopeProperties = new Dictionary<string, object?>(Math.Min(scopePropertyCount, 10), ScopeContext.DefaultComparer);
                     ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(properties, scopeProperties);
                     return scopeProperties;
                 }
@@ -154,31 +156,31 @@ namespace NLog.Internal
             return properties;
         }
 
-        public void AddProperty(string propertyName, object propertyValue)
+        public void AddProperty(string propertyName, object? propertyValue)
         {
-            if (IsCollectorEmpty)
+            if (_allProperties is null || IsCollectorEmpty)
             {
-                _allProperties = new[] { new KeyValuePair<string, object>(propertyName, propertyValue) };
+                _allProperties = new[] { new KeyValuePair<string, object?>(propertyName, propertyValue) };
             }
             else
             {
                 if (_propertyCollector is null)
                 {
-                    _propertyCollector = new List<KeyValuePair<string, object>>(Math.Max(4, _allProperties.Count + 1));
-                    _propertyCollector.Add(new KeyValuePair<string, object>(propertyName, propertyValue));
+                    _propertyCollector = new List<KeyValuePair<string, object?>>(Math.Max(4, _allProperties.Count + 1));
+                    _propertyCollector.Add(new KeyValuePair<string, object?>(propertyName, propertyValue));
                     CollectProperties(_allProperties);
                     _allProperties = _propertyCollector;
                 }
                 else
                 {
-                    _propertyCollector.Insert(0, new KeyValuePair<string, object>(propertyName, propertyValue));
+                    _propertyCollector.Insert(0, new KeyValuePair<string, object?>(propertyName, propertyValue));
                 }
             }
         }
 
-        public void AddProperties(IReadOnlyCollection<KeyValuePair<string, object>> properties)
+        public void AddProperties(IReadOnlyCollection<KeyValuePair<string, object?>> properties)
         {
-            if (IsCollectorEmpty)
+            if (_allProperties is null || IsCollectorEmpty)
             {
                 _allProperties = properties;
             }
@@ -186,7 +188,7 @@ namespace NLog.Internal
             {
                 if (_propertyCollector is null)
                 {
-                    _propertyCollector = new List<KeyValuePair<string, object>>(Math.Max(4, _allProperties.Count + properties.Count));
+                    _propertyCollector = new List<KeyValuePair<string, object?>>(Math.Max(4, _allProperties.Count + properties.Count));
                     CollectProperties(properties);
                     CollectProperties(_allProperties);
                     _allProperties = _propertyCollector;
@@ -198,7 +200,7 @@ namespace NLog.Internal
                 else
                 {
                     int insertPosition = 0;
-                    using (var scopeEnumerator = new ScopeContextPropertyEnumerator<object>(properties))
+                    using (var scopeEnumerator = new ScopeContextPropertyEnumerator<object?>(properties))
                     {
                         while (scopeEnumerator.MoveNext())
                         {
@@ -210,9 +212,9 @@ namespace NLog.Internal
             }
         }
 
-        private void CollectProperties(IReadOnlyCollection<KeyValuePair<string, object>> properties)
+        private void CollectProperties(IReadOnlyCollection<KeyValuePair<string, object?>> properties)
         {
-            using (var scopeEnumerator = new ScopeContextPropertyEnumerator<object>(properties))
+            using (var scopeEnumerator = new ScopeContextPropertyEnumerator<object?>(properties))
             {
                 while (scopeEnumerator.MoveNext())
                 {
@@ -232,7 +234,7 @@ namespace NLog.Internal
 
         public bool IsCollectorInactive => _allNestedStates is null;
 
-        public IList<object> StartCaptureNestedStates(IScopeContextAsyncState state)
+        public IList<object> StartCaptureNestedStates(IScopeContextAsyncState? state)
         {
             _allNestedStates = _allNestedStates ?? Array.Empty<object>();
 
@@ -277,47 +279,51 @@ namespace NLog.Internal
     {
         private readonly T _value;
 
-        public ScopedContextNestedAsyncState(IScopeContextAsyncState parent, T state)
+        public ScopedContextNestedAsyncState(IScopeContextAsyncState? parent, T state)
             : base(parent)
         {
             NestedStateTimestamp = ScopeContext.GetNestedContextTimestampNow();
             _value = state;
         }
 
-        object IScopeContextAsyncState.NestedState => _value;
+        object? IScopeContextAsyncState.NestedState => _value;
 
         public long NestedStateTimestamp { get; }
 
-        IList<object> IScopeContextAsyncState.CaptureNestedContext(ref ScopeContextNestedStateCollector contextCollector)
+        IList<object>? IScopeContextAsyncState.CaptureNestedContext(ref ScopeContextNestedStateCollector contextCollector)
         {
+            object? objectValue = _value;
+
             if (contextCollector.IsCollectorEmpty)
             {
                 if (Parent is null)
                 {
-                    return new object[] { _value }; // We are done
+                    return objectValue is null ? Array.Empty<object>() : new object[] { objectValue }; // We are done
                 }
                 else if (contextCollector.IsCollectorInactive)
                 {
-                    contextCollector.PushNestedState(_value);   // Mark as active
+                    if (objectValue is not null)
+                        contextCollector.PushNestedState(objectValue);   // Mark as active
                     return contextCollector.StartCaptureNestedStates(Parent);
                 }
             }
 
-            contextCollector.PushNestedState(_value);
+            if (objectValue is not null)
+                contextCollector.PushNestedState(objectValue);
             return null;    // continue with parent
         }
 
-        IReadOnlyCollection<KeyValuePair<string, object>> IScopeContextAsyncState.CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
+        IReadOnlyCollection<KeyValuePair<string, object?>>? IScopeContextAsyncState.CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
         {
             if (contextCollector.IsCollectorInactive)
             {
                 if (Parent is null)
                 {
-                    return Array.Empty<KeyValuePair<string, object>>(); // We are done
+                    return Array.Empty<KeyValuePair<string, object?>>(); // We are done
                 }
                 else
                 {
-                    contextCollector.AddProperties(Array.Empty<KeyValuePair<string, object>>());    // Mark as active
+                    contextCollector.AddProperties(Array.Empty<KeyValuePair<string, object?>>());    // Mark as active
                     return contextCollector.StartCaptureProperties(Parent);   // Start parent enumeration
                 }
             }
@@ -339,19 +345,19 @@ namespace NLog.Internal
     internal sealed class ScopeContextPropertyAsyncState<TValue> : ScopeContextAsyncState, IScopeContextPropertiesAsyncState
     {
         long IScopeContextAsyncState.NestedStateTimestamp => 0;
-        object IScopeContextAsyncState.NestedState => null;
+        object? IScopeContextAsyncState.NestedState => null;
         public string Name { get; }
-        public TValue Value { get; }
-        private IReadOnlyCollection<KeyValuePair<string, object>> _allProperties;
+        public TValue? Value { get; }
+        private IReadOnlyCollection<KeyValuePair<string, object?>>? _allProperties;
 
-        public ScopeContextPropertyAsyncState(IScopeContextAsyncState parent, string name, TValue value)
+        public ScopeContextPropertyAsyncState(IScopeContextAsyncState? parent, string name, TValue? value)
             : base(parent)
         {
             Name = name;
             Value = value;
         }
 
-        IList<object> IScopeContextAsyncState.CaptureNestedContext(ref ScopeContextNestedStateCollector contextCollector)
+        IList<object>? IScopeContextAsyncState.CaptureNestedContext(ref ScopeContextNestedStateCollector contextCollector)
         {
             if (contextCollector.IsCollectorInactive)
             {
@@ -368,7 +374,7 @@ namespace NLog.Internal
             return null;    // Continue with Parent
         }
 
-        IReadOnlyCollection<KeyValuePair<string, object>> IScopeContextAsyncState.CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
+        IReadOnlyCollection<KeyValuePair<string, object?>>? IScopeContextAsyncState.CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
         {
             if (contextCollector.IsCollectorEmpty)
             {
@@ -402,35 +408,37 @@ namespace NLog.Internal
     /// <summary>
     /// Immutable state for ScopeContext Multiple Properties (MDLC)
     /// </summary>
-    internal sealed class ScopeContextPropertiesAsyncState<TValue> : ScopeContextAsyncState, IScopeContextPropertiesAsyncState, IReadOnlyCollection<KeyValuePair<string, object>>
+    internal sealed class ScopeContextPropertiesAsyncState<TValue> : ScopeContextAsyncState, IScopeContextPropertiesAsyncState, IReadOnlyCollection<KeyValuePair<string, object?>>
     {
         public long NestedStateTimestamp { get; }
-        public object NestedState { get; }
+        public object? NestedState { get; }
 
-        private readonly IReadOnlyCollection<KeyValuePair<string, TValue>> _scopeProperties;
-        private IReadOnlyCollection<KeyValuePair<string, object>> _allProperties;
+        private readonly IReadOnlyCollection<KeyValuePair<string, TValue?>> _scopeProperties;
+        private IReadOnlyCollection<KeyValuePair<string, object?>>? _allProperties;
 
-        public ScopeContextPropertiesAsyncState(IScopeContextAsyncState parent, Dictionary<string, object> allProperties)
+        public ScopeContextPropertiesAsyncState(IScopeContextAsyncState? parent, Dictionary<string, object?> allProperties)
             : base(parent)
         {
             _allProperties = allProperties; // Collapsed dictionary that includes all properties from parent scopes with case-insensitive-comparer
+            _scopeProperties = Array.Empty<KeyValuePair<string, TValue?>>();
         }
 
-        public ScopeContextPropertiesAsyncState(IScopeContextAsyncState parent, Dictionary<string, object> allProperties, object nestedState)
+        public ScopeContextPropertiesAsyncState(IScopeContextAsyncState? parent, Dictionary<string, object?> allProperties, object? nestedState)
             : base(parent)
         {
             _allProperties = allProperties; // Collapsed dictionary that includes all properties from parent scopes with case-insensitive-comparer
+            _scopeProperties = Array.Empty<KeyValuePair<string, TValue?>>();
             NestedState = nestedState;
             NestedStateTimestamp = ScopeContext.GetNestedContextTimestampNow();
         }
 
-        public ScopeContextPropertiesAsyncState(IScopeContextAsyncState parent, IReadOnlyCollection<KeyValuePair<string, TValue>> scopeProperties)
+        public ScopeContextPropertiesAsyncState(IScopeContextAsyncState? parent, IReadOnlyCollection<KeyValuePair<string, TValue?>> scopeProperties)
             : base(parent)
         {
             _scopeProperties = scopeProperties;
         }
 
-        public ScopeContextPropertiesAsyncState(IScopeContextAsyncState parent, IReadOnlyCollection<KeyValuePair<string, TValue>> scopeProperties, object nestedState)
+        public ScopeContextPropertiesAsyncState(IScopeContextAsyncState? parent, IReadOnlyCollection<KeyValuePair<string, TValue?>> scopeProperties, object? nestedState)
             : base(parent)
         {
             _scopeProperties = scopeProperties;
@@ -438,7 +446,7 @@ namespace NLog.Internal
             NestedStateTimestamp = ScopeContext.GetNestedContextTimestampNow();
         }
 
-        IList<object> IScopeContextAsyncState.CaptureNestedContext(ref ScopeContextNestedStateCollector contextCollector)
+        IList<object>? IScopeContextAsyncState.CaptureNestedContext(ref ScopeContextNestedStateCollector contextCollector)
         {
             if (NestedState is null)
             {
@@ -467,13 +475,13 @@ namespace NLog.Internal
             }
         }
 
-        IReadOnlyCollection<KeyValuePair<string, object>> IScopeContextAsyncState.CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
+        IReadOnlyCollection<KeyValuePair<string, object?>>? IScopeContextAsyncState.CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
         {
             if (contextCollector.IsCollectorEmpty)
             {
                 if (_allProperties is null)
                 {
-                    contextCollector.AddProperties(_scopeProperties as IReadOnlyCollection<KeyValuePair<string, object>> ?? this);
+                    contextCollector.AddProperties(_scopeProperties as IReadOnlyCollection<KeyValuePair<string, object?>> ?? this);
                     _allProperties = contextCollector.StartCaptureProperties(Parent); // Capture all properties from parents
                 }
                 return _allProperties;  // We are done
@@ -482,7 +490,7 @@ namespace NLog.Internal
             {
                 if (_allProperties is null)
                 {
-                    contextCollector.AddProperties(_scopeProperties as IReadOnlyCollection<KeyValuePair<string, object>> ?? this);
+                    contextCollector.AddProperties(_scopeProperties as IReadOnlyCollection<KeyValuePair<string, object?>> ?? this);
                     return null;    // Continue with Parent
                 }
                 else
@@ -499,9 +507,9 @@ namespace NLog.Internal
 
         public int Count => _scopeProperties.Count;
 
-        IEnumerator<KeyValuePair<string, object>> IEnumerable<KeyValuePair<string, object>>.GetEnumerator() => new ScopeContextPropertyEnumerator<TValue>(_scopeProperties);
+        IEnumerator<KeyValuePair<string, object?>> IEnumerable<KeyValuePair<string, object?>>.GetEnumerator() => new ScopeContextPropertyEnumerator<TValue?>(_scopeProperties);
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => new ScopeContextPropertyEnumerator<TValue>(_scopeProperties);
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => new ScopeContextPropertyEnumerator<TValue?>(_scopeProperties);
     }
 
     /// <summary>
@@ -511,10 +519,10 @@ namespace NLog.Internal
     internal sealed class ScopeContextLegacyAsyncState : ScopeContextAsyncState, IScopeContextAsyncState
     {
         public object[] NestedContext { get; }
-        public IReadOnlyCollection<KeyValuePair<string, object>> MappedContext { get; }
+        public IReadOnlyCollection<KeyValuePair<string, object?>>? MappedContext { get; }
         public long NestedStateTimestamp { get; }
 
-        public ScopeContextLegacyAsyncState(IReadOnlyCollection<KeyValuePair<string, object>> allProperties, object[] nestedContext, long nestedContextTimestamp)
+        public ScopeContextLegacyAsyncState(IReadOnlyCollection<KeyValuePair<string, object?>>? allProperties, object[] nestedContext, long nestedContextTimestamp)
             : base(null) // Always top parent
         {
             MappedContext = allProperties;
@@ -522,13 +530,13 @@ namespace NLog.Internal
             NestedStateTimestamp = nestedContextTimestamp;
         }
 
-        public static void CaptureLegacyContext(IScopeContextAsyncState contextState, out Dictionary<string, object> allProperties, out object[] nestedContext, out long nestedContextTimestamp)
+        public static void CaptureLegacyContext(IScopeContextAsyncState? contextState, out Dictionary<string, object?> allProperties, out object[] nestedContext, out long nestedContextTimestamp)
         {
             var nestedStateCollector = new ScopeContextNestedStateCollector();
             var propertyCollector = new ScopeContextPropertyCollector();
             var nestedStates = contextState?.CaptureNestedContext(ref nestedStateCollector) ?? Array.Empty<object>();
-            var scopeProperties = contextState?.CaptureContextProperties(ref propertyCollector) ?? Array.Empty<KeyValuePair<string, object>>();
-            allProperties = new Dictionary<string, object>(scopeProperties.Count, ScopeContext.DefaultComparer);
+            var scopeProperties = contextState?.CaptureContextProperties(ref propertyCollector) ?? Array.Empty<KeyValuePair<string, object?>>();
+            allProperties = new Dictionary<string, object?>(scopeProperties.Count, ScopeContext.DefaultComparer);
             ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(scopeProperties, allProperties);
 
             nestedContextTimestamp = 0L;
@@ -545,9 +553,7 @@ namespace NLog.Internal
                 if (nestedContextTimestamp == 0L)
                     nestedContextTimestamp = ScopeContext.GetNestedContextTimestampNow();
 
-                nestedContext = nestedStates as object[];
-                if (nestedContext == null)
-                    nestedContext = System.Linq.Enumerable.ToArray(nestedStates);
+                nestedContext = nestedStates as object[] ?? System.Linq.Enumerable.ToArray(nestedStates);
             }
             else
             {
@@ -555,7 +561,7 @@ namespace NLog.Internal
             }
         }
 
-        object IScopeContextAsyncState.NestedState => NestedContext?.Length > 0 ? NestedContext[0] : null;
+        object? IScopeContextAsyncState.NestedState => NestedContext?.Length > 0 ? NestedContext[0] : null;
 
         IList<object> IScopeContextAsyncState.CaptureNestedContext(ref ScopeContextNestedStateCollector contextCollector)
         {
@@ -581,7 +587,7 @@ namespace NLog.Internal
             }
         }
 
-        IReadOnlyCollection<KeyValuePair<string, object>> IScopeContextAsyncState.CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
+        IReadOnlyCollection<KeyValuePair<string, object?>>? IScopeContextAsyncState.CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
         {
             if (contextCollector.IsCollectorEmpty)
             {

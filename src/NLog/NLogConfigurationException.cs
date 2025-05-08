@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog
 {
     using System;
@@ -70,7 +72,7 @@ namespace NLog
         [Obsolete("Instead use string interpolation. Marked obsolete with NLog 5.0")]
         [StringFormatMethod("message")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public NLogConfigurationException(string message, params object[] messageParameters)
+        public NLogConfigurationException(string message, params object?[] messageParameters)
             : base(string.Format(message, messageParameters))
         {
         }
@@ -85,7 +87,7 @@ namespace NLog
         [Obsolete("Instead use string interpolation. Marked obsolete with NLog 5.0")]
         [StringFormatMethod("message")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public NLogConfigurationException(Exception innerException, string message, params object[] messageParameters)
+        public NLogConfigurationException(Exception? innerException, string message, params object?[] messageParameters)
             : base(string.Format(message, messageParameters), innerException)
         {
         }
@@ -95,7 +97,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="innerException">The inner exception.</param>
-        public NLogConfigurationException(string message, Exception innerException)
+        public NLogConfigurationException(string message, Exception? innerException)
             : base(message, innerException)
         {
         }

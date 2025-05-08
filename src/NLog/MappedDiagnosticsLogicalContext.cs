@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog
 {
     using System;
@@ -71,7 +73,7 @@ namespace NLog
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
         /// <remarks>If <paramref name="formatProvider"/> is <c>null</c> and the value isn't a <see cref="string"/> already, this call locks the <see cref="LogFactory"/> for reading the <see cref="Config.LoggingConfiguration.DefaultCultureInfo"/> needed for converting to <see cref="string"/>. </remarks>
         [Obsolete("Replaced by ScopeContext.TryGetProperty. Marked obsolete on NLog 5.0")]
-        public static string Get(string item, IFormatProvider formatProvider)
+        public static string Get(string item, IFormatProvider? formatProvider)
         {
             return FormatHelper.ConvertToString(GetObject(item), formatProvider);
         }
@@ -82,8 +84,9 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
         [Obsolete("Replaced by ScopeContext.TryGetProperty. Marked obsolete on NLog 5.0")]
-        public static object GetObject(string item)
+        public static object? GetObject(string item)
         {
+            Guard.ThrowIfNull(item);
             if (ScopeContext.TryGetProperty(item, out var value))
                 return value;
             else
@@ -97,8 +100,9 @@ namespace NLog
         /// <param name="value">Item value.</param>
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
         [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
-        public static IDisposable SetScoped(string item, string value)
+        public static IDisposable SetScoped(string item, string? value)
         {
+            Guard.ThrowIfNull(item);
             return SetScoped<string>(item, value);
         }
 
@@ -109,8 +113,9 @@ namespace NLog
         /// <param name="value">Item value.</param>
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
         [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
-        public static IDisposable SetScoped(string item, object value)
+        public static IDisposable SetScoped(string item, object? value)
         {
+            Guard.ThrowIfNull(item);
             return SetScoped<object>(item, value);
         }
 
@@ -121,8 +126,9 @@ namespace NLog
         /// <param name="value">Item value.</param>
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
         [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
-        public static IDisposable SetScoped<T>(string item, T value)
+        public static IDisposable SetScoped<T>(string item, T? value)
         {
+            Guard.ThrowIfNull(item);
             return ScopeContext.PushProperty(item, value);
         }
 
@@ -133,7 +139,7 @@ namespace NLog
         /// <param name="items">.</param>
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context (null if no items).</returns>
         [Obsolete("Replaced by ScopeContext.PushProperties or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
-        public static IDisposable SetScoped(IReadOnlyList<KeyValuePair<string, object>> items)
+        public static IDisposable SetScoped(IReadOnlyList<KeyValuePair<string, object?>> items)
         {
             return ScopeContext.PushProperties(items);
         }
@@ -144,7 +150,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
         [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
-        public static void Set(string item, string value)
+        public static void Set(string item, string? value)
         {
             Set<string>(item, value);
         }
@@ -155,7 +161,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
         [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
-        public static void Set(string item, object value)
+        public static void Set(string item, object? value)
         {
             Set<object>(item, value);
         }
@@ -166,8 +172,9 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
         [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
-        public static void Set<T>(string item, T value)
+        public static void Set<T>(string item, T? value)
         {
+            Guard.ThrowIfNull(item);
             ScopeContext.SetMappedContextLegacy(item, value);
         }
 
@@ -189,6 +196,7 @@ namespace NLog
         [Obsolete("Replaced by ScopeContext.TryGetProperty. Marked obsolete on NLog 5.0")]
         public static bool Contains(string item)
         {
+            Guard.ThrowIfNull(item);
             return ScopeContext.TryGetProperty(item, out var _);
         }
 
@@ -199,6 +207,7 @@ namespace NLog
         [Obsolete("Replaced by dispose of return value from ScopeContext.PushProperty. Marked obsolete on NLog 5.0")]
         public static void Remove(string item)
         {
+            Guard.ThrowIfNull(item);
             ScopeContext.RemoveMappedContextLegacy(item);
         }
 

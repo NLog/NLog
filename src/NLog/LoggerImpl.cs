@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog
 {
     using System;
@@ -59,7 +61,7 @@ namespace NLog
                 bool attemptCallSiteOptimization = targetsForLevel.TryCallSiteClassNameOptimization(stu, logEvent);
                 if (attemptCallSiteOptimization && targetsForLevel.TryLookupCallSiteClassName(logEvent, out string callSiteClassName))
                 {
-                    logEvent.CallSiteInformation.CallerClassName = callSiteClassName;
+                    logEvent.GetCallSiteInformationInternal().CallerClassName = callSiteClassName;
                 }
                 else if (attemptCallSiteOptimization || targetsForLevel.MustCaptureStackTrace(stu, logEvent))
                 {

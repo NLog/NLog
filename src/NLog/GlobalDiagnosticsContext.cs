@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog
 {
     using System;
@@ -44,17 +46,17 @@ namespace NLog
     public static class GlobalDiagnosticsContext
     {
         private static readonly object _lockObject = new object();
-        private static Dictionary<string, object> _dict = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
-        private static Dictionary<string, object> _dictReadOnly;  // Reset cache on change
+        private static Dictionary<string, object?> _dict = new Dictionary<string, object?>(StringComparer.OrdinalIgnoreCase);
+        private static Dictionary<string, object?>? _dictReadOnly;  // Reset cache on change
 
         /// <summary>
         /// Sets the value with the specified key in the Global Diagnostics Context (GDC) dictionary
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
-        public static void Set(string item, string value)
+        public static void Set(string item, string? value)
         {
-            Set(item, (object)value);
+            Set(item, (object?)value);
         }
 
         /// <summary>
@@ -62,8 +64,9 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
-        public static void Set(string item, object value)
+        public static void Set(string item, object? value)
         {
+            Guard.ThrowIfNull(item);
             lock (_lockObject)
             {
                 GetWritableDict()[item] = value;
@@ -78,6 +81,7 @@ namespace NLog
         /// <remarks>If the value isn't a <see cref="string"/> already, this call locks the <see cref="LogFactory"/> for reading the <see cref="LoggingConfiguration.DefaultCultureInfo"/> needed for converting to <see cref="string"/>. </remarks>
         public static string Get(string item)
         {
+            Guard.ThrowIfNull(item);
             return Get(item, null);
         }
 
@@ -88,8 +92,9 @@ namespace NLog
         /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the item's value to a string.</param>
         /// <returns>The value of <paramref name="item"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
         /// <remarks>If <paramref name="formatProvider"/> is <c>null</c> and the value isn't a <see cref="string"/> already, this call locks the <see cref="LogFactory"/> for reading the <see cref="LoggingConfiguration.DefaultCultureInfo"/> needed for converting to <see cref="string"/>. </remarks>
-        public static string Get(string item, IFormatProvider formatProvider)
+        public static string Get(string item, IFormatProvider? formatProvider)
         {
+            Guard.ThrowIfNull(item);
             return FormatHelper.ConvertToString(GetObject(item), formatProvider);
         }
 
@@ -98,8 +103,9 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <returns>The item value, if defined; otherwise <c>null</c>.</returns>
-        public static object GetObject(string item)
+        public static object? GetObject(string item)
         {
+            Guard.ThrowIfNull(item);
             GetReadOnlyDict().TryGetValue(item, out var o);
             return o;
         }
@@ -120,6 +126,7 @@ namespace NLog
         /// <returns>A boolean indicating whether the specified item exists in current thread GDC.</returns>
         public static bool Contains(string item)
         {
+            Guard.ThrowIfNull(item);
             return GetReadOnlyDict().ContainsKey(item);
         }
 
@@ -129,6 +136,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
+            Guard.ThrowIfNull(item);
             lock (_lockObject)
             {
                 if (_dict.ContainsKey(item))
@@ -152,7 +160,7 @@ namespace NLog
             }
         }
 
-        internal static Dictionary<string, object> GetReadOnlyDict()
+        internal static Dictionary<string, object?> GetReadOnlyDict()
         {
             var readOnly = _dictReadOnly;
             if (readOnly is null)
@@ -165,20 +173,20 @@ namespace NLog
             return readOnly;
         }
 
-        private static Dictionary<string, object> GetWritableDict(bool clearDictionary = false)
+        private static Dictionary<string, object?> GetWritableDict(bool clearDictionary = false)
         {
             if (_dictReadOnly != null)
             {
-                Dictionary<string, object> newDict = CopyDictionaryOnWrite(clearDictionary);
+                Dictionary<string, object?> newDict = CopyDictionaryOnWrite(clearDictionary);
                 _dict = newDict;
                 _dictReadOnly = null;
             }
             return _dict;
         }
 
-        private static Dictionary<string, object> CopyDictionaryOnWrite(bool clearDictionary)
+        private static Dictionary<string, object?> CopyDictionaryOnWrite(bool clearDictionary)
         {
-            var newDict = new Dictionary<string, object>(clearDictionary ? 0 : _dict.Count + 1, _dict.Comparer);
+            var newDict = new Dictionary<string, object?>(clearDictionary ? 0 : _dict.Count + 1, _dict.Comparer);
             if (!clearDictionary)
             {
                 // Less allocation with enumerator than Dictionary-constructor

@@ -206,7 +206,7 @@ namespace NLog
         /// <param name="scopeProperties">Properties being added to the scope dictionary</param>
         /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
         /// <remarks><see cref="ScopeContext"/> property-dictionary-keys are case-insensitive</remarks>
-        public IDisposable PushScopeProperties(IReadOnlyCollection<KeyValuePair<string, object>> scopeProperties)
+        public IDisposable PushScopeProperties(IReadOnlyCollection<KeyValuePair<string, object?>> scopeProperties)
         {
             return ScopeContext.PushProperties(scopeProperties);
         }
@@ -217,7 +217,7 @@ namespace NLog
         /// <param name="scopeProperties">Properties being added to the scope dictionary</param>
         /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
         /// <remarks><see cref="ScopeContext"/> property-dictionary-keys are case-insensitive</remarks>
-        public IDisposable PushScopeProperties<TValue>(IReadOnlyCollection<KeyValuePair<string, TValue>> scopeProperties)
+        public IDisposable PushScopeProperties<TValue>(IReadOnlyCollection<KeyValuePair<string, TValue?>> scopeProperties)
         {
             return ScopeContext.PushProperties(scopeProperties);
         }
@@ -228,7 +228,7 @@ namespace NLog
         /// </summary>
         /// <param name="nestedState">Value to added to the scope stack</param>
         /// <returns>A disposable object that pops the nested scope state on dispose.</returns>
-        public IDisposable PushScopeNested<T>(T? nestedState)
+        public IDisposable PushScopeNested<T>(T nestedState)
         {
             return ScopeContext.PushNestedState(nestedState);
         }
@@ -238,7 +238,7 @@ namespace NLog
         /// </summary>
         /// <param name="nestedState">Value to added to the scope stack</param>
         /// <returns>A disposable object that pops the nested scope state on dispose.</returns>
-        public IDisposable PushScopeNested(object? nestedState)
+        public IDisposable PushScopeNested(object nestedState)
         {
             return ScopeContext.PushNestedState(nestedState);
         }

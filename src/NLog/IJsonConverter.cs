@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog
 {
     /// <summary>
@@ -44,6 +46,6 @@ namespace NLog
         /// <param name="value">The object to serialize to JSON.</param>
         /// <param name="builder">Output destination.</param>
         /// <returns>Serialize succeeded (true/false)</returns>
-        bool SerializeObject(object value, System.Text.StringBuilder builder);
+        bool SerializeObject(object? value, System.Text.StringBuilder builder);
     }
 }

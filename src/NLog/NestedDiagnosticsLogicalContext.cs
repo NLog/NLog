@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
 
 namespace NLog
 {
@@ -75,7 +76,7 @@ namespace NLog
         /// <returns>The top message which is no longer on the stack.</returns>
         /// <remarks>this methods returns a object instead of string, this because of backwards-compatibility</remarks>
         [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeNested. Marked obsolete on NLog 5.0")]
-        public static object Pop()
+        public static object? Pop()
         {
             return PopObject();
         }
@@ -96,7 +97,7 @@ namespace NLog
         /// </summary>
         /// <returns>The object from the top of the NDLC stack, if defined; otherwise <c>null</c>.</returns>
         [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeNested. Marked obsolete on NLog 5.0")]
-        public static object PopObject()
+        public static object? PopObject()
         {
             return ScopeContext.PopNestedContextLegacy();
         }
@@ -106,7 +107,7 @@ namespace NLog
         /// </summary>
         /// <returns>The object from the top of the NDLC stack, if defined; otherwise <c>null</c>.</returns>
         [Obsolete("Replaced by ScopeContext.PeekNestedState. Marked obsolete on NLog 5.0")]
-        public static object PeekObject()
+        public static object? PeekObject()
         {
             return ScopeContext.PeekNestedState();
         }
@@ -136,7 +137,7 @@ namespace NLog
         /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting a value to a string.</param>
         /// <returns>Array of strings.</returns>
         [Obsolete("Replaced by ScopeContext.GetAllNestedStates. Marked obsolete on NLog 5.0")]
-        public static string[] GetAllMessages(IFormatProvider formatProvider)
+        public static string[] GetAllMessages(IFormatProvider? formatProvider)
         {
             return GetAllObjects().Select((o) => FormatHelper.ConvertToString(o, formatProvider)).ToArray();
         }
@@ -156,7 +157,7 @@ namespace NLog
         {
             INestedContext Parent { get; }
             int FrameLevel { get; }
-            object Value { get; }
+            object? Value { get; }
             long CreatedTimeUtcTicks { get; }
         }
 
@@ -172,11 +173,11 @@ namespace NLog
             public int FrameLevel { get; }
             private int _disposed;
 
-            object INestedContext.Value
+            object? INestedContext.Value
             {
                 get
                 {
-                    object value = Value;
+                    object? value = Value;
 #if NET35 || NET40 || NET45
                     if (value is ObjectHandleSerializer objectHandle)
                     {
@@ -205,7 +206,7 @@ namespace NLog
 
             public override string ToString()
             {
-                object value = Value;
+                object? value = Value;
                 return value?.ToString() ?? "null";
             }
         }

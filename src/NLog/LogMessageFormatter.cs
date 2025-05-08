@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog
 {
     /// <summary>
@@ -38,5 +40,5 @@ namespace NLog
     /// </summary>
     /// <param name="logEvent">Log event.</param>
     /// <returns>Formatted message</returns>
-    public delegate string LogMessageFormatter(LogEventInfo logEvent);
+    public delegate string? LogMessageFormatter(LogEventInfo logEvent);
 }
