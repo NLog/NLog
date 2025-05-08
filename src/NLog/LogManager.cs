@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog
 {
     using System;
@@ -54,7 +56,7 @@ namespace NLog
         /// Gets the <see cref="NLog.LogFactory" /> instance used in the <see cref="LogManager"/>.
         /// </summary>
         public static LogFactory LogFactory => _logFactory ?? CreateLogFactorySingleton();
-        private static LogFactory _logFactory;
+        private static LogFactory? _logFactory;
 
         private static LogFactory CreateLogFactorySingleton()
         {
@@ -126,7 +128,7 @@ namespace NLog
         /// <remarks>
         /// Setter will re-configure all <see cref="Logger"/>-objects, so no need to also call <see cref="ReconfigExistingLoggers()" />
         /// </remarks>
-        public static LoggingConfiguration Configuration
+        public static LoggingConfiguration? Configuration
         {
             get => LogFactory.Configuration;
             set => LogFactory.Configuration = value;

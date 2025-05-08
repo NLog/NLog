@@ -31,10 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using NLog.Internal;
 
     /// <summary>
@@ -44,7 +47,7 @@ namespace NLog.Config
     {
         private readonly Dictionary<Type, Func<object>> _creatorMap = new Dictionary<Type, Func<object>>();
         private readonly object _lockObject = new object();
-        public event EventHandler<ServiceRepositoryUpdateEventArgs> TypeRegistered;
+        public event EventHandler<ServiceRepositoryUpdateEventArgs>? TypeRegistered;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceRepositoryInternal"/> class.
@@ -69,18 +72,18 @@ namespace NLog.Config
 
         public override object GetService(Type serviceType)
         {
-            object serviceInstance = TryGetService(serviceType);
+            object? serviceInstance = TryGetService(serviceType);
             if (serviceInstance is null)
                 throw new NLogDependencyResolveException("Type not registered in Service Provider", serviceType);
 
             return serviceInstance;
         }
 
-        private object TryGetService(Type serviceType)
+        private object? TryGetService(Type serviceType)
         {
             Guard.ThrowIfNull(serviceType);
 
-            Func<object> objectResolver = null;
+            Func<object>? objectResolver = null;
             lock (_lockObject)
             {
                 _creatorMap.TryGetValue(serviceType, out objectResolver);
@@ -89,10 +92,16 @@ namespace NLog.Config
             return objectResolver?.Invoke();
         }
 
-        internal override bool TryGetService<T>(out T serviceInstance)
+        internal override bool TryGetService<T>([NotNullWhen(returnValue: true)] out T? serviceInstance) where T : class
         {
-            serviceInstance = TryGetService(typeof(T)) as T;
-            return !(serviceInstance is null);
+            if (TryGetService(typeof(T)) is T service)
+            {
+                serviceInstance = service;
+                return true;
+            }
+
+            serviceInstance = default(T);
+            return false;
         }
     }
 }

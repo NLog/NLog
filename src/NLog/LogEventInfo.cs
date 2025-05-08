@@ -387,7 +387,7 @@ namespace NLog
             }
             else if (templateParameters != null)
             {
-                properties.MessageProperties = templateParameters;
+                properties.ResetMessageProperties(templateParameters);
             }
             return properties;
         }
@@ -795,7 +795,7 @@ namespace NLog
 
             if (HasMessageTemplateParameters)
             {
-                _properties.MessageProperties = null;
+                _properties.ResetMessageProperties();
                 return true;
             }
 

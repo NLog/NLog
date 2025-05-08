@@ -231,7 +231,7 @@ namespace NLog.Targets
         /// Obsolete and only here for Legacy reasons, instead use <see cref="ArchiveSuffixFormat"/>.
         /// </summary>
         /// <docgen category='Archival Options' order='50' />
-        [Obsolete("Instead use ArchiveSuffixFormat")]
+        [Obsolete("Instead use ArchiveSuffixFormat. Marked obsolete with NLog 6.0")]
         public string ArchiveDateFormat
         {
             get => _archiveDateFormat;
@@ -365,7 +365,7 @@ namespace NLog.Targets
         /// Obsolete and only here for Legacy reasons, instead use <see cref="ArchiveSuffixFormat"/>.
         /// </summary>
         /// <docgen category='Archival Options' order='50' />
-        [Obsolete("Instead use ArchiveSuffixFormat")]
+        [Obsolete("Instead use ArchiveSuffixFormat. Marked obsolete with NLog 6.0")]
         public string ArchiveNumbering
         {
             get => _archiveNumbering ?? "Sequence";
