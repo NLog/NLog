@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog
 {
     using System;
@@ -55,7 +57,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, object value)
+        public void Log(LogLevel level, object? value)
         {
             if (IsEnabled(level))
             {
@@ -73,7 +75,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, IFormatProvider formatProvider, object value)
+        public void Log(LogLevel level, IFormatProvider? formatProvider, object? value)
         {
             if (IsEnabled(level))
             {
@@ -93,7 +95,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2)
+        public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2)
         {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             var targetsForLevel = GetTargetsForLevelSafe(level);
@@ -122,7 +124,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3)
+        public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2, object? arg3)
         {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             var targetsForLevel = GetTargetsForLevelSafe(level);
@@ -150,7 +152,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
+        public void Log(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
             if (IsEnabled(level))
             {
@@ -189,7 +191,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
+        public void Log(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
             if (IsEnabled(level))
             {
@@ -228,7 +230,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
+        public void Log(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
             if (IsEnabled(level))
             {
@@ -267,11 +269,11 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void Log(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, formatProvider, message, new object[] { argument });
+                WriteToTargets(level, formatProvider, message, new object?[] { argument });
             }
         }
 
@@ -286,11 +288,11 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object?[] { argument });
             }
         }
 
@@ -306,7 +308,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, int argument)
+        public void Log(LogLevel level, IFormatProvider? formatProvider, string message, int argument)
         {
             if (IsEnabled(level))
             {
@@ -345,7 +347,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
+        public void Log(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
             if (IsEnabled(level))
             {
@@ -384,7 +386,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
+        public void Log(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
             if (IsEnabled(level))
             {
@@ -423,7 +425,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
+        public void Log(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
             if (IsEnabled(level))
             {
@@ -462,7 +464,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
+        public void Log(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
             if (IsEnabled(level))
             {
@@ -501,7 +503,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void Log(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             var targetsForLevel = GetTargetsForLevelSafe(level);
@@ -512,7 +514,7 @@ namespace NLog
 #else
             if (IsEnabled(level))
             {
-                WriteToTargets(level, formatProvider, message, new object[] { argument });
+                WriteToTargets(level, formatProvider, message, new object?[] { argument });
             }
 #endif
         }
@@ -528,7 +530,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             var targetsForLevel = GetTargetsForLevelSafe(level);
@@ -539,7 +541,7 @@ namespace NLog
 #else
             if (IsEnabled(level))
             {
-                WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object?[] { argument });
             }
 #endif
         }
@@ -557,7 +559,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument)
+        public void Log(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument)
         {
             if (IsEnabled(level))
             {
@@ -598,7 +600,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument)
+        public void Log(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument)
         {
             if (IsEnabled(level))
             {
@@ -639,7 +641,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument)
+        public void Log(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument)
         {
             if (IsEnabled(level))
             {
@@ -679,7 +681,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(object value)
+        public void Trace(object? value)
         {
             if (IsTraceEnabled)
             {
@@ -696,7 +698,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(IFormatProvider formatProvider, object value)
+        public void Trace(IFormatProvider? formatProvider, object? value)
         {
             if (IsTraceEnabled)
             {
@@ -715,14 +717,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2)
+        public void Trace([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2)
         {
             if (IsTraceEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Trace, null, Factory.DefaultCultureInfo, message, arg1, arg2);
 #else
-                WriteToTargets(LogLevel.Trace, message, new[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Trace, message, new object?[] { arg1, arg2 });
 #endif
             }
         }
@@ -739,14 +741,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3)
+        public void Trace([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2, object? arg3)
         {
             if (IsTraceEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Trace, null, Factory.DefaultCultureInfo, message, arg1, arg2, arg3);
 #else
-                WriteToTargets(LogLevel.Trace, message, new[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Trace, message, new object?[] { arg1, arg2, arg3 });
 #endif
             }
         }
@@ -762,7 +764,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
+        public void Trace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
             if (IsTraceEnabled)
             {
@@ -799,7 +801,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
+        public void Trace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
             if (IsTraceEnabled)
             {
@@ -836,7 +838,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
+        public void Trace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
             if (IsTraceEnabled)
             {
@@ -873,11 +875,11 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void Trace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object?[] { argument });
             }
         }
 
@@ -891,11 +893,11 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace([Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void Trace([Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object?[] { argument });
             }
         }
 
@@ -910,7 +912,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(IFormatProvider formatProvider, string message, int argument)
+        public void Trace(IFormatProvider? formatProvider, string message, int argument)
         {
             if (IsTraceEnabled)
             {
@@ -947,7 +949,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
+        public void Trace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
             if (IsTraceEnabled)
             {
@@ -984,7 +986,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
+        public void Trace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
             if (IsTraceEnabled)
             {
@@ -1021,7 +1023,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
+        public void Trace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
             if (IsTraceEnabled)
             {
@@ -1058,7 +1060,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
+        public void Trace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
             if (IsTraceEnabled)
             {
@@ -1095,14 +1097,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void Trace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             if (IsTraceEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Trace, null, formatProvider, message, argument);
 #else
-                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object?[] { argument });
 #endif
             }
         }
@@ -1117,14 +1119,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace([Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void Trace([Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             if (IsTraceEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Trace, null, Factory.DefaultCultureInfo, message, argument);
 #else
-                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object?[] { argument });
 #endif
             }
         }
@@ -1141,7 +1143,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument)
+        public void Trace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument)
         {
             if (IsTraceEnabled)
             {
@@ -1180,7 +1182,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument)
+        public void Trace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument)
         {
             if (IsTraceEnabled)
             {
@@ -1219,7 +1221,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Trace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument)
+        public void Trace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument)
         {
             if (IsTraceEnabled)
             {
@@ -1258,7 +1260,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(object value)
+        public void Debug(object? value)
         {
             if (IsDebugEnabled)
             {
@@ -1275,7 +1277,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(IFormatProvider formatProvider, object value)
+        public void Debug(IFormatProvider? formatProvider, object? value)
         {
             if (IsDebugEnabled)
             {
@@ -1294,14 +1296,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2)
+        public void Debug([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2)
         {
             if (IsDebugEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Debug, null, Factory.DefaultCultureInfo, message, arg1, arg2);
 #else
-                WriteToTargets(LogLevel.Debug, message, new[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Debug, message, new object?[] { arg1, arg2 });
 #endif
             }
         }
@@ -1318,14 +1320,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3)
+        public void Debug([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2, object? arg3)
         {
             if (IsDebugEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Debug, null, Factory.DefaultCultureInfo, message, arg1, arg2, arg3);
 #else
-                WriteToTargets(LogLevel.Debug, message, new[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Debug, message, new object?[] { arg1, arg2, arg3 });
 #endif
             }
         }
@@ -1341,7 +1343,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
+        public void Debug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
             if (IsDebugEnabled)
             {
@@ -1378,7 +1380,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
+        public void Debug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
             if (IsDebugEnabled)
             {
@@ -1415,7 +1417,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
+        public void Debug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
             if (IsDebugEnabled)
             {
@@ -1452,11 +1454,11 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void Debug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object?[] { argument });
             }
         }
 
@@ -1470,11 +1472,11 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug([Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void Debug([Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object?[] { argument });
             }
         }
 
@@ -1489,7 +1491,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
+        public void Debug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
             if (IsDebugEnabled)
             {
@@ -1526,7 +1528,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
+        public void Debug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
             if (IsDebugEnabled)
             {
@@ -1563,7 +1565,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
+        public void Debug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
             if (IsDebugEnabled)
             {
@@ -1600,7 +1602,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
+        public void Debug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
             if (IsDebugEnabled)
             {
@@ -1637,7 +1639,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
+        public void Debug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
             if (IsDebugEnabled)
             {
@@ -1674,14 +1676,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void Debug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             if (IsDebugEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Debug, null, formatProvider, message, argument);
 #else
-                WriteToTargets(LogLevel.Debug, formatProvider, message, new[] { argument });
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object?[] { argument });
 #endif
             }
         }
@@ -1696,14 +1698,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug([Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void Debug([Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             if (IsDebugEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Debug, null, Factory.DefaultCultureInfo, message, argument);
 #else
-                WriteToTargets(LogLevel.Debug, message, new[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object?[] { argument });
 #endif
             }
         }
@@ -1720,7 +1722,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument)
+        public void Debug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument)
         {
             if (IsDebugEnabled)
             {
@@ -1759,7 +1761,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument)
+        public void Debug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument)
         {
             if (IsDebugEnabled)
             {
@@ -1798,7 +1800,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Debug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument)
+        public void Debug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument)
         {
             if (IsDebugEnabled)
             {
@@ -1837,7 +1839,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(object value)
+        public void Info(object? value)
         {
             if (IsInfoEnabled)
             {
@@ -1854,7 +1856,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(IFormatProvider formatProvider, object value)
+        public void Info(IFormatProvider? formatProvider, object? value)
         {
             if (IsInfoEnabled)
             {
@@ -1873,14 +1875,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2)
+        public void Info([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2)
         {
             if (IsInfoEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Info, null, Factory.DefaultCultureInfo, message, arg1, arg2);
 #else
-                WriteToTargets(LogLevel.Info, message, new[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Info, message, new object?[] { arg1, arg2 });
 #endif
             }
         }
@@ -1897,14 +1899,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3)
+        public void Info([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2, object? arg3)
         {
             if (IsInfoEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Info, null, Factory.DefaultCultureInfo, message, arg1, arg2, arg3);
 #else
-                WriteToTargets(LogLevel.Info, message, new[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Info, message, new object?[] { arg1, arg2, arg3 });
 #endif
             }
         }
@@ -1920,7 +1922,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
+        public void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
             if (IsInfoEnabled)
             {
@@ -1957,7 +1959,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
+        public void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
             if (IsInfoEnabled)
             {
@@ -1994,7 +1996,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
+        public void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
             if (IsInfoEnabled)
             {
@@ -2031,11 +2033,11 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object?[] { argument });
             }
         }
 
@@ -2049,11 +2051,11 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info([Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void Info([Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object?[] { argument });
             }
         }
 
@@ -2068,7 +2070,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
+        public void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
             if (IsInfoEnabled)
             {
@@ -2105,7 +2107,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
+        public void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
             if (IsInfoEnabled)
             {
@@ -2142,7 +2144,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
+        public void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
             if (IsInfoEnabled)
             {
@@ -2179,7 +2181,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
+        public void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
             if (IsInfoEnabled)
             {
@@ -2216,7 +2218,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
+        public void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
             if (IsInfoEnabled)
             {
@@ -2253,14 +2255,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             if (IsInfoEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Info, null, formatProvider, message, argument);
 #else
-                WriteToTargets(LogLevel.Info, formatProvider, message, new[] { argument });
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object?[] { argument });
 #endif
             }
         }
@@ -2275,14 +2277,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info([Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void Info([Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             if (IsInfoEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Info, null, Factory.DefaultCultureInfo, message, argument);
 #else
-                WriteToTargets(LogLevel.Info, message, new[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object?[] { argument });
 #endif
             }
         }
@@ -2299,7 +2301,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument)
+        public void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument)
         {
             if (IsInfoEnabled)
             {
@@ -2338,7 +2340,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument)
+        public void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument)
         {
             if (IsInfoEnabled)
             {
@@ -2377,7 +2379,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Info(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument)
+        public void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument)
         {
             if (IsInfoEnabled)
             {
@@ -2416,7 +2418,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(object value)
+        public void Warn(object? value)
         {
             if (IsWarnEnabled)
             {
@@ -2433,7 +2435,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(IFormatProvider formatProvider, object value)
+        public void Warn(IFormatProvider? formatProvider, object? value)
         {
             if (IsWarnEnabled)
             {
@@ -2452,14 +2454,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2)
+        public void Warn([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2)
         {
             if (IsWarnEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Warn, null, Factory.DefaultCultureInfo, message, arg1, arg2);
 #else
-                WriteToTargets(LogLevel.Warn, message, new[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Warn, message, new object?[] { arg1, arg2 });
 #endif
             }
         }
@@ -2476,14 +2478,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3)
+        public void Warn([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2, object? arg3)
         {
             if (IsWarnEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Warn, null, Factory.DefaultCultureInfo, message, arg1, arg2, arg3);
 #else
-                WriteToTargets(LogLevel.Warn, message, new[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Warn, message, new object?[] { arg1, arg2, arg3 });
 #endif
             }
         }
@@ -2499,7 +2501,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
+        public void Warn(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
             if (IsWarnEnabled)
             {
@@ -2536,7 +2538,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
+        public void Warn(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
             if (IsWarnEnabled)
             {
@@ -2573,7 +2575,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
+        public void Warn(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
             if (IsWarnEnabled)
             {
@@ -2610,11 +2612,11 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void Warn(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object?[] { argument });
             }
         }
 
@@ -2628,11 +2630,11 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn([Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void Warn([Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object?[] { argument });
             }
         }
 
@@ -2647,7 +2649,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
+        public void Warn(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
             if (IsWarnEnabled)
             {
@@ -2684,7 +2686,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
+        public void Warn(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
             if (IsWarnEnabled)
             {
@@ -2721,7 +2723,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
+        public void Warn(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
             if (IsWarnEnabled)
             {
@@ -2758,7 +2760,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
+        public void Warn(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
             if (IsWarnEnabled)
             {
@@ -2795,7 +2797,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
+        public void Warn(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
             if (IsWarnEnabled)
             {
@@ -2832,14 +2834,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void Warn(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             if (IsWarnEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Warn, null, formatProvider, message, argument);
 #else
-                WriteToTargets(LogLevel.Warn, formatProvider, message, new[] { argument });
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object?[] { argument });
 #endif
             }
         }
@@ -2854,14 +2856,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn([Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void Warn([Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             if (IsWarnEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Warn, null, Factory.DefaultCultureInfo, message, argument);
 #else
-                WriteToTargets(LogLevel.Warn, message, new[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object?[] { argument });
 #endif
             }
         }
@@ -2878,7 +2880,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument)
+        public void Warn(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument)
         {
             if (IsWarnEnabled)
             {
@@ -2917,7 +2919,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument)
+        public void Warn(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument)
         {
             if (IsWarnEnabled)
             {
@@ -2956,7 +2958,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Warn(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument)
+        public void Warn(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument)
         {
             if (IsWarnEnabled)
             {
@@ -2995,7 +2997,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(object value)
+        public void Error(object? value)
         {
             if (IsErrorEnabled)
             {
@@ -3012,7 +3014,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(IFormatProvider formatProvider, object value)
+        public void Error(IFormatProvider? formatProvider, object? value)
         {
             if (IsErrorEnabled)
             {
@@ -3031,14 +3033,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2)
+        public void Error([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2)
         {
             if (IsErrorEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Error, null, Factory.DefaultCultureInfo, message, arg1, arg2);
 #else
-                WriteToTargets(LogLevel.Error, message, new[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Error, message, new object?[] { arg1, arg2 });
 #endif
             }
         }
@@ -3055,14 +3057,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3)
+        public void Error([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2, object? arg3)
         {
             if (IsErrorEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Error, null, Factory.DefaultCultureInfo, message, arg1, arg2, arg3);
 #else
-                WriteToTargets(LogLevel.Error, message, new[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Error, message, new object?[] { arg1, arg2, arg3 });
 #endif
             }
         }
@@ -3078,7 +3080,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
+        public void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
             if (IsErrorEnabled)
             {
@@ -3115,7 +3117,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
+        public void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
             if (IsErrorEnabled)
             {
@@ -3152,7 +3154,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
+        public void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
             if (IsErrorEnabled)
             {
@@ -3189,11 +3191,11 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object?[] { argument });
             }
         }
 
@@ -3207,11 +3209,11 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error([Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void Error([Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object?[] { argument });
             }
         }
 
@@ -3226,7 +3228,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
+        public void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
             if (IsErrorEnabled)
             {
@@ -3263,7 +3265,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
+        public void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
             if (IsErrorEnabled)
             {
@@ -3300,7 +3302,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
+        public void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
             if (IsErrorEnabled)
             {
@@ -3337,7 +3339,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
+        public void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
             if (IsErrorEnabled)
             {
@@ -3374,7 +3376,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
+        public void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
             if (IsErrorEnabled)
             {
@@ -3411,14 +3413,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             if (IsErrorEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Error, null, formatProvider, message, argument);
 #else
-                WriteToTargets(LogLevel.Error, formatProvider, message, new[] { argument });
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object?[] { argument });
 #endif
             }
         }
@@ -3433,14 +3435,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error([Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void Error([Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             if (IsErrorEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Error, null, Factory.DefaultCultureInfo, message, argument);
 #else
-                WriteToTargets(LogLevel.Error, message, new[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object?[] { argument });
 #endif
             }
         }
@@ -3457,7 +3459,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument)
+        public void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument)
         {
             if (IsErrorEnabled)
             {
@@ -3496,7 +3498,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument)
+        public void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument)
         {
             if (IsErrorEnabled)
             {
@@ -3535,7 +3537,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Error(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument)
+        public void Error(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument)
         {
             if (IsErrorEnabled)
             {
@@ -3574,7 +3576,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(object value)
+        public void Fatal(object? value)
         {
             if (IsFatalEnabled)
             {
@@ -3591,7 +3593,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(IFormatProvider formatProvider, object value)
+        public void Fatal(IFormatProvider? formatProvider, object? value)
         {
             if (IsFatalEnabled)
             {
@@ -3610,14 +3612,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2)
+        public void Fatal([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2)
         {
             if (IsFatalEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Fatal, null, Factory.DefaultCultureInfo, message, arg1, arg2);
 #else
-                WriteToTargets(LogLevel.Fatal, message, new[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Fatal, message, new object?[] { arg1, arg2 });
 #endif
             }
         }
@@ -3634,14 +3636,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3)
+        public void Fatal([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2, object? arg3)
         {
             if (IsFatalEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Fatal, null, Factory.DefaultCultureInfo, message, arg1, arg2, arg3);
 #else
-                WriteToTargets(LogLevel.Fatal, message, new[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Fatal, message, new object?[] { arg1, arg2, arg3 });
 #endif
             }
         }
@@ -3657,7 +3659,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
+        public void Fatal(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
             if (IsFatalEnabled)
             {
@@ -3694,7 +3696,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
+        public void Fatal(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
             if (IsFatalEnabled)
             {
@@ -3731,7 +3733,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
+        public void Fatal(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
             if (IsFatalEnabled)
             {
@@ -3768,11 +3770,11 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void Fatal(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object?[] { argument });
             }
         }
 
@@ -3786,11 +3788,11 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal([Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void Fatal([Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object?[] { argument });
             }
         }
 
@@ -3805,7 +3807,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
+        public void Fatal(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
             if (IsFatalEnabled)
             {
@@ -3842,7 +3844,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
+        public void Fatal(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
             if (IsFatalEnabled)
             {
@@ -3879,7 +3881,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
+        public void Fatal(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
             if (IsFatalEnabled)
             {
@@ -3916,7 +3918,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
+        public void Fatal(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
             if (IsFatalEnabled)
             {
@@ -3953,7 +3955,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
+        public void Fatal(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
             if (IsFatalEnabled)
             {
@@ -3990,14 +3992,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void Fatal(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             if (IsFatalEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Fatal, null, formatProvider, message, argument);
 #else
-                WriteToTargets(LogLevel.Fatal, formatProvider, message, new[] { argument });
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object?[] { argument });
 #endif
             }
         }
@@ -4012,14 +4014,14 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal([Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void Fatal([Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             if (IsFatalEnabled)
             {
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Fatal, null, Factory.DefaultCultureInfo, message, argument);
 #else
-                WriteToTargets(LogLevel.Fatal, message, new[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object?[] { argument });
 #endif
             }
         }
@@ -4036,7 +4038,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument)
+        public void Fatal(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, sbyte argument)
         {
             if (IsFatalEnabled)
             {
@@ -4075,7 +4077,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument)
+        public void Fatal(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, uint argument)
         {
             if (IsFatalEnabled)
             {
@@ -4114,7 +4116,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void Fatal(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument)
+        public void Fatal(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, ulong argument)
         {
             if (IsFatalEnabled)
             {
@@ -4145,12 +4147,12 @@ namespace NLog
 
         // end of generated code
 
-        void ILoggerBase.LogException(LogLevel level, [Localizable(false)] string message, Exception exception)
+        void ILoggerBase.LogException(LogLevel level, [Localizable(false)] string message, Exception? exception)
         {
             Log(level, exception, message, NLog.Internal.ArrayHelper.Empty<object>());
         }
 
-        void ILoggerBase.Log(LogLevel level, [Localizable(false)] string message, Exception exception)
+        void ILoggerBase.Log(LogLevel level, [Localizable(false)] string message, Exception? exception)
         {
             Log(level, exception, message, NLog.Internal.ArrayHelper.Empty<object>());
         }
@@ -4158,12 +4160,12 @@ namespace NLog
         /// <inheritdoc/>
         [Obsolete("Use Trace(Exception exception, string message) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void TraceException([Localizable(false)] string message, Exception exception)
+        public void TraceException([Localizable(false)] string message, Exception? exception)
         {
             Trace(exception, message);
         }
 
-        void ILogger.Trace([Localizable(false)] string message, Exception exception)
+        void ILogger.Trace([Localizable(false)] string message, Exception? exception)
         {
             Trace(exception, message);
         }
@@ -4171,12 +4173,12 @@ namespace NLog
         /// <inheritdoc/>
         [Obsolete("Use Debug(Exception exception, string message) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void DebugException([Localizable(false)] string message, Exception exception)
+        public void DebugException([Localizable(false)] string message, Exception? exception)
         {
             Debug(exception, message);
         }
 
-        void ILogger.Debug([Localizable(false)] string message, Exception exception)
+        void ILogger.Debug([Localizable(false)] string message, Exception? exception)
         {
             Debug(exception, message);
         }
@@ -4184,12 +4186,12 @@ namespace NLog
         /// <inheritdoc/>
         [Obsolete("Use Info(Exception exception, string message) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void InfoException([Localizable(false)] string message, Exception exception)
+        public void InfoException([Localizable(false)] string message, Exception? exception)
         {
             Info(exception, message);
         }
 
-        void ILogger.Info([Localizable(false)] string message, Exception exception)
+        void ILogger.Info([Localizable(false)] string message, Exception? exception)
         {
             Info(exception, message);
         }
@@ -4197,12 +4199,12 @@ namespace NLog
         /// <inheritdoc/>
         [Obsolete("Use Warn(Exception exception, string message) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void WarnException([Localizable(false)] string message, Exception exception)
+        public void WarnException([Localizable(false)] string message, Exception? exception)
         {
             Warn(exception, message);
         }
 
-        void ILogger.Warn([Localizable(false)] string message, Exception exception)
+        void ILogger.Warn([Localizable(false)] string message, Exception? exception)
         {
             Warn(exception, message);
         }
@@ -4210,12 +4212,12 @@ namespace NLog
         /// <inheritdoc/>
         [Obsolete("Use Error(Exception exception, string message) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void ErrorException([Localizable(false)] string message, Exception exception)
+        public void ErrorException([Localizable(false)] string message, Exception? exception)
         {
             Error(exception, message);
         }
 
-        void ILogger.Error([Localizable(false)] string message, Exception exception)
+        void ILogger.Error([Localizable(false)] string message, Exception? exception)
         {
             Error(exception, message);
         }
@@ -4223,12 +4225,12 @@ namespace NLog
         /// <inheritdoc/>
         [Obsolete("Use Fatal(Exception exception, string message) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void FatalException([Localizable(false)] string message, Exception exception)
+        public void FatalException([Localizable(false)] string message, Exception? exception)
         {
             Fatal(exception, message);
         }
 
-        void ILogger.Fatal([Localizable(false)] string message, Exception exception)
+        void ILogger.Fatal([Localizable(false)] string message, Exception? exception)
         {
             Fatal(exception, message);
         }

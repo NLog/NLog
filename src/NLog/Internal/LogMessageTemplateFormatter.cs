@@ -125,7 +125,7 @@ namespace NLog.Internal
         private void AppendToBuilder(LogEventInfo logEvent, StringBuilder builder)
         {
             Render(logEvent.Message, logEvent.FormatProvider ?? _logFactory.DefaultCultureInfo ?? CultureInfo.CurrentCulture, logEvent.Parameters, builder, out var messageTemplateParameterList);
-            logEvent.CreateOrUpdatePropertiesInternal(false, messageTemplateParameterList ?? ArrayHelper.Empty<MessageTemplateParameter>());
+            logEvent.TryCreatePropertiesInternal(messageTemplateParameterList ?? ArrayHelper.Empty<MessageTemplateParameter>());
         }
 
         /// <summary>

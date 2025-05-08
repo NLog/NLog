@@ -172,7 +172,7 @@ namespace NLog.LayoutRenderers
             bool includeSeparator = false;
             if (logEvent.HasProperties)
             {
-                using (var propertyEnumerator = logEvent.CreateOrUpdatePropertiesInternal().GetPropertyEnumerator())
+                using (var propertyEnumerator = logEvent.TryCreatePropertiesInternal().GetPropertyEnumerator())
                 {
                     while (propertyEnumerator.MoveNext())
                     {

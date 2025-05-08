@@ -2116,8 +2116,9 @@ namespace NLog.UnitTests
             config.LoggingRules.Add(new LoggingRule("*", LogLevel.Trace, target));
             LogManager.Configuration = config;
             var logger = LogManager.GetLogger("A");
-
-            Assert.Throws<InvalidOperationException>(() => logger.Log(new LogEventInfo()));
+            var logEvent = new LogEventInfo();
+            logger.Log(new LogEventInfo());
+            Assert.Same(LogLevel.Off, logEvent.Level);
         }
 
         [Fact]
@@ -2136,14 +2137,14 @@ namespace NLog.UnitTests
             Assert.NotNull(target.LastEvent);
             Assert.Equal(LogLevel.Info, target.LastEvent.Level);
             Assert.Equal(logger.Name, target.LastEvent.LoggerName);
-            logger.Log(new LogEventInfo() { Level = LogLevel.Warn, Message = "Hello", LoggerName = string.Empty });
+            logger.Log(new LogEventInfo() { Level = LogLevel.Warn, Message = "Hello", LoggerName = " " });
             Assert.NotNull(target.LastEvent);
             Assert.Equal(LogLevel.Warn, target.LastEvent.Level);
-            Assert.Equal(string.Empty, target.LastEvent.LoggerName);
-            logger.Log(logger.GetType(), new LogEventInfo() { Level = LogLevel.Error, Message = "Hello", LoggerName = string.Empty });
+            Assert.Equal(" ", target.LastEvent.LoggerName);
+            logger.Log(logger.GetType(), new LogEventInfo() { Level = LogLevel.Error, Message = "Hello", LoggerName = " " });
             Assert.NotNull(target.LastEvent);
             Assert.Equal(LogLevel.Error, target.LastEvent.Level);
-            Assert.Equal(string.Empty, target.LastEvent.LoggerName);
+            Assert.Equal(" ", target.LastEvent.LoggerName);
         }
 
         [Fact]

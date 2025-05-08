@@ -260,7 +260,7 @@ namespace NLog.Targets
                 combinedProperties = combinedProperties ?? CreateNewDictionary(logEvent.Properties.Count + (ContextProperties?.Count ?? 0));
                 bool checkForDuplicates = combinedProperties.Count > 0;
                 bool checkExcludeProperties = ExcludeProperties?.Count > 0;
-                using (var propertyEnumerator = logEvent.CreateOrUpdatePropertiesInternal().GetPropertyEnumerator())
+                using (var propertyEnumerator = logEvent.TryCreatePropertiesInternal().GetPropertyEnumerator())
                 {
                     while (propertyEnumerator.MoveNext())
                     {

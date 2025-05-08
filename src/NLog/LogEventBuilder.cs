@@ -38,6 +38,8 @@ using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using NLog.Internal;
 
+#nullable enable
+
 namespace NLog
 {
     /// <summary>
@@ -47,7 +49,7 @@ namespace NLog
     public struct LogEventBuilder
     {
         private readonly ILogger _logger;
-        private readonly LogEventInfo _logEvent;
+        private readonly LogEventInfo? _logEvent;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventBuilder"/> class.
@@ -90,14 +92,14 @@ namespace NLog
         /// Logging event that will be written
         /// </summary>
         [CanBeNull]
-        public LogEventInfo LogEvent => _logEvent is null ? null : ResolveLogEvent(_logEvent);
+        public LogEventInfo? LogEvent => _logEvent is null ? null : ResolveLogEvent(_logEvent);
 
         /// <summary>
         /// Sets a per-event context property on the logging event.
         /// </summary>
         /// <param name="propertyName">The name of the context property.</param>
         /// <param name="propertyValue">The value of the context property.</param>
-        public LogEventBuilder Property<T>([NotNull] string propertyName, T propertyValue)
+        public LogEventBuilder Property<T>([NotNull] string propertyName, T? propertyValue)
         {
             Guard.ThrowIfNull(propertyName);
 
@@ -112,7 +114,7 @@ namespace NLog
         /// Sets multiple per-event context properties on the logging event.
         /// </summary>
         /// <param name="properties">The properties to set.</param>
-        public LogEventBuilder Properties([NotNull] IEnumerable<KeyValuePair<string, object>> properties)
+        public LogEventBuilder Properties([NotNull] IEnumerable<KeyValuePair<string, object?>> properties)
         {
             Guard.ThrowIfNull(properties);
 
@@ -136,7 +138,7 @@ namespace NLog
 
             if (_logEvent.Parameters is null)
             {
-                var eventProperties = _logEvent.CreateOrUpdatePropertiesInternal(false, null);
+                var eventProperties = _logEvent.TryCreatePropertiesInternal();
                 if (eventProperties is null)
                 {
                     // Now allocate PropertiesDictionary and copy from properties
@@ -145,7 +147,7 @@ namespace NLog
                     {
                         messageProperties[i] = new MessageTemplates.MessageTemplateParameter(properties[i].Item1, properties[i].Item2, null);
                     }
-                    _logEvent.CreateOrUpdatePropertiesInternal(false, messageProperties);
+                    _logEvent.TryCreatePropertiesInternal(messageProperties);
                     return this;
                 }
             }
@@ -160,7 +162,7 @@ namespace NLog
         /// Sets the <paramref name="exception"/> information of the logging event.
         /// </summary>
         /// <param name="exception">The exception information of the logging event.</param>
-        public LogEventBuilder Exception(Exception exception)
+        public LogEventBuilder Exception(Exception? exception)
         {
             if (_logEvent != null)
             {
@@ -203,12 +205,12 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public LogEventBuilder Message<TArgument>([Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
+        public LogEventBuilder Message<TArgument>([Localizable(false)][StructuredMessageTemplate] string message, TArgument? argument)
         {
             if (_logEvent != null)
             {
                 _logEvent.Message = message;
-                _logEvent.Parameters = new object[] { argument };
+                _logEvent.Parameters = new object?[] { argument };
             }
             return this;
         }
@@ -222,12 +224,12 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public LogEventBuilder Message<TArgument1, TArgument2>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
+        public LogEventBuilder Message<TArgument1, TArgument2>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2)
         {
             if (_logEvent != null)
             {
                 _logEvent.Message = message;
-                _logEvent.Parameters = new object[] { argument1, argument2 };
+                _logEvent.Parameters = new object?[] { argument1, argument2 };
             }
             return this;
         }
@@ -243,12 +245,12 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public LogEventBuilder Message<TArgument1, TArgument2, TArgument3>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        public LogEventBuilder Message<TArgument1, TArgument2, TArgument3>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2, TArgument3? argument3)
         {
             if (_logEvent != null)
             {
                 _logEvent.Message = message;
-                _logEvent.Parameters = new object[] { argument1, argument2, argument3 };
+                _logEvent.Parameters = new object?[] { argument1, argument2, argument3 };
             }
             return this;
         }
@@ -259,7 +261,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public LogEventBuilder Message([Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
+        public LogEventBuilder Message([Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             if (_logEvent != null)
             {
@@ -276,7 +278,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public LogEventBuilder Message([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        public LogEventBuilder Message([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object?> args)
         {
             if (_logEvent != null)
             {
@@ -294,7 +296,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public LogEventBuilder Message(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
+        public LogEventBuilder Message(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             if (_logEvent != null)
             {
@@ -313,14 +315,14 @@ namespace NLog
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is set at by the compiler.</param>
         /// <param name="callerLineNumber">The line number in the source file at which the method is called. This is set at by the compiler.</param>
 #if !NET35
-        public LogEventBuilder Callsite(string callerClassName = null,
-                                       [CallerMemberName] string callerMemberName = null,
-                                       [CallerFilePath] string callerFilePath = null,
+        public LogEventBuilder Callsite(string? callerClassName = null,
+                                       [CallerMemberName] string? callerMemberName = null,
+                                       [CallerFilePath] string? callerFilePath = null,
                                        [CallerLineNumber] int callerLineNumber = 0)
 #else
-        public LogEventBuilder Callsite(string callerClassName = null,
-                                        string callerMemberName = null,
-                                        string callerFilePath = null,
+        public LogEventBuilder Callsite(string? callerClassName = null,
+                                        string? callerMemberName = null,
+                                        string? callerFilePath = null,
                                         int callerLineNumber = 0)
 #endif
         {
@@ -339,14 +341,14 @@ namespace NLog
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is set at by the compiler.</param>
         /// <param name="callerLineNumber">The line number in the source file at which the method is called. This is set at by the compiler.</param>
 #if !NET35
-        public void Log(LogLevel logLevel = null,
-                        [CallerMemberName] string callerMemberName = null,
-                        [CallerFilePath] string callerFilePath = null,
+        public void Log(LogLevel? logLevel = null,
+                        [CallerMemberName] string? callerMemberName = null,
+                        [CallerFilePath] string? callerFilePath = null,
                         [CallerLineNumber] int callerLineNumber = 0)
 #else
-        public void Log(LogLevel logLevel = null,
-                        string callerMemberName = null,
-                        string callerFilePath = null,
+        public void Log(LogLevel? logLevel = null,
+                        string? callerMemberName = null,
+                        string? callerFilePath = null,
                         int callerLineNumber = 0)
 #endif
         {
@@ -378,7 +380,7 @@ namespace NLog
             }
         }
 
-        private LogEventInfo ResolveLogEvent(LogEventInfo logEvent, LogLevel logLevel = null)
+        private LogEventInfo ResolveLogEvent(LogEventInfo logEvent, LogLevel? logLevel = null)
         {
             if (logLevel is null)
             {
@@ -390,7 +392,7 @@ namespace NLog
                 logEvent.Level = logLevel;
             }
 
-            if (logEvent.Message is null && logEvent.Exception != null && _logger.IsEnabled(logEvent.Level))
+            if ((logEvent.Message is null || ReferenceEquals(logEvent.Message, string.Empty)) && logEvent.Exception != null && _logger.IsEnabled(logEvent.Level))
             {
                 logEvent.FormatProvider = NLog.Internal.ExceptionMessageFormatProvider.Instance;
                 logEvent.Message = "{0}";

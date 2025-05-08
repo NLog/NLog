@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog
 {
     using System;
@@ -63,7 +65,7 @@ namespace NLog
         /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="value">The value to be written.</param>
         [Conditional("DEBUG")]
-        public void ConditionalDebug<T>(T value)
+        public void ConditionalDebug<T>(T? value)
         {
             Debug(value);
         }
@@ -75,7 +77,7 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">The value to be written.</param>
         [Conditional("DEBUG")]
-        public void ConditionalDebug<T>(IFormatProvider formatProvider, T value)
+        public void ConditionalDebug<T>(IFormatProvider? formatProvider, T? value)
         {
             Debug(formatProvider, value);
         }
@@ -98,7 +100,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
+        public void ConditionalDebug(Exception? exception, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             Debug(exception, message, args);
         }
@@ -112,7 +114,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        public void ConditionalDebug(Exception? exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object?> args)
         {
             Debug(exception, message, args);
         }
@@ -127,7 +129,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(Exception exception, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
+        public void ConditionalDebug(Exception? exception, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             Debug(exception, formatProvider, message, args);
         }
@@ -140,7 +142,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
+        public void ConditionalDebug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             Debug(formatProvider, message, args);
         }
@@ -162,7 +164,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             Debug(message, args);
         }
@@ -175,7 +177,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object?> args)
         {
             Debug(message, args);
         }
@@ -190,7 +192,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug<TArgument>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
+        public void ConditionalDebug<TArgument>(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument? argument)
         {
             Debug(formatProvider, message, argument);
         }
@@ -203,7 +205,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug<TArgument>([Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
+        public void ConditionalDebug<TArgument>([Localizable(false)][StructuredMessageTemplate] string message, TArgument? argument)
         {
             Debug(message, argument);
         }
@@ -219,7 +221,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
+        public void ConditionalDebug<TArgument1, TArgument2>(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2)
         {
             Debug(formatProvider, message, argument1, argument2);
         }
@@ -234,7 +236,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug<TArgument1, TArgument2>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
+        public void ConditionalDebug<TArgument1, TArgument2>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2)
         {
             Debug(message, argument1, argument2);
         }
@@ -252,7 +254,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        public void ConditionalDebug<TArgument1, TArgument2, TArgument3>(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2, TArgument3? argument3)
         {
             Debug(formatProvider, message, argument1, argument2, argument3);
         }
@@ -269,7 +271,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug<TArgument1, TArgument2, TArgument3>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        public void ConditionalDebug<TArgument1, TArgument2, TArgument3>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2, TArgument3? argument3)
         {
             Debug(message, argument1, argument2, argument3);
         }
@@ -283,7 +285,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug(object value)
+        public void ConditionalDebug(object? value)
         {
             Debug<object>(value);
         }
@@ -298,7 +300,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug(IFormatProvider formatProvider, object value)
+        public void ConditionalDebug(IFormatProvider? formatProvider, object? value)
         {
             Debug<object>(formatProvider, value);
         }
@@ -315,7 +317,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2)
         {
             Debug<object, object>(message, arg1, arg2);
         }
@@ -333,7 +335,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2, object? arg3)
         {
             Debug<object, object, object>(message, arg1, arg2, arg3);
         }
@@ -350,7 +352,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
+        public void ConditionalDebug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
             Debug<bool>(formatProvider, message, argument);
         }
@@ -383,7 +385,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
+        public void ConditionalDebug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
             Debug<char>(formatProvider, message, argument);
         }
@@ -416,7 +418,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
+        public void ConditionalDebug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
             Debug<byte>(formatProvider, message, argument);
         }
@@ -449,7 +451,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void ConditionalDebug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             Debug<string>(formatProvider, message, argument);
         }
@@ -465,7 +467,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             Debug<string>(message, argument);
         }
@@ -482,7 +484,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
+        public void ConditionalDebug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
             Debug<int>(formatProvider, message, argument);
         }
@@ -515,7 +517,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
+        public void ConditionalDebug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
             Debug<long>(formatProvider, message, argument);
         }
@@ -548,7 +550,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
+        public void ConditionalDebug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
             Debug<float>(formatProvider, message, argument);
         }
@@ -581,7 +583,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
+        public void ConditionalDebug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
             Debug<double>(formatProvider, message, argument);
         }
@@ -614,7 +616,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
+        public void ConditionalDebug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
             Debug<decimal>(formatProvider, message, argument);
         }
@@ -647,7 +649,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void ConditionalDebug(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             Debug<object>(formatProvider, message, argument);
         }
@@ -663,7 +665,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             Debug<object>(message, argument);
         }
@@ -681,7 +683,7 @@ namespace NLog
         /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="value">The value to be written.</param>
         [Conditional("DEBUG")]
-        public void ConditionalTrace<T>(T value)
+        public void ConditionalTrace<T>(T? value)
         {
             Trace(value);
         }
@@ -693,7 +695,7 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">The value to be written.</param>
         [Conditional("DEBUG")]
-        public void ConditionalTrace<T>(IFormatProvider formatProvider, T value)
+        public void ConditionalTrace<T>(IFormatProvider? formatProvider, T? value)
         {
             Trace(formatProvider, value);
         }
@@ -716,7 +718,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
+        public void ConditionalTrace(Exception? exception, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             Trace(exception, message, args);
         }
@@ -730,7 +732,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        public void ConditionalTrace(Exception? exception, [Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object?> args)
         {
             Trace(exception, message, args);
         }
@@ -745,7 +747,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(Exception exception, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
+        public void ConditionalTrace(Exception? exception, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             Trace(exception, formatProvider, message, args);
         }
@@ -759,7 +761,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
+        public void ConditionalTrace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             Trace(formatProvider, message, args);
         }
@@ -781,7 +783,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             Trace(message, args);
         }
@@ -794,7 +796,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object> args)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, params ReadOnlySpan<object?> args)
         {
             Trace(message, args);
         }
@@ -809,7 +811,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace<TArgument>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
+        public void ConditionalTrace<TArgument>(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument? argument)
         {
             Trace(formatProvider, message, argument);
         }
@@ -822,7 +824,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace<TArgument>([Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
+        public void ConditionalTrace<TArgument>([Localizable(false)][StructuredMessageTemplate] string message, TArgument? argument)
         {
             Trace(message, argument);
         }
@@ -838,7 +840,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
+        public void ConditionalTrace<TArgument1, TArgument2>(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2)
         {
             Trace(formatProvider, message, argument1, argument2);
         }
@@ -853,7 +855,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace<TArgument1, TArgument2>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
+        public void ConditionalTrace<TArgument1, TArgument2>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2)
         {
             Trace(message, argument1, argument2);
         }
@@ -871,7 +873,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        public void ConditionalTrace<TArgument1, TArgument2, TArgument3>(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2, TArgument3? argument3)
         {
             Trace(formatProvider, message, argument1, argument2, argument3);
         }
@@ -888,7 +890,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace<TArgument1, TArgument2, TArgument3>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        public void ConditionalTrace<TArgument1, TArgument2, TArgument3>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2, TArgument3? argument3)
         {
             Trace(message, argument1, argument2, argument3);
         }
@@ -917,7 +919,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace(IFormatProvider formatProvider, object value)
+        public void ConditionalTrace(IFormatProvider? formatProvider, object? value)
         {
             Trace<object>(formatProvider, value);
         }
@@ -934,7 +936,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2)
         {
             Trace<object, object>(message, arg1, arg2);
         }
@@ -952,7 +954,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2, object? arg3)
         {
             Trace<object, object, object>(message, arg1, arg2, arg3);
         }
@@ -969,7 +971,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
+        public void ConditionalTrace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
             Trace<bool>(formatProvider, message, argument);
         }
@@ -1002,7 +1004,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
+        public void ConditionalTrace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
             Trace<char>(formatProvider, message, argument);
         }
@@ -1035,7 +1037,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
+        public void ConditionalTrace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
             Trace<byte>(formatProvider, message, argument);
         }
@@ -1068,7 +1070,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void ConditionalTrace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             Trace<string>(formatProvider, message, argument);
         }
@@ -1084,7 +1086,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, string argument)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, string? argument)
         {
             Trace<string>(message, argument);
         }
@@ -1101,7 +1103,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
+        public void ConditionalTrace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
             Trace<int>(formatProvider, message, argument);
         }
@@ -1134,7 +1136,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
+        public void ConditionalTrace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
             Trace<long>(formatProvider, message, argument);
         }
@@ -1167,7 +1169,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
+        public void ConditionalTrace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
             Trace<float>(formatProvider, message, argument);
         }
@@ -1200,7 +1202,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
+        public void ConditionalTrace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
             Trace<double>(formatProvider, message, argument);
         }
@@ -1233,7 +1235,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
+        public void ConditionalTrace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
             Trace<decimal>(formatProvider, message, argument);
         }
@@ -1266,7 +1268,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void ConditionalTrace(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             Trace<object>(formatProvider, message, argument);
         }
@@ -1282,7 +1284,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
-        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, object argument)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
             Trace<object>(message, argument);
         }
