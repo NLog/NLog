@@ -31,9 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Interface to register available configuration objects type
@@ -53,7 +56,7 @@ namespace NLog.Config
         /// <remarks>Avoid calling this while handling a LogEvent, since random deadlocks can occur.</remarks>
         public abstract object GetService(Type serviceType);
 
-        internal abstract bool TryGetService<T>(out T serviceInstance) where T : class;
+        internal abstract bool TryGetService<T>([NotNullWhen(returnValue: true)] out T? serviceInstance) where T : class;
 
         internal ServiceRepository()
         {

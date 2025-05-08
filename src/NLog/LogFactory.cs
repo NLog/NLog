@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog
 {
     using System;
@@ -57,19 +59,19 @@ namespace NLog
     {
         private static readonly TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
 
-        private static AppEnvironmentWrapper defaultAppEnvironment;
+        private static AppEnvironmentWrapper? defaultAppEnvironment;
 
         /// <remarks>
         /// Internal for unit tests
         /// </remarks>
         internal readonly object _syncRoot = new object();
         private readonly LoggerCache _loggerCache = new LoggerCache();
-        [NotNull] private ServiceRepositoryInternal _serviceRepository;
-        private IAppEnvironment _currentAppEnvironment;
-        internal LoggingConfiguration _config;
+        private readonly ServiceRepositoryInternal _serviceRepository;
+        private readonly IAppEnvironment _currentAppEnvironment;
+        internal LoggingConfiguration? _config;
         internal LogMessageFormatter ActiveMessageFormatter;
-        internal LogMessageFormatter SingleTargetMessageFormatter;
-        internal LogMessageTemplateFormatter AutoMessageTemplateFormatter;
+        internal LogMessageFormatter? SingleTargetMessageFormatter;
+        internal LogMessageTemplateFormatter? AutoMessageTemplateFormatter;
         private LogLevel _globalThreshold = LogLevel.MinLevel;
         private bool _configLoaded;
         private int _supendLoggingCounter;
@@ -79,7 +81,7 @@ namespace NLog
         /// When this property is <c>null</c>, the default file paths (<see cref="GetCandidateConfigFilePaths()"/> are used.
         /// </summary>
         [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
-        private List<string> _candidateConfigFilePaths;
+        private List<string>? _candidateConfigFilePaths;
 
         private readonly ILoggingConfigurationLoader _configLoader;
 
@@ -89,7 +91,7 @@ namespace NLog
         /// <remarks>
         /// Note <see cref="LoggingConfigurationChangedEventArgs.ActivatedConfiguration"/> can be <c>null</c> when unloading configuration at shutdown.
         /// </remarks>
-        public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
+        public event EventHandler<LoggingConfigurationChangedEventArgs>? ConfigurationChanged;
 
         /// <summary>
         /// Event that is raised when the current Process / AppDomain terminates.
@@ -115,7 +117,7 @@ namespace NLog
                 }
             }
         }
-        private static event EventHandler<EventArgs> _loggerShutdown;
+        private static event EventHandler<EventArgs>? _loggerShutdown;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
@@ -123,7 +125,6 @@ namespace NLog
         public LogFactory()
             : this(new LoggingConfigurationFileLoader(DefaultAppEnvironment))
         {
-
         }
 
         /// <summary>
@@ -145,14 +146,14 @@ namespace NLog
         /// </summary>
         /// <param name="configLoader">The config loader</param>
         /// <param name="appEnvironment">The custom AppEnvironmnet override</param>
-        internal LogFactory(ILoggingConfigurationLoader configLoader, IAppEnvironment appEnvironment = null)
+        internal LogFactory(ILoggingConfigurationLoader configLoader, IAppEnvironment? appEnvironment = null)
         {
             _configLoader = configLoader;
-            _currentAppEnvironment = appEnvironment;
+            _currentAppEnvironment = appEnvironment ?? DefaultAppEnvironment;
             LoggerShutdown += OnStopLogging;
             _serviceRepository = new ServiceRepositoryInternal(this);
             _serviceRepository.TypeRegistered += ServiceRepository_TypeRegistered;
-            RefreshMessageFormatter();
+            ActiveMessageFormatter = RefreshMessageFormatter();
         }
 
         internal static IAppEnvironment DefaultAppEnvironment
@@ -163,16 +164,11 @@ namespace NLog
             }
         }
 
-        internal IAppEnvironment CurrentAppEnvironment
-        {
-            get => _currentAppEnvironment ?? DefaultAppEnvironment;
-            set => _currentAppEnvironment = value;
-        }
+        internal IAppEnvironment CurrentAppEnvironment => _currentAppEnvironment;
 
         /// <summary>
         /// Repository of interfaces used by NLog to allow override for dependency injection
         /// </summary>
-        [NotNull]
         public ServiceRepository ServiceRepository => _serviceRepository;
 
         /// <summary>
@@ -225,7 +221,7 @@ namespace NLog
         /// <remarks>
         /// Setter will re-configure all <see cref="Logger"/>-objects, so no need to also call <see cref="ReconfigExistingLoggers()" />
         /// </remarks>
-        public LoggingConfiguration Configuration
+        public LoggingConfiguration? Configuration
         {
             get
             {
@@ -251,7 +247,7 @@ namespace NLog
             {
                 lock (_syncRoot)
                 {
-                    LoggingConfiguration oldConfig = _config;
+                    LoggingConfiguration? oldConfig = _config;
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
@@ -300,7 +296,7 @@ namespace NLog
             }
         }
 
-        private void RefreshMessageFormatter()
+        private LogMessageFormatter RefreshMessageFormatter()
         {
             var messageFormatter = _serviceRepository.GetService<ILogMessageFormatter>();
             ActiveMessageFormatter = messageFormatter.FormatMessage;
@@ -315,6 +311,7 @@ namespace NLog
                 SingleTargetMessageFormatter = null;
                 AutoMessageTemplateFormatter = null;
             }
+            return ActiveMessageFormatter;
         }
 
         /// <summary>
@@ -345,7 +342,7 @@ namespace NLog
         /// Specific culture info or null to use <see cref="CultureInfo.CurrentCulture"/>
         /// </value>
         [CanBeNull]
-        public CultureInfo DefaultCultureInfo
+        public CultureInfo? DefaultCultureInfo
         {
             get => _config is null ? _defaultCultureInfo : _config.DefaultCultureInfo;
             set
@@ -355,7 +352,7 @@ namespace NLog
                 _defaultCultureInfo = value;
             }
         }
-        internal CultureInfo _defaultCultureInfo;
+        internal CultureInfo? _defaultCultureInfo;
 
         internal static void LogNLogAssemblyVersion()
         {
@@ -637,13 +634,13 @@ namespace NLog
             FlushInternal(timeout, asyncContinuation);
         }
 
-        private bool FlushInternal(TimeSpan flushTimeout, AsyncContinuation asyncContinuation)
+        private bool FlushInternal(TimeSpan flushTimeout, AsyncContinuation? asyncContinuation)
         {
             InternalLogger.Debug("LogFactory Starting Flush with timeout={0} secs", flushTimeout.TotalSeconds);
 
             try
             {
-                LoggingConfiguration config;
+                LoggingConfiguration? config;
                 lock (_syncRoot)
                 {
                     config = _config;   // Flush should not attempt to auto-load Configuration
@@ -694,14 +691,14 @@ namespace NLog
         {
             InternalLogger.Debug("LogFactory Starting Flush Async");
 
-            LoggingConfiguration config;
+            LoggingConfiguration? config;
             lock (_syncRoot)
             {
                 config = _config;
                 if (config is null || !_configLoaded)
                 {
 #if NET45
-                    return System.Threading.Tasks.Task.FromResult<object>(null);
+                    return System.Threading.Tasks.Task.FromResult<object?>(null);
 #else
                     return System.Threading.Tasks.Task.CompletedTask;
 #endif
@@ -713,7 +710,7 @@ namespace NLog
             if (flushTimeoutHandler is null)
             {
 #if NET45
-                return System.Threading.Tasks.Task.FromResult<object>(null);
+                return System.Threading.Tasks.Task.FromResult<object?>(null);
 #else
                 return System.Threading.Tasks.Task.CompletedTask;
 #endif
@@ -962,7 +959,7 @@ namespace NLog
             _candidateConfigFilePaths = null;
         }
 
-        private Logger GetLoggerThreadSafe(string name, Type loggerType, Func<Type, Logger> loggerCreator)
+        private Logger GetLoggerThreadSafe(string name, Type loggerType, Func<Type, Logger?> loggerCreator)
         {
             if (name is null)
                 throw new ArgumentNullException(nameof(name), "Name of logger cannot be null");
@@ -971,7 +968,7 @@ namespace NLog
 
             lock (_syncRoot)
             {
-                Logger existingLogger = _loggerCache.Retrieve(cacheKey);
+                Logger? existingLogger = _loggerCache.Retrieve(cacheKey);
                 if (existingLogger != null)
                 {
                     // Logger is still in cache and referenced.
@@ -996,11 +993,11 @@ namespace NLog
             }
         }
 
-        internal Logger CreateNewLogger(Type loggerType, Func<Type, Logger> loggerCreator)
+        internal Logger CreateNewLogger(Type loggerType, Func<Type, Logger?> loggerCreator)
         {
             try
             {
-                Logger newLogger = loggerCreator(loggerType);
+                Logger? newLogger = loggerCreator(loggerType);
                 if (newLogger is null)
                 {
                     if (Logger.DefaultLoggerType.IsAssignableFrom(loggerType))
@@ -1156,7 +1153,7 @@ namespace NLog
                 _loggerCache[cacheKey] = new WeakReference(logger);
             }
 
-            public Logger Retrieve(LoggerCacheKey cacheKey)
+            public Logger? Retrieve(LoggerCacheKey cacheKey)
             {
                 if (_loggerCache.TryGetValue(cacheKey, out var loggerReference))
                 {

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -45,7 +47,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="activatedConfiguration">The new configuration.</param>
         /// <param name="deactivatedConfiguration">The old configuration.</param>
-        public LoggingConfigurationChangedEventArgs(LoggingConfiguration activatedConfiguration, LoggingConfiguration deactivatedConfiguration)
+        public LoggingConfigurationChangedEventArgs(LoggingConfiguration? activatedConfiguration, LoggingConfiguration? deactivatedConfiguration)
         {
             ActivatedConfiguration = activatedConfiguration;
             DeactivatedConfiguration = deactivatedConfiguration;
@@ -55,7 +57,7 @@ namespace NLog.Config
         /// Gets the old configuration.
         /// </summary>
         /// <value>The old configuration.</value>
-        public LoggingConfiguration DeactivatedConfiguration { get; }
+        public LoggingConfiguration? DeactivatedConfiguration { get; }
 
         /// <summary>
         /// Gets the new configuration.
@@ -64,6 +66,6 @@ namespace NLog.Config
         /// New value can be <c>null</c> when unloading configuration during shutdown.
         /// </remarks>
         /// <value>The new configuration.</value>
-        public LoggingConfiguration ActivatedConfiguration { get; }
+        public LoggingConfiguration? ActivatedConfiguration { get; }
     }
 }
