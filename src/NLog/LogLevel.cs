@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog
 {
     using System;
@@ -157,7 +159,7 @@ namespace NLog
         /// <param name="level1">The first level.</param>
         /// <param name="level2">The second level.</param>
         /// <returns>The value of <c>level1.Ordinal == level2.Ordinal</c>.</returns>
-        public static bool operator ==(LogLevel level1, LogLevel level2)
+        public static bool operator ==(LogLevel? level1, LogLevel? level2)
         {
             if (ReferenceEquals(level1, level2))
                 return true;
@@ -173,7 +175,7 @@ namespace NLog
         /// <param name="level1">The first level.</param>
         /// <param name="level2">The second level.</param>
         /// <returns>The value of <c>level1.Ordinal != level2.Ordinal</c>.</returns>
-        public static bool operator !=(LogLevel level1, LogLevel level2)
+        public static bool operator !=(LogLevel? level1, LogLevel? level2)
         {
             if (ReferenceEquals(level1, level2))
                 return false;
@@ -189,7 +191,7 @@ namespace NLog
         /// <param name="level1">The first level.</param>
         /// <param name="level2">The second level.</param>
         /// <returns>The value of <c>level1.Ordinal &gt; level2.Ordinal</c>.</returns>
-        public static bool operator >(LogLevel level1, LogLevel level2)
+        public static bool operator >(LogLevel? level1, LogLevel? level2)
         {
             if (ReferenceEquals(level1, level2))
                 return false;
@@ -205,7 +207,7 @@ namespace NLog
         /// <param name="level1">The first level.</param>
         /// <param name="level2">The second level.</param>
         /// <returns>The value of <c>level1.Ordinal &gt;= level2.Ordinal</c>.</returns>
-        public static bool operator >=(LogLevel level1, LogLevel level2)
+        public static bool operator >=(LogLevel? level1, LogLevel? level2)
         {
             if (ReferenceEquals(level1, level2))
                 return true;
@@ -221,7 +223,7 @@ namespace NLog
         /// <param name="level1">The first level.</param>
         /// <param name="level2">The second level.</param>
         /// <returns>The value of <c>level1.Ordinal &lt; level2.Ordinal</c>.</returns>
-        public static bool operator <(LogLevel level1, LogLevel level2)
+        public static bool operator <(LogLevel? level1, LogLevel? level2)
         {
             if (ReferenceEquals(level1, level2))
                 return false;
@@ -237,7 +239,7 @@ namespace NLog
         /// <param name="level1">The first level.</param>
         /// <param name="level2">The second level.</param>
         /// <returns>The value of <c>level1.Ordinal &lt;= level2.Ordinal</c>.</returns>
-        public static bool operator <=(LogLevel level1, LogLevel level2)
+        public static bool operator <=(LogLevel? level1, LogLevel? level2)
         {
             if (ReferenceEquals(level1, level2))
                 return true;
@@ -345,7 +347,7 @@ namespace NLog
             return _name;
         }
 
-        string IFormattable.ToString(string format, IFormatProvider formatProvider)
+        string IFormattable.ToString(string? format, IFormatProvider? formatProvider)
         {
             if (format is null || (!"D".Equals(format, StringComparison.OrdinalIgnoreCase)))
                 return _name;
@@ -360,7 +362,7 @@ namespace NLog
         }
 
         /// <inheritdoc/>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Equals(obj as LogLevel);
         }
@@ -371,7 +373,7 @@ namespace NLog
         /// <param name="other">The <see cref="NLog.LogLevel"/> to compare with this instance.</param>
         /// <returns>Value of <c>true</c> if the specified <see cref="NLog.LogLevel"/> is equal to
         /// this instance; otherwise, <c>false</c>.</returns>
-        public bool Equals(LogLevel other)
+        public bool Equals(LogLevel? other)
         {
             return _ordinal == other?._ordinal;
         }
@@ -386,9 +388,9 @@ namespace NLog
         /// greater than zero when this ordinal is greater than the
         /// other ordinal.
         /// </returns>
-        public int CompareTo(object obj)
+        public int CompareTo(object? obj)
         {
-            return CompareTo((LogLevel)obj);
+            return CompareTo(obj as LogLevel);
         }
 
         /// <summary>
@@ -401,7 +403,7 @@ namespace NLog
         /// greater than zero when this ordinal is greater than the
         /// other ordinal.
         /// </returns>
-        public int CompareTo(LogLevel other)
+        public int CompareTo(LogLevel? other)
         {
             return _ordinal - (other ?? LogLevel.Off)._ordinal;
         }

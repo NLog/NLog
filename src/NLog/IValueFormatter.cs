@@ -31,12 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Text;
-using NLog.MessageTemplates;
+#nullable enable
 
 namespace NLog
 {
+    using System;
+    using System.Text;
+    using NLog.MessageTemplates;
+
     /// <summary>
     /// Render a message template property to a string
     /// </summary>
@@ -51,6 +53,6 @@ namespace NLog
         /// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
         /// <param name="builder">Output destination.</param>
         /// <returns>Serialize succeeded (true/false)</returns>
-        bool FormatValue(object value, string format, CaptureType captureType, IFormatProvider formatProvider, StringBuilder builder);
+        bool FormatValue(object? value, string? format, CaptureType captureType, IFormatProvider? formatProvider, StringBuilder builder);
     }
 }

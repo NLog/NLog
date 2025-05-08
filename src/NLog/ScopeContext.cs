@@ -31,13 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using NLog.Internal;
+#nullable enable
 
 namespace NLog
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using NLog.Internal;
+
     /// <summary>
     /// <see cref="ScopeContext"/> stores state in the async thread execution context. All LogEvents created
     /// within a scope can include the scope state in the target output. The logical context scope supports
@@ -61,9 +63,9 @@ namespace NLog
         /// <param name="properties">Properties being added to the scope dictionary</param>
         /// <returns>A disposable object that pops the nested scope state on dispose (including properties).</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
-        public static IDisposable PushNestedStateProperties(object nestedState, IReadOnlyCollection<KeyValuePair<string, object>> properties)
+        public static IDisposable PushNestedStateProperties(object? nestedState, IReadOnlyCollection<KeyValuePair<string, object?>>? properties)
         {
-            properties = properties ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+            properties = properties ?? ArrayHelper.Empty<KeyValuePair<string, object?>>();
             if (properties.Count > 0 || nestedState is null)
             {
 #if !NET45
@@ -74,9 +76,9 @@ namespace NLog
                     if (allProperties != null)
                     {
                         // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
-                        ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(properties, allProperties);
+                        ScopeContextPropertyEnumerator<object?>.CopyScopePropertiesToDictionary(properties, allProperties);
 
-                        var collapsedState = new ScopeContextPropertiesAsyncState<object>(parent.Parent.Parent, allProperties, nestedState);
+                        var collapsedState = new ScopeContextPropertiesAsyncState<object>(parent?.Parent?.Parent, allProperties, nestedState);
                         SetAsyncLocalContext(collapsedState);
                         return new ScopeContextPropertiesCollapsed(parent, collapsedState);
                     }
@@ -105,7 +107,7 @@ namespace NLog
         /// <param name="properties">Properties being added to the scope dictionary</param>
         /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
-        public static IDisposable PushProperties(IReadOnlyCollection<KeyValuePair<string, object>> properties)
+        public static IDisposable PushProperties(IReadOnlyCollection<KeyValuePair<string, object?>> properties)
         {
             return PushProperties<object>(properties);
         }
@@ -116,7 +118,7 @@ namespace NLog
         /// <param name="properties">Properties being added to the scope dictionary</param>
         /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
-        public static IDisposable PushProperties<TValue>(IReadOnlyCollection<KeyValuePair<string, TValue>> properties)
+        public static IDisposable PushProperties<TValue>(IReadOnlyCollection<KeyValuePair<string, TValue?>> properties)
         {
 #if !NET45
             var parent = GetAsyncLocalContext();
@@ -127,7 +129,7 @@ namespace NLog
                 // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
                 ScopeContextPropertyEnumerator<TValue>.CopyScopePropertiesToDictionary(properties, allProperties);
 
-                var collapsedState = new ScopeContextPropertiesAsyncState<object>(parent.Parent.Parent, allProperties);
+                var collapsedState = new ScopeContextPropertiesAsyncState<object>(parent?.Parent?.Parent, allProperties);
                 SetAsyncLocalContext(collapsedState);
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
             }
@@ -149,8 +151,9 @@ namespace NLog
         /// <param name="value">Value of property</param>
         /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
-        public static IDisposable PushProperty<TValue>(string key, TValue value)
+        public static IDisposable PushProperty<TValue>(string key, TValue? value)
         {
+            Guard.ThrowIfNull(key);
 #if !NET35 && !NET40 && !NET45
             var parent = GetAsyncLocalContext();
 
@@ -160,7 +163,7 @@ namespace NLog
                 // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
                 allProperties[key] = value;
 
-                var collapsedState = new ScopeContextPropertiesAsyncState<object>(parent.Parent.Parent, allProperties);
+                var collapsedState = new ScopeContextPropertiesAsyncState<object>(parent?.Parent?.Parent, allProperties);
                 SetAsyncLocalContext(collapsedState);
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
             }
@@ -181,7 +184,7 @@ namespace NLog
         /// <param name="value">Value of property</param>
         /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
-        public static IDisposable PushProperty(string key, object value)
+        public static IDisposable PushProperty(string key, object? value)
         {
             return PushProperty<object>(key, value);
         }
@@ -200,7 +203,13 @@ namespace NLog
             SetAsyncLocalContext(current);
             return current;
 #else
-            object objectValue = nestedState;
+            object? objectValue = nestedState;
+            if (objectValue is null)
+            {
+                var oldContext = GetNestedContextCallContext();
+                return new ScopeContextNestedState(oldContext, objectValue);
+            }
+
             var oldNestedContext = PushNestedStateCallContext(objectValue);
             return new ScopeContextNestedState(oldNestedContext, objectValue);
 #endif
@@ -233,12 +242,12 @@ namespace NLog
         /// Retrieves all properties stored within the logical context scopes
         /// </summary>
         /// <returns>Collection of all properties</returns>
-        public static IEnumerable<KeyValuePair<string, object>> GetAllProperties()
+        public static IEnumerable<KeyValuePair<string, object?>> GetAllProperties()
         {
 #if !NET35 && !NET40 && !NET45
             var contextState = GetAsyncLocalContext();
             var propertyCollector = new ScopeContextPropertyCollector();
-            return contextState?.CaptureContextProperties(ref propertyCollector) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+            return contextState?.CaptureContextProperties(ref propertyCollector) ?? ArrayHelper.Empty<KeyValuePair<string, object?>>();
 #else
             var mappedContext = GetMappedContextCallContext();
             if (mappedContext?.Count > 0)
@@ -252,13 +261,13 @@ namespace NLog
                 }
                 return mappedContext;
             }
-            return ArrayHelper.Empty<KeyValuePair<string, object>>();
+            return ArrayHelper.Empty<KeyValuePair<string, object?>>();
 #endif
         }
 
-        internal static ScopeContextPropertyEnumerator<object> GetAllPropertiesEnumerator()
+        internal static ScopeContextPropertyEnumerator<object?> GetAllPropertiesEnumerator()
         {
-            return new ScopeContextPropertyEnumerator<object>(GetAllProperties());
+            return new ScopeContextPropertyEnumerator<object?>(GetAllProperties());
         }
 
         /// <summary>
@@ -268,7 +277,7 @@ namespace NLog
         /// <param name="value">When this method returns, contains the value associated with the specified key</param>
         /// <returns>Returns true when value is found with the specified key</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
-        public static bool TryGetProperty(string key, out object value)
+        public static bool TryGetProperty(string key, out object? value)
         {
 #if !NET35 && !NET40 && !NET45
             var contextState = GetAsyncLocalContext();
@@ -350,7 +359,7 @@ namespace NLog
         /// Peeks the top value from the logical context scope stack
         /// </summary>
         /// <returns>Value from the top of the stack.</returns>
-        public static object PeekNestedState()
+        public static object? PeekNestedState()
         {
 #if !NET35 && !NET40 && !NET45
             var parent = GetAsyncLocalContext();
@@ -426,15 +435,15 @@ namespace NLog
         }
 
 #if !NET35 && !NET40 && !NET45
-        private static bool TryLookupProperty(IReadOnlyCollection<KeyValuePair<string, object>> scopeProperties, string key, out object value)
+        private static bool TryLookupProperty(IReadOnlyCollection<KeyValuePair<string, object?>> scopeProperties, string key, out object? value)
         {
-            if (scopeProperties is Dictionary<string, object> mappedDictionary && ReferenceEquals(mappedDictionary.Comparer, DefaultComparer))
+            if (scopeProperties is Dictionary<string, object?> mappedDictionary && ReferenceEquals(mappedDictionary.Comparer, DefaultComparer))
             {
                 return mappedDictionary.TryGetValue(key, out value);
             }
             else
             {
-                using (var scopeEnumerator = new ScopeContextPropertyEnumerator<object>(scopeProperties))
+                using (var scopeEnumerator = new ScopeContextPropertyEnumerator<object?>(scopeProperties))
                 {
                     while (scopeEnumerator.MoveNext())
                     {
@@ -473,28 +482,28 @@ namespace NLog
         /// </summary>
         private sealed class ScopeContextPropertiesCollapsed : IDisposable
         {
-            private readonly IScopeContextAsyncState _parent;
+            private readonly IScopeContextAsyncState? _parent;
             private readonly IScopeContextPropertiesAsyncState _collapsed;
             private bool _disposed;
 
-            public ScopeContextPropertiesCollapsed(IScopeContextAsyncState parent, IScopeContextPropertiesAsyncState collapsed)
+            public ScopeContextPropertiesCollapsed(IScopeContextAsyncState? parent, IScopeContextPropertiesAsyncState collapsed)
             {
                 _parent = parent;
                 _collapsed = collapsed;
             }
 
-            public static Dictionary<string, object> BuildCollapsedDictionary(IScopeContextAsyncState parent, int initialCapacity)
+            public static Dictionary<string, object?>? BuildCollapsedDictionary(IScopeContextAsyncState? parent, int initialCapacity)
             {
                 if (parent is IScopeContextPropertiesAsyncState parentProperties && parentProperties.Parent is IScopeContextPropertiesAsyncState grandParentProperties)
                 {
                     if (parentProperties.NestedState is null && grandParentProperties.NestedState is null)
                     {
-                        var propertyCollectorList = new List<KeyValuePair<string, object>>();   // Marks the collector as active
+                        var propertyCollectorList = new List<KeyValuePair<string, object?>>();   // Marks the collector as active
                         var propertyCollector = new ScopeContextPropertyCollector(propertyCollectorList);
                         var propertyCollection = propertyCollector.StartCaptureProperties(parent);
-                        if (propertyCollectorList.Count > 0 && propertyCollection is Dictionary<string, object> propertyDictionary)
+                        if (propertyCollectorList.Count > 0 && propertyCollection is Dictionary<string, object?> propertyDictionary)
                             return propertyDictionary;  // New property collector was built from the list
-                        propertyDictionary = new Dictionary<string, object>(propertyCollection.Count + initialCapacity, ScopeContext.DefaultComparer);
+                        propertyDictionary = new Dictionary<string, object?>(propertyCollection.Count + initialCapacity, ScopeContext.DefaultComparer);
                         ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(propertyCollection, propertyDictionary);
                         return propertyDictionary;
                     }
@@ -518,27 +527,27 @@ namespace NLog
             }
         }
 
-        internal static void SetAsyncLocalContext(IScopeContextAsyncState newValue)
+        internal static void SetAsyncLocalContext(IScopeContextAsyncState? newValue)
         {
             AsyncNestedDiagnosticsContext.Value = newValue;
         }
 
-        private static IScopeContextAsyncState GetAsyncLocalContext()
+        private static IScopeContextAsyncState? GetAsyncLocalContext()
         {
             return AsyncNestedDiagnosticsContext.Value;
         }
 
 
-        private static readonly System.Threading.AsyncLocal<IScopeContextAsyncState> AsyncNestedDiagnosticsContext = new System.Threading.AsyncLocal<IScopeContextAsyncState>();
+        private static readonly System.Threading.AsyncLocal<IScopeContextAsyncState?> AsyncNestedDiagnosticsContext = new System.Threading.AsyncLocal<IScopeContextAsyncState?>();
 #endif
 
 #if NET45
         private sealed class ScopeContextNestedStateProperties : IDisposable
         {
-            private readonly LinkedList<object> _parentNestedContext;
-            private readonly Dictionary<string, object> _parentMappedContext;
+            private readonly LinkedList<object>? _parentNestedContext;
+            private readonly Dictionary<string, object?>? _parentMappedContext;
 
-            public ScopeContextNestedStateProperties(LinkedList<object> parentNestedContext, Dictionary<string, object> parentMappedContext)
+            public ScopeContextNestedStateProperties(LinkedList<object>? parentNestedContext, Dictionary<string, object?>? parentMappedContext)
             {
                 _parentNestedContext = parentNestedContext;
                 _parentMappedContext = parentMappedContext;
@@ -555,7 +564,7 @@ namespace NLog
 
 
         [Obsolete("Replaced by ScopeContext.PushProperty. Marked obsolete on NLog 5.0")]
-        internal static void SetMappedContextLegacy<TValue>(string key, TValue value)
+        internal static void SetMappedContextLegacy<TValue>(string key, TValue? value)
         {
 #if !NET35 && !NET40 && !NET45
             PushProperty(key, value);
@@ -611,7 +620,7 @@ namespace NLog
         }
 
         [Obsolete("Replaced by disposing return value from ScopeContext.PushNestedState. Marked obsolete on NLog 5.0")]
-        internal static object PopNestedContextLegacy()
+        internal static object? PopNestedContextLegacy()
         {
 #if !NET35 && !NET40 && !NET45
             var contextState = GetAsyncLocalContext();
@@ -627,7 +636,7 @@ namespace NLog
                     // Replace with new legacy-scope, the legacy-scope can be discarded when previous parent scope is restored
                     var propertyCollector = new ScopeContextPropertyCollector();
                     var stackTopValue = nestedStates[0];
-                    var allProperties = contextState.CaptureContextProperties(ref propertyCollector) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+                    var allProperties = contextState.CaptureContextProperties(ref propertyCollector) ?? ArrayHelper.Empty<KeyValuePair<string, object?>>();
                     var nestedContext = ArrayHelper.Empty<object>();
                     if (nestedStates.Count > 1)
                     {
@@ -720,7 +729,7 @@ namespace NLog
 #if NET35 || NET40 || NET45
 
 #if !NET35 && !NET40
-        private static Dictionary<string, object> PushPropertiesCallContext<TValue>(IReadOnlyCollection<KeyValuePair<string, TValue>> properties)
+        private static Dictionary<string, object?>? PushPropertiesCallContext<TValue>(IReadOnlyCollection<KeyValuePair<string, TValue>> properties)
         {
             var oldContext = GetMappedContextCallContext();
             var newContext = CloneMappedContext(oldContext, properties.Count);
@@ -737,7 +746,7 @@ namespace NLog
         }
 #endif
 
-        private static Dictionary<string, object> PushPropertyCallContext<TValue>(string propertyName, TValue propertyValue)
+        private static Dictionary<string, object?>? PushPropertyCallContext<TValue>(string propertyName, TValue propertyValue)
         {
             var oldContext = GetMappedContextCallContext();
             var newContext = CloneMappedContext(oldContext, 1);
@@ -751,13 +760,13 @@ namespace NLog
             SetMappedContextCallContext(null);
         }
 
-        private static IEnumerable<KeyValuePair<string, object>> GetAllPropertiesUnwrapped(Dictionary<string, object> properties)
+        private static IEnumerable<KeyValuePair<string, object?>> GetAllPropertiesUnwrapped(Dictionary<string, object?> properties)
         {
             foreach (var item in properties)
             {
                 if (item.Value is ObjectHandleSerializer objectHandle)
                 {
-                    yield return new KeyValuePair<string, object>(item.Key, objectHandle.Unwrap());
+                    yield return new KeyValuePair<string, object?>(item.Key, objectHandle.Unwrap());
                 }
                 else
                 {
@@ -766,22 +775,22 @@ namespace NLog
             }
         }
 
-        private static Dictionary<string, object> CloneMappedContext(Dictionary<string, object> oldContext, int initialCapacity = 0)
+        private static Dictionary<string, object?> CloneMappedContext(Dictionary<string, object?>? oldContext, int initialCapacity = 0)
         {
             if (oldContext?.Count > 0)
             {
-                var dictionary = new Dictionary<string, object>(oldContext.Count + initialCapacity, DefaultComparer);
+                var dictionary = new Dictionary<string, object?>(oldContext.Count + initialCapacity, DefaultComparer);
                 foreach (var keyValue in oldContext)
                     dictionary[keyValue.Key] = keyValue.Value;
                 return dictionary;
             }
 
-            return new Dictionary<string, object>(initialCapacity, DefaultComparer);
+            return new Dictionary<string, object?>(initialCapacity, DefaultComparer);
         }
 
-        private static void SetPropertyCallContext<TValue>(string item, TValue value, IDictionary<string, object> mappedContext)
+        private static void SetPropertyCallContext<TValue>(string item, TValue? value, IDictionary<string, object?> mappedContext)
         {
-            object objectValue = value;
+            object? objectValue = value;
             if (Convert.GetTypeCode(objectValue) != TypeCode.Object)
                 mappedContext[item] = objectValue;
             else
@@ -790,10 +799,10 @@ namespace NLog
 
         private sealed class ScopeContextProperties : IDisposable
         {
-            private readonly Dictionary<string, object> _oldContext;
+            private readonly Dictionary<string, object?>? _oldContext;
             private bool _diposed;
 
-            public ScopeContextProperties(Dictionary<string, object> oldContext)
+            public ScopeContextProperties(Dictionary<string, object?>? oldContext)
             {
                 _oldContext = oldContext;
             }
@@ -808,7 +817,7 @@ namespace NLog
             }
         }
 
-        private static void SetMappedContextCallContext(Dictionary<string, object> newValue)
+        private static void SetMappedContextCallContext(Dictionary<string, object?>? newValue)
         {
             if (newValue is null)
                 System.Runtime.Remoting.Messaging.CallContext.FreeNamedDataSlot(MappedContextDataSlotName);
@@ -816,14 +825,14 @@ namespace NLog
                 System.Runtime.Remoting.Messaging.CallContext.LogicalSetData(MappedContextDataSlotName, newValue);
         }
 
-        internal static Dictionary<string, object> GetMappedContextCallContext()
+        internal static Dictionary<string, object?>? GetMappedContextCallContext()
         {
-            return System.Runtime.Remoting.Messaging.CallContext.LogicalGetData(MappedContextDataSlotName) as Dictionary<string, object>;
+            return System.Runtime.Remoting.Messaging.CallContext.LogicalGetData(MappedContextDataSlotName) as Dictionary<string, object?>;
         }
 
         private const string MappedContextDataSlotName = "NLog.AsyncableMappedDiagnosticsContext";
 
-        private static LinkedList<object> PushNestedStateCallContext(object objectValue)
+        private static LinkedList<object>? PushNestedStateCallContext(object objectValue)
         {
             var oldContext = GetNestedContextCallContext();
             var newContext = oldContext?.Count > 0 ? new LinkedList<object>(oldContext) : new LinkedList<object>();
@@ -841,11 +850,11 @@ namespace NLog
 
         private sealed class ScopeContextNestedState : IDisposable
         {
-            private readonly LinkedList<object> _oldContext;
-            private readonly object _nestedState;
+            private readonly LinkedList<object>? _oldContext;
+            private readonly object? _nestedState;
             private bool _diposed;
 
-            public ScopeContextNestedState(LinkedList<object> oldContext, object nestedState)
+            public ScopeContextNestedState(LinkedList<object>? oldContext, object? nestedState)
             {
                 _oldContext = oldContext;
                 _nestedState = nestedState;
@@ -867,7 +876,7 @@ namespace NLog
         }
 
         [System.Security.SecuritySafeCriticalAttribute]
-        private static void SetNestedContextCallContext(LinkedList<object> nestedContext)
+        private static void SetNestedContextCallContext(LinkedList<object>? nestedContext)
         {
             if (nestedContext is null)
                 System.Runtime.Remoting.Messaging.CallContext.FreeNamedDataSlot(NestedContextDataSlotName);
@@ -877,7 +886,7 @@ namespace NLog
 
         [System.Security.SecuritySafeCriticalAttribute]
 
-        private static LinkedList<object> GetNestedContextCallContext()
+        private static LinkedList<object>? GetNestedContextCallContext()
         {
             return System.Runtime.Remoting.Messaging.CallContext.LogicalGetData(NestedContextDataSlotName) as LinkedList<object>;
         }

@@ -705,7 +705,7 @@ namespace NLog
             return true;
         }
 
-        internal void SetMessageFormatter([NotNull] LogMessageFormatter messageFormatter, [CanBeNull] LogMessageFormatter singleTargetMessageFormatter)
+        internal void SetMessageFormatter([NotNull] LogMessageFormatter messageFormatter, [CanBeNull] LogMessageFormatter? singleTargetMessageFormatter)
         {
             bool hasCustomMessageFormatter = _messageFormatter != null;
             if (!hasCustomMessageFormatter)

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog
 {
     using System;
@@ -58,7 +60,7 @@ namespace NLog
         /// </summary>
         /// <returns>The object at the top of the NDC stack if defined; otherwise <c>null</c>.</returns>
         [Obsolete("Replaced by ScopeContext.PeekNestedState. Marked obsolete on NLog 5.0")]
-        public static object TopObject => PeekObject();
+        public static object? TopObject => PeekObject();
 
         /// <summary>
         /// Pushes the specified text on current thread NDC.
@@ -98,7 +100,7 @@ namespace NLog
         /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting the value to a string.</param>
         /// <returns>The top message, which is removed from the stack, as a string value.</returns>
         [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeNested. Marked obsolete on NLog 5.0")]
-        public static string Pop(IFormatProvider formatProvider)
+        public static string Pop(IFormatProvider? formatProvider)
         {
             return FormatHelper.ConvertToString(PopObject() ?? string.Empty, formatProvider);
         }
@@ -108,7 +110,7 @@ namespace NLog
         /// </summary>
         /// <returns>The object from the top of the NDC stack, if defined; otherwise <c>null</c>.</returns>
         [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeNested. Marked obsolete on NLog 5.0")]
-        public static object PopObject()
+        public static object? PopObject()
         {
             return ScopeContext.PopNestedContextLegacy();
         }
@@ -118,7 +120,7 @@ namespace NLog
         /// </summary>
         /// <returns>The object from the top of the NDC stack, if defined; otherwise <c>null</c>.</returns>
         [Obsolete("Replaced by ScopeContext.PeekNestedState. Marked obsolete on NLog 5.0")]
-        public static object PeekObject()
+        public static object? PeekObject()
         {
             return ScopeContext.PeekNestedState();
         }
@@ -148,7 +150,7 @@ namespace NLog
         /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting a value to a string.</param>
         /// <returns>Array of strings.</returns>
         [Obsolete("Replaced by ScopeContext.GetAllNestedStates. Marked obsolete on NLog 5.0")]
-        public static string[] GetAllMessages(IFormatProvider formatProvider)
+        public static string[] GetAllMessages(IFormatProvider? formatProvider)
         {
             var stack = GetAllObjects();
             if (stack.Length == 0)

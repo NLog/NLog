@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog
 {
     /// <summary>
@@ -44,6 +46,6 @@ namespace NLog
         /// <returns>
         /// Null if unknown object, or object cannot be handled
         /// </returns>
-        object TryTransformObject(object obj);
+        object? TryTransformObject(object? obj);
     }
 }

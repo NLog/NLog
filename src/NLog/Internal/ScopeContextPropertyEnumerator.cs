@@ -31,28 +31,30 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System.Collections.Generic;
+#nullable enable
 
 namespace NLog.Internal
 {
-    internal struct ScopeContextPropertyEnumerator<TValue> : IEnumerator<KeyValuePair<string, object>>
+    using System.Collections.Generic;
+
+    internal struct ScopeContextPropertyEnumerator<TValue> : IEnumerator<KeyValuePair<string, object?>>
     {
-        readonly IEnumerator<KeyValuePair<string, object>> _scopeEnumerator;
+        readonly IEnumerator<KeyValuePair<string, object?>>? _scopeEnumerator;
 #if !NET35 && !NET40
-        readonly IReadOnlyList<KeyValuePair<string, object>> _scopeList;
+        readonly IReadOnlyList<KeyValuePair<string, object?>>? _scopeList;
         int _scopeIndex;
 #endif
-        Dictionary<string, object>.Enumerator _dictionaryEnumerator;
+        Dictionary<string, object?>.Enumerator _dictionaryEnumerator;
 
         public ScopeContextPropertyEnumerator(IEnumerable<KeyValuePair<string, TValue>> scopeProperties)
         {
 #if !NET35 && !NET40
-            if (scopeProperties is IReadOnlyList<KeyValuePair<string, object>> scopeList)
+            if (scopeProperties is IReadOnlyList<KeyValuePair<string, object?>> scopeList)
             {
                 _scopeEnumerator = null;
                 _scopeList = scopeList;
                 _scopeIndex = -1;
-                _dictionaryEnumerator = default(Dictionary<string, object>.Enumerator);
+                _dictionaryEnumerator = default(Dictionary<string, object?>.Enumerator);
                 return;
             }
             else
@@ -62,27 +64,27 @@ namespace NLog.Internal
             }
 #endif
 
-            if (scopeProperties is Dictionary<string, object> scopeDictionary)
+            if (scopeProperties is Dictionary<string, object?> scopeDictionary)
             {
                 _scopeEnumerator = null;
                 _dictionaryEnumerator = scopeDictionary.GetEnumerator();
             }
-            else if (scopeProperties is IEnumerable<KeyValuePair<string, object>> scopeEnumerator)
+            else if (scopeProperties is IEnumerable<KeyValuePair<string, object?>> scopeEnumerator)
             {
                 _scopeEnumerator = scopeEnumerator.GetEnumerator();
-                _dictionaryEnumerator = default(Dictionary<string, object>.Enumerator);
+                _dictionaryEnumerator = default(Dictionary<string, object?>.Enumerator);
             }
             else
             {
                 _scopeEnumerator = CreateScopeEnumerable(scopeProperties).GetEnumerator();
-                _dictionaryEnumerator = default(Dictionary<string, object>.Enumerator);
+                _dictionaryEnumerator = default(Dictionary<string, object?>.Enumerator);
             }
         }
 
 #if !NET35 && !NET40
-        public static void CopyScopePropertiesToDictionary(IReadOnlyCollection<KeyValuePair<string, TValue>> parentContext, Dictionary<string, object> scopeDictionary)
+        public static void CopyScopePropertiesToDictionary(IReadOnlyCollection<KeyValuePair<string, TValue?>> parentContext, Dictionary<string, object?> scopeDictionary)
         {
-            using (var propertyEnumerator = new ScopeContextPropertyEnumerator<TValue>(parentContext))
+            using (var propertyEnumerator = new ScopeContextPropertyEnumerator<TValue?>(parentContext))
             {
                 while (propertyEnumerator.MoveNext())
                 {
@@ -136,13 +138,13 @@ namespace NLog.Internal
             return true;
         }
 
-        private static IEnumerable<KeyValuePair<string, object>> CreateScopeEnumerable(IEnumerable<KeyValuePair<string, TValue>> scopeProperties)
+        private static IEnumerable<KeyValuePair<string, object?>> CreateScopeEnumerable(IEnumerable<KeyValuePair<string, TValue>> scopeProperties)
         {
             foreach (var property in scopeProperties)
-                yield return new KeyValuePair<string, object>(property.Key, property.Value);
+                yield return new KeyValuePair<string, object?>(property.Key, property.Value);
         }
 
-        public KeyValuePair<string, object> Current
+        public KeyValuePair<string, object?> Current
         {
             get
             {
@@ -216,7 +218,7 @@ namespace NLog.Internal
             }
             else
             {
-                _dictionaryEnumerator = default(Dictionary<string, object>.Enumerator);
+                _dictionaryEnumerator = default(Dictionary<string, object?>.Enumerator);
             }
         }
     }

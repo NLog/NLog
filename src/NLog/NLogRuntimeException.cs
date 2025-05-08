@@ -31,12 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using JetBrains.Annotations;
+#nullable enable
 
 namespace NLog
 {
     using System;
     using System.ComponentModel;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Exception thrown during log event processing.
@@ -71,7 +72,7 @@ namespace NLog
         [Obsolete("Instead use string interpolation. Marked obsolete with NLog 5.0")]
         [StringFormatMethod("message")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public NLogRuntimeException(string message, params object[] messageParameters)
+        public NLogRuntimeException(string message, params object?[] messageParameters)
             : base(string.Format(message, messageParameters))
         {
         }
@@ -81,7 +82,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="innerException">The inner exception.</param>
-        public NLogRuntimeException(string message, Exception innerException)
+        public NLogRuntimeException(string message, Exception? innerException)
             : base(message, innerException)
         {
         }

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Attributes
 {
     using System;
@@ -53,7 +55,7 @@ namespace NLog.Attributes
         {
             var valueType = value?.GetType();
             if (typeof(string).Equals(valueType))
-                return LogLevel.FromString(value?.ToString());
+                return LogLevel.FromString(value?.ToString() ?? string.Empty);
             else if (IsNumericType(valueType))
                 return LogLevel.FromOrdinal(Convert.ToInt32(value, CultureInfo.InvariantCulture));
             else
@@ -79,8 +81,10 @@ namespace NLog.Attributes
             return base.ConvertTo(context, culture, value, destinationType);
         }
 
-        private static bool IsNumericType(Type sourceType)
+        private static bool IsNumericType(Type? sourceType)
         {
+            if (sourceType is null)
+                return false;
             if (typeof(int).Equals(sourceType))
                 return true;
             if (typeof(uint).Equals(sourceType))
