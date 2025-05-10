@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -96,12 +98,12 @@ namespace NLog.Config
         /// <summary>
         /// Gets the installation parameters.
         /// </summary>
-        public IDictionary<string, string> Parameters { get; private set; }
+        public IDictionary<string, string> Parameters { get; }
 
         /// <summary>
         /// Gets or sets the log output.
         /// </summary>
-        public TextWriter LogOutput { get; set; }
+        public TextWriter? LogOutput { get; set; }
 
         /// <summary>
         /// Logs the specified trace message.
@@ -193,7 +195,7 @@ namespace NLog.Config
 
                 try
                 {
-                    LogOutput.WriteLine(message);
+                    LogOutput?.WriteLine(message);
                 }
                 finally
                 {

@@ -33,6 +33,8 @@
 
 #if NETFRAMEWORK
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -58,15 +60,16 @@ namespace NLog.Config
 
         public XmlLoggingConfigurationElement(XmlReader reader, bool nestedElement)
         {
-            Parse(reader, nestedElement, out var attributes, out var children);
-            AttributeValues = attributes ?? ArrayHelper.Empty<KeyValuePair<string, string>>();
-            Children = children ?? ArrayHelper.Empty<XmlLoggingConfigurationElement>();
+            AttributeValues = ParseAttributes(reader, nestedElement);
+            LocalName = reader.LocalName;
+            Children = ParseChildren(reader, nestedElement, out var innerText);
+            Value = innerText;
         }
 
         /// <summary>
         /// Gets the element name.
         /// </summary>
-        public string LocalName { get; private set; }
+        public string LocalName { get; }
 
         /// <summary>
         /// Gets the dictionary of attribute values.
@@ -81,7 +84,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets the value of the element.
         /// </summary>
-        public string Value { get; private set; }
+        public string? Value { get; }
 
         public string Name => LocalName;
 
@@ -95,7 +98,7 @@ namespace NLog.Config
                     if (SingleValueElement(child))
                     {
                         // Values assigned using nested node-elements. Maybe in combination with attributes
-                        return AttributeValues.Concat(Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string>(item.Name, item.Value)));
+                        return AttributeValues.Concat(Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string>(item.Name, item.Value ?? string.Empty)));
                     }
                 }
                 return AttributeValues;
@@ -140,13 +143,11 @@ namespace NLog.Config
             throw new InvalidOperationException($"Assertion failed. Expected element name '{string.Join("|", allowedNames)}', actual: '{LocalName}'.");
         }
 
-        private void Parse(XmlReader reader, bool nestedElement, out IList<KeyValuePair<string, string>> attributes, out IList<XmlLoggingConfigurationElement> children)
+        private static IList<XmlLoggingConfigurationElement> ParseChildren(XmlReader reader, bool nestedElement, out string? innerText)
         {
-            ParseAttributes(reader, nestedElement, out attributes);
+            IList<XmlLoggingConfigurationElement>? children = null;
 
-            LocalName = reader.LocalName;
-
-            children = null;
+            innerText = null;
 
             if (!reader.IsEmptyElement)
             {
@@ -159,7 +160,7 @@ namespace NLog.Config
 
                     if (reader.NodeType == XmlNodeType.CDATA || reader.NodeType == XmlNodeType.Text)
                     {
-                        Value += reader.Value;
+                        innerText += reader.Value;
                         continue;
                     }
 
@@ -171,11 +172,13 @@ namespace NLog.Config
                     }
                 }
             }
+
+            return children ?? ArrayHelper.Empty<XmlLoggingConfigurationElement>();
         }
 
-        private static void ParseAttributes(XmlReader reader, bool nestedElement, out IList<KeyValuePair<string, string>> attributes)
+        private static IList<KeyValuePair<string, string>> ParseAttributes(XmlReader reader, bool nestedElement)
         {
-            attributes = null;
+            IList<KeyValuePair<string, string>>? attributes = null;
             if (reader.MoveToFirstAttribute())
             {
                 do
@@ -191,6 +194,8 @@ namespace NLog.Config
                 while (reader.MoveToNextAttribute());
                 reader.MoveToElement();
             }
+
+            return attributes ?? ArrayHelper.Empty<KeyValuePair<string, string>>();
         }
 
         /// <summary>

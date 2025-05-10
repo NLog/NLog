@@ -31,10 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using JetBrains.Annotations;
+#nullable enable
 
 namespace NLog.Common
 {
+    using JetBrains.Annotations;
+
     /// <summary>
     /// Enables <see cref="InternalLogger"/> to extract extra context details for <see cref="InternalLogger.InternalEventOccurred"/>
     /// </summary>
@@ -49,6 +51,6 @@ namespace NLog.Common
         /// The current LogFactory next to LogManager
         /// </summary>
         [CanBeNull]
-        LogFactory LogFactory { get; }
+        LogFactory? LogFactory { get; }
     }
 }

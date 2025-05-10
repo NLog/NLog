@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     internal interface ILoggingRuleLevelFilter
@@ -40,7 +42,7 @@ namespace NLog.Config
         /// </summary>
         bool[] LogLevels { get; }
 
-        LogLevel FinalMinLevel { get; }
+        LogLevel? FinalMinLevel { get; }
 
         /// <summary>
         /// Converts the filter into a simple <see cref="LoggingRuleLevelFilter"/>

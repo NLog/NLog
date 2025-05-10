@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -164,9 +166,9 @@ namespace NLog.Config
             return false;
         }
 
-        private static Dictionary<Assembly, Type> ResolveLoadedAssemblyTypes(ConfigurationItemFactory factory)
+        private static Dictionary<Assembly, Type?> ResolveLoadedAssemblyTypes(ConfigurationItemFactory factory)
         {
-            var loadedAssemblies = new Dictionary<Assembly, Type>();
+            var loadedAssemblies = new Dictionary<Assembly, Type?>();
             foreach (var itemType in factory.ItemTypes)
             {
                 var assembly = itemType.Assembly;
@@ -189,7 +191,7 @@ namespace NLog.Config
             return loadedAssemblies;
         }
 
-        private static bool IsNLogConfigurationItemType(Type itemType)
+        private static bool IsNLogConfigurationItemType(Type? itemType)
         {
             if (itemType is null)
             {
@@ -219,7 +221,7 @@ namespace NLog.Config
             return false;
         }
 
-        private static bool IsNLogItemTypeAlreadyRegistered(ConfigurationItemFactory factory, Type itemType, string itemNamePrefix)
+        private static bool IsNLogItemTypeAlreadyRegistered(ConfigurationItemFactory factory, Type? itemType, string itemNamePrefix)
         {
             if (itemType is null)
             {
@@ -249,16 +251,16 @@ namespace NLog.Config
             where TAttribute : NameBaseAttribute
             where TBaseType : class
         {
-            var nameAttribute = itemType.GetFirstCustomAttribute<TAttribute>();
-            if (!string.IsNullOrEmpty(nameAttribute?.Name))
+            var nameAttribute = itemType.GetFirstCustomAttribute<TAttribute>()?.Name ?? string.Empty;
+            if (!string.IsNullOrEmpty(nameAttribute))
             {
-                var typeAlias = string.IsNullOrEmpty(itemNamePrefix) ? nameAttribute.Name : itemNamePrefix + nameAttribute.Name;
+                var typeAlias = string.IsNullOrEmpty(itemNamePrefix) ? nameAttribute : itemNamePrefix + nameAttribute;
                 return factory.TryCreateInstance(typeAlias, out var _);
             }
             return false;
         }
 
-        public void LoadAssemblyFromPath(ConfigurationItemFactory factory, string assemblyFileName, string baseDirectory, string itemNamePrefix)
+        public void LoadAssemblyFromPath(ConfigurationItemFactory factory, string assemblyFileName, string? baseDirectory, string itemNamePrefix)
         {
             var assembly = LoadAssemblyFromPath(assemblyFileName, baseDirectory);
             if (assembly != null)
@@ -466,7 +468,7 @@ namespace NLog.Config
         /// <returns></returns>
         [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2026")]
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-        private static Assembly LoadAssemblyFromPath(string assemblyFileName, string baseDirectory = null)
+        private static Assembly LoadAssemblyFromPath(string assemblyFileName, string? baseDirectory = null)
         {
             string fullFileName = assemblyFileName;
             if (!string.IsNullOrEmpty(baseDirectory))
@@ -525,7 +527,7 @@ namespace NLog.Config
     {
         void ScanForAutoLoadExtensions(ConfigurationItemFactory factory);
 
-        void LoadAssemblyFromPath(ConfigurationItemFactory factory, string assemblyFileName, string baseDirectory, string itemNamePrefix);
+        void LoadAssemblyFromPath(ConfigurationItemFactory factory, string assemblyFileName, string? baseDirectory, string itemNamePrefix);
 
         void LoadAssemblyFromName(ConfigurationItemFactory factory, string assemblyName, string itemNamePrefix);
 

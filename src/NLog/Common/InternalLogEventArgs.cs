@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Common
 {
     using System;
@@ -55,23 +57,23 @@ namespace NLog.Common
         /// The exception. Could be null.
         /// </summary>
         [CanBeNull]
-        public Exception Exception { get; }
+        public Exception? Exception { get; }
 
         /// <summary>
         /// The type that triggered this internal log event, for example the FileTarget.
         /// This property is not always populated.
         /// </summary>
         [CanBeNull]
-        public Type SenderType { get; }
+        public Type? SenderType { get; }
 
         /// <summary>
         /// The context name that triggered this internal log event, for example the name of the Target.
         /// This property is not always populated.
         /// </summary>
         [CanBeNull]
-        public string SenderName { get; }
+        public string? SenderName { get; }
 
-        internal InternalLogEventArgs(string message, LogLevel level, [CanBeNull] Exception exception, [CanBeNull] Type senderType, [CanBeNull] string senderName)
+        internal InternalLogEventArgs(string message, LogLevel level, [CanBeNull] Exception? exception, [CanBeNull] Type? senderType, [CanBeNull] string? senderName)
         {
             Message = message;
             Level = level;

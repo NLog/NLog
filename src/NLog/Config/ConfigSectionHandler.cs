@@ -33,6 +33,8 @@
 
 #if NETFRAMEWORK
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -51,13 +53,13 @@ namespace NLog.Config
     /// </code></remarks>
     public sealed class ConfigSectionHandler : ConfigurationSection
     {
-        private XmlLoggingConfiguration _config;
+        private XmlLoggingConfiguration? _config;
 
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing
         /// the application configuration file (<c>app.exe.config</c>).
         /// </summary>
-        public static LoggingConfiguration AppConfig
+        public static LoggingConfiguration? AppConfig
         {
             get
             {
@@ -112,7 +114,7 @@ namespace NLog.Config
         /// <returns>
         /// A <see cref="LoggingConfiguration"/> instance, that has been deserialized from app.config.
         /// </returns>
-        protected override object GetRuntimeObject()
+        protected override object? GetRuntimeObject()
         {
             return _config;
         }

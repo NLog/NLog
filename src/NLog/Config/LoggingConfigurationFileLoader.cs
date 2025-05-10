@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -53,7 +55,7 @@ namespace NLog.Config
             _appEnvironment = appEnvironment;
         }
 
-        public LoggingConfiguration Load(LogFactory logFactory, string filename = null)
+        public LoggingConfiguration? Load(LogFactory logFactory, string? filename = null)
         {
 #if NETFRAMEWORK
             if (string.IsNullOrEmpty(filename))
@@ -64,7 +66,7 @@ namespace NLog.Config
             }
 #endif
 
-            if (string.IsNullOrEmpty(filename) || FileInfoHelper.IsRelativeFilePath(filename))
+            if (filename is null || StringHelpers.IsNullOrWhiteSpace(filename) || FileInfoHelper.IsRelativeFilePath(filename))
             {
                 return TryLoadFromFilePaths(logFactory, filename);
             }
@@ -76,7 +78,7 @@ namespace NLog.Config
             return null;
         }
 
-        private LoggingConfiguration TryLoadFromFilePaths(LogFactory logFactory, string filename)
+        private LoggingConfiguration? TryLoadFromFilePaths(LogFactory logFactory, string? filename)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
             var configFileNames = logFactory.GetCandidateConfigFilePaths(filename);
@@ -90,7 +92,7 @@ namespace NLog.Config
             return null;
         }
 
-        private bool TryLoadLoggingConfiguration(LogFactory logFactory, string configFile, out LoggingConfiguration config)
+        private bool TryLoadLoggingConfiguration(LogFactory logFactory, string configFile, out LoggingConfiguration? config)
         {
             try
             {
@@ -205,7 +207,7 @@ namespace NLog.Config
         /// <summary>
         /// Get default file paths (including filename) for possible NLog config files.
         /// </summary>
-        public IEnumerable<string> GetDefaultCandidateConfigFilePaths(string filename = null)
+        public IEnumerable<string> GetDefaultCandidateConfigFilePaths(string? filename = null)
         {
             string baseDirectory = PathHelpers.TrimDirectorySeparators(_appEnvironment.AppDomainBaseDirectory);
             string entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(_appEnvironment.EntryAssemblyLocation);
@@ -244,12 +246,12 @@ namespace NLog.Config
             foreach (var filePath in GetPrivateBinPathNLogLocations(baseDirectory, nlogConfigFile, platformFileSystemCaseInsensitive ? nLogConfigFileLowerCase : string.Empty))
                 yield return filePath;
 
-            string nlogAssemblyLocation = filename is null ? LookupNLogAssemblyLocation() : null;
+            var nlogAssemblyLocation = filename is null ? LookupNLogAssemblyLocation() : null;
             if (!string.IsNullOrEmpty(nlogAssemblyLocation))
                 yield return nlogAssemblyLocation + ".nlog";
         }
 
-        private static string LookupNLogAssemblyLocation()
+        private static string? LookupNLogAssemblyLocation()
         {
             var nlogAssembly = typeof(LogFactory).Assembly;
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC

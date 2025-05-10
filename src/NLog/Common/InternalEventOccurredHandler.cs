@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Common
 {
     /// <summary>
@@ -39,5 +41,5 @@ namespace NLog.Common
     /// <remarks>
     /// Never use/call NLog Logger-objects when handling these internal events, as it will lead to deadlock / stackoverflow.
     /// </remarks>
-    public delegate void InternalEventOccurredHandler(object sender, InternalLogEventArgs e);
+    public delegate void InternalEventOccurredHandler(object? sender, InternalLogEventArgs e);
 }

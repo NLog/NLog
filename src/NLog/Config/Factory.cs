@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -50,7 +52,7 @@ namespace NLog.Config
         where TBaseType : class
         where TAttributeType : NameBaseAttribute
     {
-        private readonly Dictionary<string, Func<TBaseType>> _items;
+        private readonly Dictionary<string, Func<TBaseType?>> _items;
         private readonly ConfigurationItemFactory _parentFactory;
 
         public bool Initialized { get; private set; }
@@ -58,7 +60,7 @@ namespace NLog.Config
         internal Factory(ConfigurationItemFactory parentFactory)
         {
             _parentFactory = parentFactory;
-            _items = new Dictionary<string, Func<TBaseType>>(16, StringComparer.OrdinalIgnoreCase);
+            _items = new Dictionary<string, Func<TBaseType?>>(16, StringComparer.OrdinalIgnoreCase);
         }
 
         private delegate Type GetTypeDelegate();
@@ -115,7 +117,7 @@ namespace NLog.Config
         {
             itemName = FactoryExtensions.NormalizeName(itemName);
 
-            Type itemType = null;
+            Type? itemType = null;
 
             GetTypeDelegate typeLookup = () =>
             {
@@ -127,7 +129,7 @@ namespace NLog.Config
                 return itemType;
             };
 
-            Func<TBaseType> typeCreator = () =>
+            Func<TBaseType?> typeCreator = () =>
             {
                 var type = typeLookup();
                 return type != null ? (TBaseType)Activator.CreateInstance(type) : null;
@@ -196,7 +198,7 @@ namespace NLog.Config
             }
         }
 
-        private bool TryGetItemFactory(string typeAlias, out Func<TBaseType> itemFactory)
+        private bool TryGetItemFactory(string typeAlias, out Func<TBaseType?>? itemFactory)
         {
             lock (ConfigurationItemFactory.SyncRoot)
             {
@@ -205,7 +207,7 @@ namespace NLog.Config
         }
 
         /// <inheritdoc/>
-        public virtual bool TryCreateInstance(string typeAlias, out TBaseType result)
+        public virtual bool TryCreateInstance(string typeAlias, out TBaseType? result)
         {
             typeAlias = FactoryExtensions.NormalizeName(typeAlias);
 
@@ -228,6 +230,9 @@ namespace NLog.Config
             {
                 if (factory.TryCreateInstance(typeAlias, out var result))
                 {
+                    if (result is null)
+                        throw new NLogConfigurationException($"Failed to create {typeof(TBaseType).Name} of type: '{typeAlias}' - Factory method returned null");
+
                     return result;
                 }
             }
@@ -335,7 +340,7 @@ namespace NLog.Config
         }
 
         /// <inheritdoc/>
-        public override bool TryCreateInstance(string typeAlias, out LayoutRenderer result)
+        public override bool TryCreateInstance(string typeAlias, out LayoutRenderer? result)
         {
             //first try func renderers, as they should have the possibility to overwrite a current one.
             typeAlias = FactoryExtensions.NormalizeName(typeAlias);

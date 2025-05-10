@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -42,9 +44,9 @@ namespace NLog.Config
     {
         public static readonly ILoggingRuleLevelFilter Off = new LoggingRuleLevelFilter();
         public bool[] LogLevels { get; }
-        public LogLevel FinalMinLevel { get; private set; }
+        public LogLevel? FinalMinLevel { get; private set; }
 
-        public LoggingRuleLevelFilter(bool[] logLevels = null, LogLevel finalMinLevel = null)
+        public LoggingRuleLevelFilter(bool[]? logLevels = null, LogLevel? finalMinLevel = null)
         {
             LogLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
             if (logLevels != null)
@@ -70,7 +72,7 @@ namespace NLog.Config
             return this;
         }
 
-        public LoggingRuleLevelFilter SetFinalMinLevel(LogLevel finalMinLevel)
+        public LoggingRuleLevelFilter SetFinalMinLevel(LogLevel? finalMinLevel)
         {
             FinalMinLevel = finalMinLevel;
             return this;

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Common
 {
     using System;
@@ -50,7 +52,7 @@ namespace NLog.Common
             return Thread.CurrentThread.ManagedThreadId;
         }
 
-        internal static void StartAsyncTask(WaitCallback asyncDelegate, object state)
+        internal static void StartAsyncTask(WaitCallback asyncDelegate, object? state)
         {
             ThreadPool.QueueUserWorkItem(asyncDelegate, state);
         }
@@ -77,7 +79,7 @@ namespace NLog.Common
 
             IEnumerator<T> enumerator = items.GetEnumerator();
 
-            void InvokeNext(Exception ex)
+            void InvokeNext(Exception? ex)
             {
                 if (ex != null)
                 {
@@ -109,7 +111,7 @@ namespace NLog.Common
             action = ExceptionGuard(action);
             int remaining = repeatCount;
 
-            void InvokeNext(Exception ex)
+            void InvokeNext(Exception? ex)
             {
                 if (ex != null)
                 {
@@ -256,7 +258,7 @@ namespace NLog.Common
         public static void RunSynchronously(AsynchronousAction action)
         {
             var ev = new ManualResetEvent(false);
-            Exception lastException = null;
+            Exception? lastException = null;
 
             action(PreventMultipleCalls(ex => { lastException = ex; ev.Set(); }));
             ev.WaitOne();
@@ -287,7 +289,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="exceptions">The exceptions.</param>
         /// <returns>Combined exception or null if no exception was thrown.</returns>
-        public static Exception GetCombinedException(IList<Exception> exceptions)
+        public static Exception? GetCombinedException(IList<Exception> exceptions)
         {
             if (exceptions.Count == 0)
             {

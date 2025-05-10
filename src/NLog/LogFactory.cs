@@ -921,7 +921,7 @@ namespace NLog
         /// </summary>
         /// <returns>The file paths to the possible config file</returns>
         [Obsolete("Replaced by chaining LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
-        internal IEnumerable<string> GetCandidateConfigFilePaths(string filename)
+        internal IEnumerable<string> GetCandidateConfigFilePaths(string? filename)
         {
             if (_candidateConfigFilePaths != null)
                 return GetCandidateConfigFilePaths();

@@ -262,7 +262,7 @@ namespace NLog.Internal
             return targetsFound;
         }
 
-        private static bool SuppressLogLevel(LoggingRule rule, bool[] ruleLogLevels, LogLevel finalMinLevel, LogLevel globalLogLevel, int logLevelOrdinal, ref bool suppressedLevels)
+        private static bool SuppressLogLevel(LoggingRule rule, bool[] ruleLogLevels, LogLevel? finalMinLevel, LogLevel globalLogLevel, int logLevelOrdinal, ref bool suppressedLevels)
         {
             if (logLevelOrdinal < globalLogLevel.Ordinal)
             {

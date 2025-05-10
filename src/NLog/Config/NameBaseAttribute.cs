@@ -31,14 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using JetBrains.Annotations;
+#nullable enable
 
 namespace NLog.Config
 {
     using System;
-    using LayoutRenderers;
-    using Layouts;
-    using Targets;
+    using NLog.LayoutRenderers;
+    using NLog.Layouts;
+    using NLog.Targets;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Attaches a type-alias for an item (such as <see cref="Target"/>,

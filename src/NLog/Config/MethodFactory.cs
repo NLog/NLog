@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -295,7 +297,7 @@ namespace NLog.Config
             return methodParameters;
         }
 
-        public void RegisterNoParameters(string methodName, Func<LogEventInfo, object> noParameters, MethodInfo legacyMethodInfo = null)
+        public void RegisterNoParameters(string methodName, Func<LogEventInfo, object> noParameters, MethodInfo? legacyMethodInfo = null)
         {
             lock (_nameToMethodDetails)
             {
@@ -305,7 +307,7 @@ namespace NLog.Config
             }
         }
 
-        public void RegisterOneParameter(string methodName, Func<LogEventInfo, object, object> oneParameter, MethodInfo legacyMethodInfo = null)
+        public void RegisterOneParameter(string methodName, Func<LogEventInfo, object, object> oneParameter, MethodInfo? legacyMethodInfo = null)
         {
             lock (_nameToMethodDetails)
             {
@@ -315,7 +317,7 @@ namespace NLog.Config
             }
         }
 
-        public void RegisterTwoParameters(string methodName, Func<LogEventInfo, object, object, object> twoParameters, MethodInfo legacyMethodInfo = null)
+        public void RegisterTwoParameters(string methodName, Func<LogEventInfo, object, object, object> twoParameters, MethodInfo? legacyMethodInfo = null)
         {
             lock (_nameToMethodDetails)
             {
@@ -325,7 +327,7 @@ namespace NLog.Config
             }
         }
 
-        public void RegisterThreeParameters(string methodName, Func<LogEventInfo, object, object, object, object> threeParameters, MethodInfo legacyMethodInfo = null)
+        public void RegisterThreeParameters(string methodName, Func<LogEventInfo, object, object, object, object> threeParameters, MethodInfo? legacyMethodInfo = null)
         {
             lock (_nameToMethodDetails)
             {
@@ -335,7 +337,7 @@ namespace NLog.Config
             }
         }
 
-        public void RegisterManyParameters(string methodName, Func<object[], object> manyParameters, int manyParameterMinCount, int manyParameterMaxCount, bool manyParameterWithLogEvent, MethodInfo legacyMethodInfo = null)
+        public void RegisterManyParameters(string methodName, Func<object[], object> manyParameters, int manyParameterMinCount, int manyParameterMaxCount, bool manyParameterWithLogEvent, MethodInfo? legacyMethodInfo = null)
         {
             lock (_nameToMethodDetails)
             {
@@ -345,7 +347,7 @@ namespace NLog.Config
             }
         }
 
-        public Func<LogEventInfo, object> TryCreateInstanceWithNoParameters(string methodName)
+        public Func<LogEventInfo, object>? TryCreateInstanceWithNoParameters(string methodName)
         {
             lock (_nameToMethodDetails)
             {
@@ -356,7 +358,7 @@ namespace NLog.Config
             }
         }
 
-        public Func<LogEventInfo, object, object> TryCreateInstanceWithOneParameter(string methodName)
+        public Func<LogEventInfo, object, object>? TryCreateInstanceWithOneParameter(string methodName)
         {
             lock (_nameToMethodDetails)
             {
@@ -367,7 +369,7 @@ namespace NLog.Config
             }
         }
 
-        public Func<LogEventInfo, object, object, object> TryCreateInstanceWithTwoParameters(string methodName)
+        public Func<LogEventInfo, object, object, object>? TryCreateInstanceWithTwoParameters(string methodName)
         {
             lock (_nameToMethodDetails)
             {
@@ -378,7 +380,7 @@ namespace NLog.Config
             }
         }
 
-        public Func<LogEventInfo, object, object, object, object> TryCreateInstanceWithThreeParameters(string methodName)
+        public Func<LogEventInfo, object, object, object, object>? TryCreateInstanceWithThreeParameters(string methodName)
         {
             lock (_nameToMethodDetails)
             {
@@ -389,7 +391,7 @@ namespace NLog.Config
             }
         }
 
-        public Func<object[], object> TryCreateInstanceWithManyParameters(string methodName, out int manyParameterMinCount, out int manyParameterMaxCount, out bool manyParameterWithLogEvent)
+        public Func<object[], object>? TryCreateInstanceWithManyParameters(string methodName, out int manyParameterMinCount, out int manyParameterMaxCount, out bool manyParameterWithLogEvent)
         {
             lock (_nameToMethodDetails)
             {

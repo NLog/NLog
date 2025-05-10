@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -55,6 +57,6 @@ namespace NLog.Config
         /// Tries to create an item instance with type-alias
         /// </summary>
         /// <returns>True if instance was created successfully, false otherwise.</returns>
-        bool TryCreateInstance(string typeAlias, out TBaseType result);
+        bool TryCreateInstance(string typeAlias, out TBaseType? result);
     }
 }
