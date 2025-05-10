@@ -64,7 +64,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets the element name.
         /// </summary>
-        public string LocalName { get; private set; }
+        public string LocalName { get; }
 
         /// <summary>
         /// Gets the dictionary of attribute values.

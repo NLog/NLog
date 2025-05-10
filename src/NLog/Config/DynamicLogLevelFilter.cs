@@ -68,7 +68,7 @@ namespace NLog.Config
 
         private bool[] GenerateLogLevels()
         {
-            var levelFilter = _levelFilter?.Render(LogEventInfo.CreateNullEvent()) ?? string.Empty;
+            var levelFilter = _levelFilter?.Render(LogEventInfo.CreateNullEvent())?.Trim() ?? string.Empty;
             if (string.IsNullOrEmpty(levelFilter))
                 return LoggingRuleLevelFilter.Off.LogLevels;
 
@@ -96,7 +96,7 @@ namespace NLog.Config
 
         private LogLevel GenerateFinalMinLevel()
         {
-            var levelFilter = _finalMinLevelFilter?.Render(LogEventInfo.CreateNullEvent());
+            var levelFilter = _finalMinLevelFilter?.Render(LogEventInfo.CreateNullEvent())?.Trim() ?? string.Empty;
             return ParseLogLevel(levelFilter, null);
         }
 
@@ -115,11 +115,10 @@ namespace NLog.Config
         {
             try
             {
-                var parseLogLevel = logLevel?.Trim() ?? string.Empty;
-                if (string.IsNullOrEmpty(parseLogLevel))
+                if (string.IsNullOrEmpty(logLevel))
                     return levelIfEmpty;
 
-                return LogLevel.FromString(parseLogLevel);
+                return LogLevel.FromString(logLevel);
             }
             catch (ArgumentException ex)
             {

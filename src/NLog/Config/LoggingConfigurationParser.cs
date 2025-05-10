@@ -1270,7 +1270,7 @@ namespace NLog.Config
 
             // Check if the 'type' attribute has been specified
             string classType = element.GetConfigItemTypeAttribute();
-            if (classType is null)
+            if (string.IsNullOrEmpty(classType))
                 return null;
 
             var expandedClassType = ExpandSimpleVariables(classType, out var matchingVariableName);
@@ -1313,7 +1313,7 @@ namespace NLog.Config
 
             // Check if the 'type' attribute has been specified
             string classType = element.GetConfigItemTypeAttribute();
-            if (classType is null)
+            if (string.IsNullOrEmpty(classType))
                 return null;
 
             return FactoryCreateInstance(classType, factory);
@@ -1407,22 +1407,20 @@ namespace NLog.Config
         private Target WrapWithDefaultWrapper(Target target, ValidatedConfigurationElement defaultWrapperElement)
         {
             string wrapperTypeName = defaultWrapperElement.GetConfigItemTypeAttribute("targets");
-            var wrapperTargetInstance = CreateTargetType(wrapperTypeName ?? string.Empty) as WrapperTargetBase;
+            var wrapperTargetInstance = CreateTargetType(wrapperTypeName) as WrapperTargetBase;
             if (wrapperTargetInstance is null)
             {
-                throw new NLogConfigurationException("Target type specified on <default-wrapper /> is not a wrapper.");
+                throw new NLogConfigurationException($"Target type '{wrapperTypeName}' cannot be used as default target wrapper.");
             }
 
             var wtb = wrapperTargetInstance;
             ParseTargetElement(wrapperTargetInstance, defaultWrapperElement);
             while (wtb.WrappedTarget != null)
             {
-                wtb = wtb.WrappedTarget as WrapperTargetBase;
-                if (wtb is null)
-                {
-                    throw new NLogConfigurationException(
-                        "Child target type specified on <default-wrapper /> is not a wrapper.");
-                }
+                if (wtb.WrappedTarget is WrapperTargetBase nestedWrapper)
+                    wtb = nestedWrapper;
+                else
+                    throw new NLogConfigurationException($"Target type '{wrapperTypeName}' with nested {wtb.WrappedTarget.GetType()} cannot be used as default target wrapper.");
             }
 
 #if !NET35

@@ -69,10 +69,8 @@ namespace NLog.Config
 
         private bool[] GenerateLogLevels()
         {
-            var minLevelFilter = _minLevel?.Render(LogEventInfo.CreateNullEvent()) ?? string.Empty;
-            var maxLevelFilter = _maxLevel?.Render(LogEventInfo.CreateNullEvent()) ?? string.Empty;
-            if (string.IsNullOrEmpty(minLevelFilter) && string.IsNullOrEmpty(maxLevelFilter))
-                return LoggingRuleLevelFilter.Off.LogLevels;
+            var minLevelFilter = _minLevel?.Render(LogEventInfo.CreateNullEvent())?.Trim() ?? string.Empty;
+            var maxLevelFilter = _maxLevel?.Render(LogEventInfo.CreateNullEvent())?.Trim() ?? string.Empty;
 
             var activeFilter = _activeFilter;
             if (!activeFilter.Key.Equals(new MinMaxLevels(minLevelFilter, maxLevelFilter)))
@@ -85,12 +83,15 @@ namespace NLog.Config
 
         private LogLevel GenerateFinalMinLevel()
         {
-            var levelFilter = _finalMinLevelFilter?.Render(LogEventInfo.CreateNullEvent());
+            var levelFilter = _finalMinLevelFilter?.Render(LogEventInfo.CreateNullEvent())?.Trim() ?? string.Empty;
             return ParseLogLevel(levelFilter, null);
         }
 
         private bool[] ParseLevelRange(string minLevelFilter, string maxLevelFilter)
         {
+            if (string.IsNullOrEmpty(minLevelFilter) && string.IsNullOrEmpty(maxLevelFilter))
+                return LoggingRuleLevelFilter.Off.LogLevels;
+
             LogLevel minLevel = ParseLogLevel(minLevelFilter, LogLevel.MinLevel);
             LogLevel maxLevel = ParseLogLevel(maxLevelFilter, LogLevel.MaxLevel);
 
@@ -109,11 +110,10 @@ namespace NLog.Config
         {
             try
             {
-                var parseLogLevel = logLevel?.Trim() ?? string.Empty;
-                if (string.IsNullOrEmpty(parseLogLevel))
+                if (string.IsNullOrEmpty(logLevel))
                     return levelIfEmpty;
 
-                return LogLevel.FromString(parseLogLevel);
+                return LogLevel.FromString(logLevel);
             }
             catch (ArgumentException ex)
             {

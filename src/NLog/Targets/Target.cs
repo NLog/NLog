@@ -406,11 +406,11 @@ namespace NLog.Targets
             if (!_scannedForLayouts)
             {
                 _scannedForLayouts = true;
-                InternalLogger.Error(_initializeException, "{0}: Disabled because NLog Target failed to initialize.", this);
+                InternalLogger.Error(_initializeException, "{0}: No output because target failed initialize.", this);
             }
             else
             {
-                InternalLogger.Debug("{0}: Disabled because NLog Target failed to initialize. {1} {2}", this, _initializeException?.GetType(), _initializeException?.Message);
+                InternalLogger.Debug("{0}: No output because target failed initialize. {1} {2}", this, _initializeException?.GetType(), _initializeException?.Message);
             }
             var initializeFailedException = new NLogRuntimeException($"Target {this} failed to initialize.", initializeException);
             logEvent.Continuation(initializeFailedException);
