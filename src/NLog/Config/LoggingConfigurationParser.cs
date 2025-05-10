@@ -31,23 +31,25 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using JetBrains.Annotations;
-using NLog.Common;
-using NLog.Filters;
-using NLog.Internal;
-using NLog.Layouts;
-using NLog.Targets;
-using NLog.Targets.Wrappers;
-using NLog.Time;
+#nullable enable
 
 namespace NLog.Config
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Reflection;
+    using JetBrains.Annotations;
+    using NLog.Common;
+    using NLog.Filters;
+    using NLog.Internal;
+    using NLog.Layouts;
+    using NLog.Targets;
+    using NLog.Targets.Wrappers;
+    using NLog.Time;
+
     /// <summary>
     /// Loads NLog configuration from <see cref="ILoggingConfigurationElement"/>
     /// </summary>
@@ -73,7 +75,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="nlogConfig"></param>
         /// <param name="basePath">Directory where the NLog-config-file was loaded from</param>
-        protected void LoadConfig(ILoggingConfigurationElement nlogConfig, string basePath)
+        protected void LoadConfig(ILoggingConfigurationElement nlogConfig, string? basePath)
         {
             InternalLogger.Trace("ParseNLogConfig");
             nlogConfig.AssertName("nlog");
@@ -123,7 +125,7 @@ namespace NLog.Config
         {
             var sortedList = CreateUniqueSortedListFromConfig(nlogConfig);
 
-            CultureInfo defaultCultureInfo = DefaultCultureInfo ?? LogFactory._defaultCultureInfo;
+            CultureInfo? defaultCultureInfo = DefaultCultureInfo ?? LogFactory._defaultCultureInfo;
             bool? parseMessageTemplates = null;
             bool internalLoggerEnabled = false;
             bool autoLoadExtensions = false;
@@ -132,47 +134,47 @@ namespace NLog.Config
                 switch (configItem.Key.ToUpperInvariant())
                 {
                     case "THROWEXCEPTIONS":
-                        LogFactory.ThrowExceptions = ParseBooleanValue(configItem.Key, configItem.Value, LogFactory.ThrowExceptions);
+                        LogFactory.ThrowExceptions = ParseBooleanValue(configItem.Key, configItem.Value ?? string.Empty, LogFactory.ThrowExceptions);
                         break;
                     case "THROWCONFIGEXCEPTIONS":
-                        LogFactory.ThrowConfigExceptions = ParseNullableBooleanValue(configItem.Key, configItem.Value, false);
+                        LogFactory.ThrowConfigExceptions = ParseNullableBooleanValue(configItem.Key, configItem.Value ?? string.Empty, false);
                         break;
                     case "INTERNALLOGLEVEL":
-                        InternalLogger.LogLevel = ParseLogLevelSafe(configItem.Key, configItem.Value, InternalLogger.LogLevel);
+                        InternalLogger.LogLevel = ParseLogLevelSafe(configItem.Key, configItem.Value ?? string.Empty, InternalLogger.LogLevel);
                         internalLoggerEnabled = InternalLogger.LogLevel != LogLevel.Off;
                         break;
                     case "USEINVARIANTCULTURE":
-                        if (ParseBooleanValue(configItem.Key, configItem.Value, false))
+                        if (ParseBooleanValue(configItem.Key, configItem.Value ?? string.Empty, false))
                             defaultCultureInfo = DefaultCultureInfo = CultureInfo.InvariantCulture;
                         break;
                     case "KEEPVARIABLESONRELOAD":
-                        LogFactory.KeepVariablesOnReload = ParseBooleanValue(configItem.Key, configItem.Value, LogFactory.KeepVariablesOnReload);
+                        LogFactory.KeepVariablesOnReload = ParseBooleanValue(configItem.Key, configItem.Value ?? string.Empty, LogFactory.KeepVariablesOnReload);
                         break;
                     case "INTERNALLOGTOCONSOLE":
-                        InternalLogger.LogToConsole = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToConsole);
+                        InternalLogger.LogToConsole = ParseBooleanValue(configItem.Key, configItem.Value ?? string.Empty, InternalLogger.LogToConsole);
                         break;
                     case "INTERNALLOGTOCONSOLEERROR":
-                        InternalLogger.LogToConsoleError = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToConsoleError);
+                        InternalLogger.LogToConsoleError = ParseBooleanValue(configItem.Key, configItem.Value ?? string.Empty, InternalLogger.LogToConsoleError);
                         break;
                     case "INTERNALLOGFILE":
                         InternalLogger.LogFile = configItem.Value?.Trim();
                         break;
                     case "INTERNALLOGINCLUDETIMESTAMP":
-                        InternalLogger.IncludeTimestamp = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.IncludeTimestamp);
+                        InternalLogger.IncludeTimestamp = ParseBooleanValue(configItem.Key, configItem.Value ?? string.Empty, InternalLogger.IncludeTimestamp);
                         break;
                     case "GLOBALTHRESHOLD":
-                        LogFactory.GlobalThreshold = ParseLogLevelSafe(configItem.Key, configItem.Value, LogFactory.GlobalThreshold);
+                        LogFactory.GlobalThreshold = ParseLogLevelSafe(configItem.Key, configItem.Value ?? string.Empty, LogFactory.GlobalThreshold);
                         break; // expanding variables not possible here, they are created later
                     case "PARSEMESSAGETEMPLATES":
-                        parseMessageTemplates = ParseNullableBooleanValue(configItem.Key, configItem.Value, true);
+                        parseMessageTemplates = ParseNullableBooleanValue(configItem.Key, configItem.Value ?? string.Empty, true);
                         break;
                     case "AUTOSHUTDOWN":
-                        LogFactory.AutoShutdown = ParseBooleanValue(configItem.Key, configItem.Value, true);
+                        LogFactory.AutoShutdown = ParseBooleanValue(configItem.Key, configItem.Value ?? string.Empty, true);
                         break;
                     case "AUTORELOAD":
                         break;  // Ignore here, used by other logic
                     case "AUTOLOADEXTENSIONS":
-                        autoLoadExtensions = ParseBooleanValue(configItem.Key, configItem.Value, false);
+                        autoLoadExtensions = ParseBooleanValue(configItem.Key, configItem.Value ?? string.Empty, false);
                         break;
                     default:
                         var configException = new NLogConfigurationException($"Unrecognized value '{configItem.Key}'='{configItem.Value}' for element '{nlogConfig.Name}'");
@@ -250,8 +252,7 @@ namespace NLog.Config
         {
             try
             {
-                var internalLogLevel = LogLevel.FromString(propertyValue?.Trim());
-                return internalLogLevel;
+                return LogLevel.FromString(propertyValue?.Trim() ?? string.Empty);
             }
             catch (Exception exception)
             {
@@ -296,22 +297,22 @@ namespace NLog.Config
             return false;
         }
 
-        private void ParseExtensionsElement(ValidatedConfigurationElement extensionsElement, string baseDirectory)
+        private void ParseExtensionsElement(ValidatedConfigurationElement extensionsElement, string? baseDirectory)
         {
             extensionsElement.AssertName("extensions");
 
             foreach (var childItem in extensionsElement.ValidChildren)
             {
-                string prefix = null;
-                string type = null;
-                string assemblyFile = null;
-                string assemblyName = null;
+                string itemNamePrefix = string.Empty;
+                string? type = null;
+                string? assemblyFile = null;
+                string? assemblyName = null;
 
                 foreach (var childProperty in childItem.Values)
                 {
                     if (MatchesName(childProperty.Key, "prefix"))
                     {
-                        prefix = childProperty.Value + ".";
+                        itemNamePrefix = childProperty.Value + ".";
                     }
                     else if (MatchesName(childProperty.Key, "type"))
                     {
@@ -333,20 +334,20 @@ namespace NLog.Config
                     }
                 }
 
-                if (!StringHelpers.IsNullOrWhiteSpace(type))
+                if (type != null && !StringHelpers.IsNullOrWhiteSpace(type))
                 {
-                    RegisterExtension(type, prefix);
+                    RegisterExtension(type, itemNamePrefix);
                 }
 
-                if (!StringHelpers.IsNullOrWhiteSpace(assemblyFile))
+                if (assemblyFile != null && !StringHelpers.IsNullOrWhiteSpace(assemblyFile))
                 {
-                    ParseExtensionWithAssemblyFile(baseDirectory, assemblyFile, prefix);
+                    ParseExtensionWithAssemblyFile(assemblyFile, baseDirectory, itemNamePrefix);
                     continue;
                 }
 
-                if (!StringHelpers.IsNullOrWhiteSpace(assemblyName))
+                if (assemblyName != null && !StringHelpers.IsNullOrWhiteSpace(assemblyName))
                 {
-                    ParseExtensionWithAssemblyName(assemblyName?.Trim(), prefix);
+                    ParseExtensionWithAssemblyName(assemblyName.Trim(), itemNamePrefix);
                 }
             }
         }
@@ -369,7 +370,7 @@ namespace NLog.Config
             }
         }
 
-        private void ParseExtensionWithAssemblyFile(string baseDirectory, string assemblyFile, string prefix)
+        private void ParseExtensionWithAssemblyFile(string assemblyFile, string? baseDirectory, string prefix)
         {
             try
             {
@@ -393,11 +394,11 @@ namespace NLog.Config
             return ParseExtensionWithAssemblyName(assemblyName, string.Empty);
         }
 
-        private bool ParseExtensionWithAssemblyName(string assemblyName, string prefix)
+        private bool ParseExtensionWithAssemblyName(string assemblyName, string itemNamePrefix)
         {
             try
             {
-                ConfigurationItemFactory.Default.AssemblyLoader.LoadAssemblyFromName(ConfigurationItemFactory.Default, assemblyName, prefix);
+                ConfigurationItemFactory.Default.AssemblyLoader.LoadAssemblyFromName(ConfigurationItemFactory.Default, assemblyName, itemNamePrefix);
                 return true;
             }
             catch (Exception exception)
@@ -416,8 +417,8 @@ namespace NLog.Config
 
         private void ParseVariableElement(ValidatedConfigurationElement variableElement)
         {
-            string variableName = null;
-            string variableValue = null;
+            string? variableName = null;
+            string? variableValue = null;
             foreach (var childProperty in variableElement.Values)
             {
                 if (MatchesName(childProperty.Key, "name"))
@@ -432,20 +433,20 @@ namespace NLog.Config
                 }
             }
 
-            if (!AssertNonEmptyValue(variableName, "name", variableElement.Name, "variables"))
+            if (!AssertNonEmptyValue(variableName, "name", variableElement.Name, "variables") || variableName is null)
                 return;
 
-            Layout variableLayout = variableValue is null
+            Layout? variableLayout = variableValue is null
                 ? ParseVariableLayoutValue(variableElement)
                 : CreateSimpleLayout(ExpandSimpleVariables(variableValue));
 
-            if (!AssertNotNullValue(variableLayout, "value", variableElement.Name, "variables"))
+            if (!AssertNotNullValue(variableLayout, "value", variableElement.Name, "variables") || variableLayout is null)
                 return;
 
             InsertParsedConfigVariable(variableName, variableLayout);
         }
 
-        private Layout ParseVariableLayoutValue(ValidatedConfigurationElement variableElement)
+        private Layout? ParseVariableLayoutValue(ValidatedConfigurationElement variableElement)
         {
             var childElement = variableElement.ValidChildren.FirstOrDefault();
             if (childElement != null)
@@ -470,7 +471,7 @@ namespace NLog.Config
         {
             timeElement.AssertName("time");
 
-            string timeSourceType = null;
+            string? timeSourceType = null;
             foreach (var childProperty in timeElement.Values)
             {
                 if (MatchesName(childProperty.Key, "type"))
@@ -485,10 +486,10 @@ namespace NLog.Config
                 }
             }
 
-            if (!AssertNonEmptyValue(timeSourceType, "type", timeElement.Name, string.Empty))
+            if (!AssertNonEmptyValue(timeSourceType, "type", timeElement.Name, string.Empty) || timeSourceType is null)
                 return;
 
-            TimeSource newTimeSource = FactoryCreateInstance(timeSourceType, ConfigurationItemFactory.Default.TimeSourceFactory);
+            var newTimeSource = FactoryCreateInstance(timeSourceType, ConfigurationItemFactory.Default.TimeSourceFactory);
             if (newTimeSource != null)
             {
                 ConfigureFromAttributesAndElements(newTimeSource, timeElement);
@@ -498,7 +499,7 @@ namespace NLog.Config
         }
 
         [ContractAnnotation("value:notnull => true")]
-        private bool AssertNotNullValue(object value, string propertyName, string elementName, string sectionName)
+        private bool AssertNotNullValue(object? value, string propertyName, string elementName, string sectionName)
         {
             if (value is null)
                 return AssertNonEmptyValue(string.Empty, propertyName, elementName, sectionName);
@@ -507,7 +508,7 @@ namespace NLog.Config
         }
 
         [ContractAnnotation("value:null => false")]
-        private bool AssertNonEmptyValue(string value, string propertyName, string elementName, string sectionName)
+        private bool AssertNonEmptyValue(string? value, string propertyName, string elementName, string sectionName)
         {
             if (!StringHelpers.IsNullOrWhiteSpace(value))
                 return true;
@@ -531,7 +532,7 @@ namespace NLog.Config
 
             foreach (var childItem in rulesElement.ValidChildren)
             {
-                LoggingRule loggingRule = ParseRuleElement(childItem);
+                var loggingRule = ParseRuleElement(childItem);
                 if (loggingRule != null)
                 {
                     lock (rulesCollection)
@@ -542,28 +543,23 @@ namespace NLog.Config
             }
         }
 
-        private LogLevel LogLevelFromString(string text)
-        {
-            return LogLevel.FromString(ExpandSimpleVariables(text).Trim());
-        }
-
         /// <summary>
         /// Parse {Logger} xml element
         /// </summary>
         /// <param name="loggerElement"></param>
-        private LoggingRule ParseRuleElement(ValidatedConfigurationElement loggerElement)
+        private LoggingRule? ParseRuleElement(ValidatedConfigurationElement loggerElement)
         {
-            string minLevel = null;
-            string maxLevel = null;
-            string finalMinLevel = null;
-            string enableLevels = null;
+            string? minLevel = null;
+            string? maxLevel = null;
+            string? finalMinLevel = null;
+            string? enableLevels = null;
 
-            string ruleName = null;
-            string namePattern = null;
+            string? ruleName = null;
+            string? namePattern = null;
             bool enabled = true;
             bool final = false;
-            string writeTargets = null;
-            string filterDefaultAction = null;
+            string? writeTargets = null;
+            string? filterDefaultAction = null;
             foreach (var childProperty in loggerElement.Values)
             {
                 switch (childProperty.Key?.Trim().ToUpperInvariant())
@@ -652,48 +648,50 @@ namespace NLog.Config
 
         private void EnableLevelsForRule(
             LoggingRule rule,
-            string enableLevels,
-            string minLevel,
-            string maxLevel,
-            string finalMinLevel)
+            string? enableLevels,
+            string? minLevel,
+            string? maxLevel,
+            string? finalMinLevel)
         {
             if (enableLevels != null)
             {
-                enableLevels = ExpandSimpleVariables(enableLevels);
-                finalMinLevel = finalMinLevel != null ? ExpandSimpleVariables(finalMinLevel) : finalMinLevel;
+                enableLevels = ExpandSimpleVariables(enableLevels).Trim();
+                finalMinLevel = ExpandSimpleVariables(finalMinLevel).Trim();
+
                 if (IsLevelLayout(enableLevels) || IsLevelLayout(finalMinLevel))
                 {
-                    SimpleLayout simpleLayout = ParseLevelLayout(enableLevels);
-                    SimpleLayout finalMinLevelLayout = ParseLevelLayout(finalMinLevel);
+                    var simpleLayout = ParseLevelLayout(enableLevels);
+                    var finalMinLevelLayout = ParseLevelLayout(finalMinLevel);
                     rule.EnableLoggingForLevelLayout(simpleLayout, finalMinLevelLayout);
                 }
                 else
                 {
                     foreach (var logLevel in enableLevels.SplitAndTrimTokens(','))
                     {
-                        rule.EnableLoggingForLevel(LogLevelFromString(logLevel));
+                        rule.EnableLoggingForLevel(LogLevel.FromString(logLevel));
                     }
-                    if (finalMinLevel != null)
-                        rule.FinalMinLevel = LogLevelFromString(finalMinLevel);
+                    if (!string.IsNullOrEmpty(finalMinLevel))
+                        rule.FinalMinLevel = LogLevel.FromString(finalMinLevel);
                 }
             }
             else
             {
-                minLevel = minLevel != null ? ExpandSimpleVariables(minLevel) : minLevel;
-                maxLevel = maxLevel != null ? ExpandSimpleVariables(maxLevel) : maxLevel;
-                finalMinLevel = finalMinLevel != null ? ExpandSimpleVariables(finalMinLevel) : finalMinLevel;
+                minLevel = ExpandSimpleVariables(minLevel).Trim();
+                maxLevel = ExpandSimpleVariables(maxLevel).Trim();
+                finalMinLevel = ExpandSimpleVariables(finalMinLevel).Trim();
+
                 if (IsLevelLayout(minLevel) || IsLevelLayout(maxLevel) || IsLevelLayout(finalMinLevel))
                 {
-                    SimpleLayout finalMinLevelLayout = ParseLevelLayout(finalMinLevel);
-                    SimpleLayout minLevelLayout = ParseLevelLayout(minLevel) ?? finalMinLevelLayout;
-                    SimpleLayout maxLevelLayout = ParseLevelLayout(maxLevel);
+                    var finalMinLevelLayout = ParseLevelLayout(finalMinLevel);
+                    var minLevelLayout = ParseLevelLayout(minLevel) ?? finalMinLevelLayout;
+                    var maxLevelLayout = ParseLevelLayout(maxLevel);
                     rule.EnableLoggingForLevelsLayout(minLevelLayout, maxLevelLayout, finalMinLevelLayout);
                 }
                 else
                 {
-                    LogLevel finalMinLogLevel = finalMinLevel != null ? LogLevelFromString(finalMinLevel) : null;
-                    LogLevel minLogLevel = minLevel != null ? LogLevelFromString(minLevel) : (finalMinLogLevel ?? LogLevel.MinLevel);
-                    LogLevel maxLogLevel = maxLevel != null ? LogLevelFromString(maxLevel) : LogLevel.MaxLevel;
+                    var finalMinLogLevel = string.IsNullOrEmpty(finalMinLevel) ? null : LogLevel.FromString(finalMinLevel);
+                    var minLogLevel = string.IsNullOrEmpty(minLevel) ? (finalMinLogLevel ?? LogLevel.MinLevel) : LogLevel.FromString(minLevel);
+                    var maxLogLevel = string.IsNullOrEmpty(maxLevel) ? LogLevel.MaxLevel : LogLevel.FromString(maxLevel);
                     rule.SetLoggingLevels(minLogLevel, maxLogLevel);
                     if (finalMinLogLevel != null)
                         rule.FinalMinLevel = finalMinLogLevel;
@@ -701,19 +699,22 @@ namespace NLog.Config
             }
         }
 
-        private static bool IsLevelLayout(string level)
+        private static bool IsLevelLayout(string? level)
         {
             return level?.IndexOf('{') >= 0;
         }
 
-        private SimpleLayout ParseLevelLayout(string levelLayout)
+        private SimpleLayout? ParseLevelLayout(string levelLayout)
         {
-            SimpleLayout simpleLayout = !StringHelpers.IsNullOrWhiteSpace(levelLayout) ? CreateSimpleLayout(levelLayout) : null;
-            simpleLayout?.Initialize(this);
+            if (levelLayout is null || StringHelpers.IsNullOrWhiteSpace(levelLayout))
+                return null;
+
+            var simpleLayout = CreateSimpleLayout(levelLayout);
+            simpleLayout.Initialize(this);
             return simpleLayout;
         }
 
-        private void ParseLoggingRuleTargets(string writeTargets, LoggingRule rule)
+        private void ParseLoggingRuleTargets(string? writeTargets, LoggingRule rule)
         {
             writeTargets = ExpandSimpleVariables(writeTargets);
             if (string.IsNullOrEmpty(writeTargets))
@@ -721,7 +722,7 @@ namespace NLog.Config
 
             foreach (string targetName in writeTargets.SplitAndTrimTokens(','))
             {
-                Target target = FindTargetByName(targetName);
+                var target = FindTargetByName(targetName);
                 if (target != null)
                 {
                     rule.Targets.Add(target);
@@ -737,11 +738,11 @@ namespace NLog.Config
         }
 
         [Obsolete("Very exotic feature without any unit-tests, not sure if it works. Marked obsolete with NLog v5.3")]
-        private void ParseLoggingRuleChildren(ValidatedConfigurationElement loggerElement, LoggingRule rule, string filterDefaultAction = null)
+        private void ParseLoggingRuleChildren(ValidatedConfigurationElement loggerElement, LoggingRule rule, string? filterDefaultAction = null)
         {
             foreach (var child in loggerElement.ValidChildren)
             {
-                LoggingRule childRule = null;
+                LoggingRule? childRule = null;
                 if (child.MatchesName("filters"))
                 {
                     ParseLoggingRuleFilters(rule, child, filterDefaultAction);
@@ -773,14 +774,14 @@ namespace NLog.Config
             }
         }
 
-        private void ParseLoggingRuleFilters(LoggingRule rule, ValidatedConfigurationElement filtersElement, string filterDefaultAction = null)
+        private void ParseLoggingRuleFilters(LoggingRule rule, ValidatedConfigurationElement filtersElement, string? filterDefaultAction = null)
         {
             filtersElement.AssertName("filters");
 
             filterDefaultAction = filtersElement.GetOptionalValue("defaultAction", null) ?? filtersElement.GetOptionalValue(nameof(rule.FilterDefaultAction), null) ?? filterDefaultAction;
             if (filterDefaultAction != null)
             {
-                if (ConversionHelpers.TryParseEnum(filterDefaultAction, typeof(FilterResult), out var enumValue))
+                if (ConversionHelpers.TryParseEnum(filterDefaultAction, typeof(FilterResult), out var enumValue) && enumValue != null)
                 {
                     rule.FilterDefaultAction = (FilterResult)enumValue;
                 }
@@ -795,9 +796,12 @@ namespace NLog.Config
             foreach (var filterElement in filtersElement.ValidChildren)
             {
                 var filterType = filterElement.GetOptionalValue("type", null) ?? filterElement.Name;
-                Filter filter = FactoryCreateInstance(filterType, ConfigurationItemFactory.Default.FilterFactory);
-                ConfigureFromAttributesAndElements(filter, filterElement);
-                rule.Filters.Add(filter);
+                Filter? filter = FactoryCreateInstance(filterType, ConfigurationItemFactory.Default.FilterFactory);
+                if (filter != null)
+                {
+                    ConfigureFromAttributesAndElements(filter, filterElement);
+                    rule.Filters.Add(filter);
+                }
             }
         }
 
@@ -821,16 +825,16 @@ namespace NLog.Config
         {
             targetsElement.AssertName("targets", "appenders");
 
-            bool asyncWrap = ParseBooleanValue("async", targetsElement.GetOptionalValue("async", "false"), false);
+            bool asyncWrap = ParseBooleanValue("async", targetsElement.GetOptionalValue("async", "false") ?? string.Empty, false);
 
-            ValidatedConfigurationElement defaultWrapperElement = null;
-            Dictionary<string, ValidatedConfigurationElement> typeNameToDefaultTargetParameters = null;
+            ValidatedConfigurationElement? defaultWrapperElement = null;
+            Dictionary<string, ValidatedConfigurationElement>? typeNameToDefaultTargetParameters = null;
 
             foreach (var targetElement in targetsElement.ValidChildren)
             {
-                string targetTypeName = targetElement.GetConfigItemTypeAttribute();
-                string targetValueName = targetElement.GetOptionalValue("name", null);
-                targetValueName = string.IsNullOrEmpty(targetValueName) ? targetElement.Name : $"{targetElement.Name}(Name={targetValueName})";
+                var targetTypeName = targetElement.GetConfigItemTypeAttribute();
+                var targetValueName = targetElement.GetOptionalValue("name", null) ?? string.Empty;
+                targetValueName = string.IsNullOrEmpty(targetValueName) ? (targetElement.Name ?? string.Empty) : $"{targetElement.Name}(Name={targetValueName})";
 
                 switch (targetElement.Name?.Trim().ToUpperInvariant())
                 {
@@ -870,7 +874,7 @@ namespace NLog.Config
             }
         }
 
-        private static Dictionary<string, ValidatedConfigurationElement> RegisterNewTargetDefaultParameters(Dictionary<string, ValidatedConfigurationElement> typeNameToDefaultTargetParameters, ValidatedConfigurationElement targetElement, string targetTypeName)
+        private static Dictionary<string, ValidatedConfigurationElement> RegisterNewTargetDefaultParameters(Dictionary<string, ValidatedConfigurationElement>? typeNameToDefaultTargetParameters, ValidatedConfigurationElement targetElement, string targetTypeName)
         {
             if (typeNameToDefaultTargetParameters is null)
                 typeNameToDefaultTargetParameters = new Dictionary<string, ValidatedConfigurationElement>(StringComparer.OrdinalIgnoreCase);
@@ -878,9 +882,9 @@ namespace NLog.Config
             return typeNameToDefaultTargetParameters;
         }
 
-        private void AddNewTargetFromConfig(string targetTypeName, ValidatedConfigurationElement targetElement, bool asyncWrap, Dictionary<string, ValidatedConfigurationElement> typeNameToDefaultTargetParameters = null, ValidatedConfigurationElement defaultWrapperElement = null)
+        private void AddNewTargetFromConfig(string targetTypeName, ValidatedConfigurationElement targetElement, bool asyncWrap, Dictionary<string, ValidatedConfigurationElement>? typeNameToDefaultTargetParameters = null, ValidatedConfigurationElement? defaultWrapperElement = null)
         {
-            Target newTarget = null;
+            Target? newTarget = null;
 
             try
             {
@@ -918,16 +922,16 @@ namespace NLog.Config
             }
         }
 
-        private Target CreateTargetType(string targetTypeName)
+        private Target? CreateTargetType(string targetTypeName)
         {
             return FactoryCreateInstance(targetTypeName, ConfigurationItemFactory.Default.TargetFactory);
         }
 
-        private void ParseTargetElement(Target target, ValidatedConfigurationElement targetElement, Dictionary<string, ValidatedConfigurationElement> typeNameToDefaultTargetParameters = null)
+        private void ParseTargetElement(Target target, ValidatedConfigurationElement targetElement, Dictionary<string, ValidatedConfigurationElement>? typeNameToDefaultTargetParameters = null)
         {
-            string targetTypeName = targetElement.GetConfigItemTypeAttribute("targets");
-            if (typeNameToDefaultTargetParameters != null &&
-                typeNameToDefaultTargetParameters.TryGetValue(targetTypeName, out var defaults))
+            var targetTypeName = targetElement.GetConfigItemTypeAttribute("targets");
+            if ( typeNameToDefaultTargetParameters != null
+              && typeNameToDefaultTargetParameters.TryGetValue(targetTypeName, out var defaults))
             {
                 ParseTargetElement(target, defaults, null);
             }
@@ -958,13 +962,13 @@ namespace NLog.Config
         private bool ParseTargetWrapper(
             WrapperTargetBase wrapper,
             ValidatedConfigurationElement childElement,
-            Dictionary<string, ValidatedConfigurationElement> typeNameToDefaultTargetParameters)
+            Dictionary<string, ValidatedConfigurationElement>? typeNameToDefaultTargetParameters)
         {
             if (IsTargetRefElement(childElement.Name))
             {
                 var targetName = childElement.GetRequiredValue("name", GetName(wrapper));
 
-                Target newTarget = FindTargetByName(targetName);
+                var newTarget = FindTargetByName(targetName);
                 if (newTarget is null)
                 {
                     var configException = new NLogConfigurationException($"Referenced target '{targetName}' not found.");
@@ -978,9 +982,9 @@ namespace NLog.Config
 
             if (IsTargetElement(childElement.Name))
             {
-                string targetTypeName = childElement.GetConfigItemTypeAttribute(GetName(wrapper));
+                var targetTypeName = childElement.GetConfigItemTypeAttribute(GetName(wrapper));
 
-                Target newTarget = CreateTargetType(targetTypeName);
+                var newTarget = CreateTargetType(targetTypeName);
                 if (newTarget != null)
                 {
                     ParseTargetElement(newTarget, childElement, typeNameToDefaultTargetParameters);
@@ -1012,8 +1016,8 @@ namespace NLog.Config
         private bool ParseCompoundTarget(
             CompoundTargetBase compound,
             ValidatedConfigurationElement childElement,
-            Dictionary<string, ValidatedConfigurationElement> typeNameToDefaultTargetParameters,
-            string targetName)
+            Dictionary<string, ValidatedConfigurationElement>? typeNameToDefaultTargetParameters,
+            string? targetName)
         {
             if (MatchesName(childElement.Name, "targets") || MatchesName(childElement.Name, "appenders"))
             {
@@ -1029,7 +1033,7 @@ namespace NLog.Config
             {
                 targetName = childElement.GetRequiredValue("name", GetName(compound));
 
-                Target newTarget = FindTargetByName(targetName);
+                var newTarget = FindTargetByName(targetName);
                 if (newTarget is null)
                 {
                     throw new NLogConfigurationException("Referenced target '" + targetName + "' not found.");
@@ -1041,9 +1045,9 @@ namespace NLog.Config
 
             if (IsTargetElement(childElement.Name))
             {
-                string targetTypeName = childElement.GetConfigItemTypeAttribute(GetName(compound));
+                var targetTypeName = childElement.GetConfigItemTypeAttribute(GetName(compound));
 
-                Target newTarget = CreateTargetType(targetTypeName);
+                var newTarget = CreateTargetType(targetTypeName);
                 if (newTarget != null)
                 {
                     if (targetName != null)
@@ -1090,7 +1094,7 @@ namespace NLog.Config
                     throw new NLogConfigurationException($"'{typeof(T).Name}' is null, and cannot assign property '{propertyName}'='{propertyValue}'");
                 }
 
-                if (!PropertyHelper.TryGetPropertyInfo(ConfigurationItemFactory.Default, targetObject, propertyName, out var propertyInfo))
+                if (!PropertyHelper.TryGetPropertyInfo(ConfigurationItemFactory.Default, targetObject, propertyName, out var propertyInfo) || propertyInfo is null)
                 {
                     throw new NLogConfigurationException($"'{targetObject.GetType()?.Name}' cannot assign unknown property '{propertyName}'='{propertyValue}'");
                 }
@@ -1134,7 +1138,7 @@ namespace NLog.Config
                 return;
             }
 
-            if (!PropertyHelper.TryGetPropertyInfo(ConfigurationItemFactory.Default, targetObject, childElement.Name, out var propInfo))
+            if (!PropertyHelper.TryGetPropertyInfo(ConfigurationItemFactory.Default, targetObject, childElement.Name, out var propInfo) || propInfo is null)
             {
                 var configException = new NLogConfigurationException($"'{targetObject.GetType()?.Name}' cannot assign unknown property '{childElement.Name}' in section '{parentElement.Name}'");
                 if (MustThrowConfigException(configException))
@@ -1158,13 +1162,13 @@ namespace NLog.Config
                 return;
             }
 
-            if (TryGetPropertyValue(targetObject, propInfo, out var propertyValue))
+            if (TryGetPropertyValue(targetObject, propInfo, out var propertyValue) && propertyValue is not null)
             {
                 ConfigureFromAttributesAndElements(propertyValue, childElement);
             }
         }
 
-        private bool TryGetPropertyValue<T>(T targetObject, PropertyInfo propInfo, out object propertyValue) where T : class
+        private bool TryGetPropertyValue<T>(T targetObject, PropertyInfo propInfo, out object? propertyValue) where T : class
         {
             try
             {
@@ -1187,10 +1191,10 @@ namespace NLog.Config
 
         private bool AddArrayItemFromElement(object o, PropertyInfo propInfo, ValidatedConfigurationElement element)
         {
-            Type elementType = PropertyHelper.GetArrayItemType(propInfo);
+            var elementType = PropertyHelper.GetArrayItemType(propInfo);
             if (elementType != null)
             {
-                if (TryGetPropertyValue(o, propInfo, out var propertyValue))
+                if (TryGetPropertyValue(o, propInfo, out var propertyValue) && propertyValue != null)
                 {
                     IList listValue = (IList)propertyValue;
 
@@ -1206,7 +1210,7 @@ namespace NLog.Config
                             return true;
                     }
 
-                    object arrayItem = ParseArrayItemFromElement(elementType, element);
+                    var arrayItem = ParseArrayItemFromElement(elementType, element);
                     listValue.Add(arrayItem);
                     return true;
                 }
@@ -1215,13 +1219,13 @@ namespace NLog.Config
             return false;
         }
 
-        private object ParseArrayItemFromElement(Type elementType, ValidatedConfigurationElement element)
+        private object? ParseArrayItemFromElement(Type elementType, ValidatedConfigurationElement element)
         {
-            object arrayItem = TryCreateLayoutInstance(element, elementType);
+            object? arrayItem = TryCreateLayoutInstance(element, elementType);
             // arrayItem is not a layout
             if (arrayItem is null)
             {
-                if (!ConfigurationItemFactory.Default.TryCreateInstance(elementType, out arrayItem))
+                if (!ConfigurationItemFactory.Default.TryCreateInstance(elementType, out arrayItem) || arrayItem is null)
                 {
                     throw new NLogConfigurationException($"Factory returned null for {elementType}");
                 }
@@ -1246,7 +1250,7 @@ namespace NLog.Config
 
         private bool SetFilterFromElement(object o, PropertyInfo propInfo, ValidatedConfigurationElement element)
         {
-            Filter filter = TryCreateFilterInstance(element, propInfo.PropertyType);
+            var filter = TryCreateFilterInstance(element, propInfo.PropertyType);
             // and is a Filter and 'type' attribute has been specified
             if (filter != null)
             {
@@ -1262,15 +1266,15 @@ namespace NLog.Config
             return new SimpleLayout(layoutText, ConfigurationItemFactory.Default, LogFactory.ThrowConfigExceptions);
         }
 
-        private Layout TryCreateLayoutInstance(ValidatedConfigurationElement element, Type type)
+        private Layout? TryCreateLayoutInstance(ValidatedConfigurationElement element, Type type)
         {
             // Check if Layout type
             if (!typeof(Layout).IsAssignableFrom(type))
                 return null;
 
             // Check if the 'type' attribute has been specified
-            string classType = element.GetConfigItemTypeAttribute();
-            if (classType is null)
+            var classType = element.GetConfigItemTypeAttribute();
+            if (string.IsNullOrEmpty(classType))
                 return null;
 
             var expandedClassType = ExpandSimpleVariables(classType, out var matchingVariableName);
@@ -1297,7 +1301,7 @@ namespace NLog.Config
             return null;
         }
 
-        private bool TryCreateSimpleLayoutInstance(ValidatedConfigurationElement element, out SimpleLayout simpleLayout)
+        private bool TryCreateSimpleLayoutInstance(ValidatedConfigurationElement element, out SimpleLayout? simpleLayout)
         {
             if (!element.ValidChildren.Any())
             {
@@ -1319,7 +1323,7 @@ namespace NLog.Config
             return false;
         }
 
-        private Filter TryCreateFilterInstance(ValidatedConfigurationElement element, Type type)
+        private Filter? TryCreateFilterInstance(ValidatedConfigurationElement element, Type type)
         {
             var filter = TryCreateInstance(element, type, ConfigurationItemFactory.Default.FilterFactory);
             if (filter != null)
@@ -1331,7 +1335,7 @@ namespace NLog.Config
             return null;
         }
 
-        private T TryCreateInstance<T>(ValidatedConfigurationElement element, Type type, IFactory<T> factory)
+        private T? TryCreateInstance<T>(ValidatedConfigurationElement element, Type type, IFactory<T> factory)
             where T : class
         {
             // Check if correct type
@@ -1339,16 +1343,16 @@ namespace NLog.Config
                 return null;
 
             // Check if the 'type' attribute has been specified
-            string classType = element.GetConfigItemTypeAttribute();
-            if (classType is null)
+            var classType = element.GetConfigItemTypeAttribute();
+            if (string.IsNullOrEmpty(classType))
                 return null;
 
             return FactoryCreateInstance(classType, factory);
         }
 
-        private T FactoryCreateInstance<T>(string typeName, IFactory<T> factory) where T : class
+        private T? FactoryCreateInstance<T>(string typeName, IFactory<T> factory) where T : class
         {
-            T newInstance = null;
+            T? newInstance = null;
 
             try
             {
@@ -1433,14 +1437,14 @@ namespace NLog.Config
 
         private Target WrapWithDefaultWrapper(Target target, ValidatedConfigurationElement defaultWrapperElement)
         {
-            string wrapperTypeName = defaultWrapperElement.GetConfigItemTypeAttribute("targets");
-            Target wrapperTargetInstance = CreateTargetType(wrapperTypeName);
-            WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
-            if (wtb is null)
+            var wrapperTypeName = defaultWrapperElement.GetConfigItemTypeAttribute("targets");
+            var wrapperTargetInstance = CreateTargetType(wrapperTypeName) as WrapperTargetBase;
+            if (wrapperTargetInstance is null)
             {
                 throw new NLogConfigurationException("Target type specified on <default-wrapper /> is not a wrapper.");
             }
 
+            var wtb = wrapperTargetInstance;
             ParseTargetElement(wrapperTargetInstance, defaultWrapperElement);
             while (wtb.WrappedTarget != null)
             {
@@ -1544,7 +1548,7 @@ namespace NLog.Config
         {
             private readonly ILoggingConfigurationElement _element;
             private readonly bool _throwConfigExceptions;
-            private IList<ValidatedConfigurationElement> _validChildren;
+            private IList<ValidatedConfigurationElement>? _validChildren;
 
             public static ValidatedConfigurationElement Create(ILoggingConfigurationElement element, LogFactory logFactory)
             {
@@ -1566,7 +1570,7 @@ namespace NLog.Config
             public string Name { get; }
 
             public ICollection<KeyValuePair<string, string>> Values => _valueLookup ?? (ICollection<KeyValuePair<string, string>>)ArrayHelper.Empty<KeyValuePair<string, string>>();
-            private readonly IDictionary<string, string> _valueLookup;
+            private readonly IDictionary<string, string>? _valueLookup;
 
             public IEnumerable<ValidatedConfigurationElement> ValidChildren
             {
@@ -1581,7 +1585,7 @@ namespace NLog.Config
 
             IEnumerable<ValidatedConfigurationElement> YieldAndCacheValidChildren()
             {
-                IList<ValidatedConfigurationElement> validChildren = null;
+                IList<ValidatedConfigurationElement>? validChildren = null;
                 foreach (var child in _element.Children)
                 {
                     validChildren = validChildren ?? new List<ValidatedConfigurationElement>();
@@ -1601,7 +1605,7 @@ namespace NLog.Config
 
             public string GetRequiredValue(string attributeName, string section)
             {
-                string value = GetOptionalValue(attributeName, null);
+                var value = GetOptionalValue(attributeName, null);
                 if (value is null)
                 {
                     throw new NLogConfigurationException($"Expected {attributeName} on {Name} in {section}");
@@ -1616,7 +1620,7 @@ namespace NLog.Config
                 return value;
             }
 
-            public string GetOptionalValue(string attributeName, string defaultValue)
+            public string? GetOptionalValue(string attributeName, string? defaultValue)
             {
                 if (_valueLookup is null)
                     return defaultValue;
@@ -1625,10 +1629,10 @@ namespace NLog.Config
                 return value ?? defaultValue;
             }
 
-            private static IDictionary<string, string> CreateValueLookup(ILoggingConfigurationElement element, bool throwConfigExceptions)
+            private static IDictionary<string, string>? CreateValueLookup(ILoggingConfigurationElement element, bool throwConfigExceptions)
             {
-                IDictionary<string, string> valueLookup = null;
-                List<string> warnings = null;
+                IDictionary<string, string>? valueLookup = null;
+                List<string>? warnings = null;
                 foreach (var attribute in element.Values)
                 {
                     var attributeKey = attribute.Key?.Trim() ?? string.Empty;

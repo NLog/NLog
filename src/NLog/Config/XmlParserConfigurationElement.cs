@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -48,7 +50,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets the value of the element.
         /// </summary>
-        public string Value { get; private set; }
+        public string? Value { get; private set; }
 
         /// <summary>
         /// Gets the dictionary of attribute values.
@@ -70,7 +72,7 @@ namespace NLog.Config
                     if (SingleValueElement(child))
                     {
                         // Values assigned using nested node-elements. Maybe in combination with attributes
-                        return AttributeValues.Concat(Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string>(item.Name, item.Value)));
+                        return AttributeValues.Concat(Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string>(item.Name, item.Value ?? string.Empty)));
                     }
                 }
                 return AttributeValues;
@@ -99,9 +101,11 @@ namespace NLog.Config
 
         public XmlParserConfigurationElement(XmlParser.XmlParserElement xmlElement, bool nestedElement)
         {
-            Parse(xmlElement, nestedElement, out var attributes, out var children);
-            AttributeValues = attributes ?? ArrayHelper.Empty<KeyValuePair<string, string>>();
-            Children = children ?? ArrayHelper.Empty<XmlParserConfigurationElement>();
+            var namePrefixIndex = xmlElement.Name.IndexOf(':');
+            Name = namePrefixIndex >= 0 ? xmlElement.Name.Substring(namePrefixIndex + 1) : xmlElement.Name;
+            Value = xmlElement.InnerText;
+            AttributeValues = ParseAttributes(xmlElement, nestedElement);
+            Children = ParseChildren(xmlElement, nestedElement);
         }
 
         private static bool SingleValueElement(XmlParserConfigurationElement child)
@@ -110,13 +114,9 @@ namespace NLog.Config
             return child.Children.Count == 0 && child.AttributeValues.Count == 0 && child.Value != null;
         }
 
-        private void Parse(XmlParser.XmlParserElement xmlElement, bool nestedElement, out IList<KeyValuePair<string, string>> attributes, out IList<XmlParserConfigurationElement> children)
+        private static IList<KeyValuePair<string, string>> ParseAttributes(XmlParser.XmlParserElement xmlElement, bool nestedElement)
         {
-            var namePrefixIndex = xmlElement.Name.IndexOf(':');
-            Name = namePrefixIndex >= 0 ? xmlElement.Name.Substring(namePrefixIndex + 1) : xmlElement.Name;
-            Value = xmlElement.InnerText;
-            attributes = xmlElement.Attributes;
-
+            var attributes = xmlElement.Attributes;
             if (attributes?.Count > 0)
             {
                 if (!nestedElement)
@@ -139,17 +139,23 @@ namespace NLog.Config
                 }
             }
 
-            children = null;
+            return attributes ?? ArrayHelper.Empty<KeyValuePair<string, string>>();
+        }
 
-            if (xmlElement.Children?.Count > 0)
+        private static IList<XmlParserConfigurationElement> ParseChildren(XmlParser.XmlParserElement xmlElement, bool nestedElement)
+        {
+            var childElements = xmlElement.Children;
+            if (childElements is null || childElements.Count == 0)
+                return ArrayHelper.Empty<XmlParserConfigurationElement>();
+
+            var children = new List<XmlParserConfigurationElement>();
+            for (int i = 0; i < childElements.Count; ++i)
             {
-                foreach (var child in xmlElement.Children)
-                {
-                    children = children ?? new List<XmlParserConfigurationElement>();
-                    var nestedChild = nestedElement || !string.Equals(child.Name, "nlog", StringComparison.OrdinalIgnoreCase);
-                    children.Add(new XmlParserConfigurationElement(child, nestedChild));
-                }
+                var child = childElements[i];
+                var nestedChild = nestedElement || !string.Equals(child.Name, "nlog", StringComparison.OrdinalIgnoreCase);
+                children.Add(new XmlParserConfigurationElement(child, nestedChild));
             }
+            return children;
         }
 
         /// <summary>

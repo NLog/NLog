@@ -31,15 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using NLog.Common;
-using NLog.Internal;
+#nullable enable
 
 namespace NLog.Config
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using NLog.Common;
+    using NLog.Internal;
+
     internal static class LoggingConfigurationElementExtensions
     {
         public static bool MatchesName(this ILoggingConfigurationElement section, string expectedName)
@@ -61,7 +63,7 @@ namespace NLog.Config
 
         public static string GetRequiredValue(this ILoggingConfigurationElement element, string attributeName, string section)
         {
-            string value = element.GetOptionalValue(attributeName, null);
+            var value = element.GetOptionalValue(attributeName, null);
             if (value is null)
             {
                 throw new NLogConfigurationException($"Expected {attributeName} on {element.Name} in {section}");
@@ -76,7 +78,7 @@ namespace NLog.Config
             return value;
         }
 
-        public static string GetOptionalValue(this ILoggingConfigurationElement element, string attributeName, string defaultValue)
+        public static string? GetOptionalValue(this ILoggingConfigurationElement element, string attributeName, string? defaultValue)
         {
             return element.Values
                 .Where(configItem => string.Equals(configItem.Key, attributeName, StringComparison.OrdinalIgnoreCase))
@@ -93,7 +95,7 @@ namespace NLog.Config
         public static bool GetOptionalBooleanValue(this ILoggingConfigurationElement element, string attributeName,
             bool defaultValue)
         {
-            string value = element.GetOptionalValue(attributeName, null);
+            var value = element.GetOptionalValue(attributeName, null)?.Trim() ?? string.Empty;
             if (string.IsNullOrEmpty(value))
             {
                 return defaultValue;
@@ -101,7 +103,7 @@ namespace NLog.Config
 
             try
             {
-                return Convert.ToBoolean(value.Trim(), CultureInfo.InvariantCulture);
+                return Convert.ToBoolean(value, CultureInfo.InvariantCulture);
             }
             catch (Exception exception)
             {
@@ -115,10 +117,10 @@ namespace NLog.Config
             }
         }
 
-        public static string GetConfigItemTypeAttribute(this ILoggingConfigurationElement element, string sectionNameForRequiredValue = null)
+        public static string GetConfigItemTypeAttribute(this ILoggingConfigurationElement element, string? sectionNameForRequiredValue = null)
         {
             var typeAttributeValue = sectionNameForRequiredValue != null ? element.GetRequiredValue("type", sectionNameForRequiredValue) : element.GetOptionalValue("type", null);
-            return StripOptionalNamespacePrefix(typeAttributeValue)?.Trim();
+            return StripOptionalNamespacePrefix(typeAttributeValue ?? string.Empty).Trim();
         }
 
         /// <summary>
@@ -149,15 +151,11 @@ namespace NLog.Config
         private static string StripOptionalNamespacePrefix(string attributeValue)
         {
             if (attributeValue is null)
-            {
-                return null;
-            }
+                return string.Empty;
 
             int p = attributeValue.IndexOf(':');
             if (p < 0)
-            {
                 return attributeValue;
-            }
 
             return attributeValue.Substring(p + 1);
         }

@@ -31,11 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using JetBrains.Annotations;
+#nullable enable
 
 namespace NLog.Config
 {
     using System;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Marks the object as configuration item for NLog.

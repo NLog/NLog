@@ -31,10 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
+#nullable enable
 
 namespace NLog.Config
 {
+    using System;
+    using NLog.Internal;
+
     /// <summary>
     /// Registered service type in the service repository
     /// </summary>
@@ -46,7 +49,7 @@ namespace NLog.Config
         /// <param name="serviceType">Type of service that have been registered</param>
         public ServiceRepositoryUpdateEventArgs(Type serviceType)
         {
-            ServiceType = serviceType;
+            ServiceType = Guard.ThrowIfNull(serviceType);
         }
 
         /// <summary>

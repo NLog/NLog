@@ -55,20 +55,20 @@ namespace NLog.Internal
     internal static class PropertyHelper
     {
         private static readonly Dictionary<Type, Dictionary<string, PropertyInfo>?> _parameterInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>?>();
-        private static readonly Dictionary<Type, Func<string, ConfigurationItemFactory, object>> _propertyConversionMapper = BuildPropertyConversionMapper();
+        private static readonly Dictionary<Type, Func<string, ConfigurationItemFactory, object?>> _propertyConversionMapper = BuildPropertyConversionMapper();
 
 #pragma warning disable S1144 // Unused private types or members should be removed. BUT they help CoreRT to provide config through reflection
         private static readonly RequiredParameterAttribute _requiredParameterAttribute = new RequiredParameterAttribute();
-        private static readonly ArrayParameterAttribute _arrayParameterAttribute = new ArrayParameterAttribute(null, string.Empty);
+        private static readonly ArrayParameterAttribute _arrayParameterAttribute = new ArrayParameterAttribute(typeof(string), string.Empty);
         private static readonly DefaultParameterAttribute _defaultParameterAttribute = new DefaultParameterAttribute();
         private static readonly NLogConfigurationIgnorePropertyAttribute _ignorePropertyAttribute = new NLogConfigurationIgnorePropertyAttribute();
         private static readonly NLogConfigurationItemAttribute _configPropertyAttribute = new NLogConfigurationItemAttribute();
         private static readonly FlagsAttribute _flagsAttribute = new FlagsAttribute();
 #pragma warning restore S1144 // Unused private types or members should be removed
 
-        private static Dictionary<Type, Func<string, ConfigurationItemFactory, object>> BuildPropertyConversionMapper()
+        private static Dictionary<Type, Func<string, ConfigurationItemFactory, object?>> BuildPropertyConversionMapper()
         {
-            return new Dictionary<Type, Func<string, ConfigurationItemFactory, object>>()
+            return new Dictionary<Type, Func<string, ConfigurationItemFactory, object?>>()
             {
                 { typeof(Layout), TryParseLayoutValue },
                 { typeof(SimpleLayout), TryParseLayoutValue },

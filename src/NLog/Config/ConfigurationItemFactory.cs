@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -54,7 +56,7 @@ namespace NLog.Config
     /// </summary>
     public sealed class ConfigurationItemFactory
     {
-        private static ConfigurationItemFactory _defaultInstance;
+        private static ConfigurationItemFactory? _defaultInstance;
 
         internal static readonly object SyncRoot = new object();
 
@@ -75,9 +77,9 @@ namespace NLog.Config
         private struct ItemFactory
         {
             public readonly Func<Dictionary<string, PropertyInfo>> ItemProperties;
-            public readonly Func<object> ItemCreator;
+            public readonly Func<object?> ItemCreator;
 
-            public ItemFactory(Func<Dictionary<string, PropertyInfo>> itemProperties, Func<object> itemCreator)
+            public ItemFactory(Func<Dictionary<string, PropertyInfo>> itemProperties, Func<object?> itemCreator)
             {
                 ItemProperties = itemProperties;
                 ItemCreator = itemCreator;
@@ -337,13 +339,13 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The item name prefix.</param>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix)
+        public void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string? itemNamePrefix)
         {
             lock (SyncRoot)
             {
                 foreach (IFactory f in _allFactories)
                 {
-                    f.RegisterType(type, itemNamePrefix);
+                    f.RegisterType(type, itemNamePrefix ?? string.Empty);
                 }
             }
         }
@@ -361,13 +363,13 @@ namespace NLog.Config
             }
         }
 
-        internal void RegisterTypeProperties<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(Func<object> itemCreator)
+        internal void RegisterTypeProperties<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(Func<object?> itemCreator)
         {
             lock (SyncRoot)
             {
                 if (!_itemFactories.ContainsKey(typeof(TType)))
                 {
-                    Dictionary<string, PropertyInfo> properties = null;
+                    Dictionary<string, PropertyInfo>? properties = null;
                     var itemProperties = new Func<Dictionary<string, PropertyInfo>>(() => properties ?? (properties = typeof(TType).GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase)));
                     var itemFactory = new ItemFactory(itemProperties, itemCreator);
                     _itemFactories[typeof(TType)] = itemFactory;
@@ -375,13 +377,13 @@ namespace NLog.Config
             }
         }
 
-        internal void RegisterTypeProperties([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type itemType, Func<object> itemCreator)
+        internal void RegisterTypeProperties([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type itemType, Func<object?> itemCreator)
         {
             lock (SyncRoot)
             {
                 if (!_itemFactories.ContainsKey(itemType))
                 {
-                    Dictionary<string, PropertyInfo> properties = null;
+                    Dictionary<string, PropertyInfo>? properties = null;
                     var itemProperties = new Func<Dictionary<string, PropertyInfo>>(() => properties ?? (properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase)));
                     var itemFactory = new ItemFactory(itemProperties, itemCreator);
                     _itemFactories[itemType] = itemFactory;
@@ -425,9 +427,9 @@ namespace NLog.Config
             return properties;
         }
 
-        internal bool TryCreateInstance(Type itemType, out object instance)
+        internal bool TryCreateInstance(Type itemType, out object? instance)
         {
-            Func<object> itemCreator = null;
+            Func<object?>? itemCreator = null;
 
             lock (SyncRoot)
             {
@@ -454,9 +456,9 @@ namespace NLog.Config
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2070")]
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2072")]
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-        private object ResolveCreateInstanceLegacy(Type itemType)
+        private object? ResolveCreateInstanceLegacy(Type itemType)
         {
-            Dictionary<string, PropertyInfo> properties = null;
+            Dictionary<string, PropertyInfo>? properties = null;
             var itemProperties = new Func<Dictionary<string, PropertyInfo>>(() => properties ?? (properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase)));
             var itemFactory = new ItemFactory(itemProperties, () => Activator.CreateInstance(itemType));
             lock (SyncRoot)

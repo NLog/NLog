@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Common
 {
     using System;
@@ -64,7 +66,7 @@ namespace NLog.Common
         /// <param name="inputValue">Input value</param>
         /// <param name="enumType">The type of the enum</param>
         /// <param name="resultValue">Output value. Null if parse failed</param>
-        internal static bool TryParseEnum(string inputValue, Type enumType, out object resultValue)
+        internal static bool TryParseEnum(string inputValue, Type enumType, out object? resultValue)
         {
             if (StringHelpers.IsNullOrWhiteSpace(inputValue))
             {

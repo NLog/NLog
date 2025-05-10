@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Common
 {
     using System;
@@ -64,7 +66,7 @@ namespace NLog.Common
             IncludeTimestamp = true;
             LogToConsole = false;
             LogToConsoleError = false;
-            LogFile = string.Empty;
+            LogFile = null;
         }
 
         /// <summary>
@@ -118,7 +120,7 @@ namespace NLog.Common
         /// Gets or sets the file path of the internal log file.
         /// </summary>
         /// <remarks>A value of <see langword="null" /> value disables internal logging to a file.</remarks>
-        public static string LogFile
+        public static string? LogFile
         {
             get
             {
@@ -135,19 +137,20 @@ namespace NLog.Common
                     _logFile = value;
                 }
 
-                if (!string.IsNullOrEmpty(value))
+                var logFile = (value != null && !string.IsNullOrEmpty(value)) ? ExpandFilePathVariables(value) : null;
+                _logFile = logFile;
+                if (logFile != null)
                 {
-                    _logFile = ExpandFilePathVariables(value);
-                    CreateDirectoriesIfNeeded(_logFile);
+                    CreateDirectoriesIfNeeded(logFile);
                 }
             }
         }
-        private static string _logFile;
+        private static string? _logFile;
 
         /// <summary>
         /// Gets or sets the text writer that will receive internal logs.
         /// </summary>
-        public static TextWriter LogWriter { get; set; }
+        public static TextWriter? LogWriter { get; set; }
 
         /// <summary>
         /// Internal LogEvent written to the InternalLogger
@@ -157,7 +160,7 @@ namespace NLog.Common
         ///
         /// Never use/call NLog Logger-objects when handling these internal events, as it will lead to deadlock / stackoverflow.
         /// </remarks>
-        public static event InternalEventOccurredHandler InternalEventOccurred;
+        public static event InternalEventOccurredHandler? InternalEventOccurred;
 
         /// <summary>
         /// Gets or sets a value indicating whether timestamp should be included in internal log output.
@@ -176,7 +179,7 @@ namespace NLog.Common
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         [StringFormatMethod("message")]
-        public static void Log(LogLevel level, [Localizable(false)] string message, params object[] args)
+        public static void Log(LogLevel level, [Localizable(false)] string message, params object?[] args)
         {
             Write(null, level, message, args);
         }
@@ -189,7 +192,7 @@ namespace NLog.Common
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         [StringFormatMethod("message")]
-        public static void Log(LogLevel level, [Localizable(false)] string message, params ReadOnlySpan<object> args)
+        public static void Log(LogLevel level, [Localizable(false)] string message, params ReadOnlySpan<object?> args)
         {
             if (IsLogLevelEnabled(level))
                 Write(null, level, message, args.IsEmpty ? null : args.ToArray());
@@ -203,7 +206,7 @@ namespace NLog.Common
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         [StringFormatMethod("message")]
-        public static void Log(Exception ex, LogLevel level, [Localizable(false)] string message, params ReadOnlySpan<object> args)
+        public static void Log(Exception? ex, LogLevel level, [Localizable(false)] string message, params ReadOnlySpan<object?> args)
         {
             if (IsLogLevelEnabled(level))
                 Write(ex, level, message, args.IsEmpty ? null : args.ToArray());
@@ -241,7 +244,7 @@ namespace NLog.Common
         /// <param name="ex">Exception to be logged.</param>
         /// <param name="level">Log level.</param>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Log(Exception ex, LogLevel level, [Localizable(false)] Func<string> messageFunc)
+        public static void Log(Exception? ex, LogLevel level, [Localizable(false)] Func<string> messageFunc)
         {
             if (IsLogLevelEnabled(level))
             {
@@ -257,7 +260,7 @@ namespace NLog.Common
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         [StringFormatMethod("message")]
-        public static void Log(Exception ex, LogLevel level, [Localizable(false)] string message, params object[] args)
+        public static void Log(Exception? ex, LogLevel level, [Localizable(false)] string message, params object?[] args)
         {
             Write(ex, level, message, args);
         }
@@ -268,7 +271,7 @@ namespace NLog.Common
         /// <param name="ex">Exception to be logged.</param>
         /// <param name="level">Log level.</param>
         /// <param name="message">Log message.</param>
-        public static void Log(Exception ex, LogLevel level, [Localizable(false)] string message)
+        public static void Log(Exception? ex, LogLevel level, [Localizable(false)] string message)
         {
             Write(ex, level, message, null);
         }
@@ -280,7 +283,7 @@ namespace NLog.Common
         /// <param name="level">level</param>
         /// <param name="message">message</param>
         /// <param name="args">optional args for <paramref name="message"/></param>
-        private static void Write([CanBeNull] Exception ex, LogLevel level, string message, [CanBeNull] object[] args)
+        private static void Write([CanBeNull] Exception? ex, LogLevel level, string message, [CanBeNull] object?[]? args)
         {
             if (!IsLogLevelEnabled(level))
             {
@@ -332,7 +335,7 @@ namespace NLog.Common
             }
         }
 
-        private static void WriteToLog(LogLevel level, Exception ex, string fullMessage, IInternalLoggerContext loggerContext)
+        private static void WriteToLog(LogLevel level, Exception? ex, string fullMessage, IInternalLoggerContext? loggerContext)
         {
             if (LogWriter != null)
             {
@@ -345,7 +348,7 @@ namespace NLog.Common
 
             if (InternalEventOccurred != null)
             {
-                var loggerContextName = string.IsNullOrEmpty(loggerContext?.Name) ? loggerContext?.ToString() : loggerContext.Name;
+                var loggerContextName = (loggerContext is null || string.IsNullOrEmpty(loggerContext.Name)) ? loggerContext?.ToString() : loggerContext.Name;
                 InternalEventOccurred?.Invoke(null, new InternalLogEventArgs(fullMessage, level, ex, loggerContext?.GetType(), loggerContextName));
             }
         }
@@ -353,7 +356,7 @@ namespace NLog.Common
         /// <summary>
         /// Create log line with timestamp, exception message etc (if configured)
         /// </summary>
-        private static string CreateLogLine([CanBeNull] Exception ex, LogLevel level, string fullMessage)
+        private static string CreateLogLine([CanBeNull] Exception? ex, LogLevel level, string fullMessage)
         {
             const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
             const string fieldSeparator = " ";
@@ -385,7 +388,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="exception">The exception to check.</param>
         /// <returns><c>true</c> if logging should be avoided; otherwise, <c>false</c>.</returns>
-        private static bool IsSeriousException(Exception exception)
+        private static bool IsSeriousException(Exception? exception)
         {
             return exception != null && exception.MustBeRethrownImmediately();
         }
@@ -442,19 +445,19 @@ namespace NLog.Common
         {
             try
             {
-                if (ContainsSubStringIgnoreCase(internalLogFile, "${currentdir}", out string currentDirToken))
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${currentdir}", out var currentDirToken))
                     internalLogFile = internalLogFile.Replace(currentDirToken, System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar.ToString());
-                if (ContainsSubStringIgnoreCase(internalLogFile, "${basedir}", out string baseDirToken))
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${basedir}", out var baseDirToken))
                     internalLogFile = internalLogFile.Replace(baseDirToken, LogManager.LogFactory.CurrentAppEnvironment.AppDomainBaseDirectory + System.IO.Path.DirectorySeparatorChar.ToString());
-                if (ContainsSubStringIgnoreCase(internalLogFile, "${tempdir}", out string tempDirToken))
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${tempdir}", out var tempDirToken))
                     internalLogFile = internalLogFile.Replace(tempDirToken, LogManager.LogFactory.CurrentAppEnvironment.UserTempFilePath + System.IO.Path.DirectorySeparatorChar.ToString());
-                if (ContainsSubStringIgnoreCase(internalLogFile, "${processdir}", out string processDirToken))
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${processdir}", out var processDirToken))
                     internalLogFile = internalLogFile.Replace(processDirToken, System.IO.Path.GetDirectoryName(LogManager.LogFactory.CurrentAppEnvironment.CurrentProcessFilePath) + System.IO.Path.DirectorySeparatorChar.ToString());
-                if (ContainsSubStringIgnoreCase(internalLogFile, "${commonApplicationDataDir}", out string commonAppDataDirToken))
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${commonApplicationDataDir}", out var commonAppDataDirToken))
                     internalLogFile = internalLogFile.Replace(commonAppDataDirToken, NLog.LayoutRenderers.SpecialFolderLayoutRenderer.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
-                if (ContainsSubStringIgnoreCase(internalLogFile, "${userApplicationDataDir}", out string appDataDirToken))
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${userApplicationDataDir}", out var appDataDirToken))
                     internalLogFile = internalLogFile.Replace(appDataDirToken, NLog.LayoutRenderers.SpecialFolderLayoutRenderer.GetFolderPath(Environment.SpecialFolder.ApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
-                if (ContainsSubStringIgnoreCase(internalLogFile, "${userLocalApplicationDataDir}", out string localapplicationdatadir))
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${userLocalApplicationDataDir}", out var localapplicationdatadir))
                     internalLogFile = internalLogFile.Replace(localapplicationdatadir, NLog.LayoutRenderers.SpecialFolderLayoutRenderer.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
                 if (internalLogFile.IndexOf('%') >= 0)
                     internalLogFile = Environment.ExpandEnvironmentVariables(internalLogFile);
@@ -470,26 +473,26 @@ namespace NLog.Common
             }
         }
 
-        private static bool ContainsSubStringIgnoreCase(string haystack, string needle, out string result)
+        private static bool ContainsSubStringIgnoreCase(string haystack, string needle, out string? result)
         {
             int needlePos = haystack.IndexOf(needle, StringComparison.OrdinalIgnoreCase);
             result = needlePos >= 0 ? haystack.Substring(needlePos, needle.Length) : null;
             return result != null;
         }
 
-        private static void LogToConsoleSubscription(object sender, InternalLogEventArgs eventArgs)
+        private static void LogToConsoleSubscription(object? sender, InternalLogEventArgs eventArgs)
         {
             var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
             NLog.Targets.ConsoleTargetHelper.WriteLineThreadSafe(Console.Out, logLine);
         }
 
-        private static void LogToConsoleErrorSubscription(object sender, InternalLogEventArgs eventArgs)
+        private static void LogToConsoleErrorSubscription(object? sender, InternalLogEventArgs eventArgs)
         {
             var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
             NLog.Targets.ConsoleTargetHelper.WriteLineThreadSafe(Console.Error, logLine);
         }
 
-        private static void LogToFileSubscription(object sender, InternalLogEventArgs eventArgs)
+        private static void LogToFileSubscription(object? sender, InternalLogEventArgs eventArgs)
         {
             var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
             lock (LockObject)

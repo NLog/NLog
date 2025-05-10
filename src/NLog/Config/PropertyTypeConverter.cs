@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -49,12 +51,12 @@ namespace NLog.Config
         /// </summary>
         public static PropertyTypeConverter Instance { get; } = new PropertyTypeConverter();
 
-        private static Dictionary<Type, Func<string, string, IFormatProvider, object>> StringConverterLookup => _stringConverters ?? (_stringConverters = BuildStringConverterLookup());
-        private static Dictionary<Type, Func<string, string, IFormatProvider, object>> _stringConverters;
+        private static Dictionary<Type, Func<string, string?, IFormatProvider?, object?>> StringConverterLookup => _stringConverters ?? (_stringConverters = BuildStringConverterLookup());
+        private static Dictionary<Type, Func<string, string?, IFormatProvider?, object?>>? _stringConverters;
 
-        private static Dictionary<Type, Func<string, string, IFormatProvider, object>> BuildStringConverterLookup()
+        private static Dictionary<Type, Func<string, string?, IFormatProvider?, object?>> BuildStringConverterLookup()
         {
-            return new Dictionary<Type, Func<string, string, IFormatProvider, object>>()
+            return new Dictionary<Type, Func<string, string?, IFormatProvider?, object?>>()
             {
                 { typeof(System.Text.Encoding), (stringvalue, format, formatProvider) => ConvertToEncoding(stringvalue) },
                 { typeof(System.Globalization.CultureInfo), (stringvalue, format, formatProvider) => ConvertToCultureInfo(stringvalue) },
@@ -81,7 +83,7 @@ namespace NLog.Config
         }
 
         /// <inheritdoc/>
-        public object Convert(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider)
+        public object? Convert(object? propertyValue, Type propertyType, string? format, IFormatProvider? formatProvider)
         {
             if (propertyValue is null || propertyType is null || propertyType.Equals(typeof(object)))
             {
@@ -113,7 +115,7 @@ namespace NLog.Config
             return ChangeObjectType(propertyValue, propertyType, format, formatProvider);
         }
 
-        private static bool TryConvertFromString(string propertyString, Type propertyType, string format, IFormatProvider formatProvider, out object propertyValue)
+        private static bool TryConvertFromString(string propertyString, Type propertyType, string? format, IFormatProvider? formatProvider, out object? propertyValue)
         {
             propertyValue = propertyString = propertyString.Trim();
 
@@ -137,11 +139,11 @@ namespace NLog.Config
             return false;
         }
 
-        private static object ChangeObjectType(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider)
+        private static object? ChangeObjectType(object propertyValue, Type propertyType, string? format, IFormatProvider? formatProvider)
         {
-            if (propertyValue is string propertyString && TryConvertFromString(propertyString, propertyType, format, formatProvider, out propertyValue))
+            if (propertyValue is string propertyString && TryConvertFromString(propertyString, propertyType, format, formatProvider, out var fromStringValue))
             {
-                return propertyValue;
+                return fromStringValue;
             }
 
             if (propertyValue is IConvertible convertibleValue)
@@ -168,7 +170,7 @@ namespace NLog.Config
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2026")]
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2067")]
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
-        private static bool TryConvertToType(object propertyValue, Type propertyType, out object convertedValue)
+        private static bool TryConvertToType(object propertyValue, Type propertyType, out object? convertedValue)
         {
             if (propertyValue is null || propertyType.IsAssignableFrom(propertyValue.GetType()))
             {
@@ -187,7 +189,7 @@ namespace NLog.Config
             return false;
         }
 
-        private static object ConvertGuid(string format, string propertyString)
+        private static object ConvertGuid(string? format, string propertyString)
         {
 #if !NET35
             return string.IsNullOrEmpty(format) ? Guid.Parse(propertyString) : Guid.ParseExact(propertyString, format);
@@ -196,7 +198,7 @@ namespace NLog.Config
 #endif
         }
 
-        internal static object ConvertToCultureInfo(string stringValue)
+        internal static object? ConvertToCultureInfo(string? stringValue)
         {
             if (StringHelpers.IsNullOrWhiteSpace(stringValue))
                 return null;
@@ -215,7 +217,7 @@ namespace NLog.Config
             return System.Text.Encoding.GetEncoding(stringValue);
         }
 
-        private static object ConvertToTimeSpan(string format, IFormatProvider formatProvider, string propertyString)
+        private static object ConvertToTimeSpan(string? format, IFormatProvider? formatProvider, string propertyString)
         {
 #if !NET35
             if (!string.IsNullOrEmpty(format))
@@ -226,14 +228,14 @@ namespace NLog.Config
 #endif
         }
 
-        private static object ConvertToDateTimeOffset(string format, IFormatProvider formatProvider, string propertyString)
+        private static object ConvertToDateTimeOffset(string? format, IFormatProvider? formatProvider, string propertyString)
         {
             if (!string.IsNullOrEmpty(format))
                 return DateTimeOffset.ParseExact(propertyString, format, formatProvider);
             return DateTimeOffset.Parse(propertyString, formatProvider);
         }
 
-        private static object ConvertToDateTime(string format, IFormatProvider formatProvider, string propertyString)
+        private static object ConvertToDateTime(string? format, IFormatProvider? formatProvider, string propertyString)
         {
             if (!string.IsNullOrEmpty(format))
                 return DateTime.ParseExact(propertyString, format, formatProvider);

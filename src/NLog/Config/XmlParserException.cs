@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -61,7 +63,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="innerException">The inner exception.</param>
-        public XmlParserException(string message, Exception innerException)
+        public XmlParserException(string message, Exception? innerException)
             : base(message, innerException)
         {
         }

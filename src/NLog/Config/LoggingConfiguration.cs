@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -120,9 +122,9 @@ namespace NLog.Config
         private bool TryGetTargetThreadSafe(string name, out Target target) { lock (_targets) return _targets.TryGetValue(name, out target); }
         private List<Target> GetAllTargetsThreadSafe() { lock (_targets) return _targets.Values.ToList(); }
 
-        private Target RemoveTargetThreadSafe(string name)
+        private Target? RemoveTargetThreadSafe(string name)
         {
-            Target target;
+            Target? target;
             lock (_targets)
             {
                 if (_targets.TryGetValue(name, out target))
@@ -139,19 +141,15 @@ namespace NLog.Config
             return target;
         }
 
-        private void AddTargetThreadSafe(Target target, string targetAlias = null)
+        private void AddTargetThreadSafe(Target target, string? targetAlias = null)
         {
-            if (string.IsNullOrEmpty(target.Name) && string.IsNullOrEmpty(targetAlias))
-                return;
-
             lock (_targets)
             {
-                if (string.IsNullOrEmpty(targetAlias))
+                if (targetAlias is null || string.IsNullOrEmpty(targetAlias))
                 {
-                    if (_targets.ContainsKey(target.Name))
+                    targetAlias = target.Name ?? string.Empty;
+                    if (_targets.ContainsKey(targetAlias))
                         return;
-
-                    targetAlias = target.Name;
                 }
 
                 if (_targets.TryGetValue(targetAlias, out var oldTarget) && ReferenceEquals(oldTarget, target))
@@ -177,7 +175,7 @@ namespace NLog.Config
         /// Specific culture info or null to use <see cref="CultureInfo.CurrentCulture"/>
         /// </value>
         [CanBeNull]
-        public CultureInfo DefaultCultureInfo { get; set; }
+        public CultureInfo? DefaultCultureInfo { get; set; }
 
         /// <summary>
         /// Gets all targets.
@@ -253,7 +251,7 @@ namespace NLog.Config
         /// <returns>
         /// Found target or <see langword="null"/> when the target is not found.
         /// </returns>
-        public Target FindTargetByName(string name)
+        public Target? FindTargetByName(string name)
         {
             Target value;
             if (!TryGetTargetThreadSafe(name, out value))
@@ -274,7 +272,7 @@ namespace NLog.Config
         /// <returns>
         /// Found target or <see langword="null"/> when the target is not found of not of type <typeparamref name="TTarget"/>
         /// </returns>
-        public TTarget FindTargetByName<TTarget>(string name)
+        public TTarget? FindTargetByName<TTarget>(string name)
             where TTarget : Target
         {
             var target = FindTargetByName(name);
@@ -345,6 +343,7 @@ namespace NLog.Config
         /// <param name="rule">rule object to add</param>
         public void AddRule(LoggingRule rule)
         {
+            Guard.ThrowIfNull(rule);
             AddLoggingRulesThreadSafe(rule);
         }
 
@@ -440,7 +439,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="ruleName">The name of the logging rule to be found.</param>
         /// <returns>Found logging rule or <see langword="null"/> when not found.</returns>
-        public LoggingRule FindRuleByName(string ruleName)
+        public LoggingRule? FindRuleByName(string ruleName)
         {
             if (ruleName is null)
                 return null;
@@ -522,7 +521,7 @@ namespace NLog.Config
         /// Notify the configuration when <see cref="LogFactory.Configuration"/> has been assigned / unassigned.
         /// </summary>
         /// <param name="logFactory">LogFactory that configuration has been assigned to.</param>
-        protected internal virtual void OnConfigurationAssigned(LogFactory logFactory)
+        protected internal virtual void OnConfigurationAssigned(LogFactory? logFactory)
         {
             if (!ReferenceEquals(logFactory, LogFactory) && logFactory != null)
             {
@@ -539,8 +538,10 @@ namespace NLog.Config
         /// <param name="name">Name of the target.</param>
         public void RemoveTarget(string name)
         {
+            Guard.ThrowIfNull(name);
+
             HashSet<Target> removedTargets = new HashSet<Target>();
-            Target removedTarget = RemoveTargetThreadSafe(name);
+            var removedTarget = RemoveTargetThreadSafe(name);
             if (removedTarget != null)
             {
                 removedTargets.Add(removedTarget);
@@ -569,7 +570,7 @@ namespace NLog.Config
             }
         }
 
-        private void CleanupRulesForRemovedTarget(string name, Target removedTarget, HashSet<Target> removedTargets)
+        private void CleanupRulesForRemovedTarget(string name, Target? removedTarget, HashSet<Target> removedTargets)
         {
             var loggingRules = GetLoggingRulesThreadSafe();
 
@@ -846,12 +847,13 @@ namespace NLog.Config
         private static bool IsMissingServiceType(NLogDependencyResolveException resolveException, Type serviceType)
         {
             if (resolveException.ServiceType.IsAssignableFrom(serviceType))
-                return true;
-
-            resolveException = resolveException.InnerException as NLogDependencyResolveException;
-            if (resolveException != null)
             {
-                return IsMissingServiceType(resolveException, serviceType);
+                return true;
+            }
+
+            if (resolveException.InnerException is NLogDependencyResolveException dependencyResolveException)
+            {
+                return IsMissingServiceType(dependencyResolveException, serviceType);
             }
 
             return false;
@@ -878,20 +880,21 @@ namespace NLog.Config
         /// <param name="input"></param>
         /// <returns></returns>
         [NotNull]
-        internal string ExpandSimpleVariables(string input)
+        internal string ExpandSimpleVariables(string? input)
         {
             return ExpandSimpleVariables(input, out var _);
         }
 
         [NotNull]
-        internal string ExpandSimpleVariables(string input, out string matchingVariableName)
+        internal string ExpandSimpleVariables(string? input, out string? matchingVariableName)
         {
-            string output = input;
-            var culture = StringComparison.OrdinalIgnoreCase;
+            var output = input;
             matchingVariableName = null;
 
-            if (Variables.Count > 0 && output?.IndexOf('$') >= 0)
+            if (output != null && !StringHelpers.IsNullOrWhiteSpace(output) && Variables.Count > 0 && output.IndexOf('$') >= 0)
             {
+                var culture = StringComparison.OrdinalIgnoreCase;
+
                 foreach (var kvp in _variables)
                 {
                     var layout = kvp.Value;
@@ -915,7 +918,7 @@ namespace NLog.Config
                     }
                     else
                     {
-                        if (string.Equals(layoutText, input.Trim(), culture))
+                        if (string.Equals(layoutText, input?.Trim() ?? string.Empty, culture))
                         {
                             matchingVariableName = kvp.Key;
                         }
@@ -982,7 +985,7 @@ namespace NLog.Config
             InternalLogger.Debug("Unused target checking is completed. Total Rule Count: {0}, Total Target Count: {1}, Unused Target Count: {2}", LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
         }
 
-        internal AsyncContinuation FlushAllTargets(AsyncContinuation flushCompletion)
+        internal AsyncContinuation? FlushAllTargets(AsyncContinuation flushCompletion)
         {
             var pendingTargets = GetAllTargetsToFlush();
             if (pendingTargets.Count == 0)
@@ -993,9 +996,9 @@ namespace NLog.Config
 
             InternalLogger.Trace("Flushing all {0} targets...", pendingTargets.Count);
 
-            Exception lastException = null;
+            Exception? lastException = null;
 
-            Action<Target, Exception> flushAction = (t, ex) =>
+            Action<Target, Exception?> flushAction = (t, ex) =>
             {
                 if (ex != null)
                 {
@@ -1072,7 +1075,7 @@ namespace NLog.Config
             if (targetsByLevel is null)
                 return false;
 
-            System.Text.StringBuilder sb = null;
+            System.Text.StringBuilder? sb = null;
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
                 if (sb != null)
@@ -1081,7 +1084,7 @@ namespace NLog.Config
                     sb.AppendFormat(CultureInfo.InvariantCulture, "Logger {0} [{1}] =>", loggerName, LogLevel.FromOrdinal(i));
                 }
 
-                for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
+                for (TargetWithFilterChain? afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
                 {
                     if (sb is null)
                     {

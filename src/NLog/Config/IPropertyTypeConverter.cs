@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -48,6 +50,6 @@ namespace NLog.Config
         /// <param name="format">Format to use when parsing</param>
         /// <param name="formatProvider">Culture to use when parsing</param>
         /// <returns>Output value with wanted type</returns>
-        object Convert(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider);
+        object? Convert(object? propertyValue, Type propertyType, string? format, IFormatProvider? formatProvider);
     }
 }

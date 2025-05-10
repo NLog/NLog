@@ -64,7 +64,7 @@ namespace NLog.Internal
         /// Continuation function which implements the timeout logic.
         /// </summary>
         /// <param name="exception">The exception.</param>
-        public void Function(Exception exception)
+        public void Function(Exception? exception)
         {
             try
             {

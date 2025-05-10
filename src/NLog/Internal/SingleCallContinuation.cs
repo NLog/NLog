@@ -61,7 +61,7 @@ namespace NLog.Internal
         /// Continuation function which implements the single-call guard.
         /// </summary>
         /// <param name="exception">The exception.</param>
-        public void Function(Exception exception)
+        public void Function(Exception? exception)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace NLog.Internal
             }
         }
 
-        private void CompletedFunction(Exception exception)
+        private void CompletedFunction(Exception? exception)
         {
             // Completed, nothing to do
         }

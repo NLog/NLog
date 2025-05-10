@@ -31,12 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using JetBrains.Annotations;
-using NLog.Internal;
+#nullable enable
 
 namespace NLog.Config
 {
+    using System;
+    using JetBrains.Annotations;
+    using NLog.Internal;
+
     /// <summary>
     /// Failed to resolve the interface of service type
     /// </summary>

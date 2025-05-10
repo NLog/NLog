@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -50,7 +52,7 @@ namespace NLog.Config
     public class LoggingRule
     {
         private ILoggingRuleLevelFilter _logLevelFilter = LoggingRuleLevelFilter.Off;
-        private LoggerNameMatcher _loggerNameMatcher = LoggerNameMatcher.Create(null);
+        private LoggerNameMatcher _loggerNameMatcher = LoggerNameMatcher.Off;
         private readonly List<Target> _targets = new List<Target>();
 
         /// <summary>
@@ -64,7 +66,7 @@ namespace NLog.Config
         /// <summary>
         /// Create an empty <see cref="LoggingRule" />.
         /// </summary>
-        public LoggingRule(string ruleName)
+        public LoggingRule(string? ruleName)
         {
             RuleName = ruleName;
         }
@@ -113,7 +115,7 @@ namespace NLog.Config
         /// <summary>
         /// Rule identifier to allow rule lookup
         /// </summary>
-        public string RuleName { get; set; }
+        public string? RuleName { get; set; }
 
         /// <summary>
         /// Gets a collection of targets that should be written to when this rule matches.
@@ -151,7 +153,7 @@ namespace NLog.Config
         /// <remarks>
         /// Loggers matching will be restricted to specified minimum level for following rules.
         /// </remarks>
-        public LogLevel FinalMinLevel
+        public LogLevel? FinalMinLevel
         {
             get => _logLevelFilter.FinalMinLevel;
             set => _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetFinalMinLevel(value);
@@ -243,12 +245,12 @@ namespace NLog.Config
             _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetLoggingLevels(minLevel, maxLevel, true);
         }
 
-        internal void EnableLoggingForLevelLayout(NLog.Layouts.SimpleLayout simpleLayout, NLog.Layouts.SimpleLayout finalMinLevel)
+        internal void EnableLoggingForLevelLayout(NLog.Layouts.SimpleLayout? simpleLayout, NLog.Layouts.SimpleLayout? finalMinLevel)
         {
             _logLevelFilter = new DynamicLogLevelFilter(this, simpleLayout, finalMinLevel);
         }
 
-        internal void EnableLoggingForLevelsLayout(Layouts.SimpleLayout minLevel, Layouts.SimpleLayout maxLevel, NLog.Layouts.SimpleLayout finalMinLevel)
+        internal void EnableLoggingForLevelsLayout(Layouts.SimpleLayout? minLevel, Layouts.SimpleLayout? maxLevel, NLog.Layouts.SimpleLayout? finalMinLevel)
         {
             _logLevelFilter = new DynamicRangeLevelFilter(this, minLevel, maxLevel, finalMinLevel);
         }

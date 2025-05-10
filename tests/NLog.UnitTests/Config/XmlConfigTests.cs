@@ -52,7 +52,7 @@ namespace NLog.UnitTests.Config
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
 
                 Assert.False(config.AutoReload);
-                Assert.Equal("", InternalLogger.LogFile);
+                Assert.Null(InternalLogger.LogFile);
                 Assert.False(InternalLogger.LogToConsole);
                 Assert.False(InternalLogger.LogToConsoleError);
                 Assert.True(InternalLogger.IncludeTimestamp);
@@ -72,7 +72,7 @@ namespace NLog.UnitTests.Config
                     var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
 
                     Assert.False(config.AutoReload);
-                    Assert.Equal("", InternalLogger.LogFile);
+                    Assert.Null(InternalLogger.LogFile);
                     Assert.True(InternalLogger.LogToConsole);
                     Assert.True(InternalLogger.LogToConsoleError);
                     Assert.False(InternalLogger.IncludeTimestamp);

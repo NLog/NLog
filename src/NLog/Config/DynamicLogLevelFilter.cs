@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -45,15 +47,15 @@ namespace NLog.Config
     internal sealed class DynamicLogLevelFilter : ILoggingRuleLevelFilter
     {
         private readonly LoggingRule _loggingRule;
-        private readonly SimpleLayout _levelFilter;
-        private readonly SimpleLayout _finalMinLevelFilter;
+        private readonly SimpleLayout? _levelFilter;
+        private readonly SimpleLayout? _finalMinLevelFilter;
         private KeyValuePair<string, bool[]> _activeFilter;
 
         public bool[] LogLevels => GenerateLogLevels();
 
-        public LogLevel FinalMinLevel => GenerateFinalMinLevel();
+        public LogLevel? FinalMinLevel => GenerateFinalMinLevel();
 
-        public DynamicLogLevelFilter(LoggingRule loggingRule, SimpleLayout levelFilter, SimpleLayout finalMinLevelFilter)
+        public DynamicLogLevelFilter(LoggingRule loggingRule, SimpleLayout? levelFilter, SimpleLayout? finalMinLevelFilter)
         {
             _loggingRule = loggingRule;
             _levelFilter = levelFilter;
@@ -68,7 +70,7 @@ namespace NLog.Config
 
         private bool[] GenerateLogLevels()
         {
-            var levelFilter = _levelFilter.Render(LogEventInfo.CreateNullEvent());
+            var levelFilter = _levelFilter?.Render(LogEventInfo.CreateNullEvent())?.Trim() ?? string.Empty;
             if (string.IsNullOrEmpty(levelFilter))
                 return LoggingRuleLevelFilter.Off.LogLevels;
 
@@ -94,9 +96,9 @@ namespace NLog.Config
             return activeFilter.Value;
         }
 
-        private LogLevel GenerateFinalMinLevel()
+        private LogLevel? GenerateFinalMinLevel()
         {
-            var levelFilter = _finalMinLevelFilter?.Render(LogEventInfo.CreateNullEvent());
+            var levelFilter = _finalMinLevelFilter?.Render(LogEventInfo.CreateNullEvent())?.Trim() ?? string.Empty;
             return ParseLogLevel(levelFilter, null);
         }
 
@@ -111,14 +113,14 @@ namespace NLog.Config
             return logLevels;
         }
 
-        private LogLevel ParseLogLevel(string logLevel, LogLevel levelIfEmpty)
+        private LogLevel? ParseLogLevel(string logLevel, LogLevel? levelIfEmpty)
         {
             try
             {
                 if (string.IsNullOrEmpty(logLevel))
                     return levelIfEmpty;
 
-                return LogLevel.FromString(logLevel.Trim());
+                return LogLevel.FromString(logLevel);
             }
             catch (ArgumentException ex)
             {

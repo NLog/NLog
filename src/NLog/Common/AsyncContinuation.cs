@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Common
 {
     using System;
@@ -41,5 +43,5 @@ namespace NLog.Common
     /// </summary>
     /// <param name="exception">Exception during asynchronous processing or null if no exception
     /// was thrown.</param>
-    public delegate void AsyncContinuation(Exception exception);
+    public delegate void AsyncContinuation(Exception? exception);
 }

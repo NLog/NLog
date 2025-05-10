@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -44,16 +46,16 @@ namespace NLog.Config
     internal sealed class DynamicRangeLevelFilter : ILoggingRuleLevelFilter
     {
         private readonly LoggingRule _loggingRule;
-        private readonly SimpleLayout _minLevel;
-        private readonly SimpleLayout _maxLevel;
-        private readonly SimpleLayout _finalMinLevelFilter;
+        private readonly SimpleLayout? _minLevel;
+        private readonly SimpleLayout? _maxLevel;
+        private readonly SimpleLayout? _finalMinLevelFilter;
         private KeyValuePair<MinMaxLevels, bool[]> _activeFilter;
 
         public bool[] LogLevels => GenerateLogLevels();
 
-        public LogLevel FinalMinLevel => GenerateFinalMinLevel();
+        public LogLevel? FinalMinLevel => GenerateFinalMinLevel();
 
-        public DynamicRangeLevelFilter(LoggingRule loggingRule, SimpleLayout minLevel, SimpleLayout maxLevel, SimpleLayout finalMinLevelFilter)
+        public DynamicRangeLevelFilter(LoggingRule loggingRule, SimpleLayout? minLevel, SimpleLayout? maxLevel, SimpleLayout? finalMinLevelFilter)
         {
             _loggingRule = loggingRule;
             _minLevel = minLevel;
@@ -69,10 +71,8 @@ namespace NLog.Config
 
         private bool[] GenerateLogLevels()
         {
-            var minLevelFilter = _minLevel?.Render(LogEventInfo.CreateNullEvent()) ?? string.Empty;
-            var maxLevelFilter = _maxLevel?.Render(LogEventInfo.CreateNullEvent()) ?? string.Empty;
-            if (string.IsNullOrEmpty(minLevelFilter) && string.IsNullOrEmpty(maxLevelFilter))
-                return LoggingRuleLevelFilter.Off.LogLevels;
+            var minLevelFilter = _minLevel?.Render(LogEventInfo.CreateNullEvent())?.Trim() ?? string.Empty;
+            var maxLevelFilter = _maxLevel?.Render(LogEventInfo.CreateNullEvent())?.Trim() ?? string.Empty;
 
             var activeFilter = _activeFilter;
             if (!activeFilter.Key.Equals(new MinMaxLevels(minLevelFilter, maxLevelFilter)))
@@ -83,16 +83,19 @@ namespace NLog.Config
             return activeFilter.Value;
         }
 
-        private LogLevel GenerateFinalMinLevel()
+        private LogLevel? GenerateFinalMinLevel()
         {
-            var levelFilter = _finalMinLevelFilter?.Render(LogEventInfo.CreateNullEvent());
+            var levelFilter = _finalMinLevelFilter?.Render(LogEventInfo.CreateNullEvent())?.Trim() ?? string.Empty;
             return ParseLogLevel(levelFilter, null);
         }
 
         private bool[] ParseLevelRange(string minLevelFilter, string maxLevelFilter)
         {
-            LogLevel minLevel = ParseLogLevel(minLevelFilter, LogLevel.MinLevel);
-            LogLevel maxLevel = ParseLogLevel(maxLevelFilter, LogLevel.MaxLevel);
+            if (string.IsNullOrEmpty(minLevelFilter) && string.IsNullOrEmpty(maxLevelFilter))
+                return LoggingRuleLevelFilter.Off.LogLevels;
+
+            var minLevel = ParseLogLevel(minLevelFilter, LogLevel.MinLevel);
+            var maxLevel = ParseLogLevel(maxLevelFilter, LogLevel.MaxLevel);
 
             bool[] logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
             if (minLevel != null && maxLevel != null)
@@ -105,14 +108,14 @@ namespace NLog.Config
             return logLevels;
         }
 
-        private LogLevel ParseLogLevel(string logLevel, LogLevel levelIfEmpty)
+        private LogLevel? ParseLogLevel(string logLevel, LogLevel? levelIfEmpty)
         {
             try
             {
                 if (string.IsNullOrEmpty(logLevel))
                     return levelIfEmpty;
 
-                return LogLevel.FromString(logLevel.Trim());
+                return LogLevel.FromString(logLevel);
             }
             catch (ArgumentException ex)
             {

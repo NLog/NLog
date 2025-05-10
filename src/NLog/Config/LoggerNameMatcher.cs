@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Config
 {
     using System;
@@ -41,8 +43,10 @@ namespace NLog.Config
     /// All subclasses defines immutable objects.
     /// Concrete subclasses defines various matching rules through <see cref="LoggerNameMatcher.NameMatches(string)"/>
     /// </summary>
-    abstract class LoggerNameMatcher
+    internal abstract class LoggerNameMatcher
     {
+        public static LoggerNameMatcher Off => NoneLoggerNameMatcher.Instance;
+
         /// <summary>
         /// Creates a concrete <see cref="LoggerNameMatcher"/> based on <paramref name="loggerNamePattern"/>.
         /// </summary>
@@ -101,9 +105,9 @@ namespace NLog.Config
         /// </summary>
         public string Pattern { get; }
 
-        protected readonly string _matchingArgument;
+        protected readonly string? _matchingArgument;
         private readonly string _toString;
-        protected LoggerNameMatcher(string pattern, string matchingArgument)
+        protected LoggerNameMatcher(string pattern, string? matchingArgument)
         {
             Pattern = pattern;
             _matchingArgument = matchingArgument;
@@ -131,7 +135,7 @@ namespace NLog.Config
             protected override string MatchMode => "None";
             public static readonly NoneLoggerNameMatcher Instance = new NoneLoggerNameMatcher();
             private NoneLoggerNameMatcher()
-                : base(null, null)
+                : base(string.Empty, null)
             {
 
             }
