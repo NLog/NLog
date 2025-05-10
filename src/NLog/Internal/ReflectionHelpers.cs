@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -63,7 +65,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="target">Object instance, use null for static methods.</param>
         /// <param name="arguments">Complete list of parameters that matches the method, including optional/default parameters.</param>
-        public delegate object LateBoundMethod(object target, object[] arguments);
+        public delegate object? LateBoundMethod(object target, object[] arguments);
 
         /// <summary>
         /// Creates an optimized delegate for calling the MethodInfo using Expression-Trees
@@ -160,20 +162,20 @@ namespace NLog.Internal
         }
 
         [CanBeNull]
-        public static TAttr GetFirstCustomAttribute<TAttr>(this Type type) where TAttr : Attribute
+        public static TAttr? GetFirstCustomAttribute<TAttr>(this Type type) where TAttr : Attribute
         {
             return Attribute.GetCustomAttributes(type, typeof(TAttr)).FirstOrDefault() as TAttr;
         }
 
         [CanBeNull]
-        public static TAttr GetFirstCustomAttribute<TAttr>(this PropertyInfo info)
+        public static TAttr? GetFirstCustomAttribute<TAttr>(this PropertyInfo info)
              where TAttr : Attribute
         {
             return Attribute.GetCustomAttributes(info, typeof(TAttr)).FirstOrDefault() as TAttr;
         }
 
         [CanBeNull]
-        public static TAttr GetFirstCustomAttribute<TAttr>(this Assembly assembly)
+        public static TAttr? GetFirstCustomAttribute<TAttr>(this Assembly assembly)
             where TAttr : Attribute
         {
             return Attribute.GetCustomAttributes(assembly, typeof(TAttr)).FirstOrDefault() as TAttr;

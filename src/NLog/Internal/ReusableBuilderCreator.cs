@@ -31,10 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System.Text;
+#nullable enable
 
 namespace NLog.Internal
 {
+    using System.Text;
+
     /// <summary>
     /// Controls a single allocated StringBuilder for reuse (only one active user)
     /// </summary>

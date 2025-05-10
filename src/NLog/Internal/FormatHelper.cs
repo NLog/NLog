@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -46,7 +48,7 @@ namespace NLog.Internal
         /// <remarks>
         /// If <paramref name="formatProvider"/> is <c>null</c> and <paramref name="value"/> isn't a <see cref="string"/> already, then the <see cref="LogFactory"/> will get a locked by <see cref="LogManager.Configuration"/>
         /// </remarks>
-        internal static string ConvertToString(object value, IFormatProvider formatProvider)
+        internal static string ConvertToString(object? value, IFormatProvider? formatProvider)
         {
             if (value is string stringValue)
                 return stringValue;
@@ -65,7 +67,7 @@ namespace NLog.Internal
             return Convert.ToString(value, formatProvider);
         }
 
-        internal static string TryFormatToString(object value, string format, IFormatProvider formatProvider)
+        internal static string TryFormatToString(object? value, string? format, IFormatProvider? formatProvider)
         {
             if (value is IFormattable formattable)
             {
@@ -77,11 +79,11 @@ namespace NLog.Internal
             }
             else if (value is System.Collections.IEnumerable)
             {
-                return null;
+                return string.Empty;
             }
             else
             {
-                return value?.ToString();
+                return value?.ToString() ?? string.Empty;
             }
         }
     }

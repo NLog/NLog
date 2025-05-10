@@ -503,6 +503,7 @@ namespace NLog.UnitTests
                 "NLog.LayoutRenderers.LevelLayoutRenderer",
                 "NLog.Internal.AppendBuilderCreator",
                 "NLog.Internal.CallSiteInformation",
+                "NLog.Internal.DictionaryEntryEnumerable+EmptyDictionaryEnumerator",
                 "NLog.Internal.ExceptionMessageFormatProvider",
                 "NLog.Internal.FactoryHelper",
                 "NLog.Internal.LogMessageStringFormatter",

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal.Fakeables
 {
     using System;
@@ -43,16 +45,16 @@ namespace NLog.Internal.Fakeables
     {
         const string LongUNCPrefix = @"\\?\UNC\";
 
-        private const string UnknownProcessName = "<unknown>";
+        private const string UnknownProcessName = "[unknown]";
 
-        private string _entryAssemblyLocation;
-        private string _entryAssemblyFileName;
-        private string _currentProcessFilePath;
-        private string _currentProcessBaseName;
-        private string _appDomainBaseDirectory;
-        private string _appDomainConfigFile;
-        private string _appDomainFriendlyName;
-        private IEnumerable<string> _appDomainPrivateBinPath;
+        private string? _entryAssemblyLocation;
+        private string? _entryAssemblyFileName;
+        private string? _currentProcessFilePath;
+        private string? _currentProcessBaseName;
+        private string? _appDomainBaseDirectory;
+        private string? _appDomainConfigFile;
+        private string? _appDomainFriendlyName;
+        private IEnumerable<string>? _appDomainPrivateBinPath;
         private int? _appDomainId;
         private int? _currentProcessId;
 
@@ -234,12 +236,12 @@ namespace NLog.Internal.Fakeables
         {
             try
             {
-                string assemblyName = System.Reflection.Assembly.GetEntryAssembly()?.GetName()?.Name;
-                return string.IsNullOrEmpty(assemblyName) ? null : assemblyName;
+                var assemblyName = System.Reflection.Assembly.GetEntryAssembly()?.GetName()?.Name;
+                return assemblyName ?? UnknownProcessName;
             }
             catch
             {
-                return null;
+                return UnknownProcessName;
             }
         }
 
@@ -296,7 +298,7 @@ namespace NLog.Internal.Fakeables
             }
         }
 
-        private static string LookupCurrentProcessFilePath()
+        private static string? LookupCurrentProcessFilePath()
         {
             try
             {
@@ -369,7 +371,7 @@ namespace NLog.Internal.Fakeables
             }
         }
 
-        private static string LookupCurrentProcessName()
+        private static string? LookupCurrentProcessName()
         {
             try
             {

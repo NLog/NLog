@@ -33,6 +33,8 @@
 
 #if NETSTANDARD2_1_OR_GREATER && !NET9_0_OR_GREATER
 
+#nullable enable
+
 namespace System.Runtime.CompilerServices
 {
     /// <summary>

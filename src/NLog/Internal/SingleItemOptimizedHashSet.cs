@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -43,16 +45,16 @@ namespace NLog.Internal
     /// <typeparam name="T"></typeparam>
     internal struct SingleItemOptimizedHashSet<T> : ICollection<T>
     {
-        private readonly T _singleItem;
-        private HashSet<T> _hashset;
-        private readonly IEqualityComparer<T> _comparer;
+        private readonly T? _singleItem;
+        private HashSet<T>? _hashset;
+        private readonly IEqualityComparer<T>? _comparer;
 
         private IEqualityComparer<T> Comparer => _comparer ?? EqualityComparer<T>.Default;
 
         public struct SingleItemScopedInsert : IDisposable
         {
             private readonly T _singleItem;
-            private readonly HashSet<T> _hashset;
+            private readonly HashSet<T>? _hashset;
 
             /// <summary>
             /// Insert single item on scope start, and remove on scope exit
@@ -91,11 +93,11 @@ namespace NLog.Internal
             }
         }
 
-        public int Count => _hashset?.Count ?? (EqualityComparer<T>.Default.Equals(_singleItem, default(T)) ? 0 : 1);   // Object Equals to default value
+        public int Count => _hashset?.Count ?? (EqualityComparer<T?>.Default.Equals(_singleItem, default(T)) ? 0 : 1);   // Object Equals to default value
 
         public bool IsReadOnly => false;
 
-        public SingleItemOptimizedHashSet(T singleItem, SingleItemOptimizedHashSet<T> existing, IEqualityComparer<T> comparer = null)
+        public SingleItemOptimizedHashSet(T singleItem, SingleItemOptimizedHashSet<T> existing, IEqualityComparer<T>? comparer = null)
         {
             _comparer = existing._comparer ?? comparer ?? EqualityComparer<T>.Default;
             if (existing._hashset != null)
@@ -104,7 +106,7 @@ namespace NLog.Internal
                 _hashset.Add(singleItem);
                 _singleItem = default(T);
             }
-            else if (existing.Count == 1)
+            else if (existing.Count == 1 && existing._singleItem is not null)
             {
                 _hashset = new HashSet<T>(_comparer);
                 _hashset.Add(existing._singleItem);
@@ -131,7 +133,7 @@ namespace NLog.Internal
             else
             {
                 var hashset = new HashSet<T>(Comparer);
-                if (Count != 0)
+                if (Count == 1 && _singleItem is not null)
                 {
                     hashset.Add(_singleItem);
                 }
@@ -168,7 +170,7 @@ namespace NLog.Internal
             }
             else
             {
-                return Count == 1 && Comparer.Equals(_singleItem, item);
+                return Count == 1 && _singleItem is not null && Comparer.Equals(_singleItem, item);
             }
         }
 
@@ -183,11 +185,12 @@ namespace NLog.Internal
             {
                 return _hashset.Remove(item);
             }
-            else
+            else if (Count == 1 && _singleItem is not null && Comparer.Equals(_singleItem, item))
             {
                 _hashset = new HashSet<T>(Comparer);
-                return Comparer.Equals(_singleItem, item);
+                return true;
             }
+            return false;
         }
 
         /// <summary>
@@ -201,7 +204,7 @@ namespace NLog.Internal
             {
                 _hashset.CopyTo(array, arrayIndex);
             }
-            else if (Count == 1)
+            else if (Count == 1 && _singleItem is not null)
             {
                 array[arrayIndex] = _singleItem;
             }
@@ -225,7 +228,7 @@ namespace NLog.Internal
 
         private IEnumerator<T> SingleItemEnumerator()
         {
-            if (Count != 0)
+            if (Count == 1 && _singleItem is not null)
                 yield return _singleItem;
         }
 

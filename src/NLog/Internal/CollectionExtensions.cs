@@ -31,12 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Collections.Generic;
-using JetBrains.Annotations;
+#nullable enable
 
 namespace NLog.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using JetBrains.Annotations;
+
     internal static class CollectionExtensions
     {
         /// <summary>
@@ -47,7 +49,7 @@ namespace NLog.Internal
         public static IList<TItem> Filter<TItem, TState>([NotNull] this IList<TItem> items, TState state, Func<TItem, TState, bool> filter)
         {
             var hasIgnoredLogEvents = false;
-            IList<TItem> filterLogEvents = null;
+            IList<TItem>? filterLogEvents = null;
             for (var i = 0; i < items.Count; ++i)
             {
                 var item = items[i];

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -65,18 +67,11 @@ namespace NLog.Internal
         {
             try
             {
-                string s = Environment.GetEnvironmentVariable(name);
-
-                if (string.IsNullOrEmpty(s))
-                {
-                    return null;
-                }
-
-                return s;
+                return Environment.GetEnvironmentVariable(name) ?? string.Empty;
             }
             catch (SecurityException)
             {
-                return null;
+                return string.Empty;
             }
         }
     }

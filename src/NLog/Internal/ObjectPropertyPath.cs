@@ -31,19 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     internal struct ObjectPropertyPath
     {
-        public string[] PathNames { get; private set; }
+        public string[]? PathNames { get; private set; }
 
         /// <summary>
         /// Object Path to check
         /// </summary>
-        public string Value
+        public string? Value
         {
             get => PathNames?.Length > 0 ? string.Join(".", PathNames) : null;
-            set => PathNames = StringHelpers.IsNullOrWhiteSpace(value) ? null : value.SplitAndTrimTokens('.');
+            set => PathNames = StringHelpers.IsNullOrWhiteSpace(value) ? null : value?.SplitAndTrimTokens('.');
         }
     }
 }

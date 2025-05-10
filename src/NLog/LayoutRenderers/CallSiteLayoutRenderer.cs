@@ -132,13 +132,13 @@ namespace NLog.LayoutRenderers
 
                 if (ClassName)
                 {
-                    string className = logEventCallSize.GetCallerClassName(method, IncludeNamespace, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
+                    var className = logEventCallSize.GetCallerClassName(method, IncludeNamespace, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
                     builder.Append(string.IsNullOrEmpty(className) ? "<no type>" : className);
                 }
 
                 if (MethodName)
                 {
-                    string methodName = logEventCallSize.GetCallerMethodName(method, false, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
+                    var methodName = logEventCallSize.GetCallerMethodName(method, false, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
                     if (ClassName)
                     {
                         builder.Append('.');
@@ -183,7 +183,7 @@ namespace NLog.LayoutRenderers
             {
                 if (ClassName)
                 {
-                    var className = StackTraceUsageUtils.GetStackFrameMethodClassName(targetSite, true, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates) ?? string.Empty;
+                    var className = StackTraceUsageUtils.GetStackFrameMethodClassName(targetSite, true, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
                     builder.Append(className);
                 }
 
@@ -193,7 +193,7 @@ namespace NLog.LayoutRenderers
                     {
                         builder.Append('.');
                     }
-                    var methodName = StackTraceUsageUtils.GetStackFrameMethodName(targetSite, false, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates) ?? string.Empty;
+                    var methodName = StackTraceUsageUtils.GetStackFrameMethodName(targetSite, false, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
                     builder.Append(methodName);
                 }
             }

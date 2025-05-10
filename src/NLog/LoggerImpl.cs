@@ -59,7 +59,7 @@ namespace NLog
             if (stu != StackTraceUsage.None)
             {
                 bool attemptCallSiteOptimization = targetsForLevel.TryCallSiteClassNameOptimization(stu, logEvent);
-                if (attemptCallSiteOptimization && targetsForLevel.TryLookupCallSiteClassName(logEvent, out string callSiteClassName))
+                if (attemptCallSiteOptimization && targetsForLevel.TryLookupCallSiteClassName(logEvent, out var callSiteClassName))
                 {
                     logEvent.GetCallSiteInformationInternal().CallerClassName = callSiteClassName;
                 }

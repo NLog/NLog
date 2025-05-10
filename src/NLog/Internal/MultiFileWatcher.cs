@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -54,7 +56,7 @@ namespace NLog.Internal
         /// <summary>
         /// Occurs when a change is detected in one of the monitored files.
         /// </summary>
-        public event FileSystemEventHandler FileChanged;
+        public event FileSystemEventHandler? FileChanged;
 
         public MultiFileWatcher() :
             this(NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size | NotifyFilters.Security | NotifyFilters.Attributes)
@@ -139,7 +141,7 @@ namespace NLog.Internal
                 if (_watcherMap.ContainsKey(fileName))
                     return false;
 
-                FileSystemWatcher watcher = null;
+                FileSystemWatcher? watcher = null;
 
                 try
                 {

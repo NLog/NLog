@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -51,17 +53,17 @@ namespace NLog.Internal
     internal sealed class ObjectReflectionCache : IObjectTypeTransformer
     {
         private MruCache<Type, ObjectPropertyInfos> ObjectTypeCache => _objectTypeCache ?? System.Threading.Interlocked.CompareExchange(ref _objectTypeCache, new MruCache<Type, ObjectPropertyInfos>(10000), null) ?? _objectTypeCache;
-        private MruCache<Type, ObjectPropertyInfos> _objectTypeCache;
+        private MruCache<Type, ObjectPropertyInfos>? _objectTypeCache;
         private readonly IServiceProvider _serviceProvider;
         private IObjectTypeTransformer ObjectTypeTransformation => _objectTypeTransformation ?? (_objectTypeTransformation = _serviceProvider?.GetService<IObjectTypeTransformer>() ?? this);
-        private IObjectTypeTransformer _objectTypeTransformation;
+        private IObjectTypeTransformer? _objectTypeTransformation;
 
         public ObjectReflectionCache(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
 
-        object IObjectTypeTransformer.TryTransformObject(object obj)
+        object? IObjectTypeTransformer.TryTransformObject(object? obj)
         {
             return null;
         }
@@ -101,7 +103,7 @@ namespace NLog.Internal
         /// <summary>
         /// Try get value from <paramref name="value"/>, using <paramref name="objectPath"/>, and set into <paramref name="foundValue"/>
         /// </summary>
-        public bool TryGetObjectProperty(object value, string[] objectPath, out object foundValue)
+        public bool TryGetObjectProperty(object? value, string[]? objectPath, out object? foundValue)
         {
             foundValue = null;
 
@@ -166,7 +168,7 @@ namespace NLog.Internal
             var dictionaryEnumerator = TryGetDictionaryEnumerator(value);
             if (dictionaryEnumerator != null)
             {
-                propertyInfos = new ObjectPropertyInfos(null, new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => dictionaryEnumerator.GetEnumerator(o)) });
+                propertyInfos = new ObjectPropertyInfos(ArrayHelper.Empty<PropertyInfo>(), new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => dictionaryEnumerator.GetEnumerator(o)) });
                 ObjectTypeCache.TryAddValue(objectType, propertyInfos);
                 objectPropertyList = new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
                 return true;
@@ -224,7 +226,7 @@ namespace NLog.Internal
 
         private static PropertyInfo[] GetPublicProperties([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] Type type)
         {
-            PropertyInfo[] properties = null;
+            PropertyInfo[]? properties = null;
 
             try
             {
@@ -281,7 +283,7 @@ namespace NLog.Internal
             private static readonly FastPropertyLookup[] CreateIDictionaryEnumerator = new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => ((IDictionary<string, object>)o).GetEnumerator()) };
             private readonly object _object;
             private readonly PropertyInfo[] _properties;
-            private readonly FastPropertyLookup[] _fastLookup;
+            private readonly FastPropertyLookup[]? _fastLookup;
 
             public
 #if !NETFRAMEWORK
@@ -290,7 +292,7 @@ namespace NLog.Internal
                 struct PropertyValue
             {
                 public readonly string Name;
-                public readonly object Value;
+                public readonly object? Value;
                 public TypeCode TypeCode => Value is null ? TypeCode.Empty : _typecode;
                 private readonly TypeCode _typecode;
                 public bool HasNameAndValue => Name != null && Value != null;
@@ -321,7 +323,7 @@ namespace NLog.Internal
                     _typecode = fastProperty.TypeCode;
                     try
                     {
-                        Value = fastProperty.ValueLookup(owner, null);
+                        Value = fastProperty.ValueLookup(owner, ArrayHelper.Empty<object>());
                     }
                     catch
                     {
@@ -330,11 +332,11 @@ namespace NLog.Internal
                 }
             }
 
-            public bool IsSimpleValue => _properties?.Length == 0;
+            public bool IsSimpleValue => _properties.Length == 0 && (_fastLookup is null || _fastLookup.Length == 0);
 
             public object ObjectValue => _object;
 
-            internal ObjectPropertyList(object value, PropertyInfo[] properties, FastPropertyLookup[] fastLookup)
+            internal ObjectPropertyList(object value, PropertyInfo[] properties, FastPropertyLookup[]? fastLookup)
             {
                 _object = value;
                 _properties = properties;
@@ -344,55 +346,45 @@ namespace NLog.Internal
             public ObjectPropertyList(IDictionary<string, object> value)
             {
                 _object = value;    // Expando objects
-                _properties = null;
+                _properties = ArrayHelper.Empty<PropertyInfo>();
                 _fastLookup = CreateIDictionaryEnumerator;
             }
 
             public bool TryGetPropertyValue(string name, out PropertyValue propertyValue)
             {
-                if (_properties != null)
+                if (_properties.Length == 0)
                 {
-                    if (_fastLookup != null)
+                    if (_object is IDictionary<string, object> expandoObject)
                     {
-                        return TryFastLookupPropertyValue(name, out propertyValue);
+                        if (expandoObject.TryGetValue(name, out var objectValue))
+                        {
+                            propertyValue = new PropertyValue(name, objectValue, TypeCode.Object);
+                            return true;
+                        }
+                        propertyValue = default(PropertyValue);
+                        return false;
                     }
-                    else
-                    {
-                        return TrySlowLookupPropertyValue(name, out propertyValue);
-                    }
+
+                    return TryListLookupPropertyValue(name, out propertyValue);
                 }
-                else if (_object is IDictionary<string, object> expandoObject)
+
+                if (_fastLookup != null)
                 {
-                    if (expandoObject.TryGetValue(name, out var objectValue))
+                    // Scans properties for name (Skips string-compare and value-lookup until finding match)
+                    int nameHashCode = NameComparer.GetHashCode(name);
+                    foreach (var fastProperty in _fastLookup)
                     {
-                        propertyValue = new PropertyValue(name, objectValue, TypeCode.Object);
-                        return true;
+                        if (fastProperty.NameHashCode == nameHashCode && NameComparer.Equals(fastProperty.Name, name))
+                        {
+                            propertyValue = new PropertyValue(_object, fastProperty);
+                            return true;
+                        }
                     }
                     propertyValue = default(PropertyValue);
                     return false;
                 }
-                else
-                {
-                    return TryListLookupPropertyValue(name, out propertyValue);
-                }
-            }
 
-            /// <summary>
-            /// Scans properties for name (Skips string-compare and value-lookup until finding match)
-            /// </summary>
-            private bool TryFastLookupPropertyValue(string name, out PropertyValue propertyValue)
-            {
-                int nameHashCode = NameComparer.GetHashCode(name);
-                foreach (var fastProperty in _fastLookup)
-                {
-                    if (fastProperty.NameHashCode == nameHashCode && NameComparer.Equals(fastProperty.Name, name))
-                    {
-                        propertyValue = new PropertyValue(_object, fastProperty);
-                        return true;
-                    }
-                }
-                propertyValue = default(PropertyValue);
-                return false;
+                return TrySlowLookupPropertyValue(name, out propertyValue);
             }
 
             /// <summary>
@@ -436,10 +428,11 @@ namespace NLog.Internal
 
             public Enumerator GetEnumerator()
             {
-                if (_properties != null)
+                if (_properties.Length > 0 || _fastLookup is null || _fastLookup.Length == 0)
                     return new Enumerator(_object, _properties, _fastLookup);
-                else
-                    return new Enumerator((IEnumerator<KeyValuePair<string, object>>)_fastLookup[0].ValueLookup(_object, null));
+
+                var expandoObject = _fastLookup[0].ValueLookup(_object, ArrayHelper.Empty<object>());
+                return expandoObject is null ? default(Enumerator) : new Enumerator((IEnumerator<KeyValuePair<string, object>>)expandoObject);
             }
 
             IEnumerator<PropertyValue> IEnumerable<PropertyValue>.GetEnumerator() => GetEnumerator();
@@ -448,12 +441,12 @@ namespace NLog.Internal
             public struct Enumerator : IEnumerator<PropertyValue>
             {
                 private readonly object _owner;
-                private readonly PropertyInfo[] _properties;
-                private readonly FastPropertyLookup[] _fastLookup;
-                private readonly IEnumerator<KeyValuePair<string, object>> _enumerator;
+                private readonly PropertyInfo[]? _properties;
+                private readonly FastPropertyLookup[]? _fastLookup;
+                private readonly IEnumerator<KeyValuePair<string, object>>? _enumerator;
                 private int _index;
 
-                internal Enumerator(object owner, PropertyInfo[] properties, FastPropertyLookup[] fastLookup)
+                internal Enumerator(object owner, PropertyInfo[] properties, FastPropertyLookup[]? fastLookup)
                 {
                     _owner = owner;
                     _properties = properties;
@@ -481,8 +474,10 @@ namespace NLog.Internal
                                 return new PropertyValue(_owner, _fastLookup[_index]);
                             else if (_properties != null)
                                 return new PropertyValue(_owner, _properties[_index]);
-                            else
+                            else if (_enumerator != null)
                                 return new PropertyValue(_enumerator.Current.Key, _enumerator.Current.Value, TypeCode.Object);
+                            else
+                                return default(PropertyValue);
                         }
                         catch (Exception ex)
                         {
@@ -504,7 +499,7 @@ namespace NLog.Internal
                     if (_properties != null)
                         return ++_index < (_fastLookup?.Length ?? _properties.Length);
                     else
-                        return _enumerator.MoveNext();
+                        return _enumerator?.MoveNext() == true;
                 }
 
                 public void Reset()
@@ -512,7 +507,7 @@ namespace NLog.Internal
                     if (_properties != null)
                         _index = -1;
                     else
-                        _enumerator.Reset();
+                        _enumerator?.Reset();
                 }
             }
         }
@@ -540,11 +535,11 @@ namespace NLog.Internal
         private struct ObjectPropertyInfos : IEquatable<ObjectPropertyInfos>
         {
             public readonly PropertyInfo[] Properties;
-            public readonly FastPropertyLookup[] FastLookup;
+            public readonly FastPropertyLookup[]? FastLookup;
 
             public static readonly ObjectPropertyInfos SimpleToString = new ObjectPropertyInfos(ArrayHelper.Empty<PropertyInfo>(), ArrayHelper.Empty<FastPropertyLookup>());
 
-            public ObjectPropertyInfos(PropertyInfo[] properties, FastPropertyLookup[] fastLookup)
+            public ObjectPropertyInfos(PropertyInfo[] properties, FastPropertyLookup[]? fastLookup)
             {
                 Properties = properties;
                 FastLookup = fastLookup;
@@ -590,7 +585,8 @@ namespace NLog.Internal
             }
         }
 #endif
-        private static IDictionaryEnumerator TryGetDictionaryEnumerator(object value)
+
+        private static IDictionaryEnumerator? TryGetDictionaryEnumerator(object value)
         {
             if (!(value is IEnumerable) || value is string)
                 return null;
@@ -618,7 +614,7 @@ namespace NLog.Internal
         }
 
         [UnconditionalSuppressMessage("Trimming - Allow reflection of message args", "IL2075")]
-        private static IDictionaryEnumerator TryBuildDictionaryEnumerator(object value)
+        private static IDictionaryEnumerator? TryBuildDictionaryEnumerator(object value)
         {
             foreach (var interfaceType in value.GetType().GetInterfaces())
             {
@@ -644,14 +640,14 @@ namespace NLog.Internal
 
         private interface IDictionaryEnumerator
         {
-            IEnumerator<KeyValuePair<string, object>> GetEnumerator(object value);
+            IEnumerator<KeyValuePair<string, object?>> GetEnumerator(object value);
         }
 
         private sealed class DictionaryEnumerator : IDictionaryEnumerator
         {
-            private Func<IEnumerable, IEnumerator<KeyValuePair<string, object>>> _enumerateCollection;
+            private Func<IEnumerable, IEnumerator<KeyValuePair<string, object?>>>? _enumerateCollection;
 
-            IEnumerator<KeyValuePair<string, object>> IDictionaryEnumerator.GetEnumerator(object value)
+            IEnumerator<KeyValuePair<string, object?>> IDictionaryEnumerator.GetEnumerator(object value)
             {
                 if (value is IDictionary dictionary)
                 {
@@ -665,13 +661,13 @@ namespace NLog.Internal
                 return EmptyDictionaryEnumerator.Default;
             }
 
-            private static IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IDictionary dictionary)
+            private static IEnumerator<KeyValuePair<string, object?>> YieldEnumerator(IDictionary dictionary)
             {
                 foreach (var item in new DictionaryEntryEnumerable(dictionary))
-                    yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);
+                    yield return new KeyValuePair<string, object?>(item.Key?.ToString() ?? string.Empty, item.Value);
             }
 
-            private IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IEnumerable collection)
+            private IEnumerator<KeyValuePair<string, object?>> YieldEnumerator(IEnumerable collection)
             {
                 if (_enumerateCollection is null)
                 {
@@ -685,7 +681,7 @@ namespace NLog.Internal
             }
 
             [UnconditionalSuppressMessage("Trimming - Allow reflection of message args", "IL2075")]
-            private Func<IEnumerable, IEnumerator<KeyValuePair<string, object>>> BuildEnumerator(object firstItem)
+            private Func<IEnumerable, IEnumerator<KeyValuePair<string, object?>>> BuildEnumerator(object firstItem)
             {
                 if (firstItem.GetType().IsGenericType && firstItem.GetType().GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
                 {
@@ -702,20 +698,20 @@ namespace NLog.Internal
                 }
             }
 
-            private static IEnumerator<KeyValuePair<string, object>> EnumerateItems(IEnumerable collection, PropertyInfo getKeyProperty, PropertyInfo getValueProperty)
+            private static IEnumerator<KeyValuePair<string, object?>> EnumerateItems(IEnumerable collection, PropertyInfo getKeyProperty, PropertyInfo getValueProperty)
             {
                 foreach (var item in collection)
                 {
                     var keyString = getKeyProperty.GetValue(item, null);
                     var valueObject = getValueProperty.GetValue(item, null);
-                    yield return new KeyValuePair<string, object>(keyString.ToString(), valueObject);
+                    yield return new KeyValuePair<string, object?>(keyString?.ToString() ?? string.Empty, valueObject);
                 }
             }
         }
 
         private sealed class DictionaryEnumerator<TKey, TValue> : IDictionaryEnumerator
         {
-            public IEnumerator<KeyValuePair<string, object>> GetEnumerator(object value)
+            public IEnumerator<KeyValuePair<string, object?>> GetEnumerator(object value)
             {
                 if (value is IDictionary<TKey, TValue> dictionary)
                 {
@@ -732,28 +728,28 @@ namespace NLog.Internal
                 return EmptyDictionaryEnumerator.Default;
             }
 
-            private static IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IDictionary<TKey, TValue> dictionary)
+            private static IEnumerator<KeyValuePair<string, object?>> YieldEnumerator(IDictionary<TKey, TValue> dictionary)
             {
                 foreach (var item in dictionary)
-                    yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);
+                    yield return new KeyValuePair<string, object?>(item.Key?.ToString() ?? string.Empty, item.Value);
             }
 
 #if !NET35
-            private static IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IReadOnlyDictionary<TKey, TValue> dictionary)
+            private static IEnumerator<KeyValuePair<string, object?>> YieldEnumerator(IReadOnlyDictionary<TKey, TValue> dictionary)
             {
                 foreach (var item in dictionary)
-                    yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);
+                    yield return new KeyValuePair<string, object?>(item.Key?.ToString() ?? string.Empty, item.Value);
             }
 #endif
         }
 
-        private sealed class EmptyDictionaryEnumerator : IEnumerator<KeyValuePair<string, object>>
+        private sealed class EmptyDictionaryEnumerator : IEnumerator<KeyValuePair<string, object?>>
         {
             public static readonly EmptyDictionaryEnumerator Default = new EmptyDictionaryEnumerator();
 
-            KeyValuePair<string, object> IEnumerator<KeyValuePair<string, object>>.Current => default(KeyValuePair<string, object>);
+            KeyValuePair<string, object?> IEnumerator<KeyValuePair<string, object?>>.Current => default(KeyValuePair<string, object?>);
 
-            object IEnumerator.Current => default(KeyValuePair<string, object>);
+            object IEnumerator.Current => default(KeyValuePair<string, object?>);
 
             bool IEnumerator.MoveNext() => false;
 

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System.Collections;
@@ -43,7 +45,7 @@ namespace NLog.Internal
     {
         private readonly object _lockObject = new object();
         private Dictionary<TKey, TValue> _dict;
-        private Dictionary<TKey, TValue> _dictReadOnly;  // Reset cache on change
+        private Dictionary<TKey, TValue>? _dictReadOnly;  // Reset cache on change
 
         public ThreadSafeDictionary()
             : this(EqualityComparer<TKey>.Default)

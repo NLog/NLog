@@ -32,6 +32,9 @@
 //
 
 #if NET35
+
+#nullable enable
+
 namespace System.Reflection
 {
     [AttributeUsage(AttributeTargets.Assembly)]

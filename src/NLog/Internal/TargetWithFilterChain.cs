@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -50,7 +52,7 @@ namespace NLog.Internal
 
         private static TargetWithFilterChain[] CreateLoggerConfiguration() => new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 2];    // +2 to include LogLevel.Off
 
-        private MruCache<CallSiteKey, string> _callSiteClassNameCache;
+        private MruCache<CallSiteKey, string>? _callSiteClassNameCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetWithFilterChain" /> class.
@@ -82,7 +84,7 @@ namespace NLog.Internal
         /// </summary>
         /// <value>The next item in the chain.</value>
         /// <example>This is for example the 'target2' logger in writeTo='target1,target2'  </example>
-        public TargetWithFilterChain NextInChain { get; set; }
+        public TargetWithFilterChain? NextInChain { get; set; }
 
         /// <summary>
         /// Gets the stack trace usage.
@@ -129,7 +131,7 @@ namespace NLog.Internal
 
         static private bool GetTargetsByLevelForLogger(string name, LoggingRule[] loggingRules, LogLevel globalLogLevel, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
-            IList<KeyValuePair<FilterResult?, IList<Filter>>> finalMinLevelWithFilters = null;
+            IList<KeyValuePair<FilterResult?, IList<Filter>>>? finalMinLevelWithFilters = null;
             bool targetsFound = false;
             foreach (LoggingRule rule in loggingRules)
             {
@@ -163,7 +165,7 @@ namespace NLog.Internal
                 if (finalMinLevelWithFilters?.Count > 0)
                 {
                     var finalMinLevelFilters = finalMinLevelWithFilters[i];
-                    if (finalMinLevelFilters.Value?.Count > 0)
+                    if (finalMinLevelFilters.Value?.Count > 0 && finalMinLevelFilters.Key.HasValue)
                     {
                         targetsByLevel[i] = tfc = AppendFinalMinLevelFilters(tfc, finalMinLevelFilters.Value, finalMinLevelFilters.Key.Value);
                     }
@@ -180,7 +182,7 @@ namespace NLog.Internal
             return rule.FinalMinLevel != LogLevel.Off && rule.Filters.Count != 0 && rule.Targets.Count == 0;
         }
 
-        private static void CollectFinalMinLevelFiltersFromRule(LoggingRule rule, ref IList<KeyValuePair<FilterResult?, IList<Filter>>> finalMinLevelWithFilters)
+        private static void CollectFinalMinLevelFiltersFromRule(LoggingRule rule, ref IList<KeyValuePair<FilterResult?, IList<Filter>>>? finalMinLevelWithFilters)
         {
             var finalMinLevel = rule.FinalMinLevel;
             if (finalMinLevel is null)
@@ -192,10 +194,10 @@ namespace NLog.Internal
                 if (i < finalMinLevel.Ordinal)
                     continue;
 
-                if (finalMinLevelWithFilters[i].Key.HasValue && finalMinLevelWithFilters[i].Key.Value != rule.FilterDefaultAction)
+                var newFilterResult = finalMinLevelWithFilters[i].Key ?? rule.FilterDefaultAction;
+                if (newFilterResult != rule.FilterDefaultAction)
                     continue;
 
-                var newFilterResult = finalMinLevelWithFilters[i].Key ?? rule.FilterDefaultAction;
                 var newFilterChain = finalMinLevelWithFilters[i].Value?.Count > 0 ? System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(finalMinLevelWithFilters[i].Value, rule.Filters)) : rule.Filters;
                 finalMinLevelWithFilters[i] = new KeyValuePair<FilterResult?, IList<Filter>>(newFilterResult, newFilterChain);
             }
@@ -292,14 +294,14 @@ namespace NLog.Internal
             return false;
         }
 
-        private static TargetWithFilterChain CreateTargetChainFromLoggingRule(LoggingRule rule, Target target, TargetWithFilterChain existingTargets)
+        private static TargetWithFilterChain? CreateTargetChainFromLoggingRule(LoggingRule rule, Target target, TargetWithFilterChain existingTargets)
         {
             var filterChain = rule.Filters.Count == 0 ? ArrayHelper.Empty<NLog.Filters.Filter>() : rule.Filters;
             var newTarget = new TargetWithFilterChain(target, filterChain, rule.FilterDefaultAction);
 
             if (existingTargets != null && newTarget.FilterChain.Count == 0)
             {
-                for (TargetWithFilterChain afc = existingTargets; afc != null; afc = afc.NextInChain)
+                for (TargetWithFilterChain? afc = existingTargets; afc != null; afc = afc.NextInChain)
                 {
                     if (ReferenceEquals(target, afc.Target) && afc.FilterChain.Count == 0)
                     {
@@ -344,7 +346,7 @@ namespace NLog.Internal
             if (string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerFilePath))
                 return false;
 
-            string className = logEvent.CallSiteInformation.GetCallerClassName(null, true, true, true);
+            var className = logEvent.CallSiteInformation?.GetCallerClassName(null, true, true, true);
             if (string.IsNullOrEmpty(className))
                 return false;
 
@@ -359,7 +361,7 @@ namespace NLog.Internal
             return _callSiteClassNameCache.TryAddValue(callSiteKey, internClassName);
         }
 
-        internal bool TryLookupCallSiteClassName(LogEventInfo logEvent, out string callSiteClassName)
+        internal bool TryLookupCallSiteClassName(LogEventInfo logEvent, out string? callSiteClassName)
         {
             callSiteClassName = logEvent.CallSiteInformation?.CallerClassName;
             if (!string.IsNullOrEmpty(callSiteClassName))
@@ -379,9 +381,12 @@ namespace NLog.Internal
             LoggerImpl.Write(loggerType, this, logEvent, logFactory);
         }
 
-        struct CallSiteKey : IEquatable<CallSiteKey>
+#if !NETFRAMEWORK
+        readonly
+#endif
+            struct CallSiteKey : IEquatable<CallSiteKey>
         {
-            public CallSiteKey(string methodName, string fileSourceName, int fileSourceLineNumber)
+            public CallSiteKey(string? methodName, string? fileSourceName, int fileSourceLineNumber)
             {
                 MethodName = methodName ?? string.Empty;
                 FileSourceName = fileSourceName ?? string.Empty;

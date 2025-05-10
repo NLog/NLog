@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -44,13 +46,13 @@ namespace NLog.Internal
     {
         internal static readonly AsyncContinuation Completed = new SingleCallContinuation(null).CompletedFunction;
 
-        private AsyncContinuation _asyncContinuation;
+        private AsyncContinuation? _asyncContinuation;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SingleCallContinuation"/> class.
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        public SingleCallContinuation(AsyncContinuation asyncContinuation)
+        public SingleCallContinuation(AsyncContinuation? asyncContinuation)
         {
             _asyncContinuation = asyncContinuation;
         }

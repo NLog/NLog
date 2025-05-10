@@ -31,10 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System.IO;
+#nullable enable
 
 namespace NLog.Internal
 {
+    using System.IO;
+
     internal static class PathHelpers
     {
         /// <summary>
@@ -72,7 +74,7 @@ namespace NLog.Internal
         {
             var newpath = path?.TrimEnd(DirectorySeparatorChars) ?? string.Empty;
             if (newpath.EndsWith(":", System.StringComparison.Ordinal))
-                return path;    // Support root-path on Windows (But Linux root-path is off limits)
+                return path ?? string.Empty;    // Support root-path on Windows (But Linux root-path is off limits)
             else
                 return newpath;
         }

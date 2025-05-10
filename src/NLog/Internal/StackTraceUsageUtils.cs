@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -75,7 +77,7 @@ namespace NLog.Internal
         public static string GetStackFrameMethodName(MethodBase method, bool includeMethodInfo, bool cleanAsyncMoveNext, bool cleanAnonymousDelegates)
         {
             if (method is null)
-                return null;
+                return string.Empty;
 
             string methodName = method.Name;
 
@@ -113,7 +115,7 @@ namespace NLog.Internal
         public static string GetStackFrameMethodClassName(MethodBase method, bool includeNameSpace, bool cleanAsyncMoveNext, bool cleanAnonymousDelegates)
         {
             if (method is null)
-                return null;
+                return string.Empty;
 
             var callerClassType = method.DeclaringType;
             if (cleanAsyncMoveNext
@@ -126,10 +128,10 @@ namespace NLog.Internal
                 callerClassType = callerClassType.DeclaringType;
             }
 
-            string className = includeNameSpace ? callerClassType?.FullName : callerClassType?.Name;
-            if (cleanAnonymousDelegates && className?.IndexOf("<>", StringComparison.Ordinal) >= 0)
+            var className = (includeNameSpace ? callerClassType?.FullName : callerClassType?.Name) ?? string.Empty;
+            if (cleanAnonymousDelegates && className.IndexOf("<>", StringComparison.Ordinal) >= 0)
             {
-                if (!includeNameSpace && callerClassType.DeclaringType != null && callerClassType.IsNested)
+                if (!includeNameSpace && callerClassType != null && callerClassType.DeclaringType != null && callerClassType.IsNested)
                 {
                     className = callerClassType.DeclaringType.Name;
                 }
@@ -144,7 +146,7 @@ namespace NLog.Internal
                 }
             }
 
-            if (includeNameSpace && className?.IndexOf('.') == -1)
+            if (includeNameSpace && className.IndexOf('.') == -1)
             {
                 var typeNamespace = GetNamespaceFromTypeAssembly(callerClassType);
                 className = string.IsNullOrEmpty(typeNamespace) ? className : string.Concat(typeNamespace, ".", className);
@@ -153,9 +155,9 @@ namespace NLog.Internal
             return className;
         }
 
-        private static string GetNamespaceFromTypeAssembly(Type callerClassType)
+        private static string GetNamespaceFromTypeAssembly(Type? callerClassType)
         {
-            var classAssembly = callerClassType.Assembly;
+            var classAssembly = callerClassType?.Assembly;
             if (classAssembly != null && classAssembly != mscorlibAssembly && classAssembly != systemAssembly)
             {
                 var assemblyFullName = classAssembly.FullName;
@@ -165,11 +167,11 @@ namespace NLog.Internal
                 }
             }
 
-            return null;
+            return string.Empty;
         }
 
         [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow callsite logic", "IL2026")]
-        public static MethodBase GetStackMethod(StackFrame stackFrame)
+        public static MethodBase? GetStackMethod(StackFrame? stackFrame)
         {
             return stackFrame?.GetMethod();
         }
@@ -180,7 +182,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="stackFrame">StackFrame from the calling method</param>
         /// <returns>Fully qualified class name</returns>
-        public static string GetClassFullName(StackFrame stackFrame)
+        public static string GetClassFullName(StackFrame? stackFrame)
         {
             string className = LookupClassNameFromStackFrame(stackFrame);
             if (string.IsNullOrEmpty(className))
@@ -213,7 +215,7 @@ namespace NLog.Internal
         /// Returns the assembly from the provided StackFrame (If not internal assembly)
         /// </summary>
         /// <returns>Valid assembly, or null if assembly was internal</returns>
-        public static Assembly LookupAssemblyFromMethod(MethodBase method)
+        public static Assembly? LookupAssemblyFromMethod(MethodBase? method)
         {
             var assembly = method?.DeclaringType?.Assembly ?? method?.Module?.Assembly;
 
@@ -241,7 +243,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="stackFrame"></param>
         /// <returns>Valid class name, or empty string if assembly was internal</returns>
-        public static string LookupClassNameFromStackFrame(StackFrame stackFrame)
+        public static string LookupClassNameFromStackFrame(StackFrame? stackFrame)
         {
             var method = GetStackMethod(stackFrame);
             if (method != null && LookupAssemblyFromMethod(method) != null)

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -42,9 +44,9 @@ namespace NLog.Internal
     internal sealed class SetupConfigurationTargetBuilder : ISetupConfigurationTargetBuilder, IList<Target>
     {
         private readonly IList<Target> _targets = new List<Target>();
-        private string _targetName;
+        private string? _targetName;
 
-        public SetupConfigurationTargetBuilder(LogFactory logFactory, LoggingConfiguration configuration, string targetName = null)
+        public SetupConfigurationTargetBuilder(LogFactory logFactory, LoggingConfiguration configuration, string? targetName = null)
         {
             Configuration = configuration;
             LogFactory = logFactory;

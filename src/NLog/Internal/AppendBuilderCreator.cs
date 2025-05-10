@@ -31,11 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Text;
+#nullable enable
 
 namespace NLog.Internal
 {
+    using System;
+    using System.Text;
+
     /// <summary>
     /// Allocates new builder and appends to the provided target builder on dispose
     /// </summary>

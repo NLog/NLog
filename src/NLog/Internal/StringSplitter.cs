@@ -31,12 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Collections.Generic;
-using System.Text;
+#nullable enable
 
 namespace NLog.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     /// <summary>
     /// Split a string
     /// </summary>

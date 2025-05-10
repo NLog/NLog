@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -47,7 +49,7 @@ namespace NLog.Internal
         private readonly LogFactory _logFactory;
 
         private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = _logFactory.ServiceRepository.GetService<IValueFormatter>());
-        private IValueFormatter _valueFormatter;
+        private IValueFormatter? _valueFormatter;
 
         /// <summary>
         /// When true: Do not fallback to StringBuilder.Format for positional templates
@@ -98,7 +100,7 @@ namespace NLog.Internal
 
         public void AppendFormattedMessage(LogEventInfo logEvent, StringBuilder builder)
         {
-            if (_singleTargetOnly)
+            if (_singleTargetOnly && logEvent.Parameters?.Length > 0)
             {
                 Render(logEvent.Message, logEvent.FormatProvider ?? _logFactory.DefaultCultureInfo ?? CultureInfo.CurrentCulture, logEvent.Parameters, builder, out _);
             }
@@ -110,11 +112,12 @@ namespace NLog.Internal
 
         public string FormatMessage(LogEventInfo logEvent)
         {
-            if (LogMessageStringFormatter.HasParameters(logEvent))
+            var parameters = logEvent.Parameters;
+            if (parameters?.Length > 0 && !string.IsNullOrEmpty(logEvent.Message))
             {
                 using (var builder = _builderPool.Acquire())
                 {
-                    AppendToBuilder(logEvent, builder.Item);
+                    AppendToBuilder(logEvent, parameters, builder.Item);
                     return builder.Item.ToString();
                 }
             }
@@ -122,9 +125,9 @@ namespace NLog.Internal
             return logEvent.Message;
         }
 
-        private void AppendToBuilder(LogEventInfo logEvent, StringBuilder builder)
+        private void AppendToBuilder(LogEventInfo logEvent, object?[] parameters, StringBuilder builder)
         {
-            Render(logEvent.Message, logEvent.FormatProvider ?? _logFactory.DefaultCultureInfo ?? CultureInfo.CurrentCulture, logEvent.Parameters, builder, out var messageTemplateParameterList);
+            Render(logEvent.Message, logEvent.FormatProvider ?? _logFactory.DefaultCultureInfo ?? CultureInfo.CurrentCulture, parameters, builder, out var messageTemplateParameterList);
             logEvent.TryCreatePropertiesInternal(messageTemplateParameterList ?? ArrayHelper.Empty<MessageTemplateParameter>());
         }
 
@@ -136,7 +139,7 @@ namespace NLog.Internal
         /// <param name="parameters">Parameters for the holes.</param>
         /// <param name="sb">The String Builder destination.</param>
         /// <param name="messageTemplateParameters">Parameters for the holes.</param>
-        private void Render(string template, IFormatProvider formatProvider, object[] parameters, StringBuilder sb, out IList<MessageTemplateParameter> messageTemplateParameters)
+        private void Render(string template, IFormatProvider? formatProvider, object?[] parameters, StringBuilder sb, out IList<MessageTemplateParameter>? messageTemplateParameters)
         {
             messageTemplateParameters = null;
 
@@ -201,7 +204,7 @@ namespace NLog.Internal
         }
 
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-        internal string Render(ref TemplateEnumerator templateEnumerator, IFormatProvider formatProvider, in ReadOnlySpan<object> parameters, out IList<MessageTemplateParameter> messageTemplateParameters)
+        internal string Render(ref TemplateEnumerator templateEnumerator, IFormatProvider? formatProvider, in ReadOnlySpan<object?> parameters, out IList<MessageTemplateParameter>? messageTemplateParameters)
         {
             // Handle message-template-format or string-format or mixed-format
             messageTemplateParameters = null;
@@ -265,7 +268,7 @@ namespace NLog.Internal
         }
 #endif
 
-        private static IList<MessageTemplateParameter> VerifyMessageTemplateParameters(IList<MessageTemplateParameter> messageTemplateParameters, int holeIndex)
+        private static IList<MessageTemplateParameter>? VerifyMessageTemplateParameters(IList<MessageTemplateParameter>? messageTemplateParameters, int holeIndex)
         {
             if (messageTemplateParameters != null && holeIndex != messageTemplateParameters.Count)
             {
@@ -278,7 +281,7 @@ namespace NLog.Internal
             return messageTemplateParameters;
         }
 
-        private void RenderHolePositional(StringBuilder sb, in Hole hole, IFormatProvider formatProvider, object value)
+        private void RenderHolePositional(StringBuilder sb, in Hole hole, IFormatProvider? formatProvider, object? value)
         {
             if (value is null)
             {
@@ -294,12 +297,12 @@ namespace NLog.Internal
             }
         }
 
-        private void RenderHole(StringBuilder sb, in Hole hole, IFormatProvider formatProvider, object value)
+        private void RenderHole(StringBuilder sb, in Hole hole, IFormatProvider? formatProvider, object? value)
         {
             RenderHole(sb, hole.CaptureType, hole.Format, formatProvider, value);
         }
 
-        private void RenderHole(StringBuilder sb, CaptureType captureType, string holeFormat, IFormatProvider formatProvider, object value)
+        private void RenderHole(StringBuilder sb, CaptureType captureType, string? holeFormat, IFormatProvider? formatProvider, object? value)
         {
             if (value is null)
             {

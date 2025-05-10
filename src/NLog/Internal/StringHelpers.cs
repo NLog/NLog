@@ -31,14 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JetBrains.Annotations;
+#nullable enable
 
 namespace NLog.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using JetBrains.Annotations;
+
     /// <summary>
     /// Helpers for <see cref="string"/>.
     /// </summary>
@@ -50,7 +52,7 @@ namespace NLog.Internal
         /// <param name="value"></param>
         /// <returns></returns>
         [ContractAnnotation("value:null => true")]
-        internal static bool IsNullOrWhiteSpace(string value)
+        internal static bool IsNullOrWhiteSpace(string? value)
         {
 #if !NET35
             return string.IsNullOrWhiteSpace(value);
@@ -97,7 +99,7 @@ namespace NLog.Internal
 
             Guard.ThrowIfNullOrEmpty(oldValue);
 
-            StringBuilder sb = null;
+            StringBuilder? sb = null;
 
             int previousIndex = 0;
             int index = str.IndexOf(oldValue, comparison);
