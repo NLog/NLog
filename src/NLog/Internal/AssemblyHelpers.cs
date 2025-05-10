@@ -89,7 +89,7 @@ namespace NLog.Internal
 
                 assemblyFullName = assembly.FullName;
 
-#if NETSTANDARD
+#if !NETFRAMEWORK
                 if (string.IsNullOrEmpty(assembly.Location))
                 {
                     // Assembly with no actual location should be skipped (Avoid PlatformNotSupportedException)

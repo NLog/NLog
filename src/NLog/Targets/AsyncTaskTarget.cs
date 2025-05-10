@@ -164,7 +164,7 @@ namespace NLog.Targets
             _taskCancelledTokenReInit = TaskCancelledTokenReInit;
             _taskTimeoutTimer = new Timer(TaskTimeout, null, Timeout.Infinite, Timeout.Infinite);
 
-#if NETFRAMEWORK
+#if NETFRAMEWORK || NETSTANDARD1_3 || NETSTANDARD1_5
             _requestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
 #else
             // NetStandard20 includes many optimizations for ConcurrentQueue:
