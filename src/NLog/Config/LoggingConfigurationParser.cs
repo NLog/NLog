@@ -207,12 +207,13 @@ namespace NLog.Config
         /// <returns></returns>
         private ICollection<KeyValuePair<string, string>> CreateUniqueSortedListFromConfig(ILoggingConfigurationElement nlogConfig)
         {
-            var dict = ValidatedConfigurationElement.Create(nlogConfig, LogFactory).ValueLookup;
+            var configurationElement = ValidatedConfigurationElement.Create(nlogConfig, LogFactory);
+            var dict = configurationElement.Values;
             if (dict.Count <= 1)
                 return dict;
 
             var sortedList = new List<KeyValuePair<string, string>>(dict.Count);
-            var highPriorityList = new[]
+            var highPriorityList = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
                 "ThrowExceptions",
                 "ThrowConfigExceptions",
@@ -222,15 +223,18 @@ namespace NLog.Config
             };
             foreach (var highPrioritySetting in highPriorityList)
             {
-                if (dict.TryGetValue(highPrioritySetting, out var settingValue))
+                var settingValue = configurationElement.GetOptionalValue(highPrioritySetting, null);
+                if (settingValue != null)
                 {
                     sortedList.Add(new KeyValuePair<string, string>(highPrioritySetting, settingValue));
-                    dict.Remove(highPrioritySetting);
                 }
             }
-            foreach (var configItem in dict)
+            foreach (var configItem in configurationElement.Values)
             {
-                sortedList.Add(configItem);
+                if (!highPriorityList.Contains(configItem.Key))
+                {
+                    sortedList.Add(configItem);
+                }
             }
             return sortedList;
         }
@@ -1063,7 +1067,7 @@ namespace NLog.Config
 
         private void ConfigureObjectFromAttributes<T>(T targetObject, ValidatedConfigurationElement element, bool ignoreType = true) where T : class
         {
-            foreach (var kvp in element.ValueLookup)
+            foreach (var kvp in element.Values)
             {
                 string childName = kvp.Key;
                 string childValue = kvp.Value;
@@ -1297,7 +1301,7 @@ namespace NLog.Config
         {
             if (!element.ValidChildren.Any())
             {
-                var valueLookup = element.ValueLookup;
+                var valueLookup = element.Values;
                 if (valueLookup.Count == 2)
                 {
                     var simpleLayoutValue = (nameof(SimpleLayout.Text).Equals(valueLookup.First().Key, StringComparison.OrdinalIgnoreCase) ? (valueLookup.First().Value ?? string.Empty) : null) ??
@@ -1538,8 +1542,6 @@ namespace NLog.Config
         /// </summary>
         private sealed class ValidatedConfigurationElement : ILoggingConfigurationElement
         {
-            private static readonly IDictionary<string, string> EmptyDefaultDictionary = new SortHelpers.ReadOnlySingleBucketDictionary<string, string>();
-
             private readonly ILoggingConfigurationElement _element;
             private readonly bool _throwConfigExceptions;
             private IList<ValidatedConfigurationElement> _validChildren;
@@ -1557,13 +1559,14 @@ namespace NLog.Config
             {
                 _throwConfigExceptions = throwConfigExceptions;
                 Name = element.Name.Trim();
-                ValueLookup = CreateValueLookup(element, throwConfigExceptions);
+                _valueLookup = CreateValueLookup(element, throwConfigExceptions);
                 _element = element;
             }
 
             public string Name { get; }
 
-            public IDictionary<string, string> ValueLookup { get; }
+            public ICollection<KeyValuePair<string, string>> Values => _valueLookup ?? (ICollection<KeyValuePair<string, string>>)ArrayHelper.Empty<KeyValuePair<string, string>>();
+            private readonly IDictionary<string, string> _valueLookup;
 
             public IEnumerable<ValidatedConfigurationElement> ValidChildren
             {
@@ -1589,12 +1592,12 @@ namespace NLog.Config
                 _validChildren = validChildren ?? ArrayHelper.Empty<ValidatedConfigurationElement>();
             }
 
-            public IEnumerable<KeyValuePair<string, string>> Values => ValueLookup;
-
             /// <remarks>
             /// Explicit cast because NET35 doesn't support covariance.
             /// </remarks>
             IEnumerable<ILoggingConfigurationElement> ILoggingConfigurationElement.Children => ValidChildren.Cast<ILoggingConfigurationElement>();
+
+            IEnumerable<KeyValuePair<string, string>> ILoggingConfigurationElement.Values => Values;
 
             public string GetRequiredValue(string attributeName, string section)
             {
@@ -1615,7 +1618,10 @@ namespace NLog.Config
 
             public string GetOptionalValue(string attributeName, string defaultValue)
             {
-                ValueLookup.TryGetValue(attributeName, out string value);
+                if (_valueLookup is null)
+                    return defaultValue;
+
+                _valueLookup.TryGetValue(attributeName, out string value);
                 return value ?? defaultValue;
             }
 
@@ -1643,11 +1649,13 @@ namespace NLog.Config
                         }
                     }
                 }
+
                 if (throwConfigExceptions && warnings?.Count > 0)
                 {
                     throw new NLogConfigurationException(StringHelpers.Join(Environment.NewLine, warnings));
                 }
-                return valueLookup ?? EmptyDefaultDictionary;
+
+                return valueLookup;
             }
 
             public override string ToString()

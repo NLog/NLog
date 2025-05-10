@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     /// <summary>
@@ -47,6 +49,6 @@ namespace NLog.Internal
         /// <param name="logEvent"></param>
         /// <param name="value">The value</param>
         /// <returns>RawValue supported?</returns>
-        bool TryGetRawValue(LogEventInfo logEvent, out object value);
+        bool TryGetRawValue(LogEventInfo logEvent, out object? value);
     }
 }

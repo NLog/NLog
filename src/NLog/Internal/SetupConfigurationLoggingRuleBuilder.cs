@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System.Collections;
@@ -40,7 +42,7 @@ namespace NLog.Internal
 
     internal sealed class SetupConfigurationLoggingRuleBuilder : ISetupConfigurationLoggingRuleBuilder, IList<Target>
     {
-        public SetupConfigurationLoggingRuleBuilder(LogFactory logFactory, LoggingConfiguration configuration, string loggerNamePattern = null, string ruleName = null)
+        public SetupConfigurationLoggingRuleBuilder(LogFactory logFactory, LoggingConfiguration configuration, string? loggerNamePattern = null, string? ruleName = null)
         {
             LoggingRule = new LoggingRule(ruleName) { LoggerNamePattern = loggerNamePattern ?? "*" };
             Configuration = configuration;

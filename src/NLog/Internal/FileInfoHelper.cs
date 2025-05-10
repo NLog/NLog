@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -43,7 +45,7 @@ namespace NLog.Internal
             return LookupValidFileCreationTimeUtc(fileInfo, (f) => f.CreationTimeUtc, (f) => f.LastWriteTimeUtc);
         }
 
-        private static DateTime? LookupValidFileCreationTimeUtc<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?> finalFallback = null)
+        private static DateTime? LookupValidFileCreationTimeUtc<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?>? finalFallback = null)
         {
             DateTime? fileCreationTime = primary(fileInfo);
 
@@ -61,9 +63,7 @@ namespace NLog.Internal
 
         public static bool IsRelativeFilePath(string filepath)
         {
-            if (filepath?.Length > 0)
-                filepath = filepath.TrimStart(ArrayHelper.Empty<char>());
-
+            filepath = filepath?.TrimStart(ArrayHelper.Empty<char>()) ?? string.Empty;
             if (string.IsNullOrEmpty(filepath))
                 return false;
 

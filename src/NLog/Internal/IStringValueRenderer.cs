@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     /// <summary>
@@ -46,6 +48,6 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="logEvent"></param>
         /// <returns>null if not possible or unknown</returns>
-        string GetFormattedString(LogEventInfo logEvent);
+        string? GetFormattedString(LogEventInfo logEvent);
     }
 }

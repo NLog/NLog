@@ -33,6 +33,8 @@
 
 #if NET35 || NET40 || NET45
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -43,7 +45,7 @@ namespace NLog.Internal
     internal class ObjectHandleSerializer : ISerializable
     {
         [NonSerialized]
-        private readonly object _wrapped;
+        private readonly object? _wrapped;
 
         public ObjectHandleSerializer()
         {
@@ -56,7 +58,7 @@ namespace NLog.Internal
 
         protected ObjectHandleSerializer(SerializationInfo info, StreamingContext context)
         {
-            Type type = null;
+            Type? type = null;
             try
             {
                 type = (Type)info.GetValue("wrappedtype", typeof(Type));
@@ -85,11 +87,11 @@ namespace NLog.Internal
                     string serializedString = string.Empty;
                     try
                     {
-                        serializedString = _wrapped?.ToString();
+                        serializedString = _wrapped?.ToString() ?? string.Empty;
                     }
                     finally
                     {
-                        info.AddValue("wrappedvalue", serializedString ?? string.Empty);
+                        info.AddValue("wrappedvalue", serializedString);
                     }
                 }
             }

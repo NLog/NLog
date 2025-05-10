@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -80,7 +82,7 @@ namespace NLog.Internal
         /// <param name="loggerContext">Target Object context of the exception.</param>
         /// <param name="callerMemberName">Target Method context of the exception.</param>
         /// <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
-        public static bool MustBeRethrown(this Exception exception, IInternalLoggerContext loggerContext = null, string callerMemberName = null)
+        public static bool MustBeRethrown(this Exception exception, IInternalLoggerContext? loggerContext = null, string? callerMemberName = null)
         {
             if (exception.MustBeRethrownImmediately())
             {

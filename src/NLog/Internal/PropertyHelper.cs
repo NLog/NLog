@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -52,7 +54,7 @@ namespace NLog.Internal
     /// </summary>
     internal static class PropertyHelper
     {
-        private static readonly Dictionary<Type, Dictionary<string, PropertyInfo>> _parameterInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
+        private static readonly Dictionary<Type, Dictionary<string, PropertyInfo>?> _parameterInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>?>();
         private static readonly Dictionary<Type, Func<string, ConfigurationItemFactory, object>> _propertyConversionMapper = BuildPropertyConversionMapper();
 
 #pragma warning disable S1144 // Unused private types or members should be removed. BUT they help CoreRT to provide config through reflection
@@ -84,7 +86,7 @@ namespace NLog.Internal
 
         internal static void SetPropertyFromString(object targetObject, PropertyInfo propInfo, string stringValue, ConfigurationItemFactory configurationItemFactory)
         {
-            object propertyValue = null;
+            object? propertyValue = null;
 
             try
             {
@@ -119,7 +121,7 @@ namespace NLog.Internal
             SetPropertyValueForObject(targetObject, propertyValue, propInfo);
         }
 
-        internal static void SetPropertyValueForObject(object targetObject, object value, PropertyInfo propInfo)
+        internal static void SetPropertyValueForObject(object targetObject, object? value, PropertyInfo propInfo)
         {
             try
             {
@@ -148,7 +150,7 @@ namespace NLog.Internal
         /// <param name="propertyName">property name on <paramref name="obj"/></param>
         /// <param name="result">result when success.</param>
         /// <returns>success.</returns>
-        internal static bool TryGetPropertyInfo(ConfigurationItemFactory configFactory, object obj, string propertyName, out PropertyInfo result)
+        internal static bool TryGetPropertyInfo(ConfigurationItemFactory configFactory, object obj, string propertyName, out PropertyInfo? result)
         {
             var configProperties = TryLookupConfigItemProperties(configFactory, obj.GetType());
             if (configProperties is null)
@@ -169,7 +171,7 @@ namespace NLog.Internal
 
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2075")]
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-        private static bool TryGetPropertyInfo(object obj, string propertyName, out PropertyInfo result)
+        private static bool TryGetPropertyInfo(object obj, string propertyName, out PropertyInfo? result)
         {
             InternalLogger.Debug("Object reflection needed to configure instance of type: {0} (Lookup property={1})", obj.GetType(), propertyName);
 
@@ -184,13 +186,13 @@ namespace NLog.Internal
             return false;
         }
 
-        internal static Type GetArrayItemType(PropertyInfo propInfo)
+        internal static Type? GetArrayItemType(PropertyInfo propInfo)
         {
             var arrayParameterAttribute = propInfo.GetFirstCustomAttribute<ArrayParameterAttribute>();
             return arrayParameterAttribute?.ItemType;
         }
 
-        internal static bool IsConfigurationItemType(ConfigurationItemFactory configFactory, Type type)
+        internal static bool IsConfigurationItemType(ConfigurationItemFactory configFactory, Type? type)
         {
             if (type is null || IsSimplePropertyType(type))
                 return false;
@@ -209,7 +211,7 @@ namespace NLog.Internal
             return TryLookupConfigItemProperties(configFactory, type) ?? new Dictionary<string, PropertyInfo>();
         }
 
-        private static Dictionary<string, PropertyInfo> TryLookupConfigItemProperties(ConfigurationItemFactory configFactory, Type type)
+        private static Dictionary<string, PropertyInfo>? TryLookupConfigItemProperties(ConfigurationItemFactory configFactory, Type type)
         {
             lock (_parameterInfoCache)
             {
@@ -271,7 +273,7 @@ namespace NLog.Internal
         }
 
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2070")]
-        private static bool TryImplicitConversion(Type resultType, string value, out object result)
+        private static bool TryImplicitConversion(Type resultType, string value, out object? result)
         {
             try
             {
@@ -300,7 +302,7 @@ namespace NLog.Internal
         }
 
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2067")]
-        private static bool TryNLogSpecificConversion(Type propertyType, string value, ConfigurationItemFactory configurationItemFactory, out object newValue)
+        private static bool TryNLogSpecificConversion(Type propertyType, string value, ConfigurationItemFactory configurationItemFactory, out object? newValue)
         {
             if (_propertyConversionMapper.TryGetValue(propertyType, out var objectConverter))
             {
@@ -319,7 +321,7 @@ namespace NLog.Internal
             return false;
         }
 
-        private static bool TryGetEnumValue(Type resultType, string value, out object result)
+        private static bool TryGetEnumValue(Type resultType, string value, out object? result)
         {
             if (!resultType.IsEnum)
             {
@@ -370,7 +372,7 @@ namespace NLog.Internal
         /// <remarks>
         /// If there is a comma in the value, then (single) quote the value. For single quotes, use the backslash as escape
         /// </remarks>
-        private static bool TryFlatListConversion(object obj, PropertyInfo propInfo, string valueRaw, ConfigurationItemFactory configurationItemFactory, out object newValue)
+        private static bool TryFlatListConversion(object obj, PropertyInfo propInfo, string valueRaw, ConfigurationItemFactory configurationItemFactory, out object? newValue)
         {
             var collectionType = propInfo.PropertyType;
             if (!collectionType.IsGenericType || !typeof(IEnumerable).IsAssignableFrom(collectionType))
@@ -394,7 +396,7 @@ namespace NLog.Internal
                             newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
                         }
 
-                        collectionAddMethod.Invoke(newList, new object[] { newValue });
+                        collectionAddMethod.Invoke(newList, new object?[] { newValue });
                     }
 
                     newValue = newList;
@@ -412,7 +414,7 @@ namespace NLog.Internal
 
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2075")]
-        private static bool TryCreateCollectionObject(object obj, PropertyInfo propInfo, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
+        private static bool TryCreateCollectionObject(object obj, PropertyInfo propInfo, out object? collectionObject, [NotNullWhen(returnValue: true)] out MethodInfo? collectionAddMethod, [NotNullWhen(returnValue: true)] out Type? collectionItemType)
         {
             collectionObject = null;
             collectionAddMethod = null;
@@ -455,7 +457,7 @@ namespace NLog.Internal
 
                 if (existingValue.GetType().GetGenericTypeDefinition() == typeof(HashSet<>))
                 {
-                    object hashSetComparer = null;
+                    object? hashSetComparer = null;
                     var existingType = existingValue.GetType();
                     var comparerPropInfo = existingType.GetProperty("Comparer", BindingFlags.Public | BindingFlags.Instance);
                     if (comparerPropInfo.IsValidPublicProperty())
@@ -498,7 +500,7 @@ namespace NLog.Internal
             return TryCreateTypeCollection(collectionType, out collectionObject, out collectionAddMethod, out collectionItemType);
          }
 
-        private static bool TryCreateListCollection<T>(Type collectionType, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
+        private static bool TryCreateListCollection<T>(Type collectionType, [NotNullWhen(returnValue: true)] out object? collectionObject, [NotNullWhen(returnValue: true)] out MethodInfo? collectionAddMethod, [NotNullWhen(returnValue: true)] out Type? collectionItemType)
         {
             if (collectionType.IsAssignableFrom(typeof(List<T>)))
             {
@@ -514,7 +516,7 @@ namespace NLog.Internal
             return false;
         }
 
-        private static bool TryCreateHashSetCollection<T>(Type collectionType, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
+        private static bool TryCreateHashSetCollection<T>(Type collectionType, [NotNullWhen(returnValue: true)] out object? collectionObject, [NotNullWhen(returnValue: true)] out MethodInfo? collectionAddMethod, [NotNullWhen(returnValue: true)] out Type? collectionItemType)
         {
             if (collectionType.IsAssignableFrom(typeof(HashSet<T>)))
             {
@@ -555,7 +557,7 @@ namespace NLog.Internal
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2026")]
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2067")]
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
-        internal static bool TryTypeConverterConversion(Type type, string value, out object newValue)
+        internal static bool TryTypeConverterConversion(Type type, string value, out object? newValue)
         {
             if (typeof(IConvertible).IsAssignableFrom(type) || type.IsAssignableFrom(typeof(string)))
             {
@@ -585,7 +587,7 @@ namespace NLog.Internal
             }
         }
 
-        private static bool TryCreatePropertyInfoDictionary(ConfigurationItemFactory configFactory, Type objectType, out Dictionary<string, PropertyInfo> result)
+        private static bool TryCreatePropertyInfoDictionary(ConfigurationItemFactory configFactory, Type objectType, out Dictionary<string, PropertyInfo>? result)
         {
             result = null;
 
@@ -654,13 +656,13 @@ namespace NLog.Internal
             return false;
         }
 
-        private static bool IncludeConfigurationPropertyInfo(Type objectType, PropertyInfo propInfo, bool checkDefaultValue, out string overridePropertyName)
+        private static bool IncludeConfigurationPropertyInfo(Type objectType, PropertyInfo propInfo, bool checkDefaultValue, out string? overridePropertyName)
         {
             overridePropertyName = null;
 
             try
             {
-                var propertyType = propInfo?.PropertyType;
+                var propertyType = propInfo.PropertyType;
                 if (propertyType is null)
                     return false;
 

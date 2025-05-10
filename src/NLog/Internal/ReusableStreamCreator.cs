@@ -31,11 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.IO;
+#nullable enable
 
 namespace NLog.Internal
 {
+    using System;
+    using System.IO;
+
     /// <summary>
     /// Controls a single allocated MemoryStream for reuse (only one active user)
     /// </summary>
@@ -73,7 +75,7 @@ namespace NLog.Internal
 
         void IDisposable.Dispose()
         {
-            _reusableObject.Dispose();
+            _reusableObject?.Dispose();
         }
     }
 }

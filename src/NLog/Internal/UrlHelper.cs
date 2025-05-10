@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -77,8 +79,8 @@ namespace NLog.Internal
             bool isNLogLegacy = Contains(options, EscapeEncodingOptions.NLogLegacy);
 #pragma warning restore CS0618 // Type or member is obsolete
 
-            char[] charArray = null;
-            byte[] byteArray = null;
+            char[]? charArray = null;
+            byte[]? byteArray = null;
             char[] hexChars = isLowerCaseHex ? hexLowerChars : hexUpperChars;
 
             for (int i = 0; i < source.Length; ++i)

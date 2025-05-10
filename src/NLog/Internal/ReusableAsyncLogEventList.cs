@@ -31,11 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System.Collections.Generic;
-using NLog.Common;
+#nullable enable
 
 namespace NLog.Internal
 {
+    using System.Collections.Generic;
+    using NLog.Common;
+
     /// <summary>
     /// Controls a single allocated AsyncLogEventInfo-List for reuse (only one active user)
     /// </summary>

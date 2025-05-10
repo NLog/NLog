@@ -31,16 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
+#nullable enable
 
 namespace NLog.Internal
 {
+    using System;
+
     /// <summary>
     /// Controls a single allocated object for reuse (only one active user)
     /// </summary>
     internal class ReusableObjectCreator<T> where T : class
     {
-        protected T _reusableObject;
+        protected T? _reusableObject;
         private readonly Action<T> _clearObject;
         private readonly Func<T> _createObject;
 

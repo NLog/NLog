@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -43,7 +45,7 @@ namespace NLog.Internal
     internal sealed class AsyncOperationCounter
     {
         private int _pendingOperationCounter;
-        private readonly LinkedList<AsyncContinuation> _pendingCompletionList = new LinkedList<AsyncContinuation>();
+        private readonly LinkedList<AsyncContinuation?> _pendingCompletionList = new LinkedList<AsyncContinuation?>();
 
         /// <summary>
         /// Mark operation has started
@@ -57,12 +59,12 @@ namespace NLog.Internal
         /// Mark operation has completed
         /// </summary>
         /// <param name="exception">Exception coming from the completed operation [optional]</param>
-        public void CompleteOperation(Exception exception)
+        public void CompleteOperation(Exception? exception)
         {
             NotifyCompletion(exception);
         }
 
-        private int NotifyCompletion(Exception exception)
+        private int NotifyCompletion(Exception? exception)
         {
             int pendingOperations = System.Threading.Interlocked.Decrement(ref _pendingOperationCounter);
 
@@ -75,7 +77,7 @@ namespace NLog.Internal
                     {
                         var nodeValue = nodeNext.Value;
                         nodeNext = nodeNext.Next;
-                        nodeValue(exception);  // Will modify _pendingCompletionList
+                        nodeValue?.Invoke(exception);  // Will modify _pendingCompletionList
                     }
                 }
             }
@@ -110,7 +112,7 @@ namespace NLog.Internal
                         return asyncContinuation;   // No active operations
                     }
 
-                    var pendingCompletion = new LinkedListNode<AsyncContinuation>(null);
+                    var pendingCompletion = new LinkedListNode<AsyncContinuation?>(null);
                     _pendingCompletionList.AddLast(pendingCompletion);
                     remainingCompletionCounter = System.Threading.Interlocked.Increment(ref _pendingOperationCounter);
                     if (remainingCompletionCounter <= 0)

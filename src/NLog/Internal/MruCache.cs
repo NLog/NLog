@@ -31,10 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System.Collections.Generic;
+#nullable enable
 
 namespace NLog.Internal
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Most-Recently-Used-Cache, that discards less frequently used items on overflow
     /// </summary>
@@ -152,7 +154,7 @@ namespace NLog.Internal
         /// <param name="key">Key of the item to be searched in the cache.</param>
         /// <param name="value">Output value of the item found in the cache.</param>
         /// <returns><c>True</c> when the key is found in the cache, <c>false</c> otherwise.</returns>
-        public bool TryGetValue(TKey key, out TValue value)
+        public bool TryGetValue(TKey key, out TValue? value)
         {
             MruCacheItem item;
             try

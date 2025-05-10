@@ -791,7 +791,7 @@ namespace NLog
         private static void SetPropertyCallContext<TValue>(string item, TValue? value, IDictionary<string, object?> mappedContext)
         {
             object? objectValue = value;
-            if (Convert.GetTypeCode(objectValue) != TypeCode.Object)
+            if (objectValue is null || Convert.GetTypeCode(objectValue) != TypeCode.Object)
                 mappedContext[item] = objectValue;
             else
                 mappedContext[item] = new ObjectHandleSerializer(objectValue);

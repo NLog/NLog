@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -77,7 +79,7 @@ namespace NLog.Internal
             return exception;
         }
 
-        object IFormatProvider.GetFormat(Type formatType)
+        object? IFormatProvider.GetFormat(Type formatType)
         {
             return (formatType == typeof(ICustomFormatter)) ? this : null;
         }

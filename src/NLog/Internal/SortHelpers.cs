@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -62,7 +64,7 @@ namespace NLog.Internal
         /// <returns>
         /// Dictionary where keys are unique input keys, and values are lists of <see cref="AsyncLogEventInfo"/>.
         /// </returns>
-        public static Dictionary<TKey, List<TValue>> BucketSort<TValue, TKey>(this IEnumerable<TValue> inputs, KeySelector<TValue, TKey> keySelector)
+        public static Dictionary<TKey, List<TValue>> BucketSort<TValue, TKey>(this IEnumerable<TValue> inputs, KeySelector<TValue, TKey> keySelector) where TKey : notnull
         {
             var buckets = new Dictionary<TKey, List<TValue>>();
 
@@ -91,7 +93,7 @@ namespace NLog.Internal
         /// <returns>
         /// Dictionary where keys are unique input keys, and values are lists of <see cref="AsyncLogEventInfo"/>.
         /// </returns>
-        public static ReadOnlySingleBucketDictionary<TKey, IList<TValue>> BucketSort<TValue, TKey>(this IList<TValue> inputs, KeySelector<TValue, TKey> keySelector)
+        public static ReadOnlySingleBucketGroupBy<TKey, IList<TValue>> BucketSort<TValue, TKey>(this IList<TValue> inputs, KeySelector<TValue, TKey> keySelector) where TKey : notnull
         {
             return BucketSort(inputs, keySelector, EqualityComparer<TKey>.Default);
         }
@@ -107,18 +109,17 @@ namespace NLog.Internal
         /// <returns>
         /// Dictionary where keys are unique input keys, and values are lists of <see cref="AsyncLogEventInfo"/>.
         /// </returns>
-        public static ReadOnlySingleBucketDictionary<TKey, IList<TValue>> BucketSort<TValue, TKey>(this IList<TValue> inputs, KeySelector<TValue, TKey> keySelector, IEqualityComparer<TKey> keyComparer)
+        public static ReadOnlySingleBucketGroupBy<TKey, IList<TValue>> BucketSort<TValue, TKey>(this IList<TValue> inputs, KeySelector<TValue, TKey> keySelector, IEqualityComparer<TKey> keyComparer) where TKey : notnull
         {
-            Dictionary<TKey, IList<TValue>> buckets = null;
-            TKey singleBucketKey = default(TKey);
-            for (int i = 0; i < inputs.Count; i++)
+            if (inputs.Count == 0)
+                return new ReadOnlySingleBucketGroupBy<TKey, IList<TValue>>(singleBucket: null, keyComparer);
+
+            Dictionary<TKey, IList<TValue>>? buckets = null;
+            TKey singleBucketKey = keySelector(inputs[0]);
+            for (int i = 1; i < inputs.Count; i++)
             {
                 TKey keyValue = keySelector(inputs[i]);
-                if (i == 0)
-                {
-                    singleBucketKey = keyValue;
-                }
-                else if (buckets is null)
+                if (buckets is null)
                 {
                     if (!keyComparer.Equals(singleBucketKey, keyValue))
                     {
@@ -138,9 +139,9 @@ namespace NLog.Internal
             }
 
             if (buckets is null)
-                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(new KeyValuePair<TKey, IList<TValue>>(singleBucketKey, inputs), keyComparer);
+                return new ReadOnlySingleBucketGroupBy<TKey, IList<TValue>>(new KeyValuePair<TKey, IList<TValue>>(singleBucketKey, inputs), keyComparer);
             else
-                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(buckets, keyComparer);
+                return new ReadOnlySingleBucketGroupBy<TKey, IList<TValue>>(buckets, keyComparer);
         }
 
         private static Dictionary<TKey, IList<TValue>> CreateBucketDictionaryWithValue<TValue, TKey>(IList<TValue> inputs, IEqualityComparer<TKey> keyComparer, int currentIndex, TKey firstBucketKey, TKey nextBucketKey)
@@ -169,35 +170,35 @@ namespace NLog.Internal
 #if !NETFRAMEWORK
             readonly
 #endif
-            struct ReadOnlySingleBucketDictionary<TKey, TValue> : IDictionary<TKey, TValue>
+            struct ReadOnlySingleBucketGroupBy<TKey, TValue> : IEnumerable<KeyValuePair<TKey, TValue>> where TKey : notnull
         {
             private
 #if !NETFRAMEWORK
                 readonly
 #endif
                 KeyValuePair<TKey, TValue>? _singleBucket;  // Not readonly to avoid struct-copy, and to avoid VerificationException when medium-trust AppDomain
-            private readonly Dictionary<TKey, TValue> _multiBucket;
+            private readonly Dictionary<TKey, TValue>? _multiBucket;
             private readonly IEqualityComparer<TKey> _comparer;
             public IEqualityComparer<TKey> Comparer => _comparer;
 
-            public ReadOnlySingleBucketDictionary(KeyValuePair<TKey, TValue> singleBucket)
+            public ReadOnlySingleBucketGroupBy(KeyValuePair<TKey, TValue> singleBucket)
                 : this(singleBucket, EqualityComparer<TKey>.Default)
             {
             }
 
-            public ReadOnlySingleBucketDictionary(Dictionary<TKey, TValue> multiBucket)
+            public ReadOnlySingleBucketGroupBy(Dictionary<TKey, TValue> multiBucket)
                 : this(multiBucket, EqualityComparer<TKey>.Default)
             {
             }
 
-            public ReadOnlySingleBucketDictionary(KeyValuePair<TKey, TValue> singleBucket, IEqualityComparer<TKey> comparer)
+            public ReadOnlySingleBucketGroupBy(KeyValuePair<TKey, TValue>? singleBucket, IEqualityComparer<TKey> comparer)
             {
                 _comparer = comparer;
                 _multiBucket = null;
                 _singleBucket = singleBucket;
             }
 
-            public ReadOnlySingleBucketDictionary(Dictionary<TKey, TValue> multiBucket, IEqualityComparer<TKey> comparer)
+            public ReadOnlySingleBucketGroupBy(Dictionary<TKey, TValue> multiBucket, IEqualityComparer<TKey> comparer)
             {
                 _comparer = comparer;
                 _multiBucket = multiBucket;
@@ -205,58 +206,7 @@ namespace NLog.Internal
             }
 
             /// <inheritDoc/>
-            public int Count { get { if (_multiBucket != null) return _multiBucket.Count; else if (_singleBucket.HasValue) return 1; else return 0; } }
-
-            /// <inheritDoc/>
-            public ICollection<TKey> Keys
-            {
-                get
-                {
-                    if (_multiBucket != null)
-                        return _multiBucket.Keys;
-                    else if (_singleBucket.HasValue)
-                        return new[] { _singleBucket.Value.Key };
-                    else
-                        return ArrayHelper.Empty<TKey>();
-                }
-            }
-
-            /// <inheritDoc/>
-            public ICollection<TValue> Values
-            {
-                get
-                {
-                    if (_multiBucket != null)
-                        return _multiBucket.Values;
-                    else if (_singleBucket.HasValue)
-                        return new TValue[] { _singleBucket.Value.Value };
-                    else
-                        return ArrayHelper.Empty<TValue>();
-                }
-            }
-
-            /// <inheritDoc/>
-            public bool IsReadOnly => true;
-
-            /// <summary>
-            /// Allows direct lookup of existing keys. If trying to access non-existing key exception is thrown.
-            /// Consider to use <see cref="TryGetValue(TKey, out TValue)"/> instead for better safety.
-            /// </summary>
-            /// <param name="key">Key value for lookup</param>
-            /// <returns>Mapped value found</returns>
-            public TValue this[TKey key]
-            {
-                get
-                {
-                    if (_multiBucket != null)
-                        return _multiBucket[key];
-                    else if (_singleBucket.HasValue && _comparer.Equals(_singleBucket.Value.Key, key))
-                        return _singleBucket.Value.Value;
-                    else
-                        throw new KeyNotFoundException();
-                }
-                set => throw new NotSupportedException("Readonly");
-            }
+            public int Count => _multiBucket?.Count ?? (_singleBucket.HasValue ? 1 : 0);
 
             /// <summary>
             /// Non-Allocating struct-enumerator
@@ -265,7 +215,7 @@ namespace NLog.Internal
             {
                 bool _singleBucketFirstRead;
                 KeyValuePair<TKey, TValue> _singleBucket;   // Not readonly to avoid struct-copy, and to avoid VerificationException when medium-trust AppDomain
-                readonly IEnumerator<KeyValuePair<TKey, TValue>> _multiBuckets;
+                readonly IEnumerator<KeyValuePair<TKey, TValue>>? _multiBuckets;
 
                 internal Enumerator(Dictionary<TKey, TValue> multiBucket)
                 {
@@ -286,7 +236,7 @@ namespace NLog.Internal
                     get
                     {
                         if (_multiBuckets != null)
-                            return new KeyValuePair<TKey, TValue>(_multiBuckets.Current.Key, _multiBuckets.Current.Value);
+                            return _multiBuckets.Current;
                         else
                             return new KeyValuePair<TKey, TValue>(_singleBucket.Key, _singleBucket.Value);
                     }
@@ -308,7 +258,6 @@ namespace NLog.Internal
                         return false;
                     else
                         return _singleBucketFirstRead = true;
-
                 }
 
                 public void Reset()
@@ -340,86 +289,6 @@ namespace NLog.Internal
             IEnumerator IEnumerable.GetEnumerator()
             {
                 return GetEnumerator();
-            }
-
-            /// <inheritDoc/>
-            public bool ContainsKey(TKey key)
-            {
-                if (_multiBucket != null)
-                    return _multiBucket.ContainsKey(key);
-                else if (_singleBucket.HasValue)
-                    return _comparer.Equals(_singleBucket.Value.Key, key);
-                else
-                    return false;
-            }
-
-            /// <summary>Will always throw, as dictionary is readonly</summary>
-            public void Add(TKey key, TValue value)
-            {
-                throw new NotSupportedException();  // Readonly
-            }
-
-            /// <summary>Will always throw, as dictionary is readonly</summary>
-            public bool Remove(TKey key)
-            {
-                throw new NotSupportedException();  // Readonly
-            }
-
-            /// <inheritDoc/>
-            public bool TryGetValue(TKey key, out TValue value)
-            {
-                if (_multiBucket != null)
-                {
-                    return _multiBucket.TryGetValue(key, out value);
-                }
-                else if (_singleBucket.HasValue && _comparer.Equals(_singleBucket.Value.Key, key))
-                {
-                    value = _singleBucket.Value.Value;
-                    return true;
-                }
-                else
-                {
-                    value = default(TValue);
-                    return false;
-                }
-            }
-
-            /// <summary>Will always throw, as dictionary is readonly</summary>
-            public void Add(KeyValuePair<TKey, TValue> item)
-            {
-                throw new NotSupportedException();  // Readonly
-            }
-
-            /// <summary>Will always throw, as dictionary is readonly</summary>
-            public void Clear()
-            {
-                throw new NotSupportedException();  // Readonly
-            }
-
-            /// <inheritDoc/>
-            public bool Contains(KeyValuePair<TKey, TValue> item)
-            {
-                if (_multiBucket != null)
-                    return ((IDictionary<TKey, TValue>)_multiBucket).Contains(item);
-                else if (_singleBucket.HasValue)
-                    return _comparer.Equals(_singleBucket.Value.Key, item.Key) && EqualityComparer<TValue>.Default.Equals(_singleBucket.Value.Value, item.Value);
-                else
-                    return false;
-            }
-
-            /// <inheritDoc/>
-            public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
-            {
-                if (_multiBucket != null)
-                    ((IDictionary<TKey, TValue>)_multiBucket).CopyTo(array, arrayIndex);
-                else if (_singleBucket.HasValue)
-                    array[arrayIndex] = _singleBucket.Value;
-            }
-
-            /// <summary>Will always throw, as dictionary is readonly</summary>
-            public bool Remove(KeyValuePair<TKey, TValue> item)
-            {
-                throw new NotSupportedException();  // Readonly
             }
         }
     }

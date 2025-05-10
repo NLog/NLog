@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -68,7 +70,7 @@ namespace NLog.Internal
             var visitedObjects = new HashSet<object>(SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default);
             foreach (var rootObject in rootObjects)
             {
-                if (PropertyHelper.IsConfigurationItemType(configFactory, rootObject?.GetType()))
+                if (PropertyHelper.IsConfigurationItemType(configFactory, rootObject.GetType()))
                 {
                     ScanProperties(configFactory, aggressiveSearch, rootObject, result, 0, visitedObjects);
                 }
@@ -76,7 +78,7 @@ namespace NLog.Internal
             return result;
         }
 
-        private static void ScanProperties<T>(ConfigurationItemFactory configFactory, bool aggressiveSearch, object targetObject, List<T> result, int level, HashSet<object> visitedObjects)
+        private static void ScanProperties<T>(ConfigurationItemFactory configFactory, bool aggressiveSearch, object? targetObject, List<T> result, int level, HashSet<object> visitedObjects)
             where T : class
         {
             if (targetObject is null)
@@ -113,7 +115,7 @@ namespace NLog.Internal
                 if (!PropertyHelper.IsConfigurationItemType(configFactory, propInfo.PropertyType))
                     continue;
 
-                object propValue = ScanPropertyValue(targetObject, type, propInfo);
+                var propValue = ScanPropertyValue(targetObject, type, propInfo);
                 if (propValue is null)
                     continue;
 
@@ -122,7 +124,7 @@ namespace NLog.Internal
             }
         }
 
-        private static object ScanPropertyValue(object targetObject, Type type, PropertyInfo propInfo)
+        private static object? ScanPropertyValue(object targetObject, Type type, PropertyInfo propInfo)
         {
             try
             {

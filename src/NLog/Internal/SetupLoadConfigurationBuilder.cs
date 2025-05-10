@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using NLog.Config;
@@ -51,6 +53,6 @@ namespace NLog.Internal
             set => _configuration = value;
         }
 
-        internal LoggingConfiguration _configuration;
+        internal LoggingConfiguration? _configuration;
     }
 }

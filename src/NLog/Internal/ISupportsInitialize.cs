@@ -31,9 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Supports object initialization and termination.

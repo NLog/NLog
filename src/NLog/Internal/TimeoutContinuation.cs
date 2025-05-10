@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -44,8 +46,8 @@ namespace NLog.Internal
     [Obsolete("Marked obsolete on NLog 6.0")]
     internal sealed class TimeoutContinuation : IDisposable
     {
-        private AsyncContinuation _asyncContinuation;
-        private Timer _timeoutTimer;
+        private AsyncContinuation? _asyncContinuation;
+        private Timer? _timeoutTimer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TimeoutContinuation"/> class.

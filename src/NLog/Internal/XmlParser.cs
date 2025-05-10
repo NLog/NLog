@@ -31,11 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -59,7 +62,7 @@ namespace NLog.Internal
             _xmlSource = new CharEnumerator(new StringReader(xmlSource));
         }
 
-        public XmlParserElement LoadDocument(out IList<XmlParserElement> processingInstructions)
+        public XmlParserElement LoadDocument(out IList<XmlParserElement>? processingInstructions)
         {
             try
             {
@@ -126,7 +129,7 @@ namespace NLog.Internal
             }
         }
 
-        public bool TryReadProcessingInstructions(out IList<XmlParserElement> processingInstructions)
+        public bool TryReadProcessingInstructions(out IList<XmlParserElement>? processingInstructions)
         {
             SkipWhiteSpaces();
 
@@ -164,7 +167,7 @@ namespace NLog.Internal
         /// </summary>
         /// <returns>True if start element was found.</returns>
         /// <exception cref="Exception">Something unexpected has failed.</exception>
-        public bool TryReadStartElement(out string name, out List<KeyValuePair<string, string>> attributes)
+        public bool TryReadStartElement([NotNullWhen(returnValue: true)] out string? name, out List<KeyValuePair<string, string>>? attributes)
         {
             SkipWhiteSpaces();
 
@@ -315,7 +318,7 @@ namespace NLog.Internal
         }
 
         /// <exception cref="Exception">Something unexpected has failed.</exception>
-        private bool TryReadAttributes(out List<KeyValuePair<string, string>> attributes, bool expectsProcessingInstruction = false)
+        private bool TryReadAttributes(out List<KeyValuePair<string, string>>? attributes, bool expectsProcessingInstruction = false)
         {
             SkipWhiteSpaces();
 
@@ -369,7 +372,7 @@ namespace NLog.Internal
         /// Consumer of this method should handle safe position.
         /// </summary>
         /// <exception cref="Exception">Something unexpected has failed.</exception>
-        private bool TryBeginReadStartElement(out string name, bool processingInstruction = false)
+        private bool TryBeginReadStartElement([NotNullWhen(returnValue: true)] out string? name, bool processingInstruction = false)
         {
             if (_xmlSource.Current != '<' || _xmlSource.Peek() == '/' || _xmlSource.Peek() == '!')
             {
@@ -571,7 +574,7 @@ namespace NLog.Internal
             return unicode;
         }
 
-        private bool TryParseSpecialXmlToken(out string xmlToken)
+        private bool TryParseSpecialXmlToken(out string? xmlToken)
         {
             foreach (var token in _specialTokens)
             {
@@ -622,21 +625,23 @@ namespace NLog.Internal
         public sealed class XmlParserElement
         {
             public string Name { get; set; }
-            public string InnerText { get; set; }
-            public IList<XmlParserElement> Children { get; private set; }
-            public IList<KeyValuePair<string, string>> Attributes { get; }
+            public string? InnerText { get; set; }
+            public IList<XmlParserElement> Children => _children ?? ArrayHelper.Empty<XmlParserElement>();
+            private IList<XmlParserElement>? _children;
+            public IList<KeyValuePair<string, string>> Attributes => _attributes ?? ArrayHelper.Empty<KeyValuePair<string, string>>();
+            private readonly IList<KeyValuePair<string, string>>? _attributes;
 
-            public XmlParserElement(string name, IList<KeyValuePair<string, string>> attributes)
+            public XmlParserElement(string name, IList<KeyValuePair<string, string>>? attributes)
             {
                 Name = name;
-                Attributes = attributes;
+                _attributes = attributes;
             }
 
             public void AddChild(XmlParserElement child)
             {
-                if (Children is null)
-                    Children = new List<XmlParserElement>();
-                Children.Add(child);
+                if (_children is null)
+                    _children = new List<XmlParserElement>();
+                _children.Add(child);
             }
         }
 

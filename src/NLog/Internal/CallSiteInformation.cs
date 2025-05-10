@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -103,7 +105,7 @@ namespace NLog.Internal
         /// <param name="stackTrace">The stack trace.</param>
         /// <param name="userStackFrame">Index of the first user stack frame within the stack trace.</param>
         /// <param name="loggerType">Type of the logger or logger wrapper. This is still Logger if it's a subclass of Logger.</param>
-        public void SetStackTrace(StackTrace stackTrace, int? userStackFrame = null, Type loggerType = null)
+        public void SetStackTrace(StackTrace stackTrace, int? userStackFrame = null, Type? loggerType = null)
         {
             StackTrace = stackTrace;
             if (!userStackFrame.HasValue && stackTrace != null)
@@ -128,7 +130,7 @@ namespace NLog.Internal
         /// <param name="callerMethodName"></param>
         /// <param name="callerFilePath"></param>
         /// <param name="callerLineNumber"></param>
-        public void SetCallerInfo(string callerClassName, string callerMethodName, string callerFilePath, int callerLineNumber)
+        public void SetCallerInfo(string? callerClassName, string? callerMethodName, string? callerFilePath, int callerLineNumber)
         {
             CallerClassName = callerClassName;
             CallerMethodName = callerMethodName;
@@ -142,7 +144,7 @@ namespace NLog.Internal
         /// Gets the stack frame of the method that did the logging.
         /// </summary>
         [Obsolete("Instead use ${callsite} or CallerMemberName. Marked obsolete on NLog 5.3")]
-        public StackFrame UserStackFrame => StackTrace?.GetFrame(UserStackFrameNumberLegacy ?? UserStackFrameNumber);
+        public StackFrame? UserStackFrame => StackTrace?.GetFrame(UserStackFrameNumberLegacy ?? UserStackFrameNumber);
 
         /// <summary>
         /// Gets the number index of the stack frame that represents the user
@@ -158,29 +160,30 @@ namespace NLog.Internal
         /// <summary>
         /// Gets the entire stack trace.
         /// </summary>
-        public StackTrace StackTrace { get; private set; }
+        public StackTrace? StackTrace { get; private set; }
 
-        public MethodBase GetCallerStackFrameMethod(int skipFrames)
+        public MethodBase? GetCallerStackFrameMethod(int skipFrames)
         {
-            StackFrame frame = StackTrace?.GetFrame(UserStackFrameNumber + skipFrames);
+            StackFrame? frame = StackTrace?.GetFrame(UserStackFrameNumber + skipFrames);
             return StackTraceUsageUtils.GetStackMethod(frame);
         }
 
-        public string GetCallerClassName(MethodBase method, bool includeNameSpace, bool cleanAsyncMoveNext, bool cleanAnonymousDelegates)
+        public string GetCallerClassName(MethodBase? method, bool includeNameSpace, bool cleanAsyncMoveNext, bool cleanAnonymousDelegates)
         {
-            if (!string.IsNullOrEmpty(CallerClassName))
+            var callerClassName = CallerClassName ?? string.Empty;
+            if (!string.IsNullOrEmpty(callerClassName))
             {
                 if (includeNameSpace)
                 {
-                    return CallerClassName;
+                    return callerClassName;
                 }
                 else
                 {
-                    int lastDot = CallerClassName.LastIndexOf('.');
-                    if (lastDot < 0 || lastDot >= CallerClassName.Length - 1)
-                        return CallerClassName;
+                    int lastDot = callerClassName.LastIndexOf('.');
+                    if (lastDot < 0 || lastDot >= callerClassName.Length - 1)
+                        return callerClassName;
                     else
-                        return CallerClassName.Substring(lastDot + 1);
+                        return callerClassName.Substring(lastDot + 1);
                 }
             }
 
@@ -193,10 +196,11 @@ namespace NLog.Internal
             return StackTraceUsageUtils.GetStackFrameMethodClassName(method, includeNameSpace, cleanAsyncMoveNext, cleanAnonymousDelegates) ?? string.Empty;
         }
 
-        public string GetCallerMethodName(MethodBase method, bool includeMethodInfo, bool cleanAsyncMoveNext, bool cleanAnonymousDelegates)
+        public string GetCallerMethodName(MethodBase? method, bool includeMethodInfo, bool cleanAsyncMoveNext, bool cleanAnonymousDelegates)
         {
-            if (!string.IsNullOrEmpty(CallerMethodName))
-                return CallerMethodName;
+            var callerMethodName = CallerMethodName ?? string.Empty;
+            if (!string.IsNullOrEmpty(callerMethodName))
+                return callerMethodName;
 
             method = method ?? GetCallerStackFrameMethod(0);
             if (method is null)
@@ -209,10 +213,11 @@ namespace NLog.Internal
 
         public string GetCallerFilePath(int skipFrames)
         {
-            if (!string.IsNullOrEmpty(CallerFilePath))
-                return CallerFilePath;
+            var callerFilePath = CallerFilePath ?? string.Empty;
+            if (!string.IsNullOrEmpty(callerFilePath))
+                return callerFilePath;
 
-            StackFrame frame = StackTrace?.GetFrame(UserStackFrameNumber + skipFrames);
+            StackFrame? frame = StackTrace?.GetFrame(UserStackFrameNumber + skipFrames);
             return frame?.GetFileName() ?? string.Empty;
         }
 
@@ -221,13 +226,13 @@ namespace NLog.Internal
             if (CallerLineNumber.HasValue)
                 return CallerLineNumber.Value;
 
-            StackFrame frame = StackTrace?.GetFrame(UserStackFrameNumber + skipFrames);
+            StackFrame? frame = StackTrace?.GetFrame(UserStackFrameNumber + skipFrames);
             return frame?.GetFileLineNumber() ?? 0;
         }
 
-        public string CallerClassName { get; internal set; }
-        public string CallerMethodName { get; private set; }
-        public string CallerFilePath { get; private set; }
+        public string? CallerClassName { get; internal set; }
+        public string? CallerMethodName { get; private set; }
+        public string? CallerFilePath { get; private set; }
         public int? CallerLineNumber { get; private set; }
 
         /// <summary>
@@ -302,7 +307,7 @@ namespace NLog.Internal
         /// <summary>
         /// Skip StackFrame when from hidden Assembly / ClassType
         /// </summary>
-        private static bool SkipStackFrameWhenHidden(MethodBase stackMethod)
+        private static bool SkipStackFrameWhenHidden(MethodBase? stackMethod)
         {
             var assembly = StackTraceUsageUtils.LookupAssemblyFromMethod(stackMethod);
             if (assembly is null || IsHiddenAssembly(assembly))
@@ -316,9 +321,9 @@ namespace NLog.Internal
         /// <summary>
         /// Skip StackFrame when type of the logger
         /// </summary>
-        private static bool SkipStackFrameWhenLoggerType(MethodBase stackMethod, Type loggerType)
+        private static bool SkipStackFrameWhenLoggerType(MethodBase? stackMethod, Type loggerType)
         {
-            Type declaringType = stackMethod?.DeclaringType;
+            Type? declaringType = stackMethod?.DeclaringType;
             var isLoggerType = declaringType != null && (loggerType == declaringType || declaringType.IsSubclassOf(loggerType) || loggerType.IsAssignableFrom(declaringType));
             return isLoggerType;
         }

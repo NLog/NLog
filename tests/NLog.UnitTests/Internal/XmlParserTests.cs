@@ -183,8 +183,8 @@ namespace NLog.UnitTests.Internal
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
             Assert.NotNull(xmlDocument);
             Assert.Equal("nlog", xmlDocument.Name.ToLower());
-            Assert.Null(xmlDocument.Children);
-            Assert.Null(xmlDocument.Attributes);
+            Assert.Empty(xmlDocument.Children);
+            Assert.Empty(xmlDocument.Attributes);
         }
 
         [Theory]
@@ -206,7 +206,7 @@ namespace NLog.UnitTests.Internal
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
             Assert.NotNull(xmlDocument);
             Assert.Equal("nlog", xmlDocument.Name);
-            Assert.Null(xmlDocument.Children);
+            Assert.Empty(xmlDocument.Children);
             Assert.Single(xmlDocument.Attributes);
             Assert.Equal("throwExceptions", xmlDocument.Attributes[0].Key);
             Assert.Equal("false", xmlDocument.Attributes[0].Value);
@@ -222,7 +222,7 @@ namespace NLog.UnitTests.Internal
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
             Assert.NotNull(xmlDocument);
             Assert.Equal("nlog", xmlDocument.Name);
-            Assert.Null(xmlDocument.Children);
+            Assert.Empty(xmlDocument.Children);
             Assert.Equal(2, xmlDocument.Attributes.Count);
             Assert.Equal("throwExceptions", xmlDocument.Attributes[0].Key);
             Assert.Equal("false", xmlDocument.Attributes[0].Value);
@@ -250,7 +250,7 @@ namespace NLog.UnitTests.Internal
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
             Assert.NotNull(xmlDocument);
             Assert.Equal("nlog", xmlDocument.Name);
-            Assert.Null(xmlDocument.Children);
+            Assert.Empty(xmlDocument.Children);
             Assert.Single(xmlDocument.Attributes);
             Assert.Equal("internalLogFile", xmlDocument.Attributes[0].Key);
             Assert.Equal(value, xmlDocument.Attributes[0].Value);
@@ -282,8 +282,8 @@ namespace NLog.UnitTests.Internal
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
             Assert.NotNull(xmlDocument);
             Assert.Equal("nlog", xmlDocument.Name);
-            Assert.Null(xmlDocument.Children);
-            Assert.Null(xmlDocument.Attributes);
+            Assert.Empty(xmlDocument.Children);
+            Assert.Empty(xmlDocument.Attributes);
             Assert.Equal(value, xmlDocument.InnerText);
         }
 
@@ -313,7 +313,6 @@ namespace NLog.UnitTests.Internal
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
             Assert.NotNull(xmlDocument);
             Assert.Equal("nlog", xmlDocument.Name);
-            Assert.NotNull(xmlDocument.Children);
             Assert.Equal(2, xmlDocument.Children.Count);
             Assert.Equal("variable", xmlDocument.Children[0].Name);
             Assert.Equal("variable", xmlDocument.Children[1].Name);

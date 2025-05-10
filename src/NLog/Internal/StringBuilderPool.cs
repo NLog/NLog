@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Internal
 {
     using System;
@@ -39,8 +41,8 @@ namespace NLog.Internal
 
     internal sealed class StringBuilderPool
     {
-        private StringBuilder _fastPool;
-        private readonly StringBuilder[] _slowPool;
+        private StringBuilder? _fastPool;
+        private readonly StringBuilder?[] _slowPool;
         private readonly int _maxBuilderCapacity;
 
         /// <summary>
@@ -66,7 +68,7 @@ namespace NLog.Internal
         /// <returns>Allow return to pool</returns>
         public ItemHolder Acquire()
         {
-            StringBuilder item = _fastPool;
+            StringBuilder? item = _fastPool;
             if (item is null || item != Interlocked.CompareExchange(ref _fastPool, null, item))
             {
                 for (int i = 0; i < _slowPool.Length; i++)
@@ -123,10 +125,10 @@ namespace NLog.Internal
         public struct ItemHolder : IDisposable
         {
             public readonly StringBuilder Item;
-            readonly StringBuilderPool _owner;
+            readonly StringBuilderPool? _owner;
             readonly int _poolIndex;
 
-            public ItemHolder(StringBuilder stringBuilder, StringBuilderPool owner, int poolIndex)
+            public ItemHolder(StringBuilder stringBuilder, StringBuilderPool? owner, int poolIndex)
             {
                 Item = stringBuilder;
                 _owner = owner;

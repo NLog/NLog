@@ -31,22 +31,24 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using NLog.Config;
-using NLog.Layouts;
+#nullable enable
 
 namespace NLog.Internal
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using NLog.Config;
+    using NLog.Layouts;
+
     [DebuggerDisplay("Count = {Count}")]
     internal sealed class ConfigVariablesDictionary : IDictionary<string, Layout>
     {
         private readonly ThreadSafeDictionary<string, Layout> _variables = new ThreadSafeDictionary<string, Layout>(StringComparer.OrdinalIgnoreCase);
         private readonly LoggingConfiguration _configuration;
-        private ThreadSafeDictionary<string, Layout> _dynamicVariables;
-        private ThreadSafeDictionary<string, bool> _apiVariables;
+        private ThreadSafeDictionary<string, Layout>? _dynamicVariables;
+        private ThreadSafeDictionary<string, bool>? _apiVariables;
 
         public ConfigVariablesDictionary(LoggingConfiguration configuration)
         {
@@ -84,9 +86,8 @@ namespace NLog.Internal
                     if (dynamicLayout != null)
                     {
                         dynamicLayout.Initialize(_configuration);
+                        _dynamicVariables[key] = dynamicLayout;
                     }
-
-                    _dynamicVariables[key] = dynamicLayout;
                 }
             }
 
