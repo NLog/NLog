@@ -253,13 +253,14 @@ namespace NLog.Config
         /// </returns>
         public Target? FindTargetByName(string name)
         {
-            Target value;
-            if (!TryGetTargetThreadSafe(name, out value))
+            Guard.ThrowIfNull(name);
+
+            if (TryGetTargetThreadSafe(name, out var target))
             {
-                return null;
+                return target;
             }
 
-            return value;
+            return null;
         }
 
         /// <summary>
@@ -275,6 +276,8 @@ namespace NLog.Config
         public TTarget? FindTargetByName<TTarget>(string name)
             where TTarget : Target
         {
+            Guard.ThrowIfNull(name);
+
             var target = FindTargetByName(name);
             if (target is TTarget specificTarget)
             {
@@ -300,6 +303,8 @@ namespace NLog.Config
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         public void AddRule(LogLevel minLevel, LogLevel maxLevel, string targetName, string loggerNamePattern = "*")
         {
+            Guard.ThrowIfNull(targetName);
+
             var target = FindTargetByName(targetName);
             if (target is null)
             {
@@ -355,6 +360,8 @@ namespace NLog.Config
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         public void AddRuleForOneLevel(LogLevel level, string targetName, string loggerNamePattern = "*")
         {
+            Guard.ThrowIfNull(targetName);
+
             var target = FindTargetByName(targetName);
             if (target is null)
             {
@@ -399,6 +406,8 @@ namespace NLog.Config
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         public void AddRuleForAllLevels(string targetName, string loggerNamePattern = "*")
         {
+            Guard.ThrowIfNull(targetName);
+
             var target = FindTargetByName(targetName);
             if (target is null)
             {
@@ -441,8 +450,7 @@ namespace NLog.Config
         /// <returns>Found logging rule or <see langword="null"/> when not found.</returns>
         public LoggingRule? FindRuleByName(string ruleName)
         {
-            if (ruleName is null)
-                return null;
+            Guard.ThrowIfNull(ruleName);
 
             var loggingRules = GetLoggingRulesThreadSafe();
             for (int i = loggingRules.Length - 1; i >= 0; i--)
@@ -462,8 +470,7 @@ namespace NLog.Config
         /// <returns>Found one or more logging rule to remove, or <see langword="false"/> when not found.</returns>
         public bool RemoveRuleByName(string ruleName)
         {
-            if (ruleName is null)
-                return false;
+            Guard.ThrowIfNull(ruleName);
 
             HashSet<LoggingRule> removedRules = new HashSet<LoggingRule>();
             var loggingRules = GetLoggingRulesThreadSafe();
