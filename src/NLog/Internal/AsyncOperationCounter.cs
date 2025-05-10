@@ -75,7 +75,7 @@ namespace NLog.Internal
                     {
                         var nodeValue = nodeNext.Value;
                         nodeNext = nodeNext.Next;
-                        nodeValue(exception);  // Will modify _pendingCompletionList
+                        nodeValue?.Invoke(exception);  // Will modify _pendingCompletionList
                     }
                 }
             }

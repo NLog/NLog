@@ -84,9 +84,8 @@ namespace NLog.Internal
                     if (dynamicLayout != null)
                     {
                         dynamicLayout.Initialize(_configuration);
+                        _dynamicVariables[key] = dynamicLayout;
                     }
-
-                    _dynamicVariables[key] = dynamicLayout;
                 }
             }
 

@@ -31,12 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
 namespace NLog.Internal
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Ensures that IDictionary.GetEnumerator returns DictionaryEntry values
     /// </summary>
@@ -51,7 +51,7 @@ namespace NLog.Internal
 
         public DictionaryEntryEnumerator GetEnumerator()
         {
-            return new DictionaryEntryEnumerator(_dictionary?.Count > 0 ? _dictionary : null);
+            return new DictionaryEntryEnumerator(_dictionary);
         }
 
         IEnumerator<DictionaryEntry> IEnumerable<DictionaryEntry>.GetEnumerator()
@@ -72,7 +72,7 @@ namespace NLog.Internal
 
             public DictionaryEntryEnumerator(IDictionary dictionary)
             {
-                _entryEnumerator = dictionary?.GetEnumerator();
+                _entryEnumerator = dictionary?.Count > 0 ? dictionary.GetEnumerator() : EmptyDictionaryEnumerator.Default;
             }
 
             object IEnumerator.Current => Current;
@@ -85,12 +85,26 @@ namespace NLog.Internal
 
             public bool MoveNext()
             {
-                return _entryEnumerator?.MoveNext() ?? false;
+                return _entryEnumerator.MoveNext();
             }
 
             public void Reset()
             {
-                _entryEnumerator?.Reset();
+                _entryEnumerator.Reset();
+            }
+        }
+
+        private sealed class EmptyDictionaryEnumerator : IDictionaryEnumerator
+        {
+            public static readonly IDictionaryEnumerator Default = new EmptyDictionaryEnumerator();
+            public DictionaryEntry Entry => default;
+            public object Key => default;
+            public object Value => default;
+            object IEnumerator.Current => Entry;
+            public bool MoveNext() => false;
+            public void Reset()
+            {
+                // SONAR: Nothing to reset
             }
         }
     }

@@ -84,7 +84,7 @@ namespace NLog.Internal
             }
             else if (value is System.Collections.IEnumerable)
             {
-                return null;
+                return string.Empty;
             }
             else
             {
