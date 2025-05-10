@@ -92,7 +92,7 @@ namespace NLog.Config
         public static bool GetOptionalBooleanValue(this ILoggingConfigurationElement element, string attributeName,
             bool defaultValue)
         {
-            string value = element.GetOptionalValue(attributeName, null);
+            string value = element.GetOptionalValue(attributeName, null)?.Trim() ?? string.Empty;
             if (string.IsNullOrEmpty(value))
             {
                 return defaultValue;
@@ -131,15 +131,11 @@ namespace NLog.Config
         private static string StripOptionalNamespacePrefix(string attributeValue)
         {
             if (attributeValue is null)
-            {
-                return null;
-            }
+                return string.Empty;
 
             int p = attributeValue.IndexOf(':');
             if (p < 0)
-            {
                 return attributeValue;
-            }
 
             return attributeValue.Substring(p + 1);
         }

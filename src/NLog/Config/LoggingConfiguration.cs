@@ -845,10 +845,9 @@ namespace NLog.Config
             if (resolveException.ServiceType.IsAssignableFrom(serviceType))
                 return true;
 
-            resolveException = resolveException.InnerException as NLogDependencyResolveException;
-            if (resolveException != null)
+            if (resolveException.InnerException is NLogDependencyResolveException dependencyResolveException)
             {
-                return IsMissingServiceType(resolveException, serviceType);
+                return IsMissingServiceType(dependencyResolveException, serviceType);
             }
 
             return false;
@@ -883,12 +882,14 @@ namespace NLog.Config
         [NotNull]
         internal string ExpandSimpleVariables(string input, out string matchingVariableName)
         {
-            string output = input;
-            var culture = StringComparison.OrdinalIgnoreCase;
             matchingVariableName = null;
 
-            if (Variables.Count > 0 && output?.IndexOf('$') >= 0)
+            string output = input;
+
+            if (!string.IsNullOrEmpty(output) && Variables.Count > 0 && output.IndexOf('$') >= 0)
             {
+                var culture = StringComparison.OrdinalIgnoreCase;
+
                 foreach (var kvp in _variables)
                 {
                     var layout = kvp.Value;
@@ -912,7 +913,7 @@ namespace NLog.Config
                     }
                     else
                     {
-                        if (string.Equals(layoutText, input.Trim(), culture))
+                        if (string.Equals(layoutText, input?.Trim() ?? string.Empty, culture))
                         {
                             matchingVariableName = kvp.Key;
                         }
