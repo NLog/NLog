@@ -278,7 +278,7 @@ namespace NLog.Internal
                     get
                     {
                         if (_multiBuckets != null)
-                            return new KeyValuePair<TKey, TValue>(_multiBuckets.Current.Key, _multiBuckets.Current.Value);
+                            return _multiBuckets.Current;
                         else
                             return new KeyValuePair<TKey, TValue>(_singleBucket.Key, _singleBucket.Value);
                     }

@@ -54,10 +54,9 @@ namespace NLog.Internal
         /// <param name="valueFormatter">NLog string.Format interface</param>
         public static void AppendFormattedValue(this StringBuilder builder, object value, string format, IFormatProvider formatProvider, IValueFormatter valueFormatter)
         {
-            string stringValue = value as string;
-            if (stringValue != null && string.IsNullOrEmpty(format))
+            if (value is string stringValue && string.IsNullOrEmpty(format))
             {
-                builder.Append(value);  // Avoid automatic quotes
+                builder.Append(stringValue);  // Avoid automatic quotes
             }
             else if (format == MessageTemplates.ValueFormatter.FormatAsJson)
             {

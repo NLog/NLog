@@ -54,9 +54,9 @@ namespace NLog.Internal
             try
             {
 #if NETSTANDARD1_3
-                var machineName = EnvironmentHelper.GetSafeEnvironmentVariable("COMPUTERNAME") ?? string.Empty;
+                var machineName = EnvironmentHelper.GetSafeEnvironmentVariable("COMPUTERNAME");
                 if (string.IsNullOrEmpty(machineName))
-                    machineName = EnvironmentHelper.GetSafeEnvironmentVariable("HOSTNAME") ?? string.Empty;
+                    machineName = EnvironmentHelper.GetSafeEnvironmentVariable("HOSTNAME");
                 return machineName;
 #else
                 return Environment.MachineName;
@@ -72,18 +72,11 @@ namespace NLog.Internal
         {
             try
             {
-                string s = Environment.GetEnvironmentVariable(name);
-
-                if (string.IsNullOrEmpty(s))
-                {
-                    return null;
-                }
-
-                return s;
+                return Environment.GetEnvironmentVariable(name) ?? string.Empty;
             }
             catch (SecurityException)
             {
-                return null;
+                return string.Empty;
             }
         }
     }

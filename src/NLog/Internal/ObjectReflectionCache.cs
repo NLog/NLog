@@ -490,7 +490,7 @@ namespace NLog.Internal
                     if (_properties != null)
                         return ++_index < (_fastLookup?.Length ?? _properties.Length);
                     else
-                        return _enumerator.MoveNext();
+                        return _enumerator?.MoveNext() == true;
                 }
 
                 public void Reset()
@@ -498,7 +498,7 @@ namespace NLog.Internal
                     if (_properties != null)
                         _index = -1;
                     else
-                        _enumerator.Reset();
+                        _enumerator?.Reset();
                 }
             }
         }
@@ -642,7 +642,7 @@ namespace NLog.Internal
             private static IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IDictionary dictionary)
             {
                 foreach (var item in new DictionaryEntryEnumerable(dictionary))
-                    yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);
+                    yield return new KeyValuePair<string, object>(item.Key?.ToString() ?? string.Empty, item.Value);
             }
         }
 
@@ -668,14 +668,14 @@ namespace NLog.Internal
             private static IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IDictionary<TKey, TValue> dictionary)
             {
                 foreach (var item in dictionary)
-                    yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);
+                    yield return new KeyValuePair<string, object>(item.Key?.ToString() ?? string.Empty, item.Value);
             }
 
 #if !NET35
             private static IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IReadOnlyDictionary<TKey, TValue> dictionary)
             {
                 foreach (var item in dictionary)
-                    yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);
+                    yield return new KeyValuePair<string, object>(item.Key?.ToString() ?? string.Empty, item.Value);
             }
 #endif
         }
