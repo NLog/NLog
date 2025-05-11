@@ -68,7 +68,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <remarks>Upgrade to private protected when using C# 7.2 </remarks>
         internal string ElementNameInternal { get => _elementNameInternal; set => _elementNameInternal = XmlHelper.XmlConvertToElementName(value?.Trim()); }
-        private string _elementNameInternal;
+        private string _elementNameInternal = string.Empty;
 
         /// <summary>
         /// Value inside the XML element
@@ -227,24 +227,26 @@ namespace NLog.Layouts
         {
             base.InitializeLayout();
 
+            if (string.IsNullOrEmpty(ElementNameInternal))
+                throw new NLogConfigurationException("XmlLayout Name-property must be assigned. Name is required for valid XML element.");
+
             if (IncludeScopeProperties)
                 ThreadAgnostic = false;
 
             if (IncludeEventProperties)
                 ThreadAgnosticImmutable = true;
 
-            if (Attributes.Count > 1)
+            if (Attributes.Count > 0)
             {
                 HashSet<string> attributeValidator = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 foreach (var attribute in Attributes)
                 {
                     if (string.IsNullOrEmpty(attribute.Name))
+                        throw new NLogConfigurationException($"XmlElement(Name={ElementNameInternal}): Contains invalid XmlAttribute with unassigned Name-property");
+
+                    if (attributeValidator.Contains(attribute.Name))
                     {
-                        Common.InternalLogger.Warn("XmlElement(ElementName={0}): Contains attribute with missing name (Ignored)", ElementNameInternal);
-                    }
-                    else if (attributeValidator.Contains(attribute.Name))
-                    {
-                        Common.InternalLogger.Warn("XmlElement(ElementName={0}): Contains duplicate attribute name: {1} (Invalid xml)", ElementNameInternal, attribute.Name);
+                        Common.InternalLogger.Warn("XmlElement(ElementName={0}): Contains duplicate XmlAttribute(Name={1}) (Invalid xml)", ElementNameInternal, attribute.Name);
                     }
                     else
                     {

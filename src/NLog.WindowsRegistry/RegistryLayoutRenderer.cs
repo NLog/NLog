@@ -100,8 +100,16 @@ namespace NLog.LayoutRenderers
         /// </ul>
         /// </remarks>
         /// <docgen category='Registry Options' order='10' />
-        [RequiredParameter]
-        public Layout Key { get; set; }
+        public Layout Key { get; set; } = Layout.Empty;
+
+        /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+
+            if (Key is null || ReferenceEquals(Key, Layout.Empty))
+                throw new NLogConfigurationException("Registry-LayoutRenderer Key-property must be assigned. Lookup blank value not supported.");
+        }
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)

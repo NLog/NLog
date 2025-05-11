@@ -213,10 +213,10 @@ namespace NLog.Conditions
             if (_tokenizer.TokenType == ConditionTokenType.String)
             {
                 var stringTokenValue = _tokenizer.TokenValue.Substring(1, _tokenizer.TokenValue.Length - 2).Replace("''", "'");
-                var simpleLayout = new SimpleLayout(stringTokenValue, _configurationItemFactory);
+                var simpleLayout = string.IsNullOrEmpty(stringTokenValue) ? SimpleLayout.Default : new SimpleLayout(stringTokenValue, _configurationItemFactory);
                 _tokenizer.GetNextToken();
                 if (simpleLayout.IsFixedText)
-                    return new ConditionLiteralExpression(simpleLayout.FixedText);
+                    return string.IsNullOrEmpty(simpleLayout.FixedText) ? ConditionLiteralExpression.Empty : new ConditionLiteralExpression(simpleLayout.FixedText);
                 else
                     return new ConditionLayoutExpression(simpleLayout);
             }
@@ -283,19 +283,19 @@ namespace NLog.Conditions
 
             if (string.Equals(keyword, "true", StringComparison.OrdinalIgnoreCase))
             {
-                expression = new ConditionLiteralExpression(ConditionExpression.BoxedTrue);
+                expression = ConditionLiteralExpression.True;
                 return true;
             }
 
             if (string.Equals(keyword, "false", StringComparison.OrdinalIgnoreCase))
             {
-                expression = new ConditionLiteralExpression(ConditionExpression.BoxedFalse);
+                expression = ConditionLiteralExpression.False;
                 return true;
             }
 
             if (string.Equals(keyword, "null", StringComparison.OrdinalIgnoreCase))
             {
-                expression = new ConditionLiteralExpression(null);
+                expression = ConditionLiteralExpression.Null;
                 return true;
             }
 
@@ -315,7 +315,6 @@ namespace NLog.Conditions
             if (numberString.IndexOf('.') >= 0)
             {
                 var d = double.Parse(numberString, CultureInfo.InvariantCulture);
-
                 return new ConditionLiteralExpression(negative ? -d : d);
             }
 

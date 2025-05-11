@@ -106,14 +106,12 @@ namespace NLog.Targets
         /// Gets or sets the database parameter name.
         /// </summary>
         /// <docgen category='Parameter Options' order='0' />
-        [RequiredParameter]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that should be use to calculate the value for the parameter.
         /// </summary>
         /// <docgen category='Parameter Options' order='1' />
-        [RequiredParameter]
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
 
         /// <summary>

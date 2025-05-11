@@ -61,7 +61,6 @@ namespace NLog.LayoutRenderers
         /// The AppSetting item-name
         ///</summary>
         /// <docgen category='Layout Options' order='10' />
-        [RequiredParameter]
         [DefaultParameter]
         public string Item { get; set; }
 
@@ -85,9 +84,14 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
+            base.InitializeLayoutRenderer();
+
             string connectionStringSection = "ConnectionStrings.";
             _connectionStringName = Item?.TrimStart().StartsWith(connectionStringSection, StringComparison.OrdinalIgnoreCase) == true ?
                 Item.TrimStart().Substring(connectionStringSection.Length) : null;
+
+            if (string.IsNullOrEmpty(Item))
+                throw new NLogConfigurationException("AppSetting-LayoutRenderer Item-property must be assigned. Lookup blank value not supported.");
         }
 
         /// <inheritdoc/>

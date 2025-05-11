@@ -58,7 +58,6 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
-        [RequiredParameter]
         public string Item { get; set; }
 
         /// <summary>
@@ -78,6 +77,15 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
+
+        /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+
+            if (string.IsNullOrEmpty(Item))
+                throw new NLogConfigurationException("ExceptionData-LayoutRenderer Item-property must be assigned. Lookup blank value not supported.");
+        }
 
         private Exception GetTopException(LogEventInfo logEvent)
         {

@@ -31,10 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Filters
 {
-    using Config;
-    using Layouts;
+    using NLog.Layouts;
 
     /// <summary>
     /// A base class for filters that are based on comparing a value to a layout.
@@ -53,7 +54,6 @@ namespace NLog.Filters
         /// </summary>
         /// <value>The layout.</value>
         /// <docgen category='Filtering Options' order='10' />
-        [RequiredParameter]
-        public Layout Layout { get; set; }
+        public Layout Layout { get; set; } = Layout.Empty;
     }
 }

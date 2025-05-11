@@ -76,7 +76,6 @@ namespace NLog.Layouts
         /// Gets or sets the name of the attribute.
         /// </summary>
         /// <docgen category='Layout Options' order='1' />
-        [RequiredParameter]
         public string Name { get => _name; set => _name = XmlHelper.XmlConvertToElementName(value?.Trim()); }
         private string _name;
 
@@ -84,7 +83,6 @@ namespace NLog.Layouts
         /// Gets or sets the layout that will be rendered as the attribute's value.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [RequiredParameter]
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
 
         /// <summary>

@@ -31,10 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Filters
 {
     using System;
-    using NLog.Config;
 
     /// <summary>
     /// Matches when the calculated layout contains the specified substring.
@@ -53,8 +54,7 @@ namespace NLog.Filters
         /// Gets or sets the substring to be matched.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [RequiredParameter]
-        public string Substring { get; set; }
+        public string Substring { get; set; } = string.Empty;
 
         /// <inheritdoc/>
         protected override FilterResult Check(LogEventInfo logEvent)
@@ -63,7 +63,7 @@ namespace NLog.Filters
                                               ? StringComparison.OrdinalIgnoreCase
                                               : StringComparison.Ordinal;
             string result = Layout.Render(logEvent);
-            if (result.IndexOf(Substring, comparisonType) >= 0)
+            if (!string.IsNullOrEmpty(Substring) && result.IndexOf(Substring, comparisonType) >= 0)
             {
                 return Action;
             }

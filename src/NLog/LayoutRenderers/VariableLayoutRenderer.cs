@@ -51,7 +51,6 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the name of the NLog variable.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [RequiredParameter]
         [DefaultParameter]
         public string Name { get; set; }
 
@@ -71,6 +70,9 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
+            if (string.IsNullOrEmpty(Name))
+                throw new NLogConfigurationException("Var-LayoutRenderer Name-property must be assigned. Lookup blank value not supported.");
+
             if (TryGetLayout(out var layout) && layout != null)
             {
                 //pass loggingConfiguration to layout

@@ -49,7 +49,6 @@ namespace NLog.Targets
         /// </summary>
         /// <value>The type of the command.</value>
         /// <docgen category='Command Options' order='10' />
-        [RequiredParameter]
         public CommandType CommandType { get; set; } = CommandType.Text;
 
         /// <summary>
@@ -62,8 +61,7 @@ namespace NLog.Targets
         /// Gets or sets the command text.
         /// </summary>
         /// <docgen category='Command Options' order='10' />
-        [RequiredParameter]
-        public Layout Text { get; set; }
+        public Layout Text { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets a value indicating whether to ignore failures.

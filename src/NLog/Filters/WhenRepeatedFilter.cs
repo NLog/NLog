@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Filters
 {
     using System;
@@ -86,13 +88,13 @@ namespace NLog.Filters
         /// Insert FilterCount value into <see cref="LogEventInfo.Properties"/> when an event is no longer filtered
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        public string FilterCountPropertyName { get; set; }
+        public string FilterCountPropertyName { get; set; } = string.Empty;
 
         /// <summary>
         /// Append FilterCount to the <see cref="LogEventInfo.Message"/> when an event is no longer filtered
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        public string FilterCountMessageAppendFormat { get; set; }
+        public string FilterCountMessageAppendFormat { get; set; } = string.Empty;
 
         /// <summary>
         /// Reuse internal buffers, and doesn't have to constantly allocate new buffers
@@ -266,7 +268,7 @@ namespace NLog.Filters
         /// </summary>
         private FilterResult RefreshFilterInfo(LogEventInfo logEvent, FilterInfo filterInfo)
         {
-            if (filterInfo.HasExpired(logEvent.TimeStamp, TimeoutSeconds) || logEvent.Level.Ordinal > filterInfo.LogLevel.Ordinal)
+            if (filterInfo.HasExpired(logEvent.TimeStamp, TimeoutSeconds) || logEvent.Level > filterInfo.LogLevel)
             {
                 int filterCount = filterInfo.FilterCount;
                 if (filterCount > 0 && filterInfo.IsObsolete(logEvent.TimeStamp, TimeoutSeconds))
@@ -342,7 +344,7 @@ namespace NLog.Filters
             }
 
             public StringBuilder StringBuffer { get; }
-            public LogLevel LogLevel { get; private set; }
+            public LogLevel? LogLevel { get; private set; }
             private DateTime LastLogTime { get; set; }
             private DateTime LastFilterTime { get; set; }
             public int FilterCount { get; private set; }
@@ -353,11 +355,11 @@ namespace NLog.Filters
         /// </summary>
         private struct FilterInfoKey : IEquatable<FilterInfoKey>
         {
-            private readonly StringBuilder _stringBuffer;
-            public readonly string StringValue;
+            private readonly StringBuilder? _stringBuffer;
+            public readonly string? StringValue;
             public readonly int StringHashCode;
 
-            public FilterInfoKey(StringBuilder stringBuffer, string stringValue, int? stringHashCode = null)
+            public FilterInfoKey(StringBuilder? stringBuffer, string? stringValue, int? stringHashCode = null)
             {
                 _stringBuffer = stringBuffer;
                 StringValue = stringValue;

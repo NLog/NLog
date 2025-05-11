@@ -101,7 +101,7 @@ namespace NLog.LayoutRenderers
 
         private string GetStringValue(LogEventInfo logEvent)
         {
-            if (Format != MessageTemplates.ValueFormatter.FormatAsJson)
+            if (!MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format))
             {
                 object value = RenderValue(logEvent);
                 string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, Culture));

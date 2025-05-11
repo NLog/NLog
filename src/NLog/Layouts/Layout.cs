@@ -52,6 +52,11 @@ namespace NLog.Layouts
     public abstract class Layout : ISupportsInitialize, IRenderable
     {
         /// <summary>
+        /// Default Layout-value that renders string.Empty
+        /// </summary>
+        public static Layout Empty => SimpleLayout.Default;
+
+        /// <summary>
         /// Is this layout initialized? See <see cref="Initialize(NLog.Config.LoggingConfiguration)"/>
         /// </summary>
         internal bool IsInitialized;
@@ -88,7 +93,7 @@ namespace NLog.Layouts
         /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
         public static implicit operator Layout([Localizable(false)] string text)
         {
-            return FromString(text, ConfigurationItemFactory.Default);
+            return text is null ? null : FromString(text, ConfigurationItemFactory.Default);
         }
 
         /// <summary>
@@ -109,7 +114,7 @@ namespace NLog.Layouts
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
         public static Layout FromString([Localizable(false)] string layoutText, ConfigurationItemFactory configurationItemFactory)
         {
-            return new SimpleLayout(layoutText, configurationItemFactory);
+            return string.IsNullOrEmpty(layoutText) ? SimpleLayout.Default : new SimpleLayout(layoutText, configurationItemFactory);
         }
 
         /// <summary>
@@ -122,7 +127,7 @@ namespace NLog.Layouts
         {
             try
             {
-                return new SimpleLayout(layoutText, ConfigurationItemFactory.Default, throwConfigExceptions);
+                return string.IsNullOrEmpty(layoutText) ? SimpleLayout.Default : new SimpleLayout(layoutText, ConfigurationItemFactory.Default, throwConfigExceptions);
             }
             catch (NLogConfigurationException)
             {
@@ -143,7 +148,7 @@ namespace NLog.Layouts
         public static Layout FromLiteral([Localizable(false)] string literalText)
         {
             if (string.IsNullOrEmpty(literalText))
-                return new SimpleLayout(ArrayHelper.Empty<NLog.LayoutRenderers.LayoutRenderer>(), string.Empty);
+                return SimpleLayout.Default;
             else
                 return new SimpleLayout(new[] { new NLog.LayoutRenderers.LiteralLayoutRenderer(literalText) }, literalText);
         }
@@ -323,8 +328,6 @@ namespace NLog.Layouts
                     LoggingConfiguration = configuration;
 
                     _scannedForObjects = false;
-
-                    PropertyHelper.CheckRequiredParameters(ConfigurationItemFactory.Default, this);
 
                     InitializeLayout();
 

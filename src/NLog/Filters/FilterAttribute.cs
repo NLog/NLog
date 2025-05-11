@@ -31,10 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Filters
 {
     using System;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Marks class as a layout renderer and assigns a name to it.

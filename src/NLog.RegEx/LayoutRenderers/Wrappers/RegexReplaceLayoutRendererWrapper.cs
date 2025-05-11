@@ -64,8 +64,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>The text search for.</value>
         /// <docgen category='Layout Options' order='10' />
-        [RequiredParameter]
-        public string SearchFor { get; set; }
+        public string SearchFor { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the replacement string.
@@ -106,6 +105,9 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
+
+            if (string.IsNullOrEmpty(SearchFor))
+                throw new NLogConfigurationException("RegEx-Replace-LayoutRenderer SearchFor-property must be assigned. Searching for blank value not supported.");
 
             _regexHelper = new RegexHelper()
             {

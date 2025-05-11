@@ -132,7 +132,7 @@ namespace NLog.LayoutRenderers
 
         private void AppendNestedStates(StringBuilder builder, IList<object> messages, int startPos, int endPos, LogEventInfo logEvent)
         {
-            bool formatAsJson = MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format, StringComparison.Ordinal);
+            bool formatAsJson = MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format);
 
             string separator = null;
             string itemSeparator = null;

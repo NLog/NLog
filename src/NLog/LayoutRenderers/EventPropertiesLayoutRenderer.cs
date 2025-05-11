@@ -60,7 +60,6 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the name of the item.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [RequiredParameter]
         [DefaultParameter]
         public string Item { get => _item?.ToString(); set => _item = (value != null && IgnoreCase) ? new PropertiesDictionary.IgnoreCasePropertyKey(value) : (object)value; }
         private object _item;
@@ -106,6 +105,15 @@ namespace NLog.LayoutRenderers
         private bool _ignoreCase = true;
 
         /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+
+            if (string.IsNullOrEmpty(Item))
+                throw new NLogConfigurationException("EventProperty-LayoutRenderer Item-property must be assigned. Lookup blank value not supported.");
+        }
+
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (TryGetValue(logEvent, out var value))
@@ -149,7 +157,7 @@ namespace NLog.LayoutRenderers
 
         private string GetStringValue(LogEventInfo logEvent)
         {
-            if (Format != MessageTemplates.ValueFormatter.FormatAsJson)
+            if (!MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format))
             {
                 if (TryGetValue(logEvent, out var value))
                 {

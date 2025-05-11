@@ -57,7 +57,6 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>The text search for.</value>
         /// <docgen category='Layout Options' order='10' />
-        [RequiredParameter]
         public string SearchFor
         {
             get => _searchForOriginal ?? _searchFor;
@@ -67,7 +66,7 @@ namespace NLog.LayoutRenderers.Wrappers
                 _searchFor = Layouts.SimpleLayout.Evaluate(value, LoggingConfiguration, throwConfigExceptions: false);
             }
         }
-        private string _searchFor;
+        private string _searchFor = string.Empty;
         private string _searchForOriginal;
 
         /// <summary>
@@ -105,6 +104,10 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
+
+            if (string.IsNullOrEmpty(SearchFor))
+                throw new NLogConfigurationException("Replace-LayoutRenderer SearchFor-property must be assigned. Searching for blank value not supported.");
+
             if (_searchForOriginal != null)
                 _searchFor = Layouts.SimpleLayout.Evaluate(_searchForOriginal, LoggingConfiguration);
             if (_replaceWithOriginal != null)

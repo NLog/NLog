@@ -760,24 +760,6 @@ namespace NLog.Config
             }
 
             _configItems = ObjectGraphScanner.FindReachableObjects<object>(ConfigurationItemFactory.Default, true, roots.ToArray());
-
-            InternalLogger.Info("Validating config: {0}", this);
-
-            foreach (object o in _configItems)
-            {
-                try
-                {
-                    if (o is ISupportsInitialize)
-                        continue;   // Target + Layout + LayoutRenderer validate on Initialize()
-
-                    PropertyHelper.CheckRequiredParameters(ConfigurationItemFactory.Default, o);
-                }
-                catch (Exception ex)
-                {
-                    if (ex.MustBeRethrown())
-                        throw;
-                }
-            }
         }
 
         internal void InitializeAll()

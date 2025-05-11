@@ -183,12 +183,11 @@ namespace NLog.Targets
         /// You can combine as many of the layout renderers as you want to produce an arbitrary log file name.
         /// </example>
         /// <docgen category='General Options' order='2' />
-        [RequiredParameter]
         public Layout FileName
         {
             get
             {
-                return _fullFileName?.GetLayout();
+                return _fullFileName?.GetLayout() ?? Layout.Empty;
             }
             set
             {
@@ -896,6 +895,9 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
+
+            if (FileName is null || ReferenceEquals(FileName, Layout.Empty))
+                throw new NLogConfigurationException("FileTarget FileName-property must be assigned. FileName is needed for file writing.");
 
             var appenderFactory = GetFileAppenderFactory();
             if (InternalLogger.IsTraceEnabled)

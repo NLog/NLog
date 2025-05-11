@@ -199,23 +199,6 @@ namespace NLog.UnitTests
         }
 
         [Fact]
-        public void RequiredConfigOptionMustBeClass()
-        {
-            foreach (Type type in allTypes)
-            {
-                var properties = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                foreach (var prop in properties)
-                {
-                    var requiredParameter = prop.GetCustomAttribute<NLog.Config.RequiredParameterAttribute>();
-                    if (requiredParameter != null)
-                    {
-                        Assert.True(prop.PropertyType.IsClass, type.Name);
-                    }
-                }
-            }
-        }
-
-        [Fact]
         public void SingleDefaultConfigOption()
         {
             string prevDefaultPropertyName = null;

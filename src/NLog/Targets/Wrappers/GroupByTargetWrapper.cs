@@ -54,7 +54,6 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Identifier to perform group-by
         /// </summary>
-        [RequiredParameter]
         public Layout Key { get; set; }
 
         /// <summary>
@@ -79,7 +78,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="name">The name of the target.</param>
         /// <param name="wrappedTarget">The wrapped target.</param>
         public GroupByTargetWrapper(string name, Target wrappedTarget)
-            : this(name, wrappedTarget, string.Empty)
+            : this(name, wrappedTarget, Layout.Empty)
         {
         }
 
@@ -94,6 +93,15 @@ namespace NLog.Targets.Wrappers
             Name = name;
             WrappedTarget = wrappedTarget;
             Key = key;
+        }
+
+        /// <inheritdoc/>
+        protected override void InitializeTarget()
+        {
+            if (Key is null || ReferenceEquals(Key, Layout.Empty))
+                throw new NLogConfigurationException($"GroupByTargetWrapper Key-property must be assigned. Grouping of LogEvents not possible.");
+
+            base.InitializeTarget();
         }
 
         /// <inheritdoc/>

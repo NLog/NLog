@@ -56,14 +56,22 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets the condition that must be met for the <see cref="WrapperLayoutRendererBase.Inner"/> layout to be printed.
         /// </summary>
         /// <docgen category="Condition Options" order="10"/>
-        [RequiredParameter]
-        public ConditionExpression When { get; set; }
+        public ConditionExpression When { get; set; } = ConditionExpression.Empty;
 
         /// <summary>
         /// If <see cref="When"/> is not met, print this layout.
         /// </summary>
         /// <docgen category="Condition Options" order="10"/>
         public Layout Else { get; set; }
+
+        /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            if (When is null || ReferenceEquals(When, ConditionExpression.Empty))
+                throw new NLogConfigurationException("When-LayoutRenderer When-property must be assigned.");
+
+            base.InitializeLayoutRenderer();
+        }
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)

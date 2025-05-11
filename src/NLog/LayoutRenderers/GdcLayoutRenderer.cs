@@ -55,7 +55,6 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the name of the item.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [RequiredParameter]
         [DefaultParameter]
         public string Item { get; set; }
 
@@ -70,6 +69,15 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
+
+        /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+
+            if (string.IsNullOrEmpty(Item))
+                throw new NLogConfigurationException("Gdc-LayoutRenderer Item-property must be assigned. Lookup blank value not supported.");
+        }
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -91,7 +99,7 @@ namespace NLog.LayoutRenderers
 
         private string GetStringValue(LogEventInfo logEvent)
         {
-            if (Format != MessageTemplates.ValueFormatter.FormatAsJson)
+            if (!MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format))
             {
                 object value = GetValue();
                 string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, Culture));

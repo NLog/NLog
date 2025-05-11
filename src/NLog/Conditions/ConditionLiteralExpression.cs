@@ -43,6 +43,10 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionLiteralExpression : ConditionExpression
     {
+        public static readonly ConditionLiteralExpression Null = new ConditionLiteralExpression(null);
+        public static readonly ConditionLiteralExpression True = new ConditionLiteralExpression(BoxedTrue);
+        public static readonly ConditionLiteralExpression False = new ConditionLiteralExpression(BoxedFalse);
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionLiteralExpression" /> class.
         /// </summary>

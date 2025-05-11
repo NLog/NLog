@@ -257,6 +257,9 @@ namespace NLog.Layouts
 
             foreach (var attribute in _attributes)
             {
+                if (string.IsNullOrEmpty(attribute.Name))
+                    throw new NLogConfigurationException("JsonLayout: Contains invalid JsonAttribute with unassigned Name-property");
+
                 if (!attribute.Encode && attribute.Layout is JsonLayout jsonLayout)
                 {
                     if (!attribute.IncludeEmptyValue && !jsonLayout._renderEmptyObject.HasValue)

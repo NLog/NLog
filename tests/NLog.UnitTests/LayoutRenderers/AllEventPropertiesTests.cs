@@ -127,7 +127,6 @@ namespace NLog.UnitTests.Layouts
             using (ScopeContext.PushProperty("Figure", "Circle"))
             {
                 var logger = logFactory.GetLogger("B");
-
                 logger.Debug(ev);
             }
 
