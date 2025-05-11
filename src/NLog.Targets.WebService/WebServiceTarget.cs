@@ -117,8 +117,7 @@ namespace NLog.Targets
         /// Gets or sets the web service URL.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        [RequiredParameter]
-        public Layout<Uri> Url { get; set; }
+        public Layout<Uri> Url { get; set; } = new Layout<Uri>((Uri)null);
 
         /// <summary>
         /// Gets or sets the value of the User-agent HTTP header.
@@ -462,6 +461,15 @@ namespace NLog.Targets
             System.Threading.Interlocked.Decrement(ref _pendingWriteOperations);
             _pendingFlushOperation?.Invoke();
             continuation(ex);
+        }
+
+        /// <inheritdoc/>
+        protected override void InitializeTarget()
+        {
+            base.InitializeTarget();
+
+            if (Url is null || (Url.IsFixed && Url.FixedValue is null))
+                throw new NLogConfigurationException("WebServiceTarget Url-property must be assigned. WebRequest requires Url-address.");
         }
 
         /// <inheritdoc/>

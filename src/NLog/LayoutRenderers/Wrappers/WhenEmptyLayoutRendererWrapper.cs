@@ -53,12 +53,14 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets the layout to be rendered when original layout produced empty result.
         /// </summary>
         /// <docgen category="Layout Options" order="10"/>
-        [RequiredParameter]
-        public Layout WhenEmpty { get; set; }
+        public Layout WhenEmpty { get; set; } = Layout.Empty;
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
+            if (WhenEmpty is null)
+                throw new NLogConfigurationException("WhenEmpty-LayoutRenderer WhenEmpty-property must be assigned.");
+
             base.InitializeLayoutRenderer();
             WhenEmpty?.Initialize(LoggingConfiguration);
             _skipStringValueRenderer = !TryGetStringValue(out _, out _);

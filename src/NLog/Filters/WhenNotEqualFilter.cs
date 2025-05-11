@@ -31,10 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Filters
 {
     using System;
-    using NLog.Config;
 
     /// <summary>
     /// Matches when the calculated layout is NOT equal to the specified substring.
@@ -54,8 +55,7 @@ namespace NLog.Filters
         /// Gets or sets a string to compare the layout to.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [RequiredParameter]
-        public string CompareTo { get; set; }
+        public string CompareTo { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case when comparing strings.

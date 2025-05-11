@@ -108,6 +108,21 @@ namespace NLog.Targets.Wrappers
         public IList<FilteringRule> Rules { get; } = new List<FilteringRule>();
 
         /// <inheritdoc/>
+        protected override void InitializeTarget()
+        {
+            base.InitializeTarget();
+
+            foreach (var rule in Rules)
+            {
+                if (rule.Exists is null || ReferenceEquals(rule.Exists, ConditionExpression.Empty))
+                    throw new NLogConfigurationException("PostFilteringTargetWrapper When-Rules with unassigned Exists-property.");
+
+                if (rule.Filter is null || ReferenceEquals(rule.Filter, ConditionExpression.Empty))
+                    throw new NLogConfigurationException("PostFilteringTargetWrapper When-Rules with unassigned Filter-property.");
+            }
+        }
+
+        /// <inheritdoc/>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             Write((IList<AsyncLogEventInfo>)new[] { logEvent });  // Single LogEvent should also work

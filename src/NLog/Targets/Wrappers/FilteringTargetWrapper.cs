@@ -105,8 +105,16 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the filter. Log events who evaluates to <see cref="FilterResult.Ignore"/> will be discarded
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [RequiredParameter]
         public Filter Filter { get; set; }
+
+        /// <inheritdoc/>
+        protected override void InitializeTarget()
+        {
+            if (Filter is null)
+                throw new NLogConfigurationException($"FilteringTargetWrapper Filter-property must be assigned. Filter LogEvents using blank Filter not supported.");
+
+            base.InitializeTarget();
+        }
 
         /// <summary>
         /// Checks the condition against the passed log event.

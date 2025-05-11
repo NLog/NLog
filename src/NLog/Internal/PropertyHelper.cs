@@ -58,7 +58,9 @@ namespace NLog.Internal
         private static readonly Dictionary<Type, Func<string, ConfigurationItemFactory, object?>> _propertyConversionMapper = BuildPropertyConversionMapper();
 
 #pragma warning disable S1144 // Unused private types or members should be removed. BUT they help CoreRT to provide config through reflection
+#pragma warning disable CS0618 // Type or member is obsolete
         private static readonly RequiredParameterAttribute _requiredParameterAttribute = new RequiredParameterAttribute();
+#pragma warning restore CS0618 // Type or member is obsolete
         private static readonly ArrayParameterAttribute _arrayParameterAttribute = new ArrayParameterAttribute(typeof(string), string.Empty);
         private static readonly DefaultParameterAttribute _defaultParameterAttribute = new DefaultParameterAttribute();
         private static readonly NLogConfigurationIgnorePropertyAttribute _ignorePropertyAttribute = new NLogConfigurationIgnorePropertyAttribute();
@@ -231,27 +233,6 @@ namespace NLog.Internal
             }
         }
 
-        internal static void CheckRequiredParameters(ConfigurationItemFactory configFactory, object o)
-        {
-            foreach (var configProp in GetAllConfigItemProperties(configFactory, o.GetType()))
-            {
-                var propInfo = configProp.Value;
-                var propertyType = propInfo.PropertyType;
-                if (propertyType != null && (propertyType.IsClass || Nullable.GetUnderlyingType(propertyType) != null))
-                {
-                    if (propInfo.IsDefined(_requiredParameterAttribute.GetType(), false))
-                    {
-                        object value = propInfo.GetValue(o, null);
-                        if (value is null)
-                        {
-                            throw new NLogConfigurationException(
-                                $"Required parameter '{propInfo.Name}' on '{o}' was not specified.");
-                        }
-                    }
-                }
-            }
-        }
-
         internal static bool IsSimplePropertyType(Type type)
         {
             if (Type.GetTypeCode(type) != TypeCode.Object)
@@ -312,7 +293,7 @@ namespace NLog.Internal
 
             if (propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(Layout<>))
             {
-                var simpleLayout = new SimpleLayout(value, configurationItemFactory);
+                var simpleLayout = string.IsNullOrEmpty(value) ? SimpleLayout.Default : new SimpleLayout(value, configurationItemFactory);
                 newValue = Activator.CreateInstance(propertyType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { simpleLayout }, null);
                 return true;
             }
@@ -351,7 +332,7 @@ namespace NLog.Internal
 
         private static object TryParseLayoutValue(string stringValue, ConfigurationItemFactory configurationItemFactory)
         {
-            return new SimpleLayout(stringValue, configurationItemFactory);
+            return string.IsNullOrEmpty(stringValue) ? SimpleLayout.Default : new SimpleLayout(stringValue, configurationItemFactory);
         }
 
         private static object TryParseConditionValue(string stringValue, ConfigurationItemFactory configurationItemFactory)

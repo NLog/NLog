@@ -47,7 +47,7 @@ namespace NLog.Layouts
         /// Gets or sets the body layout (can be repeated multiple times).
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public Layout Layout { get; set; }
+        public Layout Layout { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets the header layout.

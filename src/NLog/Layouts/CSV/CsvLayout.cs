@@ -152,6 +152,17 @@ namespace NLog.Layouts
             _quotableCharacters = (QuoteChar + "\r\n" + _actualColumnDelimiter).ToCharArray();
             _doubleQuoteChar = QuoteChar + QuoteChar;
             _precalculateLayouts = ResolveLayoutPrecalculation(Columns.Select(cln => cln.Layout));
+
+            foreach (var csvColumn in Columns)
+            {
+                if (string.IsNullOrEmpty(csvColumn.Name))
+                    throw new NLogConfigurationException("CsvLayout: Contains invalid CsvColumn with unassigned Name-property");
+
+                if (csvColumn.Layout is null)
+                {
+                    Common.InternalLogger.Warn("CsvLayout: Contains invalid Column(Name={0}) with unassigned Layout-property.", csvColumn.Name);
+                }
+            }
         }
 
         /// <inheritdoc/>

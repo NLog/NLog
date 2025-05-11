@@ -58,7 +58,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(MethodCallParameter), "parameter")]
-        public IList<MethodCallParameter> Parameters { get; private set; }
+        public IList<MethodCallParameter> Parameters { get; }
 
         /// <summary>
         /// Prepares an array of parameters to be passed based on the logging event and calls DoInvoke().

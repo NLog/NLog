@@ -62,11 +62,13 @@ namespace NLog.Layouts
         private readonly IRawValue _rawValueRenderer;
         private IStringValueRenderer _stringValueRenderer;
 
+        internal static readonly SimpleLayout Default = new SimpleLayout();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleLayout" /> class.
         /// </summary>
         public SimpleLayout()
-            : this(string.Empty)
+            : this(ArrayHelper.Empty<LayoutRenderer>(), string.Empty)
         {
         }
 
@@ -187,8 +189,7 @@ namespace NLog.Layouts
         public static implicit operator SimpleLayout([Localizable(false)] string text)
         {
             if (text is null) return null;
-
-            return new SimpleLayout(text);
+            return string.IsNullOrEmpty(text) ? SimpleLayout.Default : new SimpleLayout(text);
         }
 
         /// <summary>

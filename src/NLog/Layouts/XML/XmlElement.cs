@@ -64,7 +64,6 @@ namespace NLog.Layouts
         /// Default value "item"
         /// </remarks>
         /// <docgen category='Layout Options' order='1' />
-        [RequiredParameter]
         public string Name
         {
             get => base.ElementNameInternal;

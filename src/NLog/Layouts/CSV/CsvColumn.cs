@@ -45,7 +45,7 @@ namespace NLog.Layouts
         /// Initializes a new instance of the <see cref="CsvColumn" /> class.
         /// </summary>
         public CsvColumn()
-            : this(null, null)
+            : this(string.Empty, Layout.Empty)
         {
         }
 
@@ -70,7 +70,6 @@ namespace NLog.Layouts
         /// Gets or sets the layout of the column.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [RequiredParameter]
         public Layout Layout { get; set; }
 
         /// <summary>

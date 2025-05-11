@@ -53,7 +53,6 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the name of the environment variable.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [RequiredParameter]
         [DefaultParameter]
         public string Variable { get; set; }
 
@@ -64,6 +63,15 @@ namespace NLog.LayoutRenderers
         public string Default { get; set; }
 
         private System.Collections.Generic.KeyValuePair<string, SimpleLayout> _cachedValue;
+
+        /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+
+            if (string.IsNullOrEmpty(Variable))
+                throw new NLogConfigurationException("Environment-LayoutRenderer Variable-property must be assigned. Lookup blank value not supported.");
+        }
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)

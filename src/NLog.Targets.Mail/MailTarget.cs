@@ -88,8 +88,6 @@ namespace NLog.Targets
     {
         private const string RequiredPropertyIsEmptyFormat = "After the processing of the MailTarget's '{0}' property it appears to be empty. The email message will not be sent.";
 
-        private Layout _from;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MailTarget" /> class.
         /// </summary>
@@ -152,7 +150,6 @@ namespace NLog.Targets
         /// Gets or sets sender's email address (e.g. joe@domain.com).
         /// </summary>
         /// <docgen category='Message Options' order='10' />
-        [RequiredParameter]
         public Layout From
         {
             get
@@ -164,35 +161,37 @@ namespace NLog.Targets
                 // It will do so only if the 'From' attribute in system.net/mailSettings/smtp is not empty.
 
                 //only use from config when not set in current
-                if (UseSystemNetMailSettings && _from is null)
+                if (UseSystemNetMailSettings && (_from is null || ReferenceEquals(_from, Layout.Empty)))
                 {
                     var from = SmtpSection.From;
-                    return from;
+                    if (string.IsNullOrEmpty(from))
+                        return Layout.Empty;
+                    _from = from;
                 }
 #endif
                 return _from;
             }
             set { _from = value; }
         }
+        private Layout _from = Layout.Empty;
 
         /// <summary>
         /// Gets or sets recipients' email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com).
         /// </summary>
         /// <docgen category='Message Options' order='11' />
-        [RequiredParameter]
-        public Layout To { get; set; }
+        public Layout To { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets CC email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com).
         /// </summary>
         /// <docgen category='Message Options' order='12' />
-        public Layout CC { get; set; }
+        public Layout CC { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets BCC email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com).
         /// </summary>
         /// <docgen category='Message Options' order='13' />
-        public Layout Bcc { get; set; }
+        public Layout Bcc { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets a value indicating whether to add new lines between log entries.
@@ -205,7 +204,6 @@ namespace NLog.Targets
         /// Gets or sets the mail subject.
         /// </summary>
         /// <docgen category='Message Options' order='5' />
-        [RequiredParameter]
         public Layout Subject { get; set; } = "Message from NLog on ${machinename}";
 
         /// <summary>
@@ -235,7 +233,7 @@ namespace NLog.Targets
         /// Gets or sets SMTP Server to be used for sending.
         /// </summary>
         /// <docgen category='SMTP Options' order='10' />
-        public Layout SmtpServer { get; set; }
+        public Layout SmtpServer { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets SMTP Authentication mode.
@@ -247,13 +245,13 @@ namespace NLog.Targets
         /// Gets or sets the username used to connect to SMTP server (used when SmtpAuthentication is set to "basic").
         /// </summary>
         /// <docgen category='SMTP Options' order='12' />
-        public Layout SmtpUserName { get; set; }
+        public Layout SmtpUserName { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets the password used to authenticate against SMTP server (used when SmtpAuthentication is set to "basic").
         /// </summary>
         /// <docgen category='SMTP Options' order='13' />
-        public Layout SmtpPassword { get; set; }
+        public Layout SmtpPassword { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets a value indicating whether SSL (secure sockets layer) should be used when communicating with SMTP server.
@@ -283,7 +281,7 @@ namespace NLog.Targets
         /// Gets or sets the folder where applications save mail messages to be processed by the local SMTP server.
         /// </summary>
         /// <docgen category='SMTP Options' order='17' />
-        public Layout PickupDirectoryLocation { get; set; }
+        public Layout PickupDirectoryLocation { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets the priority used for sending mails.
@@ -528,14 +526,24 @@ namespace NLog.Targets
 
         private void CheckRequiredParameters()
         {
-            if (!UseSystemNetMailSettings && DeliveryMethod == SmtpDeliveryMethod.Network && SmtpServer is null)
+            if (To is null || ReferenceEquals(To, Layout.Empty))
             {
-                throw new NLogConfigurationException($"The MailTarget's '{nameof(SmtpServer)}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=Network. The email message will not be sent.");
+                throw new NLogConfigurationException($"MailTarget '{nameof(To)}'-property must be assigned. Destination To-address required for email.");
             }
 
-            if (!UseSystemNetMailSettings && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && PickupDirectoryLocation is null)
+            if (From is null || ReferenceEquals(From, Layout.Empty))
             {
-                throw new NLogConfigurationException($"The MailTarget's '{nameof(PickupDirectoryLocation)}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=SpecifiedPickupDirectory. The email message will not be sent.");
+                throw new NLogConfigurationException($"MailTarget '{nameof(From)}'-property must be assigned. Sender From-address required for email.");
+            }
+
+            if (!UseSystemNetMailSettings && DeliveryMethod == SmtpDeliveryMethod.Network && (SmtpServer is null || ReferenceEquals(SmtpServer, Layout.Empty)))
+            {
+                throw new NLogConfigurationException($"MailTarget '{nameof(SmtpServer)}'-property must be assigned. Required because useSystemNetMailSettings=false and DeliveryMethod=Network.");
+            }
+
+            if (!UseSystemNetMailSettings && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && (PickupDirectoryLocation is null || ReferenceEquals(PickupDirectoryLocation, Layout.Empty)))
+            {
+                throw new NLogConfigurationException($"MailTarget '{nameof(PickupDirectoryLocation)}'-property must be assigned. Required because useSystemNetMailSettings=false and DeliveryMethod=SpecifiedPickupDirectory.");
             }
         }
 

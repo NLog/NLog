@@ -72,7 +72,6 @@ namespace NLog.Targets
         /// You can combine as many of the layout renderers as you want to produce an arbitrary log file name.
         /// </example>
         /// <docgen category='General Options' order='2' />
-        [RequiredParameter]
         public Layout FileName
         {
             get => _fileName;
@@ -82,8 +81,8 @@ namespace NLog.Targets
                 _fixedFileName = (value is SimpleLayout simpleLayout && simpleLayout.IsFixedText) ? simpleLayout.FixedText : null;
             }
         }
-        private Layout _fileName;
-        private string _fixedFileName;
+        private Layout _fileName = Layout.Empty;
+        private string _fixedFileName = string.Empty;
 
         /// <summary>
         /// Gets or sets a value indicating whether to create directories if they do not exist.
@@ -535,6 +534,9 @@ namespace NLog.Targets
         /// <inheritdoc />
         protected override void InitializeTarget()
         {
+            if (FileName is null || ReferenceEquals(FileName, Layout.Empty))
+                throw new NLogConfigurationException("FileTarget FileName-property must be assigned. FileName is needed for file writing.");
+
             if (OpenFileMonitorTimerInterval > 0)
             {
                 // Prepare Timer for periodic checking of flushing/closing open files (inactive until first file is opened)

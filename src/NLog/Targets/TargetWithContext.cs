@@ -56,7 +56,6 @@ namespace NLog.Targets
     ///        this.Host = "localhost";
     ///    }
     ///
-    ///    [RequiredParameter]
     ///    public Layout Host { get; set; }
     ///
     ///    protected override void Write(LogEventInfo logEvent)
@@ -186,6 +185,21 @@ namespace NLog.Targets
         {
             _contextLayout = _contextLayout ?? new TargetWithContextLayout(this, base.Layout);
             ExcludeProperties = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        }
+
+        /// <inheritdoc/>
+        protected override void InitializeTarget()
+        {
+            base.InitializeTarget();
+
+            if (ContextProperties?.Count > 0)
+            {
+                foreach (var contextProperty in ContextProperties)
+                {
+                    if (string.IsNullOrEmpty(contextProperty.Name))
+                        throw new NLogConfigurationException($"{this}: Contains invalid ContextProperty with unassigned Name-property");
+                }
+            }
         }
 
         /// <summary>
@@ -694,6 +708,7 @@ namespace NLog.Targets
             protected override void InitializeLayout()
             {
                 base.InitializeLayout();
+
                 if (IncludeScopeProperties || IncludeScopeNested)
                     ThreadAgnostic = false;
                 if (IncludeEventProperties)

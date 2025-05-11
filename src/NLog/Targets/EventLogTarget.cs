@@ -128,7 +128,6 @@ namespace NLog.Targets
         /// By default this is the friendly name of the current AppDomain.
         /// </remarks>
         /// <docgen category='Event Log Options' order='10' />
-        [RequiredParameter]
         public Layout Source { get; set; }
 
         /// <summary>
@@ -212,9 +211,12 @@ namespace NLog.Targets
         {
             base.InitializeTarget();
 
+            if (Source is null || ReferenceEquals(Source, Layout.Empty))
+                throw new NLogConfigurationException("EventLogTarget Source-property must be assigned. Source is needed for EventLog writing.");
+
             var maxKilobytes = MaxKilobytes?.IsFixed == true ? MaxKilobytes.FixedValue : 0;
             if (maxKilobytes > 0 && (maxKilobytes < 64 || maxKilobytes > 4194240 || (maxKilobytes % 64 != 0))) // Event log API restrictions
-                throw new NLogConfigurationException("EventLog MaxKilobytes must be a multiple of 64, and between 64 and 4194240");
+                throw new NLogConfigurationException("EventLogTarget MaxKilobytes must be a multiple of 64, and between 64 and 4194240");
 
             CreateEventSourceIfNeeded(GetFixedSource(), false);
         }

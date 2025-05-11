@@ -60,7 +60,7 @@ namespace NLog.Internal
             {
                 builder.Append(stringValue);  // Avoid automatic quotes
             }
-            else if (format == MessageTemplates.ValueFormatter.FormatAsJson)
+            else if (ValueFormatter.FormatAsJson.Equals(format))
             {
                 valueFormatter.FormatValue(value, null, CaptureType.Serialize, formatProvider, builder);
             }

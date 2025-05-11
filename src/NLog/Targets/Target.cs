@@ -443,8 +443,6 @@ namespace NLog.Targets
                     {
                         _scannedForLayouts = false;
 
-                        PropertyHelper.CheckRequiredParameters(ConfigurationItemFactory.Default, this);
-
                         InitializeTarget();
                         _initializeException = null;
                         if (!_scannedForLayouts)

@@ -118,7 +118,6 @@ namespace NLog.LayoutRenderers
         {
             try
             {
-                PropertyHelper.CheckRequiredParameters(ConfigurationItemFactory.Default, this);
                 InitializeLayoutRenderer();
             }
             catch (Exception ex)

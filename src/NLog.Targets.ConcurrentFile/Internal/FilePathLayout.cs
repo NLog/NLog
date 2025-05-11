@@ -87,7 +87,7 @@ namespace NLog.Internal
         /// <summary>Initializes a new instance of the <see cref="FilePathLayout" /> class.</summary>
         public FilePathLayout(Layout layout, bool cleanupInvalidChars, FilePathKind filePathKind)
         {
-            _layout = layout ?? new SimpleLayout(null);
+            _layout = layout ?? Layout.Empty;
             _cleanupInvalidChars = cleanupInvalidChars;
             _filePathKind = filePathKind == FilePathKind.Unknown ? DetectFilePathKind(_layout as SimpleLayout) : filePathKind;
             _cleanedFixedResult = (_layout as SimpleLayout)?.FixedText;

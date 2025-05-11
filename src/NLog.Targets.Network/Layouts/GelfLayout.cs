@@ -116,8 +116,8 @@ namespace NLog.Layouts
         /// Disables <see cref="ThreadAgnosticAttribute"/> to capture ScopeContext-properties from active thread context
         /// </summary>
         public LayoutRenderer DisableThreadAgnostic => IncludeScopeProperties ? _disableThreadAgnostic : (IncludeEventProperties ? _enableThreadAgnosticImmutable : null);
-        private static readonly LayoutRenderer _disableThreadAgnostic = new ScopeContextPropertyLayoutRenderer() { Item = string.Empty };
-        private static readonly LayoutRenderer _enableThreadAgnosticImmutable = new ExceptionDataLayoutRenderer() { Item = string.Empty };
+        private static readonly LayoutRenderer _disableThreadAgnostic = new FuncLayoutRenderer(string.Empty, (evt, cfg) => string.Empty);
+        private static readonly LayoutRenderer _enableThreadAgnosticImmutable = new ExceptionDataLayoutRenderer() { Item = " " };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GelfLayout" /> class.

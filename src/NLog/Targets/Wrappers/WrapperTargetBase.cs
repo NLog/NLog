@@ -46,7 +46,6 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the target that is wrapped by this target.
         /// </summary>
         /// <docgen category='General Options' order='11' />
-        [RequiredParameter]
         public Target WrappedTarget
         {
             get => _wrappedTarget;
@@ -81,6 +80,15 @@ namespace NLog.Targets.Wrappers
                 asyncContinuation(null);
             else
                 WrappedTarget.Flush(asyncContinuation);
+        }
+
+        /// <inheritdoc/>
+        protected override void InitializeTarget()
+        {
+            if (WrappedTarget is null)
+                throw new NLogConfigurationException($"{GetType().Name}(Name={Name}): Missing valid target");
+
+            base.InitializeTarget();
         }
 
         /// <summary>

@@ -31,10 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Filters
 {
     using NLog.Conditions;
-    using NLog.Config;
 
     /// <summary>
     /// Matches when the specified condition is met.
@@ -50,15 +51,14 @@ namespace NLog.Filters
         /// Gets or sets the condition expression.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [RequiredParameter]
-        public ConditionExpression Condition { get; set; }
+        public ConditionExpression Condition { get; set; } = ConditionExpression.Empty;
 
         internal FilterResult FilterDefaultAction { get; set; } = FilterResult.Neutral;
 
         /// <inheritdoc/>
         protected override FilterResult Check(LogEventInfo logEvent)
         {
-            object val = Condition.Evaluate(logEvent);
+            var val = Condition.Evaluate(logEvent);
             return ConditionExpression.BoxedTrue.Equals(val) ? Action : FilterDefaultAction;
         }
     }

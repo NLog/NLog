@@ -58,14 +58,12 @@ namespace NLog.Targets
         /// Gets or sets the name for the object-property
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        [RequiredParameter]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the value to assign on the object-property
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        [RequiredParameter]
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
 
         /// <summary>

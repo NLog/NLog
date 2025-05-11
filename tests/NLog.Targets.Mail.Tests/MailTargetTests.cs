@@ -584,7 +584,7 @@ namespace NLog.Targets.Mail
         }
 
         [Fact]
-        public void MailTarget_WithEmptyTo_ThrowsNLogRuntimeException()
+        public void MailTarget_WithEmptyTo_ThrowsConfigException()
         {
             var mmt = new MockMailTarget
             {
@@ -596,17 +596,17 @@ namespace NLog.Targets.Mail
                 Body = "${level} ${logger} ${message}",
             };
 
-            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
-            {
-                cfg.LogFactory.ThrowExceptions = true;
-                cfg.Configuration.AddRuleForAllLevels(mmt);
-            }).LogFactory;
-
-            Assert.Throws<NLogRuntimeException>(() => logFactory.GetLogger("MyLogger").Info("log message 1"));
+            Assert.Throws<NLogConfigurationException>(() =>
+                new LogFactory().Setup().LoadConfiguration(cfg =>
+                {
+                    cfg.LogFactory.ThrowConfigExceptions = true;
+                    cfg.Configuration.AddRuleForAllLevels(mmt);
+                })
+            );
         }
 
         [Fact]
-        public void MailTarget_WithEmptyFrom_ThrowsNLogRuntimeException()
+        public void MailTarget_WithEmptyFrom_ThrowsConfigException()
         {
             var mmt = new MockMailTarget
             {
@@ -617,17 +617,18 @@ namespace NLog.Targets.Mail
                 SmtpPort = 27,
                 Body = "${level} ${logger} ${message}"
             };
-            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
-            {
-                cfg.LogFactory.ThrowExceptions = true;
-                cfg.Configuration.AddRuleForAllLevels(mmt);
-            }).LogFactory;
 
-            Assert.Throws<NLogRuntimeException>(() => logFactory.GetLogger("MyLogger").Info("log message 1"));
+            Assert.Throws<NLogConfigurationException>(() =>
+                new LogFactory().Setup().LoadConfiguration(cfg =>
+                {
+                    cfg.LogFactory.ThrowConfigExceptions = true;
+                    cfg.Configuration.AddRuleForAllLevels(mmt);
+                })
+            );
         }
 
         [Fact]
-        public void MailTarget_WithEmptySmtpServer_ThrowsNLogRuntimeException()
+        public void MailTarget_WithEmptySmtpServer_ThrowsConfigException()
         {
             var mmt = new MockMailTarget
             {
@@ -638,13 +639,14 @@ namespace NLog.Targets.Mail
                 SmtpPort = 27,
                 Body = "${level} ${logger} ${message}"
             };
-            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
-            {
-                cfg.LogFactory.ThrowExceptions = true;
-                cfg.Configuration.AddRuleForAllLevels(mmt);
-            }).LogFactory;
 
-            Assert.Throws<NLogRuntimeException>(() => logFactory.GetLogger("MyLogger").Info("log message 1"));
+            Assert.Throws<NLogConfigurationException>(() =>
+                new LogFactory().Setup().LoadConfiguration(cfg =>
+                {
+                    cfg.LogFactory.ThrowConfigExceptions = true;
+                    cfg.Configuration.AddRuleForAllLevels(mmt);
+                })
+            );
         }
 
         [Fact]

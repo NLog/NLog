@@ -58,7 +58,6 @@ namespace NLog.Targets
     ///        this.Host = "localhost";
     ///    }
     ///
-    ///    [RequiredParameter]
     ///    public Layout Host { get; set; }
     ///
     ///    protected override Task WriteAsyncTask(LogEventInfo logEvent, CancellationToken token)

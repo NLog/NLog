@@ -58,13 +58,12 @@ namespace NLog.Layouts
         /// Gets or sets the layout that will render the result value
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [RequiredParameter]
         public Layout Layout
         {
             get => _layout;
             set
             {
-                _layout = value;
+                _layout = value ?? Layout.Empty;
                 if (ValueType is null && _layout is ILayoutTypeValue layoutTyped)
                 {
                     ValueType = layoutTyped.InnerType;
@@ -72,7 +71,7 @@ namespace NLog.Layouts
                 _layoutValue = null;
             }
         }
-        private Layout _layout;
+        private Layout _layout = Layout.Empty;
 
         /// <summary>
         /// Gets or sets the result value type, for conversion of layout rendering output
@@ -212,7 +211,7 @@ namespace NLog.Layouts
                 }
                 else
                 {
-                    layout = string.Empty;
+                    layout = SimpleLayout.Empty;
                 }
             }
 

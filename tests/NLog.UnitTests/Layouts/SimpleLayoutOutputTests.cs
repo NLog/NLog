@@ -253,7 +253,9 @@ namespace NLog.UnitTests.Layouts
                 Message = "Some message.";
             }
 
+#pragma warning disable CS0618 // Type or member is obsolete
             [RequiredParameter]
+#pragma warning restore CS0618 // Type or member is obsolete
             [DefaultParameter]
             public string Message { get; set; }
 

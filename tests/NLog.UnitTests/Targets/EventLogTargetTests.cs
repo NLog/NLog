@@ -111,7 +111,7 @@ namespace NLog.UnitTests.Targets
             </nlog>";
 
             NLogConfigurationException ex = Assert.Throws<NLogConfigurationException>(() => new LogFactory().Setup().LoadConfigurationFromXml(configrationText));
-            Assert.Equal("EventLog MaxKilobytes must be a multiple of 64, and between 64 and 4194240", ex.Message);
+            Assert.Equal("EventLogTarget MaxKilobytes must be a multiple of 64, and between 64 and 4194240", ex.Message);
         }
 
         [Theory]
@@ -126,7 +126,7 @@ namespace NLog.UnitTests.Targets
                 target.Initialize(null);
             });
 
-            Assert.Equal("EventLog MaxKilobytes must be a multiple of 64, and between 64 and 4194240", ex.Message);
+            Assert.Equal("EventLogTarget MaxKilobytes must be a multiple of 64, and between 64 and 4194240", ex.Message);
         }
 
         [Theory]

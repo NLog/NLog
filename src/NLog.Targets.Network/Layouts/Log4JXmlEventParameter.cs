@@ -53,15 +53,13 @@ namespace NLog.Layouts
         /// Gets or sets viewer parameter name.
         /// </summary>
         /// <docgen category='Layout Options' order='1' />
-        [RequiredParameter]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the layout that should be use to calculate the value for the parameter.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [RequiredParameter]
-        public Layout Layout { get; set; }
+        public Layout Layout { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets whether an attribute with empty value should be included in the output

@@ -88,8 +88,6 @@ namespace NLog.Targets
         /// </summary>
         public DatabaseTarget()
         {
-            DBProvider = "sqlserver";
-            DBHost = ".";
 #if NETFRAMEWORK
             ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
 #endif
@@ -133,9 +131,8 @@ namespace NLog.Targets
         /// </ul>
         /// </remarks>
         /// <docgen category='Connection Options' order='10' />
-        [RequiredParameter]
         [DefaultValue("sqlserver")]
-        public string DBProvider { get; set; }
+        public string DBProvider { get; set; } = "sqlserver";
 
 #if NETFRAMEWORK
         /// <summary>
@@ -186,7 +183,7 @@ namespace NLog.Targets
         /// connection string.
         /// </summary>
         /// <docgen category='Connection Options' order='50' />
-        public Layout DBHost { get; set; }
+        public Layout DBHost { get; set; } = ".";
 
         /// <summary>
         /// Gets or sets the database user name. If the ConnectionString is not provided
@@ -237,8 +234,7 @@ namespace NLog.Targets
         /// The layout renderers should be specified as &lt;parameter /&gt; elements instead.
         /// </remarks>
         /// <docgen category='SQL Statement' order='10' />
-        [RequiredParameter]
-        public Layout CommandText { get; set; }
+        public Layout CommandText { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets the type of the SQL command to be run on each log level.
@@ -378,6 +374,9 @@ namespace NLog.Targets
         {
             base.InitializeTarget();
 
+            if (CommandText is null || ReferenceEquals(CommandText, Layout.Empty))
+                throw new NLogConfigurationException("DatabaseTarget CommandText-property must be assigned. CommandText required for executing SQL commands.");
+
             bool foundProvider = false;
             string providerName = string.Empty;
 
@@ -431,6 +430,36 @@ namespace NLog.Targets
                     InternalLogger.Error(ex, "{0}: Failed to create ConnectionType from DBProvider={1}", this, DBProvider);
                     throw;
                 }
+            }
+
+            foreach (var parameter in Parameters)
+            {
+                if (string.IsNullOrEmpty(parameter.Name))
+                    throw new NLogConfigurationException($"{this}: Contains invalid Database-Parameter with unassigned Name-property");
+            }
+
+            foreach (var property in ConnectionProperties)
+            {
+                if (string.IsNullOrEmpty(property.Name))
+                    throw new NLogConfigurationException($"{this}: Contains invalid Connection-option with unassigned Name-property");
+            }
+
+            foreach (var property in CommandProperties)
+            {
+                if (string.IsNullOrEmpty(property.Name))
+                    throw new NLogConfigurationException($"{this}: Contains invalid Command-option with unassigned Name-property");
+            }
+
+            foreach (var command in InstallDdlCommands)
+            {
+                if (command.Text is null || ReferenceEquals(command.Text, Layout.Empty))
+                    throw new NLogConfigurationException($"{this}: Contains invalid Install-Command with unassigned Text-property");
+            }
+
+            foreach (var command in UninstallDdlCommands)
+            {
+                if (command.Text is null || ReferenceEquals(command.Text, Layout.Empty))
+                    throw new NLogConfigurationException($"{this}: Contains invalid Uninstall-Command with unassigned Text-property");
             }
         }
 

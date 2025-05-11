@@ -58,7 +58,6 @@ namespace NLog.Targets
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <docgen category='Layout Options' order='1' />
-        [RequiredParameter]
         public override Layout Layout
         {
             get => LHF.Layout;

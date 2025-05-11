@@ -199,23 +199,6 @@ namespace NLog.UnitTests
         }
 
         [Fact]
-        public void RequiredConfigOptionMustBeClass()
-        {
-            foreach (Type type in allTypes)
-            {
-                var properties = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                foreach (var prop in properties)
-                {
-                    var requiredParameter = prop.GetCustomAttribute<NLog.Config.RequiredParameterAttribute>();
-                    if (requiredParameter != null)
-                    {
-                        Assert.True(prop.PropertyType.IsClass, type.Name);
-                    }
-                }
-            }
-        }
-
-        [Fact]
         public void SingleDefaultConfigOption()
         {
             string prevDefaultPropertyName = null;
@@ -495,6 +478,7 @@ namespace NLog.UnitTests
                 "NLog.MessageTemplates.TemplateEnumerator",
                 "NLog.MessageTemplates.ValueFormatter",
                 "NLog.Layouts.LayoutParser",
+                "NLog.Layouts.SimpleLayout",
                 "NLog.Layouts.ValueTypeLayoutInfo",
                 "NLog.Layouts.XmlElementBase",
                 "NLog.LayoutRenderers.AllEventPropertiesLayoutRenderer",
@@ -524,6 +508,7 @@ namespace NLog.UnitTests
                 "NLog.Config.PropertyTypeConverter",
                 "NLog.Config.XmlLoggingConfiguration",
                 "NLog.Conditions.ConditionExpression",
+                "NLog.Conditions.ConditionLiteralExpression",
                 "NLog.Conditions.ConditionRelationalExpression",
                 "NLog.Conditions.ConditionTokenizer",
                 "NLog.Common.InternalLogger",

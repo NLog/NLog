@@ -131,50 +131,6 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void NoDatkeyTest()
-        {
-            const string exceptionMessage = "I don't like nullref exception!";
-            const string exceptionDataKey = "testkey";
-            const string exceptionDataValue = "testvalue";
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-            <nlog>
-                <targets>
-                    <target name='debug' type='Debug' layout='${exceptiondata:}' />
-                </targets>
-                <rules>
-                    <logger minlevel='Info' writeTo='debug' />
-                </rules>
-            </nlog>").LogFactory;
-
-            Exception ex = new ArgumentException(exceptionMessage);
-            ex.Data.Add(exceptionDataKey, exceptionDataValue);
-            logFactory.GetCurrentClassLogger().Error(ex);
-            logFactory.AssertDebugLastMessage("");
-        }
-
-        [Fact]
-        public void NoDatkeyUingParamTest()
-        {
-            const string exceptionMessage = "I don't like nullref exception!";
-            const string exceptionDataKey = "testkey";
-            const string exceptionDataValue = "testvalue";
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-            <nlog>
-                <targets>
-                    <target name='debug' type='Debug' layout='${exceptiondata:item=}' />
-                </targets>
-                <rules>
-                    <logger minlevel='Info' writeTo='debug' />
-                </rules>
-            </nlog>").LogFactory;
-
-            Exception ex = new ArgumentException(exceptionMessage);
-            ex.Data.Add(exceptionDataKey, exceptionDataValue);
-            logFactory.GetCurrentClassLogger().Error(ex);
-            logFactory.AssertDebugLastMessage("");
-        }
-
-        [Fact]
         public void BaseExceptionFlippedTest()
         {
             const string exceptionDataKey = "testkey";

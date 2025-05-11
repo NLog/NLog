@@ -46,7 +46,7 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the FilteringRule class.
         /// </summary>
         public FilteringRule()
-            : this(null, null)
+            : this(ConditionExpression.Empty, ConditionExpression.Empty)
         {
         }
 
@@ -65,14 +65,12 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the condition to be tested.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [RequiredParameter]
         public ConditionExpression Exists { get; set; }
 
         /// <summary>
         /// Gets or sets the resulting filter to be applied when the condition matches.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [RequiredParameter]
         public ConditionExpression Filter { get; set; }
     }
 }
