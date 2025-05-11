@@ -35,7 +35,6 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using NLog.Common;
-    using NLog.Config;
 
     /// <summary>
     /// Base class for targets wrap other (single) targets.
@@ -86,7 +85,7 @@ namespace NLog.Targets.Wrappers
         protected override void InitializeTarget()
         {
             if (WrappedTarget is null)
-                throw new NLogConfigurationException($"{GetType().Name}(Name={Name}): Missing valid target");
+                throw new NLogConfigurationException($"{GetType().Name}(Name={Name}): No wrapped Target configured.");
 
             base.InitializeTarget();
         }
