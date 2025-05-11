@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Layouts
 {
     using System;
@@ -84,14 +86,14 @@ namespace NLog.Layouts
         /// Gets the logging configuration this target is part of.
         /// </summary>
         [CanBeNull]
-        protected internal LoggingConfiguration LoggingConfiguration { get; private set; }
+        protected internal LoggingConfiguration? LoggingConfiguration { get; private set; }
 
         /// <summary>
         /// Implicitly converts the specified string as LayoutRenderer-expression into a <see cref="Layout"/>.
         /// </summary>
         /// <param name="text">Text to be converted.</param>
         /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
-        public static implicit operator Layout([Localizable(false)] string text)
+        public static implicit operator Layout?([Localizable(false)] string text)
         {
             return text is null ? null : FromString(text, ConfigurationItemFactory.Default);
         }
@@ -302,7 +304,7 @@ namespace NLog.Layouts
         /// Initializes this instance.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-        void ISupportsInitialize.Initialize(LoggingConfiguration configuration)
+        void ISupportsInitialize.Initialize(LoggingConfiguration? configuration)
         {
             Initialize(configuration);
         }
@@ -319,7 +321,7 @@ namespace NLog.Layouts
         /// Initializes this instance.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-        internal void Initialize(LoggingConfiguration configuration)
+        internal void Initialize(LoggingConfiguration? configuration)
         {
             if (!IsInitialized)
             {
@@ -378,7 +380,7 @@ namespace NLog.Layouts
             _scannedForObjects = true;
         }
 
-        internal Layout[] ResolveLayoutPrecalculation(IEnumerable<Layout> allLayouts)
+        internal Layout[]? ResolveLayoutPrecalculation(IEnumerable<Layout> allLayouts)
         {
             if (!_scannedForObjects || (ThreadAgnostic && !ThreadAgnosticImmutable))
                 return null;
@@ -481,7 +483,7 @@ namespace NLog.Layouts
         /// Optimized version of <see cref="Precalculate(LogEventInfo)"/> for internal Layouts, when
         /// override of <see cref="RenderFormattedMessage(LogEventInfo, StringBuilder)"/> is available.
         /// </summary>
-        internal void PrecalculateBuilderInternal(LogEventInfo logEvent, StringBuilder target, Layout[] precalculateLayout)
+        internal void PrecalculateBuilderInternal(LogEventInfo logEvent, StringBuilder target, Layout[]? precalculateLayout)
         {
             if (!ThreadAgnostic || ThreadAgnosticImmutable)
             {
@@ -516,7 +518,7 @@ namespace NLog.Layouts
         /// <param name="logEvent"></param>
         /// <param name="rawValue">rawValue if return result is true</param>
         /// <returns>false if we could not determine the rawValue</returns>
-        internal virtual bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
+        internal virtual bool TryGetRawValue(LogEventInfo logEvent, out object? rawValue)
         {
             rawValue = null;
             return false;

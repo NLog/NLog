@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets
 {
     using System;
@@ -48,7 +50,7 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetPropertyWithContext" /> class.
         /// </summary>
-        public TargetPropertyWithContext() : this(null, null) { }
+        public TargetPropertyWithContext() : this(string.Empty, Layout.Empty) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetPropertyWithContext" /> class.
@@ -84,7 +86,7 @@ namespace NLog.Targets
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
+        public Layout? DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
         /// Gets or sets when an empty value should cause the property to be included
@@ -106,6 +108,6 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent">Log event for rendering</param>
         /// <returns>Result value when available, else fallback to defaultValue</returns>
-        public object RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
+        public object? RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
     }
 }

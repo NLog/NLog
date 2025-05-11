@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.MessageTemplates
 {
     /// <summary>
@@ -45,7 +47,7 @@ namespace NLog.MessageTemplates
         /// <summary>
         /// Constructor
         /// </summary>
-        public Hole(string name, string format, CaptureType captureType, short parameterIndex, short alignment)
+        public Hole(string name, string? format, CaptureType captureType, short parameterIndex, short alignment)
         {
             Name = name;
             Format = format;
@@ -60,7 +62,7 @@ namespace NLog.MessageTemplates
         public readonly string Name;
         /// <summary>Format to render the parameter.</summary>
         /// <remarks>This is everything between ":" and the first unescaped "}"</remarks>
-        public readonly string Format;
+        public readonly string? Format;
         /// <summary>
         /// Type
         /// </summary>

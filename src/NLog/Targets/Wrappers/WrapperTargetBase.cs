@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets.Wrappers
 {
     using System;
@@ -45,7 +47,7 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the target that is wrapped by this target.
         /// </summary>
         /// <docgen category='General Options' order='11' />
-        public Target WrappedTarget
+        public Target? WrappedTarget
         {
             get => _wrappedTarget;
             set
@@ -54,7 +56,7 @@ namespace NLog.Targets.Wrappers
                 _tostring = null;
             }
         }
-        private Target _wrappedTarget;
+        private Target? _wrappedTarget;
 
         /// <inheritdoc/>
         public override string ToString()

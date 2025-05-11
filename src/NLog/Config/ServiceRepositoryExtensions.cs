@@ -42,7 +42,7 @@ namespace NLog.Config
 
     internal static class ServiceRepositoryExtensions
     {
-        internal static ServiceRepository GetServiceProvider([CanBeNull] this LoggingConfiguration loggingConfiguration)
+        internal static ServiceRepository GetServiceProvider([CanBeNull] this LoggingConfiguration? loggingConfiguration)
         {
             return loggingConfiguration?.LogFactory?.ServiceRepository ?? LogManager.LogFactory.ServiceRepository;
         }

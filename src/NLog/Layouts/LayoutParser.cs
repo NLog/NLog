@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Layouts
 {
     using System;
@@ -299,7 +301,7 @@ namespace NLog.Layouts
             return value;
         }
 
-        private static string EscapeUnicodeStringValue(string value, StringBuilder nameBuf = null)
+        private static string EscapeUnicodeStringValue(string value, StringBuilder? nameBuf = null)
         {
             bool escapeNext = false;
 
@@ -424,10 +426,10 @@ namespace NLog.Layouts
             string typeName = ParseLayoutRendererTypeName(stringReader);
             var layoutRenderer = GetLayoutRenderer(typeName, configurationItemFactory, throwConfigExceptions);
 
-            Dictionary<Type, LayoutRenderer> wrappers = null;
-            List<LayoutRenderer> orderedWrappers = null;
+            Dictionary<Type, LayoutRenderer>? wrappers = null;
+            List<LayoutRenderer>? orderedWrappers = null;
 
-            string previousParameterName = null;
+            string? previousParameterName = null;
 
             ch = stringReader.Read();
             while (ch != -1 && ch != '}')
@@ -442,11 +444,12 @@ namespace NLog.Layouts
 
                     if (!PropertyHelper.TryGetPropertyInfo(configurationItemFactory, layoutRenderer, parameterName, out var propertyInfo))
                     {
-                        parameterTarget = LookupAmbientProperty(parameterName, configurationItemFactory, ref wrappers, ref orderedWrappers);
-                        if (parameterTarget is null || !PropertyHelper.TryGetPropertyInfo(configurationItemFactory, parameterTarget, parameterName, out propertyInfo))
+                        if (TryResolveAmbientLayoutWrapper(parameterName, configurationItemFactory, ref wrappers, ref orderedWrappers, out var layoutWrapper) && layoutWrapper != null)
                         {
-                            parameterTarget = layoutRenderer;
-                            propertyInfo = null;
+                            if (PropertyHelper.TryGetPropertyInfo(configurationItemFactory, layoutWrapper, parameterName, out propertyInfo))
+                            {
+                                parameterTarget = layoutWrapper;
+                            }
                         }
                     }
 
@@ -488,7 +491,7 @@ namespace NLog.Layouts
             return BuildCompleteLayoutRenderer(configurationItemFactory, layoutRenderer, orderedWrappers);
         }
 
-        private static LayoutRenderer BuildCompleteLayoutRenderer(ConfigurationItemFactory configurationItemFactory, LayoutRenderer layoutRenderer, List<LayoutRenderer> orderedWrappers = null)
+        private static LayoutRenderer BuildCompleteLayoutRenderer(ConfigurationItemFactory configurationItemFactory, LayoutRenderer layoutRenderer, List<LayoutRenderer>? orderedWrappers = null)
         {
             if (orderedWrappers != null)
             {
@@ -505,7 +508,7 @@ namespace NLog.Layouts
 
 
         [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
-        private static object ParseLayoutRendererPropertyValue(ConfigurationItemFactory configurationItemFactory, SimpleStringReader stringReader, bool? throwConfigExceptions, string targetTypeName, PropertyInfo propertyInfo)
+        private static object? ParseLayoutRendererPropertyValue(ConfigurationItemFactory configurationItemFactory, SimpleStringReader stringReader, bool? throwConfigExceptions, string targetTypeName, PropertyInfo propertyInfo)
         {
             if (typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType))
             {
@@ -546,7 +549,7 @@ namespace NLog.Layouts
             }
         }
 
-        private static string ValidatePreviousParameterName(string previousParameterName, string parameterName, LayoutRenderer layoutRenderer, bool? throwConfigExceptions)
+        private static string? ValidatePreviousParameterName(string? previousParameterName, string parameterName, LayoutRenderer layoutRenderer, bool? throwConfigExceptions)
         {
             if (parameterName?.Equals(previousParameterName, StringComparison.OrdinalIgnoreCase) == true)
             {
@@ -564,28 +567,29 @@ namespace NLog.Layouts
             return previousParameterName;
         }
 
-        private static LayoutRenderer LookupAmbientProperty(string propertyName, ConfigurationItemFactory configurationItemFactory, ref Dictionary<Type, LayoutRenderer> wrappers, ref List<LayoutRenderer> orderedWrappers)
+        private static bool TryResolveAmbientLayoutWrapper(string propertyName, ConfigurationItemFactory configurationItemFactory, ref Dictionary<Type, LayoutRenderer>? wrappers, ref List<LayoutRenderer>? orderedWrappers, out LayoutRenderer? layoutRenderer)
         {
-            if (configurationItemFactory.AmbientRendererFactory.TryCreateInstance(propertyName, out var wrapperInstance))
+            if (!configurationItemFactory.AmbientRendererFactory.TryCreateInstance(propertyName, out var wrapperInstance) || wrapperInstance is null)
             {
-                wrappers = wrappers ?? new Dictionary<Type, LayoutRenderer>();
-                orderedWrappers = orderedWrappers ?? new List<LayoutRenderer>();
-                var wrapperType = wrapperInstance.GetType();
-                if (!wrappers.TryGetValue(wrapperType, out var wrapperRenderer))
-                {
-                    wrappers[wrapperType] = wrapperInstance;
-                    orderedWrappers.Add(wrapperInstance);
-                    wrapperRenderer = wrapperInstance;
-                }
-                return wrapperRenderer;
+                layoutRenderer = null;
+                return false;
             }
 
-            return null;
+            wrappers = wrappers ?? new Dictionary<Type, LayoutRenderer>();
+            orderedWrappers = orderedWrappers ?? new List<LayoutRenderer>();
+            var wrapperType = wrapperInstance.GetType();
+            if (!wrappers.TryGetValue(wrapperType, out layoutRenderer))
+            {
+                wrappers[wrapperType] = wrapperInstance;
+                orderedWrappers.Add(wrapperInstance);
+                layoutRenderer = wrapperInstance;
+            }
+            return true;
         }
 
         private static LayoutRenderer GetLayoutRenderer(string typeName, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
         {
-            LayoutRenderer layoutRenderer = null;
+            LayoutRenderer? layoutRenderer = null;
 
             try
             {
@@ -621,7 +625,7 @@ namespace NLog.Layouts
         {
             // what we've just read is not a parameterName, but a value
             // assign it to a default property (denoted by empty string)
-            if (PropertyHelper.TryGetPropertyInfo(configurationItemFactory, layoutRenderer, string.Empty, out var propertyInfo))
+            if (PropertyHelper.TryGetPropertyInfo(configurationItemFactory, layoutRenderer, string.Empty, out var propertyInfo) && propertyInfo != null)
             {
                 if (!typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType) && value.IndexOf('\\') >= 0)
                 {
@@ -639,7 +643,7 @@ namespace NLog.Layouts
                     throw configException;
                 }
 
-                return null;
+                return string.Empty;
             }
         }
 

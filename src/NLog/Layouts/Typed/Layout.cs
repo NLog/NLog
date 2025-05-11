@@ -31,17 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.ComponentModel;
-using System.Globalization;
-using System.Text;
-using JetBrains.Annotations;
-using NLog.Common;
-using NLog.Config;
-using NLog.Internal;
+#nullable enable
 
 namespace NLog.Layouts
 {
+    using System;
+    using System.ComponentModel;
+    using System.Globalization;
+    using System.Text;
+    using JetBrains.Annotations;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// Typed Layout for easy conversion from NLog Layout logic to a simple value (ex. integer or enum)
     /// </summary>
@@ -49,15 +51,15 @@ namespace NLog.Layouts
     [ThreadAgnostic]
     public sealed class Layout<T> : Layout, ILayoutTypeValue<T>, IEquatable<T>
     {
-        private readonly T _fixedValue;
-        private object _fixedObjectValue;
+        private readonly T? _fixedValue;
+        private object? _fixedObjectValue;
 
         ILayoutTypeValue ILayoutTypeValue.InnerLayout => _layoutValue;
         Type ILayoutTypeValue.InnerType => typeof(T);
         bool ILayoutTypeValue<T>.ThreadAgnostic => true;
         bool ILayoutTypeValue<T>.ThreadAgnosticImmutable => false;
         StackTraceUsage ILayoutTypeValue<T>.StackTraceUsage => StackTraceUsage.None;
-        LoggingConfiguration ILayoutTypeValue<T>.LoggingConfiguration => LoggingConfiguration;
+        LoggingConfiguration? ILayoutTypeValue<T>.LoggingConfiguration => LoggingConfiguration;
         void ILayoutTypeValue<T>.InitializeLayout()
         {
             // SONAR: Nothing to initialize
@@ -66,12 +68,12 @@ namespace NLog.Layouts
         {
             // SONAR: Nothing to initialize
         }
-        bool ILayoutTypeValue<T>.TryRenderValue(LogEventInfo logEvent, StringBuilder stringBuilder, out T value)
+        bool ILayoutTypeValue<T>.TryRenderValue(LogEventInfo logEvent, StringBuilder? stringBuilder, out T? value)
         {
             value = _fixedValue;
             return true;
         }
-        object ILayoutTypeValue.RenderObjectValue(NLog.LogEventInfo logEvent, System.Text.StringBuilder stringBuilder) => FixedObjectValue;
+        object? ILayoutTypeValue.RenderObjectValue(NLog.LogEventInfo logEvent, StringBuilder? stringBuilder) => FixedObjectValue;
 
         private readonly ILayoutTypeValue<T> _layoutValue;
 
@@ -83,12 +85,12 @@ namespace NLog.Layouts
         /// <summary>
         /// Fixed value
         /// </summary>
-        public T FixedValue => _fixedValue;
+        public T? FixedValue => _fixedValue;
 
-        private object FixedObjectValue => (_fixedObjectValue ?? (_fixedObjectValue = _fixedValue));
+        private object? FixedObjectValue => _fixedObjectValue ?? (_fixedObjectValue = _fixedValue);
 
         private IPropertyTypeConverter ValueTypeConverter => _valueTypeConverter ?? (_valueTypeConverter = ResolveService<IPropertyTypeConverter>());
-        IPropertyTypeConverter _valueTypeConverter;
+        IPropertyTypeConverter? _valueTypeConverter;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Layout{T}" /> class.
@@ -105,7 +107,7 @@ namespace NLog.Layouts
         /// <param name="layout">Dynamic NLog Layout</param>
         /// <param name="parseValueFormat">Format used for parsing string-value into result value type</param>
         /// <param name="parseValueCulture">Culture used for parsing string-value into result value type</param>
-        public Layout(Layout layout, string parseValueFormat, CultureInfo parseValueCulture)
+        public Layout(Layout layout, string? parseValueFormat, CultureInfo? parseValueCulture)
         {
             if (PropertyTypeConverter.IsComplexType(typeof(T)))
             {
@@ -126,7 +128,7 @@ namespace NLog.Layouts
         /// Initializes a new instance of the <see cref="Layout{T}" /> class.
         /// </summary>
         /// <param name="value">Fixed value</param>
-        public Layout(T value)
+        public Layout(T? value)
         {
             _fixedValue = value;
             _layoutValue = this;
@@ -144,12 +146,12 @@ namespace NLog.Layouts
         /// <param name="logEvent">Log event for rendering</param>
         /// <param name="defaultValue">Fallback value when no value available</param>
         /// <returns>Result value when available, else fallback to defaultValue</returns>
-        internal T RenderTypedValue([CanBeNull] LogEventInfo logEvent, T defaultValue = default(T))
+        internal T? RenderTypedValue([CanBeNull] LogEventInfo? logEvent, T? defaultValue = default(T))
         {
             return RenderTypedValue(logEvent, null, defaultValue);
         }
 
-        internal T RenderTypedValue([CanBeNull] LogEventInfo logEvent, [CanBeNull] StringBuilder stringBuilder, T defaultValue)
+        internal T? RenderTypedValue([CanBeNull] LogEventInfo? logEvent, [CanBeNull] StringBuilder? stringBuilder, T? defaultValue)
         {
             if (IsFixed)
                 return _fixedValue;
@@ -173,7 +175,7 @@ namespace NLog.Layouts
             return defaultValue;
         }
 
-        private object RenderObjectValue([CanBeNull] LogEventInfo logEvent, [CanBeNull] StringBuilder stringBuilder)
+        private object? RenderObjectValue([CanBeNull] LogEventInfo logEvent, [CanBeNull] StringBuilder? stringBuilder)
         {
             if (logEvent is null)
                 return null;
@@ -222,7 +224,7 @@ namespace NLog.Layouts
         }
 
         /// <inheritdoc/>
-        internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
+        internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder? target)
         {
             PrecalculateInnerLayout(logEvent, target);
         }
@@ -238,7 +240,7 @@ namespace NLog.Layouts
             return new Layout<T>(layoutMethod, options);
         }
 
-        private void PrecalculateInnerLayout(LogEventInfo logEvent, [CanBeNull] StringBuilder target)
+        private void PrecalculateInnerLayout(LogEventInfo logEvent, [CanBeNull] StringBuilder? target)
         {
             if (IsFixed || (_layoutValue.ThreadAgnostic && !_layoutValue.ThreadAgnosticImmutable))
                 return;
@@ -253,7 +255,7 @@ namespace NLog.Layouts
 
             public override IPropertyTypeConverter ValueTypeConverter => _ownerLayout.ValueTypeConverter;
 
-            public LayoutGenericTypeValue(Layout layout, string parseValueFormat, CultureInfo parseValueCulture, Layout<T> ownerLayout)
+            public LayoutGenericTypeValue(Layout layout, string? parseValueFormat, CultureInfo? parseValueCulture, Layout<T> ownerLayout)
                 : base(layout, typeof(T), parseValueFormat, parseValueCulture, null)
             {
                 _ownerLayout = ownerLayout;
@@ -269,7 +271,7 @@ namespace NLog.Layouts
                 base.Close();
             }
 
-            public bool TryRenderValue(LogEventInfo logEvent, StringBuilder stringBuilder, out T value)
+            public bool TryRenderValue(LogEventInfo logEvent, StringBuilder? stringBuilder, out T? value)
             {
                 var objectValue = RenderObjectValue(logEvent, stringBuilder);
                 if (objectValue is T typedValue)
@@ -282,15 +284,15 @@ namespace NLog.Layouts
             }
         }
 
-        private bool TryParseFixedValue(Layout layout, string parseValueFormat, CultureInfo parseValueCulture, ref T fixedValue)
+        private bool TryParseFixedValue(Layout layout, string? parseValueFormat, CultureInfo? parseValueCulture, ref T? fixedValue)
         {
             if (layout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
             {
-                if (!string.IsNullOrEmpty(simpleLayout.FixedText))
+                if (simpleLayout.FixedText != null && !string.IsNullOrEmpty(simpleLayout.FixedText))
                 {
                     try
                     {
-                        fixedValue = (T)ParseValueFromObject(simpleLayout.FixedText, parseValueFormat, parseValueCulture);
+                        fixedValue = (T?)ParseValueFromObject(simpleLayout.FixedText, parseValueFormat, parseValueCulture);
                         return true;
                     }
                     catch (Exception ex)
@@ -302,7 +304,7 @@ namespace NLog.Layouts
                 }
                 else if (typeof(T) == typeof(string))
                 {
-                    fixedValue = (T)(object)simpleLayout.FixedText;
+                    fixedValue = (T)(object)(simpleLayout.FixedText ?? string.Empty);
                     return true;
                 }
                 else if (Nullable.GetUnderlyingType(typeof(T)) != null)
@@ -329,7 +331,7 @@ namespace NLog.Layouts
 
             ILayoutTypeValue ILayoutTypeValue.InnerLayout => this;
             Type ILayoutTypeValue.InnerType => typeof(T);
-            LoggingConfiguration ILayoutTypeValue<T>.LoggingConfiguration => null;
+            LoggingConfiguration? ILayoutTypeValue<T>.LoggingConfiguration => null;
             bool ILayoutTypeValue<T>.ThreadAgnosticImmutable => false;
             StackTraceUsage ILayoutTypeValue<T>.StackTraceUsage => StackTraceUsage.None;
 
@@ -349,13 +351,13 @@ namespace NLog.Layouts
                 // SONAR: Nothing to close
             }
 
-            public bool TryRenderValue(LogEventInfo logEvent, StringBuilder stringBuilder, out T value)
+            public bool TryRenderValue(LogEventInfo logEvent, StringBuilder? stringBuilder, out T? value)
             {
                 value = _layoutMethod(logEvent);
                 return true;
             }
 
-            public object RenderObjectValue(LogEventInfo logEvent, StringBuilder stringBuilder)
+            public object? RenderObjectValue(LogEventInfo logEvent, StringBuilder? stringBuilder)
             {
                 return _layoutMethod(logEvent);
             }
@@ -366,7 +368,7 @@ namespace NLog.Layouts
             }
         }
 
-        private object ParseValueFromObject(object rawValue, string parseValueFormat, CultureInfo parseValueCulture)
+        private object? ParseValueFromObject(object rawValue, string? parseValueFormat, CultureInfo? parseValueCulture)
         {
             return ValueTypeConverter.Convert(rawValue, typeof(T), parseValueFormat, parseValueCulture);
         }
@@ -418,7 +420,7 @@ namespace NLog.Layouts
         /// Converts a given value to a <see cref="Layout{T}" />.
         /// </summary>
         /// <param name="value">Text to be converted.</param>
-        public static implicit operator Layout<T>(T value)
+        public static implicit operator Layout<T>?(T value)
         {
             if (object.Equals(value, default(T)) && !typeof(T).IsValueType) return null;
 
@@ -429,11 +431,12 @@ namespace NLog.Layouts
         /// Converts a given text to a <see cref="Layout{T}" />.
         /// </summary>
         /// <param name="layout">Text to be converted.</param>
-        public static implicit operator Layout<T>([Localizable(false)] string layout)
+        public static implicit operator Layout<T>?([Localizable(false)] string layout)
         {
-            if (layout is null) return null;
+            Layout? innerLayout = layout;
+            if (innerLayout is null) return null;
 
-            return new Layout<T>(layout);
+            return new Layout<T>(innerLayout);
         }
 
         /// <summary>
@@ -455,32 +458,32 @@ namespace NLog.Layouts
 
     internal interface ILayoutTypeValue
     {
-        Type InnerType { get; }
+        Type? InnerType { get; }
         ILayoutTypeValue InnerLayout { get; }
-        object RenderObjectValue(LogEventInfo logEvent, StringBuilder stringBuilder);
+        object? RenderObjectValue(LogEventInfo logEvent, StringBuilder? stringBuilder);
     }
 
     internal interface ILayoutTypeValue<T> : ILayoutTypeValue
     {
-        LoggingConfiguration LoggingConfiguration { get; }
+        LoggingConfiguration? LoggingConfiguration { get; }
         bool ThreadAgnostic { get; }
         bool ThreadAgnosticImmutable { get; }
         StackTraceUsage StackTraceUsage { get; }
         void InitializeLayout();
         void CloseLayout();
-        bool TryRenderValue(LogEventInfo logEvent, StringBuilder stringBuilder, out T value);
+        bool TryRenderValue(LogEventInfo logEvent, StringBuilder? stringBuilder, out T? value);
     }
 
-    internal class LayoutTypeValue : ILayoutTypeValue
+    internal class LayoutTypeValue : ILayoutTypeValue, IPropertyTypeConverter
     {
         private readonly Layout _innerLayout;
         private readonly Type _valueType;
-        private readonly CultureInfo _parseValueCulture;
-        private readonly string _parseValueFormat;
-        private string _previousStringValue;
-        private object _previousValue;
+        private readonly CultureInfo? _parseValueCulture;
+        private readonly string? _parseValueFormat;
+        private string? _previousStringValue;
+        private object? _previousValue;
 
-        public LoggingConfiguration LoggingConfiguration => _innerLayout.LoggingConfiguration;
+        public LoggingConfiguration? LoggingConfiguration => _innerLayout.LoggingConfiguration;
         public bool ThreadAgnostic => _innerLayout.ThreadAgnostic;
         public bool ThreadAgnosticImmutable => _innerLayout.ThreadAgnosticImmutable;
         public StackTraceUsage StackTraceUsage => _innerLayout.StackTraceUsage;
@@ -488,20 +491,20 @@ namespace NLog.Layouts
         ILayoutTypeValue ILayoutTypeValue.InnerLayout => this;
         Type ILayoutTypeValue.InnerType => _valueType;
 
-        public LayoutTypeValue(Layout layout, Type valueType, string parseValueFormat, CultureInfo parseValueCulture, IPropertyTypeConverter valueTypeConverter)
+        public LayoutTypeValue(Layout layout, Type valueType, string? parseValueFormat, CultureInfo? parseValueCulture, IPropertyTypeConverter? valueTypeConverter)
         {
             _innerLayout = layout;
             _valueType = valueType;
             _parseValueFormat = parseValueFormat;
             _parseValueCulture = parseValueCulture;
-            ValueTypeConverter = valueTypeConverter;
+            ValueTypeConverter = valueTypeConverter ?? this;
         }
 
-        public object TryParseFixedValue()
+        public object? TryParseFixedValue()
         {
-            if (_innerLayout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
+            if (_innerLayout is SimpleLayout simpleLayout && simpleLayout.FixedText != null)
             {
-                if (TryParseValueFromString(simpleLayout.FixedText, _parseValueFormat, _parseValueCulture, out object objectValue))
+                if (TryParseValueFromString(simpleLayout.FixedText, out var objectValue))
                 {
                     return objectValue;
                 }
@@ -523,7 +526,7 @@ namespace NLog.Layouts
             _previousValue = null;
         }
 
-        public object RenderObjectValue(LogEventInfo logEvent, StringBuilder stringBuilder)
+        public object? RenderObjectValue(LogEventInfo logEvent, StringBuilder? stringBuilder)
         {
             if (_innerLayout.TryGetRawValue(logEvent, out var rawValue))
             {
@@ -531,7 +534,7 @@ namespace NLog.Layouts
                 {
                     if (string.IsNullOrEmpty(rawStringValue))
                     {
-                        TryParseValueFromString(rawStringValue, _parseValueFormat, _parseValueCulture, out var objectValue);
+                        TryParseValueFromString(rawStringValue, out var objectValue);
                         return objectValue;
                     }
                 }
@@ -542,7 +545,7 @@ namespace NLog.Layouts
                         return null;
                     }
 
-                    TryParseValueFromObject(rawValue, _parseValueFormat, _parseValueCulture, out var objectValue);
+                    TryParseValueFromObject(rawValue, out var objectValue);
                     return objectValue;
                 }
             }
@@ -556,7 +559,7 @@ namespace NLog.Layouts
                 return previousValue;
             }
 
-            if (TryParseValueFromString(stringValue, _parseValueFormat, _parseValueCulture, out var parsedValue))
+            if (TryParseValueFromString(stringValue, out var parsedValue))
             {
                 if (string.IsNullOrEmpty(previousStringValue) || stringValue?.Length < 3)
                 {
@@ -570,7 +573,7 @@ namespace NLog.Layouts
             return null;
         }
 
-        private string RenderStringValue(LogEventInfo logEvent, StringBuilder stringBuilder, string previousStringValue)
+        private string RenderStringValue(LogEventInfo logEvent, StringBuilder? stringBuilder, string? previousStringValue)
         {
             if (_innerLayout is IStringValueRenderer stringLayout)
             {
@@ -584,10 +587,10 @@ namespace NLog.Layouts
                 _innerLayout.Render(logEvent, stringBuilder);
                 if (stringBuilder.Length == 0)
                     return string.Empty;
-                else if (!string.IsNullOrEmpty(previousStringValue) && stringBuilder.EqualTo(previousStringValue))
-                    return previousStringValue;
-                else
+                else if (previousStringValue is null || string.IsNullOrEmpty(previousStringValue) || !stringBuilder.EqualTo(previousStringValue))
                     return stringBuilder.ToString();
+                else
+                    return previousStringValue;                   
             }
             else
             {
@@ -595,11 +598,11 @@ namespace NLog.Layouts
             }
         }
 
-        private bool TryParseValueFromObject(object rawValue, string parseValueFormat, CultureInfo parseValueCulture, out object parsedValue)
+        private bool TryParseValueFromObject(object rawValue, out object? parsedValue)
         {
             try
             {
-                parsedValue = ParseValueFromObject(rawValue, parseValueFormat, parseValueCulture);
+                parsedValue = ParseValueFromObject(rawValue);
                 return true;
             }
             catch (Exception ex)
@@ -610,12 +613,12 @@ namespace NLog.Layouts
             }
         }
 
-        private object ParseValueFromObject(object rawValue, string parseValueFormat, CultureInfo parseValueCulture)
+        private object? ParseValueFromObject(object rawValue)
         {
-            return ValueTypeConverter.Convert(rawValue, _valueType, parseValueFormat, parseValueCulture);
+            return ValueTypeConverter.Convert(rawValue, _valueType, _parseValueFormat, _parseValueCulture);
         }
 
-        private bool TryParseValueFromString(string stringValue, string parseValueFormat, CultureInfo parseValueCulture, out object parsedValue)
+        private bool TryParseValueFromString(string stringValue, out object? parsedValue)
         {
             if (string.IsNullOrEmpty(stringValue))
             {
@@ -623,12 +626,17 @@ namespace NLog.Layouts
                 return true;
             }
 
-            return TryParseValueFromObject(stringValue, parseValueFormat, parseValueCulture, out parsedValue);
+            return TryParseValueFromObject(stringValue, out parsedValue);
         }
 
         public override string ToString()
         {
             return _innerLayout.ToString();
+        }
+
+        object? IPropertyTypeConverter.Convert(object? propertyValue, Type propertyType, string? format, IFormatProvider? formatProvider)
+        {
+            return null;
         }
     }
 }

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets
 {
     using NLog.Config;
@@ -86,7 +88,7 @@ namespace NLog.Targets
         /// Gets or sets the footer.
         /// </summary>
         /// <docgen category='Layout Options' order='3' />
-        public Layout Footer
+        public Layout? Footer
         {
             get => LHF.Footer;
             set => LHF.Footer = value;
@@ -96,7 +98,7 @@ namespace NLog.Targets
         /// Gets or sets the header.
         /// </summary>
         /// <docgen category='Layout Options' order='2' />
-        public Layout Header
+        public Layout? Header
         {
             get => LHF.Header;
             set => LHF.Header = value;

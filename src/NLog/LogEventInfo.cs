@@ -392,14 +392,17 @@ namespace NLog
             return properties;
         }
 
-        private PropertiesDictionary CreatePropertiesInternal(IList<MessageTemplateParameter>? templateParameters = null)
+        internal PropertiesDictionary CreatePropertiesInternal(IList<MessageTemplateParameter>? templateParameters = null)
         {
-            PropertiesDictionary properties = new PropertiesDictionary(templateParameters);
-            Interlocked.CompareExchange(ref _properties, properties, null);
-            if (templateParameters is null && HasMessageTemplateParameters)
+            if (_properties is null)
             {
-                // Trigger capture of MessageTemplateParameters from logevent-message
-                CalcFormattedMessage();
+                PropertiesDictionary properties = new PropertiesDictionary(templateParameters);
+                Interlocked.CompareExchange(ref _properties, properties, null);
+                if (templateParameters is null && HasMessageTemplateParameters)
+                {
+                    // Trigger capture of MessageTemplateParameters from logevent-message
+                    CalcFormattedMessage();
+                }
             }
 
             return _properties;

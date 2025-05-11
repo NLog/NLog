@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Layouts
 {
     using System.Collections.Generic;
@@ -48,14 +50,10 @@ namespace NLog.Layouts
     [ThreadAgnostic]
     public class JsonArrayLayout : Layout
     {
-        private Layout[] _precalculateLayouts;
+        private Layout[]? _precalculateLayouts;
 
-        private IJsonConverter JsonConverter
-        {
-            get => _jsonConverter ?? (_jsonConverter = ResolveService<IJsonConverter>());
-            set => _jsonConverter = value;
-        }
-        private IJsonConverter _jsonConverter;
+        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = ResolveService<IJsonConverter>());
+        private IJsonConverter? _jsonConverter;
 
         /// <summary>
         /// Gets the array of items to include in JSON-Array
@@ -86,7 +84,7 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void CloseLayout()
         {
-            JsonConverter = null;
+            _jsonConverter = null;
             _precalculateLayouts = null;
             base.CloseLayout();
         }
@@ -148,7 +146,7 @@ namespace NLog.Layouts
             {
                 layout.Render(logEvent, sb);
             }
-            else if (layout.TryGetRawValue(logEvent, out object rawValue))
+            else if (layout.TryGetRawValue(logEvent, out var rawValue))
             {
                 if (!JsonConverter.SerializeObject(rawValue, sb))
                 {

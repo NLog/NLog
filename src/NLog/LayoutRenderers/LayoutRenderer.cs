@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -49,12 +51,12 @@ namespace NLog.LayoutRenderers
     public abstract class LayoutRenderer : ISupportsInitialize, IRenderable
     {
         private bool _isInitialized;
-        private IValueFormatter _valueFormatter;
+        private IValueFormatter? _valueFormatter;
 
         /// <summary>
         /// Gets the logging configuration this target is part of.
         /// </summary>
-        protected LoggingConfiguration LoggingConfiguration { get; private set; }
+        protected LoggingConfiguration? LoggingConfiguration { get; private set; }
 
         /// <summary>
         /// Value formatter
@@ -88,7 +90,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc/>
-        void ISupportsInitialize.Initialize(LoggingConfiguration configuration)
+        void ISupportsInitialize.Initialize(LoggingConfiguration? configuration)
         {
             Initialize(configuration);
         }
@@ -103,7 +105,7 @@ namespace NLog.LayoutRenderers
         /// Initializes this instance.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-        internal void Initialize(LoggingConfiguration configuration)
+        internal void Initialize(LoggingConfiguration? configuration)
         {
             if (LoggingConfiguration is null)
                 LoggingConfiguration = configuration;
@@ -182,7 +184,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected abstract void Append(StringBuilder builder, LogEventInfo logEvent);
 
-        internal void AppendFormattedValue(StringBuilder builder, LogEventInfo logEvent, object value, string format, CultureInfo culture)
+        internal void AppendFormattedValue(StringBuilder builder, LogEventInfo logEvent, object? value, string? format, CultureInfo culture)
         {
             if (format is null && value is string stringValue)
             {
@@ -215,7 +217,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">LogEvent with culture</param>
         /// <param name="layoutCulture">Culture in on Layout level</param>
         /// <returns></returns>
-        protected IFormatProvider GetFormatProvider(LogEventInfo logEvent, IFormatProvider layoutCulture = null)
+        protected IFormatProvider? GetFormatProvider(LogEventInfo logEvent, IFormatProvider? layoutCulture = null)
         {
             return layoutCulture ?? logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
         }
@@ -229,7 +231,7 @@ namespace NLog.LayoutRenderers
         /// <remarks>
         /// <see cref="GetFormatProvider"/> is preferred
         /// </remarks>
-        protected CultureInfo GetCulture(LogEventInfo logEvent, CultureInfo layoutCulture = null)
+        protected CultureInfo GetCulture(LogEventInfo logEvent, CultureInfo? layoutCulture = null)
         {
             return layoutCulture ?? logEvent.FormatProvider as CultureInfo ?? LoggingConfiguration?.DefaultCultureInfo ?? CultureInfo.CurrentCulture;
         }

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Layouts
 {
     using System;
@@ -46,7 +48,7 @@ namespace NLog.Layouts
     /// </summary>
     public abstract class XmlElementBase : Layout
     {
-        private Layout[] _precalculateLayouts;
+        private Layout[]? _precalculateLayouts;
         private const string DefaultPropertyName = "property";
         private const string DefaultPropertyKeyAttribute = "key";
         private const string DefaultCollectionItemName = "item";
@@ -66,8 +68,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Name of the XML element
         /// </summary>
-        /// <remarks>Upgrade to private protected when using C# 7.2 </remarks>
-        internal string ElementNameInternal { get => _elementNameInternal; set => _elementNameInternal = XmlHelper.XmlConvertToElementName(value?.Trim()); }
+        internal string ElementNameInternal { get => _elementNameInternal; set => _elementNameInternal = XmlHelper.XmlConvertToElementName(value?.Trim() ?? string.Empty); }
         private string _elementNameInternal = string.Empty;
 
         /// <summary>
@@ -174,7 +175,7 @@ namespace NLog.Layouts
                 _propertiesElementName = value;
                 _propertiesElementNameHasFormat = value?.IndexOf('{') >= 0;
                 if (!_propertiesElementNameHasFormat)
-                    _propertiesElementName = XmlHelper.XmlConvertToElementName(value?.Trim());
+                    _propertiesElementName = XmlHelper.XmlConvertToElementName(value?.Trim() ?? string.Empty);
             }
         }
         private string _propertiesElementName = DefaultPropertyName;
@@ -203,7 +204,7 @@ namespace NLog.Layouts
         /// Will replace newlines in attribute-value with &#13;&#10;
         /// </remarks>
         /// <docgen category='Layout Options' order='100' />
-        public string PropertiesElementValueAttribute { get; set; }
+        public string PropertiesElementValueAttribute { get; set; } = string.Empty;
 
         /// <summary>
         /// XML element name to use for rendering IList-collections items
@@ -218,7 +219,7 @@ namespace NLog.Layouts
         public int MaxRecursionLimit { get; set; } = 1;
 
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));
-        private ObjectReflectionCache _objectReflectionCache;
+        private ObjectReflectionCache? _objectReflectionCache;
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
         private const int MaxXmlLength = 512 * 1024;
 
@@ -360,7 +361,8 @@ namespace NLog.Layouts
 
         private bool HasNestedXmlElements(LogEventInfo logEvent)
         {
-            if (LayoutWrapper.Inner != null)
+            var innerText = LayoutWrapper.Inner;
+            if (!ReferenceEquals(innerText, null) && !ReferenceEquals(innerText, Layout.Empty))
                 return true;
 
             if (Elements.Count > 0)
@@ -408,7 +410,7 @@ namespace NLog.Layouts
                 return;
 
             bool checkExcludeProperties = ExcludeProperties.Count > 0;
-            using (var propertyEnumerator = logEventInfo.TryCreatePropertiesInternal().GetPropertyEnumerator())
+            using (var propertyEnumerator = logEventInfo.CreatePropertiesInternal().GetPropertyEnumerator())
             {
                 while (propertyEnumerator.MoveNext())
                 {
@@ -431,65 +433,72 @@ namespace NLog.Layouts
             }
         }
 
-        private bool AppendXmlPropertyObjectValue(string propName, object propertyValue, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName = false)
+        private bool AppendXmlPropertyObjectValue(string propName, object? propertyValue, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName = false)
         {
-            var convertibleValue = propertyValue as IConvertible;
-            var objTypeCode = convertibleValue?.GetTypeCode() ?? (propertyValue is null ? TypeCode.Empty : TypeCode.Object);
-            if (objTypeCode != TypeCode.Object)
+            if (propertyValue is IConvertible convertibleValue)
             {
-                string xmlValueString = XmlHelper.XmlConvertToString(convertibleValue, objTypeCode, true);
-                AppendXmlPropertyStringValue(propName, xmlValueString, sb, orgLength, false, ignorePropertiesElementName);
+                var objTypeCode = convertibleValue.GetTypeCode();
+                if (objTypeCode != TypeCode.Object)
+                {
+                    string xmlValueString = XmlHelper.XmlConvertToString(convertibleValue, objTypeCode, true);
+                    AppendXmlPropertyStringValue(propName, xmlValueString, sb, orgLength, false, ignorePropertiesElementName);
+                    return true;
+                }
             }
-            else
+            else if (propertyValue is null)
             {
-                int beforeValueLength = sb.Length;
-                if (beforeValueLength > MaxXmlLength)
-                {
-                    return false;
-                }
+                string xmlValueString = XmlHelper.XmlConvertToString(null, TypeCode.Empty, true);
+                AppendXmlPropertyStringValue(propName, xmlValueString, sb, orgLength, false, ignorePropertiesElementName);
+                return true;
+            }
 
-                int nextDepth = objectsInPath.Count == 0 ? depth : (depth + 1); // Allow serialization of list-items
-                if (nextDepth > MaxRecursionLimit)
-                {
-                    return false;
-                }
+            int beforeValueLength = sb.Length;
+            if (beforeValueLength > MaxXmlLength)
+            {
+                return false;
+            }
 
-                if (objectsInPath.Contains(propertyValue))
-                {
-                    return false;
-                }
+            int nextDepth = objectsInPath.Count == 0 ? depth : (depth + 1); // Allow serialization of list-items
+            if (nextDepth > MaxRecursionLimit)
+            {
+                return false;
+            }
 
-                if (propertyValue is System.Collections.IDictionary dict)
+            if (objectsInPath.Contains(propertyValue))
+            {
+                return false;
+            }
+
+            if (propertyValue is System.Collections.IDictionary dict)
+            {
+                using (StartCollectionScope(ref objectsInPath, dict))
                 {
-                    using (StartCollectionScope(ref objectsInPath, dict))
-                    {
-                        AppendXmlDictionaryObject(propName, dict, sb, orgLength, objectsInPath, nextDepth, ignorePropertiesElementName);
-                    }
+                    AppendXmlDictionaryObject(propName, dict, sb, orgLength, objectsInPath, nextDepth, ignorePropertiesElementName);
                 }
-                else if (propertyValue is System.Collections.IEnumerable collection)
+            }
+            else if (propertyValue is System.Collections.IEnumerable collection)
+            {
+                if (ObjectReflectionCache.TryLookupExpandoObject(propertyValue, out var propertyValues))
                 {
-                    if (ObjectReflectionCache.TryLookupExpandoObject(propertyValue, out var propertyValues))
+                    using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(propertyValue, ref objectsInPath, false, _referenceEqualsComparer))
                     {
-                        using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(propertyValue, ref objectsInPath, false, _referenceEqualsComparer))
-                        {
-                            AppendXmlObjectPropertyValues(propName, ref propertyValues, sb, orgLength, ref objectsInPath, nextDepth, ignorePropertiesElementName);
-                        }
-                    }
-                    else
-                    {
-                        using (StartCollectionScope(ref objectsInPath, collection))
-                        {
-                            AppendXmlCollectionObject(propName, collection, sb, orgLength, objectsInPath, nextDepth, ignorePropertiesElementName);
-                        }
+                        AppendXmlObjectPropertyValues(propName, ref propertyValues, sb, orgLength, ref objectsInPath, nextDepth, ignorePropertiesElementName);
                     }
                 }
                 else
                 {
-                    using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(propertyValue, ref objectsInPath, false, _referenceEqualsComparer))
+                    using (StartCollectionScope(ref objectsInPath, collection))
                     {
-                        var propertyValues = ObjectReflectionCache.LookupObjectProperties(propertyValue);
-                        AppendXmlObjectPropertyValues(propName, ref propertyValues, sb, orgLength, ref objectsInPath, nextDepth, ignorePropertiesElementName);
+                        AppendXmlCollectionObject(propName, collection, sb, orgLength, objectsInPath, nextDepth, ignorePropertiesElementName);
                     }
+                }
+            }
+            else
+            {
+                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(propertyValue, ref objectsInPath, false, _referenceEqualsComparer))
+                {
+                    var propertyValues = ObjectReflectionCache.LookupObjectProperties(propertyValue);
+                    AppendXmlObjectPropertyValues(propName, ref propertyValues, sb, orgLength, ref objectsInPath, nextDepth, ignorePropertiesElementName);
                 }
             }
 
@@ -532,7 +541,11 @@ namespace NLog.Layouts
                     if (beforeValueLength > MaxXmlLength)
                         break;
 
-                    if (!AppendXmlPropertyObjectValue(item.Key?.ToString(), item.Value, sb, orgLength, objectsInPath, depth))
+                    var propertyName = item.Key?.ToString() ?? string.Empty;
+                    if (string.IsNullOrEmpty(propertyName))
+                        continue;
+
+                    if (!AppendXmlPropertyObjectValue(propertyName, item.Value, sb, orgLength, objectsInPath, depth))
                     {
                         sb.Length = beforeValueLength;
                     }
@@ -565,7 +578,7 @@ namespace NLog.Layouts
                 var propertyTypeCode = property.TypeCode;
                 if (propertyTypeCode != TypeCode.Object)
                 {
-                    string xmlValueString = XmlHelper.XmlConvertToString((IConvertible)property.Value, propertyTypeCode, true);
+                    string xmlValueString = XmlHelper.XmlConvertToString((IConvertible?)property.Value, propertyTypeCode, true);
                     AppendXmlPropertyStringValue(property.Name, xmlValueString, sb, orgLength, false, ignorePropertiesElementName);
                 }
                 else
@@ -580,7 +593,7 @@ namespace NLog.Layouts
             AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesElementName);
         }
 
-        private string AppendXmlPropertyValue(string propName, object propertyValue, StringBuilder sb, int orgLength, bool ignoreValue = false, bool ignorePropertiesElementName = false)
+        private string AppendXmlPropertyValue(string propName, object? propertyValue, StringBuilder sb, int orgLength, bool ignoreValue = false, bool ignorePropertiesElementName = false)
         {
             string xmlValueString = ignoreValue ? string.Empty : XmlHelper.XmlConvertToStringSafe(propertyValue);
             return AppendXmlPropertyStringValue(propName, xmlValueString, sb, orgLength, ignoreValue, ignorePropertiesElementName);
@@ -591,7 +604,7 @@ namespace NLog.Layouts
             if (string.IsNullOrEmpty(PropertiesElementName))
                 return string.Empty; // Not supported
 
-            propName = propName?.Trim();
+            propName = propName?.Trim() ?? string.Empty;
             if (string.IsNullOrEmpty(propName))
                 return string.Empty; // Not supported
 

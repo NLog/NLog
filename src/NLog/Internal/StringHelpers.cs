@@ -165,7 +165,7 @@ namespace NLog.Internal
 #endif
         }
 
-        internal static bool IsNullOrEmptyString(object objectValue)
+        internal static bool IsNullOrEmptyString(object? objectValue)
         {
             return objectValue is null || ReferenceEquals(string.Empty, objectValue) || (objectValue is string stringValue && stringValue.Length == 0);
         }
