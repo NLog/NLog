@@ -31,11 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Conditions
 {
     using System.Text;
-    using Layouts;
     using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Condition layout expression (represented by a string literal
@@ -44,7 +46,7 @@ namespace NLog.Conditions
     internal sealed class ConditionLayoutExpression : ConditionExpression
     {
         private readonly SimpleLayout _simpleLayout;
-        private StringBuilder _fastObjectPool;
+        private StringBuilder? _fastObjectPool;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionLayoutExpression" /> class.

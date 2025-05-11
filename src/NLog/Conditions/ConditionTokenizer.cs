@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Conditions
 {
     using System;
@@ -53,22 +55,13 @@ namespace NLog.Conditions
         {
             _stringReader = stringReader;
             TokenType = ConditionTokenType.BeginningOfInput;
+            TokenValue = string.Empty;
             GetNextToken();
         }
 
         public ConditionTokenType TokenType { get; private set; }
 
         public string TokenValue { get; private set; }
-
-        public string StringTokenValue
-        {
-            get
-            {
-                string s = TokenValue;
-
-                return s.Substring(1, s.Length - 2).Replace("''", "'");
-            }
-        }
 
         /// <summary>
         /// Asserts current token type and advances to the next token.

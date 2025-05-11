@@ -52,22 +52,22 @@ namespace NLog.Config
         struct MethodDetails
         {
             public readonly MethodInfo MethodInfo;
-            public readonly Func<LogEventInfo, object> NoParameters;
-            public readonly Func<LogEventInfo, object, object> OneParameter;
-            public readonly Func<LogEventInfo, object, object, object> TwoParameters;
-            public readonly Func<LogEventInfo, object, object, object, object> ThreeParameters;
-            public readonly Func<object[], object> ManyParameters;
+            public readonly Func<LogEventInfo, object?> NoParameters;
+            public readonly Func<LogEventInfo, object?, object?> OneParameter;
+            public readonly Func<LogEventInfo, object?, object?, object?> TwoParameters;
+            public readonly Func<LogEventInfo, object?, object?, object?, object?> ThreeParameters;
+            public readonly Func<object?[], object?> ManyParameters;
             public readonly int ManyParameterMinCount;
             public readonly int ManyParameterMaxCount;
             public readonly bool ManyParameterWithLogEvent;
 
             public MethodDetails(
                 MethodInfo methodInfo,
-                Func<LogEventInfo, object> noParameters,
-                Func<LogEventInfo, object, object> oneParameter,
-                Func<LogEventInfo, object, object, object> twoParameters,
-                Func<LogEventInfo, object, object, object, object> threeParameters,
-                Func<object[], object> manyParameters,
+                Func<LogEventInfo, object?> noParameters,
+                Func<LogEventInfo, object?, object?> oneParameter,
+                Func<LogEventInfo, object?, object?, object?> twoParameters,
+                Func<LogEventInfo, object?, object?, object?, object?> threeParameters,
+                Func<object?[], object?> manyParameters,
                 int manyParameterMinCount,
                 int manyParameterMaxCount,
                 bool manyParameterWithLogEvent)
@@ -203,7 +203,7 @@ namespace NLog.Config
             }
         }
 
-        private static object InvokeMethodInfo(MethodInfo methodInfo, object[] methodArgs)
+        private static object InvokeMethodInfo(MethodInfo methodInfo, object?[] methodArgs)
         {
             try
             {
@@ -242,12 +242,12 @@ namespace NLog.Config
             return defaultMethodParameters;
         }
 
-        private static object[] ResolveMethodParameters(object[] defaultMethodParameters, object[] inputParameters)
+        private static object?[] ResolveMethodParameters(object?[] defaultMethodParameters, object?[] inputParameters)
         {
             if (defaultMethodParameters.Length == inputParameters.Length)
                 return inputParameters;
 
-            object[] methodParameters = new object[defaultMethodParameters.Length];
+            object?[] methodParameters = new object[defaultMethodParameters.Length];
             for (int i = 0; i < inputParameters.Length; ++i)
                 methodParameters[i] = inputParameters[i];
             for (int i = inputParameters.Length; i < defaultMethodParameters.Length; ++i)
@@ -255,18 +255,18 @@ namespace NLog.Config
             return methodParameters;
         }
 
-        private static object[] ResolveMethodParameters(object[] defaultMethodParameters, object inputParameterArg1)
+        private static object?[] ResolveMethodParameters(object?[] defaultMethodParameters, object? inputParameterArg1)
         {
-            object[] methodParameters = new object[defaultMethodParameters.Length];
+            object?[] methodParameters = new object[defaultMethodParameters.Length];
             methodParameters[0] = inputParameterArg1;
             for (int i = 1; i < defaultMethodParameters.Length; ++i)
                 methodParameters[i] = defaultMethodParameters[i];
             return methodParameters;
         }
 
-        private static object[] ResolveMethodParameters(object[] defaultMethodParameters, object inputParameterArg1, object inputParameterArg2)
+        private static object?[] ResolveMethodParameters(object?[] defaultMethodParameters, object? inputParameterArg1, object? inputParameterArg2)
         {
-            object[] methodParameters = new object[defaultMethodParameters.Length];
+            object?[] methodParameters = new object[defaultMethodParameters.Length];
             methodParameters[0] = inputParameterArg1;
             methodParameters[1] = inputParameterArg2;
             for (int i = 2; i < defaultMethodParameters.Length; ++i)
@@ -274,9 +274,9 @@ namespace NLog.Config
             return methodParameters;
         }
 
-        private static object[] ResolveMethodParameters(object[] defaultMethodParameters, object inputParameterArg1, object inputParameterArg2, object inputParameterArg3)
+        private static object?[] ResolveMethodParameters(object?[] defaultMethodParameters, object? inputParameterArg1, object? inputParameterArg2, object? inputParameterArg3)
         {
-            object[] methodParameters = new object[defaultMethodParameters.Length];
+            object?[] methodParameters = new object[defaultMethodParameters.Length];
             methodParameters[0] = inputParameterArg1;
             methodParameters[1] = inputParameterArg2;
             methodParameters[2] = inputParameterArg3;
@@ -285,9 +285,9 @@ namespace NLog.Config
             return methodParameters;
         }
 
-        private static object[] ResolveMethodParameters(object[] defaultMethodParameters, object inputParameterArg1, object inputParameterArg2, object inputParameterArg3, object inputParameterArg4)
+        private static object?[] ResolveMethodParameters(object?[] defaultMethodParameters, object? inputParameterArg1, object? inputParameterArg2, object? inputParameterArg3, object? inputParameterArg4)
         {
-            object[] methodParameters = new object[defaultMethodParameters.Length];
+            object?[] methodParameters = new object[defaultMethodParameters.Length];
             methodParameters[0] = inputParameterArg1;
             methodParameters[1] = inputParameterArg2;
             methodParameters[2] = inputParameterArg3;
@@ -297,7 +297,7 @@ namespace NLog.Config
             return methodParameters;
         }
 
-        public void RegisterNoParameters(string methodName, Func<LogEventInfo, object> noParameters, MethodInfo? legacyMethodInfo = null)
+        public void RegisterNoParameters(string methodName, Func<LogEventInfo, object?> noParameters, MethodInfo? legacyMethodInfo = null)
         {
             lock (_nameToMethodDetails)
             {
@@ -307,7 +307,7 @@ namespace NLog.Config
             }
         }
 
-        public void RegisterOneParameter(string methodName, Func<LogEventInfo, object, object> oneParameter, MethodInfo? legacyMethodInfo = null)
+        public void RegisterOneParameter(string methodName, Func<LogEventInfo, object?, object?> oneParameter, MethodInfo? legacyMethodInfo = null)
         {
             lock (_nameToMethodDetails)
             {
@@ -317,7 +317,7 @@ namespace NLog.Config
             }
         }
 
-        public void RegisterTwoParameters(string methodName, Func<LogEventInfo, object, object, object> twoParameters, MethodInfo? legacyMethodInfo = null)
+        public void RegisterTwoParameters(string methodName, Func<LogEventInfo, object?, object?, object?> twoParameters, MethodInfo? legacyMethodInfo = null)
         {
             lock (_nameToMethodDetails)
             {
@@ -327,7 +327,7 @@ namespace NLog.Config
             }
         }
 
-        public void RegisterThreeParameters(string methodName, Func<LogEventInfo, object, object, object, object> threeParameters, MethodInfo? legacyMethodInfo = null)
+        public void RegisterThreeParameters(string methodName, Func<LogEventInfo, object?, object?, object?, object?> threeParameters, MethodInfo? legacyMethodInfo = null)
         {
             lock (_nameToMethodDetails)
             {
@@ -337,7 +337,7 @@ namespace NLog.Config
             }
         }
 
-        public void RegisterManyParameters(string methodName, Func<object[], object> manyParameters, int manyParameterMinCount, int manyParameterMaxCount, bool manyParameterWithLogEvent, MethodInfo? legacyMethodInfo = null)
+        public void RegisterManyParameters(string methodName, Func<object?[], object?> manyParameters, int manyParameterMinCount, int manyParameterMaxCount, bool manyParameterWithLogEvent, MethodInfo? legacyMethodInfo = null)
         {
             lock (_nameToMethodDetails)
             {
@@ -347,7 +347,7 @@ namespace NLog.Config
             }
         }
 
-        public Func<LogEventInfo, object>? TryCreateInstanceWithNoParameters(string methodName)
+        public Func<LogEventInfo, object?>? TryCreateInstanceWithNoParameters(string methodName)
         {
             lock (_nameToMethodDetails)
             {
@@ -358,7 +358,7 @@ namespace NLog.Config
             }
         }
 
-        public Func<LogEventInfo, object, object>? TryCreateInstanceWithOneParameter(string methodName)
+        public Func<LogEventInfo, object?, object?>? TryCreateInstanceWithOneParameter(string methodName)
         {
             lock (_nameToMethodDetails)
             {
@@ -369,7 +369,7 @@ namespace NLog.Config
             }
         }
 
-        public Func<LogEventInfo, object, object, object>? TryCreateInstanceWithTwoParameters(string methodName)
+        public Func<LogEventInfo, object?, object?, object?>? TryCreateInstanceWithTwoParameters(string methodName)
         {
             lock (_nameToMethodDetails)
             {
@@ -380,7 +380,7 @@ namespace NLog.Config
             }
         }
 
-        public Func<LogEventInfo, object, object, object, object>? TryCreateInstanceWithThreeParameters(string methodName)
+        public Func<LogEventInfo, object?, object?, object?, object?>? TryCreateInstanceWithThreeParameters(string methodName)
         {
             lock (_nameToMethodDetails)
             {
@@ -391,7 +391,7 @@ namespace NLog.Config
             }
         }
 
-        public Func<object[], object>? TryCreateInstanceWithManyParameters(string methodName, out int manyParameterMinCount, out int manyParameterMaxCount, out bool manyParameterWithLogEvent)
+        public Func<object?[], object?>? TryCreateInstanceWithManyParameters(string methodName, out int manyParameterMinCount, out int manyParameterMaxCount, out bool manyParameterWithLogEvent)
         {
             lock (_nameToMethodDetails)
             {
@@ -409,28 +409,28 @@ namespace NLog.Config
                         manyParameterMaxCount = 3;
                         manyParameterMinCount = methodDetails.TwoParameters is null ? 3 : 2;
                         manyParameterWithLogEvent = true;
-                        return new Func<object[], object>(args => methodDetails.ThreeParameters((LogEventInfo)args[0], args[1], args[2], args[3]));
+                        return new Func<object?[], object?>(args => methodDetails.ThreeParameters((LogEventInfo)(args[0] ?? throw new ArgumentNullException(nameof(LogEventInfo))), args[1], args[2], args[3]));
                     }
                     else if (methodDetails.TwoParameters != null)
                     {
                         manyParameterMaxCount = 2;
                         manyParameterMinCount = methodDetails.OneParameter is null ? 2 : 1;
                         manyParameterWithLogEvent = true;
-                        return new Func<object[], object>(args => methodDetails.TwoParameters((LogEventInfo)args[0], args[1], args[2]));
+                        return new Func<object?[], object?>(args => methodDetails.TwoParameters((LogEventInfo)(args[0] ?? throw new ArgumentNullException(nameof(LogEventInfo))), args[1], args[2]));
                     }
                     else if (methodDetails.OneParameter != null)
                     {
                         manyParameterMaxCount = 1;
                         manyParameterMinCount = methodDetails.NoParameters is null ? 1 : 0;
                         manyParameterWithLogEvent = true;
-                        return new Func<object[], object>(args => methodDetails.OneParameter((LogEventInfo)args[0], args[1]));
+                        return new Func<object?[], object?>(args => methodDetails.OneParameter((LogEventInfo)(args[0] ?? throw new ArgumentNullException(nameof(LogEventInfo))), args[1]));
                     }
                     else if (methodDetails.NoParameters != null)
                     {
                         manyParameterMaxCount = 0;
                         manyParameterMinCount = 0;
                         manyParameterWithLogEvent = true;
-                        return new Func<object[], object>(args => methodDetails.NoParameters((LogEventInfo)args[0]));
+                        return new Func<object?[], object?>(args => methodDetails.NoParameters((LogEventInfo)(args[0] ?? throw new ArgumentNullException(nameof(LogEventInfo)))));
                     }
                 }
                 manyParameterMinCount = 0;

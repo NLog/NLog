@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Conditions
 {
     /// <summary>
@@ -75,17 +77,13 @@ namespace NLog.Conditions
         /// <returns>The value of the conjunction operator.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
-            var bval1 = (bool)Left.Evaluate(context);
-            if (!bval1)
-            {
+            var leftValue = Left.Evaluate(context) ?? BoxedFalse;
+            if (!(bool)leftValue)
                 return BoxedFalse;
-            }
 
-            var bval2 = (bool)Right.Evaluate(context);
-            if (!bval2)
-            {
+            var rightValue = Right.Evaluate(context) ?? BoxedFalse;
+            if (!(bool)rightValue)
                 return BoxedFalse;
-            }
 
             return BoxedTrue;
         }

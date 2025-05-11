@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Conditions
 {
     /// <summary>
@@ -62,7 +64,8 @@ namespace NLog.Conditions
         /// <inheritdoc/>
         protected override object EvaluateNode(LogEventInfo context)
         {
-            return (bool)Expression.Evaluate(context) ? BoxedFalse : BoxedTrue;
+            var objectValue = Expression.Evaluate(context) ?? BoxedFalse;
+            return (bool)objectValue ? BoxedFalse : BoxedTrue;
         }
     }
 }

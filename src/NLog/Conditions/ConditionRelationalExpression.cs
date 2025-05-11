@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Conditions
 {
     using System;
@@ -84,8 +86,8 @@ namespace NLog.Conditions
         /// <inheritdoc/>
         protected override object EvaluateNode(LogEventInfo context)
         {
-            object v1 = LeftExpression.Evaluate(context);
-            object v2 = RightExpression.Evaluate(context);
+            var v1 = LeftExpression.Evaluate(context);
+            var v2 = RightExpression.Evaluate(context);
 
             return Compare(v1, v2, RelationalOperator) ? BoxedTrue : BoxedFalse;
         }
@@ -97,7 +99,7 @@ namespace NLog.Conditions
         /// <param name="rightValue">The second value.</param>
         /// <param name="relationalOperator">The relational operator.</param>
         /// <returns>Result of the given relational operator.</returns>
-        private static bool Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
+        private static bool Compare(object? leftValue, object? rightValue, ConditionRelationalOperator relationalOperator)
         {
             System.Collections.IComparer comparer = StringComparer.Ordinal;
             PromoteTypes(ref leftValue, ref rightValue);
@@ -131,7 +133,7 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="leftValue"></param>
         /// <param name="rightValue"></param>
-        private static void PromoteTypes(ref object leftValue, ref object rightValue)
+        private static void PromoteTypes(ref object? leftValue, ref object? rightValue)
         {
             if (ReferenceEquals(leftValue, rightValue) || leftValue is null || rightValue is null)
             {

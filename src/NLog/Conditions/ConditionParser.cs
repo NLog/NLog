@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Conditions
 {
     using System;
@@ -69,6 +71,7 @@ namespace NLog.Conditions
         /// <returns>The root of the expression syntax tree which can be used to get the value of the condition in a specified context.</returns>
         public static ConditionExpression ParseExpression(string expressionText)
         {
+            Guard.ThrowIfNull(expressionText);
             return ParseExpression(expressionText, ConfigurationItemFactory.Default);
         }
 
@@ -81,10 +84,7 @@ namespace NLog.Conditions
         /// <returns>The root of the expression syntax tree which can be used to get the value of the condition in a specified context.</returns>
         public static ConditionExpression ParseExpression(string expressionText, ConfigurationItemFactory configurationItemFactories)
         {
-            if (expressionText is null)
-            {
-                return null;
-            }
+            Guard.ThrowIfNull(expressionText);
 
             var parser = new ConditionParser(new SimpleStringReader(expressionText), configurationItemFactories);
             ConditionExpression expression = parser.ParseExpression();
@@ -109,7 +109,6 @@ namespace NLog.Conditions
         {
             var parser = new ConditionParser(stringReader, configurationItemFactories);
             ConditionExpression expression = parser.ParseExpression();
-
             return expression;
         }
 
@@ -152,30 +151,30 @@ namespace NLog.Conditions
             // Attempt to lookup functionName that can handle the provided number of input-parameters
             if (inputParameters.Count == 0)
             {
-                Func<LogEventInfo, object> method = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithNoParameters(functionName);
+                Func<LogEventInfo, object?>? method = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithNoParameters(functionName);
                 if (method != null)
                     return ConditionMethodExpression.CreateMethodNoParameters(functionName, method);
             }
             else if (inputParameters.Count == 1)
             {
-                Func<LogEventInfo, object, object> method = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithOneParameter(functionName);
+                Func<LogEventInfo, object?, object?>? method = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithOneParameter(functionName);
                 if (method != null)
                     return ConditionMethodExpression.CreateMethodOneParameter(functionName, method, inputParameters);
             }
             else if (inputParameters.Count == 2)
             {
-                Func<LogEventInfo, object, object, object> method = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithTwoParameters(functionName);
+                Func<LogEventInfo, object?, object?, object?>? method = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithTwoParameters(functionName);
                 if (method != null)
                     return ConditionMethodExpression.CreateMethodTwoParameters(functionName, method, inputParameters);
             }
             else if (inputParameters.Count == 3)
             {
-                Func<LogEventInfo, object, object, object, object> method = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithThreeParameters(functionName);
+                Func<LogEventInfo, object?, object?, object?, object?>? method = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithThreeParameters(functionName);
                 if (method != null)
                     return ConditionMethodExpression.CreateMethodThreeParameters(functionName, method, inputParameters);
             }
 
-            Func<object[], object> manyParameterMethod = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithManyParameters(functionName, out var manyParameterMinCount, out var manyParameterMaxCount, out var manyParameterWithLogEvent);
+            Func<object?[], object?>? manyParameterMethod = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithManyParameters(functionName, out var manyParameterMinCount, out var manyParameterMaxCount, out var manyParameterWithLogEvent);
             if (manyParameterMethod is null)
                 throw new ConditionParseException($"Unknown condition method '{functionName}'");
             if (manyParameterMinCount > inputParameters.Count)
@@ -213,7 +212,8 @@ namespace NLog.Conditions
 
             if (_tokenizer.TokenType == ConditionTokenType.String)
             {
-                var simpleLayout = new SimpleLayout(_tokenizer.StringTokenValue, _configurationItemFactory);
+                var stringTokenValue = _tokenizer.TokenValue.Substring(1, _tokenizer.TokenValue.Length - 2).Replace("''", "'");
+                var simpleLayout = new SimpleLayout(stringTokenValue, _configurationItemFactory);
                 _tokenizer.GetNextToken();
                 if (simpleLayout.IsFixedText)
                     return new ConditionLiteralExpression(simpleLayout.FixedText);
@@ -225,7 +225,7 @@ namespace NLog.Conditions
             {
                 string keyword = _tokenizer.EatKeyword();
 
-                if (TryPlainKeywordToExpression(keyword, out var expression))
+                if (TryPlainKeywordToExpression(keyword, out var expression) && expression != null)
                 {
                     return expression;
                 }
@@ -248,7 +248,7 @@ namespace NLog.Conditions
         /// <param name="keyword"></param>
         /// <param name="expression"></param>
         /// <returns>success?</returns>
-        private bool TryPlainKeywordToExpression(string keyword, out ConditionExpression expression)
+        private bool TryPlainKeywordToExpression(string keyword, out ConditionExpression? expression)
         {
             if (string.Equals(keyword, "level", StringComparison.OrdinalIgnoreCase))
             {

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Conditions
 {
     using System;
@@ -57,7 +59,7 @@ namespace NLog.Conditions
         }
 
         /// <inheritdoc />
-        protected override object EvaluateNode(LogEventInfo context)
+        protected override object? EvaluateNode(LogEventInfo context)
         {
             return _method.EvaluateNode(context);
         }
@@ -82,25 +84,25 @@ namespace NLog.Conditions
             return sb.ToString();
         }
 
-        public static ConditionMethodExpression CreateMethodNoParameters(string conditionMethodName, Func<LogEventInfo, object> method)
+        public static ConditionMethodExpression CreateMethodNoParameters(string conditionMethodName, Func<LogEventInfo, object?> method)
         {
             return new ConditionMethodExpression(conditionMethodName, ArrayHelper.Empty<ConditionExpression>(), new EvaluateMethodNoParameters(method));
         }
 
-        public static ConditionMethodExpression CreateMethodOneParameter(string conditionMethodName, Func<LogEventInfo, object, object> method, IList<ConditionExpression> methodParameters)
+        public static ConditionMethodExpression CreateMethodOneParameter(string conditionMethodName, Func<LogEventInfo, object?, object?> method, IList<ConditionExpression> methodParameters)
         {
             var methodParameter = methodParameters[0];
             return new ConditionMethodExpression(conditionMethodName, methodParameters, new EvaluateMethodOneParameter(method, (logEvent) => methodParameter.Evaluate(logEvent)));
         }
 
-        public static ConditionMethodExpression CreateMethodTwoParameters(string conditionMethodName, Func<LogEventInfo, object, object, object> method, IList<ConditionExpression> methodParameters)
+        public static ConditionMethodExpression CreateMethodTwoParameters(string conditionMethodName, Func<LogEventInfo, object?, object?, object?> method, IList<ConditionExpression> methodParameters)
         {
             var methodParameterArg1 = methodParameters[0];
             var methodParameterArg2 = methodParameters[1];
             return new ConditionMethodExpression(conditionMethodName, methodParameters, new EvaluateMethodTwoParameters(method, (logEvent) => methodParameterArg1.Evaluate(logEvent), (logEvent) => methodParameterArg2.Evaluate(logEvent)));
         }
 
-        public static ConditionMethodExpression CreateMethodThreeParameters(string conditionMethodName, Func<LogEventInfo, object, object, object, object> method, IList<ConditionExpression> methodParameters)
+        public static ConditionMethodExpression CreateMethodThreeParameters(string conditionMethodName, Func<LogEventInfo, object?, object?, object?, object?> method, IList<ConditionExpression> methodParameters)
         {
             var methodParameterArg1 = methodParameters[0];
             var methodParameterArg2 = methodParameters[1];
@@ -108,26 +110,26 @@ namespace NLog.Conditions
             return new ConditionMethodExpression(conditionMethodName, methodParameters, new EvaluateMethodThreeParameters(method, (logEvent) => methodParameterArg1.Evaluate(logEvent), (logEvent) => methodParameterArg2.Evaluate(logEvent), (logEvent) => methodParameterArg3.Evaluate(logEvent)));
         }
 
-        public static ConditionMethodExpression CreateMethodManyParameters(string conditionMethodName, Func<object[], object> method, IList<ConditionExpression> methodParameters, bool includeLogEvent)
+        public static ConditionMethodExpression CreateMethodManyParameters(string conditionMethodName, Func<object?[], object?> method, IList<ConditionExpression> methodParameters, bool includeLogEvent)
         {
             return new ConditionMethodExpression(conditionMethodName, methodParameters, new EvaluateMethodManyParameters(method, methodParameters, includeLogEvent));
         }
 
         private interface IEvaluateMethod
         {
-            object EvaluateNode(LogEventInfo logEvent);
+            object? EvaluateNode(LogEventInfo logEvent);
         }
 
         private sealed class EvaluateMethodNoParameters : IEvaluateMethod
         {
-            private readonly Func<LogEventInfo, object> _method;
+            private readonly Func<LogEventInfo, object?> _method;
 
-            public EvaluateMethodNoParameters(Func<LogEventInfo, object> method)
+            public EvaluateMethodNoParameters(Func<LogEventInfo, object?> method)
             {
                 _method = Guard.ThrowIfNull(method);
             }
 
-            public object EvaluateNode(LogEventInfo logEvent)
+            public object? EvaluateNode(LogEventInfo logEvent)
             {
                 return _method(logEvent);
             }
@@ -135,16 +137,16 @@ namespace NLog.Conditions
 
         private sealed class EvaluateMethodOneParameter : IEvaluateMethod
         {
-            private readonly Func<LogEventInfo, object, object> _method;
-            private readonly Func<LogEventInfo, object> _methodParameter;
+            private readonly Func<LogEventInfo, object?, object?> _method;
+            private readonly Func<LogEventInfo, object?> _methodParameter;
 
-            public EvaluateMethodOneParameter(Func<LogEventInfo, object, object> method, Func<LogEventInfo, object> methodParameter)
+            public EvaluateMethodOneParameter(Func<LogEventInfo, object?, object?> method, Func<LogEventInfo, object?> methodParameter)
             {
                 _method = Guard.ThrowIfNull(method);
                 _methodParameter = Guard.ThrowIfNull(methodParameter);
             }
 
-            public object EvaluateNode(LogEventInfo logEvent)
+            public object? EvaluateNode(LogEventInfo logEvent)
             {
                 var inputParameter = _methodParameter(logEvent);
                 return _method(logEvent, inputParameter);
@@ -153,18 +155,18 @@ namespace NLog.Conditions
 
         private sealed class EvaluateMethodTwoParameters : IEvaluateMethod
         {
-            private readonly Func<LogEventInfo, object, object, object> _method;
-            private readonly Func<LogEventInfo, object> _methodParameterArg1;
-            private readonly Func<LogEventInfo, object> _methodParameterArg2;
+            private readonly Func<LogEventInfo, object?, object?, object?> _method;
+            private readonly Func<LogEventInfo, object?> _methodParameterArg1;
+            private readonly Func<LogEventInfo, object?> _methodParameterArg2;
 
-            public EvaluateMethodTwoParameters(Func<LogEventInfo, object, object, object> method, Func<LogEventInfo, object> methodParameterArg1, Func<LogEventInfo, object> methodParameterArg2)
+            public EvaluateMethodTwoParameters(Func<LogEventInfo, object?, object?, object?> method, Func<LogEventInfo, object?> methodParameterArg1, Func<LogEventInfo, object?> methodParameterArg2)
             {
                 _method = Guard.ThrowIfNull(method);
                 _methodParameterArg1 = Guard.ThrowIfNull(methodParameterArg1);
                 _methodParameterArg2 = Guard.ThrowIfNull(methodParameterArg2);
             }
 
-            public object EvaluateNode(LogEventInfo logEvent)
+            public object? EvaluateNode(LogEventInfo logEvent)
             {
                 var inputParameter1 = _methodParameterArg1(logEvent);
                 var inputParameter2 = _methodParameterArg2(logEvent);
@@ -174,12 +176,12 @@ namespace NLog.Conditions
 
         private sealed class EvaluateMethodThreeParameters : IEvaluateMethod
         {
-            private readonly Func<LogEventInfo, object, object, object, object> _method;
-            private readonly Func<LogEventInfo, object> _methodParameterArg1;
-            private readonly Func<LogEventInfo, object> _methodParameterArg2;
-            private readonly Func<LogEventInfo, object> _methodParameterArg3;
+            private readonly Func<LogEventInfo, object?, object?, object?, object?> _method;
+            private readonly Func<LogEventInfo, object?> _methodParameterArg1;
+            private readonly Func<LogEventInfo, object?> _methodParameterArg2;
+            private readonly Func<LogEventInfo, object?> _methodParameterArg3;
 
-            public EvaluateMethodThreeParameters(Func<LogEventInfo, object, object, object, object> method, Func<LogEventInfo, object> methodParameterArg1, Func<LogEventInfo, object> methodParameterArg2, Func<LogEventInfo, object> methodParameterArg3)
+            public EvaluateMethodThreeParameters(Func<LogEventInfo, object?, object?, object?, object?> method, Func<LogEventInfo, object?> methodParameterArg1, Func<LogEventInfo, object?> methodParameterArg2, Func<LogEventInfo, object?> methodParameterArg3)
             {
                 _method = Guard.ThrowIfNull(method);
                 _methodParameterArg1 = Guard.ThrowIfNull(methodParameterArg1);
@@ -187,7 +189,7 @@ namespace NLog.Conditions
                 _methodParameterArg3 = Guard.ThrowIfNull(methodParameterArg3);
             }
 
-            public object EvaluateNode(LogEventInfo logEvent)
+            public object? EvaluateNode(LogEventInfo logEvent)
             {
                 var inputParameter1 = _methodParameterArg1(logEvent);
                 var inputParameter2 = _methodParameterArg2(logEvent);
@@ -198,21 +200,21 @@ namespace NLog.Conditions
 
         private sealed class EvaluateMethodManyParameters : IEvaluateMethod
         {
-            private readonly Func<object[], object> _method;
+            private readonly Func<object?[], object?> _method;
             private readonly IList<ConditionExpression> _methodParameters;
             private readonly bool _includeLogEvent;
 
-            public EvaluateMethodManyParameters(Func<object[], object> method, IList<ConditionExpression> inputParameters, bool includeLogEvent)
+            public EvaluateMethodManyParameters(Func<object?[], object?> method, IList<ConditionExpression> inputParameters, bool includeLogEvent)
             {
                 _method = Guard.ThrowIfNull(method);
                 _methodParameters = Guard.ThrowIfNull(inputParameters);
                 _includeLogEvent = includeLogEvent;
             }
 
-            public object EvaluateNode(LogEventInfo logEvent)
+            public object? EvaluateNode(LogEventInfo logEvent)
             {
                 var parameterIndex = _includeLogEvent ? 1 : 0;
-                var inputParameters = new object[_methodParameters.Count + parameterIndex];
+                var inputParameters = new object?[_methodParameters.Count + parameterIndex];
                 if (_includeLogEvent)
                     inputParameters[0] = logEvent;
                 for (int i = 0; i < _methodParameters.Count; ++i)

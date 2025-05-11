@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Conditions
 {
     using System;
@@ -45,7 +47,7 @@ namespace NLog.Conditions
         /// Initializes a new instance of the <see cref="ConditionLiteralExpression" /> class.
         /// </summary>
         /// <param name="literalValue">Literal value.</param>
-        public ConditionLiteralExpression(object literalValue)
+        public ConditionLiteralExpression(object? literalValue)
         {
             LiteralValue = literalValue;
         }
@@ -54,7 +56,7 @@ namespace NLog.Conditions
         /// Gets the literal value.
         /// </summary>
         /// <value>The literal value.</value>
-        public object LiteralValue { get; }
+        public object? LiteralValue { get; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -68,6 +70,7 @@ namespace NLog.Conditions
             {
                 return $"'{stringValue}'";
             }
+
             if (LiteralValue is char charValue)
             {
                 return $"'{charValue}'";
@@ -81,7 +84,7 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="context">Evaluation context. Ignored.</param>
         /// <returns>The literal value as passed in the constructor.</returns>
-        protected override object EvaluateNode(LogEventInfo context)
+        protected override object? EvaluateNode(LogEventInfo context)
         {
             return LiteralValue;
         }

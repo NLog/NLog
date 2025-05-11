@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Conditions
 {
     /// <summary>
@@ -74,17 +76,13 @@ namespace NLog.Conditions
         /// <returns>The value of the alternative operator.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
-            var bval1 = (bool)LeftExpression.Evaluate(context);
-            if (bval1)
-            {
+            var leftValue = LeftExpression.Evaluate(context) ?? BoxedFalse;
+            if ((bool)leftValue)
                 return BoxedTrue;
-            }
 
-            var bval2 = (bool)RightExpression.Evaluate(context);
-            if (bval2)
-            {
+            var rightValue = RightExpression.Evaluate(context) ?? BoxedFalse;
+            if ((bool)rightValue)
                 return BoxedTrue;
-            }
 
             return BoxedFalse;
         }
