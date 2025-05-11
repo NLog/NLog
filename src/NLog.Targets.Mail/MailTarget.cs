@@ -528,12 +528,12 @@ namespace NLog.Targets
         {
             if (To is null || ReferenceEquals(To, Layout.Empty))
             {
-                throw new NLogConfigurationException($"MailTarget '{nameof(To)}'-property must be assigned. Required for sending email.");
+                throw new NLogConfigurationException($"MailTarget '{nameof(To)}'-property must be assigned. Destination To-address required for email.");
             }
 
             if (From is null || ReferenceEquals(From, Layout.Empty))
             {
-                throw new NLogConfigurationException($"MailTarget '{nameof(From)}'-property must be assigned. Required for sending email.");
+                throw new NLogConfigurationException($"MailTarget '{nameof(From)}'-property must be assigned. Sender From-address required for email.");
             }
 
             if (!UseSystemNetMailSettings && DeliveryMethod == SmtpDeliveryMethod.Network && (SmtpServer is null || ReferenceEquals(SmtpServer, Layout.Empty)))

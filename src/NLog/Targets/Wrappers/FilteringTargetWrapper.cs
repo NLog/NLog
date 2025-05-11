@@ -111,7 +111,7 @@ namespace NLog.Targets.Wrappers
         protected override void InitializeTarget()
         {
             if (Filter is null)
-                throw new NLogConfigurationException($"FilteringTargetWrapper Filter-property must be assigned. Filtering of LogEvents not possible.");
+                throw new NLogConfigurationException($"FilteringTargetWrapper Filter-property must be assigned. Filter LogEvents using blank Filter not supported.");
 
             base.InitializeTarget();
         }

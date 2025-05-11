@@ -99,7 +99,7 @@ namespace NLog.Targets.Wrappers
         protected override void InitializeTarget()
         {
             if (Key is null || ReferenceEquals(Key, Layout.Empty))
-                throw new NLogConfigurationException($"GroupByTargetWrapper Key-property must be assigned. Grouping of LogEvents not possible.");
+                throw new NLogConfigurationException($"GroupByTargetWrapper Key-property must be assigned. Group LogEvents using blank Key not supported.");
 
             base.InitializeTarget();
         }

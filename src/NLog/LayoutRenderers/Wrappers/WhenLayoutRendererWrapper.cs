@@ -103,7 +103,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
         private bool ShouldRenderInner(LogEventInfo logEvent)
         {
-            return When is null || true.Equals(When.Evaluate(logEvent));
+            return When is null || ReferenceEquals(When, ConditionExpression.Empty) || true.Equals(When.Evaluate(logEvent));
         }
 
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)

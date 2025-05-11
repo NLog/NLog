@@ -147,7 +147,7 @@ namespace NLog.Layouts
         /// Disables <see cref="ThreadAgnosticAttribute"/> to capture volatile LogEvent-properties from active thread context
         /// </summary>
         public LayoutRenderer DisableThreadAgnostic => IncludeEventProperties ? _enableThreadAgnosticImmutable : null;
-        private static readonly LayoutRenderer _enableThreadAgnosticImmutable = new ExceptionDataLayoutRenderer() { Item = string.Empty };
+        private static readonly LayoutRenderer _enableThreadAgnosticImmutable = new ExceptionDataLayoutRenderer() { Item = " " };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SyslogLayout" /> class.

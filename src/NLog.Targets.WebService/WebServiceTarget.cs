@@ -469,7 +469,7 @@ namespace NLog.Targets
             base.InitializeTarget();
 
             if (Url is null || (Url.IsFixed && Url.FixedValue is null))
-                throw new NLogConfigurationException("WebServiceTarget Url-property must be assigned. Url is needed for WebRequest.");
+                throw new NLogConfigurationException("WebServiceTarget Url-property must be assigned. WebRequest requires Url-address.");
         }
 
         /// <inheritdoc/>
