@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Conditions
 {
     /// <summary>
@@ -49,7 +51,7 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="context">Evaluation context.</param>
         /// <returns>The <see cref="LogEventInfo.Exception"/> object.</returns>
-        protected override object EvaluateNode(LogEventInfo context)
+        protected override object? EvaluateNode(LogEventInfo context)
         {
             return context.Exception;
         }

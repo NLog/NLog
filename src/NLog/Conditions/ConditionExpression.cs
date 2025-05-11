@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Conditions
 {
     using System;
@@ -63,7 +65,7 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="context">Evaluation context.</param>
         /// <returns>Expression result.</returns>
-        public object Evaluate(LogEventInfo context)
+        public object? Evaluate(LogEventInfo context)
         {
             try
             {
@@ -92,6 +94,6 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="context">Evaluation context.</param>
         /// <returns>Expression result.</returns>
-        protected abstract object EvaluateNode(LogEventInfo context);
+        protected abstract object? EvaluateNode(LogEventInfo context);
     }
 }

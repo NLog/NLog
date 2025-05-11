@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Conditions
 {
     using System;
@@ -64,7 +66,7 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="innerException">The inner exception.</param>
-        public ConditionEvaluationException(string message, Exception innerException)
+        public ConditionEvaluationException(string message, Exception? innerException)
             : base(message, innerException)
         {
         }

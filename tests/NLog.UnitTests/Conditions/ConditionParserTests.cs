@@ -33,6 +33,7 @@
 
 namespace NLog.UnitTests.Conditions
 {
+    using System;
     using NLog.Conditions;
     using NLog.Config;
     using NLog.Internal;
@@ -45,7 +46,7 @@ namespace NLog.UnitTests.Conditions
         [Fact]
         public void ParseNullText()
         {
-            Assert.Null(ConditionParser.ParseExpression(null));
+            Assert.Throws<ArgumentNullException>(() => ConditionParser.ParseExpression(null));
         }
 
         [Fact]
