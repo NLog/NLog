@@ -73,10 +73,8 @@ namespace NLog.Internal
         public void Dispose()
         {
             if (!ReferenceEquals(_builder.Item, _appendTarget))
-            {
                 _builder.Item.CopyTo(_appendTarget);
-                _builder.Dispose();
-            }
+            _builder.Dispose();
         }
     }
 }
