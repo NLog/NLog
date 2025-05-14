@@ -94,12 +94,19 @@ namespace NLog.Config
             }
 
             var rulesList = new List<ValidatedConfigurationElement>();
+            var rulesInsertPosition = LoggingRules.Count;
 
             //parse all other direct elements
             foreach (var child in validatedConfig.ValidChildren)
             {
                 if (child.MatchesName("rules"))
                 {
+                    if (rulesList.Count == 0)
+                    {
+                        // Give higher priority to LoggingRules from current config-element
+                        // But until having read first LoggingRule, then allow new LoggingRules from include-files 
+                        rulesInsertPosition = LoggingRules.Count;
+                    }
                     //postpone parsing <rules> to the end
                     rulesList.Add(child);
                 }
@@ -117,7 +124,7 @@ namespace NLog.Config
 
             foreach (var ruleChild in rulesList)
             {
-                ParseRulesElement(ruleChild, LoggingRules);
+                ParseRulesElement(ruleChild, LoggingRules, rulesInsertPosition);
             }
         }
 
@@ -523,12 +530,15 @@ namespace NLog.Config
         /// <summary>
         /// Parse {Rules} xml element
         /// </summary>
-        /// <param name="rulesElement"></param>
-        /// <param name="rulesCollection">Rules are added to this parameter.</param>
-        private void ParseRulesElement(ValidatedConfigurationElement rulesElement, IList<LoggingRule> rulesCollection)
+        private void ParseRulesElement(ValidatedConfigurationElement rulesElement, IList<LoggingRule> rulesCollection, int rulesInsertPosition)
         {
             InternalLogger.Trace("ParseRulesElement");
             rulesElement.AssertName("rules");
+
+            if (rulesInsertPosition > rulesCollection.Count)
+            {
+                rulesInsertPosition = rulesCollection.Count;
+            }
 
             foreach (var childItem in rulesElement.ValidChildren)
             {
@@ -537,7 +547,7 @@ namespace NLog.Config
                 {
                     lock (rulesCollection)
                     {
-                        rulesCollection.Add(loggingRule);
+                        rulesCollection.Insert(rulesInsertPosition++, loggingRule);
                     }
                 }
             }
