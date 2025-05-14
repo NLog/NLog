@@ -69,6 +69,7 @@ namespace NLog.UnitTests.Config
             Directory.CreateDirectory(tempDir);
 
             CreateConfigFile(tempDir, "included.nlog", @"<nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'>
+                    <rules><logger name='*' maxLevel='Debug' writeTo='' final='true' /></rules>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
             </nlog>");
 
@@ -86,6 +87,8 @@ namespace NLog.UnitTests.Config
                 LogManager.Configuration = new XmlLoggingConfiguration(fileToLoad);
 
                 LogManager.GetLogger("A").Debug("aaa");
+                AssertDebugLastMessage("debug", "");
+                LogManager.GetLogger("A").Info("aaa");
                 AssertDebugLastMessage("debug", "aaa");
             }
             finally
