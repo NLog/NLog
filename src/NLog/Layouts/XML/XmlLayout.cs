@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Layouts
 {
     using NLog.Config;
@@ -52,7 +54,7 @@ namespace NLog.Layouts
         /// Initializes a new instance of the <see cref="XmlLayout"/> class.
         /// </summary>
         public XmlLayout()
-            : this(DefaultRootElementName, null)
+            : this(DefaultRootElementName, Layout.Empty)
         {
         }
 

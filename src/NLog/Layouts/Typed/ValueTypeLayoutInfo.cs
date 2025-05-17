@@ -31,14 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Globalization;
-using System.Text;
-using NLog.Config;
-using NLog.Internal;
+#nullable enable
 
 namespace NLog.Layouts
 {
+    using System;
+    using System.Globalization;
+    using System.Text;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// Typed Value that is easily configured from NLog.config file
     /// </summary>
@@ -77,7 +79,7 @@ namespace NLog.Layouts
         /// Gets or sets the result value type, for conversion of layout rendering output
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
-        public Type ValueType
+        public Type? ValueType
         {
             get => _valueType;
             [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow ValueType assign from config", "IL2067")]
@@ -93,14 +95,14 @@ namespace NLog.Layouts
                 _useDefaultWhenEmptyString = UseDefaultWhenEmptyString(_valueType, _defaultValue);
             }
         }
-        private Type _valueType;
-        private Func<object> _createDefaultValue;
+        private Type? _valueType;
+        private Func<object>? _createDefaultValue;
 
         /// <summary>
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
-        public Layout DefaultValue
+        public Layout? DefaultValue
         {
             get => _defaultValue;
             set
@@ -110,10 +112,10 @@ namespace NLog.Layouts
                 _useDefaultWhenEmptyString = UseDefaultWhenEmptyString(_valueType, _defaultValue);
             }
         }
-        private Layout _defaultValue;
+        private Layout? _defaultValue;
         private bool _useDefaultWhenEmptyString;
 
-        private static bool UseDefaultWhenEmptyString(Type valueType, Layout defaultValue)
+        private static bool UseDefaultWhenEmptyString(Type? valueType, Layout? defaultValue)
         {
             if (valueType is null || typeof(string).Equals(valueType) || typeof(object).Equals(valueType))
             {
@@ -146,7 +148,7 @@ namespace NLog.Layouts
         /// Gets or sets format used for parsing parameter string-value for type-conversion
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public string ValueParseFormat
+        public string? ValueParseFormat
         {
             get => _valueParseFormat;
             set
@@ -156,13 +158,13 @@ namespace NLog.Layouts
                 _defaultLayoutValue = null;
             }
         }
-        private string _valueParseFormat;
+        private string? _valueParseFormat;
 
         /// <summary>
         /// Gets or sets the culture used for parsing parameter string-value for type-conversion
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public CultureInfo ValueParseCulture
+        public CultureInfo? ValueParseCulture
         {
             get => _valueParseCulture;
             set
@@ -172,14 +174,14 @@ namespace NLog.Layouts
                 _defaultLayoutValue = null;
             }
         }
-        private CultureInfo _valueParseCulture;
+        private CultureInfo? _valueParseCulture;
 
         /// <summary>
         /// Render Result Value
         /// </summary>
         /// <param name="logEvent">Log event for rendering</param>
         /// <returns>Result value when available, else fallback to defaultValue</returns>
-        public object RenderValue(LogEventInfo logEvent)
+        public object? RenderValue(LogEventInfo logEvent)
         {
             var objectValue = LayoutValue.RenderObjectValue(logEvent, null);
             if (objectValue is null || (_useDefaultWhenEmptyString && StringHelpers.IsNullOrEmptyString(objectValue)))
@@ -191,12 +193,12 @@ namespace NLog.Layouts
         }
 
         private ILayoutTypeValue LayoutValue => _layoutValue ?? (_layoutValue = BuildLayoutTypeValue(Layout));
-        private ILayoutTypeValue _layoutValue;
+        private ILayoutTypeValue? _layoutValue;
 
         private ILayoutTypeValue DefaultLayoutValue => _defaultLayoutValue ?? (_defaultLayoutValue = BuildLayoutTypeValue(DefaultValue));
-        private ILayoutTypeValue _defaultLayoutValue;
+        private ILayoutTypeValue? _defaultLayoutValue;
 
-        private ILayoutTypeValue BuildLayoutTypeValue(Layout layout)
+        private ILayoutTypeValue BuildLayoutTypeValue(Layout? layout)
         {
             if (layout is null)
             {
@@ -211,7 +213,7 @@ namespace NLog.Layouts
                 }
                 else
                 {
-                    layout = SimpleLayout.Empty;
+                    layout = Layout.Empty;
                 }
             }
 
@@ -233,16 +235,16 @@ namespace NLog.Layouts
 
         private sealed class FixedLayoutTypeValue : ILayoutTypeValue
         {
-            private readonly object _fixedValue;
+            private readonly object? _fixedValue;
             public ILayoutTypeValue InnerLayout => this;
-            public Type InnerType => _fixedValue?.GetType();
+            public Type? InnerType => _fixedValue?.GetType();
 
             public FixedLayoutTypeValue(object fixedValue)
             {
                 _fixedValue = fixedValue;
             }
 
-            public object RenderObjectValue(LogEventInfo logEvent, StringBuilder stringBuilder)
+            public object? RenderObjectValue(LogEventInfo logEvent, StringBuilder? stringBuilder)
             {
                 return _fixedValue;
             }
@@ -264,7 +266,7 @@ namespace NLog.Layouts
                 _innerLayout = layout;
             }
 
-            public object RenderObjectValue(LogEventInfo logEvent, StringBuilder stringBuilder)
+            public object RenderObjectValue(LogEventInfo logEvent, StringBuilder? stringBuilder)
             {
                 return _innerLayout.Render(logEvent);
             }

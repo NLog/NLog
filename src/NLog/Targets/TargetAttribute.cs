@@ -31,10 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets
 {
     using System;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Marks class as logging target and attaches a type-alias name for use in NLog configuration.

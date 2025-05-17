@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Layouts
 {
     using System.Collections.Generic;
@@ -58,7 +60,7 @@ namespace NLog.Layouts
         private string _actualColumnDelimiter;
         private string _doubleQuoteChar;
         private char[] _quotableCharacters;
-        private Layout[] _precalculateLayouts;
+        private Layout[]? _precalculateLayouts;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CsvLayout"/> class.
@@ -68,6 +70,7 @@ namespace NLog.Layouts
             Layout = this;
             Header = new CsvHeaderLayout(this);
             Footer = null;
+            ResolveQuoteChars(QuoteChar, out _actualColumnDelimiter, out _doubleQuoteChar, out _quotableCharacters);
         }
 
         /// <summary>
@@ -106,7 +109,7 @@ namespace NLog.Layouts
         /// Gets or sets the custom column delimiter value (valid when <see cref="Delimiter"/> is set to <see cref="CsvColumnDelimiterMode.Custom"/>).
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public string CustomColumnDelimiter { get; set; }
+        public string CustomColumnDelimiter { get; set; } = string.Empty;
 
         /// <inheritdoc/>
         protected override void InitializeLayout()
@@ -118,51 +121,51 @@ namespace NLog.Layouts
 
             base.InitializeLayout();
 
-            switch (Delimiter)
-            {
-                case CsvColumnDelimiterMode.Auto:
-                    _actualColumnDelimiter = CultureInfo.CurrentCulture.TextInfo.ListSeparator;
-                    break;
+            ResolveQuoteChars(QuoteChar, out _actualColumnDelimiter, out _doubleQuoteChar, out _quotableCharacters);
 
-                case CsvColumnDelimiterMode.Comma:
-                    _actualColumnDelimiter = ",";
-                    break;
-
-                case CsvColumnDelimiterMode.Semicolon:
-                    _actualColumnDelimiter = ";";
-                    break;
-
-                case CsvColumnDelimiterMode.Pipe:
-                    _actualColumnDelimiter = "|";
-                    break;
-
-                case CsvColumnDelimiterMode.Tab:
-                    _actualColumnDelimiter = "\t";
-                    break;
-
-                case CsvColumnDelimiterMode.Space:
-                    _actualColumnDelimiter = " ";
-                    break;
-
-                case CsvColumnDelimiterMode.Custom:
-                    _actualColumnDelimiter = CustomColumnDelimiter;
-                    break;
-            }
-
-            _quotableCharacters = (QuoteChar + "\r\n" + _actualColumnDelimiter).ToCharArray();
-            _doubleQuoteChar = QuoteChar + QuoteChar;
             _precalculateLayouts = ResolveLayoutPrecalculation(Columns.Select(cln => cln.Layout));
 
             foreach (var csvColumn in Columns)
             {
                 if (string.IsNullOrEmpty(csvColumn.Name))
                     throw new NLogConfigurationException("CsvLayout: Contains invalid CsvColumn with unassigned Name-property");
-
-                if (csvColumn.Layout is null)
-                {
-                    Common.InternalLogger.Warn("CsvLayout: Contains invalid Column(Name={0}) with unassigned Layout-property.", csvColumn.Name);
-                }
             }
+        }
+
+        private void ResolveQuoteChars(string quoteChar, out string actualColumnDelimiter, out string doubleQuoteChar, out char[] quotableCharacters)
+        {
+            actualColumnDelimiter = ResolveColumnDelimiter(Delimiter);
+            quotableCharacters = (quoteChar + "\r\n" + actualColumnDelimiter).ToCharArray();
+            doubleQuoteChar = quoteChar + quoteChar;
+        }
+
+        private string ResolveColumnDelimiter(CsvColumnDelimiterMode delimiter)
+        {
+            switch (delimiter)
+            {
+                case CsvColumnDelimiterMode.Auto:
+                    return CultureInfo.CurrentCulture.TextInfo.ListSeparator;
+
+                case CsvColumnDelimiterMode.Comma:
+                    return ",";
+
+                case CsvColumnDelimiterMode.Semicolon:
+                    return ";";
+
+                case CsvColumnDelimiterMode.Pipe:
+                    return "|";
+
+                case CsvColumnDelimiterMode.Tab:
+                    return "\t";
+
+                case CsvColumnDelimiterMode.Space:
+                    return " ";
+
+                case CsvColumnDelimiterMode.Custom:
+                    return string.IsNullOrEmpty(CustomColumnDelimiter) ? ";" : CustomColumnDelimiter;
+            }
+
+            return ";";
         }
 
         /// <inheritdoc/>
@@ -275,7 +278,7 @@ namespace NLog.Layouts
         internal sealed class CsvHeaderLayout : Layout
         {
             private readonly CsvLayout _parent;
-            private string _headerOutput;
+            private string? _headerOutput;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="CsvHeaderLayout"/> class.

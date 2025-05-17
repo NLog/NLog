@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Layouts
 {
     using System;
@@ -49,7 +51,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlAttribute" /> class.
         /// </summary>
-        public XmlAttribute() : this(null, null, true) { }
+        public XmlAttribute() : this(string.Empty, Layout.Empty, true) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlAttribute" /> class.
@@ -76,8 +78,8 @@ namespace NLog.Layouts
         /// Gets or sets the name of the attribute.
         /// </summary>
         /// <docgen category='Layout Options' order='1' />
-        public string Name { get => _name; set => _name = XmlHelper.XmlConvertToElementName(value?.Trim()); }
-        private string _name;
+        public string Name { get => _name; set => _name = XmlHelper.XmlConvertToElementName(value?.Trim() ?? string.Empty); }
+        private string _name = string.Empty;
 
         /// <summary>
         /// Gets or sets the layout that will be rendered as the attribute's value.
@@ -89,13 +91,13 @@ namespace NLog.Layouts
         /// Gets or sets the result value type, for conversion of layout rendering output
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
-        public Type ValueType { get => _layoutInfo.ValueType; set => _layoutInfo.ValueType = value; }
+        public Type? ValueType { get => _layoutInfo.ValueType; set => _layoutInfo.ValueType = value; }
 
         /// <summary>
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
-        public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
+        public Layout? DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
         /// Gets or sets whether output should be encoded with Xml-string escaping, or be treated as valid xml-attribute-value

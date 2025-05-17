@@ -61,7 +61,7 @@ namespace NLog.Internal
 
         private void UpdateTargetName(Target item)
         {
-            if (!string.IsNullOrEmpty(_targetName))
+            if (_targetName != null && !string.IsNullOrEmpty(_targetName))
             {
                 item.Name = _targetName;
                 _targetName = string.Empty; // Mark that target-name has been used

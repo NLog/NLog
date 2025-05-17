@@ -932,11 +932,10 @@ namespace NLog.Config
 
             var targetNamesAtRules = new HashSet<string>(GetLoggingRulesThreadSafe().SelectMany(r => r.Targets).Select(t => t.Name));
             var allTargets = AllTargets;
-            var wrappedTargets = allTargets.OfType<WrapperTargetBase>().ToLookup(wt => wt.WrappedTarget, wt => wt);
-            var compoundTargets = allTargets.OfType<CompoundTargetBase>().SelectMany(wt => wt.Targets.Select(t => new KeyValuePair<Target, Target>(t, wt))).ToLookup(p => p.Key, p => p.Value);
+            ILookup<Target?, Target> wrappedTargets = allTargets.OfType<WrapperTargetBase>().ToLookup(wt => wt.WrappedTarget, wt => (Target)wt);
+            ILookup<Target?, Target> compoundTargets = allTargets.OfType<CompoundTargetBase>().SelectMany(wt => wt.Targets.Select(t => new KeyValuePair<Target?, Target>(t, wt))).ToLookup(p => p.Key, p => p.Value);
 
-            bool IsUnusedInList<T>(Target target1, ILookup<Target, T> targets)
-            where T : Target
+            bool IsUnusedInList(Target target1, ILookup<Target?, Target> targets)
             {
                 if (targets.Contains(target1))
                 {

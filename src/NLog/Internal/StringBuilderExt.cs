@@ -54,7 +54,7 @@ namespace NLog.Internal
         /// <param name="format">format string. If @, then serialize the value with the Default JsonConverter.</param>
         /// <param name="formatProvider">provider, for example culture</param>
         /// <param name="valueFormatter">NLog string.Format interface</param>
-        public static void AppendFormattedValue(this StringBuilder builder, object value, string format, IFormatProvider formatProvider, IValueFormatter valueFormatter)
+        public static void AppendFormattedValue(this StringBuilder builder, object? value, string? format, IFormatProvider? formatProvider, IValueFormatter valueFormatter)
         {
             if (value is string stringValue && string.IsNullOrEmpty(format))
             {

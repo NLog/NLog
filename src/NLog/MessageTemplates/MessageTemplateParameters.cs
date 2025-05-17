@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.MessageTemplates
 {
     using System;
@@ -78,20 +80,26 @@ namespace NLog.MessageTemplates
         /// </summary>
         /// <param name="message"><see cref="LogEventInfo.Message"/> including any parameter placeholders</param>
         /// <param name="parameters">All <see cref="LogEventInfo.Parameters"/></param>
-        internal MessageTemplateParameters(string message, object[] parameters)
+        internal MessageTemplateParameters(string message, object?[] parameters)
         {
-            var hasParameters = parameters?.Length > 0;
-            bool isPositional = hasParameters;
-            bool isValidTemplate = !hasParameters;
-            _parameters = hasParameters ? ParseMessageTemplate(message, parameters, out isPositional, out isValidTemplate) : ArrayHelper.Empty<MessageTemplateParameter>();
-            IsPositional = isPositional;
-            IsValidTemplate = isValidTemplate;
+            if (parameters is null || parameters.Length == 0)
+            {
+                _parameters = ArrayHelper.Empty<MessageTemplateParameter>();
+                IsPositional = false;
+                IsValidTemplate = true;
+            }
+            else
+            {
+                _parameters = ParseMessageTemplate(message, parameters, out var isPositional, out var isValidTemplate);
+                IsPositional = isPositional;
+                IsValidTemplate = isValidTemplate;
+            }
         }
 
         /// <summary>
         /// Constructor for named parameters that already has been parsed
         /// </summary>
-        internal MessageTemplateParameters(IList<MessageTemplateParameter> templateParameters, string message, object[] parameters)
+        internal MessageTemplateParameters(IList<MessageTemplateParameter> templateParameters, string message, object?[]? parameters)
         {
             _parameters = templateParameters ?? ArrayHelper.Empty<MessageTemplateParameter>();
             if (parameters != null && _parameters.Count != parameters.Length)
@@ -103,7 +111,7 @@ namespace NLog.MessageTemplates
         /// <summary>
         /// Create MessageTemplateParameter from <paramref name="parameters"/>
         /// </summary>
-        private static IList<MessageTemplateParameter> ParseMessageTemplate(string template, object[] parameters, out bool isPositional, out bool isValidTemplate)
+        private static IList<MessageTemplateParameter> ParseMessageTemplate(string template, object?[] parameters, out bool isPositional, out bool isValidTemplate)
         {
             isPositional = true;
             isValidTemplate = true;
@@ -184,7 +192,7 @@ namespace NLog.MessageTemplates
             return maxHoleIndex;
         }
 
-        private static object GetHoleValueSafe(object[] parameters, short holeIndex, ref bool isValidTemplate)
+        private static object? GetHoleValueSafe(object?[] parameters, short holeIndex, ref bool isValidTemplate)
         {
             if (parameters.Length > holeIndex)
             {

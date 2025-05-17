@@ -31,17 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
-using JetBrains.Annotations;
-using NLog.Config;
-using NLog.Internal;
+#nullable enable
 
 namespace NLog.MessageTemplates
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Text;
+    using JetBrains.Annotations;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// Convert, Render or serialize a value, with optionally backwards-compatible with <see cref="string.Format(System.IFormatProvider,string,object[])"/>
     /// </summary>
@@ -56,7 +58,7 @@ namespace NLog.MessageTemplates
         {
             get => _jsonConverter ?? (_jsonConverter = JsonConverterWithSpaces.CreateJsonConverter(_serviceProvider.GetService<IJsonConverter>()));
         }
-        private IJsonConverter _jsonConverter;
+        private IJsonConverter? _jsonConverter;
 
         private sealed class JsonConverterWithSpaces : IJsonConverter
         {
@@ -79,7 +81,7 @@ namespace NLog.MessageTemplates
                 _exceptionSerializerOptions = new Targets.JsonSerializeOptions() { SuppressSpaces = false, SanitizeDictionaryKeys = true };
             }
 
-            public bool SerializeObject(object value, StringBuilder builder)
+            public bool SerializeObject(object? value, StringBuilder builder)
             {
                 if (value is Exception)
                     return _serializer.SerializeObject(value, builder, _exceptionSerializerOptions);
@@ -109,7 +111,7 @@ namespace NLog.MessageTemplates
         /// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
         /// <param name="builder">Output destination.</param>
         /// <returns>Serialize succeeded (true/false)</returns>
-        public bool FormatValue(object value, string format, CaptureType captureType, IFormatProvider formatProvider, StringBuilder builder)
+        public bool FormatValue(object? value, string? format, CaptureType captureType, IFormatProvider? formatProvider, StringBuilder builder)
         {
             switch (captureType)
             {
@@ -139,15 +141,14 @@ namespace NLog.MessageTemplates
         /// <param name="formatProvider"></param>
         /// <param name="builder"></param>
         /// <returns></returns>
-        public bool FormatObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
+        public bool FormatObject(object? value, string? format, IFormatProvider? formatProvider, StringBuilder builder)
         {
             if (SerializeSimpleObject(value, format, formatProvider, builder, false))
             {
                 return true;
             }
 
-            IEnumerable collection = value as IEnumerable;
-            if (collection != null)
+            if (value is IEnumerable collection)
             {
                 return SerializeWithoutCyclicLoop(collection, format, formatProvider, builder, default(SingleItemOptimizedHashSet<object>), 0);
             }
@@ -159,7 +160,7 @@ namespace NLog.MessageTemplates
         /// <summary>
         /// Try serializing a scalar (string, int, NULL) or simple type (IFormattable)
         /// </summary>
-        private bool SerializeSimpleObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder, bool convertToString = true)
+        private bool SerializeSimpleObject(object? value, string? format, IFormatProvider? formatProvider, StringBuilder builder, bool convertToString = true)
         {
             if (value is string stringValue)
             {
@@ -197,7 +198,7 @@ namespace NLog.MessageTemplates
             }
         }
 
-        private void SerializeConvertibleObject(IConvertible value, string format, IFormatProvider formatProvider, StringBuilder builder)
+        private void SerializeConvertibleObject(IConvertible value, string? format, IFormatProvider? formatProvider, StringBuilder builder)
         {
             TypeCode convertibleTypeCode = value.GetTypeCode();
             if (convertibleTypeCode == TypeCode.String)
@@ -255,7 +256,7 @@ namespace NLog.MessageTemplates
             }
         }
 
-        private static void SerializeConvertToString(object value, IFormatProvider formatProvider, StringBuilder builder)
+        private static void SerializeConvertToString(object? value, IFormatProvider? formatProvider, StringBuilder builder)
         {
 #if !NETFRAMEWORK
             if (value is IFormattable)
@@ -265,7 +266,7 @@ namespace NLog.MessageTemplates
                 builder.Append(Convert.ToString(value, formatProvider));
         }
 
-        private void SerializeStringObject(string stringValue, string format, StringBuilder builder)
+        private void SerializeStringObject(string stringValue, string? format, StringBuilder builder)
         {
             bool includeQuotes = _legacyStringQuotes && format != LiteralFormatSymbol;
             if (includeQuotes) builder.Append('"');
@@ -283,20 +284,16 @@ namespace NLog.MessageTemplates
             sb.Append(textValue);
         }
 
-        private bool SerializeWithoutCyclicLoop(IEnumerable collection, string format, IFormatProvider formatProvider, StringBuilder builder,
+        private bool SerializeWithoutCyclicLoop(IEnumerable collection, string? format, IFormatProvider? formatProvider, StringBuilder builder,
                 SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             if (objectsInPath.Contains(collection))
-            {
                 return false; // detected reference loop, skip serialization
-            }
-            if (depth > MaxRecursionDepth)
-            {
-                return false; // reached maximum recursion level, no further serialization
-            }
 
-            IDictionary dictionary = collection as IDictionary;
-            if (dictionary != null)
+            if (depth > MaxRecursionDepth)
+                return false; // reached maximum recursion level, no further serialization
+
+            if (collection is IDictionary dictionary)
             {
                 using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(dictionary, ref objectsInPath, true, _referenceEqualsComparer))
                 {
@@ -323,7 +320,7 @@ namespace NLog.MessageTemplates
         /// <param name="objectsInPath"></param>
         /// <param name="depth"></param>
         /// <returns></returns>
-        private bool SerializeDictionaryObject(IDictionary dictionary, string format, IFormatProvider formatProvider, StringBuilder builder, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
+        private bool SerializeDictionaryObject(IDictionary dictionary, string? format, IFormatProvider? formatProvider, StringBuilder builder, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             bool separator = false;
             foreach (var item in new DictionaryEntryEnumerable(dictionary))
@@ -341,7 +338,7 @@ namespace NLog.MessageTemplates
             return true;
         }
 
-        private bool SerializeCollectionObject(IEnumerable collection, string format, IFormatProvider formatProvider, StringBuilder builder, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
+        private bool SerializeCollectionObject(IEnumerable collection, string? format, IFormatProvider? formatProvider, StringBuilder builder, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             bool separator = false;
             foreach (var item in collection)
@@ -358,7 +355,7 @@ namespace NLog.MessageTemplates
             return true;
         }
 
-        private void SerializeCollectionItem(object item, string format, IFormatProvider formatProvider, StringBuilder builder, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth)
+        private void SerializeCollectionItem(object item, string? format, IFormatProvider? formatProvider, StringBuilder builder, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             if (item is IConvertible convertible)
                 SerializeConvertibleObject(convertible, format, formatProvider, builder);
@@ -375,7 +372,7 @@ namespace NLog.MessageTemplates
         /// <param name="format">Format sting for the value.</param>
         /// <param name="formatProvider">Format provider for the value.</param>
         /// <param name="builder">Append to this</param>
-        public static void FormatToString(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
+        public static void FormatToString(object? value, string? format, IFormatProvider? formatProvider, StringBuilder builder)
         {
             var stringValue = value as string;
             if (stringValue != null)

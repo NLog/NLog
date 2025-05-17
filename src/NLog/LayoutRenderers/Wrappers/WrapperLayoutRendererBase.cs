@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.Text;
@@ -56,7 +58,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
-        public Layout Inner { get; set; }
+        public Layout Inner { get; set; } = Layout.Empty;
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
@@ -68,12 +70,6 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (Inner is null)
-            {
-                InternalLogger.Warn("{0} has no configured Inner-Layout, so skipping", this);
-                return;
-            }
-
             int orgLength = builder.Length;
             try
             {

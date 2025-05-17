@@ -31,11 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using JetBrains.Annotations;
-using NLog.Internal;
+#nullable enable
 
 namespace NLog.MessageTemplates
 {
+    using JetBrains.Annotations;
+    using NLog.Internal;
+
     /// <summary>
     /// Description of a single parameter extracted from a MessageTemplate
     /// </summary>
@@ -52,14 +54,14 @@ namespace NLog.MessageTemplates
         /// Parameter Value extracted from the <see cref="LogEventInfo.Parameters"/>-array
         /// </summary>
         [CanBeNull]
-        public object Value { get; }
+        public object? Value { get; }
 
         /// <summary>
         /// Format to render the parameter.
         /// This is everything between ":" and the first unescaped "}"
         /// </summary>
         [CanBeNull]
-        public string Format { get; }
+        public string? Format { get; }
 
         /// <summary>
         /// Parameter method that should be used to render the parameter
@@ -102,7 +104,7 @@ namespace NLog.MessageTemplates
         /// <param name="name">Parameter Name</param>
         /// <param name="value">Parameter Value</param>
         /// <param name="format">Parameter Format</param>
-        internal MessageTemplateParameter([NotNull] string name, object value, string format)
+        internal MessageTemplateParameter([NotNull] string name, object? value, string? format)
         {
             Name = Guard.ThrowIfNull(name);
             Value = value;
@@ -117,7 +119,7 @@ namespace NLog.MessageTemplates
         /// <param name="value">Parameter Value</param>
         /// <param name="format">Parameter Format</param>
         /// <param name="captureType">Parameter CaptureType</param>
-        public MessageTemplateParameter([NotNull] string name, object value, string format, CaptureType captureType)
+        public MessageTemplateParameter([NotNull] string name, object? value, string? format, CaptureType captureType)
         {
             Name = Guard.ThrowIfNull(name);
             Value = value;

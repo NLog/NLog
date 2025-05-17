@@ -31,11 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Text;
+#nullable enable
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
+    using System.Text;
+
     /// <summary>
     /// Base class for <see cref="LayoutRenderer"/>s which wrapping other <see cref="LayoutRenderer"/>s.
     ///

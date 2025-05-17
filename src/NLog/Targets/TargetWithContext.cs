@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets
 {
     using System;
@@ -219,7 +221,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent"></param>
         /// <returns>Dictionary with any context properties for the logEvent (Null if none found)</returns>
-        protected IDictionary<string, object> GetContextProperties(LogEventInfo logEvent)
+        protected IDictionary<string, object?>? GetContextProperties(LogEventInfo logEvent)
         {
             return GetContextProperties(logEvent, null);
         }
@@ -228,9 +230,9 @@ namespace NLog.Targets
         /// Checks if any context properties, and if any returns them as a single dictionary
         /// </summary>
         /// <param name="logEvent"></param>
-        /// <param name="combinedProperties">Optional prefilled dictionary</param>
+        /// <param name="combinedProperties">Optional pre-allocated dictionary for the snapshot</param>
         /// <returns>Dictionary with any context properties for the logEvent (Null if none found)</returns>
-        protected IDictionary<string, object> GetContextProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
+        protected IDictionary<string, object?>? GetContextProperties(LogEventInfo logEvent, IDictionary<string, object?>? combinedProperties)
         {
             if (ContextProperties?.Count > 0)
             {
@@ -255,7 +257,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent"></param>
         /// <returns>Dictionary with all collected properties for logEvent</returns>
-        protected IDictionary<string, object> GetAllProperties(LogEventInfo logEvent)
+        protected IDictionary<string, object?> GetAllProperties(LogEventInfo logEvent)
         {
             return GetAllProperties(logEvent, null);
         }
@@ -266,15 +268,16 @@ namespace NLog.Targets
         /// <param name="logEvent"></param>
         /// <param name="combinedProperties">Optional prefilled dictionary</param>
         /// <returns>Dictionary with all collected properties for logEvent</returns>
-        protected IDictionary<string, object> GetAllProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
+        protected IDictionary<string, object?> GetAllProperties(LogEventInfo logEvent, IDictionary<string, object?>? combinedProperties)
         {
             if (IncludeEventProperties && logEvent.HasProperties)
             {
                 // TODO Make Dictionary-Lazy-adapter for PropertiesDictionary to skip extra Dictionary-allocation
                 combinedProperties = combinedProperties ?? CreateNewDictionary(logEvent.Properties.Count + (ContextProperties?.Count ?? 0));
                 bool checkForDuplicates = combinedProperties.Count > 0;
-                bool checkExcludeProperties = ExcludeProperties?.Count > 0;
-                using (var propertyEnumerator = logEvent.TryCreatePropertiesInternal().GetPropertyEnumerator())
+
+                var excludeProperties = (ExcludeProperties is null || ExcludeProperties.Count == 0) ? null : ExcludeProperties;
+                using (var propertyEnumerator = logEvent.CreatePropertiesInternal().GetPropertyEnumerator())
                 {
                     while (propertyEnumerator.MoveNext())
                     {
@@ -282,7 +285,7 @@ namespace NLog.Targets
                         if (string.IsNullOrEmpty(property.Key))
                             continue;
 
-                        if (checkExcludeProperties && ExcludeProperties.Contains(property.Key))
+                        if (excludeProperties?.Contains(property.Key) == true)
                             continue;
 
                         AddContextProperty(logEvent, property.Key, property.Value, checkForDuplicates, combinedProperties);
@@ -293,9 +296,9 @@ namespace NLog.Targets
             return combinedProperties ?? CreateNewDictionary(0);
         }
 
-        private static IDictionary<string, object> CreateNewDictionary(int initialCapacity)
+        private static IDictionary<string, object?> CreateNewDictionary(int initialCapacity)
         {
-            return new Dictionary<string, object>(initialCapacity < 3 ? 0 : initialCapacity, StringComparer.Ordinal);
+            return new Dictionary<string, object?>(initialCapacity < 3 ? 0 : initialCapacity, StringComparer.Ordinal);
         }
 
         /// <summary>
@@ -306,19 +309,19 @@ namespace NLog.Targets
         /// <param name="itemValue">Item Value</param>
         /// <param name="combinedProperties">Dictionary of context values</param>
         /// <returns>New (unique) value (or null to skip value). If the same value is used then the item will be overwritten</returns>
-        protected virtual string GenerateUniqueItemName(LogEventInfo logEvent, string itemName, object itemValue, IDictionary<string, object> combinedProperties)
+        protected virtual string GenerateUniqueItemName(LogEventInfo logEvent, string itemName, object? itemValue, IDictionary<string, object?> combinedProperties)
         {
             return PropertiesDictionary.GenerateUniquePropertyName(itemName, combinedProperties, (newKey, props) => props.ContainsKey(newKey));
         }
 
-        private bool CombineProperties(LogEventInfo logEvent, Layout contextLayout, ref IDictionary<string, object> combinedProperties)
+        private bool CombineProperties(LogEventInfo logEvent, Layout contextLayout, ref IDictionary<string, object?>? combinedProperties)
         {
-            if (!logEvent.TryGetCachedLayoutValue(contextLayout, out object value))
+            if (!logEvent.TryGetCachedLayoutValue(contextLayout, out var value))
             {
                 return false;
             }
 
-            if (value is IDictionary<string, object> contextProperties)
+            if (value is IDictionary<string, object?> contextProperties)
             {
                 if (combinedProperties != null)
                 {
@@ -336,13 +339,11 @@ namespace NLog.Targets
             return true;
         }
 
-        private void AddContextProperty(LogEventInfo logEvent, string propertyName, object propertyValue, bool checkForDuplicates, IDictionary<string, object> combinedProperties)
+        private void AddContextProperty(LogEventInfo logEvent, string propertyName, object? propertyValue, bool checkForDuplicates, IDictionary<string, object?> combinedProperties)
         {
             if (checkForDuplicates && combinedProperties.ContainsKey(propertyName))
             {
                 propertyName = GenerateUniqueItemName(logEvent, propertyName, propertyValue, combinedProperties);
-                if (propertyName is null)
-                    return;
             }
 
             combinedProperties[propertyName] = propertyValue;
@@ -353,11 +354,11 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent"></param>
         /// <returns>Dictionary with ScopeContext properties if any, else null</returns>
-        protected IDictionary<string, object> GetScopeContextProperties(LogEventInfo logEvent)
+        protected IDictionary<string, object?>? GetScopeContextProperties(LogEventInfo logEvent)
         {
-            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextPropertiesLayout, out object value))
+            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextPropertiesLayout, out var value))
             {
-                return value as IDictionary<string, object>;
+                return value as IDictionary<string, object?>;
             }
             return CaptureScopeContextProperties(logEvent, null);
         }
@@ -367,22 +368,22 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent"></param>
         /// <returns>Collection of nested state objects if any, else null</returns>
-        protected IList<object> GetScopeContextNested(LogEventInfo logEvent)
+        protected IList<object>? GetScopeContextNested(LogEventInfo logEvent)
         {
-            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextNestedStatesLayout, out object value))
+            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextNestedStatesLayout, out var value))
             {
                 return value as IList<object>;
             }
             return CaptureScopeContextNested(logEvent);
         }
 
-        private IDictionary<string, object> CaptureContextProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
+        private IDictionary<string, object?>? CaptureContextProperties(LogEventInfo logEvent, IDictionary<string, object?>? combinedProperties)
         {
             combinedProperties = combinedProperties ?? CreateNewDictionary(ContextProperties.Count);
             for (int i = 0; i < ContextProperties.Count; ++i)
             {
                 var contextProperty = ContextProperties[i];
-                if (string.IsNullOrEmpty(contextProperty?.Name))
+                if (contextProperty is null || string.IsNullOrEmpty(contextProperty.Name))
                     continue;
 
                 try
@@ -404,7 +405,7 @@ namespace NLog.Targets
             return combinedProperties;
         }
 
-        private static bool TryGetContextPropertyValue(LogEventInfo logEvent, TargetPropertyWithContext contextProperty, out object propertyValue)
+        private static bool TryGetContextPropertyValue(LogEventInfo logEvent, TargetPropertyWithContext contextProperty, out object? propertyValue)
         {
             propertyValue = contextProperty.RenderValue(logEvent);
             if (!contextProperty.IncludeEmptyValue && StringHelpers.IsNullOrEmptyString(propertyValue))
@@ -421,7 +422,7 @@ namespace NLog.Targets
         /// <param name="logEvent"></param>
         /// <param name="contextProperties">Optional pre-allocated dictionary for the snapshot</param>
         /// <returns>Dictionary with GDC context if any, else null</returns>
-        protected virtual IDictionary<string, object> CaptureContextGdc(LogEventInfo logEvent, IDictionary<string, object> contextProperties)
+        protected virtual IDictionary<string, object?>? CaptureContextGdc(LogEventInfo logEvent, IDictionary<string, object?>? contextProperties)
         {
             var globalNames = GlobalDiagnosticsContext.GetNames();
             if (globalNames.Count == 0)
@@ -429,13 +430,13 @@ namespace NLog.Targets
 
             contextProperties = contextProperties ?? CreateNewDictionary(globalNames.Count);
             bool checkForDuplicates = contextProperties.Count > 0;
-            bool checkExcludeProperties = ExcludeProperties?.Count > 0;
+            var excludeProperties = (ExcludeProperties is null || ExcludeProperties.Count == 0) ? null : ExcludeProperties;
             foreach (string propertyName in globalNames)
             {
                 if (string.IsNullOrEmpty(propertyName))
                     continue;
 
-                if (checkExcludeProperties && ExcludeProperties.Contains(propertyName))
+                if (excludeProperties?.Contains(propertyName) == true)
                     continue;
 
                 var propertyValue = GlobalDiagnosticsContext.GetObject(propertyName);
@@ -454,12 +455,12 @@ namespace NLog.Targets
         /// <param name="logEvent"></param>
         /// <param name="contextProperties">Optional pre-allocated dictionary for the snapshot</param>
         /// <returns>Dictionary with ScopeContext properties if any, else null</returns>
-        protected virtual IDictionary<string, object> CaptureScopeContextProperties(LogEventInfo logEvent, IDictionary<string, object> contextProperties)
+        protected virtual IDictionary<string, object?>? CaptureScopeContextProperties(LogEventInfo logEvent, IDictionary<string, object?>? contextProperties)
         {
             using (var scopeEnumerator = ScopeContext.GetAllPropertiesEnumerator())
             {
                 bool checkForDuplicates = contextProperties?.Count > 0;
-                bool checkExcludeProperties = ExcludeProperties?.Count > 0;
+                var excludeProperties = (ExcludeProperties is null || ExcludeProperties.Count == 0) ? null : ExcludeProperties;
                 while (scopeEnumerator.MoveNext())
                 {
                     var scopeProperty = scopeEnumerator.Current;
@@ -467,12 +468,12 @@ namespace NLog.Targets
                     if (string.IsNullOrEmpty(propertyName))
                         continue;
 
-                    if (checkExcludeProperties && ExcludeProperties.Contains(propertyName))
+                    if (excludeProperties?.Contains(propertyName) == true)
                         continue;
 
                     contextProperties = contextProperties ?? CreateNewDictionary(0);
 
-                    object propertyValue = scopeProperty.Value;
+                    var propertyValue = scopeProperty.Value;
                     if (SerializeScopeContextProperty(logEvent, propertyName, propertyValue, out var serializedValue))
                     {
                         AddContextProperty(logEvent, propertyName, serializedValue, checkForDuplicates, contextProperties);
@@ -491,7 +492,7 @@ namespace NLog.Targets
         /// <param name="value">ScopeContext Dictionary value</param>
         /// <param name="serializedValue">Snapshot of ScopeContext property-value</param>
         /// <returns>Include object value in snapshot</returns>
-        protected virtual bool SerializeScopeContextProperty(LogEventInfo logEvent, string name, object value, out object serializedValue)
+        protected virtual bool SerializeScopeContextProperty(LogEventInfo logEvent, string name, object? value, out object? serializedValue)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -513,11 +514,11 @@ namespace NLog.Targets
             if (stack.Count == 0)
                 return stack;
 
-            IList<object> filteredStack = null;
+            IList<object>? filteredStack = null;
             for (int i = 0; i < stack.Count; ++i)
             {
                 var ndcValue = stack[i];
-                if (SerializeScopeContextNestedState(logEvent, ndcValue, out var serializedValue))
+                if (SerializeScopeContextNestedState(logEvent, ndcValue, out var serializedValue) && serializedValue != null)
                 {
                     if (filteredStack != null)
                         filteredStack.Add(serializedValue);
@@ -544,9 +545,9 @@ namespace NLog.Targets
         /// <param name="value"><see cref="ScopeContext"/> nested state value</param>
         /// <param name="serializedValue">Snapshot of <see cref="ScopeContext"/> stack item value</param>
         /// <returns>Include object value in snapshot</returns>
-        protected virtual bool SerializeScopeContextNestedState(LogEventInfo logEvent, object value, out object serializedValue)
+        protected virtual bool SerializeScopeContextNestedState(LogEventInfo logEvent, object value, out object? serializedValue)
         {
-            return SerializeItemValue(logEvent, null, value, out serializedValue);
+            return SerializeItemValue(logEvent, string.Empty, value, out serializedValue);
         }
 
         /// <summary>
@@ -557,7 +558,7 @@ namespace NLog.Targets
         /// <param name="value">Object Value</param>
         /// <param name="serializedValue">Snapshot of value</param>
         /// <returns>Include object value in snapshot</returns>
-        protected virtual bool SerializeItemValue(LogEventInfo logEvent, string name, object value, out object serializedValue)
+        protected virtual bool SerializeItemValue(LogEventInfo logEvent, string name, object? value, out object? serializedValue)
         {
             if (value is null)
             {
@@ -583,7 +584,7 @@ namespace NLog.Targets
         /// <returns>Collection with NDLC context if any, else null</returns>
         [Obsolete("Replaced by GetScopeContextNested. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected IList<object> GetContextNdlc(LogEventInfo logEvent) => GetScopeContextNested(logEvent);
+        protected IList<object>? GetContextNdlc(LogEventInfo logEvent) => GetScopeContextNested(logEvent);
 
         /// <summary>
         /// Returns the captured snapshot of <see cref="MappedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
@@ -592,7 +593,7 @@ namespace NLog.Targets
         /// <returns>Dictionary with MDLC context if any, else null</returns>
         [Obsolete("Replaced by GetScopeContextProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected IDictionary<string, object> GetContextMdlc(LogEventInfo logEvent) => GetScopeContextProperties(logEvent);
+        protected IDictionary<string, object?>? GetContextMdlc(LogEventInfo logEvent) => GetScopeContextProperties(logEvent);
 
         [ThreadAgnostic]
         internal sealed class TargetWithContextLayout : Layout, IIncludeContext, IUsesStackTrace, IStringValueRenderer
@@ -606,8 +607,8 @@ namespace NLog.Targets
                     _targetStringLayout = _targetLayout as IStringValueRenderer;
                 }
             }
-            private Layout _targetLayout;
-            private IStringValueRenderer _targetStringLayout;
+            private Layout _targetLayout = Layout.Empty;
+            private IStringValueRenderer? _targetStringLayout;
 
             /// <summary>Internal Layout that allows capture of <see cref="ScopeContext"/> properties-dictionary</summary>
             internal LayoutScopeContextProperties ScopeContextPropertiesLayout { get; }
@@ -768,7 +769,7 @@ namespace NLog.Targets
                 TargetLayout?.Render(logEvent, target);
             }
 
-            string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
+            string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
             {
                 return _targetStringLayout?.GetFormattedString(logEvent);
             }

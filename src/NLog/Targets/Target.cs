@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets
 {
     using System;
@@ -50,7 +52,7 @@ namespace NLog.Targets
     [NLogConfigurationItem]
     public abstract class Target : ISupportsInitialize, IInternalLoggerContext, IDisposable
     {
-        internal string _tostring;
+        internal string? _tostring;
 
         private Layout[] _allLayouts = ArrayHelper.Empty<Layout>();
 
@@ -58,14 +60,14 @@ namespace NLog.Targets
         private bool _allLayoutsAreThreadAgnostic;
         private bool _anyLayoutsAreThreadAgnosticImmutable;
         private bool _scannedForLayouts;
-        private Exception _initializeException;
+        private Exception? _initializeException;
 
         /// <summary>
         /// The Max StackTraceUsage of all the <see cref="Layout"/> in this Target
         /// </summary>
         internal StackTraceUsage StackTraceUsage { get; private set; }
 
-        internal Exception InitializeException => _initializeException;
+        internal Exception? InitializeException => _initializeException;
 
         /// <summary>
         /// Gets or sets the name of the target.
@@ -80,7 +82,7 @@ namespace NLog.Targets
                 _tostring = null;
             }
         }
-        private string _name;
+        private string _name = string.Empty;
 
         /// <summary>
         /// Target supports reuse of internal buffers, and doesn't have to constantly allocate new buffers
@@ -115,9 +117,9 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the logging configuration this target is part of.
         /// </summary>
-        protected LoggingConfiguration LoggingConfiguration { get; private set; }
+        protected LoggingConfiguration? LoggingConfiguration { get; private set; }
 
-        LogFactory IInternalLoggerContext.LogFactory => LoggingConfiguration?.LogFactory;
+        LogFactory? IInternalLoggerContext.LogFactory => LoggingConfiguration?.LogFactory;
 
         /// <summary>
         /// Gets a value indicating whether the target has been initialized.
@@ -139,13 +141,13 @@ namespace NLog.Targets
         private volatile bool _isInitialized;
 
         internal readonly ReusableBuilderCreator ReusableLayoutBuilder = new ReusableBuilderCreator();
-        private StringBuilderPool _precalculateStringBuilderPool;
+        private StringBuilderPool? _precalculateStringBuilderPool;
 
         /// <summary>
         /// Initializes this instance.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-        void ISupportsInitialize.Initialize(LoggingConfiguration configuration)
+        void ISupportsInitialize.Initialize(LoggingConfiguration? configuration)
         {
             lock (SyncRoot)
             {
@@ -285,7 +287,7 @@ namespace NLog.Targets
             return _tostring ?? (_tostring = GenerateTargetToString(false));
         }
 
-        internal string GenerateTargetToString(bool targetWrapper, string targetName = null)
+        internal string GenerateTargetToString(bool targetWrapper, string? targetName = null)
         {
             var targetAttribute = GetType().GetFirstCustomAttribute<TargetAttribute>();
             string targetType = (targetAttribute?.Name ?? GetType().Name).Trim();
@@ -431,7 +433,7 @@ namespace NLog.Targets
         /// Initializes this instance.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-        internal void Initialize(LoggingConfiguration configuration)
+        internal void Initialize(LoggingConfiguration? configuration)
         {
             lock (SyncRoot)
             {
@@ -701,7 +703,7 @@ namespace NLog.Targets
         protected string RenderLogEvent([CanBeNull] Layout layout, [CanBeNull] LogEventInfo logEvent)
         {
             if (layout is null || logEvent is null)
-                return null;    // Signal that input was wrong
+                return string.Empty;    // Signal that input was wrong
 
             if (layout is IStringValueRenderer stringLayout)
             {
@@ -729,7 +731,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logevent info.</param>
         /// <param name="defaultValue">Fallback value when no value available</param>
         /// <returns>Result value when available, else fallback to defaultValue</returns>
-        protected T RenderLogEvent<T>([CanBeNull] Layout<T> layout, [CanBeNull] LogEventInfo logEvent, T defaultValue = default(T))
+        protected T? RenderLogEvent<T>([CanBeNull] Layout<T>? layout, [CanBeNull] LogEventInfo? logEvent, T? defaultValue = default(T))
         {
             if (layout is null)
                 return defaultValue;
@@ -769,20 +771,20 @@ namespace NLog.Targets
 #if !NET35
             [System.Runtime.CompilerServices.CallerMemberName]
 #endif
-            string callerMemberName = null)
+            string? callerMemberName = null)
         {
             return exception.MustBeRethrown(this, callerMemberName);
         }
 
-        private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out object value)
+        private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out object? value)
         {
-            if ((!layout.ThreadAgnostic || layout.ThreadAgnosticImmutable) && logEvent.TryGetCachedLayoutValue(layout, out value))
+            if (layout.ThreadAgnostic && !layout.ThreadAgnosticImmutable)
             {
-                return true;
+                value = null;
+                return false;
             }
 
-            value = null;
-            return false;
+            return logEvent.TryGetCachedLayoutValue(layout, out value);
         }
 
         /// <summary>

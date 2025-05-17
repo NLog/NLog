@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Layouts
 {
     using System;
@@ -59,8 +61,8 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public sealed class SimpleLayout : Layout, IUsesStackTrace, IStringValueRenderer
     {
-        private readonly IRawValue _rawValueRenderer;
-        private IStringValueRenderer _stringValueRenderer;
+        private readonly IRawValue? _rawValueRenderer;
+        private IStringValueRenderer? _stringValueRenderer;
 
         internal static readonly SimpleLayout Default = new SimpleLayout();
 
@@ -118,12 +120,14 @@ namespace NLog.Layouts
             if (_layoutRenderers.Length == 0)
             {
                 FixedText = string.Empty;
+                _stringValueRenderer = this;
             }
             else if (_layoutRenderers.Length == 1)
             {
                 if (_layoutRenderers[0] is LiteralLayoutRenderer renderer)
                 {
                     FixedText = renderer.Text;
+                    _stringValueRenderer = this;
                 }
                 else if (_layoutRenderers[0] is IStringValueRenderer stringValueRenderer)
                 {
@@ -156,7 +160,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Get the fixed text. Only set when <see cref="IsFixedText"/> is <c>true</c>
         /// </summary>
-        public string FixedText { get; }
+        public string? FixedText { get; }
 
         /// <summary>
         /// Is the message a simple formatted string? (Can skip StringBuilder)
@@ -168,7 +172,7 @@ namespace NLog.Layouts
         /// </summary>
         [NLogConfigurationIgnoreProperty]
         public ReadOnlyCollection<LayoutRenderer> Renderers => _renderers ?? (_renderers = new ReadOnlyCollection<LayoutRenderer>(_layoutRenderers));
-        private ReadOnlyCollection<LayoutRenderer> _renderers;
+        private ReadOnlyCollection<LayoutRenderer>? _renderers;
         private readonly LayoutRenderer[] _layoutRenderers;
 
         /// <summary>
@@ -186,7 +190,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="text">Text to be converted.</param>
         /// <returns>A <see cref="SimpleLayout"/> object.</returns>
-        public static implicit operator SimpleLayout([Localizable(false)] string text)
+        public static implicit operator SimpleLayout?([Localizable(false)] string text)
         {
             if (text is null) return null;
             return string.IsNullOrEmpty(text) ? SimpleLayout.Default : new SimpleLayout(text);
@@ -231,10 +235,10 @@ namespace NLog.Layouts
         /// values provided by the appropriate layout renderers.</returns>
         public static string Evaluate([Localizable(false)] string text)
         {
-            return Evaluate(text, null);
+            return Evaluate(text, null, null);
         }
 
-        internal static string Evaluate(string text, LoggingConfiguration loggingConfiguration, LogEventInfo logEventInfo = null, bool? throwConfigExceptions = null)
+        internal static string Evaluate(string text, LoggingConfiguration? loggingConfiguration, LogEventInfo? logEventInfo = null, bool? throwConfigExceptions = null)
         {
             try
             {
@@ -350,13 +354,13 @@ namespace NLog.Layouts
             return true;
         }
 
-        private static bool IsRawValueImmutable(object value)
+        private static bool IsRawValueImmutable(object? value)
         {
             return value != null && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType);
         }
 
         /// <inheritdoc/>
-        internal override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
+        internal override bool TryGetRawValue(LogEventInfo logEvent, out object? rawValue)
         {
             if (_rawValueRenderer is null)
             {
@@ -366,10 +370,16 @@ namespace NLog.Layouts
             return TryGetSafeRawValue(logEvent, out rawValue);
         }
 
-        private bool TryGetSafeRawValue(LogEventInfo logEvent, out object rawValue)
+        private bool TryGetSafeRawValue(LogEventInfo logEvent, out object? rawValue)
         {
             try
             {
+                if (_rawValueRenderer is null)
+                {
+                    rawValue = null;
+                    return false;
+                }
+
                 if (!IsInitialized)
                 {
                     Initialize(LoggingConfiguration);
@@ -404,10 +414,10 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            if (IsFixedText)
-                return FixedText;
+            var stringValue = FixedText;
+            if (stringValue != null)
+                return stringValue;
 
-            string stringValue = string.Empty;
             if (_stringValueRenderer is null || !TryGetSafeStringValue(logEvent, out stringValue))
                 return RenderAllocateBuilder(logEvent);
             else
@@ -423,12 +433,14 @@ namespace NLog.Layouts
                     Initialize(LoggingConfiguration);
                 }
 
-                stringValue = _stringValueRenderer.GetFormattedString(logEvent);
-                if (stringValue is null)
+                var value = _stringValueRenderer?.GetFormattedString(logEvent);
+                if (value is null)
                 {
+                    stringValue = string.Empty;
                     _stringValueRenderer = null;    // Optimization is not possible
                     return false;
                 }
+                stringValue = value;
                 return true;
             }
             catch (Exception exception)
@@ -445,14 +457,15 @@ namespace NLog.Layouts
                 }
             }
 
-            stringValue = null;
+            stringValue = string.Empty;
             return false;
         }
 
         /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            if (FixedText is null)
+            var fixedText = FixedText;
+            if (fixedText is null)
             {
                 foreach (var renderer in _layoutRenderers)
                 {
@@ -461,17 +474,13 @@ namespace NLog.Layouts
             }
             else
             {
-                target.Append(FixedText);
+                target.Append(fixedText);
             }
         }
 
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
+        string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
-            if (IsFixedText)
-                return FixedText;
-            if (IsSimpleStringText)
-                return Render(logEvent);
-            return null;
+            return FixedText ?? (IsSimpleStringText ? Render(logEvent) : null);
         }
     }
 }

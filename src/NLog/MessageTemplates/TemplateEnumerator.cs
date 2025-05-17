@@ -31,14 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using NLog.Internal;
+#nullable enable
 
 namespace NLog.MessageTemplates
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using NLog.Internal;
+
     /// <summary>
     /// Parse templates.
     /// </summary>
@@ -185,7 +187,7 @@ namespace NLog.MessageTemplates
             int start = _position;
             string name = ParseName(out var parameterIndex);
             int alignment = 0;
-            string format = null;
+            string? format = null;
             if (Peek() != '}')
             {
                 alignment = Peek() == ',' ? ParseAlignment() : 0;

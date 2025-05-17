@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
 
 namespace NLog.Layouts
 {
@@ -50,7 +51,7 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class CompoundLayout : Layout
     {
-        private Layout[] _precalculateLayouts;
+        private Layout[]? _precalculateLayouts;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CompoundLayout"/> class.

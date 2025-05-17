@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Layouts
 {
     using System;
@@ -52,25 +54,17 @@ namespace NLog.Layouts
     public class JsonLayout : Layout
     {
         private const int SpacesPerIndent = 2;
-        private Layout[] _precalculateLayouts;
+        private Layout[]? _precalculateLayouts;
 
-        private LimitRecursionJsonConvert JsonConverter
-        {
-            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, SuppressSpaces, ResolveService<IJsonConverter>()));
-            set => _jsonConverter = value;
-        }
-        private LimitRecursionJsonConvert _jsonConverter;
-        private IValueFormatter ValueFormatter
-        {
-            get => _valueFormatter ?? (_valueFormatter = ResolveService<IValueFormatter>());
-            set => _valueFormatter = value;
-        }
-        private IValueFormatter _valueFormatter;
+        private LimitRecursionJsonConvert JsonConverter => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, SuppressSpaces, ResolveService<IJsonConverter>()));
+        private LimitRecursionJsonConvert? _jsonConverter;
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = ResolveService<IValueFormatter>());
+        private IValueFormatter? _valueFormatter;
 
         private sealed class LimitRecursionJsonConvert : IJsonConverter
         {
             private readonly IJsonConverter _converter;
-            private readonly Targets.DefaultJsonSerializer _serializer;
+            private readonly Targets.DefaultJsonSerializer? _serializer;
             private readonly Targets.JsonSerializeOptions _serializerOptions;
 
             public LimitRecursionJsonConvert(int maxRecursionLimit, bool suppressSpaces, IJsonConverter converter)
@@ -80,7 +74,7 @@ namespace NLog.Layouts
                 _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit), SuppressSpaces = suppressSpaces, SanitizeDictionaryKeys = true };
             }
 
-            public bool SerializeObject(object value, StringBuilder builder)
+            public bool SerializeObject(object? value, StringBuilder builder)
             {
                 if (_serializer != null)
                     return _serializer.SerializeObject(value, builder, _serializerOptions);
@@ -88,7 +82,7 @@ namespace NLog.Layouts
                     return _converter.SerializeObject(value, builder);
             }
 
-            public bool SerializeObjectNoLimit(object value, StringBuilder builder)
+            public bool SerializeObjectNoLimit(object? value, StringBuilder builder)
             {
                 return _converter.SerializeObject(value, builder);
             }
@@ -274,8 +268,8 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void CloseLayout()
         {
-            JsonConverter = null;
-            ValueFormatter = null;
+            _jsonConverter = null;
+            _valueFormatter = null;
             _precalculateLayouts = null;
             base.CloseLayout();
         }
@@ -324,7 +318,8 @@ namespace NLog.Layouts
                     {
                         if (string.IsNullOrEmpty(key))
                             continue;
-                        object propertyValue = GlobalDiagnosticsContext.GetObject(key);
+
+                        var propertyValue = GlobalDiagnosticsContext.GetObject(key);
                         AppendJsonPropertyValue(key, propertyValue, sb, sb.Length == orgLength);
                     }
                 }
@@ -352,7 +347,7 @@ namespace NLog.Layouts
             if (IncludeEventProperties && logEvent.HasProperties)
             {
                 bool checkExcludeProperties = ExcludeProperties.Count > 0;
-                using (var propertyEnumerator = logEvent.TryCreatePropertiesInternal().GetPropertyEnumerator())
+                using (var propertyEnumerator = logEvent.CreatePropertiesInternal().GetPropertyEnumerator())
                 {
                     while (propertyEnumerator.MoveNext())
                     {
@@ -409,7 +404,7 @@ namespace NLog.Layouts
             _completeJsonPropertyName = SuppressSpaces ? "\":" : "\": ";
         }
 
-        private void AppendJsonPropertyValue(string propName, object propertyValue, StringBuilder sb, bool beginJsonMessage)
+        private void AppendJsonPropertyValue(string propName, object? propertyValue, StringBuilder sb, bool beginJsonMessage)
         {
             if (ExcludeEmptyProperties && (propertyValue is null || ReferenceEquals(propertyValue, string.Empty)))
                 return;
@@ -428,7 +423,7 @@ namespace NLog.Layouts
             }
         }
 
-        private void AppendJsonPropertyValue(string propName, object propertyValue, string format, IFormatProvider formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
+        private void AppendJsonPropertyValue(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
         {
             if (captureType == MessageTemplates.CaptureType.Serialize && MaxRecursionLimit <= 1)
             {

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Layouts
 {
     using NLog.Config;
@@ -53,13 +55,13 @@ namespace NLog.Layouts
         /// Gets or sets the header layout.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public Layout Header { get; set; }
+        public Layout? Header { get; set; }
 
         /// <summary>
         /// Gets or sets the footer layout.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public Layout Footer { get; set; }
+        public Layout? Footer { get; set; }
 
         /// <inheritdoc/>
         protected override string GetFormattedMessage(LogEventInfo logEvent)

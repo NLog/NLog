@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Layouts
 {
     using System;
@@ -49,7 +51,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
         /// </summary>
-        public JsonAttribute() : this(null, null, true) { }
+        public JsonAttribute() : this(string.Empty, Layout.Empty, true) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
@@ -67,6 +69,7 @@ namespace NLog.Layouts
         public JsonAttribute(string name, Layout layout, bool encode)
         {
             Name = name;
+            _name = Name;
             Layout = layout;
             Encode = encode;
             IncludeEmptyValue = false;
@@ -88,7 +91,7 @@ namespace NLog.Layouts
                 else
                 {
                     var builder = new System.Text.StringBuilder();
-                    Targets.DefaultJsonSerializer.AppendStringEscape(builder, value, false);
+                    Targets.DefaultJsonSerializer.AppendStringEscape(builder, value.Trim(), false);
                     _name = builder.ToString();
                 }
             }
@@ -105,13 +108,13 @@ namespace NLog.Layouts
         /// Gets or sets the result value type, for conversion of layout rendering output
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public Type ValueType { get => _layoutInfo.ValueType; set => _layoutInfo.ValueType = value; }
+        public Type? ValueType { get => _layoutInfo.ValueType; set => _layoutInfo.ValueType = value; }
 
         /// <summary>
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
+        public Layout? DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
         /// Gets or sets whether output should be encoded as Json-String-Property, or be treated as valid json.

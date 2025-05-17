@@ -31,16 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.Text;
-using NLog.Internal;
+#nullable enable
 
 namespace NLog.Targets
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Globalization;
+    using System.Text;
+    using NLog.Internal;
+
     /// <summary>
     /// Default class for serialization of values to JSON format.
     /// </summary>
@@ -61,7 +63,8 @@ namespace NLog.Targets
         /// </summary>
         [Obsolete("Instead use ResolveService<IJsonConverter>() in Layout / Target. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static DefaultJsonSerializer Instance { get; } = new DefaultJsonSerializer(null);
+        public static DefaultJsonSerializer Instance => _instance ?? (_instance = new DefaultJsonSerializer(LogManager.LogFactory.ServiceRepository));
+        private static DefaultJsonSerializer? _instance;
 
         /// <summary>
         /// Private. Use <see cref="Instance"/>
@@ -109,39 +112,38 @@ namespace NLog.Targets
                 }
                 return QuoteValue(str);
             }
-            else
+            else 
             {
-                IConvertible convertibleValue = value as IConvertible;
-                TypeCode objTypeCode = convertibleValue?.GetTypeCode() ?? TypeCode.Object;
-                if (objTypeCode != TypeCode.Object && objTypeCode != TypeCode.Char)
+                if (value is IConvertible convertibleValue)
                 {
-                    Enum enumValue;
-                    if (!options.EnumAsInteger && IsNumericTypeCode(objTypeCode, false) && (enumValue = value as Enum) != null)
+                    TypeCode objTypeCode = convertibleValue.GetTypeCode();
+                    if (objTypeCode != TypeCode.Object)
                     {
-                        return QuoteValue(EnumAsString(enumValue));
-                    }
-                    else
-                    {
-                        string xmlStr = XmlHelper.XmlConvertToString(convertibleValue, objTypeCode);
-                        if (SkipQuotes(convertibleValue, objTypeCode))
+                        if (!options.EnumAsInteger && IsNumericTypeCode(objTypeCode, false) && convertibleValue is Enum enumValue)
                         {
-                            return xmlStr;
+                            return QuoteValue(EnumAsString(enumValue));
                         }
                         else
                         {
-                            return QuoteValue(xmlStr);
+                            string xmlStr = XmlHelper.XmlConvertToString(convertibleValue, objTypeCode);
+                            if (SkipQuotes(convertibleValue, objTypeCode))
+                            {
+                                return xmlStr;
+                            }
+                            else
+                            {
+                                return QuoteValue(xmlStr);
+                            }
                         }
                     }
                 }
-                else
+
+                StringBuilder sb = new StringBuilder();
+                if (!SerializeObject(value, sb, options))
                 {
-                    StringBuilder sb = new StringBuilder();
-                    if (!SerializeObject(value, sb, options))
-                    {
-                        return null;
-                    }
-                    return sb.ToString();
+                    return string.Empty;
                 }
+                return sb.ToString();
             }
         }
 
@@ -151,7 +153,7 @@ namespace NLog.Targets
         /// <param name="value">The object to serialize to JSON.</param>
         /// <param name="destination">Write the resulting JSON to this destination.</param>
         /// <returns>Object serialized successfully (true/false).</returns>
-        public bool SerializeObject(object value, StringBuilder destination)
+        public bool SerializeObject(object? value, StringBuilder destination)
         {
             return SerializeObject(value, destination, DefaultSerializerOptions);
         }
@@ -163,7 +165,7 @@ namespace NLog.Targets
         /// <param name="destination">Write the resulting JSON to this destination.</param>
         /// <param name="options">serialization options</param>
         /// <returns>Object serialized successfully (true/false).</returns>
-        public bool SerializeObject(object value, StringBuilder destination, JsonSerializeOptions options)
+        public bool SerializeObject(object? value, StringBuilder destination, JsonSerializeOptions options)
         {
             return SerializeObject(value, destination, options, default(SingleItemOptimizedHashSet<object>), 0);
         }
@@ -177,7 +179,7 @@ namespace NLog.Targets
         /// <param name="objectsInPath">The objects in path (Avoid cyclic reference loop).</param>
         /// <param name="depth">The current depth (level) of recursion.</param>
         /// <returns>Object serialized successfully (true/false).</returns>
-        private bool SerializeObject(object value, StringBuilder destination, JsonSerializeOptions options, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
+        private bool SerializeObject(object? value, StringBuilder destination, JsonSerializeOptions options, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             int originalLength = destination.Length;
 
@@ -197,7 +199,7 @@ namespace NLog.Targets
             }
         }
 
-        private bool SerializeObjectWithReflection(object value, StringBuilder destination, JsonSerializeOptions options, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth)
+        private bool SerializeObjectWithReflection(object? value, StringBuilder destination, JsonSerializeOptions options, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             int originalLength = destination.Length;
             if (originalLength > MaxJsonLength)
@@ -205,7 +207,7 @@ namespace NLog.Targets
                 return false;
             }
 
-            if (objectsInPath.Contains(value))
+            if (value is null || objectsInPath.Contains(value))
             {
                 return false;
             }
@@ -241,14 +243,16 @@ namespace NLog.Targets
             }
         }
 
-        private bool SerializeSimpleObjectValue(object value, StringBuilder destination, JsonSerializeOptions options, bool forceToString = false)
+        private bool SerializeSimpleObjectValue(object? value, StringBuilder destination, JsonSerializeOptions options, bool forceToString = false)
         {
-            var convertibleValue = value as IConvertible;
-            var objTypeCode = convertibleValue?.GetTypeCode() ?? (value is null ? TypeCode.Empty : TypeCode.Object);
-            if (objTypeCode != TypeCode.Object)
+            if (value is IConvertible convertibleValue)
             {
-                SerializeSimpleTypeCodeValue(convertibleValue, objTypeCode, destination, options, forceToString);
-                return true;
+                var objTypeCode = convertibleValue.GetTypeCode();
+                if (objTypeCode != TypeCode.Object)
+                {
+                    SerializeSimpleTypeCodeValue(convertibleValue, objTypeCode, destination, options, forceToString);
+                    return true;
+                }
             }
 
             if (value is IFormattable formattable)
@@ -258,7 +262,6 @@ namespace NLog.Targets
                     QuoteValue(destination, dateTimeOffset.ToString("yyyy-MM-dd HH:mm:ss zzz", CultureInfo.InvariantCulture));
                     return true;
                 }
-
 
                 destination.Append('"');
 #if NETFRAMEWORK
@@ -270,6 +273,12 @@ namespace NLog.Targets
                 PerformJsonEscapeWhenNeeded(destination, startPos, options.EscapeUnicode);
 #endif
                 destination.Append('"');
+                return true;
+            }
+
+            if (value is null)
+            {
+                SerializeSimpleTypeCodeValue(null, TypeCode.Empty, destination, options, forceToString);
                 return true;
             }
 
@@ -425,7 +434,7 @@ namespace NLog.Targets
             return SerializeObjectAsString(value, destination, options);
         }
 
-        private void SerializeSimpleTypeCodeValue(IConvertible value, TypeCode objTypeCode, StringBuilder destination, JsonSerializeOptions options, bool forceToString = false)
+        private void SerializeSimpleTypeCodeValue(IConvertible? value, TypeCode objTypeCode, StringBuilder destination, JsonSerializeOptions options, bool forceToString = false)
         {
             if (objTypeCode == TypeCode.Empty || value is null)
             {
@@ -503,13 +512,12 @@ namespace NLog.Targets
 
         private string EnumAsString(Enum value)
         {
-            string textValue;
-            if (!_enumCache.TryGetValue(value, out textValue))
+            if (!_enumCache.TryGetValue(value, out var textValue))
             {
                 textValue = Convert.ToString(value, CultureInfo.InvariantCulture);
                 _enumCache.TryAddValue(value, textValue);
             }
-            return textValue;
+            return textValue ?? string.Empty;
         }
 
         /// <summary>
@@ -686,7 +694,7 @@ namespace NLog.Targets
         {
             destination.Append('{');
 
-            string jsonPropertyDelimeter = null;
+            string? jsonPropertyDelimeter = null;
 
             foreach (var propertyValue in objectPropertyList)
             {
@@ -705,7 +713,7 @@ namespace NLog.Targets
                     var objTypeCode = propertyValue.TypeCode;
                     if (objTypeCode != TypeCode.Object)
                     {
-                        SerializeSimpleTypeCodeValue((IConvertible)propertyValue.Value, objTypeCode, destination, options);
+                        SerializeSimpleTypeCodeValue((IConvertible?)propertyValue.Value, objTypeCode, destination, options);
                     }
                     else
                     {

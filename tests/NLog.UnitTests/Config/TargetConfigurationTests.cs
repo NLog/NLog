@@ -498,7 +498,7 @@ namespace NLog.UnitTests.Config
 
             var retryingTargetWrapper = bufferingTargetWrapper.WrappedTarget as RetryingTargetWrapper;
             Assert.NotNull(retryingTargetWrapper);
-            Assert.Null(retryingTargetWrapper.Name);
+            Assert.Empty(retryingTargetWrapper.Name);
 
             var debugTarget = retryingTargetWrapper.WrappedTarget as DebugTarget;
             Assert.NotNull(debugTarget);

@@ -31,10 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
+#nullable enable
 
 namespace NLog.MessageTemplates
 {
+    using System;
+
     /// <summary>
     /// Error when parsing a template.
     /// </summary>

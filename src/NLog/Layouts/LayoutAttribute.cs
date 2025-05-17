@@ -31,10 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Layouts
 {
     using System;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Marks class as Layout and attaches a type-alias name for use in NLog configuration.

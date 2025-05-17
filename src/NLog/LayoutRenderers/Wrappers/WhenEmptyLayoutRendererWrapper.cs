@@ -62,7 +62,7 @@ namespace NLog.LayoutRenderers.Wrappers
                 throw new NLogConfigurationException("WhenEmpty-LayoutRenderer WhenEmpty-property must be assigned.");
 
             base.InitializeLayoutRenderer();
-            WhenEmpty?.Initialize(LoggingConfiguration);
+            WhenEmpty.Initialize(LoggingConfiguration);
             _skipStringValueRenderer = !TryGetStringValue(out _, out _);
         }
 
