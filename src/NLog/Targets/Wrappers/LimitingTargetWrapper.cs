@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets.Wrappers
 {
     using System;
@@ -52,10 +54,11 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes a new instance of the <see cref="LimitingTargetWrapper" /> class.
         /// </summary>
-        public LimitingTargetWrapper() : this(null)
+        public LimitingTargetWrapper()
         {
+            MessageLimit = 1000;
+            Interval = TimeSpan.FromHours(1);
         }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LimitingTargetWrapper" /> class.
@@ -85,7 +88,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="interval">Interval in which the maximum number of messages can be written.</param>
         public LimitingTargetWrapper(Target wrappedTarget, int messageLimit, TimeSpan interval)
         {
-            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapper");
+            Name = (wrappedTarget is null || string.IsNullOrEmpty(wrappedTarget.Name)) ? Name : (wrappedTarget.Name + "_wrapper");
             WrappedTarget = wrappedTarget;
             MessageLimit = messageLimit;
             Interval = interval;
@@ -149,7 +152,7 @@ namespace NLog.Targets.Wrappers
 
             if (messageLimit <= 0 || MessagesWrittenCount < messageLimit)
             {
-                WrappedTarget.WriteAsyncLogEvent(logEvent);
+                WrappedTarget?.WriteAsyncLogEvent(logEvent);
                 MessagesWrittenCount++;
             }
             else

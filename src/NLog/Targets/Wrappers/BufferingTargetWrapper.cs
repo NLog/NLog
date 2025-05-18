@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets.Wrappers
 {
     using System;
@@ -49,16 +51,17 @@ namespace NLog.Targets.Wrappers
     [Target("BufferingWrapper", IsWrapper = true)]
     public class BufferingTargetWrapper : WrapperTargetBase
     {
-        private AsyncRequestQueue _buffer;
-        private Timer _flushTimer;
+        private AsyncRequestQueue _buffer = new AsyncRequestQueue(100, AsyncTargetWrapperOverflowAction.Discard);
+        private Timer? _flushTimer;
         private readonly object _lockObject = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BufferingTargetWrapper" /> class.
         /// </summary>
         public BufferingTargetWrapper()
-            : this(null)
         {
+            BufferSize = 100;
+            FlushTimeout = -1;
         }
 
         /// <summary>
@@ -111,7 +114,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="overflowAction">The action to take when the buffer overflows.</param>
         public BufferingTargetWrapper(Target wrappedTarget, int bufferSize, int flushTimeout, BufferingTargetWrapperOverflowAction overflowAction)
         {
-            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapper");
+            Name = (wrappedTarget is null || string.IsNullOrEmpty(wrappedTarget.Name)) ? Name : (wrappedTarget.Name + "_wrapper");
             WrappedTarget = wrappedTarget;
             BufferSize = bufferSize;
             FlushTimeout = flushTimeout;
@@ -242,7 +245,7 @@ namespace NLog.Targets.Wrappers
             PrecalculateVolatileLayouts(logEvent.LogEvent);
 
             var firstEventInQueue = _buffer.Enqueue(logEvent);
-            if (_buffer.RequestCount >= _buffer.RequestLimit)
+            if (_buffer.RequestCount >= _buffer.QueueLimit)
             {
                 // If the OverflowAction action is set to "Discard", the buffer will automatically
                 // roll over the oldest item.
@@ -262,7 +265,7 @@ namespace NLog.Targets.Wrappers
                     if (flushTimeout > 0)
                     {
                         // reset the timer on first item added to the buffer or whenever SlidingTimeout is set to true
-                        _flushTimer.Change(flushTimeout, -1);
+                        _flushTimer?.Change(flushTimeout, -1);
                     }
                 }
             }
@@ -282,7 +285,7 @@ namespace NLog.Targets.Wrappers
                     if (_flushTimer is null)
                         return;
 
-                    WriteEventsInBuffer(null);
+                    WriteEventsInBuffer(string.Empty);
                 }
                 else
                 {
@@ -320,7 +323,7 @@ namespace NLog.Targets.Wrappers
             AsyncLogEventInfo[] logEvents = _buffer.DequeueBatch(int.MaxValue);
             if (logEvents.Length > 0)
             {
-                if (reason != null)
+                if (!string.IsNullOrEmpty(reason))
                     InternalLogger.Trace("{0}: Writing {1} events ({2})", this, logEvents.Length, reason);
                 WrappedTarget.WriteAsyncLogEvents(logEvents);
             }

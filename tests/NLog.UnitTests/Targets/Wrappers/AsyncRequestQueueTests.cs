@@ -49,7 +49,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var ev4 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
 
             var queue = new AsyncRequestQueue(3, AsyncTargetWrapperOverflowAction.Discard);
-            Assert.Equal(3, queue.RequestLimit);
+            Assert.Equal(3, queue.QueueLimit);
             Assert.Equal(AsyncTargetWrapperOverflowAction.Discard, queue.OnOverflow);
             Assert.Equal(0, queue.RequestCount);
             queue.Enqueue(ev1);
@@ -82,7 +82,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var ev4 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
 
             var queue = new AsyncRequestQueue(3, AsyncTargetWrapperOverflowAction.Grow);
-            Assert.Equal(3, queue.RequestLimit);
+            Assert.Equal(3, queue.QueueLimit);
             Assert.Equal(AsyncTargetWrapperOverflowAction.Grow, queue.OnOverflow);
             Assert.Equal(0, queue.RequestCount);
             queue.Enqueue(ev1);
@@ -147,7 +147,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 logEventInfos = queue.DequeueBatch(left);
                 int got = logEventInfos.Length;
-                Assert.True(got <= queue.RequestLimit);
+                Assert.True(got <= queue.QueueLimit);
                 total += got;
             }
 
@@ -168,7 +168,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 logEventInfos = queue.DequeueBatch(left);
                 int got = logEventInfos.Length;
-                Assert.True(got <= queue.RequestLimit);
+                Assert.True(got <= queue.QueueLimit);
                 total += got;
             }
 
@@ -185,7 +185,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var ev4 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
 
             var queue = new AsyncRequestQueue(3, AsyncTargetWrapperOverflowAction.Grow);
-            Assert.Equal(3, queue.RequestLimit);
+            Assert.Equal(3, queue.QueueLimit);
             Assert.Equal(AsyncTargetWrapperOverflowAction.Grow, queue.OnOverflow);
             Assert.Equal(0, queue.RequestCount);
             queue.Enqueue(ev1);
@@ -226,7 +226,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
 
             Assert.Equal(ExpectedCountOfGrovingTimes, grovingItemsCount);
-            Assert.Equal(ExpectedFinalSize, requestQueue.RequestLimit);
+            Assert.Equal(ExpectedFinalSize, requestQueue.QueueLimit);
         }
 
         [Fact]

@@ -31,12 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets.Wrappers
 {
     using System.Collections.Generic;
     using NLog.Common;
     using NLog.Conditions;
-    using NLog.Config;
     using NLog.Filters;
     using NLog.Internal;
 
@@ -66,8 +67,8 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="FilteringTargetWrapper" /> class.
         /// </summary>
         public FilteringTargetWrapper()
-            : this(null, null)
         {
+            Filter = ConditionBasedFilter.Empty;
         }
 
         /// <summary>
@@ -89,9 +90,9 @@ namespace NLog.Targets.Wrappers
         /// <param name="condition">The condition.</param>
         public FilteringTargetWrapper(Target wrappedTarget, ConditionExpression condition)
         {
-            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapper");
+            Name = (wrappedTarget is null || string.IsNullOrEmpty(wrappedTarget.Name)) ? Name : (wrappedTarget.Name + "_wrapper");
             WrappedTarget = wrappedTarget;
-            Condition = condition;
+            Filter = CreateFilter(condition);
         }
 
         /// <summary>
@@ -99,7 +100,7 @@ namespace NLog.Targets.Wrappers
         /// to the wrapped target.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        public ConditionExpression Condition { get => (Filter as ConditionBasedFilter)?.Condition; set => Filter = CreateFilter(value); }
+        public ConditionExpression? Condition { get => (Filter as ConditionBasedFilter)?.Condition; set => Filter = CreateFilter(value ?? ConditionExpression.Empty); }
 
         /// <summary>
         /// Gets or sets the filter. Log events who evaluates to <see cref="FilterResult.Ignore"/> will be discarded
@@ -110,7 +111,7 @@ namespace NLog.Targets.Wrappers
         /// <inheritdoc/>
         protected override void InitializeTarget()
         {
-            if (Filter is null)
+            if (Filter is null || ReferenceEquals(Condition, ConditionExpression.Empty))
                 throw new NLogConfigurationException($"FilteringTargetWrapper Filter-property must be assigned. Filter LogEvents using blank Filter not supported.");
 
             base.InitializeTarget();
@@ -126,7 +127,7 @@ namespace NLog.Targets.Wrappers
         {
             if (ShouldLogEvent(logEvent, Filter))
             {
-                WrappedTarget.WriteAsyncLogEvent(logEvent);
+                WrappedTarget?.WriteAsyncLogEvent(logEvent);
             }
         }
 
@@ -136,7 +137,7 @@ namespace NLog.Targets.Wrappers
             var filterLogEvents = logEvents.Filter(Filter, (logEvent, filter) => ShouldLogEvent(logEvent, filter));
             if (filterLogEvents.Count > 0)
             {
-                WrappedTarget.WriteAsyncLogEvents(filterLogEvents);
+                WrappedTarget?.WriteAsyncLogEvents(filterLogEvents);
             }
         }
 
@@ -156,10 +157,9 @@ namespace NLog.Targets.Wrappers
 
         private static ConditionBasedFilter CreateFilter(ConditionExpression value)
         {
-            if (value is null)
-            {
-                return null;
-            }
+            if (value is null || ReferenceEquals(value, ConditionExpression.Empty))
+                return ConditionBasedFilter.Empty;
+
             return new ConditionBasedFilter { Condition = value, FilterDefaultAction = FilterResult.Ignore };
         }
     }

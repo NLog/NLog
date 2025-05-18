@@ -31,10 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets.Wrappers
 {
-    using Conditions;
-    using Config;
+    using NLog.Conditions;
+    using NLog.Config;
 
     /// <summary>
     /// Filtering rule for <see cref="PostFilteringTargetWrapper"/>.

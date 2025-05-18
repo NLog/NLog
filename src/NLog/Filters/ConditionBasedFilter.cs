@@ -47,6 +47,8 @@ namespace NLog.Filters
     [Filter("when")]
     public class ConditionBasedFilter : Filter
     {
+        internal static readonly ConditionBasedFilter Empty = new ConditionBasedFilter();
+
         /// <summary>
         /// Gets or sets the condition expression.
         /// </summary>

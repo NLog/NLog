@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets.Wrappers
 {
     using System;
@@ -66,8 +68,9 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="RetryingTargetWrapper" /> class.
         /// </summary>
         public RetryingTargetWrapper()
-            : this(null, 3, 100)
         {
+            RetryCount = 3;
+            RetryDelayMilliseconds = 100;
         }
 
         /// <summary>
@@ -91,7 +94,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="retryDelayMilliseconds">The retry delay milliseconds.</param>
         public RetryingTargetWrapper(Target wrappedTarget, int retryCount, int retryDelayMilliseconds)
         {
-            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapper");
+            Name = (wrappedTarget is null || string.IsNullOrEmpty(wrappedTarget.Name)) ? Name : (wrappedTarget.Name + "_wrapper");
             WrappedTarget = wrappedTarget;
             RetryCount = retryCount;
             RetryDelayMilliseconds = retryDelayMilliseconds;
@@ -141,7 +144,7 @@ namespace NLog.Targets.Wrappers
 
                 lock (_retrySyncObject)
                 {
-                    WrappedTarget.WriteAsyncLogEvents(logEvents);
+                    WrappedTarget?.WriteAsyncLogEvents(logEvents);
                 }
             }
             else
@@ -175,12 +178,12 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            WrappedTarget.WriteAsyncLogEvent(WrapWithRetry(logEvent, (retryNumber) => true));
+            WrappedTarget?.WriteAsyncLogEvent(WrapWithRetry(logEvent, (retryNumber) => true));
         }
 
         private AsyncLogEventInfo WrapWithRetry(AsyncLogEventInfo logEvent, Func<int, bool> sleepBeforeRetry)
         {
-            AsyncContinuation continuation = null;
+            AsyncContinuation? continuation = null;
             int counter = 0;
 
             continuation = ex =>
@@ -221,7 +224,7 @@ namespace NLog.Targets.Wrappers
                     }
                 }
 
-                WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
+                WrappedTarget?.WriteAsyncLogEvent(continuation is null ? logEvent : logEvent.LogEvent.WithContinuation(continuation));
             };
 
             return logEvent.LogEvent.WithContinuation(continuation);

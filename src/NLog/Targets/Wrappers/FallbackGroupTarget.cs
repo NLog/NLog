@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets.Wrappers
 {
     using System.Collections.Generic;
@@ -158,7 +160,7 @@ namespace NLog.Targets.Wrappers
                 }
             }
 
-            AsyncContinuation continuation = null;
+            AsyncContinuation? continuation = null;
             int tryCounter = 0;
             continuation = ex =>
             {
@@ -183,7 +185,7 @@ namespace NLog.Targets.Wrappers
                 {
                     InternalLogger.Warn(ex, "{0}: Target '{1}' failed. Fallback to next: `{2}`", this, Targets[targetToInvoke], Targets[nextTarget]);
                     targetToInvoke = nextTarget;
-                    Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
+                    Targets[targetToInvoke].WriteAsyncLogEvent(continuation is null ? logEvent : logEvent.LogEvent.WithContinuation(continuation));
                 }
                 else
                 {

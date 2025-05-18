@@ -762,7 +762,7 @@ namespace NLog.UnitTests.Layouts
         {
             // Arrange
             Uri url = null;
-            Layout<Uri> layout1 = url;
+            Layout<Uri> layout1 = null;
             Layout<Uri> layout2 = new Layout<Uri>(url);
 
             // Act + Assert

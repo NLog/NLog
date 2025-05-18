@@ -31,11 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets.Wrappers
 {
     using System.Collections.Generic;
     using NLog.Common;
-    using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
 
@@ -49,18 +50,19 @@ namespace NLog.Targets.Wrappers
     [Target("GroupByWrapper", IsWrapper = true)]
     public class GroupByTargetWrapper : WrapperTargetBase
     {
-        SortHelpers.KeySelector<AsyncLogEventInfo, string> _buildKeyStringDelegate;
+        private readonly SortHelpers.KeySelector<AsyncLogEventInfo, string> _buildKeyStringDelegate;
 
         /// <summary>
         /// Identifier to perform group-by
         /// </summary>
-        public Layout Key { get; set; }
+        public Layout Key { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GroupByTargetWrapper" /> class.
         /// </summary>
-        public GroupByTargetWrapper() : this(null)
+        public GroupByTargetWrapper()
         {
+            _buildKeyStringDelegate = logEvent => RenderLogEvent(Key, logEvent.LogEvent);
         }
 
         /// <summary>
@@ -68,7 +70,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         public GroupByTargetWrapper(Target wrappedTarget)
-            : this(string.IsNullOrEmpty(wrappedTarget?.Name) ? null : (wrappedTarget.Name + "_wrapper"), wrappedTarget)
+            : this(string.Empty, wrappedTarget)
         {
         }
 
@@ -89,8 +91,9 @@ namespace NLog.Targets.Wrappers
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="key">Group by identifier.</param>
         public GroupByTargetWrapper(string name, Target wrappedTarget, Layout key)
+            : this()
         {
-            Name = name;
+            Name = (!string.IsNullOrEmpty(name) || wrappedTarget is null || string.IsNullOrEmpty(wrappedTarget.Name)) ? name : (wrappedTarget.Name + "_wrapper");
             WrappedTarget = wrappedTarget;
             Key = key;
         }
@@ -107,19 +110,16 @@ namespace NLog.Targets.Wrappers
         /// <inheritdoc/>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            WrappedTarget.WriteAsyncLogEvent(logEvent);
+            WrappedTarget?.WriteAsyncLogEvent(logEvent);
         }
 
         /// <inheritdoc/>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            if (_buildKeyStringDelegate is null)
-                _buildKeyStringDelegate = logEvent => RenderLogEvent(Key, logEvent.LogEvent);
-
             var buckets = logEvents.BucketSort(_buildKeyStringDelegate);
             foreach (var bucket in buckets)
             {
-                WrappedTarget.WriteAsyncLogEvents(bucket.Value);
+                WrappedTarget?.WriteAsyncLogEvents(bucket.Value);
             }
         }
     }

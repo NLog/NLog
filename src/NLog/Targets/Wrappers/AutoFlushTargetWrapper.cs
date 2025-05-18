@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets.Wrappers
 {
     using NLog.Common;
@@ -64,7 +66,7 @@ namespace NLog.Targets.Wrappers
         /// a flush on the wrapped target.
         /// </summary>
         /// <docgen category='General Options' order='10' />
-        public ConditionExpression Condition { get; set; }
+        public ConditionExpression Condition { get; set; } = ConditionExpression.Empty;
 
         /// <summary>
         /// Delay the flush until the LogEvent has been confirmed as written
@@ -92,8 +94,8 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="AutoFlushTargetWrapper" /> class.
         /// </summary>
         public AutoFlushTargetWrapper()
-            : this(null)
         {
+            _flushCompletedContinuation = (ex) => _pendingManualFlushList.CompleteOperation(ex);
         }
 
         /// <summary>
@@ -112,29 +114,29 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         public AutoFlushTargetWrapper(Target wrappedTarget)
+            : this()
         {
-            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapper");
+            Name = (wrappedTarget is null || string.IsNullOrEmpty(wrappedTarget.Name)) ? Name : (wrappedTarget.Name + "_wrapper");
             WrappedTarget = wrappedTarget;
-            _flushCompletedContinuation = (ex) => _pendingManualFlushList.CompleteOperation(ex);
         }
 
         /// <inheritdoc/>
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
-            if (!_asyncFlush.HasValue && !TargetSupportsAsyncFlush(WrappedTarget))
+            if (!_asyncFlush.HasValue && !TargetSupportsAsyncFlush())
             {
                 AsyncFlush = false; // Disable AsyncFlush, so the intended trigger works
             }
         }
 
-        private static bool TargetSupportsAsyncFlush(Target wrappedTarget)
+        private bool TargetSupportsAsyncFlush()
         {
-            if (wrappedTarget is BufferingTargetWrapper)
+            if (WrappedTarget is BufferingTargetWrapper)
                 return false;
 
 #if !NET35
-            if (wrappedTarget is AsyncTaskTarget)
+            if (WrappedTarget is AsyncTaskTarget)
                 return false;
 #endif
 
@@ -149,7 +151,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">Logging event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            if (Condition is null || ConditionExpression.BoxedTrue.Equals(Condition.Evaluate(logEvent.LogEvent)))
+            if (Condition is null || ReferenceEquals(Condition, ConditionExpression.Empty) ||  ConditionExpression.BoxedTrue.Equals(Condition.Evaluate(logEvent.LogEvent)))
             {
                 if (AsyncFlush)
                 {
@@ -165,18 +167,18 @@ namespace NLog.Targets.Wrappers
                         currentContinuation(ex);
                     };
                     _pendingManualFlushList.BeginOperation();
-                    WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(wrappedContinuation));
+                    WrappedTarget?.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(wrappedContinuation));
                 }
                 else
                 {
                     _pendingManualFlushList.BeginOperation();
-                    WrappedTarget.WriteAsyncLogEvent(logEvent);
+                    WrappedTarget?.WriteAsyncLogEvent(logEvent);
                     FlushWrappedTarget(_flushCompletedContinuation);
                 }
             }
             else
             {
-                WrappedTarget.WriteAsyncLogEvent(logEvent);
+                WrappedTarget?.WriteAsyncLogEvent(logEvent);
             }
         }
 
@@ -199,7 +201,7 @@ namespace NLog.Targets.Wrappers
 
         private void FlushWrappedTarget(AsyncContinuation asyncContinuation)
         {
-            WrappedTarget.Flush(asyncContinuation);
+            WrappedTarget?.Flush(asyncContinuation);
         }
 
         /// <inheritdoc/>
