@@ -168,8 +168,6 @@ namespace NLog.UnitTests.Targets
 
                         CheckEquals(targetType, targetConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
                     }
-
-
                 }
                 catch (Exception ex)
                 {
@@ -179,6 +177,7 @@ namespace NLog.UnitTests.Targets
                     Assert.False(constructionFailed, failureMessage);
                 }
             }
+
             Assert.Equal(neededCheckCount, checkCount);
         }
 
@@ -274,7 +273,7 @@ namespace NLog.UnitTests.Targets
             {
                 if (x is null) return y is null;
 
-                return x.RequestLimit == y.RequestLimit && x.OnOverflow == y.OnOverflow;
+                return x.QueueLimit == y.QueueLimit && x.OnOverflow == y.OnOverflow;
             }
 
             /// <summary>
@@ -288,7 +287,7 @@ namespace NLog.UnitTests.Targets
             {
                 unchecked
                 {
-                    return (obj.RequestLimit * 397) ^ (int)obj.OnOverflow;
+                    return (obj.QueueLimit * 397) ^ (int)obj.OnOverflow;
                 }
             }
         }

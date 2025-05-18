@@ -31,10 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
+#nullable enable
 
 namespace NLog.Targets.Wrappers
 {
+    using System;
     using System.Collections.Generic;
     using NLog.Common;
 
@@ -43,9 +44,9 @@ namespace NLog.Targets.Wrappers
         public abstract bool IsEmpty { get; }
 
         /// <summary>
-        /// Gets or sets the request limit.
+        /// Gets or sets the queue max-size
         /// </summary>
-        public int RequestLimit { get; set; }
+        public int QueueLimit { get; set; }
 
         /// <summary>
         /// Gets or sets the action to be taken when there's no more room in
@@ -56,12 +57,12 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Occurs when LogEvent has been dropped, because internal queue is full and <see cref="OnOverflow"/> set to <see cref="AsyncTargetWrapperOverflowAction.Discard"/>
         /// </summary>
-        public event EventHandler<LogEventDroppedEventArgs> LogEventDropped;
+        public event EventHandler<LogEventDroppedEventArgs>? LogEventDropped;
 
         /// <summary>
         /// Occurs when internal queue size is growing, because internal queue is full and <see cref="OnOverflow"/> set to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
         /// </summary>
-        public event EventHandler<LogEventQueueGrowEventArgs> LogEventQueueGrow;
+        public event EventHandler<LogEventQueueGrowEventArgs>? LogEventQueueGrow;
 
         public abstract bool Enqueue(AsyncLogEventInfo logEventInfo);
 
@@ -78,9 +79,9 @@ namespace NLog.Targets.Wrappers
         protected void OnLogEventDropped(LogEventInfo logEventInfo) => LogEventDropped?.Invoke(this, new LogEventDroppedEventArgs(logEventInfo));
 
         /// <summary>
-        /// Raise event when RequestCount overflow <see cref="RequestLimit"/>
+        /// Raise event when RequestCount overflow <see cref="QueueLimit"/>
         /// </summary>
         /// <param name="requestsCount"> current requests count</param>
-        protected void OnLogEventQueueGrows(long requestsCount) => LogEventQueueGrow?.Invoke(this, new LogEventQueueGrowEventArgs(RequestLimit, requestsCount));
+        protected void OnLogEventQueueGrows(long requestsCount) => LogEventQueueGrow?.Invoke(this, new LogEventQueueGrowEventArgs(QueueLimit, requestsCount));
     }
 }

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets.Wrappers
 {
     using System;
@@ -81,18 +83,29 @@ namespace NLog.Targets.Wrappers
     {
         private readonly object _writeLockObject = new object();
         private readonly object _timerLockObject = new object();
-        private Timer _lazyWriterTimer;
+        private Timer? _lazyWriterTimer;
         private readonly ReusableAsyncLogEventList _reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
-        private event EventHandler<LogEventDroppedEventArgs> _logEventDroppedEvent;
-        private event EventHandler<LogEventQueueGrowEventArgs> _eventQueueGrowEvent;
+        private readonly WaitCallback _flushEventsInQueueDelegate;
+        private event EventHandler<LogEventDroppedEventArgs>? _logEventDroppedEvent;
+        private event EventHandler<LogEventQueueGrowEventArgs>? _eventQueueGrowEvent;
         private bool _missingServiceTypes;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
         /// </summary>
         public AsyncTargetWrapper()
-            : this(null)
         {
+#if NETFRAMEWORK
+            _requestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
+#else
+            // NetStandard20 includes many optimizations for ConcurrentQueue:
+            //  - See: https://blogs.msdn.microsoft.com/dotnet/2017/06/07/performance-improvements-in-net-core/
+            // Net40 ConcurrencyQueue can seem to leak, because it doesn't clear properly on dequeue
+            //  - See: https://blogs.msdn.microsoft.com/pfxteam/2012/05/08/concurrentqueuet-holding-on-to-a-few-dequeued-elements/
+            _requestQueue = new ConcurrentRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
+#endif
+
+            _flushEventsInQueueDelegate = FlushEventsInQueue;
         }
 
         /// <summary>
@@ -122,20 +135,10 @@ namespace NLog.Targets.Wrappers
         /// <param name="queueLimit">Maximum number of requests in the queue.</param>
         /// <param name="overflowAction">The action to be taken when the queue overflows.</param>
         public AsyncTargetWrapper(Target wrappedTarget, int queueLimit, AsyncTargetWrapperOverflowAction overflowAction)
+            : this()
         {
-            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapper");
+            Name = (wrappedTarget is null || string.IsNullOrEmpty(wrappedTarget.Name)) ? Name : (wrappedTarget.Name + "_wrapper");
             WrappedTarget = wrappedTarget;
-
-#if NETFRAMEWORK
-            _requestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
-#else
-            // NetStandard20 includes many optimizations for ConcurrentQueue:
-            //  - See: https://blogs.msdn.microsoft.com/dotnet/2017/06/07/performance-improvements-in-net-core/
-            // Net40 ConcurrencyQueue can seem to leak, because it doesn't clear properly on dequeue
-            //  - See: https://blogs.msdn.microsoft.com/pfxteam/2012/05/08/concurrentqueuet-holding-on-to-a-few-dequeued-elements/
-            _requestQueue = new ConcurrentRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
-#endif
-
             QueueLimit = queueLimit;
             OverflowAction = overflowAction;
         }
@@ -220,8 +223,8 @@ namespace NLog.Targets.Wrappers
         /// <docgen category='Buffering Options' order='10' />
         public int QueueLimit
         {
-            get => _requestQueue.RequestLimit;
-            set => _requestQueue.RequestLimit = value;
+            get => _requestQueue.QueueLimit;
+            set => _requestQueue.QueueLimit = value;
         }
 
         /// <summary>
@@ -254,12 +257,8 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            if (_flushEventsInQueueDelegate is null)
-                _flushEventsInQueueDelegate = FlushEventsInQueue;
             AsyncHelpers.StartAsyncTask(_flushEventsInQueueDelegate, asyncContinuation);
         }
-
-        private WaitCallback _flushEventsInQueueDelegate;
 
         /// <summary>
         /// Initializes the target by starting the lazy writer timer.
@@ -555,7 +554,7 @@ namespace NLog.Targets.Wrappers
             }
             else
             {
-                asyncContinuation(new NLogRuntimeException($"Target {this} failed to flush after lock timeout."));
+                asyncContinuation?.Invoke(new NLogRuntimeException($"Target {this} failed to flush after lock timeout."));
             }
         }
 
@@ -611,7 +610,7 @@ namespace NLog.Targets.Wrappers
             {
                 if (reason != null)
                     InternalLogger.Trace("{0}: Writing {1} events ({2})", this, batchSize, reason);
-                WrappedTarget.WriteAsyncLogEvents(logEvents);
+                WrappedTarget?.WriteAsyncLogEvents(logEvents);
             }
 
             return batchSize;

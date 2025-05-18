@@ -138,8 +138,8 @@ namespace NLog.Targets
         /// <docgen category='Buffering Options' order='100' />
         public int QueueLimit
         {
-            get => _requestQueue.RequestLimit;
-            set => _requestQueue.RequestLimit = value;
+            get => _requestQueue.QueueLimit;
+            set => _requestQueue.QueueLimit = value;
         }
 
         /// <summary>

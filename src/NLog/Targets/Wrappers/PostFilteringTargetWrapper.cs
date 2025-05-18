@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets.Wrappers
 {
     using System.Collections.Generic;
@@ -69,7 +71,6 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="PostFilteringTargetWrapper" /> class.
         /// </summary>
         public PostFilteringTargetWrapper()
-            : this(null)
         {
         }
 
@@ -77,7 +78,7 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="PostFilteringTargetWrapper" /> class.
         /// </summary>
         public PostFilteringTargetWrapper(Target wrappedTarget)
-            : this(string.IsNullOrEmpty(wrappedTarget?.Name) ? null : (wrappedTarget.Name + "_wrapper"), wrappedTarget)
+            : this(string.Empty, wrappedTarget)
         {
         }
 
@@ -88,7 +89,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="wrappedTarget">The wrapped target.</param>
         public PostFilteringTargetWrapper(string name, Target wrappedTarget)
         {
-            Name = name ?? Name;
+            Name = (!string.IsNullOrEmpty(name) || wrappedTarget is null || string.IsNullOrEmpty(wrappedTarget.Name)) ? name : (wrappedTarget.Name + "_wrapper");
             WrappedTarget = wrappedTarget;
         }
 
@@ -96,7 +97,7 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the default filter to be applied when no specific rule matches.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        public ConditionExpression DefaultFilter { get; set; }
+        public ConditionExpression DefaultFilter { get; set; } = ConditionExpression.Empty;
 
         /// <summary>
         /// Gets the collection of filtering rules. The rules are processed top-down
@@ -139,10 +140,10 @@ namespace NLog.Targets.Wrappers
         {
             InternalLogger.Trace("{0}: Running on {1} events", this, logEvents.Count);
 
-            var resultFilter = EvaluateAllRules(logEvents) ?? DefaultFilter;
-            if (resultFilter is null)
+            var resultFilter = EvaluateAllRules(logEvents);
+            if (resultFilter is null || ReferenceEquals(resultFilter, ConditionExpression.Empty))
             {
-                WrappedTarget.WriteAsyncLogEvents(logEvents);
+                WrappedTarget?.WriteAsyncLogEvents(logEvents);
             }
             else
             {
@@ -152,14 +153,14 @@ namespace NLog.Targets.Wrappers
                 if (resultBuffer.Count > 0)
                 {
                     InternalLogger.Trace("{0}: Sending to {1}", this, WrappedTarget);
-                    WrappedTarget.WriteAsyncLogEvents(resultBuffer);
+                    WrappedTarget?.WriteAsyncLogEvents(resultBuffer);
                 }
             }
         }
 
         private static bool ShouldLogEvent(AsyncLogEventInfo logEvent, ConditionExpression resultFilter)
         {
-            object v = resultFilter.Evaluate(logEvent.LogEvent);
+            var v = resultFilter.Evaluate(logEvent.LogEvent);
             if (ConditionExpression.BoxedTrue.Equals(v))
             {
                 return true;
@@ -179,14 +180,14 @@ namespace NLog.Targets.Wrappers
         private ConditionExpression EvaluateAllRules(IList<AsyncLogEventInfo> logEvents)
         {
             if (Rules.Count == 0)
-                return null;
+                return DefaultFilter;
 
             for (int i = 0; i < logEvents.Count; ++i)
             {
                 for (int j = 0; j < Rules.Count; ++j)
                 {
                     var rule = Rules[j];
-                    object v = rule.Exists.Evaluate(logEvents[i].LogEvent);
+                    var v = rule.Exists.Evaluate(logEvents[i].LogEvent);
                     if (ConditionExpression.BoxedTrue.Equals(v))
                     {
                         InternalLogger.Trace("{0}: Rule matched: {1}", this, rule.Exists);
@@ -195,7 +196,7 @@ namespace NLog.Targets.Wrappers
                 }
             }
 
-            return null;
+            return DefaultFilter;
         }
     }
 }

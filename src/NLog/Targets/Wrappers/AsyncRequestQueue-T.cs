@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets.Wrappers
 {
     using System.Collections.Generic;
@@ -46,11 +48,11 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes a new instance of the AsyncRequestQueue class.
         /// </summary>
-        /// <param name="requestLimit">Request limit.</param>
+        /// <param name="queueLimit">Queue max size.</param>
         /// <param name="overflowAction">The overflow action.</param>
-        public AsyncRequestQueue(int requestLimit, AsyncTargetWrapperOverflowAction overflowAction)
+        public AsyncRequestQueue(int queueLimit, AsyncTargetWrapperOverflowAction overflowAction)
         {
-            RequestLimit = requestLimit;
+            QueueLimit = queueLimit;
             OnOverflow = overflowAction;
         }
 
@@ -81,7 +83,7 @@ namespace NLog.Targets.Wrappers
             lock (_logEventInfoQueue)
             {
                 var currentCount = _logEventInfoQueue.Count;
-                if (currentCount >= RequestLimit)
+                if (currentCount >= QueueLimit)
                 {
                     switch (OnOverflow)
                     {
@@ -94,11 +96,11 @@ namespace NLog.Targets.Wrappers
                         case AsyncTargetWrapperOverflowAction.Grow:
                             InternalLogger.Debug("AsyncQueue - Growing the size of queue, because queue is full");
                             OnLogEventQueueGrows(currentCount + 1);
-                            RequestLimit *= 2;
+                            QueueLimit *= 2;
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Block:
-                            while (currentCount >= RequestLimit)
+                            while (currentCount >= QueueLimit)
                             {
                                 InternalLogger.Debug("AsyncQueue - Blocking until ready, because queue is full");
                                 System.Threading.Monitor.Wait(_logEventInfoQueue);

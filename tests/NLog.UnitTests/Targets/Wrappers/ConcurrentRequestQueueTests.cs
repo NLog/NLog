@@ -84,7 +84,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
 
             Assert.Equal(ExpectedCountOfGrovingTimes, grovingItemsCount);
-            Assert.Equal(ExpectedFinalSize, requestQueue.RequestLimit);
+            Assert.Equal(ExpectedFinalSize, requestQueue.QueueLimit);
         }
 
         [Fact]

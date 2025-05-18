@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#nullable enable
+
 namespace NLog.Targets.Wrappers
 {
     using NLog.Common;
@@ -61,7 +63,6 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="RepeatingTargetWrapper" /> class.
         /// </summary>
         public RepeatingTargetWrapper()
-            : this(null, 3)
         {
         }
 
@@ -84,6 +85,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="repeatCount">The repeat count.</param>
         public RepeatingTargetWrapper(Target wrappedTarget, int repeatCount)
         {
+            Name = (wrappedTarget is null || string.IsNullOrEmpty(wrappedTarget.Name)) ? Name : (wrappedTarget.Name + "_wrapper");
             WrappedTarget = wrappedTarget;
             RepeatCount = repeatCount;
         }
@@ -92,7 +94,7 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the number of times to repeat each log message.
         /// </summary>
         /// <docgen category='Repeating Options' order='10' />
-        public int RepeatCount { get; set; }
+        public int RepeatCount { get; set; } = 3;
 
         /// <summary>
         /// Forwards the log message to the <see cref="WrapperTargetBase.WrappedTarget"/> by calling the <see cref="Target.Write(LogEventInfo)"/> method <see cref="RepeatCount"/> times.
@@ -100,7 +102,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            AsyncHelpers.Repeat(RepeatCount, logEvent.Continuation, cont => WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont)));
+            AsyncHelpers.Repeat(RepeatCount, logEvent.Continuation, cont => WrappedTarget?.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont)));
         }
     }
 }

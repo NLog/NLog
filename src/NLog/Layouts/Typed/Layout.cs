@@ -420,10 +420,8 @@ namespace NLog.Layouts
         /// Converts a given value to a <see cref="Layout{T}" />.
         /// </summary>
         /// <param name="value">Text to be converted.</param>
-        public static implicit operator Layout<T>?(T value)
+        public static implicit operator Layout<T>(T value)
         {
-            if (object.Equals(value, default(T)) && !typeof(T).IsValueType) return null;
-
             return new Layout<T>(value);
         }
 

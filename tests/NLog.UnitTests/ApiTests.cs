@@ -511,6 +511,7 @@ namespace NLog.UnitTests
                 "NLog.Conditions.ConditionLiteralExpression",
                 "NLog.Conditions.ConditionRelationalExpression",
                 "NLog.Conditions.ConditionTokenizer",
+                "NLog.Filters.ConditionBasedFilter",
                 "NLog.Common.InternalLogger",
                 "NLog.Internal.ObjectReflectionCache+ObjectPropertyList",
                 "NLog.Internal.ObjectReflectionCache+ObjectPropertyInfos",

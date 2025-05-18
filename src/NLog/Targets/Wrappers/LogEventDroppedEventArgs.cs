@@ -31,10 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
+#nullable enable
 
 namespace NLog.Targets.Wrappers
 {
+    using System;
+
     /// <summary>
     /// Arguments for <see cref="AsyncTargetWrapper.LogEventDropped"/> events.
     /// </summary>
