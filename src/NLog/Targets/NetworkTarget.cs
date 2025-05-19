@@ -241,6 +241,11 @@ namespace NLog.Targets
         public int SendTimeoutSeconds { get; set; }
 
         /// <summary>
+        /// Gets or sets whether to disable the delayed ACK timer, and avoid delay of 200 ms. Default = false.
+        /// </summary>
+        public bool NoDelay { get; set; }
+
+        /// <summary>
         /// Type of compression for protocol payload. Useful for UDP where datagram max-size is 8192 bytes.
         /// </summary>
         public NetworkTargetCompressionType Compress { get; set; }
@@ -616,7 +621,7 @@ namespace NLog.Targets
 
         private NetworkSender CreateNetworkSender(string address)
         {
-            var sender = SenderFactory.Create(address, MaxQueueSize, OnQueueOverflow, MaxMessageSize, SslProtocols, TimeSpan.FromSeconds(KeepAliveTimeSeconds), TimeSpan.FromSeconds(SendTimeoutSeconds));
+            var sender = SenderFactory.Create(address, this);
             sender.Initialize();
             if (KeepConnection || LogEventDropped != null)
             {
