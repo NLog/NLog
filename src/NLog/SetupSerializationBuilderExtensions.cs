@@ -117,7 +117,7 @@ namespace NLog
                 _transformer = transformer;
             }
 
-            public object TryTransformObject(object obj)
+            public object? TryTransformObject(object obj)
             {
                 if (obj is T rawObject)
                 {
@@ -142,7 +142,7 @@ namespace NLog
                 _objectType = objecType;
             }
 
-            public object TryTransformObject(object obj)
+            public object? TryTransformObject(object obj)
             {
                 if (_objectType.IsAssignableFrom(obj.GetType()))
                 {

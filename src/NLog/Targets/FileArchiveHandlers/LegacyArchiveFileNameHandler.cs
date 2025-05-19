@@ -57,7 +57,7 @@ namespace NLog.Targets.FileArchiveHandlers
         public override int ArchiveBeforeOpenFile(string newFileName, LogEventInfo firstLogEvent, DateTime? previousFileLastModified, int newSequenceNumber)
         {
             var archiveFileName = _fileTarget.ArchiveFileName?.Render(firstLogEvent);
-            if (StringHelpers.IsNullOrWhiteSpace(archiveFileName))
+            if (archiveFileName is null || StringHelpers.IsNullOrWhiteSpace(archiveFileName))
             {
                 return base.ArchiveBeforeOpenFile(newFileName, firstLogEvent, previousFileLastModified, newSequenceNumber);
             }

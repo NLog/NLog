@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// If <see cref="LogEventInfo.Exception"/> is not found, print this layout.
         /// </summary>
         /// <docgen category="Condition Options" order="10"/>
-        public Layout Else { get; set; }
+        public Layout Else { get; set; } = Layout.Empty;
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)

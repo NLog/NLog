@@ -50,8 +50,8 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("processinfo")]
     public class ProcessInfoLayoutRenderer : LayoutRenderer
     {
-        private Process _process;
-        private ReflectionHelpers.LateBoundMethod _lateBoundPropertyGet;
+        private Process? _process;
+        private ReflectionHelpers.LateBoundMethod? _lateBoundPropertyGet;
 
         /// <summary>
         /// Gets or sets the property to retrieve.
@@ -64,7 +64,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the format-string to use if the property supports it (Ex. DateTime / TimeSpan / Enum)
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public string Format { get; set; }
+        public string? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering.
@@ -98,16 +98,14 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var value = GetValue();
+            if (_process is null || _lateBoundPropertyGet is null)
+                return;
+
+            var value = _lateBoundPropertyGet.Invoke(_process, ArrayHelper.Empty<object>());
             if (value != null)
             {
                 AppendFormattedValue(builder, logEvent, value, Format, Culture);
             }
-        }
-
-        private object GetValue()
-        {
-            return _lateBoundPropertyGet?.Invoke(_process, null);
         }
     }
 }

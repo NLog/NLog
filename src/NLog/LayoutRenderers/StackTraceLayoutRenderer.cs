@@ -81,7 +81,7 @@ namespace NLog.LayoutRenderers
             }
         }
         private string _separator = " => ";
-        private string _separatorOriginal;
+        private string _separatorOriginal = " => ";
 
         /// <summary>
         /// Logger should capture StackTrace, if it was not provided manually
@@ -180,7 +180,7 @@ namespace NLog.LayoutRenderers
 
         private void AppendRaw(StringBuilder builder, StackFrameList stackFrameList)
         {
-            string separator = null;
+            string? separator = null;
             for (int i = 0; i < stackFrameList.Count; ++i)
             {
                 builder.Append(separator);

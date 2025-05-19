@@ -95,7 +95,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        public Layout<bool> StdErr { get; set; }
+        public Layout<bool>? StdErr { get; set; }
 
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
@@ -111,7 +111,7 @@ namespace NLog.Targets
                     _encoding = value;
             }
         }
-        private Encoding _encoding;
+        private Encoding? _encoding;
 
         /// <summary>
         /// Gets or sets a value indicating whether to auto-check if the console is available
@@ -142,7 +142,7 @@ namespace NLog.Targets
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
-        public ConsoleTarget() : base()
+        public ConsoleTarget()
         {
         }
 

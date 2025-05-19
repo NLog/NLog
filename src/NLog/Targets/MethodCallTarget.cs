@@ -34,6 +34,7 @@
 namespace NLog.Targets
 {
     using System;
+    using System.Diagnostics;
     using System.Reflection;
     using NLog.Common;
     using NLog.Config;
@@ -64,7 +65,7 @@ namespace NLog.Targets
         /// Gets or sets the class name.
         /// </summary>
         /// <docgen category='Invocation Options' order='10' />
-        public string ClassName { get; set; }
+        public string ClassName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the method name. The method must be public and static.
@@ -73,14 +74,14 @@ namespace NLog.Targets
         /// e.g.
         /// </summary>
         /// <docgen category='Invocation Options' order='10' />
-        public string MethodName { get; set; }
+        public string MethodName { get; set; } = string.Empty;
 
-        Action<LogEventInfo, object[]> _logEventAction;
+        Action<LogEventInfo, object?[]>? _logEventAction;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MethodCallTarget" /> class.
         /// </summary>
-        public MethodCallTarget() : base()
+        public MethodCallTarget()
         {
         }
 
@@ -88,8 +89,9 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="MethodCallTarget" /> class.
         /// </summary>
         /// <param name="name">Name of the target.</param>
-        public MethodCallTarget(string name) : this(name, null)
+        public MethodCallTarget(string name)
         {
+            Name = name;
         }
 
         /// <summary>
@@ -97,7 +99,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="name">Name of the target.</param>
         /// <param name="logEventAction">Method to call on logevent.</param>
-        public MethodCallTarget(string name, Action<LogEventInfo, object[]> logEventAction) : this()
+        public MethodCallTarget(string name, Action<LogEventInfo, object?[]> logEventAction)
         {
             Name = name;
             _logEventAction = logEventAction;
@@ -119,7 +121,7 @@ namespace NLog.Targets
         }
 
         [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow method lookup from config", "IL2075")]
-        private static Action<LogEventInfo, object[]> BuildLogEventAction(string className, string methodName)
+        private static Action<LogEventInfo, object?[]> BuildLogEventAction(string className, string methodName)
         {
             var targetType = PropertyTypeConverter.ConvertToType(className.Trim(), false);
             if (targetType is null)
@@ -144,18 +146,18 @@ namespace NLog.Targets
             }
         }
 
-        private static Action<LogEventInfo, object[]> BuildLogEventAction(MethodInfo methodInfo)
+        private static Action<LogEventInfo, object?[]> BuildLogEventAction(MethodInfo methodInfo)
         {
             var neededParameters = methodInfo.GetParameters().Length;
 
-            ReflectionHelpers.LateBoundMethod lateBoundMethod = null;
+            ReflectionHelpers.LateBoundMethod? lateBoundMethod = null;
             return (logEvent, parameters) =>
             {
                 var missingParameters = neededParameters - parameters.Length;
                 if (missingParameters > 0)
                 {
                     //fill missing parameters with Type.Missing
-                    var newParams = new object[neededParameters];
+                    var newParams = new object?[neededParameters];
                     for (int i = 0; i < parameters.Length; ++i)
                         newParams[i] = parameters[i];
                     for (int i = parameters.Length; i < neededParameters; ++i)
@@ -173,17 +175,17 @@ namespace NLog.Targets
                     if (lateBoundMethod is null)
                         lateBoundMethod = CreateFastInvoke(methodInfo, parameters) ?? CreateNormalInvoke(methodInfo, parameters);
                     else
-                        lateBoundMethod.Invoke(null, parameters);
+                        CallMethod(lateBoundMethod, parameters);
                 }
             };
         }
 
-        private static ReflectionHelpers.LateBoundMethod CreateFastInvoke(MethodInfo methodInfo, object[] parameters)
+        private static ReflectionHelpers.LateBoundMethod? CreateFastInvoke(MethodInfo methodInfo, object?[] parameters)
         {
             try
             {
                 var lateBoundMethod = ReflectionHelpers.CreateLateBoundMethod(methodInfo);
-                lateBoundMethod.Invoke(null, parameters);
+                CallMethod(lateBoundMethod, parameters);
                 return lateBoundMethod;
             }
             catch (Exception ex)
@@ -193,13 +195,20 @@ namespace NLog.Targets
             }
         }
 
-        private static ReflectionHelpers.LateBoundMethod CreateNormalInvoke(MethodInfo methodInfo, object[] parameters)
+        private static void CallMethod(ReflectionHelpers.LateBoundMethod lateBoundMethod, object?[] parameters)
+        {
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+            lateBoundMethod.Invoke(null, parameters);
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+        }
+
+        private static ReflectionHelpers.LateBoundMethod CreateNormalInvoke(MethodInfo methodInfo, object?[] parameters)
         {
             ReflectionHelpers.LateBoundMethod reflectionMethod = (target, args) => methodInfo.Invoke(null, args);
 
             try
             {
-                reflectionMethod.Invoke(null, parameters);
+                CallMethod(reflectionMethod, parameters);
                 return reflectionMethod;
             }
             catch (Exception ex)
@@ -214,7 +223,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="parameters">Method parameters.</param>
         /// <param name="logEvent">The logging event.</param>
-        protected override void DoInvoke(object[] parameters, AsyncLogEventInfo logEvent)
+        protected override void DoInvoke(object?[] parameters, AsyncLogEventInfo logEvent)
         {
             try
             {
@@ -236,12 +245,13 @@ namespace NLog.Targets
         /// Calls the specified Method.
         /// </summary>
         /// <param name="parameters">Method parameters.</param>
-        protected override void DoInvoke(object[] parameters)
+        protected override void DoInvoke(object?[] parameters)
         {
-            ExecuteLogMethod(parameters, null);
+            // method is not used, instead asynchronous overload will be used
+            throw new NotSupportedException();
         }
 
-        private void ExecuteLogMethod(object[] parameters, LogEventInfo logEvent)
+        private void ExecuteLogMethod(object?[] parameters, LogEventInfo logEvent)
         {
             if (_logEventAction is null)
             {

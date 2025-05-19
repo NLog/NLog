@@ -53,16 +53,16 @@ namespace NLog.LayoutRenderers
     public class AllEventPropertiesLayoutRenderer : LayoutRenderer
     {
         private string _format;
-        private string _beforeKey;
-        private string _afterKey;
-        private string _afterValue;
+        private string? _beforeKey;
+        private string? _afterKey;
+        private string? _afterValue;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AllEventPropertiesLayoutRenderer"/> class.
         /// </summary>
         public AllEventPropertiesLayoutRenderer()
         {
-            Format = "[key]=[value]";
+            _format = Format = "[key]=[value]";
             Exclude = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         }
 
@@ -80,7 +80,7 @@ namespace NLog.LayoutRenderers
             }
         }
         private string _separator = ", ";
-        private string _separatorOriginal;
+        private string _separatorOriginal = ", ";
 
         /// <summary>
         /// Get or set if empty values should be included.
@@ -109,7 +109,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Disables <see cref="ThreadAgnosticAttribute"/> to capture ScopeContext-properties from active thread context
         /// </summary>
-        public LayoutRenderer DisableThreadAgnostic => IncludeScopeProperties ? _disableThreadAgnostic : null;
+        public LayoutRenderer? DisableThreadAgnostic => IncludeScopeProperties ? _disableThreadAgnostic : null;
         private static readonly LayoutRenderer _disableThreadAgnostic = new FuncLayoutRenderer(string.Empty, (evt, cfg) => string.Empty);
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace NLog.LayoutRenderers
             bool includeSeparator = false;
             if (logEvent.HasProperties)
             {
-                using (var propertyEnumerator = logEvent.TryCreatePropertiesInternal().GetPropertyEnumerator())
+                using (var propertyEnumerator = logEvent.CreatePropertiesInternal().GetPropertyEnumerator())
                 {
                     while (propertyEnumerator.MoveNext())
                     {
@@ -201,9 +201,9 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private bool AppendProperty(StringBuilder builder, object propertyKey, object propertyValue, string propertyFormat, IFormatProvider formatProvider, bool includeSeparator, bool checkForExclude, bool nonStandardFormat)
+        private bool AppendProperty(StringBuilder builder, object propertyKey, object? propertyValue, string? propertyFormat, IFormatProvider? formatProvider, bool includeSeparator, bool checkForExclude, bool nonStandardFormat)
         {
-            if (!IncludeEmptyValues && IsEmptyPropertyValue(propertyValue))
+            if (!IncludeEmptyValues && StringHelpers.IsNullOrEmptyString(propertyValue))
                 return false;
 
             if (checkForExclude && Exclude.Contains(propertyKey as string ?? string.Empty))
@@ -232,16 +232,6 @@ namespace NLog.LayoutRenderers
             }
 
             return true;
-        }
-
-        private static bool IsEmptyPropertyValue(object value)
-        {
-            if (value is string s)
-            {
-                return string.IsNullOrEmpty(s);
-            }
-
-            return value is null;
         }
     }
 }

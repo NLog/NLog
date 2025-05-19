@@ -51,35 +51,33 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class TempDirLayoutRenderer : LayoutRenderer
     {
-        private static string tempDir;
+        private static string TempDir => _tempDir ?? (_tempDir = Path.GetTempPath());
+        private static string? _tempDir;
+        private string? _nlogCombinedPath;
 
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with the directory name.
         /// </summary>
         /// <docgen category='Advanced Options' order='50' />
-        public string File { get; set; }
+        public string File { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the name of the directory to be Path.Combine()'d with the directory name.
         /// </summary>
         /// <docgen category='Advanced Options' order='50' />
-        public string Dir { get; set; }
+        public string Dir { get; set; } = string.Empty;
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
-            if (tempDir is null)
-            {
-                tempDir = Path.GetTempPath();   // Can throw exception
-            }
-
+            _nlogCombinedPath = null;
             base.InitializeLayoutRenderer();
         }
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var path = PathHelpers.CombinePaths(tempDir, Dir, File);
+            var path = _nlogCombinedPath ?? (_nlogCombinedPath = PathHelpers.CombinePaths(TempDir, Dir, File));
             builder.Append(path);
         }
     }

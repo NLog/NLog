@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#nullable enable
-
 namespace NLog.Config
 {
     using System;
@@ -59,7 +57,7 @@ namespace NLog.Config
 
                 try
                 {
-                    if (serviceProvider.TryGetService<T>(out var service))
+                    if (serviceProvider.TryGetService<T>(out var service) && service != null)
                     {
                         return service;
                     }

@@ -71,7 +71,7 @@ namespace NLog.LayoutRenderers
                 builder.AppendInvariant(lineNumber.Value);
         }
 
-        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object? value)
         {
             value = GetLineNumber(logEvent);
             return true;

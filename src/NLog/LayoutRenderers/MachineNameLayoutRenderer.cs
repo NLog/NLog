@@ -51,7 +51,7 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class MachineNameLayoutRenderer : LayoutRenderer
     {
-        private string _machineName;
+        private string? _machineName;
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()

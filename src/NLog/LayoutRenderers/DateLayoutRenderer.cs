@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public DateLayoutRenderer()
         {
-            Format = "yyyy/MM/dd HH:mm:ss.fff";
+            _format = Format = "yyyy/MM/dd HH:mm:ss.fff";
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace NLog.LayoutRenderers
         private string _format;
 
         private const string _lowTimeResolutionChars = "YyMDdHh";
-        private CachedDateFormatted _cachedDateFormatted = null;
+        private CachedDateFormatted? _cachedDateFormatted = null;
         private bool _utcRoundRoundTrip;
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace NLog.LayoutRenderers
 
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(GetValue(logEvent), GetFormatProvider(logEvent, Culture));
 
-        private string GetStringValue(DateTime timestamp, IFormatProvider formatProvider)
+        private string GetStringValue(DateTime timestamp, IFormatProvider? formatProvider)
         {
             var cachedDateFormatted = _cachedDateFormatted;
             if (!ReferenceEquals(formatProvider, CultureInfo.InvariantCulture))

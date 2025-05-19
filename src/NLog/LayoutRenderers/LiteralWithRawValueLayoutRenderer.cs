@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
     internal sealed class LiteralWithRawValueLayoutRenderer : LiteralLayoutRenderer, IRawValue
     {
         private readonly bool _rawValueSuccess;
-        private readonly object _rawValue;
+        private readonly object? _rawValue;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LiteralLayoutRenderer" /> class.
@@ -52,14 +52,14 @@ namespace NLog.LayoutRenderers
         /// <param name="rawValueSuccess"></param>
         /// <param name="rawValue">Fixed raw value</param>
         /// <remarks>This is used by the layout compiler.</remarks>
-        public LiteralWithRawValueLayoutRenderer(string text, bool rawValueSuccess, object rawValue)
+        public LiteralWithRawValueLayoutRenderer(string text, bool rawValueSuccess, object? rawValue)
         {
             _rawValueSuccess = rawValueSuccess;
             _rawValue = rawValue;
             Text = text;
         }
 
-        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object? value)
         {
             value = _rawValue;
             return _rawValueSuccess;

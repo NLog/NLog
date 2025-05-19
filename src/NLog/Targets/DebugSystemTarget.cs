@@ -51,7 +51,7 @@ namespace NLog.Targets
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
-        public DebugSystemTarget() : base()
+        public DebugSystemTarget()
         {
         }
 

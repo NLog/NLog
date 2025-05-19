@@ -36,7 +36,6 @@
 namespace NLog.Internal
 {
     using System;
-    using System.ComponentModel;
     using System.Threading;
     using NLog.Common;
 

@@ -81,11 +81,12 @@ namespace NLog.Targets
         AsyncRequestQueueBase _requestQueue;
         private readonly Action _taskCancelledTokenReInit;
         private readonly Action<Task, object> _taskCompletion;
-        private Task _previousTask;
+        private Task? _previousTask;
         private readonly Timer _lazyWriterTimer;
+        private readonly LogEventInfo _flushEvent = LogEventInfo.Create(LogLevel.Off, null, "NLog Async Task Flush Event");
         private readonly ReusableAsyncLogEventList _reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
-        private Tuple<List<LogEventInfo>, List<AsyncContinuation>> _reusableLogEvents;
-        private WaitCallback _flushEventsInQueueDelegate;
+        private Tuple<List<LogEventInfo>, List<AsyncContinuation>>? _reusableLogEvents;
+        private WaitCallback? _flushEventsInQueueDelegate;
         private bool _missingServiceTypes;
 
         /// <summary>
@@ -160,7 +161,7 @@ namespace NLog.Targets
         protected AsyncTaskTarget()
         {
             _taskCompletion = TaskCompletion;
-            _taskCancelledTokenReInit = TaskCancelledTokenReInit;
+            _taskCancelledTokenReInit = () => TaskCancelledTokenReInit(out _);
             _taskTimeoutTimer = new Timer(TaskTimeout, null, Timeout.Infinite, Timeout.Infinite);
 
 #if NETFRAMEWORK
@@ -175,7 +176,7 @@ namespace NLog.Targets
 
             _lazyWriterTimer = new Timer((s) => TaskStartNext(null, false), null, Timeout.Infinite, Timeout.Infinite);
 
-            TaskCancelledTokenReInit();
+            TaskCancelledTokenReInit(out _cancelTokenSource);
         }
 
         /// <inheritdoc/>
@@ -183,7 +184,7 @@ namespace NLog.Targets
         {
             _missingServiceTypes = false;
 
-            TaskCancelledTokenReInit();
+            TaskCancelledTokenReInit(out var _);
 
             base.InitializeTarget();
 
@@ -246,7 +247,7 @@ namespace NLog.Targets
             else
             {
                 // Should never come here. Only here if someone by mistake configured BatchSize > 1 for target that only handles single LogEventInfo
-                Task taskChain = null;
+                Task? taskChain = null;
                 for (int i = 0; i < logEvents.Count; ++i)
                 {
                     LogEventInfo logEvent = logEvents[i];
@@ -255,7 +256,12 @@ namespace NLog.Targets
                     else
                         taskChain = taskChain.ContinueWith(t => WriteAsyncTask(logEvent, cancellationToken), cancellationToken, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler).Unwrap();
                 }
-                return taskChain;
+                return taskChain ??
+#if NET45
+                    System.Threading.Tasks.Task.FromResult<object?>(null);
+#else
+                    System.Threading.Tasks.Task.CompletedTask;
+#endif
             }
         }
 
@@ -388,7 +394,7 @@ namespace NLog.Targets
                 InternalLogger.Debug("{0}: Flushing {1}", this, _requestQueue.IsEmpty ? "empty queue" : "pending queue items");
                 if (_requestQueue.OnOverflow != AsyncTargetWrapperOverflowAction.Block)
                 {
-                    _requestQueue.Enqueue(new AsyncLogEventInfo(null, asyncContinuation));
+                    _requestQueue.Enqueue(new AsyncLogEventInfo(_flushEvent, asyncContinuation));
                     _lazyWriterTimer.Change(0, Timeout.Infinite);    // Schedule timer to empty queue, and execute asyncContinuation
                 }
                 else
@@ -398,7 +404,7 @@ namespace NLog.Targets
                     {
                         _flushEventsInQueueDelegate = (cont) =>
                         {
-                            _requestQueue.Enqueue(new AsyncLogEventInfo(null, (AsyncContinuation)cont));
+                            _requestQueue.Enqueue(new AsyncLogEventInfo(_flushEvent, (AsyncContinuation)cont));
                             lock (SyncRoot)
                                 _lazyWriterTimer.Change(0, Timeout.Infinite);    // Schedule timer to empty queue, and execute asyncContinuation
                         };
@@ -446,7 +452,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="previousTask">Used for race-condition validation between task-completion and timeout</param>
         /// <param name="fullBatchCompleted">Signals whether previousTask completed an almost full BatchSize</param>
-        private void TaskStartNext(object previousTask, bool fullBatchCompleted)
+        private void TaskStartNext(object? previousTask, bool fullBatchCompleted)
         {
             do
             {
@@ -497,18 +503,18 @@ namespace NLog.Targets
             } while (!_requestQueue.IsEmpty || previousTask != null);
         }
 
-        private bool CheckOtherTask(object previousTask)
+        private bool CheckOtherTask(object? previousTask)
         {
-            if (previousTask != null)
+            if (previousTask is null)
             {
-                // Task Completed
-                if (_previousTask != null && !ReferenceEquals(previousTask, _previousTask))
+                // Task Queue Timer
+                if (_previousTask?.IsCompleted == false)
                     return true;
             }
             else
             {
-                // Task Queue Timer
-                if (_previousTask?.IsCompleted == false)
+                // Task Completed
+                if (_previousTask != null && !ReferenceEquals(previousTask, _previousTask))
                     return true;
             }
 
@@ -522,9 +528,9 @@ namespace NLog.Targets
         {
             var tcs =
 #if !NET45
-                new TaskCompletionSource<object>(TaskCreationOptions.RunContinuationsAsynchronously);
+                new TaskCompletionSource<object?>(TaskCreationOptions.RunContinuationsAsynchronously);
 #else
-                new TaskCompletionSource<object>();
+                new TaskCompletionSource<object?>();
 #endif
             return firstTask.ContinueWith(t =>
             {
@@ -533,7 +539,7 @@ namespace NLog.Targets
                     if (t.Exception != null)
                         tcs.TrySetException(t.Exception);
 
-                    Exception actualException = ExtractActualException(t.Exception);
+                    var actualException = ExtractActualException(t.Exception) ?? new TaskCanceledException("Task failed without exception");
 
                     if (RetryFailedAsyncTask(actualException, cancellationToken, retryCount - 1, out var retryDelay))
                     {
@@ -571,7 +577,7 @@ namespace NLog.Targets
         /// <returns>New Task created [true / false]</returns>
         private bool TaskCreation(IList<AsyncLogEventInfo> logEvents)
         {
-            System.Tuple<List<LogEventInfo>, List<AsyncContinuation>> reusableLogEvents = null;
+            System.Tuple<List<LogEventInfo>, List<AsyncContinuation>>? reusableLogEvents = null;
 
             try
             {
@@ -586,7 +592,7 @@ namespace NLog.Targets
 
                 for (int i = 0; i < logEvents.Count; ++i)
                 {
-                    if (logEvents[i].LogEvent is null)
+                    if (ReferenceEquals(logEvents[i].LogEvent, _flushEvent))
                     {
                         // Flush Request
                         reusableLogEvents.Item2.Add(logEvents[i].Continuation);
@@ -631,7 +637,7 @@ namespace NLog.Targets
             {
                 _previousTask = null;
                 InternalLogger.Error(ex, "{0}: WriteAsyncTask failed on creation", this);
-                NotifyTaskCompletion(reusableLogEvents?.Item2, ex);
+                NotifyTaskCompletion(reusableLogEvents?.Item2 ?? (IList<AsyncContinuation>)ArrayHelper.Empty<AsyncContinuation>(), ex);
             }
             return false;
         }
@@ -642,7 +648,15 @@ namespace NLog.Targets
             {
                 InternalLogger.Trace("{0}: Writing {1} events", this, logEvents.Count);
                 var newTask = WriteAsyncTask(logEvents, cancellationToken);
-                if (newTask?.Status == TaskStatus.Created)
+                if (newTask is null)
+                {
+#if NET45
+                    return System.Threading.Tasks.Task.FromResult<object?>(null);
+#else
+                    return System.Threading.Tasks.Task.CompletedTask;
+#endif
+                }
+                if (newTask.Status == TaskStatus.Created)
                     newTask.Start(TaskScheduler);
                 return newTask;
             }
@@ -663,11 +677,11 @@ namespace NLog.Targets
             }
         }
 
-        private static void NotifyTaskCompletion(IList<AsyncContinuation> reusableContinuations, Exception ex)
+        private static void NotifyTaskCompletion(IList<AsyncContinuation> reusableContinuations, Exception? ex)
         {
             try
             {
-                for (int i = 0; i < reusableContinuations?.Count; ++i)
+                for (int i = 0; i < reusableContinuations.Count; ++i)
                     reusableContinuations[i](ex);
             }
             catch
@@ -738,7 +752,7 @@ namespace NLog.Targets
                 else
                     success = false;
 
-                if (success)
+                if (success && reusableLogEvents != null)
                 {
                     // The expected Task completed with success, allow buffer reuse
                     fullBatchCompleted = reusableLogEvents.Item2.Count * 2 > BatchSize;
@@ -794,7 +808,7 @@ namespace NLog.Targets
                             InternalLogger.Debug("{0}: WriteAsyncTask had timeout. Task did not cancel properly: {1}.", this, previousTask.Status);
                         }
 
-                        Exception actualException = ExtractActualException(previousTask.Exception);
+                        var actualException = ExtractActualException(previousTask.Exception);
                         RetryFailedAsyncTask(actualException ?? new TimeoutException("WriteAsyncTask had timeout"), CancellationToken.None, 0, out var retryDelay);
                     }
                 }
@@ -822,7 +836,7 @@ namespace NLog.Targets
             return task.IsCompleted;
         }
 
-        private static Exception ExtractActualException(AggregateException taskException)
+        private static Exception? ExtractActualException(AggregateException? taskException)
         {
             if (taskException?.InnerExceptions?.Count == 1 && !(taskException.InnerExceptions[0] is AggregateException))
                 return taskException.InnerExceptions[0];    // Skip Flatten()
@@ -831,9 +845,9 @@ namespace NLog.Targets
             return flattenExceptions?.Count == 1 ? flattenExceptions[0] : taskException;
         }
 
-        private void TaskCancelledTokenReInit()
+        private void TaskCancelledTokenReInit(out CancellationTokenSource cancelTokenSource)
         {
-            _cancelTokenSource = new CancellationTokenSource();
+            _cancelTokenSource = cancelTokenSource = new CancellationTokenSource();
             _cancelTokenSource.Token.Register(_taskCancelledTokenReInit);
         }
     }

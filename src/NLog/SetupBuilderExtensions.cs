@@ -143,7 +143,7 @@ namespace NLog
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="configFile">Explicit configuration file to be read (Default NLog.config from candidates paths)</param>
         /// <param name="optional">Whether to allow application to run when NLog config is not available</param>
-        public static ISetupBuilder LoadConfigurationFromFile(this ISetupBuilder setupBuilder, string configFile = null, bool optional = true)
+        public static ISetupBuilder LoadConfigurationFromFile(this ISetupBuilder setupBuilder, string? configFile = null, bool optional = true)
         {
             setupBuilder.LogFactory.LoadConfiguration(configFile, optional);
             return setupBuilder;

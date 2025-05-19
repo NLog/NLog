@@ -48,12 +48,12 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="layoutRendererName">Name without ${}.</param>
         /// <param name="renderMethod">Method that renders the layout.</param>
-        public FuncThreadAgnosticLayoutRenderer(string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
+        public FuncThreadAgnosticLayoutRenderer(string layoutRendererName, Func<LogEventInfo, LoggingConfiguration?, object> renderMethod)
             : base(layoutRendererName, renderMethod)
         {
         }
 
-        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object? value)
         {
             value = RenderValue(logEvent);
             return true;

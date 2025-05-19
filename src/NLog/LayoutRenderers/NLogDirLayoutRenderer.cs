@@ -55,17 +55,17 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the name of the file to be Path.Combine()'d with the directory name.
         /// </summary>
         /// <docgen category='Advanced Options' order='50' />
-        public string File { get; set; }
+        public string File { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the name of the directory to be Path.Combine()'d with the directory name.
         /// </summary>
         /// <docgen category='Advanced Options' order='50' />
-        public string Dir { get; set; }
+        public string Dir { get; set; } = string.Empty;
 
         private static string NLogDir => _nlogDir ?? (_nlogDir = ResolveNLogDir());
-        private static string _nlogDir;
-        private string _nlogCombinedPath;
+        private static string? _nlogDir;
+        private string? _nlogCombinedPath;
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
@@ -74,12 +74,6 @@ namespace NLog.LayoutRenderers
             base.InitializeLayoutRenderer();
         }
 
-        /// <inheritdoc/>
-        protected override void CloseLayoutRenderer()
-        {
-            _nlogCombinedPath = null;
-            base.CloseLayoutRenderer();
-        }
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)

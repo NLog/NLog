@@ -57,7 +57,7 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string indent = null;
+            string? indent = null;
 
             var messages = ScopeContext.GetAllNestedStateList();
             for (int i = 0; i < messages.Count; ++i)

@@ -147,7 +147,7 @@ namespace NLog.Targets.FileAppenders
 
         public void Dispose()
         {
-            SafeCloseFile(_filePath, ref _fileStream);
+            SafeCloseFile(_filePath, _fileStream);
         }
 
         public bool VerifyFileExists()
@@ -160,7 +160,7 @@ namespace NLog.Targets.FileAppenders
             if (!SafeFileExists(_filePath))
             {
                 InternalLogger.Debug("{0}: Recreating FileStream because no longer File.Exists: '{1}'", _fileTarget, _filePath);
-                SafeCloseFile(_filePath, ref _fileStream);
+                SafeCloseFile(_filePath, _fileStream);
                 _fileStream = _fileTarget.CreateFileStreamWithRetry(this, _fileTarget.BufferSize, initialFileOpen: false);
                 _countedFileSize = RefreshCountedFileSize();
                 RefreshFileBirthTimeUtc(false);
@@ -172,12 +172,11 @@ namespace NLog.Targets.FileAppenders
             return (_fileTarget.ArchiveAboveSize > 0 && _fileTarget.GetType().Equals(typeof(FileTarget))) ? _fileStream.Length : default(long?);
         }
 
-        private void SafeCloseFile(string filepath, ref Stream fileStream)
+        private void SafeCloseFile(string filepath, Stream? fileStream)
         {
             try
             {
                 var stream = fileStream;
-                fileStream = null;
                 stream?.Dispose();
             }
             catch (Exception ex)

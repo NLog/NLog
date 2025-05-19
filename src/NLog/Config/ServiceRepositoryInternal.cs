@@ -31,13 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#nullable enable
-
 namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using NLog.Internal;
 
     /// <summary>
@@ -92,7 +89,7 @@ namespace NLog.Config
             return objectResolver?.Invoke();
         }
 
-        internal override bool TryGetService<T>([NotNullWhen(returnValue: true)] out T? serviceInstance) where T : class
+        internal override bool TryGetService<T>(out T? serviceInstance) where T : class
         {
             if (TryGetService(typeof(T)) is T service)
             {

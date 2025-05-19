@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#nullable enable
-
 namespace NLog.Internal
 {
     using System.IO;
@@ -48,12 +46,12 @@ namespace NLog.Internal
         /// <returns></returns>
         internal static string CombinePaths(string path, string dir, string file)
         {
-            if (dir != null)
+            if (!string.IsNullOrEmpty(dir))
             {
                 path = Path.Combine(path, dir);
             }
 
-            if (file != null)
+            if (!string.IsNullOrEmpty(file))
             {
                 path = Path.Combine(path, file);
             }

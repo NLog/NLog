@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#nullable enable
-
 namespace NLog.Internal
 {
     using System;
@@ -65,7 +63,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="target">Object instance, use null for static methods.</param>
         /// <param name="arguments">Complete list of parameters that matches the method, including optional/default parameters.</param>
-        public delegate object? LateBoundMethod(object target, object[] arguments);
+        public delegate object? LateBoundMethod(object target, object?[] arguments);
 
         /// <summary>
         /// Creates an optimized delegate for calling the MethodInfo using Expression-Trees
@@ -105,10 +103,10 @@ namespace NLog.Internal
             // ((TInstance)instance).Method((T0)parameters[0], (T1)parameters[1], ...)
             if (methodCall.Type == typeof(void))
             {
-                var lambda = Expression.Lambda<Action<object, object[]>>(
+                var lambda = Expression.Lambda<Action<object, object?[]>>(
                         methodCall, instanceParameter, parametersParameter);
 
-                Action<object, object[]> execute = lambda.Compile();
+                Action<object, object?[]> execute = lambda.Compile();
                 return (instance, parameters) =>
                 {
                     execute(instance, parameters);

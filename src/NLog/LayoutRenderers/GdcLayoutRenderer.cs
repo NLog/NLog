@@ -49,20 +49,20 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class GdcLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
-        private CachedLookup _cachedLookup = new CachedLookup(null, null);
+        private CachedLookup _cachedLookup = new CachedLookup(string.Empty, null);
 
         /// <summary>
         /// Gets or sets the name of the item.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
-        public string Item { get; set; }
+        public string Item { get; set; } = string.Empty;
 
         /// <summary>
         /// Format string for conversion from object to string.
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
-        public string Format { get; set; }
+        public string? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering.
@@ -82,33 +82,31 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            object value = GetValue();
+            var value = GetValue();
             if (value != null || !string.IsNullOrEmpty(Format))
             {
                 AppendFormattedValue(builder, logEvent, value, Format, Culture);
             }
         }
 
-        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object? value)
         {
             value = GetValue();
             return true;
         }
 
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
-
-        private string GetStringValue(LogEventInfo logEvent)
+        string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             if (!MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format))
             {
-                object value = GetValue();
+                var value = GetValue();
                 string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, Culture));
                 return stringValue;
             }
             return null;
         }
 
-        private object GetValue()
+        private object? GetValue()
         {
             var cachedLookup = _cachedLookup;
             var cachedDictionary = GlobalDiagnosticsContext.GetReadOnlyDict();
@@ -125,9 +123,9 @@ namespace NLog.LayoutRenderers
         private sealed class CachedLookup
         {
             internal readonly object CachedDictionary;
-            internal readonly object CachedItemValue;
+            internal readonly object? CachedItemValue;
 
-            public CachedLookup(object cachedDictionary, object cachedItemValue)
+            public CachedLookup(object cachedDictionary, object? cachedItemValue)
             {
                 CachedDictionary = cachedDictionary;
                 CachedItemValue = cachedItemValue;

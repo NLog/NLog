@@ -58,7 +58,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the type of assembly version to retrieve.
@@ -75,7 +75,7 @@ namespace NLog.LayoutRenderers
         ///</summary>
         /// <docgen category='Layout Options' order='10' />
         public string Default { get => _default ?? GenerateDefaultValue(); set => _default = value; }
-        private string _default;
+        private string? _default;
 
         /// <summary>
         /// Gets or sets the custom format of the assembly version output.
@@ -103,14 +103,7 @@ namespace NLog.LayoutRenderers
             base.InitializeLayoutRenderer();
         }
 
-        /// <inheritdoc/>
-        protected override void CloseLayoutRenderer()
-        {
-            _assemblyVersion = null;
-            base.CloseLayoutRenderer();
-        }
-
-        private string _assemblyVersion;
+        private string? _assemblyVersion;
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -125,18 +118,18 @@ namespace NLog.LayoutRenderers
         {
             if (version is null)
             {
-                return _default;
+                return Default;
             }
             else if (StringHelpers.IsNullOrWhiteSpace(version))
             {
-                return _default ?? GenerateDefaultValue();
+                return Default;
             }
             else if (version == "0.0.0.0" && _default != null)
             {
-                return _default;
+                return Default;
             }
 
-            if (Format.Equals(DefaultFormat, StringComparison.OrdinalIgnoreCase) || string.IsNullOrEmpty(version))
+            if (Format.Equals(DefaultFormat, StringComparison.OrdinalIgnoreCase))
             {
                 return version;
             }
@@ -164,13 +157,13 @@ namespace NLog.LayoutRenderers
                 switch (Type)
                 {
                     case AssemblyVersionType.File:
-                        return assembly?.GetFirstCustomAttribute<System.Reflection.AssemblyFileVersionAttribute>()?.Version;
+                        return assembly?.GetFirstCustomAttribute<System.Reflection.AssemblyFileVersionAttribute>()?.Version ?? string.Empty;
 
                     case AssemblyVersionType.Informational:
-                        return assembly?.GetFirstCustomAttribute<System.Reflection.AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+                        return assembly?.GetFirstCustomAttribute<System.Reflection.AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? string.Empty;
 
                     default:
-                        return assembly?.GetName().Version?.ToString();
+                        return assembly?.GetName()?.Version?.ToString() ?? string.Empty;
                 }
             }
             catch (Exception ex)
@@ -178,7 +171,7 @@ namespace NLog.LayoutRenderers
                 NLog.Common.InternalLogger.Warn(ex, "${assembly-version} - Failed to load assembly {0}", Name);
                 if (ex.MustBeRethrown())
                     throw;
-                return null;
+                return string.Empty;
             }
         }
 

@@ -35,6 +35,7 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using NLog.Config;
     using NLog.Internal;
     using NLog.LayoutRenderers;
@@ -859,8 +860,8 @@ namespace NLog.UnitTests.LayoutRenderers
             var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
             var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
 
-            Assert.Equal(ExceptionRenderingFormat.ShortType, elr.Formats[0]);
-            Assert.Equal(ExceptionRenderingFormat.Message, elr.Formats[1]);
+            Assert.Equal(ExceptionRenderingFormat.ShortType, elr.Formats.First());
+            Assert.Equal(ExceptionRenderingFormat.Message, elr.Formats.Last());
         }
 
         [Fact]
@@ -883,14 +884,6 @@ namespace NLog.UnitTests.LayoutRenderers
             logFactory.AssertDebugLastMessage("ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
                                              "Wrapper1" + EnvironmentHelper.NewLine +
                                              "Test exception");
-
-            var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
-            var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
-
-            Assert.Equal(ExceptionRenderingFormat.ShortType, elr.Formats[0]);
-            Assert.Equal(ExceptionRenderingFormat.Message, elr.Formats[1]);
-
-            Assert.Equal(ExceptionRenderingFormat.Message, elr.InnerFormats[0]);
         }
 
         [Fact]

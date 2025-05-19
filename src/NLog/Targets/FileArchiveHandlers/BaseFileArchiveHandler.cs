@@ -49,7 +49,7 @@ namespace NLog.Targets.FileArchiveHandlers
             _fileTarget = fileTarget;
         }
 
-        protected bool DeleteOldFilesBeforeArchive(string filePath, bool initialFileOpen, string excludeFileName = null)
+        protected bool DeleteOldFilesBeforeArchive(string filePath, bool initialFileOpen, string? excludeFileName = null)
         {
             // Get all files matching the filename, order by timestamp, and when same timestamp then order by filename
             //  - First start with removing the oldest files
@@ -59,7 +59,7 @@ namespace NLog.Targets.FileArchiveHandlers
             return DeleteOldFilesBeforeArchive(fileDirectory, fileWildcard, initialFileOpen, excludeFileName);
         }
 
-        protected bool DeleteOldFilesBeforeArchive(string fileDirectory, string fileWildcard, bool initialFileOpen, string excludeFileName = null, bool wildCardContainsSeqNo = false)
+        protected bool DeleteOldFilesBeforeArchive(string fileDirectory, string fileWildcard, bool initialFileOpen, string? excludeFileName = null, bool wildCardContainsSeqNo = false)
         {
             try
             {
@@ -171,7 +171,7 @@ namespace NLog.Targets.FileArchiveHandlers
             ///         - Trim away sequencer-number, so not part of sorting
             ///     - Use DateTime part from FileSystem for ordering by Date-only, and sort by FileName
             /// </summary>
-            public static IEnumerable<FileInfo> CleanupFiles(FileInfo[] fileInfos, int maxArchiveFiles, int maxArchiveDays, int fileWildcardStartIndex, int fileWildcardEndIndex, string excludeFileName = null, bool wildCardContainsSeqNo = false)
+            public static IEnumerable<FileInfo> CleanupFiles(FileInfo[] fileInfos, int maxArchiveFiles, int maxArchiveDays, int fileWildcardStartIndex, int fileWildcardEndIndex, string? excludeFileName = null, bool wildCardContainsSeqNo = false)
             {
                 if (fileInfos.Length <= 1)
                 {
@@ -211,7 +211,7 @@ namespace NLog.Targets.FileArchiveHandlers
                 }
             }
 
-            private static bool ExcludeFileName(string fileName, int fileWildcardStartIndex, int fileWildcardEndIndex, string excludeFileName)
+            private static bool ExcludeFileName(string fileName, int fileWildcardStartIndex, int fileWildcardEndIndex, string? excludeFileName)
             {
                 if (fileWildcardStartIndex >= 0 && fileWildcardEndIndex >= 0 && fileName.Length > fileWildcardEndIndex)
                 {

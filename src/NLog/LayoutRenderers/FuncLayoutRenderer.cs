@@ -44,7 +44,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     public class FuncLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
-        private readonly Func<LogEventInfo, LoggingConfiguration, object> _renderMethod;
+        private readonly Func<LogEventInfo, LoggingConfiguration?, object> _renderMethod;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FuncLayoutRenderer"/> class.
@@ -53,6 +53,7 @@ namespace NLog.LayoutRenderers
         protected FuncLayoutRenderer(string layoutRendererName)
         {
             LayoutRendererName = layoutRendererName;
+            _renderMethod = (evt, cfg) => string.Empty;
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="layoutRendererName">Name without ${}.</param>
         /// <param name="renderMethod">Method that renders the layout.</param>
-        public FuncLayoutRenderer(string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
+        public FuncLayoutRenderer(string layoutRendererName, Func<LogEventInfo, LoggingConfiguration?, object> renderMethod)
         {
             _renderMethod = Guard.ThrowIfNull(renderMethod);
             LayoutRendererName = layoutRendererName;
@@ -69,20 +70,19 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Name used in config without ${}. E.g. "test" could be used as "${test}".
         /// </summary>
-        public string LayoutRendererName { get; set; }
+        public string LayoutRendererName { get; }
 
         /// <summary>
         /// Method that renders the layout.
-        ///
-        /// This public property will be removed in NLog 5.
         /// </summary>
-        public Func<LogEventInfo, LoggingConfiguration, object> RenderMethod => _renderMethod;
+        [Obsolete("Public API-property was a mistake. Marked obsolete with NLog v6.0")]
+        public Func<LogEventInfo, LoggingConfiguration?, object> RenderMethod => _renderMethod;
 
         /// <summary>
         /// Format string for conversion from object to string.
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
-        public string Format { get; set; }
+        public string? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering.
@@ -97,13 +97,11 @@ namespace NLog.LayoutRenderers
             AppendFormattedValue(builder, logEvent, value, Format, Culture);
         }
 
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
-
-        private string GetStringValue(LogEventInfo logEvent)
+        string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             if (!MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format))
             {
-                object value = RenderValue(logEvent);
+                var value = RenderValue(logEvent);
                 string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, Culture));
                 return stringValue;
             }
@@ -115,9 +113,9 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         /// <returns>The value.</returns>
-        protected virtual object RenderValue(LogEventInfo logEvent)
+        protected virtual object? RenderValue(LogEventInfo logEvent)
         {
-            return _renderMethod?.Invoke(logEvent, LoggingConfiguration);
+            return _renderMethod.Invoke(logEvent, LoggingConfiguration);
         }
     }
 }

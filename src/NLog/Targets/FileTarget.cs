@@ -82,7 +82,7 @@ namespace NLog.Targets
             }
         }
         private Layout _fileName = Layout.Empty;
-        private string _fixedFileName = string.Empty;
+        private string? _fixedFileName;
 
         /// <summary>
         /// Gets or sets a value indicating whether to create directories if they do not exist.
@@ -231,7 +231,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Archival Options' order='50' />
         [Obsolete("Instead use ArchiveSuffixFormat. Marked obsolete with NLog 6.0")]
-        public string ArchiveDateFormat
+        public string? ArchiveDateFormat
         {
             get => _archiveDateFormat;
             set
@@ -239,11 +239,12 @@ namespace NLog.Targets
                 if (string.Equals(value, _archiveDateFormat))
                     return;
 
-                ArchiveSuffixFormat = string.IsNullOrEmpty(value) ? _archiveSuffixFormat : @"_{1:" + value + @"}_{0:00}";
+                if (!string.IsNullOrEmpty(value))
+                    ArchiveSuffixFormat = @"_{1:" + value + @"}_{0:00}";
                 _archiveDateFormat = value;
             }
         }
-        private string _archiveDateFormat = string.Empty;
+        private string? _archiveDateFormat;
 
         /// <summary>
         /// Gets or sets the size in bytes above which log files will be automatically archived.
@@ -293,7 +294,7 @@ namespace NLog.Targets
         /// Avoid using <see cref="ArchiveFileName"/> when possible, and instead rely on only using <see cref="FileName"/> and <see cref="ArchiveSuffixFormat"/>.
         /// </remarks>
         /// <docgen category='Archival Options' order='50' />
-        public Layout ArchiveFileName
+        public Layout? ArchiveFileName
         {
             get => _archiveFileName;
             set
@@ -318,14 +319,14 @@ namespace NLog.Targets
                 }
 
                 _archiveFileName = value;
-                if (!ReferenceEquals(_archiveSuffixFormat, archiveSuffixFormat))
+                if (!ReferenceEquals(_archiveSuffixFormat, archiveSuffixFormat) && archiveSuffixFormat != null)
                 {
                     ArchiveSuffixFormat = archiveSuffixFormat;
                 }
                 _fileArchiveHandler = null;
             }
         }
-        private Layout _archiveFileName;
+        private Layout? _archiveFileName;
         private static readonly string _legacyDateArchiveSuffixFormat = "_{1:yyyyMMdd}_{0:00}"; // Cater for ArchiveNumbering.DateAndSequence
         private static readonly string _legacySequenceArchiveSuffixFormat = "_{0:00}";          // Cater for ArchiveNumbering.Sequence
 
@@ -374,7 +375,7 @@ namespace NLog.Targets
                     return;
 
                 _archiveNumbering = string.IsNullOrEmpty(value) ? null : value.Trim();
-                if (string.IsNullOrEmpty(_archiveNumbering))
+                if (_archiveNumbering is null || string.IsNullOrEmpty(_archiveNumbering))
                     return;
 
                 if (_archiveSuffixFormat is null || ReferenceEquals(_archiveSuffixFormat, _legacyDateArchiveSuffixFormat) || ReferenceEquals(_archiveSuffixFormat, _legacySequenceArchiveSuffixFormat))
@@ -383,7 +384,7 @@ namespace NLog.Targets
                 }
             }
         }
-        private string _archiveNumbering;
+        private string? _archiveNumbering;
 
         /// <summary>
         /// Gets or sets the format-string to convert archive sequence-number by using string.Format
@@ -431,7 +432,7 @@ namespace NLog.Targets
                 _archiveSuffixFormat = value;
             }
         }
-        private string _archiveSuffixFormat;
+        private string? _archiveSuffixFormat;
 
         /// <summary>
         /// Gets or sets a value indicating whether the footer should be written only when the file is archived.
@@ -453,7 +454,7 @@ namespace NLog.Targets
         }
 
         private IFileArchiveHandler FileAchiveHandler => _fileArchiveHandler ?? (_fileArchiveHandler = CreateFileArchiveHandler());
-        private IFileArchiveHandler _fileArchiveHandler;
+        private IFileArchiveHandler? _fileArchiveHandler;
 
         struct OpenFileAppender
         {
@@ -476,7 +477,7 @@ namespace NLog.Targets
         private readonly SortHelpers.KeySelector<AsyncLogEventInfo, string> _getFileNameFromLayout;
 
         private DateTime _lastWriteTime;
-        private Timer _openFileMonitorTimer;
+        private Timer? _openFileMonitorTimer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
@@ -698,7 +699,7 @@ namespace NLog.Targets
             Layout.Render(logEvent, target);
         }
 
-        private void WriteToFile(string filename, LogEventInfo firstLogEvent, MemoryStream ms, out Exception lastException)
+        private void WriteToFile(string filename, LogEventInfo firstLogEvent, MemoryStream ms, out Exception? lastException)
         {
             try
             {
@@ -1093,7 +1094,7 @@ namespace NLog.Targets
         {
             var lastDirSeparator = filename.LastIndexOfAny(DirectorySeparatorChars);
 
-            char[] fileNameChars = null;    // defer char[] memory-allocation until detecting invalid char
+            char[]? fileNameChars = null;    // defer char[] memory-allocation until detecting invalid char
 
             for (int i = lastDirSeparator + 1; i < filename.Length; i++)
             {
