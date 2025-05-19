@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#nullable enable
-
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -184,7 +182,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected abstract void Append(StringBuilder builder, LogEventInfo logEvent);
 
-        internal void AppendFormattedValue(StringBuilder builder, LogEventInfo logEvent, object? value, string? format, CultureInfo culture)
+        internal void AppendFormattedValue(StringBuilder builder, LogEventInfo logEvent, object? value, string? format, CultureInfo? culture)
         {
             if (format is null && value is string stringValue)
             {
@@ -294,7 +292,7 @@ namespace NLog.LayoutRenderers
         /// <param name="func">Callback that returns the value for the layout renderer.</param>
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void Register(string name, Func<LogEventInfo, LoggingConfiguration, object> func)
+        public static void Register(string name, Func<LogEventInfo, LoggingConfiguration?, object> func)
         {
             Guard.ThrowIfNull(func);
             var layoutRenderer = new FuncLayoutRenderer(name, func);

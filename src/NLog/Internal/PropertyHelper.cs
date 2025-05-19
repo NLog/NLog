@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#nullable enable
-
 namespace NLog.Internal
 {
     using System;
@@ -364,7 +362,7 @@ namespace NLog.Internal
 
             try
             {
-                if (TryCreateCollectionObject(obj, propInfo, out var newList, out var collectionAddMethod, out var propertyType))
+                if (TryCreateCollectionObject(obj, propInfo, out var newList, out var collectionAddMethod, out var propertyType) && collectionAddMethod != null && propertyType != null)
                 {
                     var values = valueRaw.SplitQuoted(',', '\'', '\\');
                     foreach (var value in values)
@@ -395,7 +393,7 @@ namespace NLog.Internal
 
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2075")]
-        private static bool TryCreateCollectionObject(object obj, PropertyInfo propInfo, out object? collectionObject, [NotNullWhen(returnValue: true)] out MethodInfo? collectionAddMethod, [NotNullWhen(returnValue: true)] out Type? collectionItemType)
+        private static bool TryCreateCollectionObject(object obj, PropertyInfo propInfo, out object? collectionObject, out MethodInfo? collectionAddMethod, out Type? collectionItemType)
         {
             collectionObject = null;
             collectionAddMethod = null;
@@ -481,7 +479,7 @@ namespace NLog.Internal
             return TryCreateTypeCollection(collectionType, out collectionObject, out collectionAddMethod, out collectionItemType);
          }
 
-        private static bool TryCreateListCollection<T>(Type collectionType, [NotNullWhen(returnValue: true)] out object? collectionObject, [NotNullWhen(returnValue: true)] out MethodInfo? collectionAddMethod, [NotNullWhen(returnValue: true)] out Type? collectionItemType)
+        private static bool TryCreateListCollection<T>(Type collectionType, out object? collectionObject, out MethodInfo? collectionAddMethod, out Type? collectionItemType)
         {
             if (collectionType.IsAssignableFrom(typeof(List<T>)))
             {
@@ -497,7 +495,7 @@ namespace NLog.Internal
             return false;
         }
 
-        private static bool TryCreateHashSetCollection<T>(Type collectionType, [NotNullWhen(returnValue: true)] out object? collectionObject, [NotNullWhen(returnValue: true)] out MethodInfo? collectionAddMethod, [NotNullWhen(returnValue: true)] out Type? collectionItemType)
+        private static bool TryCreateHashSetCollection<T>(Type collectionType, out object? collectionObject, out MethodInfo? collectionAddMethod, out Type? collectionItemType)
         {
             if (collectionType.IsAssignableFrom(typeof(HashSet<T>)))
             {

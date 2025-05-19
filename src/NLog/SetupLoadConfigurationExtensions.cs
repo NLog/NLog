@@ -75,7 +75,7 @@ namespace NLog
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="loggerNamePattern">Logger name pattern to check which <see cref="Logger"/> names matches this rule</param>
         /// <param name="ruleName">Rule identifier to allow rule lookup</param>
-        public static ISetupConfigurationLoggingRuleBuilder ForLogger(this ISetupLoadConfigurationBuilder configBuilder, string loggerNamePattern = "*", string ruleName = null)
+        public static ISetupConfigurationLoggingRuleBuilder ForLogger(this ISetupLoadConfigurationBuilder configBuilder, string loggerNamePattern = "*", string? ruleName = null)
         {
             var ruleBuilder = new SetupConfigurationLoggingRuleBuilder(configBuilder.LogFactory, configBuilder.Configuration, loggerNamePattern, ruleName);
             ruleBuilder.LoggingRule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
@@ -89,7 +89,7 @@ namespace NLog
         /// <param name="finalMinLevel">Restrict minimum LogLevel for <see cref="Logger"/> names that matches this rule</param>
         /// <param name="loggerNamePattern">Logger name pattern to check which <see cref="Logger"/> names matches this rule</param>
         /// <param name="ruleName">Rule identifier to allow rule lookup</param>
-        public static ISetupConfigurationLoggingRuleBuilder ForLogger(this ISetupLoadConfigurationBuilder configBuilder, LogLevel finalMinLevel, string loggerNamePattern = "*", string ruleName = null)
+        public static ISetupConfigurationLoggingRuleBuilder ForLogger(this ISetupLoadConfigurationBuilder configBuilder, LogLevel finalMinLevel, string loggerNamePattern = "*", string? ruleName = null)
         {
             var ruleBuilder = new SetupConfigurationLoggingRuleBuilder(configBuilder.LogFactory, configBuilder.Configuration, loggerNamePattern, ruleName);
             ruleBuilder.LoggingRule.EnableLoggingForLevels(finalMinLevel ?? LogLevel.MinLevel, LogLevel.MaxLevel);
@@ -101,7 +101,7 @@ namespace NLog
         /// </summary>
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="targetName">Override the name for the target created</param>
-        public static ISetupConfigurationTargetBuilder ForTarget(this ISetupLoadConfigurationBuilder configBuilder, string targetName = null)
+        public static ISetupConfigurationTargetBuilder ForTarget(this ISetupLoadConfigurationBuilder configBuilder, string? targetName = null)
         {
             var ruleBuilder = new SetupConfigurationTargetBuilder(configBuilder.LogFactory, configBuilder.Configuration, targetName);
             return ruleBuilder;
@@ -318,7 +318,7 @@ namespace NLog
         /// </summary>
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="finalMinLevel">Only discard output from matching Logger when below minimum LogLevel</param>
-        public static void WriteToNil(this ISetupConfigurationLoggingRuleBuilder configBuilder, LogLevel finalMinLevel = null)
+        public static void WriteToNil(this ISetupConfigurationLoggingRuleBuilder configBuilder, LogLevel? finalMinLevel = null)
         {
             var loggingRule = configBuilder.LoggingRule;
             if (finalMinLevel != null)
@@ -398,9 +398,10 @@ namespace NLog
             throw new InvalidCastException($"Unable to cast object of type '{target.GetType()}' to type '{typeof(T)}'");
         }
 
-        internal static IEnumerable<Target> YieldAllTargets(Target target)
+        internal static IEnumerable<Target> YieldAllTargets(Target? target)
         {
-            yield return target;
+            if (target is not null)
+                yield return target;
 
             if (target is WrapperTargetBase wrapperTarget)
             {
@@ -423,7 +424,7 @@ namespace NLog
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="logEventAction">Method to call on logevent</param>
         /// <param name="layouts">Layouts to render object[]-args before calling <paramref name="logEventAction"/></param>
-        public static ISetupConfigurationTargetBuilder WriteToMethodCall(this ISetupConfigurationTargetBuilder configBuilder, Action<LogEventInfo, object[]> logEventAction, Layout[] layouts = null)
+        public static ISetupConfigurationTargetBuilder WriteToMethodCall(this ISetupConfigurationTargetBuilder configBuilder, Action<LogEventInfo, object?[]> logEventAction, Layout[]? layouts = null)
         {
             Guard.ThrowIfNull(logEventAction);
 
@@ -446,7 +447,7 @@ namespace NLog
         /// <param name="stderr">Write to stderr instead of standard output (stdout)</param>
         /// <param name="detectConsoleAvailable">Skip overhead from writing to console, when not available (Ex. running as Windows Service)</param>
         /// <param name="writeBuffered">Enable batch writing of logevents, instead of Console.WriteLine for each logevent (Requires <see cref="WithAsync"/>)</param>
-        public static ISetupConfigurationTargetBuilder WriteToConsole(this ISetupConfigurationTargetBuilder configBuilder, Layout layout = null, System.Text.Encoding encoding = null, bool stderr = false, bool detectConsoleAvailable = false, bool writeBuffered = false)
+        public static ISetupConfigurationTargetBuilder WriteToConsole(this ISetupConfigurationTargetBuilder configBuilder, Layout? layout = null, System.Text.Encoding? encoding = null, bool stderr = false, bool detectConsoleAvailable = false, bool writeBuffered = false)
         {
             var consoleTarget = new ConsoleTarget();
             if (layout != null)
@@ -469,7 +470,7 @@ namespace NLog
         /// <param name="stderr">Write to stderr instead of standard output (stdout)</param>
         /// <param name="detectConsoleAvailable">Skip overhead from writing to console, when not available (Ex. running as Windows Service)</param>
         /// <param name="enableAnsiOutput">Enables output using ANSI Color Codes (Windows console does not support this by default)</param>
-        public static ISetupConfigurationTargetBuilder WriteToColoredConsole(this ISetupConfigurationTargetBuilder configBuilder, Layout layout = null, bool highlightWordLevel = false, System.Text.Encoding encoding = null, bool stderr = false, bool detectConsoleAvailable = false, bool enableAnsiOutput = false)
+        public static ISetupConfigurationTargetBuilder WriteToColoredConsole(this ISetupConfigurationTargetBuilder configBuilder, Layout? layout = null, bool highlightWordLevel = false, System.Text.Encoding? encoding = null, bool stderr = false, bool detectConsoleAvailable = false, bool enableAnsiOutput = false)
         {
             var consoleTarget = new ColoredConsoleTarget();
             if (layout != null)
@@ -522,7 +523,7 @@ namespace NLog
         /// </summary>
         /// <param name="configBuilder"></param>
         /// <param name="layout">Override the default Layout for output</param>
-        public static ISetupConfigurationTargetBuilder WriteToDebug(this ISetupConfigurationTargetBuilder configBuilder, Layout layout = null)
+        public static ISetupConfigurationTargetBuilder WriteToDebug(this ISetupConfigurationTargetBuilder configBuilder, Layout? layout = null)
         {
             var debugTarget = new DebugSystemTarget();
             if (layout != null)
@@ -536,7 +537,7 @@ namespace NLog
         /// <param name="configBuilder"></param>
         /// <param name="layout">Override the default Layout for output</param>
         [System.Diagnostics.Conditional("DEBUG")]
-        public static void WriteToDebugConditional(this ISetupConfigurationTargetBuilder configBuilder, Layout layout = null)
+        public static void WriteToDebugConditional(this ISetupConfigurationTargetBuilder configBuilder, Layout? layout = null)
         {
             configBuilder.WriteToDebug(layout);
         }
@@ -553,7 +554,7 @@ namespace NLog
         /// <param name="archiveAboveSize">Size in bytes where log files will be automatically archived.</param>
         /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept.</param>
         /// <param name="maxArchiveDays">Maximum days of archive files that should be kept.</param>
-        public static ISetupConfigurationTargetBuilder WriteToFile(this ISetupConfigurationTargetBuilder configBuilder, Layout fileName, Layout layout = null, System.Text.Encoding encoding = null, LineEndingMode lineEnding = null, bool keepFileOpen = true, long archiveAboveSize = -1, int maxArchiveFiles = -1, int maxArchiveDays = -1)
+        public static ISetupConfigurationTargetBuilder WriteToFile(this ISetupConfigurationTargetBuilder configBuilder, Layout fileName, Layout? layout = null, System.Text.Encoding? encoding = null, LineEndingMode? lineEnding = null, bool keepFileOpen = true, long archiveAboveSize = -1, int maxArchiveFiles = -1, int maxArchiveDays = -1)
         {
             Guard.ThrowIfNull(fileName);
 
@@ -564,7 +565,7 @@ namespace NLog
                 fileTarget.Layout = layout;
             if (encoding != null)
                 fileTarget.Encoding = encoding;
-            if (lineEnding != null)
+            if (lineEnding is not null)
                 fileTarget.LineEnding = lineEnding;
             if (archiveAboveSize > 0)
                 fileTarget.ArchiveAboveSize = archiveAboveSize;
@@ -580,7 +581,7 @@ namespace NLog
         /// </summary>
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="wrapperFactory">Factory method for creating target-wrapper</param>
-        public static ISetupConfigurationTargetBuilder WithWrapper(this ISetupConfigurationTargetBuilder configBuilder, Func<Target, Target> wrapperFactory)
+        public static ISetupConfigurationTargetBuilder WithWrapper(this ISetupConfigurationTargetBuilder configBuilder, Func<Target, Target?> wrapperFactory)
         {
             Guard.ThrowIfNull(wrapperFactory);
 

@@ -141,7 +141,7 @@ namespace NLog.LayoutRenderers
             return true;
         }
 
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
+        string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             if (Format == LevelFormat.Name)
             {

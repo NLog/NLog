@@ -55,14 +55,14 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public sealed class AppSettingLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
-        private string _connectionStringName = null;
+        private string? _connectionStringName = null;
 
         ///<summary>
         /// The AppSetting item-name
         ///</summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
-        public string Item { get; set; }
+        public string Item { get; set; } = string.Empty;
 
         ///<summary>
         /// Obsolete and replaced by <see cref="Item"/> with NLog v4.6.
@@ -77,7 +77,7 @@ namespace NLog.LayoutRenderers
         /// The default value to render if the AppSetting value is null.
         ///</summary>
         /// <docgen category='Layout Options' order='10' />
-        public string Default { get; set; }
+        public string Default { get; set; } = string.Empty;
 
         internal IConfigurationManager ConfigurationManager { get; set; } = new ConfigurationManager();
 
@@ -107,9 +107,9 @@ namespace NLog.LayoutRenderers
             if (string.IsNullOrEmpty(Item))
                 return Default;
 
-            string value = _connectionStringName != null ?
-                ConfigurationManager.LookupConnectionString(_connectionStringName)?.ConnectionString :
-                ConfigurationManager.AppSettings[Item];
+            var value = _connectionStringName is null ?
+                ConfigurationManager.AppSettings[Item] :
+                ConfigurationManager.LookupConnectionString(_connectionStringName)?.ConnectionString;
 
             return value ?? Default ?? string.Empty;
         }

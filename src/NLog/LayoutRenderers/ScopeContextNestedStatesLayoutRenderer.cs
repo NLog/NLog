@@ -77,13 +77,13 @@ namespace NLog.LayoutRenderers
             }
         }
         private string _separator = " ";
-        private string _separatorOriginal;
+        private string _separatorOriginal = " ";
 
         /// <summary>
         /// Gets or sets how to format each nested state. Ex. like JSON = @
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
-        public string Format { get; set; }
+        public string? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering.
@@ -134,19 +134,23 @@ namespace NLog.LayoutRenderers
         {
             bool formatAsJson = MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format);
 
-            string separator = null;
-            string itemSeparator = null;
+            string separator = _separator ?? string.Empty;
+            string itemSeparator = separator;
             if (formatAsJson)
             {
-                separator = _separator ?? string.Empty;
+                if (itemSeparator == " ")
+                    itemSeparator = ", ";
+                else if (string.IsNullOrEmpty(itemSeparator))
+                    itemSeparator = ",";
+                else
+                    itemSeparator = "," + itemSeparator;
                 builder.Append('[');
                 builder.Append(separator);
-                itemSeparator = "," + separator;
             }
 
             try
             {
-                string currentSeparator = null;
+                string? currentSeparator = null;
                 for (int i = endPos - 1; i >= startPos; --i)
                 {
                     builder.Append(currentSeparator);
@@ -156,7 +160,7 @@ namespace NLog.LayoutRenderers
                         builder.Append(Convert.ToString(messages[i]));   // Special support for Microsoft Extension Logging ILogger.BeginScope
                     else
                         AppendFormattedValue(builder, logEvent, messages[i], Format, Culture);
-                    currentSeparator = itemSeparator ?? _separator ?? string.Empty;
+                    currentSeparator = itemSeparator;
                 }
             }
             finally
@@ -205,7 +209,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        bool AppendJsonProperty(string propertyName, object propertyValue, StringBuilder builder, string itemSeparator)
+        bool AppendJsonProperty(string propertyName, object? propertyValue, StringBuilder builder, string itemSeparator)
         {
             if (string.IsNullOrEmpty(propertyName))
                 return false;
@@ -226,7 +230,7 @@ namespace NLog.LayoutRenderers
             return true;
         }
 
-        bool HasUniqueCollectionKeys(IEnumerable<KeyValuePair<string, object>> propertyList)
+        private static bool HasUniqueCollectionKeys(IEnumerable<KeyValuePair<string, object>> propertyList)
         {
             if (propertyList is IDictionary<string, object>)
             {

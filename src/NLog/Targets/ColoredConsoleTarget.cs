@@ -121,7 +121,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        public Layout<bool> StdErr { get; set; }
+        public Layout<bool>? StdErr { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to use default row highlighting rules.
@@ -183,7 +183,7 @@ namespace NLog.Targets
                     _encoding = value;
             }
         }
-        private Encoding _encoding;
+        private Encoding? _encoding;
 
         /// <summary>
         /// Gets or sets a value indicating whether to auto-check if the console is available.
@@ -465,7 +465,7 @@ namespace NLog.Targets
             return matchingRule ?? ConsoleRowHighlightingRule.Default;
         }
 
-        private static ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(IList<ConsoleRowHighlightingRule> rules, LogEventInfo logEvent)
+        private static ConsoleRowHighlightingRule? GetMatchingRowHighlightingRule(IList<ConsoleRowHighlightingRule> rules, LogEventInfo logEvent)
         {
             for (int i = 0; i < rules.Count; ++i)
             {
@@ -490,7 +490,7 @@ namespace NLog.Targets
                 for (int i = 0; i < WordHighlightingRules.Count; ++i)
                 {
                     var hl = WordHighlightingRules[i];
-                    if (hl.Condition != null && false.Equals(hl.Condition.Evaluate(logEvent)))
+                    if (!hl.CheckCondition(logEvent))
                         continue;
 
                     var matches = hl.GetWordsForHighlighting(message);

@@ -46,7 +46,6 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="ConsoleRowHighlightingRule" /> class.
         /// </summary>
         public ConsoleRowHighlightingRule()
-            : this(null, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange)
         {
         }
 
@@ -66,39 +65,32 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the default highlighting rule. Doesn't change the color.
         /// </summary>
-        public static ConsoleRowHighlightingRule Default { get; } = new ConsoleRowHighlightingRule(null, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange);
+        public static ConsoleRowHighlightingRule Default { get; } = new ConsoleRowHighlightingRule(ConditionExpression.Empty, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange);
 
         /// <summary>
         /// Gets or sets the condition that must be met in order to set the specified foreground and background color.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
-        public ConditionExpression Condition { get; set; }
+        public ConditionExpression Condition { get; set; } = ConditionExpression.Empty;
 
         /// <summary>
         /// Gets or sets the foreground color.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
-        public ConsoleOutputColor ForegroundColor { get; set; }
+        public ConsoleOutputColor ForegroundColor { get; set; } = ConsoleOutputColor.NoChange;
 
         /// <summary>
         /// Gets or sets the background color.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
-        public ConsoleOutputColor BackgroundColor { get; set; }
+        public ConsoleOutputColor BackgroundColor { get; set; } = ConsoleOutputColor.NoChange;
 
         /// <summary>
         /// Checks whether the specified log event matches the condition (if any).
         /// </summary>
-        /// <param name="logEvent">
-        /// Log event.
-        /// </param>
-        /// <returns>
-        /// A value of <see langword="true"/> if the condition is not defined or
-        /// if it matches, <see langword="false"/> otherwise.
-        /// </returns>
         public bool CheckCondition(LogEventInfo logEvent)
         {
-            return Condition is null || true.Equals(Condition.Evaluate(logEvent));
+            return Condition is null || ReferenceEquals(Condition, ConditionExpression.Empty) || true.Equals(Condition.Evaluate(logEvent));
         }
     }
 }

@@ -66,7 +66,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            object[] parameters = Parameters.Count > 0 ? new object[Parameters.Count] : ArrayHelper.Empty<object>();
+            object?[] parameters = Parameters.Count > 0 ? new object?[Parameters.Count] : ArrayHelper.Empty<object>();
             for (int i = 0; i < parameters.Length; ++i)
             {
                 try
@@ -92,22 +92,12 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="parameters">Method call parameters.</param>
         /// <param name="logEvent">The logging event.</param>
-        protected virtual void DoInvoke(object[] parameters, AsyncLogEventInfo logEvent)
-        {
-            DoInvoke(parameters, logEvent.Continuation);
-        }
-
-        /// <summary>
-        /// Calls the target DoInvoke method, and handles AsyncContinuation callback
-        /// </summary>
-        /// <param name="parameters">Method call parameters.</param>
-        /// <param name="continuation">The continuation.</param>
-        protected virtual void DoInvoke(object[] parameters, AsyncContinuation continuation)
+        protected virtual void DoInvoke(object?[] parameters, AsyncLogEventInfo logEvent)
         {
             try
             {
                 DoInvoke(parameters);
-                continuation(null);
+                logEvent.Continuation(null);
             }
             catch (Exception ex)
             {
@@ -116,7 +106,7 @@ namespace NLog.Targets
                     throw;
                 }
 
-                continuation(ex);
+                logEvent.Continuation(ex);
             }
         }
 
@@ -124,6 +114,6 @@ namespace NLog.Targets
         /// Calls the target method. Must be implemented in concrete classes.
         /// </summary>
         /// <param name="parameters">Method call parameters.</param>
-        protected abstract void DoInvoke(object[] parameters);
+        protected abstract void DoInvoke(object?[] parameters);
     }
 }

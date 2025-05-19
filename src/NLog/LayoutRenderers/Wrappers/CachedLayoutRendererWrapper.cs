@@ -69,8 +69,8 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         private readonly object _lockObject = new object();
-        private string _cachedValue;
-        private string _renderedCacheKey;
+        private string? _cachedValue;
+        private string? _renderedCacheKey;
         private DateTime _cachedValueExpires;
         private TimeSpan? _cachedValueTimeout;
 
@@ -90,7 +90,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Cachekey. If the cachekey changes, resets the value. For example, the cachekey would be the current day.s
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public Layout CacheKey { get; set; }
+        public Layout? CacheKey { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating how many seconds the value should stay cached until it expires
@@ -160,7 +160,7 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
-        string LookupValidCachedValue(LogEventInfo logEvent, string newCacheKey)
+        string? LookupValidCachedValue(LogEventInfo logEvent, string newCacheKey)
         {
             if (_renderedCacheKey != newCacheKey)
                 return null;
@@ -171,6 +171,6 @@ namespace NLog.LayoutRenderers.Wrappers
             return _cachedValue;
         }
 
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => Cached ? RenderInner(logEvent) : null;
+        string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => Cached ? RenderInner(logEvent) : null;
     }
 }

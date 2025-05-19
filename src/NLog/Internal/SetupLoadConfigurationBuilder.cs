@@ -31,18 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#nullable enable
-
 namespace NLog.Internal
 {
     using NLog.Config;
 
     internal sealed class SetupLoadConfigurationBuilder : ISetupLoadConfigurationBuilder
     {
-        internal SetupLoadConfigurationBuilder(LogFactory logFactory, LoggingConfiguration configuration)
+        internal SetupLoadConfigurationBuilder(LogFactory logFactory, LoggingConfiguration? configuration)
         {
             LogFactory = logFactory;
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
         public LogFactory LogFactory { get; }

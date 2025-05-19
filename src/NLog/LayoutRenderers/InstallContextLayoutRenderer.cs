@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
-        public string Parameter { get; set; }
+        public string Parameter { get; set; } = string.Empty;
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -65,7 +65,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private object GetValue(LogEventInfo logEvent)
+        private object? GetValue(LogEventInfo logEvent)
         {
             return !logEvent.Properties.TryGetValue(Parameter, out var value) ? null : value;
         }

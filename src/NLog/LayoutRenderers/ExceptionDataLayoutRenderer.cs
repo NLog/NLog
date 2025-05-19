@@ -58,7 +58,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
-        public string Item { get; set; }
+        public string Item { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
@@ -70,7 +70,7 @@ namespace NLog.LayoutRenderers
         /// Format string for conversion from object to string.
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
-        public string Format { get; set; }
+        public string? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering.
@@ -87,7 +87,7 @@ namespace NLog.LayoutRenderers
                 throw new NLogConfigurationException("ExceptionData-LayoutRenderer Item-property must be assigned. Lookup blank value not supported.");
         }
 
-        private Exception GetTopException(LogEventInfo logEvent)
+        private Exception? GetTopException(LogEventInfo logEvent)
         {
             return BaseException ? logEvent.Exception?.GetBaseException() : logEvent.Exception;
         }
@@ -95,7 +95,7 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            Exception primaryException = GetTopException(logEvent);
+            var primaryException = GetTopException(logEvent);
             if (primaryException != null)
             {
                 var value = primaryException.Data[Item];

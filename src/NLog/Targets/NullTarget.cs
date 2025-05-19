@@ -63,7 +63,7 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes a new instance of the <see cref="NullTarget" /> class.
         /// </summary>
-        public NullTarget() : base()
+        public NullTarget()
         {
         }
 

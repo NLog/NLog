@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#nullable enable
-
 namespace NLog
 {
     using System;
@@ -1041,9 +1039,9 @@ namespace NLog
             return LoadConfiguration(configFile, optional: false);
         }
 
-        internal LogFactory LoadConfiguration(string configFile, bool optional)
+        internal LogFactory LoadConfiguration(string? configFile, bool optional)
         {
-            var actualConfigFile = string.IsNullOrEmpty(configFile) ? "NLog.config" : configFile;
+            var actualConfigFile = (configFile is null || string.IsNullOrEmpty(configFile)) ? "NLog.config" : configFile;
             if (optional && string.Equals(actualConfigFile.Trim(), "NLog.config", StringComparison.OrdinalIgnoreCase) && _config != null)
             {
                 return this;    // Skip optional loading of default config, when config is already loaded
@@ -1067,7 +1065,7 @@ namespace NLog
             return this;
         }
 
-        private string CreateFileNotFoundMessage(string configFile)
+        private string CreateFileNotFoundMessage(string? configFile)
         {
             var messageBuilder = new StringBuilder("Failed to load NLog LoggingConfiguration.");
             try

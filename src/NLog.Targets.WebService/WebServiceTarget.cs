@@ -242,19 +242,7 @@ namespace NLog.Targets
         protected override void DoInvoke(object[] parameters)
         {
             // method is not used, instead asynchronous overload will be used
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Calls the target DoInvoke method, and handles AsyncContinuation callback
-        /// </summary>
-        /// <param name="parameters">Method call parameters.</param>
-        /// <param name="continuation">The continuation.</param>
-        protected override void DoInvoke(object[] parameters, AsyncContinuation continuation)
-        {
-            var url = BuildWebServiceUrl(LogEventInfo.CreateNullEvent(), parameters);
-            var webRequest = CreateHttpWebRequest(url);
-            DoInvoke(parameters, webRequest, continuation);
+            throw new NotSupportedException();
         }
 
         /// <summary>

@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class ObjectPathRendererWrapper : WrapperLayoutRendererBase, IRawValue
     {
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));
-        private ObjectReflectionCache _objectReflectionCache;
+        private ObjectReflectionCache? _objectReflectionCache;
         private ObjectPropertyPath _objectPropertyPath;
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category="Layout Options" order="10"/>
         public string ObjectPath
         {
-            get => _objectPropertyPath.Value;
+            get => _objectPropertyPath.Value ?? string.Empty;
             set => _objectPropertyPath.Value = value;
         }
 
@@ -81,7 +81,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Format string for conversion from object to string.
         /// </summary>
         /// <docgen category="Layout Options" order="100"/>
-        public string Format { get; set; }
+        public string? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering.
@@ -98,15 +98,15 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            if (TryGetRawPropertyValue(logEvent, out object propertyValue))
+            if (TryGetRawPropertyValue(logEvent, out var propertyValue))
             {
                 AppendFormattedValue(builder, logEvent, propertyValue, Format, Culture);
             }
         }
 
-        private bool TryGetRawPropertyValue(LogEventInfo logEvent, out object propertyValue)
+        private bool TryGetRawPropertyValue(LogEventInfo logEvent, out object? propertyValue)
         {
-            if (Inner?.TryGetRawValue(logEvent, out var rawValue) == true && TryGetPropertyValue(rawValue, out propertyValue))
+            if (Inner?.TryGetRawValue(logEvent, out var rawValue) == true && rawValue != null && TryGetPropertyValue(rawValue, out propertyValue))
                 return true;
 
             propertyValue = null;
@@ -117,11 +117,11 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Lookup property-value from source object based on <see cref="ObjectPath"/>
         /// </summary>
         /// <returns>Could resolve property-value?</returns>
-        public bool TryGetPropertyValue(object sourceObject, out object propertyValue)
+        public bool TryGetPropertyValue(object sourceObject, out object? propertyValue)
         {
             return ObjectReflectionCache.TryGetObjectProperty(sourceObject, _objectPropertyPath.PathNames, out propertyValue);
         }
 
-        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value) => TryGetRawPropertyValue(logEvent, out value);
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object? value) => TryGetRawPropertyValue(logEvent, out value);
     }
 }

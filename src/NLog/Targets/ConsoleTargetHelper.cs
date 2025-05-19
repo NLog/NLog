@@ -74,7 +74,7 @@ namespace NLog.Targets
             return true;
         }
 
-        public static Encoding GetConsoleOutputEncoding(Encoding currentEncoding, bool isInitialized, bool pauseLogging)
+        public static Encoding GetConsoleOutputEncoding(Encoding? currentEncoding, bool isInitialized, bool pauseLogging)
         {
             if (currentEncoding != null)
                 return currentEncoding;

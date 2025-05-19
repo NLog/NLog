@@ -51,7 +51,7 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class HostNameLayoutRenderer : LayoutRenderer
     {
-        private string _hostName;
+        private string? _hostName;
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
@@ -85,7 +85,8 @@ namespace NLog.LayoutRenderers
             return TryLookupValue(() => Environment.GetEnvironmentVariable("HOSTNAME"), "HOSTNAME")
                 ?? TryLookupValue(() => Environment.GetEnvironmentVariable("COMPUTERNAME"), "COMPUTERNAME")
                 ?? TryLookupValue(() => Environment.GetEnvironmentVariable("MACHINENAME"), "MACHINENAME")
-                ?? TryLookupValue(() => Environment.MachineName, "MachineName");
+                ?? TryLookupValue(() => Environment.MachineName, "MachineName")
+                ?? string.Empty;
         }
 
         /// <summary>
@@ -94,11 +95,11 @@ namespace NLog.LayoutRenderers
         /// <param name="lookupFunc">The lookup function.</param>
         /// <param name="lookupType">Type of the lookup.</param>
         /// <returns></returns>
-        private static string TryLookupValue(Func<string> lookupFunc, string lookupType)
+        private static string? TryLookupValue(Func<string> lookupFunc, string lookupType)
         {
             try
             {
-                string lookupValue = lookupFunc()?.Trim();
+                var lookupValue = lookupFunc()?.Trim();
                 return string.IsNullOrEmpty(lookupValue) ? null : lookupValue;
             }
             catch (Exception ex)

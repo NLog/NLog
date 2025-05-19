@@ -54,18 +54,19 @@ namespace NLog.LayoutRenderers
     public class ProcessDirLayoutRenderer : LayoutRenderer
     {
         private readonly string _processDir;
+        private string? _nlogCombinedPath;
 
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with the process directory.
         /// </summary>
         /// <docgen category='Advanced Options' order='50' />
-        public string File { get; set; }
+        public string File { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the name of the directory to be Path.Combine()'d with the process directory.
         /// </summary>
         /// <docgen category='Advanced Options' order='50' />
-        public string Dir { get; set; }
+        public string Dir { get; set; } = string.Empty;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProcessDirLayoutRenderer" /> class.
@@ -84,9 +85,16 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            _nlogCombinedPath = null;
+            base.InitializeLayoutRenderer();
+        }
+
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var path = PathHelpers.CombinePaths(_processDir, Dir, File);
+            var path = _nlogCombinedPath ?? (_nlogCombinedPath = PathHelpers.CombinePaths(_processDir, Dir, File));
             builder.Append(path);
         }
     }

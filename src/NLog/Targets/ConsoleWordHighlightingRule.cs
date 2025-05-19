@@ -49,8 +49,6 @@ namespace NLog.Targets
         /// </summary>
         public ConsoleWordHighlightingRule()
         {
-            BackgroundColor = ConsoleOutputColor.NoChange;
-            ForegroundColor = ConsoleOutputColor.NoChange;
         }
 
         /// <summary>
@@ -70,7 +68,7 @@ namespace NLog.Targets
         /// Gets or sets the condition that must be met before scanning the row for highlight of words
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
-        public ConditionExpression Condition { get; set; }
+        public ConditionExpression Condition { get; set; } = ConditionExpression.Empty;
 
         /// <summary>
         /// Gets or sets the text to be matched. You must specify either <c>text</c> or <c>regex</c>.
@@ -95,19 +93,19 @@ namespace NLog.Targets
         /// Gets or sets the foreground color.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
-        public ConsoleOutputColor ForegroundColor { get; set; }
+        public ConsoleOutputColor ForegroundColor { get; set; } = ConsoleOutputColor.NoChange;
 
         /// <summary>
         /// Gets or sets the background color.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
-        public ConsoleOutputColor BackgroundColor { get; set; }
+        public ConsoleOutputColor BackgroundColor { get; set; } = ConsoleOutputColor.NoChange;
 
         /// <summary>
         /// Scans the <paramref name="haystack"/> for words that should be highlighted.
         /// </summary>
         /// <returns>List of words with start-position (Key) and word-length (Value)</returns>
-        internal protected virtual IEnumerable<KeyValuePair<int, int>> GetWordsForHighlighting(string haystack)
+        internal protected virtual IEnumerable<KeyValuePair<int, int>>? GetWordsForHighlighting(string haystack)
         {
             if (ReferenceEquals(_text, string.Empty))
                 return null;
@@ -150,6 +148,14 @@ namespace NLog.Targets
                 index += _text.Length;
             }
             return index;
+        }
+
+        /// <summary>
+        /// Checks whether the specified log event matches the condition (if any).
+        /// </summary>
+        internal bool CheckCondition(LogEventInfo logEvent)
+        {
+            return Condition is null || ReferenceEquals(Condition, ConditionExpression.Empty) || true.Equals(Condition.Evaluate(logEvent));
         }
     }
 }

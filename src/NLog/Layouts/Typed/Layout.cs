@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#nullable enable
-
 namespace NLog.Layouts
 {
     using System;
@@ -429,12 +427,9 @@ namespace NLog.Layouts
         /// Converts a given text to a <see cref="Layout{T}" />.
         /// </summary>
         /// <param name="layout">Text to be converted.</param>
-        public static implicit operator Layout<T>?([Localizable(false)] string layout)
+        public static implicit operator Layout<T>([Localizable(false)] string layout)
         {
-            Layout? innerLayout = layout;
-            if (innerLayout is null) return null;
-
-            return new Layout<T>(innerLayout);
+            return (layout is null && !typeof(T).IsValueType) ? new Layout<T>(default(T)) : new Layout<T>(layout ?? string.Empty);
         }
 
         /// <summary>

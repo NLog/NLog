@@ -129,7 +129,7 @@ namespace NLog.LayoutRenderers
             return exception;
         }
 
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
+        string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             if (WithException)
                 return null;

@@ -52,20 +52,20 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the default value to be used when the variable is not set.
         /// </summary>
         /// <remarks>Not used if Name is <c>null</c></remarks>
         /// <docgen category='Layout Options' order='10' />
-        public string Default { get; set; }
+        public string Default { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets the configuration variable layout matching the configured Name
         /// </summary>
         /// <remarks>Mostly relevant for the scanning of active NLog Layouts (Ex. CallSite capture)</remarks>
-        public Layout ActiveLayout => TryGetLayout(out var layout) ? layout : null;
+        public Layout? ActiveLayout => TryGetLayout(out var layout) ? layout : null;
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
@@ -85,7 +85,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Try lookup the configuration variable layout matching the configured Name
         /// </summary>
-        private bool TryGetLayout(out Layout layout)
+        private bool TryGetLayout(out Layout? layout)
         {
             layout = null;
             //Note: don't use LogManager (locking, recursion)

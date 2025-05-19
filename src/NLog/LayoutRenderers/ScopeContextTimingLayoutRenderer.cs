@@ -74,7 +74,7 @@ namespace NLog.LayoutRenderers
         /// When Format has not been specified, then it will render TimeSpan.TotalMilliseconds
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public string Format { get; set; }
+        public string? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering.

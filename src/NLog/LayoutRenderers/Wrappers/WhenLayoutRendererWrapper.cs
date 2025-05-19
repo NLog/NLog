@@ -62,7 +62,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// If <see cref="When"/> is not met, print this layout.
         /// </summary>
         /// <docgen category="Condition Options" order="10"/>
-        public Layout Else { get; set; }
+        public Layout Else { get; set; } = Layout.Empty;
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
@@ -106,7 +106,7 @@ namespace NLog.LayoutRenderers.Wrappers
             return When is null || ReferenceEquals(When, ConditionExpression.Empty) || true.Equals(When.Evaluate(logEvent));
         }
 
-        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object? value)
         {
             if (ShouldRenderInner(logEvent))
             {
@@ -116,7 +116,7 @@ namespace NLog.LayoutRenderers.Wrappers
             return TryGetRawValueFromLayout(logEvent, Else, out value);
         }
 
-        private static bool TryGetRawValueFromLayout(LogEventInfo logEvent, Layout layout, out object value)
+        private static bool TryGetRawValueFromLayout(LogEventInfo logEvent, Layout layout, out object? value)
         {
             if (layout is null)
             {

@@ -53,14 +53,14 @@ namespace NLog.Targets
         /// </summary>
         [Obsolete("Marked obsolete with NLog 5.0. Should always be InvariantCulture.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public IFormatProvider FormatProvider { get; set; }
+        public IFormatProvider? FormatProvider { get; set; }
 
         /// <summary>
         /// Format string for value
         /// </summary>
         [Obsolete("Marked obsolete with NLog 5.0. Should always be InvariantCulture.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Format { get; set; }
+        public string? Format { get; set; }
 
         /// <summary>
         /// Should non-ascii characters be encoded. Default: false

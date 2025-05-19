@@ -53,7 +53,7 @@ namespace NLog.LayoutRenderers
     public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));
-        private ObjectReflectionCache _objectReflectionCache;
+        private ObjectReflectionCache? _objectReflectionCache;
         private ObjectPropertyPath _objectPropertyPath;
 
         /// <summary>
@@ -61,14 +61,14 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
-        public string Item { get => _item?.ToString(); set => _item = (value != null && IgnoreCase) ? new PropertiesDictionary.IgnoreCasePropertyKey(value) : (object)value; }
-        private object _item;
+        public string Item { get => _item?.ToString() ?? string.Empty; set => _item = (value is null || !IgnoreCase) ? (value ?? string.Empty) : new PropertiesDictionary.IgnoreCasePropertyKey(value); }
+        private object _item = string.Empty;
 
         /// <summary>
         /// Format string for conversion from object to string.
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
-        public string Format { get; set; }
+        public string? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering.
@@ -82,7 +82,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Layout Options' order='20' />
         public string ObjectPath
         {
-            get => _objectPropertyPath.Value;
+            get => _objectPropertyPath.Value ?? string.Empty;
             set => _objectPropertyPath.Value = value;
         }
 
@@ -98,7 +98,7 @@ namespace NLog.LayoutRenderers
                 if (value != _ignoreCase)
                 {
                     _ignoreCase = value;
-                    Item = _item?.ToString();
+                    Item = _item?.ToString() ?? string.Empty;
                 }
             }
         }
@@ -109,7 +109,7 @@ namespace NLog.LayoutRenderers
         {
             base.InitializeLayoutRenderer();
 
-            if (string.IsNullOrEmpty(Item))
+            if (StringHelpers.IsNullOrEmptyString(_item))
                 throw new NLogConfigurationException("EventProperty-LayoutRenderer Item-property must be assigned. Lookup blank value not supported.");
         }
 
@@ -122,15 +122,27 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object? value)
         {
             TryGetValue(logEvent, out value);
             return true;
         }
 
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+        string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
+        {
+            if (!MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format))
+            {
+                if (TryGetValue(logEvent, out var value))
+                {
+                    string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, Culture));
+                    return stringValue;
+                }
+                return string.Empty;
+            }
+            return null;
+        }
 
-        private bool TryGetValue(LogEventInfo logEvent, out object value)
+        private bool TryGetValue(LogEventInfo logEvent, out object? value)
         {
             value = null;
 
@@ -153,20 +165,6 @@ namespace NLog.LayoutRenderers
             }
 
             return true;
-        }
-
-        private string GetStringValue(LogEventInfo logEvent)
-        {
-            if (!MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format))
-            {
-                if (TryGetValue(logEvent, out var value))
-                {
-                    string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, Culture));
-                    return stringValue;
-                }
-                return string.Empty;
-            }
-            return null;
         }
     }
 }

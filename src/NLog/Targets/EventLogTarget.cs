@@ -74,8 +74,9 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
         public EventLogTarget()
-            : this(null, null)
         {
+            Source = AppDomain.CurrentDomain.FriendlyName;
+            _eventLogWrapper = new EventLogWrapper();
         }
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="name">Name of the target.</param>
         public EventLogTarget(string name)
-            : this(null, null)
+            : this()
         {
             Name = name;
         }
@@ -93,15 +94,15 @@ namespace NLog.Targets
         /// </summary>
         internal EventLogTarget(IEventLogWrapper eventLogWrapper, string sourceName)
         {
-            _eventLogWrapper = eventLogWrapper ?? new EventLogWrapper();
-            Source = sourceName ?? AppDomain.CurrentDomain.FriendlyName;
+            _eventLogWrapper = eventLogWrapper;
+            Source = string.IsNullOrEmpty(sourceName) ? AppDomain.CurrentDomain.FriendlyName : sourceName;
         }
 
         /// <summary>
         /// Gets or sets the name of the machine on which Event Log service is running.
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
-        public Layout MachineName { get; set; }
+        public Layout MachineName { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets the layout that renders event ID.
@@ -113,13 +114,13 @@ namespace NLog.Targets
         /// Gets or sets the layout that renders event Category.
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
-        public Layout<short> Category { get; set; }
+        public Layout<short>? Category { get; set; }
 
         /// <summary>
         /// Optional entry type. When not set, or when not convertible to <see cref="EventLogEntryType"/> then determined by <see cref="NLog.LogLevel"/>
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
-        public Layout<EventLogEntryType> EntryType { get; set; }
+        public Layout<EventLogEntryType>? EntryType { get; set; }
 
         /// <summary>
         /// Gets or sets the value to be used as the event Source.
@@ -128,7 +129,7 @@ namespace NLog.Targets
         /// By default this is the friendly name of the current AppDomain.
         /// </remarks>
         /// <docgen category='Event Log Options' order='10' />
-        public Layout Source { get; set; }
+        public Layout Source { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets the name of the Event Log to write to. This can be System, Application or any user-defined name.
@@ -150,7 +151,7 @@ namespace NLog.Targets
         /// If <c>null</c>, the value will not be specified while creating the Event log.
         /// </remarks>
         /// <docgen category='Event Log Options' order='10' />
-        public Layout<long> MaxKilobytes { get; set; }
+        public Layout<long>? MaxKilobytes { get; set; }
 
         /// <summary>
         /// Gets or sets the action to take if the message is larger than the <see cref="MaxMessageLength"/> option.
@@ -349,17 +350,14 @@ namespace NLog.Targets
         /// <remarks>Internal for unit tests</remarks>
         internal string GetFixedSource()
         {
-            if (Source is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
+            if (Source is SimpleLayout simpleLayout && simpleLayout.IsFixedText && Log is SimpleLayout logNameLayout && logNameLayout.IsFixedText)
             {
-                if (MachineName is null || (MachineName is SimpleLayout machineLayout && machineLayout.IsFixedText && ".".Equals(machineLayout.FixedText)))
+                if (MachineName is null || (MachineName is SimpleLayout machineLayout && machineLayout.IsFixedText && (".".Equals(machineLayout.FixedText) || string.IsNullOrEmpty(machineLayout.FixedText))))
                 {
-                    if (Log is SimpleLayout logNameLayout && logNameLayout.IsFixedText)
-                    {
-                        return simpleLayout.FixedText;
-                    }
+                    return simpleLayout.FixedText ?? string.Empty;
                 }
             }
-            return null;
+            return string.Empty;
         }
 
         /// <summary>
@@ -503,23 +501,27 @@ namespace NLog.Targets
         /// </summary>
         private sealed class EventLogWrapper : IEventLogWrapper, IDisposable
         {
-            private EventLog _windowsEventLog;
+            private EventLog? _windowsEventLog;
 
-            public string Source { get; private set; }
+            public string Source { get; private set; } = string.Empty;
 
-            public string Log { get; private set; }
+            public string Log { get; private set; } = string.Empty;
 
-            public string MachineName { get; private set; }
+            public string MachineName { get; private set; } = string.Empty;
 
             public long MaximumKilobytes
             {
-                get => _windowsEventLog.MaximumKilobytes;
-                set => _windowsEventLog.MaximumKilobytes = value;
+                get => _windowsEventLog?.MaximumKilobytes ?? 0;
+                set
+                {
+                    if (_windowsEventLog != null)
+                        _windowsEventLog.MaximumKilobytes = value;
+                }
             }
             public bool IsEventLogAssociated => _windowsEventLog != null;
 
             public void WriteEntry(string message, EventLogEntryType entryType, int eventId, short category) =>
-                _windowsEventLog.WriteEntry(message, entryType, eventId, category);
+                _windowsEventLog?.WriteEntry(message, entryType, eventId, category);
 
             /// <summary>
             /// Creates a new association with an instance of Windows <see cref="EventLog"/>.

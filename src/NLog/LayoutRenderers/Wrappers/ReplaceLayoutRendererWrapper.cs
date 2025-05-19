@@ -67,7 +67,7 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
         private string _searchFor = string.Empty;
-        private string _searchForOriginal;
+        private string _searchForOriginal = string.Empty;
 
         /// <summary>
         /// Gets or sets the replacement string.
@@ -84,7 +84,7 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
         private string _replaceWith = string.Empty;
-        private string _replaceWithOriginal;
+        private string _replaceWithOriginal = string.Empty;
 
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case.

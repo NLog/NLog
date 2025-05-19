@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#nullable enable
-
 namespace NLog.Layouts
 {
     using System;
@@ -93,9 +91,12 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="text">Text to be converted.</param>
         /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
-        public static implicit operator Layout?([Localizable(false)] string text)
+        public static implicit operator Layout([Localizable(false)] string text)
         {
-            return text is null ? null : FromString(text, ConfigurationItemFactory.Default);
+            if (text is null)
+                return new Layout<string>(null);
+            else 
+                return FromString(text, ConfigurationItemFactory.Default);
         }
 
         /// <summary>
@@ -170,7 +171,7 @@ namespace NLog.Layouts
             return new SimpleLayout(new[] { layoutRenderer }, layoutRenderer.LayoutRendererName);
         }
 
-        internal static LayoutRenderers.FuncLayoutRenderer CreateFuncLayoutRenderer(Func<LogEventInfo, LoggingConfiguration, object> layoutMethod, LayoutRenderOptions options, string name)
+        internal static LayoutRenderers.FuncLayoutRenderer CreateFuncLayoutRenderer(Func<LogEventInfo, LoggingConfiguration?, object> layoutMethod, LayoutRenderOptions options, string name)
         {
             if ((options & LayoutRenderOptions.ThreadAgnostic) == LayoutRenderOptions.ThreadAgnostic)
                 return new LayoutRenderers.FuncThreadAgnosticLayoutRenderer(name, layoutMethod);

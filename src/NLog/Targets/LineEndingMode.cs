@@ -88,7 +88,11 @@ namespace NLog.Targets
         /// </summary>
         public string NewLineCharacters => _newLineCharacters;
 
-        private LineEndingMode() { }
+        private LineEndingMode()
+        {
+            _name = string.Empty;
+            _newLineCharacters = string.Empty;
+        }
 
         /// <summary>
         /// Initializes a new instance of <see cref="LogLevel"/>.

@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#nullable enable
-
 namespace NLog.Internal
 {
     using System;
@@ -73,7 +71,7 @@ namespace NLog.Internal
 
                 Stack<XmlParserElement> stack = new Stack<XmlParserElement>();
 
-                var currentRoot = new XmlParserElement(rootName, rootAttributes);
+                var currentRoot = new XmlParserElement(rootName ?? string.Empty, rootAttributes);
                 stack.Push(currentRoot);
 
                 bool stillReading = true;
@@ -103,7 +101,7 @@ namespace NLog.Internal
                         if (TryReadStartElement(out var elementName, out var elementAttributes))
                         {
                             stillReading = true;
-                            currentRoot = new XmlParserElement(elementName, elementAttributes);
+                            currentRoot = new XmlParserElement(elementName ?? string.Empty, elementAttributes);
                             stack.Peek().AddChild(currentRoot);
                             stack.Push(currentRoot);
                         }
@@ -140,7 +138,7 @@ namespace NLog.Internal
                 if (!TryBeginReadStartElement(out var instructionName, processingInstruction: true))
                     throw new XmlParserException("Invalid XML document. Cannot parse XML processing instruction");
 
-                if (string.IsNullOrEmpty(instructionName) || instructionName.Length == 1 || instructionName[0] != '?')
+                if (instructionName is null || string.IsNullOrEmpty(instructionName) || instructionName.Length == 1 || instructionName[0] != '?')
                     throw new XmlParserException("Invalid XML document. Cannot parse XML processing instruction");
 
                 instructionName = instructionName.Substring(1);
@@ -167,7 +165,7 @@ namespace NLog.Internal
         /// </summary>
         /// <returns>True if start element was found.</returns>
         /// <exception cref="Exception">Something unexpected has failed.</exception>
-        public bool TryReadStartElement([NotNullWhen(returnValue: true)] out string? name, out List<KeyValuePair<string, string>>? attributes)
+        public bool TryReadStartElement(out string? name, out List<KeyValuePair<string, string>>? attributes)
         {
             SkipWhiteSpaces();
 
@@ -372,7 +370,7 @@ namespace NLog.Internal
         /// Consumer of this method should handle safe position.
         /// </summary>
         /// <exception cref="Exception">Something unexpected has failed.</exception>
-        private bool TryBeginReadStartElement([NotNullWhen(returnValue: true)] out string? name, bool processingInstruction = false)
+        private bool TryBeginReadStartElement(out string? name, bool processingInstruction = false)
         {
             if (_xmlSource.Current != '<' || _xmlSource.Peek() == '/' || _xmlSource.Peek() == '!')
             {

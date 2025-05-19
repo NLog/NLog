@@ -93,7 +93,7 @@ namespace NLog.Targets
         /// Gets or sets the name of the parameter.
         /// </summary>
         /// <docgen category='Parameter Options' order='1' />
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the layout that should be use to calculate the value for the parameter.
@@ -120,13 +120,13 @@ namespace NLog.Targets
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
         /// <docgen category='Parameter Options' order='50' />
-        public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
+        public Layout? DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
         /// Render Result Value
         /// </summary>
         /// <param name="logEvent">Log event for rendering</param>
         /// <returns>Result value when available, else fallback to defaultValue</returns>
-        public object RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
+        public object? RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
     }
 }

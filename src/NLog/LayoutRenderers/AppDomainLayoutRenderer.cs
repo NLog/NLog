@@ -98,7 +98,7 @@ namespace NLog.LayoutRenderers
             base.CloseLayoutRenderer();
         }
 
-        private string _assemblyName;
+        private string? _assemblyName;
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)

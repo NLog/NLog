@@ -147,7 +147,7 @@ namespace NLog
             return setupBuilder;
         }
 
-        private static string GetAppSettings(string configName)
+        private static string? GetAppSettings(string configName)
         {
 #if NETFRAMEWORK
             try
@@ -165,11 +165,11 @@ namespace NLog
             return null;
         }
 
-        private static string GetSettingString(string configName, string envName)
+        private static string? GetSettingString(string configName, string envName)
         {
             try
             {
-                string settingValue = GetAppSettings(configName);
+                var settingValue = GetAppSettings(configName);
                 if (settingValue != null)
                     return settingValue;
             }
@@ -200,7 +200,7 @@ namespace NLog
 
         private static LogLevel GetSetting(string configName, string envName, LogLevel defaultValue)
         {
-            string value = GetSettingString(configName, envName);
+            var value = GetSettingString(configName, envName);
             if (value is null)
             {
                 return defaultValue;
@@ -223,7 +223,7 @@ namespace NLog
 
         private static T GetSetting<T>(string configName, string envName, T defaultValue)
         {
-            string value = GetSettingString(configName, envName);
+            var value = GetSettingString(configName, envName);
             if (value is null)
             {
                 return defaultValue;

@@ -31,12 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#nullable enable
-
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.Text;
-    using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;
 

@@ -54,13 +54,13 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
-        public string Variable { get; set; }
+        public string Variable { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the default value to be used when the environment variable is not set.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public string Default { get; set; }
+        public string Default { get; set; } = string.Empty;
 
         private System.Collections.Generic.KeyValuePair<string, SimpleLayout> _cachedValue;
 
@@ -79,7 +79,7 @@ namespace NLog.LayoutRenderers
             GetSimpleLayout()?.Render(logEvent, builder);
         }
 
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
+        string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             var simpleLayout = GetSimpleLayout();
             if (simpleLayout is null)
@@ -89,7 +89,7 @@ namespace NLog.LayoutRenderers
             return null;
         }
 
-        private SimpleLayout GetSimpleLayout()
+        private SimpleLayout? GetSimpleLayout()
         {
             if (Variable != null)
             {

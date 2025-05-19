@@ -69,7 +69,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the name of the sequence. Different named sequences can have individual values.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public Layout Sequence { get; set; }
+        public Layout? Sequence { get; set; }
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)

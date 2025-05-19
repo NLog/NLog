@@ -74,7 +74,7 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            IIdentity identity = GetValue();
+            var identity = GetValue();
             if (identity != null)
             {
                 string separator = string.Empty;
@@ -100,10 +100,9 @@ namespace NLog.LayoutRenderers
                     builder.Append(identity.Name);
                 }
             }
-
         }
 
-        private static IIdentity GetValue()
+        private static IIdentity? GetValue()
         {
             var currentPrincipal = System.Threading.Thread.CurrentPrincipal;
             return currentPrincipal?.Identity;
