@@ -38,8 +38,6 @@ using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using NLog.Internal;
 
-#nullable enable
-
 namespace NLog
 {
     /// <summary>
