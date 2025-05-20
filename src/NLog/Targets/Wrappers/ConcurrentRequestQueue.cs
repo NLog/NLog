@@ -33,8 +33,6 @@
 
 #if !NET35
 
-#nullable enable
-
 namespace NLog.Targets.Wrappers
 {
     using System;

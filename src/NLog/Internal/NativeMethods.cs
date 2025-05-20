@@ -33,8 +33,6 @@
 
 #if NETFRAMEWORK
 
-#nullable enable
-
 namespace NLog.Internal
 {
     using System;

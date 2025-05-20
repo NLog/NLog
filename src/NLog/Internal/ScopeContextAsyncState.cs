@@ -33,8 +33,6 @@
 
 #if !NET35 && !NET40 && !NET45
 
-#nullable enable
-
 namespace NLog.Internal
 {
     using System;
