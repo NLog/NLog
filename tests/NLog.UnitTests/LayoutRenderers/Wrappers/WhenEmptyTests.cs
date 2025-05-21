@@ -101,7 +101,6 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
                 Assert.True(success);
                 Assert.Equal(DBNull.Value, rawValue);
             }
-
         }
 
         [Theory]
@@ -111,16 +110,15 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         {
             // Arrange
             SimpleLayout layout = @"${message:whenEmpty=default}";
+            layout.Initialize(null);
             var stringValueRenderer = (IStringValueRenderer)layout.Renderers[0];
-            var logEvent = LogEventInfo.Create(LogLevel.Info, "logger", message);
 
             // Act
+            var logEvent = LogEventInfo.Create(LogLevel.Info, "logger", message);
             var result = stringValueRenderer.GetFormattedString(logEvent);
 
             // Assert
             Assert.Equal(expected, result);
-
-
         }
     }
 }
