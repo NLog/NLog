@@ -33,7 +33,6 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <EnableTrimAnalyzer Condition=" '$(TargetFramework)' == 'net8.0' ">true</EnableTrimAnalyzer>
     <IsTrimmable Condition=" '$(TargetFramework)' == 'net8.0' ">true</IsTrimmable>
-    <TrimMode>copyused</TrimMode>
     <SonarQubeExclude>true</SonarQubeExclude>
   </PropertyGroup>
 

@@ -71,7 +71,7 @@ namespace NLog
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-        [OverloadResolutionPriority(-1)]
+       [OverloadResolutionPriority(-1)]
 #endif
         public void Log(LogLevel level, IFormatProvider? formatProvider, object? value)
         {

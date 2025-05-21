@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net35;net46;netstandard2.0</TargetFrameworks>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' AND '$(VisualStudioVersion)' &lt; '17.0' ">net35;net46;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net35;net46;netstandard2.0;netstandard2.1</TargetFrameworks>
 
     <Title>NLog Windows Registry</Title>
     <Company>NLog</Company>
@@ -32,9 +34,8 @@
     <IsPackable>true</IsPackable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <EnableTrimAnalyzer Condition=" '$(TargetFramework)' == 'netstandard2.0' ">true</EnableTrimAnalyzer>
-    <IsTrimmable Condition=" '$(TargetFramework)' == 'netstandard2.0' ">true</IsTrimmable>
-    <TrimMode>copyused</TrimMode>
+    <EnableTrimAnalyzer Condition=" '$(TargetFramework)' == 'netstandard2.1' ">true</EnableTrimAnalyzer>
+    <IsTrimmable Condition=" '$(TargetFramework)' == 'netstandard2.1' ">true</IsTrimmable>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
@@ -56,13 +57,21 @@
     <Title>NLog.WindowsRegistry for NetStandard 2.0</Title>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
+    <Title>NLog.WindowsRegistry for NetStandard 2.1</Title>
+  </PropertyGroup>
+
   <ItemGroup Condition=" '$(TargetFrameworkIdentifier)' == '.NETFramework' ">
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
+    <PackageReference Include="Microsoft.Win32.Registry" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
+    <PackageReference Include="Microsoft.Win32.Registry" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' AND '$(VisualStudioVersion)' &lt; '17.0' ">net46;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net46;netstandard2.0;netstandard2.1</TargetFrameworks>
 
     <Title>NLog.Targets.WebService</Title>
     <Company>NLog</Company>
@@ -32,9 +34,12 @@
     <IsPackable>true</IsPackable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <EnableTrimAnalyzer Condition=" '$(TargetFramework)' == 'netstandard2.0' ">true</EnableTrimAnalyzer>
-    <IsTrimmable Condition=" '$(TargetFramework)' == 'netstandard2.0' ">true</IsTrimmable>
-    <TrimMode>copyused</TrimMode>
+    <EnableTrimAnalyzer Condition=" '$(TargetFramework)' == 'netstandard2.1' ">true</EnableTrimAnalyzer>
+    <IsTrimmable Condition=" '$(TargetFramework)' == 'netstandard2.1' ">true</IsTrimmable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
+    <Title>NLog.Targets.WebService for .NET Standard 2.1</Title>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">

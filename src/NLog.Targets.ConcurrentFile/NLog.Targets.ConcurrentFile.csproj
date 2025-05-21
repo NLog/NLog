@@ -5,7 +5,7 @@
 
     <Title>NLog.Targets.ConcurrentFile</Title>
     <Company>NLog</Company>
-    <Description>FileTarget with support for ConcurrentWrites where multiple processes can write to the same file</Description>
+    <Description>FileTarget with support for ConcurrentWrites with Global Mutex and EnableArchiveFileCompression with ZIP</Description>
     <Product>NLog.Targets.ConcurrentFile v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>

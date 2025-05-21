@@ -34,18 +34,15 @@
 namespace NLog.Targets.AtomicFile.Tests
 {
     using System;
-    using System.CodeDom.Compiler;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Text;
-    using Microsoft.CodeAnalysis.CSharp;
-    using Microsoft.CSharp;
     using Xunit;
 
-    static class ProcessRunner
+    static class AtomicProcessRunner
     {
-        static ProcessRunner()
+        static AtomicProcessRunner()
         {
             string sourceCode = @"
 using System;
@@ -90,23 +87,23 @@ public static class C1
 }";
 
 #if NETFRAMEWORK
-            CSharpCodeProvider provider = new CSharpCodeProvider();
-            var options = new CompilerParameters();
+            var provider = new Microsoft.CSharp.CSharpCodeProvider();
+            var options = new System.CodeDom.Compiler.CompilerParameters();
             options.OutputAssembly = "Runner.exe";
             options.GenerateExecutable = true;
             options.IncludeDebugInformation = true;
             // To allow debugging the generated Runner.exe we need to keep files.
             // See https://stackoverflow.com/questions/875723/how-to-debug-break-in-codedom-compiled-code
-            options.TempFiles = new TempFileCollection(Environment.GetEnvironmentVariable("TEMP"), true);
+            options.TempFiles = new System.CodeDom.Compiler.TempFileCollection(Environment.GetEnvironmentVariable("TEMP"), true);
             var results = provider.CompileAssemblyFromSource(options, sourceCode);
 #else
-            var compilation = CSharpCompilation
+            var compilation = Microsoft.CodeAnalysis.CSharp.CSharpCompilation
                 .Create(
                     "Runner.dll",
-                    new[] { CSharpSyntaxTree.ParseText(sourceCode) },
+                    new[] { Microsoft.CodeAnalysis.CSharp.CSharpSyntaxTree.ParseText(sourceCode) },
                     references: Basic.Reference.Assemblies.ReferenceAssemblies.NetStandard20);
 
-            var outputAssembly = Path.Combine(Path.GetDirectoryName(typeof(ProcessRunner).Assembly.Location), "Runner.dll");
+            var outputAssembly = Path.Combine(Path.GetDirectoryName(typeof(AtomicProcessRunner).Assembly.Location), "Runner.dll");
             if (System.IO.File.Exists(outputAssembly))
                 System.IO.File.Delete(outputAssembly);
             using (var stream = new FileStream(outputAssembly, FileMode.CreateNew))
@@ -117,10 +114,10 @@ public static class C1
                 Assert.True(failures.Count == 0, string.Join(Environment.NewLine, failures));
                 Assert.True(result.Success);
             }
-            var outputRuntimeConfig = Path.Combine(Path.GetDirectoryName(typeof(ProcessRunner).Assembly.Location), "Runner.runtimeconfig.json");
+            var outputRuntimeConfig = Path.Combine(Path.GetDirectoryName(typeof(AtomicProcessRunner).Assembly.Location), "Runner.runtimeconfig.json");
             if (System.IO.File.Exists(outputRuntimeConfig))
                 System.IO.File.Delete(outputRuntimeConfig);
-            using (var streamReader = new StreamReader(Path.Combine(Path.GetDirectoryName(typeof(ProcessRunner).Assembly.Location), typeof(ProcessRunner).Assembly.GetName().Name) + ".runtimeconfig.json"))
+            using (var streamReader = new StreamReader(Path.Combine(Path.GetDirectoryName(typeof(AtomicProcessRunner).Assembly.Location), typeof(AtomicProcessRunner).Assembly.GetName().Name) + ".runtimeconfig.json"))
             using (var streamWriter = new StreamWriter(outputRuntimeConfig))
             {
                 streamWriter.Write(streamReader.ReadToEnd());

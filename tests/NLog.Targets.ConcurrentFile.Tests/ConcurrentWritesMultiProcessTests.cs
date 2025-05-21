@@ -44,11 +44,9 @@ namespace NLog.Targets.ConcurrentFile.Tests
     using System.Linq;
     using System.Threading;
     using NLog.Common;
-    using NLog.Config;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using Xunit;
-    using Xunit.Extensions;
 
     public class ConcurrentWritesMultiProcessTests
     {
