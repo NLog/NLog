@@ -248,7 +248,7 @@ namespace NLog
                 int endingPosition = typeAlias.IndexOf(ending, StringComparison.OrdinalIgnoreCase);
                 if (endingPosition > 0)
                 {
-                    return typeAlias.Substring(endingPosition);
+                    return typeAlias.Substring(0, endingPosition);
                 }
             }
 
