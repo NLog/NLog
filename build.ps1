@@ -35,18 +35,18 @@ function create-package($packageName, $targetFrameworks)
 		{ exit $LastExitCode }
 }
 
-create-package 'NLog.Database' '"net35;net45;net46;netstandard2.0"'
-create-package 'NLog.Targets.Mail' '"net35;net45;net46;netstandard2.0"'
-create-package 'NLog.Targets.Network' '"net45;net46;netstandard2.0"'
-create-package 'NLog.Targets.Trace' '"net35;net45;net46;netstandard2.0"'
-create-package 'NLog.Targets.WebService' '"net45;net46;netstandard2.0"'
-create-package 'NLog.Targets.GZipFile' '"net45;net46;netstandard2.0"'
-create-package 'NLog.OutputDebugString' '"net35;net45;net46;netstandard2.0"'
-create-package 'NLog.RegEx' '"net35;net45;net46;netstandard2.0"'
-create-package 'NLog.WindowsRegistry' '"net35;net45;net46;netstandard2.0"'
+create-package 'NLog.Database' '"net35;net45;net46;netstandard2.0;netstandard2.1"'
+create-package 'NLog.Targets.Mail' '"net35;net45;net46;netstandard2.0;netstandard2.1"'
+create-package 'NLog.Targets.Network' '"net45;net46;netstandard2.0;netstandard2.1"'
+create-package 'NLog.Targets.Trace' '"net35;net45;net46;netstandard2.0;netstandard2.1"'
+create-package 'NLog.Targets.WebService' '"net45;net46;netstandard2.0;netstandard2.1"'
+create-package 'NLog.Targets.GZipFile' '"net45;net46;netstandard2.0;netstandard2.1"'
+create-package 'NLog.OutputDebugString' '"net35;net45;net46;netstandard2.0;netstandard2.1"'
+create-package 'NLog.RegEx' '"net35;net45;net46;netstandard2.0;netstandard2.1"'
+create-package 'NLog.WindowsRegistry' '"net35;net45;net46;netstandard2.0;netstandard2.1"'
 create-package 'NLog.Targets.ConcurrentFile' '"net35;net45;net46;netstandard2.0"'
 msbuild /t:Restore,Pack ./src/NLog.Targets.AtomicFile/ /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:ContinuousIntegrationBuild=true /p:EmbedUntrackedSources=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal  /maxcpucount
-create-package 'NLog.WindowsEventLog' '"netstandard2.0"'
+create-package 'NLog.WindowsEventLog' '"netstandard2.0;netstandard2.1"'
 
 msbuild /t:xsd /t:NuGetSchemaPackage ./src/NLog.proj /p:Configuration=Release /p:BuildNetFX45=true /p:BuildVersion=$versionProduct /p:Configuration=Release /p:BuildLabelOverride=NONE /verbosity:minimal
 

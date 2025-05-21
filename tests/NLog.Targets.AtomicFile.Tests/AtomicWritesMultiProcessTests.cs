@@ -40,18 +40,17 @@ namespace NLog.Targets.AtomicFile.Tests
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
-    using System.Text;
     using System.Threading;
     using NLog.Common;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using Xunit;
 
-    public class ConcurrentWritesMultiProcessTests
+    public class AtomicWritesMultiProcessTests
     {
-        private static readonly Logger _logger = LogManager.GetLogger(nameof(ConcurrentWritesMultiProcessTests));
+        private static readonly Logger _logger = LogManager.GetLogger(nameof(AtomicWritesMultiProcessTests));
 
-        public ConcurrentWritesMultiProcessTests()
+        public AtomicWritesMultiProcessTests()
         {
             InternalLogger.Reset();
             LogManager.Configuration = null;
@@ -190,7 +189,7 @@ namespace NLog.Targets.AtomicFile.Tests
 
                 for (int i = 0; i < numProcesses; ++i)
                 {
-                    processes[i] = ProcessRunner.SpawnMethod(
+                    processes[i] = AtomicProcessRunner.SpawnMethod(
                         GetType(),
                         nameof(MultiProcessExecutor),
                         i.ToString(),

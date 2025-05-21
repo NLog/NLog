@@ -166,7 +166,9 @@ namespace NLog.Internal.NetworkSenders
 
         private static void AuthenticateAsClient(SslStream sslStream, string targetHost, SslProtocols enabledSslProtocols, X509Certificate2Collection sslCertificateOverride)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             if (enabledSslProtocols != SslProtocols.Default || sslCertificateOverride != null)
+#pragma warning restore CS0618 // Type or member is obsolete
             {
                 sslStream.AuthenticateAsClient(targetHost, sslCertificateOverride?.Count > 0 ? sslCertificateOverride : null, enabledSslProtocols, false);
             }
