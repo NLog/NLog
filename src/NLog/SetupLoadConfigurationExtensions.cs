@@ -400,7 +400,8 @@ namespace NLog
 
         internal static IEnumerable<Target> YieldAllTargets(Target target)
         {
-            yield return target;
+            if (target != null)
+                yield return target;
 
             if (target is WrapperTargetBase wrapperTarget)
             {

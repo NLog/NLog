@@ -109,6 +109,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (Inner != null &&
                 Inner.TryGetRawValue(logEvent, out var rawValue) &&
+                rawValue != null &&
                 TryGetPropertyValue(rawValue, out propertyValue))
             {
                 return true;
