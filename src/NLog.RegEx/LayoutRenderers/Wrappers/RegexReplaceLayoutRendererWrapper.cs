@@ -56,8 +56,8 @@ namespace NLog.LayoutRenderers.Wrappers
     [ThreadAgnostic]
     public sealed class RegexReplaceLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        private RegexHelper _regexHelper;
-        private MatchEvaluator _groupMatchEvaluator;
+        private readonly RegexHelper _regexHelper = new RegexHelper();
+        private MatchEvaluator? _groupMatchEvaluator;
 
         /// <summary>
         /// Gets or sets the text to search for.
@@ -79,7 +79,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>The group name.</value>
         /// <docgen category='Condition Options' order='10' />
-        public string ReplaceGroupName { get; set; }
+        public string? ReplaceGroupName { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case.
@@ -109,12 +109,9 @@ namespace NLog.LayoutRenderers.Wrappers
             if (string.IsNullOrEmpty(SearchFor))
                 throw new NLogConfigurationException("RegEx-Replace-LayoutRenderer SearchFor-property must be assigned. Searching for blank value not supported.");
 
-            _regexHelper = new RegexHelper()
-            {
-                IgnoreCase = IgnoreCase,
-                WholeWords = WholeWords,
-                CompileRegex = CompileRegex,
-            };
+            _regexHelper.IgnoreCase = IgnoreCase;
+            _regexHelper.WholeWords = WholeWords;
+            _regexHelper.CompileRegex = CompileRegex;
             _regexHelper.RegexPattern = SearchFor;
 
             if (!string.IsNullOrEmpty(ReplaceGroupName) && _regexHelper.Regex?.GetGroupNames()?.Contains(ReplaceGroupName) == false)
@@ -126,7 +123,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc/>
         protected override string Transform(string text)
         {
-            if (string.IsNullOrEmpty(ReplaceGroupName))
+            if (ReplaceGroupName is null || string.IsNullOrEmpty(ReplaceGroupName))
             {
                 return _regexHelper.Replace(text, ReplaceWith);
             }
