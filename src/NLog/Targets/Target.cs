@@ -698,7 +698,7 @@ namespace NLog.Targets
         /// <param name="layout">The layout.</param>
         /// <param name="logEvent">The logevent info.</param>
         /// <returns>String representing log event.</returns>
-        protected string RenderLogEvent([CanBeNull] Layout layout, [CanBeNull] LogEventInfo logEvent)
+        protected string RenderLogEvent([CanBeNull] Layout? layout, LogEventInfo logEvent)
         {
             if (layout is null || logEvent is null)
                 return string.Empty;    // Signal that input was wrong
@@ -729,7 +729,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logevent info.</param>
         /// <param name="defaultValue">Fallback value when no value available</param>
         /// <returns>Result value when available, else fallback to defaultValue</returns>
-        protected T? RenderLogEvent<T>([CanBeNull] Layout<T>? layout, [CanBeNull] LogEventInfo? logEvent, T? defaultValue = default(T))
+        protected T? RenderLogEvent<T>([CanBeNull] Layout<T>? layout, LogEventInfo logEvent, T? defaultValue = default(T))
         {
             if (layout is null)
                 return defaultValue;

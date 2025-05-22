@@ -54,7 +54,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Default Layout-value that renders string.Empty
         /// </summary>
-        public static Layout Empty => SimpleLayout.Default;
+        public static readonly Layout Empty = new SimpleLayout();
 
         /// <summary>
         /// Is this layout initialized? See <see cref="Initialize(NLog.Config.LoggingConfiguration)"/>
@@ -117,7 +117,7 @@ namespace NLog.Layouts
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
         public static Layout FromString([Localizable(false)] string layoutText, ConfigurationItemFactory configurationItemFactory)
         {
-            return string.IsNullOrEmpty(layoutText) ? SimpleLayout.Default : new SimpleLayout(layoutText, configurationItemFactory);
+            return string.IsNullOrEmpty(layoutText) ? Layout.Empty : new SimpleLayout(layoutText, configurationItemFactory);
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace NLog.Layouts
         {
             try
             {
-                return string.IsNullOrEmpty(layoutText) ? SimpleLayout.Default : new SimpleLayout(layoutText, ConfigurationItemFactory.Default, throwConfigExceptions);
+                return string.IsNullOrEmpty(layoutText) ? Layout.Empty : new SimpleLayout(layoutText, ConfigurationItemFactory.Default, throwConfigExceptions);
             }
             catch (NLogConfigurationException)
             {
@@ -151,7 +151,7 @@ namespace NLog.Layouts
         public static Layout FromLiteral([Localizable(false)] string literalText)
         {
             if (string.IsNullOrEmpty(literalText))
-                return SimpleLayout.Default;
+                return Layout.Empty;
             else
                 return new SimpleLayout(new[] { new NLog.LayoutRenderers.LiteralLayoutRenderer(literalText) }, literalText);
         }

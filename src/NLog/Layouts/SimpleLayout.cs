@@ -62,7 +62,7 @@ namespace NLog.Layouts
         private readonly IRawValue? _rawValueRenderer;
         private IStringValueRenderer? _stringValueRenderer;
 
-        internal static readonly SimpleLayout Default = new SimpleLayout();
+        internal static SimpleLayout Default => (SimpleLayout)Layout.Empty;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleLayout" /> class.

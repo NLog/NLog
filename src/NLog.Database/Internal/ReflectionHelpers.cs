@@ -41,12 +41,12 @@ namespace NLog.Internal
     /// </summary>
     internal static class ReflectionHelpers
     {
-        public static Action<object, object> CreatePropertySetter(this PropertyInfo propertyInfo)
+        public static Action<object, object?> CreatePropertySetter(this PropertyInfo propertyInfo)
         {
             var target = System.Linq.Expressions.Expression.Parameter(typeof(object), "target");
             var value = System.Linq.Expressions.Expression.Parameter(typeof(object), "parameter");
             var body = System.Linq.Expressions.Expression.Call(System.Linq.Expressions.Expression.Convert(target, propertyInfo.DeclaringType), propertyInfo.GetSetMethod(true), System.Linq.Expressions.Expression.Convert(value, propertyInfo.PropertyType));
-            return System.Linq.Expressions.Expression.Lambda<Action<object, object>>(body, target, value).Compile();
+            return System.Linq.Expressions.Expression.Lambda<Action<object, object?>>(body, target, value).Compile();
         }
     }
 }

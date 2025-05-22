@@ -79,7 +79,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            Inner.Render(logEvent, builder);
+            Inner?.Render(logEvent, builder);
             if (builder.Length > orgLength)
             {
                 var containsNewLines = builder.IndexOf('\n', orgLength) >= 0;
