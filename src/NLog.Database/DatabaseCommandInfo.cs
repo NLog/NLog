@@ -55,7 +55,7 @@ namespace NLog.Targets
         /// Gets or sets the connection string to run the command against. If not provided, connection string from the target is used.
         /// </summary>
         /// <docgen category='Command Options' order='10' />
-        public Layout ConnectionString { get; set; }
+        public Layout ConnectionString { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets the command text.

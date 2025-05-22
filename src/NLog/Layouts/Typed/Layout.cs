@@ -144,12 +144,12 @@ namespace NLog.Layouts
         /// <param name="logEvent">Log event for rendering</param>
         /// <param name="defaultValue">Fallback value when no value available</param>
         /// <returns>Result value when available, else fallback to defaultValue</returns>
-        internal T? RenderTypedValue([CanBeNull] LogEventInfo? logEvent, T? defaultValue = default(T))
+        internal T? RenderTypedValue(LogEventInfo logEvent, T? defaultValue = default(T))
         {
             return RenderTypedValue(logEvent, null, defaultValue);
         }
 
-        internal T? RenderTypedValue([CanBeNull] LogEventInfo? logEvent, [CanBeNull] StringBuilder? stringBuilder, T? defaultValue)
+        internal T? RenderTypedValue(LogEventInfo logEvent, [CanBeNull] StringBuilder? stringBuilder, T? defaultValue)
         {
             if (IsFixed)
                 return _fixedValue;
@@ -173,7 +173,7 @@ namespace NLog.Layouts
             return defaultValue;
         }
 
-        private object? RenderObjectValue([CanBeNull] LogEventInfo logEvent, [CanBeNull] StringBuilder? stringBuilder)
+        private object? RenderObjectValue(LogEventInfo logEvent, [CanBeNull] StringBuilder? stringBuilder)
         {
             if (logEvent is null)
                 return null;

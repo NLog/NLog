@@ -87,7 +87,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="DatabaseParameterInfo" /> class.
         /// </summary>
         public DatabaseParameterInfo()
-            : this(null, null)
+            : this(string.Empty, Layout.Empty)
         {
         }
 
@@ -142,8 +142,8 @@ namespace NLog.Targets
                 }
             }
         }
-        private string _dbType;
-        private Type _dbParameterType;
+        private string _dbType = string.Empty;
+        private Type? _dbParameterType;
 
         /// <summary>
         /// Gets or sets the database parameter size.
@@ -167,7 +167,7 @@ namespace NLog.Targets
         /// Gets or sets the type of the parameter.
         /// </summary>
         /// <docgen category='Parameter Options' order='6' />
-        public Type ParameterType
+        public Type? ParameterType
         {
             get => _layoutInfo.ValueType;
             set
@@ -181,19 +181,19 @@ namespace NLog.Targets
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
         /// <docgen category='Parameter Options' order='7' />
-        public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
+        public Layout? DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
         /// Gets or sets convert format of the database parameter value.
         /// </summary>
         /// <docgen category='Parameter Options' order='8' />
-        public string Format { get => _layoutInfo.ValueParseFormat; set => _layoutInfo.ValueParseFormat = value; }
+        public string? Format { get => _layoutInfo.ValueParseFormat; set => _layoutInfo.ValueParseFormat = value; }
 
         /// <summary>
         /// Gets or sets the culture used for parsing parameter string-value for type-conversion
         /// </summary>
         /// <docgen category='Parameter Options' order='9' />
-        public CultureInfo Culture { get => _layoutInfo.ValueParseCulture; set => _layoutInfo.ValueParseCulture = value; }
+        public CultureInfo? Culture { get => _layoutInfo.ValueParseCulture; set => _layoutInfo.ValueParseCulture = value; }
 
         /// <summary>
         /// Gets or sets whether empty value should translate into DbNull. Requires database column to allow NULL values.
@@ -218,7 +218,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent">Log event for rendering</param>
         /// <returns>Result value when available, else fallback to defaultValue</returns>
-        public object RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
+        public object? RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
 
         internal bool SetDbType(IDbDataParameter dbParameter)
         {
@@ -235,10 +235,10 @@ namespace NLog.Targets
             return true;    // DbType not in use
         }
 
-        private static Type TryParseDbType(string dbTypeName)
+        private static Type? TryParseDbType(string dbTypeName)
         {
             // retrieve the type name if a full name is given
-            dbTypeName = dbTypeName?.Substring(dbTypeName.LastIndexOf('.') + 1).Trim();
+            dbTypeName = dbTypeName is null ? string.Empty : dbTypeName.Substring(dbTypeName.LastIndexOf('.') + 1).Trim();
 
             if (string.IsNullOrEmpty(dbTypeName))
                 return null;
@@ -246,27 +246,27 @@ namespace NLog.Targets
             return _typesByDbTypeName.TryGetValue(dbTypeName, out var type) ? type : null;
         }
 
-        DbTypeSetter _cachedDbTypeSetter;
+        DbTypeSetter? _cachedDbTypeSetter;
 
         private sealed class DbTypeSetter
         {
             private readonly Type _dbPropertyInfoType;
             private readonly string _dbTypeName;
-            private readonly PropertyInfo _dbTypeSetter;
-            private readonly Enum _dbTypeValue;
-            private Action<IDbDataParameter> _dbTypeSetterFast;
+            private readonly PropertyInfo? _dbTypeSetter;
+            private readonly Enum? _dbTypeValue;
+            private Action<IDbDataParameter>? _dbTypeSetterFast;
 
             public DbTypeSetter(Type dbParameterType, string dbTypeName)
             {
                 _dbPropertyInfoType = dbParameterType;
-                _dbTypeName = dbTypeName?.Trim();
+                _dbTypeName = dbTypeName is null ? string.Empty : dbTypeName.Trim();
                 if (!string.IsNullOrEmpty(_dbTypeName))
                 {
                     string[] dbTypeNames = _dbTypeName.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
                     if (dbTypeNames.Length > 1 && !string.Equals(dbTypeNames[0], nameof(System.Data.DbType), StringComparison.OrdinalIgnoreCase))
                     {
                         PropertyInfo propInfo = dbParameterType.GetProperty(dbTypeNames[0], BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-                        if (propInfo != null && TryParseEnum(dbTypeNames[1], propInfo.PropertyType, out Enum enumType))
+                        if (propInfo != null && TryParseEnum(dbTypeNames[1], propInfo.PropertyType, out var enumType) && enumType != null)
                         {
                             _dbTypeSetter = propInfo;
                             _dbTypeValue = enumType;
@@ -313,7 +313,7 @@ namespace NLog.Targets
                 return false;
             }
 
-            private static bool TryParseEnum(string value, Type enumType, out Enum enumValue)
+            private static bool TryParseEnum(string value, Type enumType, out Enum? enumValue)
             {
                 if (!string.IsNullOrEmpty(value))
                 {

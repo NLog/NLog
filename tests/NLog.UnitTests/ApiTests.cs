@@ -477,8 +477,8 @@ namespace NLog.UnitTests
                 "NLog.MessageTemplates.MessageTemplateParameters",
                 "NLog.MessageTemplates.TemplateEnumerator",
                 "NLog.MessageTemplates.ValueFormatter",
+                "NLog.Layouts.Layout",
                 "NLog.Layouts.LayoutParser",
-                "NLog.Layouts.SimpleLayout",
                 "NLog.Layouts.ValueTypeLayoutInfo",
                 "NLog.Layouts.XmlElementBase",
                 "NLog.LayoutRenderers.AllEventPropertiesLayoutRenderer",
@@ -523,6 +523,8 @@ namespace NLog.UnitTests
                 "NLog.Config.LoggerNameMatcher+AllLoggerNameMatcher",
                 "NLog.Config.LoggingConfigurationParser+ValidatedConfigurationElement"
             };
+
+            knownStaticConstructors.Remove("NLog.Layouts.SimpleLayout");    // Prevent random initialization order of static contructors, because NLog.Layouts.Layout has static-constructor that depends on NLog.Layouts.SimpleLayout
 
             var typesWithStaticConstructors = allTypes
                 // Exclude compiler-generated types (e.g., lambdas, nested <>c classes)

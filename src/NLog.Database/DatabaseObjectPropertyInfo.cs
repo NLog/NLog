@@ -58,7 +58,7 @@ namespace NLog.Targets
         /// Gets or sets the name for the object-property
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the value to assign on the object-property
@@ -76,22 +76,22 @@ namespace NLog.Targets
         /// Gets or sets convert format of the property value
         /// </summary>
         /// <docgen category='Connection Options' order='8' />
-        public string Format { get => _layoutInfo.ValueParseFormat; set => _layoutInfo.ValueParseFormat = value; }
+        public string? Format { get => _layoutInfo.ValueParseFormat; set => _layoutInfo.ValueParseFormat = value; }
 
         /// <summary>
         /// Gets or sets the culture used for parsing property string-value for type-conversion
         /// </summary>
         /// <docgen category='Connection Options' order='9' />
-        public CultureInfo Culture { get => _layoutInfo.ValueParseCulture; set => _layoutInfo.ValueParseCulture = value; }
+        public CultureInfo? Culture { get => _layoutInfo.ValueParseCulture; set => _layoutInfo.ValueParseCulture = value; }
 
         /// <summary>
         /// Render Result Value
         /// </summary>
         /// <param name="logEvent">Log event for rendering</param>
         /// <returns>Result value when available, else fallback to defaultValue</returns>
-        public object RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
+        public object? RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
 
-        internal bool SetPropertyValue(object dbObject, object propertyValue)
+        internal bool SetPropertyValue(object dbObject, object? propertyValue)
         {
             var dbConnectionType = dbObject.GetType();
             var propertySetterCache = _propertySetter;
@@ -116,9 +116,9 @@ namespace NLog.Targets
         {
             public string PropertyName { get; }
             public Type ObjectType { get; }
-            public Action<object, object> PropertySetter { get; }
+            public Action<object, object?> PropertySetter { get; }
 
-            public PropertySetterCacheItem(string propertyName, Type objectType, Action<object, object> propertySetter)
+            public PropertySetterCacheItem(string propertyName, Type objectType, Action<object, object?> propertySetter)
             {
                 PropertyName = propertyName;
                 ObjectType = objectType;

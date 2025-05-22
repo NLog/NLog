@@ -36,7 +36,6 @@ namespace NLog.Internal
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -270,7 +269,7 @@ namespace NLog.Internal
         private string ReadCDATA()
         {
             string contentValue;
-            if (!SkipChar('!') || !SkipChar('[') || !SkipChar('C') || !SkipChar('D') || !SkipChar('A') || !SkipChar('T') || !SkipChar('A') || !SkipChar('['))
+            if (!SkipCDATA())
                 throw new XmlParserException("Invalid XML document. Cannot parse XML CDATA");
 
             _stringBuilder.ClearBuilder();
@@ -296,6 +295,27 @@ namespace NLog.Internal
             contentValue = _stringBuilder.ToString();
             SkipWhiteSpaces();
             return contentValue;
+        }
+
+        private bool SkipCDATA()
+        {
+            if (!SkipChar('!'))
+                return false;
+            if (!SkipChar('['))
+                return false;
+            if (!SkipChar('C'))
+                return false;
+            if (!SkipChar('D'))
+                return false;
+            if (!SkipChar('A'))
+                return false;
+            if (!SkipChar('T'))
+                return false;
+            if (!SkipChar('A'))
+                return false;
+            if (!SkipChar('['))
+                return false;
+            return true;
         }
 
         private void SkipXmlComment()

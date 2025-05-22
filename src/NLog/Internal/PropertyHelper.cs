@@ -330,7 +330,7 @@ namespace NLog.Internal
 
         private static object TryParseLayoutValue(string stringValue, ConfigurationItemFactory configurationItemFactory)
         {
-            return string.IsNullOrEmpty(stringValue) ? SimpleLayout.Default : new SimpleLayout(stringValue, configurationItemFactory);
+            return string.IsNullOrEmpty(stringValue) ? Layout.Empty : new SimpleLayout(stringValue, configurationItemFactory);
         }
 
         private static object TryParseConditionValue(string stringValue, ConfigurationItemFactory configurationItemFactory)

@@ -89,7 +89,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            Inner.Render(logEvent, builder);
+            Inner?.Render(logEvent, builder);
             if (Padding != 0)
             {
                 int absolutePadding = Padding;

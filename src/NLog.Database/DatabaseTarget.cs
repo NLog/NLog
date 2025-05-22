@@ -80,8 +80,8 @@ namespace NLog.Targets
     [Target("Database")]
     public class DatabaseTarget : Target, IInstallable
     {
-        private IDbConnection _activeConnection;
-        private string _activeConnectionString;
+        private IDbConnection? _activeConnection;
+        private string? _activeConnectionString;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DatabaseTarget" /> class.
@@ -139,7 +139,7 @@ namespace NLog.Targets
         /// Gets or sets the name of the connection string (as specified in <see href="https://msdn.microsoft.com/en-us/library/bf7sd233.aspx">&lt;connectionStrings&gt; configuration section</see>.
         /// </summary>
         /// <docgen category='Connection Options' order='50' />
-        public string ConnectionStringName { get; set; }
+        public string ConnectionStringName { get; set; } = string.Empty;
 #endif
 
         /// <summary>
@@ -147,13 +147,13 @@ namespace NLog.Targets
         /// specified in DBHost, DBUserName, DBPassword, DBDatabase.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        public Layout ConnectionString { get; set; }
+        public Layout ConnectionString { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets the connection string using for installation and uninstallation. If not provided, regular ConnectionString is being used.
         /// </summary>
         /// <docgen category='Installation Options' order='100' />
-        public Layout InstallConnectionString { get; set; }
+        public Layout InstallConnectionString { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets the installation DDL commands.
@@ -191,7 +191,7 @@ namespace NLog.Targets
         /// connection string.
         /// </summary>
         /// <docgen category='Connection Options' order='50' />
-        public Layout DBUserName { get; set; }
+        public Layout? DBUserName { get; set; }
 
         /// <summary>
         /// Gets or sets the database password. If the ConnectionString is not provided
@@ -199,7 +199,7 @@ namespace NLog.Targets
         /// connection string.
         /// </summary>
         /// <docgen category='Connection Options' order='50' />
-        public Layout DBPassword
+        public Layout? DBPassword
         {
             get => _dbPassword;
             set
@@ -211,8 +211,8 @@ namespace NLog.Targets
                     _dbPasswordFixed = null;
             }
         }
-        private Layout _dbPassword;
-        private string _dbPasswordFixed;
+        private Layout? _dbPassword;
+        private string? _dbPasswordFixed;
 
         /// <summary>
         /// Gets or sets the database name. If the ConnectionString is not provided
@@ -220,7 +220,7 @@ namespace NLog.Targets
         /// connection string.
         /// </summary>
         /// <docgen category='Connection Options' order='50' />
-        public Layout DBDatabase { get; set; }
+        public Layout? DBDatabase { get; set; }
 
         /// <summary>
         /// Gets or sets the text of the SQL command to be run on each log level.
@@ -279,13 +279,13 @@ namespace NLog.Targets
         public System.Data.IsolationLevel? IsolationLevel { get; set; }
 
 #if NETFRAMEWORK
-        internal DbProviderFactory ProviderFactory { get; set; }
+        internal DbProviderFactory? ProviderFactory { get; set; }
 
         // this is so we can mock the connection string without creating sub-processes
         internal ConnectionStringSettingsCollection ConnectionStringsSettings { get; set; }
 #endif
 
-        internal Type ConnectionType { get; private set; }
+        internal Type? ConnectionType { get; private set; }
 
         /// <summary>
         /// Performs installation which requires administrative permissions.
@@ -390,9 +390,10 @@ namespace NLog.Targets
                     throw new NLogConfigurationException($"Connection string '{ConnectionStringName}' is not declared in <connectionStrings /> section.");
                 }
 
-                if (!string.IsNullOrEmpty(cs.ConnectionString?.Trim()))
+                var connectionString = cs.ConnectionString ?? string.Empty;
+                if (!string.IsNullOrEmpty(connectionString.Trim()))
                 {
-                    ConnectionString = Layout.FromLiteral(cs.ConnectionString);
+                    ConnectionString = Layout.FromLiteral(connectionString);
                 }
                 providerName = cs.ProviderName?.Trim() ?? string.Empty;
             }
@@ -667,7 +668,7 @@ namespace NLog.Targets
             }
 
             string firstConnectionString = BuildConnectionString(logEvents[0].LogEvent);
-            IDictionary<string, IList<AsyncLogEventInfo>> dictionary = null;
+            IDictionary<string, IList<AsyncLogEventInfo>>? dictionary = null;
             for (int i = 1; i < logEvents.Count; ++i)
             {
                 var connectionString = BuildConnectionString(logEvents[i].LogEvent);
@@ -689,7 +690,10 @@ namespace NLog.Targets
                 bucket.Add(logEvents[i]);
             }
 
-            return (ICollection<KeyValuePair<string, IList<AsyncLogEventInfo>>>)dictionary ?? new KeyValuePair<string, IList<AsyncLogEventInfo>>[] { new KeyValuePair<string, IList<AsyncLogEventInfo>>(firstConnectionString, logEvents) };
+            if (dictionary is null)
+                return new KeyValuePair<string, IList<AsyncLogEventInfo>>[] { new KeyValuePair<string, IList<AsyncLogEventInfo>>(firstConnectionString, logEvents) };
+            else
+                return dictionary;
         }
 
         private void WriteLogEventsToDatabase(IList<AsyncLogEventInfo> logEvents, string connectionString)
@@ -758,14 +762,14 @@ namespace NLog.Targets
                 //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
                 using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
-                    EnsureConnectionOpen(connectionString, logEvents.Count > 0 ? logEvents[0].LogEvent : null);
+                    var activeConnection = EnsureConnectionOpen(connectionString, logEvents[0].LogEvent);
 
-                    var dbTransaction = _activeConnection.BeginTransaction(IsolationLevel.Value);
+                    var dbTransaction = activeConnection.BeginTransaction(IsolationLevel ?? System.Data.IsolationLevel.Snapshot);
                     try
                     {
                         for (int i = 0; i < logEvents.Count; ++i)
                         {
-                            ExecuteDbCommandWithParameters(logEvents[i].LogEvent, _activeConnection, dbTransaction);
+                            ExecuteDbCommandWithParameters(logEvents[i].LogEvent, activeConnection, dbTransaction);
                         }
 
                         dbTransaction?.Commit();
@@ -814,9 +818,9 @@ namespace NLog.Targets
                 //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
                 using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
-                    EnsureConnectionOpen(connectionString, logEvent);
+                    var activeConnection = EnsureConnectionOpen(connectionString, logEvent);
 
-                    ExecuteDbCommandWithParameters(logEvent, _activeConnection, null);
+                    ExecuteDbCommandWithParameters(logEvent, activeConnection, null);
 
                     transactionScope.Complete();    //not really needed as there is no transaction at all.
                 }
@@ -836,7 +840,7 @@ namespace NLog.Targets
         /// <summary>
         /// Write logEvent to database
         /// </summary>
-        private void ExecuteDbCommandWithParameters(LogEventInfo logEvent, IDbConnection dbConnection, IDbTransaction dbTransaction)
+        private void ExecuteDbCommandWithParameters(LogEventInfo logEvent, IDbConnection dbConnection, IDbTransaction? dbTransaction)
         {
             using (IDbCommand command = CreateDbCommand(logEvent, dbConnection))
             {
@@ -889,7 +893,7 @@ namespace NLog.Targets
         /// <returns></returns>
         protected string BuildConnectionString(LogEventInfo logEvent)
         {
-            if (ConnectionString != null)
+            if (ConnectionString != null && !ReferenceEquals(ConnectionString, Layout.Empty))
             {
                 return RenderLogEvent(ConnectionString, logEvent);
             }
@@ -909,7 +913,7 @@ namespace NLog.Targets
                 sb.Append("User id=");
                 sb.Append(dbUserName);
                 sb.Append(";Password=");
-                var password = _dbPasswordFixed ?? EscapeValueForConnectionString(_dbPassword.Render(logEvent));
+                var password = _dbPasswordFixed ?? EscapeValueForConnectionString(_dbPassword?.Render(logEvent) ?? string.Empty);
                 sb.Append(password);
                 sb.Append(";");
             }
@@ -967,7 +971,7 @@ namespace NLog.Targets
             return value;
         }
 
-        private void EnsureConnectionOpen(string connectionString, LogEventInfo logEventInfo)
+        private IDbConnection EnsureConnectionOpen(string connectionString, LogEventInfo logEventInfo)
         {
             if (_activeConnection != null && _activeConnectionString != connectionString)
             {
@@ -977,12 +981,13 @@ namespace NLog.Targets
 
             if (_activeConnection != null)
             {
-                return;
+                return _activeConnection;
             }
 
             InternalLogger.Trace("{0}: Open connection.", this);
             _activeConnection = OpenConnection(connectionString, logEventInfo);
             _activeConnectionString = connectionString;
+            return _activeConnection;
         }
 
         private void CloseConnection()
@@ -1024,13 +1029,13 @@ namespace NLog.Targets
                         SetConnectionType();
                     }
 
-                    EnsureConnectionOpen(connectionString, logEvent);
+                    var activeConnection = EnsureConnectionOpen(connectionString, logEvent);
 
                     string commandText = RenderLogEvent(commandInfo.Text, logEvent);
 
                     installationContext.Trace("DatabaseTarget(Name={0}) - Executing {1} '{2}'", Name, commandInfo.CommandType, commandText);
 
-                    using (IDbCommand command = CreateDbCommandWithParameters(logEvent, _activeConnection, commandInfo.CommandType, commandText, commandInfo.Parameters))
+                    using (IDbCommand command = CreateDbCommandWithParameters(logEvent, activeConnection, commandInfo.CommandType, commandText, commandInfo.Parameters))
                     {
                         try
                         {
@@ -1064,12 +1069,12 @@ namespace NLog.Targets
         private string GetConnectionStringFromCommand(DatabaseCommandInfo commandInfo, LogEventInfo logEvent)
         {
             string connectionString;
-            if (commandInfo.ConnectionString != null)
+            if (commandInfo.ConnectionString != null && !ReferenceEquals(commandInfo.ConnectionString, Layout.Empty))
             {
                 // if there is connection string specified on the command info, use it
                 connectionString = RenderLogEvent(commandInfo.ConnectionString, logEvent);
             }
-            else if (InstallConnectionString != null)
+            else if (InstallConnectionString != null && !ReferenceEquals(InstallConnectionString, Layout.Empty))
             {
                 // next, try InstallConnectionString
                 connectionString = RenderLogEvent(InstallConnectionString, logEvent);
@@ -1135,7 +1140,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent">Current logevent.</param>
         /// <param name="parameterInfo">Parameter configuration info.</param>
-        protected internal virtual object GetDatabaseParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
+        protected internal virtual object? GetDatabaseParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
         {
             var value = parameterInfo.RenderValue(logEvent);
             if (parameterInfo.AllowDbNull && (value is null || string.Empty.Equals(value)))

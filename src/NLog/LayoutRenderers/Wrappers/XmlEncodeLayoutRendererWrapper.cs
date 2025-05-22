@@ -77,7 +77,7 @@ namespace NLog.LayoutRenderers.Wrappers
                 orgLength = builder.Length;
             }
 
-            Inner.Render(logEvent, builder);
+            Inner?.Render(logEvent, builder);
 
             XmlHelper.RemoveInvalidXmlIfNeeded(builder, orgLength);
 
