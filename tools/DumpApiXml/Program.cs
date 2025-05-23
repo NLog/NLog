@@ -63,6 +63,38 @@ namespace DumpApiXml
                     return 1;
                 }
 
+                var outputDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+                if (!string.IsNullOrEmpty(outputDir))
+                {
+                    var assemblyFiles = Directory.GetFiles(outputDir, "NLog*.dll");
+                    Console.WriteLine("Detected {0} assemblies in folder: {1}", assemblyFiles.Length, outputDir);
+
+                    foreach (var assembly in assemblyFiles)
+                    {
+                        if (assembly.EndsWith("NLog.dll", StringComparison.OrdinalIgnoreCase))
+                            continue;
+
+                        try
+                        {
+                            builder.LoadAssembly(assembly);
+                            string docpath = Path.ChangeExtension(assembly, ".xml");
+                            if (File.Exists(docpath))
+                            {
+                                builder.LoadComments(docpath);
+                                Console.WriteLine("Loaded assembly with XML-docs: {0}", Path.GetFileName(assembly));
+                            }
+                            else
+                            {
+                                Console.WriteLine("Loaded assembly without XML-docs: {0}", Path.GetFileName(assembly));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Failed loading assembly {0} - {1}", Path.GetFullPath(assembly), ex);
+                        }
+                    }
+                }
+
                 outputFile = Path.GetFullPath(outputFile);
                 Console.WriteLine("Generating '{0}'...", outputFile);
                 Directory.CreateDirectory(Path.GetDirectoryName(outputFile));

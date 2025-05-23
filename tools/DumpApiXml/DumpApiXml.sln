@@ -1,7 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DumpApiXml", "DumpApiXml.csproj", "{773C477E-2626-432D-B959-325B3B146744}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogNugetPackages", "..\NLogNugetPackages\NLogNugetPackages.csproj", "{6C7CF943-03E5-FBA1-7103-FAFF78DEAE0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +17,15 @@ Global
 		{773C477E-2626-432D-B959-325B3B146744}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{773C477E-2626-432D-B959-325B3B146744}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{773C477E-2626-432D-B959-325B3B146744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C7CF943-03E5-FBA1-7103-FAFF78DEAE0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C7CF943-03E5-FBA1-7103-FAFF78DEAE0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C7CF943-03E5-FBA1-7103-FAFF78DEAE0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C7CF943-03E5-FBA1-7103-FAFF78DEAE0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {003EDB45-0CA0-43AD-95CA-7C0389D2E186}
 	EndGlobalSection
 EndGlobal
