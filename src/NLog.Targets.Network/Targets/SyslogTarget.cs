@@ -72,7 +72,7 @@ namespace NLog.Targets
         public Layout SyslogProcessId { get => _syslogLayout.SyslogProcessId; set => _syslogLayout.SyslogProcessId = value; }
 
         /// <inheritdoc cref="SyslogLayout.SyslogMessageId"/>
-        public Layout SyslogMessageId { get => _syslogLayout.SyslogMessageId; set => _syslogLayout.SyslogMessageId = value; }
+        public Layout? SyslogMessageId { get => _syslogLayout.SyslogMessageId; set => _syslogLayout.SyslogMessageId = value; }
 
         /// <inheritdoc cref="SyslogLayout.SyslogMessage"/>
         public Layout SyslogMessage { get => _syslogLayout.SyslogMessage; set => _syslogLayout.SyslogMessage = value; }
@@ -103,7 +103,7 @@ namespace NLog.Targets
         }
 
         /// <inheritdoc/>
-        protected override byte[] GetHeaderToWrite(LogEventInfo logEvent, string address, byte[] payload)
+        protected override byte[]? GetHeaderToWrite(LogEventInfo logEvent, string address, byte[] payload)
         {
             if (LineEnding?.NewLineCharacters?.Length > 0)
                 return null;
@@ -135,14 +135,8 @@ namespace NLog.Targets
         /// <inheritdoc/>
         public override Layout Layout
         {
-            get
-            {
-                return _syslogLayout;
-            }
-            set
-            {
-                // Fixed SyslogLayout
-            }
+            get => _syslogLayout;
+            set { /* Fixed SyslogLayout */ } // NOSONAR
         }
     }
 }

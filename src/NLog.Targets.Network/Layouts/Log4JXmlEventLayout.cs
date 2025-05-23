@@ -103,7 +103,7 @@ namespace NLog.Layouts
         /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public string ScopeNestedSeparator { get; set; }
+        public string ScopeNestedSeparator { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.
@@ -186,7 +186,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
         public Layout AppInfo { get => _log4jAppName.Attributes[1].Layout; set => _log4jAppName.Attributes[1].Layout = value; }
-        private readonly XmlElement _log4jAppName = new XmlElement("log4j:data", null)
+        private readonly XmlElement _log4jAppName = new XmlElement("log4j:data", Layout.Empty)
         {
             Attributes =
             {
@@ -195,7 +195,7 @@ namespace NLog.Layouts
             }
         };
 
-        private readonly XmlElement _log4jMachineName = new XmlElement("log4j:data", null)
+        private readonly XmlElement _log4jMachineName = new XmlElement("log4j:data", Layout.Empty)
         {
             Attributes =
             {
@@ -239,7 +239,7 @@ namespace NLog.Layouts
 
             if (IncludeCallSite || IncludeSourceInfo)
             {
-                var locationInfo = new XmlElement("log4j:locationInfo", null)
+                var locationInfo = new XmlElement("log4j:locationInfo", Layout.Empty)
                 {
                     Attributes =
                     {
@@ -261,14 +261,14 @@ namespace NLog.Layouts
             if (IncludeNLogData)
             {
                 _innerXml.Elements.Add(new XmlElement("nlog:eventSequenceNumber", "${sequenceid}"));
-                _innerXml.Elements.Add(new XmlElement("nlog:locationInfo", null)
+                _innerXml.Elements.Add(new XmlElement("nlog:locationInfo", Layout.Empty)
                 {
                     Attributes =
                     {
                         new XmlAttribute("assembly", "${callsite:fileName=true:className=false:methodName=false}")
                     }
                 });
-                _innerXml.Elements.Add(new XmlElement("nlog:properties", null)
+                _innerXml.Elements.Add(new XmlElement("nlog:properties", Layout.Empty)
                 {
                     PropertiesElementName = "nlog:data",
                     PropertiesElementKeyAttribute = "name",
@@ -285,7 +285,7 @@ namespace NLog.Layouts
                 _innerXml.Elements.Add(new XmlElement("log4j:NDC", scopeNested));
             }
 
-            var dataProperties = new XmlElement("log4j:properties", null)
+            var dataProperties = new XmlElement("log4j:properties", Layout.Empty)
             {
                 PropertiesElementName = "log4j:data",
                 PropertiesElementKeyAttribute = "name",
@@ -296,7 +296,7 @@ namespace NLog.Layouts
 
             foreach (var parameter in Parameters)
             {
-                var propertyElement = new XmlElement("log4j:data", null)
+                var propertyElement = new XmlElement("log4j:data", Layout.Empty)
                 {
                     IncludeEmptyValue = parameter.IncludeEmptyValue,
                     Attributes =

@@ -193,7 +193,7 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        public virtual ISocket CheckSocket()
+        public virtual ISocket? CheckSocket()
         {
             return null;
         }

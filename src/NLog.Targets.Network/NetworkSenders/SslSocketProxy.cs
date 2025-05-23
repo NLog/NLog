@@ -45,10 +45,10 @@ namespace NLog.Internal.NetworkSenders
         private readonly SocketProxy _socketProxy;
         private readonly string _host;
         private readonly SslProtocols _sslProtocol;
-        private readonly X509Certificate2Collection _sslCertificateOverride;
-        SslStream _sslStream;
+        private readonly X509Certificate2Collection? _sslCertificateOverride;
+        SslStream? _sslStream;
 
-        public SslSocketProxy(string host, SslProtocols sslProtocol, SocketProxy socketProxy, X509Certificate2Collection sslCertificateOverride)
+        public SslSocketProxy(string host, SslProtocols sslProtocol, SocketProxy socketProxy, X509Certificate2Collection? sslCertificateOverride)
         {
             _socketProxy = socketProxy;
             _host = host;
@@ -84,7 +84,7 @@ namespace NLog.Internal.NetworkSenders
             var proxyArgs = asyncResult.AsyncState as TcpNetworkSender.MySocketAsyncEventArgs;
             try
             {
-                _sslStream.EndWrite(asyncResult);
+                _sslStream?.EndWrite(asyncResult);
             }
             catch (SocketException ex)
             {
@@ -164,7 +164,7 @@ namespace NLog.Internal.NetworkSenders
             return socketError;
         }
 
-        private static void AuthenticateAsClient(SslStream sslStream, string targetHost, SslProtocols enabledSslProtocols, X509Certificate2Collection sslCertificateOverride)
+        private static void AuthenticateAsClient(SslStream sslStream, string targetHost, SslProtocols enabledSslProtocols, X509Certificate2Collection? sslCertificateOverride)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
             if (enabledSslProtocols != SslProtocols.Default || sslCertificateOverride != null)
@@ -192,7 +192,7 @@ namespace NLog.Internal.NetworkSenders
 
         public bool SendAsync(SocketAsyncEventArgs args)
         {
-            _sslStream.BeginWrite(args.Buffer, args.Offset, args.Count, _sendCompleted, args);
+            _sslStream?.BeginWrite(args.Buffer, args.Offset, args.Count, _sendCompleted, args);
             return true;
         }
 

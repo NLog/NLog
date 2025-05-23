@@ -29,12 +29,8 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class GelfLayout : CompoundLayout
     {
-        private IJsonConverter JsonConverter
-        {
-            get => _jsonConverter ?? (_jsonConverter = ResolveService<IJsonConverter>());
-            set => _jsonConverter = value;
-        }
-        private IJsonConverter _jsonConverter;
+        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = ResolveService<IJsonConverter>());
+        private IJsonConverter? _jsonConverter;
 
         /// <summary>
         /// Graylog Message Host-field
@@ -49,7 +45,7 @@ namespace NLog.Layouts
             }
         }
         private Layout _gelfHostName;
-        private string _gelfHostNameString;
+        private string? _gelfHostNameString;
 
         /// <summary>
         /// Graylog Message Short-Message-field
@@ -78,8 +74,8 @@ namespace NLog.Layouts
                 _gelfFacilityString = null;
             }
         }
-        private Layout _gelfFacility;
-        private string _gelfFacilityString;
+        private Layout _gelfFacility = Layout.Empty;
+        private string? _gelfFacilityString;
 
         /// <summary>
         /// Gets or sets GELF additional fields
@@ -115,7 +111,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Disables <see cref="ThreadAgnosticAttribute"/> to capture ScopeContext-properties from active thread context
         /// </summary>
-        public LayoutRenderer DisableThreadAgnostic => IncludeScopeProperties ? _disableThreadAgnostic : (IncludeEventProperties ? _enableThreadAgnosticImmutable : null);
+        public LayoutRenderer? DisableThreadAgnostic => IncludeScopeProperties ? _disableThreadAgnostic : (IncludeEventProperties ? _enableThreadAgnosticImmutable : null);
         private static readonly LayoutRenderer _disableThreadAgnostic = new FuncLayoutRenderer(string.Empty, (evt, cfg) => string.Empty);
         private static readonly LayoutRenderer _enableThreadAgnosticImmutable = new ExceptionDataLayoutRenderer() { Item = " " };
 
@@ -124,7 +120,7 @@ namespace NLog.Layouts
         /// </summary>
         public GelfLayout()
         {
-            GelfHostName = "${hostname}";
+            _gelfHostName = GelfHostName = "${hostname}";
             GelfShortMessage = GelfFullMessage = "${message}";
         }
 
@@ -168,12 +164,12 @@ namespace NLog.Layouts
         protected override void CloseLayout()
         {
             base.CloseLayout();
-            JsonConverter = null;
+            _jsonConverter = null;
         }
 
-        private string ResolveJsonFixedString(Layout layout)
+        private string? ResolveJsonFixedString(Layout layout)
         {
-            if (layout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
+            if (layout is SimpleLayout simpleLayout && simpleLayout.IsFixedText && !ReferenceEquals(layout, Layout.Empty))
             {
                 var stringBuilder = new StringBuilder();
                 JsonConverter.SerializeObject(simpleLayout.FixedText, stringBuilder);
@@ -218,7 +214,7 @@ namespace NLog.Layouts
             var fullMessage = GelfFullMessage?.Render(logEvent) ?? string.Empty;
             if (string.IsNullOrEmpty(fullMessage) && shortMessage.Length > ShortMessageMaxLength)
                 fullMessage = shortMessage;
-            else if (fullMessage?.Length < ShortMessageMaxLength && string.Equals(fullMessage, shortMessage, StringComparison.Ordinal))
+            else if (fullMessage.Length < ShortMessageMaxLength && string.Equals(fullMessage, shortMessage, StringComparison.Ordinal))
                 fullMessage = string.Empty;
             if (!string.IsNullOrEmpty(fullMessage))
             {
@@ -240,7 +236,7 @@ namespace NLog.Layouts
             target.Append(_completeJsonPropertyName);
             target.Append((int)gelfSeverity);
 
-            if (_gelfFacility != null)
+            if (_gelfFacility != null && !ReferenceEquals(_gelfFacility, Layout.Empty))
             {
                 target.Append(_beginJsonPropertyName);
                 target.Append("facility");
@@ -307,14 +303,14 @@ namespace NLog.Layouts
 
             if (eventProperties?.Count > 0)
             {
-                var filterEventProperties = ExcludeProperties?.Count > 0;
+                var excludeProperties = ExcludeProperties?.Count > 0 ? ExcludeProperties : null;
                 foreach (var eventProperty in eventProperties)
                 {
                     if (ExcludeEmptyProperties && (eventProperty.Value is null || ReferenceEquals(eventProperty.Value, string.Empty)))
                         continue;
 
                     var eventPropertyName = eventProperty.Key?.ToString() ?? string.Empty;
-                    if (filterEventProperties && ExcludeProperties.Contains(eventPropertyName))
+                    if (excludeProperties?.Contains(eventPropertyName) == true)
                         continue;
 
                     BeginJsonProperty(target, eventPropertyName, eventProperty.Value);
@@ -324,7 +320,7 @@ namespace NLog.Layouts
             target.Append(_completeJsonMessage);
         }
 
-        private static bool ExcludeScopeProperty(string propertyName, IDictionary<object, object> eventProperties, ISet<string> excludeProperties)
+        private static bool ExcludeScopeProperty(string propertyName, IDictionary<object, object?>? eventProperties, ISet<string>? excludeProperties)
         {
             if (excludeProperties?.Contains(propertyName) == true)
                 return true;
@@ -333,7 +329,7 @@ namespace NLog.Layouts
             return false;
         }
 
-        private static bool ExcludeGelfField(string gelfFieldName, IDictionary<object, object> eventProperties, IList<KeyValuePair<string, object>> scopeProperties)
+        private static bool ExcludeGelfField(string gelfFieldName, IDictionary<object, object?>? eventProperties, IList<KeyValuePair<string, object?>>? scopeProperties)
         {
             if (string.IsNullOrEmpty(gelfFieldName))
                 return true;
@@ -359,7 +355,7 @@ namespace NLog.Layouts
             return false;
         }
 
-        private IDictionary<object, object> ResolveEventProperties(LogEventInfo logEvent)
+        private IDictionary<object, object?>? ResolveEventProperties(LogEventInfo logEvent)
         {
             if (!logEvent.HasProperties)
                 return null;
@@ -387,10 +383,10 @@ namespace NLog.Layouts
             return eventProperties;
         }
 
-        private IList<KeyValuePair<string, object>> ResolveScopePropertyList()
+        private IList<KeyValuePair<string, object?>>? ResolveScopePropertyList()
         {
             var scopeProperties = ScopeContext.GetAllProperties();
-            if (scopeProperties is IList<KeyValuePair<string, object>> scopePropertyList)
+            if (scopeProperties is IList<KeyValuePair<string, object?>> scopePropertyList)
             {
                 if (scopePropertyList.Count == 0)
                     return null;
@@ -417,14 +413,13 @@ namespace NLog.Layouts
                 return scopePropertyList;
             }
 
-            if (IncludeProperties?.Count > 0)
-                scopePropertyList = scopeProperties?.Where(p => IncludeProperties.Contains(p.Key)).ToList();
-            else
-                scopePropertyList = scopeProperties?.ToList();
-            return scopePropertyList?.Count > 0 ? scopePropertyList : null;
+            var scopePropertyCollection = IncludeProperties?.Count > 0
+                ? scopeProperties?.Where(p => IncludeProperties.Contains(p.Key)).ToList()
+                : scopeProperties?.ToList();
+            return scopePropertyCollection?.Count > 0 ? scopePropertyCollection : null;
         }
 
-        private void BeginJsonProperty(StringBuilder sb, string propName, object propertyValue)
+        private void BeginJsonProperty(StringBuilder sb, string propName, object? propertyValue)
         {
             if (ExcludeEmptyProperties && (propertyValue is null || ReferenceEquals(propertyValue, string.Empty)))
                 return;
