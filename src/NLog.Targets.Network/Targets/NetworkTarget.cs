@@ -82,7 +82,7 @@ namespace NLog.Targets
         private readonly StringBuilder _reusableStringBuilder = new StringBuilder();
 
         private readonly object _certificateCacheLock = new object();
-        private Dictionary<string, X509Certificate2Collection> _certificateCache;
+        private Dictionary<string, X509Certificate2Collection>? _certificateCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTarget" /> class.
@@ -125,7 +125,7 @@ namespace NLog.Targets
         /// For SOAP-based webservice support over HTTP use WebService target.
         /// </remarks>
         /// <docgen category='Connection Options' order='10' />
-        public Layout Address { get; set; }
+        public Layout Address { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets a value indicating whether to keep connection open whenever possible.
@@ -198,7 +198,7 @@ namespace NLog.Targets
         ///  - When connection-list is full and <see cref="OnConnectionOverflow"/> set to <see cref="NetworkTargetConnectionsOverflowAction.Discard"/><br/>
         ///  - When message is too big and <see cref="OnOverflow"/> set to <see cref="NetworkTargetOverflowAction.Discard"/><br/>
         /// </remarks>
-        public event EventHandler<NetworkLogEventDroppedEventArgs> LogEventDropped;
+        public event EventHandler<NetworkLogEventDroppedEventArgs>? LogEventDropped;
 
         /// <summary>
         /// Gets or sets the size of the connection cache (number of connections which are kept alive). Requires <see cref="KeepConnection"/> = true
@@ -236,13 +236,13 @@ namespace NLog.Targets
         /// Gets or sets the file path to custom SSL certificate for TCP Socket SSL connections
         /// </summary>
         /// <docgen category='Connection Options' order='16' />
-        public Layout SslCertificateFile { get; set; }
+        public Layout? SslCertificateFile { get; set; }
 
         /// <summary>
         /// Gets or sets the password for the custom SSL certificate specified by <see cref="SslCertificateFile"/>
         /// </summary>
         /// <docgen category='Connection Options' order='16' />
-        public Layout SslCertificatePassword { get; set; }
+        public Layout? SslCertificatePassword { get; set; }
 
         /// <summary>
         /// The number of seconds a connection will remain idle before the first keep-alive probe is sent
@@ -273,6 +273,15 @@ namespace NLog.Targets
 
         internal INetworkSenderFactory SenderFactory { get; set; }
 
+        /// <inheritdoc />
+        protected override void InitializeTarget()
+        {
+            base.InitializeTarget();
+
+            if (Address is null || ReferenceEquals(Address, Layout.Empty))
+                throw new NLogConfigurationException($"{GetType()} Address-property must be assigned. Address is needed for network destination.");
+        }
+
         /// <summary>
         /// Flush any pending log messages asynchronously (in case of asynchronous targets).
         /// </summary>
@@ -281,7 +290,7 @@ namespace NLog.Targets
         {
             int remainingCount;
 
-            void Continuation(Exception ex)
+            void Continuation(Exception? ex)
             {
                 // ignore exception
                 if (Interlocked.Decrement(ref remainingCount) == 0)
@@ -346,7 +355,7 @@ namespace NLog.Targets
         {
             string address = RenderLogEvent(Address, logEvent.LogEvent);
             byte[] payload = GetBytesToWrite(logEvent.LogEvent);
-            byte[] header = GetHeaderToWrite(logEvent.LogEvent, address, payload);
+            byte[]? header = GetHeaderToWrite(logEvent.LogEvent, address, payload);
             int messageSize = payload.Length;
 
             InternalLogger.Trace("{0}: Sending {1} bytes to address: '{2}'", this, messageSize, address);
@@ -386,7 +395,7 @@ namespace NLog.Targets
             }
         }
 
-        private void WriteBytesToCachedNetworkSender(string address, byte[] header, byte[] payload, AsyncLogEventInfo logEvent)
+        private void WriteBytesToCachedNetworkSender(string address, byte[]? header, byte[] payload, AsyncLogEventInfo logEvent)
         {
             LinkedListNode<NetworkSender> senderNode;
             try
@@ -417,7 +426,7 @@ namespace NLog.Targets
                 });
         }
 
-        private void WriteBytesToNewNetworkSender(string address, byte[] header, byte[] payload, AsyncLogEventInfo logEvent)
+        private void WriteBytesToNewNetworkSender(string address, byte[]? header, byte[] payload, AsyncLogEventInfo logEvent)
         {
             NetworkSender sender;
             LinkedListNode<NetworkSender> linkedListNode;
@@ -541,7 +550,7 @@ namespace NLog.Targets
         /// <param name="address">network address.</param>
         /// <param name="payload">Payload buffer.</param>
         /// <returns>Byte array.</returns>
-        protected virtual byte[] GetHeaderToWrite(LogEventInfo logEvent, string address, byte[] payload)
+        protected virtual byte[]? GetHeaderToWrite(LogEventInfo logEvent, string address, byte[] payload)
         {
             return null;
         }
@@ -614,7 +623,7 @@ namespace NLog.Targets
                 {
                     // make room in the cache by closing the least recently used connection
                     int minAccessTime = int.MaxValue;
-                    LinkedListNode<NetworkSender> leastRecentlyUsed = null;
+                    LinkedListNode<NetworkSender>? leastRecentlyUsed = null;
 
                     foreach (var pair in _currentSenderCache)
                     {
@@ -646,8 +655,8 @@ namespace NLog.Targets
 
         private NetworkSender CreateNetworkSender(string address, LogEventInfo logEventInfo)
         {
-            var sslCertificateFile = SslCertificateFile?.Render(logEventInfo);
-            var sslCertificatePassword = SslCertificatePassword?.Render(logEventInfo);
+            var sslCertificateFile = SslCertificateFile?.Render(logEventInfo) ?? string.Empty;
+            var sslCertificatePassword = SslCertificatePassword?.Render(logEventInfo) ?? string.Empty;
             var sslCertificateOverride = LoadSslCertificateFromFile(sslCertificateFile, sslCertificatePassword);
 
             var sender = SenderFactory.Create(address, sslCertificateOverride, this);
@@ -681,16 +690,16 @@ namespace NLog.Targets
             }
         }
 
-        private static void WriteBytesToNetworkSender(NetworkSender sender, byte[] payload, byte[] header, AsyncContinuation continuation)
+        private static void WriteBytesToNetworkSender(NetworkSender sender, byte[] payload, byte[]? header, AsyncContinuation continuation)
         {
             if (header?.Length > 0)
                 sender.Send(header, 0, header.Length, continuation);
             sender.Send(payload, 0, payload.Length, continuation);
         }
 
-        internal X509Certificate2Collection LoadSslCertificateFromFile(string sslCertificateFile, string sslCertificatePassword)
+        internal X509Certificate2Collection? LoadSslCertificateFromFile(string sslCertificateFile, string sslCertificatePassword)
         {
-            if (sslCertificateFile is null)
+            if (string.IsNullOrEmpty(sslCertificateFile))
                 return null;    // NOSONAR
 
             if (_certificateCache != null && _certificateCache.TryGetValue(sslCertificateFile, out var clientCertificates))

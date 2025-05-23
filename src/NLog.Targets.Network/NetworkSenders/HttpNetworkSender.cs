@@ -49,7 +49,7 @@ namespace NLog.Internal.NetworkSenders
 
         internal TimeSpan SendTimeout { get; set; }
 
-        internal X509Certificate2Collection SslCertificateOverride { get; set; }
+        internal X509Certificate2Collection? SslCertificateOverride { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpNetworkSender"/> class.

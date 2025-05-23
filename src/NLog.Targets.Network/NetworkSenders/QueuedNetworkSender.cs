@@ -61,10 +61,10 @@ namespace NLog.Internal.NetworkSenders
 
         private readonly Queue<NetworkRequestArgs> _pendingRequests = new Queue<NetworkRequestArgs>();
         private readonly Queue<NetworkRequestArgs> _activeRequests = new Queue<NetworkRequestArgs>();
-        private Exception _pendingError;
+        private Exception? _pendingError;
         private bool _asyncOperationInProgress;
-        private AsyncContinuation _closeContinuation;
-        private AsyncContinuation _flushContinuation;
+        private AsyncContinuation? _closeContinuation;
+        private AsyncContinuation? _flushContinuation;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QueuedNetworkSender"/> class.
@@ -79,12 +79,12 @@ namespace NLog.Internal.NetworkSenders
 
         public NetworkTargetQueueOverflowAction OnQueueOverflow { get; set; }
 
-        public event EventHandler<NetworkLogEventDroppedEventArgs> LogEventDropped;
+        public event EventHandler<NetworkLogEventDroppedEventArgs>? LogEventDropped;
 
         protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
             NetworkRequestArgs? eventArgs = new NetworkRequestArgs(bytes, offset, length, asyncContinuation);
-            AsyncContinuation failedContinuation = null;
+            AsyncContinuation? failedContinuation = null;
 
             lock (_pendingRequests)
             {
@@ -195,7 +195,7 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        protected NetworkRequestArgs? EndRequest(AsyncContinuation asyncContinuation, Exception pendingException)
+        protected NetworkRequestArgs? EndRequest(AsyncContinuation? asyncContinuation, Exception? pendingException)
         {
             if (pendingException != null)
             {
@@ -231,8 +231,8 @@ namespace NLog.Internal.NetworkSenders
 
         private NetworkRequestArgs? DequeueNextItem()
         {
-            AsyncContinuation closeContinuation;
-            AsyncContinuation flushContinuation;
+            AsyncContinuation? closeContinuation;
+            AsyncContinuation? flushContinuation;
 
             lock (_activeRequests)
             {

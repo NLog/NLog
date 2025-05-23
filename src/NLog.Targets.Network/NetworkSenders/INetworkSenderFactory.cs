@@ -51,6 +51,6 @@ namespace NLog.Internal.NetworkSenders
         /// <returns>
         /// A newly created network sender.
         /// </returns>
-        QueuedNetworkSender Create(string url, X509Certificate2Collection sslCertificateOverride, NetworkTarget networkTarget);
+        QueuedNetworkSender Create(string url, X509Certificate2Collection? sslCertificateOverride, NetworkTarget networkTarget);
     }
 }

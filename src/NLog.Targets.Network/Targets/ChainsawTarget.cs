@@ -254,14 +254,8 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='1' />
         public override Layout Layout
         {
-            get
-            {
-                return _log4JLayout;
-            }
-            set
-            {
-                // Fixed Log4JXmlEventLayout
-            }
+            get => _log4JLayout;
+            set { /* Fixed Log4JXmlEventLayout */ } // NOSONAR
         }
     }
 }

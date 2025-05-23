@@ -23,12 +23,8 @@ namespace NLog.Layouts
         private const int AppNameMaxLength = 48;
         private const int ProcessIdMaxLength = 128;
 
-        private IValueFormatter ValueFormatter
-        {
-            get => _valueFormatter ?? (_valueFormatter = ResolveService<IValueFormatter>());
-            set => _valueFormatter = value;
-        }
-        private IValueFormatter _valueFormatter;
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = ResolveService<IValueFormatter>());
+        private IValueFormatter? _valueFormatter;
 
         /// <summary>
         /// Gets or sets a value indicating whether to use RFC 3164 for Syslog Format
@@ -59,11 +55,11 @@ namespace NLog.Layouts
             set
             {
                 _hostName = value;
-                _hostNameString = _hostName is SimpleLayout simpleLayout && simpleLayout.IsFixedText ? EscapePropertyName(simpleLayout.FixedText, HostNameMaxLength) : null;
+                _hostNameString = _hostName is SimpleLayout simpleLayout && simpleLayout.FixedText is not null ? EscapePropertyName(simpleLayout.FixedText, HostNameMaxLength) : null;
             }
         }
         private Layout _hostName;
-        private string _hostNameString;
+        private string? _hostNameString;
 
         /// <summary>
         /// Name of the device / application / process sending the Syslog-message (Optional)
@@ -78,11 +74,11 @@ namespace NLog.Layouts
             set
             {
                 _appName = value;
-                _appNameString = _appName is SimpleLayout simpleLayout && simpleLayout.IsFixedText ? EscapePropertyName(simpleLayout.FixedText, AppNameMaxLength) : null;
+                _appNameString = _appName is SimpleLayout simpleLayout && simpleLayout.FixedText is not null ? EscapePropertyName(simpleLayout.FixedText, AppNameMaxLength) : null;
             }
         }
         private Layout _appName;
-        private string _appNameString;
+        private string? _appNameString;
 
         /// <summary>
         /// Process Id or Process Name or Logger Name (Optional)
@@ -96,11 +92,11 @@ namespace NLog.Layouts
             set
             {
                 _processId = value;
-                _processIdString = _processId is SimpleLayout simpleLayout && simpleLayout.IsFixedText ? EscapePropertyName(simpleLayout.FixedText, ProcessIdMaxLength) : null;
+                _processIdString = _processId is SimpleLayout simpleLayout && simpleLayout.FixedText is not null ? EscapePropertyName(simpleLayout.FixedText, ProcessIdMaxLength) : null;
             }
         }
         private Layout _processId;
-        private string _processIdString;
+        private string? _processIdString;
 
         /// <summary>
         /// The type of message that should be the same for events with the same semantics. Ex ${event-properties:EventId} (Optional)
@@ -108,7 +104,7 @@ namespace NLog.Layouts
         /// <remarks>
         /// RFC 5424 - NILVALUE or 1 to 32 PRINTUSASCII
         /// </remarks>
-        public Layout SyslogMessageId { get; set; }
+        public Layout? SyslogMessageId { get; set; }
 
         /// <summary>
         /// Mesage Payload
@@ -146,7 +142,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Disables <see cref="ThreadAgnosticAttribute"/> to capture volatile LogEvent-properties from active thread context
         /// </summary>
-        public LayoutRenderer DisableThreadAgnostic => IncludeEventProperties ? _enableThreadAgnosticImmutable : null;
+        public LayoutRenderer? DisableThreadAgnostic => IncludeEventProperties ? _enableThreadAgnosticImmutable : null;
         private static readonly LayoutRenderer _enableThreadAgnosticImmutable = new ExceptionDataLayoutRenderer() { Item = " " };
 
         /// <summary>
@@ -154,9 +150,9 @@ namespace NLog.Layouts
         /// </summary>
         public SyslogLayout()
         {
-            SyslogHostName = "${hostname}";
-            SyslogAppName = "${processname}";
-            SyslogProcessId = "${processid}";
+            _hostName = SyslogHostName = "${hostname}";
+            _appName = SyslogAppName = "${processname}";
+            _processId = SyslogProcessId = "${processid}";
         }
 
         /// <inheritdoc/>
@@ -192,7 +188,8 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void CloseLayout()
         {
-            ValueFormatter = null;
+            _valueFormatter = null;
+            base.CloseLayout();
         }
 
         /// <inheritdoc/>
@@ -354,7 +351,7 @@ namespace NLog.Layouts
             return structuredDataId;
         }
 
-        private void AppendPropertyValue(StringBuilder target, object propertyValue)
+        private void AppendPropertyValue(StringBuilder target, object? propertyValue)
         {
             target.Append('"');
 

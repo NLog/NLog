@@ -44,10 +44,10 @@ namespace NLog.Internal.NetworkSenders
     /// </summary>
     internal class UdpNetworkSender : QueuedNetworkSender
     {
-        private ISocket _socket;
-        private EndPoint _endpoint;
+        private ISocket? _socket;
+        private EndPoint? _endpoint;
         private readonly EventHandler<SocketAsyncEventArgs> _socketOperationCompletedAsync;
-        System.Threading.WaitCallback _asyncBeginRequest;
+        System.Threading.WaitCallback? _asyncBeginRequest;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UdpNetworkSender"/> class.
@@ -93,7 +93,7 @@ namespace NLog.Internal.NetworkSenders
             base.DoClose(ex => CloseSocket(continuation, ex));
         }
 
-        private void CloseSocket(AsyncContinuation continuation, Exception pendingException)
+        private void CloseSocket(AsyncContinuation continuation, Exception? pendingException)
         {
             try
             {
@@ -140,7 +140,7 @@ namespace NLog.Internal.NetworkSenders
             {
                 try
                 {
-                    asyncOperation = _socket.SendToAsync(args);
+                    asyncOperation = _socket?.SendToAsync(args) ?? false;
                 }
                 catch (SocketException ex)
                 {
@@ -156,7 +156,11 @@ namespace NLog.Internal.NetworkSenders
                         args.SocketError = SocketError.OperationAborted;
                 }
 
-                args = asyncOperation ? null : SocketOperationCompleted(args);
+                var nextArgs = asyncOperation ? null : SocketOperationCompleted(args);
+                if (nextArgs is null)
+                    break;
+
+                args = nextArgs;
             }
             while (args != null);
         }
@@ -177,9 +181,9 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        private SocketAsyncEventArgs SocketOperationCompleted(SocketAsyncEventArgs args)
+        private SocketAsyncEventArgs? SocketOperationCompleted(SocketAsyncEventArgs args)
         {
-            Exception socketException = null;
+            Exception? socketException = null;
             if (args.SocketError != SocketError.Success)
             {
                 socketException = new IOException($"Error: {args.SocketError.ToString()}, Address: {Address}");
@@ -207,7 +211,7 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        public override ISocket CheckSocket()
+        public override ISocket? CheckSocket()
         {
             if (_socket is null)
             {

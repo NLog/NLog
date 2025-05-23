@@ -46,9 +46,9 @@ namespace NLog.Internal.NetworkSenders
     internal class TcpNetworkSender : QueuedNetworkSender
     {
         private static bool? EnableKeepAliveSuccessful;
-        private ISocket _socket;
+        private ISocket? _socket;
         private readonly EventHandler<SocketAsyncEventArgs> _socketOperationCompletedAsync;
-        System.Threading.WaitCallback _asyncBeginRequest;
+        System.Threading.WaitCallback? _asyncBeginRequest;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TcpNetworkSender"/> class.
@@ -66,7 +66,7 @@ namespace NLog.Internal.NetworkSenders
 
         internal System.Security.Authentication.SslProtocols SslProtocols { get; set; }
 
-        internal X509Certificate2Collection SslCertificateOverride { get; set; }
+        internal X509Certificate2Collection? SslCertificateOverride { get; set; }
 
         internal TimeSpan KeepAliveTime { get; set; }
 
@@ -217,7 +217,7 @@ namespace NLog.Internal.NetworkSenders
             base.DoClose(ex => CloseSocket(continuation, ex));
         }
 
-        private void CloseSocket(AsyncContinuation continuation, Exception pendingException)
+        private void CloseSocket(AsyncContinuation continuation, Exception? pendingException)
         {
             try
             {
@@ -263,7 +263,7 @@ namespace NLog.Internal.NetworkSenders
             {
                 try
                 {
-                    asyncOperation = _socket.SendAsync(args);
+                    asyncOperation = _socket?.SendAsync(args) ?? false;
                 }
                 catch (SocketException ex)
                 {
@@ -279,12 +279,16 @@ namespace NLog.Internal.NetworkSenders
                         args.SocketError = SocketError.OperationAborted;
                 }
 
-                args = asyncOperation ? null : SocketOperationCompleted(args);
+                var nextArgs = asyncOperation ? null : SocketOperationCompleted(args);
+                if (nextArgs is null)
+                    break;
+
+                args = nextArgs;
             }
             while (args != null);
         }
 
-        private void SetSocketNetworkRequest(SocketAsyncEventArgs socketEventArgs, NetworkRequestArgs networkRequest)
+        private static void SetSocketNetworkRequest(SocketAsyncEventArgs socketEventArgs, NetworkRequestArgs networkRequest)
         {
             socketEventArgs.SetBuffer(networkRequest.RequestBuffer, networkRequest.RequestBufferOffset, networkRequest.RequestBufferLength);
             socketEventArgs.UserToken = networkRequest.AsyncContinuation;
@@ -299,9 +303,9 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        private SocketAsyncEventArgs SocketOperationCompleted(SocketAsyncEventArgs args)
+        private SocketAsyncEventArgs? SocketOperationCompleted(SocketAsyncEventArgs args)
         {
-            Exception socketException = null;
+            Exception? socketException = null;
             if (args.SocketError != SocketError.Success)
             {
                 socketException = new IOException($"Error: {args.SocketError.ToString()}, Address: {Address}");
@@ -322,7 +326,7 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        public override ISocket CheckSocket()
+        public override ISocket? CheckSocket()
         {
             if (_socket is null)
             {

@@ -46,7 +46,7 @@ namespace NLog.Internal.NetworkSenders
         public static readonly INetworkSenderFactory Default = new NetworkSenderFactory();
 
         /// <inheritdoc/>
-        public QueuedNetworkSender Create(string url, X509Certificate2Collection sslCertificateOverride, NetworkTarget networkTarget)
+        public QueuedNetworkSender Create(string url, X509Certificate2Collection? sslCertificateOverride, NetworkTarget networkTarget)
         {
             if (url.StartsWith("tcp://", StringComparison.OrdinalIgnoreCase))
             {

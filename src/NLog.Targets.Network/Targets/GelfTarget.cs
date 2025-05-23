@@ -79,14 +79,8 @@ namespace NLog.Targets
         /// <inheritdoc/>
         public override Layout Layout
         {
-            get
-            {
-                return _gelfLayout;
-            }
-            set
-            {
-                // Fixed GelfLayout
-            }
+            get => _gelfLayout;
+            set { /* Fixed GelfLayout */ } // NOSONAR
         }
 
         /// <summary>
