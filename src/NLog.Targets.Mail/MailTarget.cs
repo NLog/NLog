@@ -112,14 +112,14 @@ namespace NLog.Targets
         }
 
 #if NETFRAMEWORK
-        private SmtpSection _currentailSettings;
+        private SmtpSection? _currentailSettings;
 
         /// <summary>
         /// Gets the mailSettings/smtp configuration from app.config in cases when we need those configuration.
         /// E.g when UseSystemNetMailSettings is enabled and we need to read the From attribute from system.net/mailSettings/smtp
         /// </summary>
         /// <remarks>Internal for mocking</remarks>
-        internal SmtpSection SmtpSection
+        internal SmtpSection? SmtpSection
         {
             get
             {
@@ -163,8 +163,8 @@ namespace NLog.Targets
                 //only use from config when not set in current
                 if (UseSystemNetMailSettings && (_from is null || ReferenceEquals(_from, Layout.Empty)))
                 {
-                    var from = SmtpSection.From;
-                    if (string.IsNullOrEmpty(from))
+                    var from = SmtpSection?.From;
+                    if (from is null || string.IsNullOrEmpty(from))
                         return Layout.Empty;
                     _from = from;
                 }
@@ -287,7 +287,7 @@ namespace NLog.Targets
         /// Gets or sets the priority used for sending mails.
         /// </summary>
         /// <docgen category='Message Options' order='100' />
-        public Layout<MailPriority> Priority { get; set; }
+        public Layout<MailPriority> Priority { get; set; } = MailPriority.Normal;
 
         /// <summary>
         /// Gets or sets a value indicating whether NewLine characters in the body should be replaced with <br/> tags.

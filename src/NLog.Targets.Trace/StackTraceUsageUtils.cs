@@ -77,7 +77,7 @@ namespace NLog.Internal
         private static string GetStackFrameMethodClassName(MethodBase method, bool includeNameSpace, bool cleanAsyncMoveNext, bool cleanAnonymousDelegates)
         {
             if (method is null)
-                return null;
+                return string.Empty;
 
             var callerClassType = method.DeclaringType;
             if (cleanAsyncMoveNext
@@ -90,7 +90,10 @@ namespace NLog.Internal
                 callerClassType = callerClassType.DeclaringType;
             }
 
-            string className = includeNameSpace ? callerClassType?.FullName : callerClassType?.Name;
+            if (callerClassType is null)
+                return string.Empty;
+
+            var className = includeNameSpace ? callerClassType.FullName : callerClassType.Name;
             if (cleanAnonymousDelegates && className?.IndexOf("<>", StringComparison.Ordinal) >= 0)
             {
                 if (!includeNameSpace && callerClassType.DeclaringType != null && callerClassType.IsNested)
@@ -114,7 +117,7 @@ namespace NLog.Internal
                 className = string.IsNullOrEmpty(typeNamespace) ? className : string.Concat(typeNamespace, ".", className);
             }
 
-            return className;
+            return className ?? string.Empty;
         }
 
         private static string GetNamespaceFromTypeAssembly(Type callerClassType)
@@ -129,14 +132,14 @@ namespace NLog.Internal
                 }
             }
 
-            return null;
+            return string.Empty;
         }
 
         /// <summary>
         /// Returns the assembly from the provided StackFrame (If not internal assembly)
         /// </summary>
         /// <returns>Valid assembly, or null if assembly was internal</returns>
-        private static Assembly LookupAssemblyFromMethod(MethodBase method)
+        private static Assembly? LookupAssemblyFromMethod(MethodBase method)
         {
             var assembly = method?.DeclaringType?.Assembly ?? method?.Module?.Assembly;
 

@@ -117,25 +117,25 @@ namespace NLog.Targets
         /// Gets or sets the web service URL.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        public Layout<Uri> Url { get; set; } = new Layout<Uri>((Uri)null);
+        public Layout<Uri> Url { get; set; } = new Layout<Uri>(default(Uri));
 
         /// <summary>
         /// Gets or sets the value of the User-agent HTTP header.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        public Layout UserAgent { get; set; }
+        public Layout? UserAgent { get; set; }
 
         /// <summary>
         /// Gets or sets the Web service method name. Only used with Soap.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        public string MethodName { get; set; }
+        public string MethodName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Web service namespace. Only used with Soap.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        public string Namespace { get; set; }
+        public string Namespace { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the protocol to be used when calling web service.
@@ -144,9 +144,9 @@ namespace NLog.Targets
         public WebServiceProtocol Protocol
         {
             get => _activeProtocol.Key;
-            set => _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(value, null);
+            set => _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase?>(value, null);
         }
-        private KeyValuePair<WebServiceProtocol, HttpPostFormatterBase> _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(WebServiceProtocol.Soap11, null);
+        private KeyValuePair<WebServiceProtocol, HttpPostFormatterBase?> _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase?>(WebServiceProtocol.Soap11, null);
 
         /// <summary>
         /// Gets or sets the proxy configuration when calling web service
@@ -158,15 +158,15 @@ namespace NLog.Targets
         public WebServiceProxyType ProxyType
         {
             get => _activeProxy.Key;
-            set => _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(value, null);
+            set => _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy?>(value, null);
         }
-        private KeyValuePair<WebServiceProxyType, IWebProxy> _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(WebServiceProxyType.DefaultWebProxy, null);
+        private KeyValuePair<WebServiceProxyType, IWebProxy?> _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy?>(WebServiceProxyType.DefaultWebProxy, null);
 
         /// <summary>
         /// Gets or sets the custom proxy address, include port separated by a colon
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        public Layout ProxyAddress { get; set; }
+        public Layout? ProxyAddress { get; set; }
 
         /// <summary>
         /// Should we include the BOM (Byte-order-mark) for UTF? Influences the <see cref="Encoding"/> property.
@@ -206,7 +206,7 @@ namespace NLog.Targets
         /// (see <see cref="Protocol"/> and <see cref="WebServiceProtocol.XmlPost"/>).
         /// </summary>
         /// <docgen category='Web Service Options' order='100' />
-        public string XmlRoot { get; set; }
+        public string XmlRoot { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the (optional) root namespace of the XML document,
@@ -214,7 +214,7 @@ namespace NLog.Targets
         /// (see <see cref="Protocol"/> and <see cref="WebServiceProtocol.XmlPost"/>).
         /// </summary>
         /// <docgen category='Web Service Options' order='100' />
-        public string XmlRootNamespace { get; set; }
+        public string XmlRootNamespace { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets the array of parameters to be passed.
@@ -230,16 +230,16 @@ namespace NLog.Targets
         public bool PreAuthenticate { get; set; }
 
         private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = ResolveService<IJsonConverter>());
-        private IJsonConverter _jsonConverter;
+        private IJsonConverter? _jsonConverter;
 
         private long _pendingWriteOperations;
-        private Action _pendingFlushOperation;
+        private Action? _pendingFlushOperation;
 
         /// <summary>
         /// Calls the target method. Must be implemented in concrete classes.
         /// </summary>
         /// <param name="parameters">Method call parameters.</param>
-        protected override void DoInvoke(object[] parameters)
+        protected override void DoInvoke(object?[] parameters)
         {
             // method is not used, instead asynchronous overload will be used
             throw new NotSupportedException();
@@ -250,10 +250,10 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="parameters">Parameters to be passed.</param>
         /// <param name="logEvent">The logging event.</param>
-        protected override void DoInvoke(object[] parameters, AsyncLogEventInfo logEvent)
+        protected override void DoInvoke(object?[] parameters, AsyncLogEventInfo logEvent)
         {
-            Uri url = null;
-            HttpWebRequest webRequest = null;
+            Uri? url = null;
+            HttpWebRequest? webRequest = null;
 
             try
             {
@@ -307,7 +307,7 @@ namespace NLog.Targets
                     {
                         IWebProxy proxy = WebRequest.GetSystemWebProxy();
                         proxy.Credentials = CredentialCache.DefaultCredentials;
-                        _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(ProxyType, proxy);
+                        _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy?>(ProxyType, proxy);
                     }
                     webRequest.Proxy = _activeProxy.Value;
                     break;
@@ -317,7 +317,7 @@ namespace NLog.Targets
                         if (_activeProxy.Value is null)
                         {
                             IWebProxy proxy = new WebProxy(RenderLogEvent(ProxyAddress, LogEventInfo.CreateNullEvent()), true);
-                            _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(ProxyType, proxy);
+                            _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy?>(ProxyType, proxy);
                         }
                         webRequest.Proxy = _activeProxy.Value;
                     }
@@ -335,7 +335,7 @@ namespace NLog.Targets
             return webRequest;
         }
 
-        private void DoInvoke(object[] parameters, HttpWebRequest webRequest, AsyncContinuation continuation)
+        private void DoInvoke(object?[] parameters, HttpWebRequest webRequest, AsyncContinuation continuation)
         {
             Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest = (request, result) => request.BeginGetRequestStream(result, null);
             Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream = (request, result) => request.EndGetRequestStream(result);
@@ -343,10 +343,10 @@ namespace NLog.Targets
             DoInvoke(parameters, continuation, webRequest, beginGetRequest, getRequestStream);
         }
 
-        internal void DoInvoke(object[] parameters, AsyncContinuation continuation, HttpWebRequest webRequest, Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest,
+        internal void DoInvoke(object?[] parameters, AsyncContinuation continuation, HttpWebRequest webRequest, Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest,
             Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream)
         {
-            MemoryStream postPayload = null;
+            MemoryStream? postPayload = null;
 
             if (Protocol == WebServiceProtocol.HttpGet)
             {
@@ -354,9 +354,13 @@ namespace NLog.Targets
             }
             else
             {
-                if (_activeProtocol.Value is null)
-                    _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(Protocol, _postFormatterFactories[Protocol](this));
-                postPayload = _activeProtocol.Value.PrepareRequest(webRequest, parameters);
+                var activeProtocol = _activeProtocol.Value;
+                if (activeProtocol is null)
+                {
+                    activeProtocol = _postFormatterFactories[Protocol](this);
+                    _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase?>(Protocol, activeProtocol);
+                }
+                postPayload = activeProtocol.PrepareRequest(webRequest, parameters);
             }
 
             System.Threading.Interlocked.Increment(ref _pendingWriteOperations);
@@ -444,7 +448,7 @@ namespace NLog.Targets
                 });
         }
 
-        private void DoInvokeCompleted(AsyncContinuation continuation, Exception ex)
+        private void DoInvokeCompleted(AsyncContinuation continuation, Exception? ex)
         {
             System.Threading.Interlocked.Decrement(ref _pendingWriteOperations);
             _pendingFlushOperation?.Invoke();
@@ -471,7 +475,7 @@ namespace NLog.Targets
             else
             {
                 var pendingFlushOperation = _pendingFlushOperation;
-                Action newPendingFlushOperation = null;
+                Action? newPendingFlushOperation = null;
                 newPendingFlushOperation = () =>
                 {
                     pendingFlushOperation?.Invoke();
@@ -497,7 +501,7 @@ namespace NLog.Targets
         /// <summary>
         /// Builds the URL to use when calling the web service for a message, depending on the WebServiceProtocol.
         /// </summary>
-        private Uri BuildWebServiceUrl(LogEventInfo logEvent, object[] parameterValues)
+        private Uri? BuildWebServiceUrl(LogEventInfo logEvent, object?[] parameterValues)
         {
             var uri = RenderLogEvent(Url, logEvent);
             if (Protocol != WebServiceProtocol.HttpGet)
@@ -525,7 +529,7 @@ namespace NLog.Targets
             return builder.Uri;
         }
 
-        private void BuildWebServiceQueryParameters(object[] parameterValues, StringBuilder sb)
+        private void BuildWebServiceQueryParameters(object?[] parameterValues, StringBuilder sb)
         {
             string separator = string.Empty;
             for (int i = 0; i < Parameters.Count; i++)
@@ -538,7 +542,7 @@ namespace NLog.Targets
             }
         }
 
-        private void AppendParameterAsString(object parameterValue, StringBuilder sb)
+        private void AppendParameterAsString(object? parameterValue, StringBuilder sb)
         {
             var parameterObject = parameterValue as IConvertible;
             if (parameterObject != null)
@@ -579,10 +583,10 @@ namespace NLog.Targets
                 var hasBomInEncoding = encoding.GetPreamble().Length == preambleSize;
 
                 //BOM already in Encoding.
-                nothingToDo = writeUtf8BOM.Value && hasBomInEncoding;
+                nothingToDo = writeUtf8BOM == true && hasBomInEncoding;
 
                 //Bom already not in Encoding
-                nothingToDo = nothingToDo || !writeUtf8BOM.Value && !hasBomInEncoding;
+                nothingToDo = nothingToDo || (writeUtf8BOM != true && !hasBomInEncoding);
             }
 
             var byteArray = postPayload.GetBuffer();
@@ -604,7 +608,7 @@ namespace NLog.Targets
             }
 
             protected string ContentType => _contentType ?? (_contentType = GetContentType(Target));
-            private string _contentType;
+            private string? _contentType;
 
             protected WebServiceTarget Target { get; }
 
@@ -613,7 +617,7 @@ namespace NLog.Targets
                 return string.Concat("charset=", target.Encoding.WebName);
             }
 
-            public MemoryStream PrepareRequest(HttpWebRequest request, object[] parameterValues)
+            public MemoryStream PrepareRequest(HttpWebRequest request, object?[] parameterValues)
             {
                 InitRequest(request);
 
@@ -628,7 +632,7 @@ namespace NLog.Targets
                 request.ContentType = ContentType;
             }
 
-            protected abstract void WriteContent(MemoryStream ms, object[] parameterValues);
+            protected abstract void WriteContent(MemoryStream ms, object?[] parameterValues);
         }
 
         private sealed class HttpPostFormEncodedFormatter : HttpPostTextFormatterBase
@@ -642,7 +646,7 @@ namespace NLog.Targets
                 return string.Concat("application/x-www-form-urlencoded", "; ", base.GetContentType(target));
             }
 
-            protected override void WriteStringContent(StringBuilder builder, object[] parameterValues)
+            protected override void WriteStringContent(StringBuilder builder, object?[] parameterValues)
             {
                 Target.BuildWebServiceQueryParameters(parameterValues, builder);
             }
@@ -663,7 +667,7 @@ namespace NLog.Targets
                 return string.Concat("application/json", "; ", base.GetContentType(target));
             }
 
-            protected override void WriteStringContent(StringBuilder builder, object[] parameterValues)
+            protected override void WriteStringContent(StringBuilder builder, object?[] parameterValues)
             {
                 if (Target.Parameters.Count == 1 && string.IsNullOrEmpty(Target.Parameters[0].Name) && parameterValues[0] is string s)
                 {
@@ -756,7 +760,7 @@ namespace NLog.Targets
             protected abstract string SoapEnvelopeNamespace { get; }
             protected abstract string SoapName { get; }
 
-            protected override void WriteContent(MemoryStream ms, object[] parameterValues)
+            protected override void WriteContent(MemoryStream ms, object?[] parameterValues)
             {
                 using (var xtw = XmlWriter.Create(ms, _xmlWriterSettings))
                 {
@@ -792,7 +796,7 @@ namespace NLog.Targets
                 _encodingPreamble = target.Encoding.GetPreamble();
             }
 
-            protected override void WriteContent(MemoryStream ms, object[] parameterValues)
+            protected override void WriteContent(MemoryStream ms, object?[] parameterValues)
             {
                 lock (_reusableStringBuilder)
                 {
@@ -827,7 +831,7 @@ namespace NLog.Targets
                 }
             }
 
-            protected abstract void WriteStringContent(StringBuilder builder, object[] parameterValues);
+            protected abstract void WriteStringContent(StringBuilder builder, object?[] parameterValues);
         }
 
         private sealed class HttpPostXmlDocumentFormatter : HttpPostXmlFormatterBase
@@ -847,7 +851,7 @@ namespace NLog.Targets
                 return string.Concat("application/xml", "; ", base.GetContentType(target));
             }
 
-            protected override void WriteContent(MemoryStream ms, object[] parameterValues)
+            protected override void WriteContent(MemoryStream ms, object?[] parameterValues)
             {
                 using (var xtw = XmlWriter.Create(ms, _xmlWriterSettings))
                 {
@@ -867,7 +871,7 @@ namespace NLog.Targets
             {
             }
 
-            protected void WriteAllParametersToCurrenElement(XmlWriter currentXmlWriter, object[] parameterValues)
+            protected void WriteAllParametersToCurrenElement(XmlWriter currentXmlWriter, object?[] parameterValues)
             {
                 for (int i = 0; i < Target.Parameters.Count; i++)
                 {

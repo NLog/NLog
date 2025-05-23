@@ -126,10 +126,13 @@ namespace NLog.Internal
                 callerClassType = callerClassType.DeclaringType;
             }
 
-            var className = (includeNameSpace ? callerClassType?.FullName : callerClassType?.Name) ?? string.Empty;
-            if (cleanAnonymousDelegates && className.IndexOf("<>", StringComparison.Ordinal) >= 0)
+            if (callerClassType is null)
+                return string.Empty;
+
+            var className = includeNameSpace ? callerClassType.FullName : callerClassType.Name;
+            if (cleanAnonymousDelegates && className?.IndexOf("<>", StringComparison.Ordinal) >= 0)
             {
-                if (!includeNameSpace && callerClassType != null && callerClassType.DeclaringType != null && callerClassType.IsNested)
+                if (!includeNameSpace && callerClassType.DeclaringType != null && callerClassType.IsNested)
                 {
                     className = callerClassType.DeclaringType.Name;
                 }
@@ -144,13 +147,13 @@ namespace NLog.Internal
                 }
             }
 
-            if (includeNameSpace && className.IndexOf('.') == -1)
+            if (includeNameSpace && className?.IndexOf('.') == -1)
             {
                 var typeNamespace = GetNamespaceFromTypeAssembly(callerClassType);
                 className = string.IsNullOrEmpty(typeNamespace) ? className : string.Concat(typeNamespace, ".", className);
             }
 
-            return className;
+            return className ?? string.Empty;
         }
 
         private static string GetNamespaceFromTypeAssembly(Type? callerClassType)

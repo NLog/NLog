@@ -55,7 +55,7 @@ namespace NLog
         private LogLevel _defaultLogLevel = LogLevel.Debug;
         private bool _attributesLoaded;
         private bool _autoLoggerName;
-        private LogLevel _forceLogLevel;
+        private LogLevel? _forceLogLevel;
         private bool _disableFlush;
 
         /// <summary>
@@ -63,6 +63,7 @@ namespace NLog
         /// </summary>
         public NLogTraceListener()
         {
+            _logFactory = LogManager.LogFactory;
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace NLog
         /// <summary>
         /// Gets or sets the log which should be always used regardless of source level.
         /// </summary>
-        public LogLevel ForceLogLevel
+        public LogLevel? ForceLogLevel
         {
             get
             {
@@ -204,7 +205,7 @@ namespace NLog
             if (Filter != null && !Filter.ShouldTrace(null, String.Empty, TraceEventType.Verbose, 0, message, null, null, null))
                 return;
 
-            ProcessLogEventInfo(DefaultLogLevel, null, message, null, null, TraceEventType.Verbose, null);
+            ProcessLogEventInfo(DefaultLogLevel, string.Empty, message, null, null, TraceEventType.Verbose, null);
         }
 
         private void WriteInternal(object o)
@@ -214,11 +215,11 @@ namespace NLog
 
             if (o is null || o is IConvertible)
             {
-                ProcessLogEventInfo(DefaultLogLevel, null, o?.ToString() ?? string.Empty, null, null, TraceEventType.Verbose, null);
+                ProcessLogEventInfo(DefaultLogLevel, string.Empty, o?.ToString() ?? string.Empty, null, null, TraceEventType.Verbose, null);
             }
             else
             {
-                ProcessLogEventInfo(DefaultLogLevel, null, "{0}", new[] { o }, null, TraceEventType.Verbose, null);
+                ProcessLogEventInfo(DefaultLogLevel, string.Empty, "{0}", new[] { o }, null, TraceEventType.Verbose, null);
             }
         }
 
@@ -236,7 +237,7 @@ namespace NLog
         /// <param name="message">A message to emit.</param>
         public override void Fail(string message)
         {
-            ProcessLogEventInfo(LogLevel.Error, null, message, null, null, TraceEventType.Error, null);
+            ProcessLogEventInfo(LogLevel.Error, string.Empty, message, null, null, TraceEventType.Error, null);
         }
 
         /// <summary>
@@ -246,7 +247,7 @@ namespace NLog
         /// <param name="detailMessage">A detailed message to emit.</param>
         public override void Fail(string message, string detailMessage)
         {
-            ProcessLogEventInfo(LogLevel.Error, null, string.Concat(message, " ", detailMessage), null, null, TraceEventType.Error, null);
+            ProcessLogEventInfo(LogLevel.Error, string.Empty, string.Concat(message, " ", detailMessage), null, null, TraceEventType.Error, null);
         }
 
         /// <summary>
@@ -435,7 +436,7 @@ namespace NLog
         /// <param name="eventType">The event type.</param>
         /// <param name="relatedActivityId">The related activity id.</param>
         /// </summary>
-        protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActivityId)
+        protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object?[]? arguments, int? eventId, TraceEventType? eventType, Guid? relatedActivityId)
         {
             var globalLogLevel = (LogFactory ?? LogManager.LogFactory).GlobalThreshold;
             if (logLevel < globalLogLevel)
@@ -443,7 +444,7 @@ namespace NLog
                 return; // We are done
             }
 
-            StackTrace stackTrace = AutoLoggerName ? new StackTrace() : null;
+            var stackTrace = AutoLoggerName ? new StackTrace() : null;
             var logger = GetLogger(loggerName, stackTrace, out int userFrameIndex);
 
             logLevel = _forceLogLevel ?? logLevel;
@@ -508,7 +509,7 @@ namespace NLog
             return eventId;
         }
 
-        private Logger GetLogger(string loggerName, StackTrace stackTrace, out int userFrameIndex)
+        private Logger GetLogger(string loggerName, StackTrace? stackTrace, out int userFrameIndex)
         {
             if (string.IsNullOrEmpty(loggerName))
             {

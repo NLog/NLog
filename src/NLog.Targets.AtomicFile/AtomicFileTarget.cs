@@ -132,8 +132,8 @@ namespace NLog.Targets
             int fd = Mono.Unix.Native.Syscall.open(filePath, openFlags, permissions);
             if (fd == -1 && Mono.Unix.Native.Stdlib.GetLastError() == Mono.Unix.Native.Errno.ENOENT && CreateDirs)
             {
-                string dirName = Path.GetDirectoryName(filePath);
-                if (!Directory.Exists(dirName))
+                var dirName = Path.GetDirectoryName(filePath);
+                if (dirName != null && !Directory.Exists(dirName))
                     Directory.CreateDirectory(dirName);
 
                 fd = Mono.Unix.Native.Syscall.open(filePath, openFlags, permissions);

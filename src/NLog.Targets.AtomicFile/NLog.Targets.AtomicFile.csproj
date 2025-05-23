@@ -31,6 +31,8 @@
     <IsPackable>true</IsPackable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Nullable>enable</Nullable>
+    <LangVersion>9</LangVersion>
     <EnableTrimAnalyzer Condition=" '$(TargetFramework)' == 'net8.0' ">true</EnableTrimAnalyzer>
     <IsTrimmable Condition=" '$(TargetFramework)' == 'net8.0' ">true</IsTrimmable>
     <SonarQubeExclude>true</SonarQubeExclude>
