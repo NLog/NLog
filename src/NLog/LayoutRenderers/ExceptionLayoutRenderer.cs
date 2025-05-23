@@ -35,6 +35,7 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Text;
     using NLog.Common;
     using NLog.Config;
@@ -114,7 +115,7 @@ namespace NLog.LayoutRenderers
         /// properties: Message, Type, ShortType, ToString, Method, StackTrace.
         /// This parameter value is case-insensitive.
         /// </summary>
-        /// <see cref="Formats"/>
+        /// <see cref="_formats"/>
         /// <see cref="ExceptionRenderingFormat"/>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
@@ -125,7 +126,7 @@ namespace NLog.LayoutRenderers
             set
             {
                 _format = value;
-                Formats = CompileFormat(value, nameof(Format));
+                _formats = CompileFormat(value, nameof(Format));
             }
         }
 
@@ -142,7 +143,7 @@ namespace NLog.LayoutRenderers
             set
             {
                 _innerFormat = value;
-                InnerFormats = CompileFormat(value, nameof(InnerFormat));
+                _innerFormats = CompileFormat(value, nameof(InnerFormat));
             }
         }
 
@@ -196,21 +197,27 @@ namespace NLog.LayoutRenderers
         /// Gets the formats of the output of inner exceptions to be rendered in target. <see cref="ExceptionRenderingFormat"/>
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
+        [Obsolete("Instead use `Format`-property. Marked obsolete with NLog v5.5")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public List<ExceptionRenderingFormat> Formats
         {
-            get;
-            private set;
+            get => _formats;
+            private set => _formats = value;
         }
+        private List<ExceptionRenderingFormat> _formats;
 
         /// <summary>
         ///  Gets the formats of the output to be rendered in target. <see cref="ExceptionRenderingFormat"/>
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
+        [Obsolete("Instead use `InnerFormat`-property. Marked obsolete with NLog v5.5")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public List<ExceptionRenderingFormat> InnerFormats
         {
-            get;
-            private set;
+            get => _innerFormats;
+            private set => _innerFormats = value;
         }
+        private List<ExceptionRenderingFormat> _innerFormats;
 
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
@@ -235,7 +242,7 @@ namespace NLog.LayoutRenderers
                 if (logEvent.Exception is AggregateException aggregateException)
                 {
                     primaryException = FlattenException ? GetPrimaryException(aggregateException) : aggregateException;
-                    AppendException(primaryException, Formats, builder, aggregateException);
+                    AppendException(primaryException, _formats, builder, aggregateException);
                     if (currentLevel < MaxInnerExceptionLevel)
                     {
                         currentLevel = AppendInnerExceptionTree(primaryException, currentLevel, builder);
@@ -248,7 +255,7 @@ namespace NLog.LayoutRenderers
                 else
 #endif
                 {
-                    AppendException(primaryException, Formats, builder);
+                    AppendException(primaryException, _formats, builder);
                     if (currentLevel < MaxInnerExceptionLevel)
                     {
                         AppendInnerExceptionTree(primaryException, currentLevel, builder);
@@ -319,7 +326,7 @@ namespace NLog.LayoutRenderers
         {
             // separate inner exceptions
             builder.Append(InnerExceptionSeparator);
-            AppendException(currentException, InnerFormats ?? Formats, builder);
+            AppendException(currentException, _innerFormats ?? _formats, builder);
         }
 
         private void AppendException(Exception currentException, List<ExceptionRenderingFormat> renderFormats, StringBuilder builder, Exception aggregateException = null)

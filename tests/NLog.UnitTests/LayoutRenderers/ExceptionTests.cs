@@ -859,8 +859,10 @@ namespace NLog.UnitTests.LayoutRenderers
             var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
             var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
 
+#pragma warning disable CS0618 // Type or member is obsolete
             Assert.Equal(ExceptionRenderingFormat.ShortType, elr.Formats[0]);
             Assert.Equal(ExceptionRenderingFormat.Message, elr.Formats[1]);
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         [Fact]
@@ -887,10 +889,12 @@ namespace NLog.UnitTests.LayoutRenderers
             var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
             var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
 
+#pragma warning disable CS0618 // Type or member is obsolete
             Assert.Equal(ExceptionRenderingFormat.ShortType, elr.Formats[0]);
             Assert.Equal(ExceptionRenderingFormat.Message, elr.Formats[1]);
 
             Assert.Equal(ExceptionRenderingFormat.Message, elr.InnerFormats[0]);
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         [Fact]
