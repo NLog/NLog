@@ -38,15 +38,15 @@ namespace NLog.RegEx.Internal
 
     internal sealed class RegexHelper
     {
-        private Regex _regex;
-        private string _searchText;
-        private string _regexPattern;
+        private Regex?  _regex;
+        private string? _searchText;
+        private string? _regexPattern;
         private bool _wholeWords;
         private bool _ignoreCase;
 
         public string SearchText
         {
-            get => _searchText;
+            get => _searchText ?? string.Empty;
             set
             {
                 _searchText = value;
@@ -55,7 +55,7 @@ namespace NLog.RegEx.Internal
             }
         }
 
-        public string RegexPattern
+        public string? RegexPattern
         {
             get => _regexPattern;
             set
@@ -103,7 +103,7 @@ namespace NLog.RegEx.Internal
             }
         }
 
-        public Regex Regex
+        public Regex? Regex
         {
             get
             {
@@ -159,7 +159,7 @@ namespace NLog.RegEx.Internal
             }
         }
 
-        public MatchCollection Matches(string input)
+        public MatchCollection? Matches(string input)
         {
             if (CompileRegex)
             {

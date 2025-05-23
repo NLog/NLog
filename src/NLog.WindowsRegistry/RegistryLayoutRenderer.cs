@@ -38,7 +38,6 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using Microsoft.Win32;
     using NLog.Common;
-    using NLog.Config;
     using NLog.Layouts;
 
     /// <summary>
@@ -51,13 +50,13 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the registry value name.
         /// </summary>
         /// <docgen category='Registry Options' order='10' />
-        public Layout Value { get; set; }
+        public Layout Value { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets the value to be output when the specified registry key or value is not found.
         /// </summary>
         /// <docgen category='Registry Options' order='10' />
-        public Layout DefaultValue { get; set; }
+        public Layout? DefaultValue { get; set; }
 
         /// <summary>
         /// Require escaping backward slashes in <see cref="DefaultValue"/>. Need to be backwards-compatible.
@@ -114,9 +113,17 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            object registryValue = null;
+            var value = LookupRegistryValue(logEvent);
+            builder.Append(value);
+        }
+
+        private string LookupRegistryValue(LogEventInfo logEvent)
+        {
+            object? registryValue = null;
             // Value = null is necessary for querying "unnamed values"
-            string renderedValue = Value?.Render(logEvent);
+            var registryName = Value?.Render(logEvent);
+            if (string.IsNullOrEmpty(registryName))
+                registryName = null;
 
             var parseResult = ParseKey(Key.Render(logEvent));
             try
@@ -131,12 +138,12 @@ namespace NLog.LayoutRenderers
                     {
                         using (RegistryKey registryKey = rootKey.OpenSubKey(parseResult.SubKey))
                         {
-                            if (registryKey != null) registryValue = registryKey.GetValue(renderedValue);
+                            if (registryKey != null) registryValue = registryKey.GetValue(registryName);
                         }
                     }
                     else
                     {
-                        registryValue = rootKey.GetValue(renderedValue);
+                        registryValue = rootKey.GetValue(registryName);
                     }
                 }
             }
@@ -148,27 +155,24 @@ namespace NLog.LayoutRenderers
                 InternalLogger.Error(ex, "Error when reading from registry");
             }
 
-            string value = null;
             if (registryValue != null) // valid value returned from registry will never be null
             {
-                value = Convert.ToString(registryValue, System.Globalization.CultureInfo.InvariantCulture);
+                return Convert.ToString(registryValue, System.Globalization.CultureInfo.InvariantCulture);
             }
-            else if (DefaultValue != null)
-            {
-                value = DefaultValue.Render(logEvent);
 
-                if (RequireEscapingSlashesInDefaultValue)
-                {
-                    //remove escape slash
-                    value = value.Replace("\\\\", "\\");
-                }
+            var defaultValue = DefaultValue?.Render(logEvent);
+            if (defaultValue != null && RequireEscapingSlashesInDefaultValue)
+            {
+                //remove escape slash
+                defaultValue = defaultValue.Replace("\\\\", "\\");
             }
-            builder.Append(value);
+
+            return defaultValue ?? string.Empty;
         }
 
         private sealed class ParseResult
         {
-            public string SubKey { get; set; }
+            public string SubKey { get; set; } = string.Empty;
 
             public RegistryHive Hive { get; set; }
 
@@ -188,7 +192,7 @@ namespace NLog.LayoutRenderers
             string hiveName;
             int pos = key.IndexOfAny(new char[] { '\\', '/' });
 
-            string subkey = null;
+            string subkey = string.Empty;
             if (pos >= 0)
             {
                 hiveName = key.Substring(0, pos);

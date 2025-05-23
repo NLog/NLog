@@ -49,7 +49,7 @@ namespace NLog.Targets
         /// Gets or sets the regular expression to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
-        public string Regex
+        public string? Regex
         {
             get => _regexHelper.RegexPattern;
             set => _regexHelper.RegexPattern = value;
@@ -65,10 +65,10 @@ namespace NLog.Targets
             set => _regexHelper.CompileRegex = value;
         }
 
-        private string _searchText;
+        private string _searchText = string.Empty;
 
         /// <inheritdoc/>
-        protected override IEnumerable<KeyValuePair<int, int>> GetWordsForHighlighting(string haystack)
+        protected override IEnumerable<KeyValuePair<int, int>>? GetWordsForHighlighting(string haystack)
         {
             if (!ReferenceEquals(_searchText, Text))
             {
