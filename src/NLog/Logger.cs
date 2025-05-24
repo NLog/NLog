@@ -128,18 +128,38 @@ namespace NLog
         /// </summary>
         /// <param name="properties">Collection of key-value pair properties</param>
         /// <returns>New Logger object that automatically appends specified properties</returns>
-        public Logger WithProperties(IEnumerable<KeyValuePair<string, object>> properties)
+        public Logger WithProperties(IEnumerable<KeyValuePair<string, object?>> properties)
         {
             Guard.ThrowIfNull(properties);
 
             Logger newLogger = CreateChildLogger();
             var newProperties = newLogger.Properties;
-            foreach (KeyValuePair<string, object> property in properties)
+            foreach (var property in properties)
             {
                 newProperties[property.Key] = property.Value;
             }
             return newLogger;
         }
+
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+        /// <summary>
+        /// Creates new logger that automatically appends the specified properties to all log events (without changing current logger)
+        ///
+        /// With <see cref="Properties"/> property, all properties can be enumerated.
+        /// </summary>
+        /// <param name="properties">Collection of key-value pair properties</param>
+        /// <returns>New Logger object that automatically appends specified properties</returns>
+        public Logger WithProperties(params ReadOnlySpan<(string, object?)> properties)
+        {
+            Logger newLogger = CreateChildLogger();
+            var newProperties = newLogger.Properties;
+            foreach (var property in properties)
+            {
+                newProperties[property.Item1] = property.Item2;
+            }
+            return newLogger;
+        }
+#endif
 
         /// <summary>
         /// Obsolete and replaced by <see cref="WithProperty"/> that prevents unexpected side-effects in Logger-state.
