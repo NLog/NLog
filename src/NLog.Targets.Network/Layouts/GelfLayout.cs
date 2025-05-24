@@ -33,7 +33,7 @@ namespace NLog.Layouts
         private IJsonConverter? _jsonConverter;
 
         /// <summary>
-        /// Graylog Message Host-field
+        /// Gets or sets Graylog Message Host-field
         /// </summary>
         public Layout GelfHostName
         {
@@ -48,19 +48,19 @@ namespace NLog.Layouts
         private string? _gelfHostNameString;
 
         /// <summary>
-        /// Graylog Message Short-Message-field
+        /// Gets or sets the Graylog Message Short-Message-field
         /// </summary>
         /// <remarks>Will truncate when longer than 250 chars</remarks>
         public Layout GelfShortMessage { get; set; }
 
         /// <summary>
-        /// Graylog Message Full-Message-field
+        /// Gets or sets the Graylog Message Full-Message-field
         /// </summary>
         /// <remarks>Will truncate when longer than 250 chars</remarks>
         public Layout GelfFullMessage { get; set; }
 
         /// <summary>
-        /// Graylog Message Facility-field
+        /// Gets or sets whether to activate the legacy Graylog Message Facility-field
         /// </summary>
         /// <remarks>
         /// Activated legacy GELF v1.0 format

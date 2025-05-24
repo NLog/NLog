@@ -50,20 +50,21 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Gets or sets viewer parameter name.
+        /// Gets or sets log4j:data property-name.
         /// </summary>
         /// <docgen category='Layout Options' order='1' />
         public string Name { get; set; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets the layout that should be use to calculate the value for the parameter.
+        /// Gets or sets the layout used for rendering the log4j:data property-value.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public Layout Layout { get; set; } = Layout.Empty;
 
         /// <summary>
-        /// Gets or sets whether an attribute with empty value should be included in the output
+        /// Gets or sets whether empty property-value should be included in the output. Default = false
         /// </summary>
+        /// <remarks>Empty value is either null or empty string</remarks>
         /// <docgen category='Layout Options' order='100' />
         public bool IncludeEmptyValue { get; set; }
     }

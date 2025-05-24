@@ -108,10 +108,10 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets or sets the network address.
+        /// Gets or sets the network destination address.
         /// </summary>
         /// <remarks>
-        /// The network address can be:
+        /// The network destination address can be:
         /// <ul>
         /// <li>tcp://host:port - TCP (auto select IPv4/IPv6)</li>
         /// <li>tcp4://host:port - force TCP/IPv4</li>

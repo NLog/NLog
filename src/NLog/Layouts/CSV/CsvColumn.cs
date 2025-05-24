@@ -67,7 +67,7 @@ namespace NLog.Layouts
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the layout of the column.
+        /// Gets or sets the layout used for rendering the column value.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public Layout Layout { get; set; }
