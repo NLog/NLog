@@ -106,7 +106,7 @@ namespace NLog.LayoutRenderers
             return logEvent.LoggerName ?? string.Empty;
         }
 
-        private int TryGetLastDotForShortName(LogEventInfo logEvent)
+        private static int TryGetLastDotForShortName(LogEventInfo logEvent)
         {
             return logEvent.LoggerName?.LastIndexOf('.') ?? -1;
         }

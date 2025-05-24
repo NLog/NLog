@@ -127,16 +127,6 @@ namespace NLog
         void Trace(LogMessageGenerator messageFunc);
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="Trace(Exception, string)"/> - Writes the diagnostic message and exception at the <c>Trace</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Trace(Exception exception, string message) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        void TraceException([Localizable(false)] string message, Exception? exception);
-
-        /// <summary>
         /// Writes the diagnostic message and exception at the <c>Trace</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
@@ -263,6 +253,16 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [MessageTemplateFormatMethod("message")]
         void Trace<TArgument1, TArgument2, TArgument3>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2, TArgument3? argument3);
+
+        /// <summary>
+        /// Obsolete and replaced by <see cref="Trace(Exception, string)"/> - Writes the diagnostic message and exception at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Trace(Exception exception, string message) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void TraceException([Localizable(false)] string message, Exception? exception);
 
         #endregion
 
