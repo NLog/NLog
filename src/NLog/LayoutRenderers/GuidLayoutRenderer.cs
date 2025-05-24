@@ -97,7 +97,9 @@ namespace NLog.LayoutRenderers
                 byte i = (byte)((zeroDateTicks >> 16) & 0xFF);
                 byte j = (byte)((zeroDateTicks >> 8) & 0xFF);
                 byte k = (byte)(zeroDateTicks & 0XFF);
+#pragma warning disable CS0618 // Type or member is obsolete
                 guid = new Guid(logEvent.SequenceID, b, c, d, e, f, g, h, i, j, k);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
             else
             {

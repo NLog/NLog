@@ -873,7 +873,9 @@ namespace NLog.UnitTests.Targets
             Assert.Equal((byte)42, logEvent.Properties["ByteProperty"]);
             Assert.Equal((short)43, logEvent.Properties["Int16Property"]);
             Assert.Equal(CurrentManagedThreadId, logEvent.Properties["Int32Property"]);
+#pragma warning disable CS0618 // Type or member is obsolete
             Assert.Equal((long)logEvent.SequenceID, logEvent.Properties["Int64Property"]);
+#pragma warning restore CS0618 // Type or member is obsolete
             Assert.Equal(AppDomain.CurrentDomain.FriendlyName, logEvent.Properties["StringProperty"]);
             Assert.Equal(true, logEvent.Properties["BoolProperty"]);
             Assert.Equal(3.14159, logEvent.Properties["DoubleProperty"]);

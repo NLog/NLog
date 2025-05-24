@@ -34,8 +34,8 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.Collections.Generic;
     using System.Text;
+    using System.Threading;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
@@ -51,16 +51,35 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class CounterLayoutRenderer : LayoutRenderer, IRawValue
     {
-        private static readonly Dictionary<string, long> Sequences = new Dictionary<string, long>(StringComparer.Ordinal);
+        private sealed class GlobalSequence
+        {
+            private long _value;
+            public string Name { get; }
+
+            public GlobalSequence(string sequenceName, long initialValue)
+            {
+                Name = sequenceName;
+                _value = initialValue;
+            }
+
+            public long NextValue(int increment) => Interlocked.Add(ref _value, increment);
+        };
+#if NET35
+        private static readonly System.Collections.Generic.Dictionary<string, GlobalSequence> Sequences = new System.Collections.Generic.Dictionary<string, GlobalSequence>(StringComparer.Ordinal);
+#else
+        private static readonly System.Collections.Concurrent.ConcurrentDictionary<string, GlobalSequence> Sequences = new System.Collections.Concurrent.ConcurrentDictionary<string, GlobalSequence>(StringComparer.Ordinal);
+#endif
+        private static GlobalSequence? _firstSequence;
 
         /// <summary>
         /// Gets or sets the initial value of the counter.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public long Value { get; set; } = 1;
+        public long Value { get => _value; set => _value = value; }
+        private long _value;
 
         /// <summary>
-        /// Gets or sets the value to be added to the counter after each layout rendering.
+        /// Gets or sets the value for incrementing the counter for every layout rendering.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public int Increment { get; set; } = 1;
@@ -75,9 +94,11 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var v = GetNextValue(logEvent);
+#if NETFRAMEWORK
             if (v < int.MaxValue && v > int.MinValue)
                 builder.AppendInvariant((int)v);
             else
+#endif
                 builder.Append(v);
         }
 
@@ -85,24 +106,45 @@ namespace NLog.LayoutRenderers
         {
             if (Sequence is null)
             {
-                long currentValue = Value;
-                Value += Increment;
-                return currentValue;
+                return Interlocked.Add(ref _value, Increment);
             }
 
             var sequenceName = Sequence.Render(logEvent);
+            return GetNextGlobalValue(sequenceName);
+        }
+
+        private long GetNextGlobalValue(string sequenceName)
+        {
+            var globalSequence = _firstSequence;
+            if (globalSequence is null)
+            {
+                globalSequence = new GlobalSequence(sequenceName, Value);
+                Interlocked.CompareExchange(ref _firstSequence, globalSequence, null);
+                globalSequence = _firstSequence;
+            }
+            if (globalSequence.Name.Equals(sequenceName))
+                return globalSequence.NextValue(Increment);
+
+#if NET35
             lock (Sequences)
             {
-                if (!Sequences.TryGetValue(sequenceName, out var nextValue))
+                if (!Sequences.TryGetValue(sequenceName, out globalSequence))
                 {
-                    nextValue = Value;
+                    globalSequence = new GlobalSequence(sequenceName, Value);
+                    Sequences[sequenceName] = globalSequence;
                 }
-
-                var currentValue = nextValue;
-                nextValue += Increment;
-                Sequences[sequenceName] = nextValue;
-                return currentValue;
             }
+#else
+            if (!Sequences.TryGetValue(sequenceName, out globalSequence))
+            {
+                globalSequence = new GlobalSequence(sequenceName, Value);
+                if (!Sequences.TryAdd(sequenceName, globalSequence))
+                {
+                    Sequences.TryGetValue(sequenceName, out globalSequence);
+                }
+            }
+#endif
+            return globalSequence.NextValue(Increment);
         }
 
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
