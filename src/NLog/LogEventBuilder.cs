@@ -129,7 +129,7 @@ namespace NLog
         /// Sets multiple per-event context properties on the logging event.
         /// </summary>
         /// <param name="properties">The properties to set.</param>
-        public LogEventBuilder Properties(params ReadOnlySpan<(string, object)> properties)
+        public LogEventBuilder Properties(params ReadOnlySpan<(string, object?)> properties)
         {
             if (_logEvent is null)
                 return this;
