@@ -36,9 +36,7 @@ namespace NLog.UnitTests.Config
 {
     using System;
     using System.Text;
-    using JetBrains.Annotations;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Targets;
     using Xunit;
 

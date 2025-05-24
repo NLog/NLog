@@ -38,7 +38,6 @@ namespace NLog.MessageTemplates
     using System.Collections.Generic;
     using System.Globalization;
     using System.Text;
-    using JetBrains.Annotations;
     using NLog.Config;
     using NLog.Internal;
 
@@ -88,7 +87,7 @@ namespace NLog.MessageTemplates
             }
         }
 
-        public ValueFormatter([NotNull] IServiceProvider serviceProvider, bool legacyStringQuotes)
+        public ValueFormatter(IServiceProvider serviceProvider, bool legacyStringQuotes)
         {
             _serviceProvider = serviceProvider;
             _legacyStringQuotes = legacyStringQuotes;

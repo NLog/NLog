@@ -34,7 +34,6 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
-using JetBrains.Annotations;
 using NLog.Internal;
 
 namespace NLog.Targets
@@ -115,7 +114,7 @@ namespace NLog.Targets
         /// </param>
         /// <returns>The <see cref="LineEndingMode"/> value, that corresponds to the <paramref name="name"/>.</returns>
         /// <exception cref="ArgumentOutOfRangeException">There is no line ending mode with the specified name.</exception>
-        public static LineEndingMode FromString([NotNull] string name)
+        public static LineEndingMode FromString(string name)
         {
             Guard.ThrowIfNull(name);
 

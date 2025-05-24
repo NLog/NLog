@@ -38,7 +38,6 @@ namespace NLog.Internal
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
-    using JetBrains.Annotations;
 
     /// <summary>
     /// Reflection helpers.
@@ -159,20 +158,17 @@ namespace NLog.Internal
             return valueCast;
         }
 
-        [CanBeNull]
         public static TAttr? GetFirstCustomAttribute<TAttr>(this Type type) where TAttr : Attribute
         {
             return Attribute.GetCustomAttributes(type, typeof(TAttr)).FirstOrDefault() as TAttr;
         }
 
-        [CanBeNull]
         public static TAttr? GetFirstCustomAttribute<TAttr>(this PropertyInfo info)
              where TAttr : Attribute
         {
             return Attribute.GetCustomAttributes(info, typeof(TAttr)).FirstOrDefault() as TAttr;
         }
 
-        [CanBeNull]
         public static TAttr? GetFirstCustomAttribute<TAttr>(this Assembly assembly)
             where TAttr : Attribute
         {

@@ -34,13 +34,12 @@
 namespace NLog.Config
 {
     using System;
-    using JetBrains.Annotations;
     using NLog.Internal;
     using NLog.Targets;
 
     internal static class ServiceRepositoryExtensions
     {
-        internal static ServiceRepository GetServiceProvider([CanBeNull] this LoggingConfiguration? loggingConfiguration)
+        internal static ServiceRepository GetServiceProvider(this LoggingConfiguration? loggingConfiguration)
         {
             return loggingConfiguration?.LogFactory?.ServiceRepository ?? LogManager.LogFactory.ServiceRepository;
         }
@@ -138,7 +137,7 @@ namespace NLog.Config
         /// <summary>
         /// Registers the string serializer to use with <see cref="LogEventInfo.MessageTemplateParameters"/>
         /// </summary>
-        internal static ServiceRepository RegisterValueFormatter(this ServiceRepository serviceRepository, [NotNull] IValueFormatter valueFormatter)
+        internal static ServiceRepository RegisterValueFormatter(this ServiceRepository serviceRepository, IValueFormatter valueFormatter)
         {
             Guard.ThrowIfNull(valueFormatter);
 
@@ -146,7 +145,7 @@ namespace NLog.Config
             return serviceRepository;
         }
 
-        internal static ServiceRepository RegisterJsonConverter(this ServiceRepository serviceRepository, [NotNull] IJsonConverter jsonConverter)
+        internal static ServiceRepository RegisterJsonConverter(this ServiceRepository serviceRepository, IJsonConverter jsonConverter)
         {
             Guard.ThrowIfNull(jsonConverter);
 
@@ -154,7 +153,7 @@ namespace NLog.Config
             return serviceRepository;
         }
 
-        internal static ServiceRepository RegisterPropertyTypeConverter(this ServiceRepository serviceRepository, [NotNull] IPropertyTypeConverter converter)
+        internal static ServiceRepository RegisterPropertyTypeConverter(this ServiceRepository serviceRepository, IPropertyTypeConverter converter)
         {
             Guard.ThrowIfNull(converter);
 
@@ -162,7 +161,7 @@ namespace NLog.Config
             return serviceRepository;
         }
 
-        internal static ServiceRepository RegisterObjectTypeTransformer(this ServiceRepository serviceRepository, [NotNull] IObjectTypeTransformer transformer)
+        internal static ServiceRepository RegisterObjectTypeTransformer(this ServiceRepository serviceRepository, IObjectTypeTransformer transformer)
         {
             Guard.ThrowIfNull(transformer);
 

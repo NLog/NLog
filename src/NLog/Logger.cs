@@ -872,7 +872,7 @@ namespace NLog
             }
         }
 
-        private void WriteLogEventToTargets([NotNull] LogEventInfo logEvent, [NotNull] ITargetWithFilterChain targetsForLevel)
+        private void WriteLogEventToTargets(LogEventInfo logEvent, ITargetWithFilterChain targetsForLevel)
         {
             try
             {
@@ -892,7 +892,7 @@ namespace NLog
             }
         }
 
-        private void WriteLogEventToTargets(Type wrapperType, [NotNull] LogEventInfo logEvent, [NotNull] ITargetWithFilterChain targetsForLevel)
+        private void WriteLogEventToTargets(Type wrapperType, LogEventInfo logEvent, ITargetWithFilterChain targetsForLevel)
         {
             try
             {

@@ -56,8 +56,6 @@ namespace NLog.Config
     /// </remarks>
     public abstract class LoggingConfigurationParser : LoggingConfiguration
     {
-        private readonly ServiceRepository _serviceRepository;
-
         /// <summary>
         /// Constructor
         /// </summary>
@@ -65,7 +63,6 @@ namespace NLog.Config
         protected LoggingConfigurationParser(LogFactory logFactory)
             : base(logFactory)
         {
-            _serviceRepository = logFactory.ServiceRepository;
         }
 
         /// <summary>
@@ -204,7 +201,7 @@ namespace NLog.Config
                 ConfigurationItemFactory.Default.AssemblyLoader.ScanForAutoLoadExtensions(ConfigurationItemFactory.Default);
             }
 
-            _serviceRepository.ParseMessageTemplates(LogFactory, parseMessageTemplates);
+            LogFactory.ServiceRepository.ParseMessageTemplates(LogFactory, parseMessageTemplates);
         }
 
         /// <summary>

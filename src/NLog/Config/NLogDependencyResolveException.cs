@@ -34,7 +34,6 @@
 namespace NLog.Config
 {
     using System;
-    using JetBrains.Annotations;
     using NLog.Internal;
 
     /// <summary>
@@ -45,12 +44,12 @@ namespace NLog.Config
         /// <summary>
         /// Typed we tried to resolve
         /// </summary>
-        [NotNull] public Type ServiceType { get; }
+        public Type ServiceType { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NLogDependencyResolveException" /> class.
         /// </summary>
-        public NLogDependencyResolveException(string message, [NotNull] Type serviceType) : base(CreateFullMessage(serviceType, message))
+        public NLogDependencyResolveException(string message, Type serviceType) : base(CreateFullMessage(serviceType, message))
         {
             ServiceType = Guard.ThrowIfNull(serviceType);
         }
@@ -58,7 +57,7 @@ namespace NLog.Config
         /// <summary>
         /// Initializes a new instance of the <see cref="NLogDependencyResolveException" /> class.
         /// </summary>
-        public NLogDependencyResolveException(string message, Exception innerException, [NotNull] Type serviceType) : base(CreateFullMessage(serviceType, message), innerException)
+        public NLogDependencyResolveException(string message, Exception innerException, Type serviceType) : base(CreateFullMessage(serviceType, message), innerException)
         {
             ServiceType = Guard.ThrowIfNull(serviceType);
         }

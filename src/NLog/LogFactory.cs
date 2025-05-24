@@ -219,6 +219,7 @@ namespace NLog
         /// <remarks>
         /// Setter will re-configure all <see cref="Logger"/>-objects, so no need to also call <see cref="ReconfigExistingLoggers()" />
         /// </remarks>
+        [CanBeNull]
         public LoggingConfiguration? Configuration
         {
             get
@@ -339,7 +340,6 @@ namespace NLog
         /// <value>
         /// Specific culture info or null to use <see cref="CultureInfo.CurrentCulture"/>
         /// </value>
-        [CanBeNull]
         public CultureInfo? DefaultCultureInfo
         {
             get => _config is null ? _defaultCultureInfo : _config.DefaultCultureInfo;

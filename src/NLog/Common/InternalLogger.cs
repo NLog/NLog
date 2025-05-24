@@ -281,7 +281,7 @@ namespace NLog.Common
         /// <param name="level">level</param>
         /// <param name="message">message</param>
         /// <param name="args">optional args for <paramref name="message"/></param>
-        private static void Write([CanBeNull] Exception? ex, LogLevel level, string message, [CanBeNull] object?[]? args)
+        private static void Write(Exception? ex, LogLevel level, string message, object?[]? args)
         {
             if (!IsLogLevelEnabled(level))
             {
@@ -354,7 +354,7 @@ namespace NLog.Common
         /// <summary>
         /// Create log line with timestamp, exception message etc (if configured)
         /// </summary>
-        private static string CreateLogLine([CanBeNull] Exception? ex, LogLevel level, string fullMessage)
+        private static string CreateLogLine(Exception? ex, LogLevel level, string fullMessage)
         {
             const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
             const string fieldSeparator = " ";

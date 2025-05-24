@@ -34,7 +34,6 @@
 namespace NLog.Common
 {
     using System;
-    using JetBrains.Annotations;
 
     /// <summary>
     /// Internal LogEvent details from <see cref="InternalLogger"/>
@@ -54,24 +53,21 @@ namespace NLog.Common
         /// <summary>
         /// The exception. Could be null.
         /// </summary>
-        [CanBeNull]
         public Exception? Exception { get; }
 
         /// <summary>
         /// The type that triggered this internal log event, for example the FileTarget.
         /// This property is not always populated.
         /// </summary>
-        [CanBeNull]
         public Type? SenderType { get; }
 
         /// <summary>
         /// The context name that triggered this internal log event, for example the name of the Target.
         /// This property is not always populated.
         /// </summary>
-        [CanBeNull]
         public string? SenderName { get; }
 
-        internal InternalLogEventArgs(string message, LogLevel level, [CanBeNull] Exception? exception, [CanBeNull] Type? senderType, [CanBeNull] string? senderName)
+        internal InternalLogEventArgs(string message, LogLevel level, Exception? exception, Type? senderType, string? senderName)
         {
             Message = message;
             Level = level;

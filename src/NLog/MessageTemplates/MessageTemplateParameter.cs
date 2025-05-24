@@ -33,7 +33,6 @@
 
 namespace NLog.MessageTemplates
 {
-    using JetBrains.Annotations;
     using NLog.Internal;
 
     /// <summary>
@@ -45,20 +44,17 @@ namespace NLog.MessageTemplates
         /// Parameter Name extracted from <see cref="LogEventInfo.Message"/>
         /// This is everything between "{" and the first of ",:}".
         /// </summary>
-        [NotNull]
         public string Name { get; }
 
         /// <summary>
         /// Parameter Value extracted from the <see cref="LogEventInfo.Parameters"/>-array
         /// </summary>
-        [CanBeNull]
         public object? Value { get; }
 
         /// <summary>
         /// Format to render the parameter.
         /// This is everything between ":" and the first unescaped "}"
         /// </summary>
-        [CanBeNull]
         public string? Format { get; }
 
         /// <summary>
@@ -102,7 +98,7 @@ namespace NLog.MessageTemplates
         /// <param name="name">Parameter Name</param>
         /// <param name="value">Parameter Value</param>
         /// <param name="format">Parameter Format</param>
-        internal MessageTemplateParameter([NotNull] string name, object? value, string? format)
+        internal MessageTemplateParameter(string name, object? value, string? format)
         {
             Name = Guard.ThrowIfNull(name);
             Value = value;
@@ -117,7 +113,7 @@ namespace NLog.MessageTemplates
         /// <param name="value">Parameter Value</param>
         /// <param name="format">Parameter Format</param>
         /// <param name="captureType">Parameter CaptureType</param>
-        public MessageTemplateParameter([NotNull] string name, object? value, string? format, CaptureType captureType)
+        public MessageTemplateParameter(string name, object? value, string? format, CaptureType captureType)
         {
             Name = Guard.ThrowIfNull(name);
             Value = value;

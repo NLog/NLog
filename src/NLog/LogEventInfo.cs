@@ -212,9 +212,8 @@ namespace NLog
         /// </summary>
         public LogLevel Level { get; set; }
 
-        [CanBeNull] internal CallSiteInformation? CallSiteInformation { get; private set; }
+        internal CallSiteInformation? CallSiteInformation { get; private set; }
 
-        [NotNull]
         internal CallSiteInformation GetCallSiteInformationInternal() { return CallSiteInformation ?? (CallSiteInformation = new CallSiteInformation()); }
 
         /// <summary>
@@ -709,7 +708,7 @@ namespace NLog
             return true;
         }
 
-        internal void SetMessageFormatter([NotNull] LogMessageFormatter messageFormatter, [CanBeNull] LogMessageFormatter? singleTargetMessageFormatter)
+        internal void SetMessageFormatter(LogMessageFormatter messageFormatter, LogMessageFormatter? singleTargetMessageFormatter)
         {
             bool hasCustomMessageFormatter = _messageFormatter != null;
             if (!hasCustomMessageFormatter)

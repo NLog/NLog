@@ -38,7 +38,6 @@ namespace NLog.Internal.FileAppenders
     using System.Security;
     using System.Threading;
     using System.Text;
-    using JetBrains.Annotations;
 
 #if NETFRAMEWORK
     using System.Security.AccessControl;

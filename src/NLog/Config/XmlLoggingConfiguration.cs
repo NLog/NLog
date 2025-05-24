@@ -39,7 +39,6 @@ namespace NLog.Config
     using System.IO;
     using System.Linq;
     using System.Threading;
-    using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Internal;
     using NLog.Layouts;
@@ -68,7 +67,7 @@ namespace NLog.Config
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="fileName">Path to the config-file to read.</param>
-        public XmlLoggingConfiguration([NotNull] string fileName)
+        public XmlLoggingConfiguration(string fileName)
             : this(fileName, LogManager.LogFactory)
         { }
 
@@ -77,7 +76,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="fileName">Path to the config-file to read.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
-        public XmlLoggingConfiguration([NotNull] string fileName, LogFactory logFactory)
+        public XmlLoggingConfiguration(string fileName, LogFactory logFactory)
             : base(logFactory)
         {
             Guard.ThrowIfNullOrEmpty(fileName);
@@ -88,7 +87,7 @@ namespace NLog.Config
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="xmlSource">Configuration file to be read.</param>
-        public XmlLoggingConfiguration([NotNull] TextReader xmlSource)
+        public XmlLoggingConfiguration(TextReader xmlSource)
             : this(xmlSource, null)
         {
         }
@@ -98,7 +97,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="xmlSource">Configuration file to be read.</param>
         /// <param name="filePath">Path to the config-file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
-        public XmlLoggingConfiguration([NotNull] TextReader xmlSource, string? filePath)
+        public XmlLoggingConfiguration(TextReader xmlSource, string? filePath)
             : this(xmlSource, filePath, LogManager.LogFactory)
         {
         }
@@ -109,7 +108,7 @@ namespace NLog.Config
         /// <param name="xmlSource">Configuration file to be read.</param>
         /// <param name="filePath">Path to the config-file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
-        public XmlLoggingConfiguration([NotNull] TextReader xmlSource, string? filePath, LogFactory logFactory)
+        public XmlLoggingConfiguration(TextReader xmlSource, string? filePath, LogFactory logFactory)
             : base(logFactory)
         {
             Guard.ThrowIfNull(xmlSource);
@@ -122,7 +121,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="reader">XML reader to read from.</param>
         [Obsolete("Instead use TextReader as input. Marked obsolete with NLog 6.0")]
-        public XmlLoggingConfiguration([NotNull] System.Xml.XmlReader reader)
+        public XmlLoggingConfiguration(System.Xml.XmlReader reader)
             : this(reader, null) { }
 
         /// <summary>
@@ -131,7 +130,7 @@ namespace NLog.Config
         /// <param name="reader">XmlReader containing the configuration section.</param>
         /// <param name="fileName">Path to the config-file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         [Obsolete("Instead use TextReader as input. Marked obsolete with NLog 6.0")]
-        public XmlLoggingConfiguration([NotNull] System.Xml.XmlReader reader, [CanBeNull] string? fileName)
+        public XmlLoggingConfiguration(System.Xml.XmlReader reader, string? fileName)
             : this(reader, fileName, LogManager.LogFactory)
         { }
 
@@ -142,7 +141,7 @@ namespace NLog.Config
         /// <param name="fileName">Path to the config-file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         [Obsolete("Instead use TextReader as input. Marked obsolete with NLog 6.0")]
-        public XmlLoggingConfiguration([NotNull] System.Xml.XmlReader reader, [CanBeNull] string? fileName, LogFactory logFactory)
+        public XmlLoggingConfiguration(System.Xml.XmlReader reader, string? fileName, LogFactory logFactory)
             : base(logFactory)
         {
             Guard.ThrowIfNull(reader);
@@ -156,7 +155,7 @@ namespace NLog.Config
         /// <param name="xmlContents">NLog configuration as XML string.</param>
         /// <param name="filePath">Path to the config-file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
-        internal XmlLoggingConfiguration([NotNull] string xmlContents, [CanBeNull] string filePath, LogFactory logFactory)
+        internal XmlLoggingConfiguration(string xmlContents, string filePath, LogFactory logFactory)
             : base(logFactory)
         {
             Guard.ThrowIfNullOrEmpty(xmlContents);
@@ -338,7 +337,7 @@ namespace NLog.Config
 
 #if NETFRAMEWORK
         [Obsolete("Instead use TextReader as input. Marked obsolete with NLog 6.0")]
-        private void ParseFromXmlReader([NotNull] System.Xml.XmlReader reader, [CanBeNull] string? filePath)
+        private void ParseFromXmlReader(System.Xml.XmlReader reader, string? filePath)
         {
             try
             {
@@ -391,7 +390,7 @@ namespace NLog.Config
         /// <summary>
         /// Include new file into the configuration. Check if not already included.
         /// </summary>
-        private void IncludeNewConfigFile([NotNull] string filePath, bool autoReloadDefault)
+        private void IncludeNewConfigFile(string filePath, bool autoReloadDefault)
         {
             if (!_fileMustAutoReloadLookup.ContainsKey(GetFileLookupKey(filePath)))
             {
@@ -409,7 +408,7 @@ namespace NLog.Config
         /// <param name="content"></param>
         /// <param name="filePath">Path to the config-file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseTopLevel(ILoggingConfigurationElement content, [CanBeNull] string? filePath, bool autoReloadDefault)
+        private void ParseTopLevel(ILoggingConfigurationElement content, string? filePath, bool autoReloadDefault)
         {
             content.AssertName("nlog", "configuration");
 
@@ -431,7 +430,7 @@ namespace NLog.Config
         /// <param name="configurationElement"></param>
         /// <param name="filePath">Path to the config-file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseConfigurationElement(ILoggingConfigurationElement configurationElement, [CanBeNull] string? filePath, bool autoReloadDefault)
+        private void ParseConfigurationElement(ILoggingConfigurationElement configurationElement, string? filePath, bool autoReloadDefault)
         {
             InternalLogger.Trace("ParseConfigurationElement");
             configurationElement.AssertName("configuration");
@@ -449,7 +448,7 @@ namespace NLog.Config
         /// <param name="nlogElement"></param>
         /// <param name="filePath">Path to the config-file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseNLogElement(ILoggingConfigurationElement nlogElement, [CanBeNull] string? filePath, bool autoReloadDefault)
+        private void ParseNLogElement(ILoggingConfigurationElement nlogElement, string? filePath, bool autoReloadDefault)
         {
             InternalLogger.Trace("ParseNLogElement");
             nlogElement.AssertName("nlog");

@@ -38,9 +38,9 @@ namespace NLog.Config
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Globalization;
-    using System.Linq;
     using System.Text;
     using NLog.Filters;
+    using NLog.Internal;
     using NLog.Targets;
 
     /// <summary>
@@ -57,7 +57,6 @@ namespace NLog.Config
         /// Create an empty <see cref="LoggingRule" />.
         /// </summary>
         public LoggingRule()
-            : this(null)
         {
         }
 
@@ -77,8 +76,8 @@ namespace NLog.Config
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, LogLevel minLevel, LogLevel maxLevel, Target target)
-            : this()
         {
+            Guard.ThrowIfNull(target);
             LoggerNamePattern = loggerNamePattern;
             _targets.Add(target);
             EnableLoggingForLevels(minLevel, maxLevel);
@@ -91,8 +90,8 @@ namespace NLog.Config
         /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, LogLevel minLevel, Target target)
-            : this()
         {
+            Guard.ThrowIfNull(target);
             LoggerNamePattern = loggerNamePattern;
             _targets.Add(target);
             EnableLoggingForLevels(minLevel, LogLevel.MaxLevel);
@@ -104,8 +103,8 @@ namespace NLog.Config
         /// <param name="loggerNamePattern">Logger name pattern used for <see cref="LoggerNamePattern"/>. It may include one or more '*' or '?' wildcards at any position.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, Target target)
-            : this()
         {
+            Guard.ThrowIfNull(target);
             LoggerNamePattern = loggerNamePattern;
             _targets.Add(target);
         }
@@ -132,7 +131,7 @@ namespace NLog.Config
         private readonly List<LoggingRule> _childRules = new List<LoggingRule>();
         [Obsolete("Very exotic feature without any unit-tests, not sure if it works. Marked obsolete with NLog v5.3")]
         internal LoggingRule[] GetChildRulesThreadSafe() { lock (_childRules) return _childRules.ToArray(); }
-        internal Target[] GetTargetsThreadSafe() { lock (_targets) return _targets.Count == 0 ? NLog.Internal.ArrayHelper.Empty<Target>() : _targets.ToArray(); }
+        internal Target[] GetTargetsThreadSafe() { lock (_targets) return _targets.Count == 0 ? ArrayHelper.Empty<Target>() : _targets.ToArray(); }
         internal bool RemoveTargetThreadSafe(Target target) { lock (_targets) return _targets.Remove(target); }
 
         /// <summary>
@@ -274,6 +273,8 @@ namespace NLog.Config
         /// <param name="maxLevel">Maximum log level to be disabled.</param>
         public void DisableLoggingForLevels(LogLevel minLevel, LogLevel maxLevel)
         {
+            Guard.ThrowIfNull(minLevel);
+            Guard.ThrowIfNull(maxLevel);
             _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetLoggingLevels(minLevel, maxLevel, false);
         }
 
@@ -284,6 +285,8 @@ namespace NLog.Config
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
         public void SetLoggingLevels(LogLevel minLevel, LogLevel maxLevel)
         {
+            Guard.ThrowIfNull(minLevel);
+            Guard.ThrowIfNull(maxLevel);
             _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetLoggingLevels(LogLevel.MinLevel, LogLevel.MaxLevel, false).SetLoggingLevels(minLevel, maxLevel, true);
         }
 
