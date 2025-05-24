@@ -33,12 +33,13 @@
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System;
     using System.Globalization;
     using Xunit;
 
+    [Obsolete("Use ${counter:sequence=global} instead of ${sequenceid}. Marked obsolete with NLog 6.0")]
     public class SequenceIdLayoutRendererTest : NLogTestBase
     {
-
         [Fact]
         public void RenderSequenceIdLayoutRenderer()
         {

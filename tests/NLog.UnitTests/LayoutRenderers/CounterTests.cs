@@ -100,13 +100,13 @@ namespace NLog.UnitTests.LayoutRenderers
             var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             logger.Info("a");
-            AssertDebugLastMessage("debug", "a 1 1");
+            AssertDebugLastMessage("debug", "a 4 1");
             logger.Warn("a");
-            AssertDebugLastMessage("debug", "a 4 2");
+            AssertDebugLastMessage("debug", "a 7 2");
             logger.Error("a");
-            AssertDebugLastMessage("debug", "a 7 3");
+            AssertDebugLastMessage("debug", "a 10 3");
             logger.Fatal("a");
-            AssertDebugLastMessage("debug", "a 10 4");
+            AssertDebugLastMessage("debug", "a 13 4");
         }
 
         [Fact]

@@ -48,6 +48,7 @@ namespace NLog.Config
     /// </summary>
     internal static class AssemblyExtensionTypes
     {
+#pragma warning disable CS0618 // Type or member is obsolete
 <#
     string[] NetFrameworkOnly = new [] {
         "NLog.LayoutRenderers.AppSettingLayoutRenderer",
@@ -259,5 +260,6 @@ namespace NLog.Config
                 factory.GetConditionMethodFactory().RegisterThreeParameters("ends-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
             }
         }
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 }

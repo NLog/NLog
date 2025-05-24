@@ -121,7 +121,9 @@ namespace NLog.UnitTests.Targets.Wrappers
                 for (int i = 0; i < itemPrepareList.Capacity; ++i)
                 {
                     var logEvent = new LogEventInfo();
+#pragma warning disable CS0618 // Type or member is obsolete
                     int sequenceID = logEvent.SequenceID;
+#pragma warning restore CS0618 // Type or member is obsolete
                     bool blockConsumer = (itemPrepareList.Capacity / 2) == i;  // Force producers to get into blocking-mode
                     itemPrepareList.Add(logEvent.WithContinuation((ex) => { if (blockConsumer) Thread.Sleep(125); itemWrittenList.Add(sequenceID); }));
                 }

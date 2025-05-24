@@ -33,12 +33,16 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
+    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
 
     /// <summary>
     /// The sequence ID
+    ///
+    /// Marked obsolete with NLog 6.0, instead use ${counter}
     /// </summary>
     /// <remarks>
     /// <a href="https://github.com/NLog/NLog/wiki/SequenceId-layout-renderer">See NLog Wiki</a>
@@ -46,6 +50,8 @@ namespace NLog.LayoutRenderers
     /// <seealso href="https://github.com/NLog/NLog/wiki/SequenceId-layout-renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("sequenceid")]
     [ThreadAgnostic]
+    [Obsolete("Use ${counter:sequence=global} instead of ${sequenceid}. Marked obsolete with NLog 6.0")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class SequenceIdLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <inheritdoc/>

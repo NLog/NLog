@@ -417,9 +417,11 @@ namespace NLog.Internal
                 case TypeCode.Int64:
                     {
                         long int64 = value.ToInt64(CultureInfo.InvariantCulture);
+#if NETFRAMEWORK
                         if (int64 < int.MaxValue && int64 > int.MinValue)
                             sb.AppendInvariant((int)int64);
                         else
+#endif
                             sb.Append(int64);
                     }
                     break;
@@ -428,9 +430,11 @@ namespace NLog.Internal
                 case TypeCode.UInt64:
                     {
                         ulong uint64 = value.ToUInt64(CultureInfo.InvariantCulture);
+#if NETFRAMEWORK
                         if (uint64 < uint.MaxValue)
                             sb.AppendInvariant((uint)uint64);
                         else
+#endif
                             sb.Append(uint64);
                     }
                     break;

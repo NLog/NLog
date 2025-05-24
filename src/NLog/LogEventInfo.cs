@@ -185,10 +185,13 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the unique identifier of log event which is automatically generated
-        /// and monotonously increasing.
+        /// Gets the sequence number for this LogEvent, which monotonously increasing for each LogEvent until int-overflow
+        ///
+        /// Marked obsolete with NLog 6.0, instead use ${counter:sequence=global} or ${guid:GeneratedFromLogEvent=true}
         /// </summary>
         // ReSharper disable once InconsistentNaming
+        [Obsolete("Use ${counter:sequence=global} instead of ${sequenceid}. Marked obsolete with NLog 6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int SequenceID
         {
             get
