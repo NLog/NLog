@@ -59,17 +59,16 @@ namespace NLog.Targets
         {
             Name = name;
             Layout = layout;
-            IncludeEmptyValue = false;
         }
 
         /// <summary>
-        /// Gets or sets the name of the attribute.
+        /// Gets or sets the name of the property.
         /// </summary>
         /// <docgen category='Layout Options' order='1' />
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the layout that will be rendered as the attribute's value.
+        /// Gets or sets the layout used for rendering the property value.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
@@ -87,8 +86,9 @@ namespace NLog.Targets
         public Layout? DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
-        /// Gets or sets when an empty value should cause the property to be included
+        /// Gets or sets whether empty property value should be included in the output. Default = false
         /// </summary>
+        /// <remarks>Empty value is either null or empty string</remarks>
         /// <docgen category='Layout Options' order='100' />
         public bool IncludeEmptyValue
         {

@@ -55,7 +55,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Gets or sets the layout that will render the result value
+        /// Gets or sets the layout used for rendering the value.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public Layout Layout

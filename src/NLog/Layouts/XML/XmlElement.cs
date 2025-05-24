@@ -81,7 +81,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Value inside the element
+        /// Gets or sets the layout used for rendering the XML-element InnerText.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public Layout Layout { get => Value; set => Value = value; }

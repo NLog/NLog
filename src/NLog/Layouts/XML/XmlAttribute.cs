@@ -80,7 +80,7 @@ namespace NLog.Layouts
         private string _name = string.Empty;
 
         /// <summary>
-        /// Gets or sets the layout that will be rendered as the attribute's value.
+        /// Gets or sets the layout used for rendering the attribute value.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
@@ -104,8 +104,9 @@ namespace NLog.Layouts
         public bool Encode { get; set; }
 
         /// <summary>
-        /// Gets or sets whether an attribute with empty value should be included in the output
+        /// Gets or sets whether empty attribute value should be included in the output. Default = false
         /// </summary>
+        /// <remarks>Empty value is either null or empty string</remarks>
         /// <docgen category='Layout Options' order='50' />
         public bool IncludeEmptyValue
         {

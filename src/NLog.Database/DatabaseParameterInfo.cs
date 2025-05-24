@@ -109,7 +109,7 @@ namespace NLog.Targets
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the layout that should be use to calculate the value for the parameter.
+        /// Gets or sets the layout used for rendering the database-parameter value.
         /// </summary>
         /// <docgen category='Parameter Options' order='1' />
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }

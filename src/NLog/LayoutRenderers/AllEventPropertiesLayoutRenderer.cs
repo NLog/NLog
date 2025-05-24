@@ -83,10 +83,9 @@ namespace NLog.LayoutRenderers
         private string _separatorOriginal = ", ";
 
         /// <summary>
-        /// Get or set if empty values should be included.
-        ///
-        /// A value is empty when null or in case of a string, null or empty string.
+        /// Gets or sets whether empty property-values should be included in the output. Default = false
         /// </summary>
+        /// <remarks>Empty value is either null or empty string</remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeEmptyValues { get; set; }
 

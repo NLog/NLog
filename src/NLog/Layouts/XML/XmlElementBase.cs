@@ -96,9 +96,8 @@ namespace NLog.Layouts
         public IList<XmlAttribute> Attributes { get; } = new List<XmlAttribute>();
 
         /// <summary>
-        /// Gets or sets whether a ElementValue with empty value should be included in the output
+        /// Gets or sets whether empty XML-element should be included in the output. Default = false
         /// </summary>
-        /// <docgen category='Layout Options' order='100' />
         public bool IncludeEmptyValue { get; set; }
 
         /// <summary>
