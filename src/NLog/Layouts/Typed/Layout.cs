@@ -37,7 +37,6 @@ namespace NLog.Layouts
     using System.ComponentModel;
     using System.Globalization;
     using System.Text;
-    using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -149,7 +148,7 @@ namespace NLog.Layouts
             return RenderTypedValue(logEvent, null, defaultValue);
         }
 
-        internal T? RenderTypedValue(LogEventInfo logEvent, [CanBeNull] StringBuilder? stringBuilder, T? defaultValue)
+        internal T? RenderTypedValue(LogEventInfo logEvent, StringBuilder? stringBuilder, T? defaultValue)
         {
             if (IsFixed)
                 return _fixedValue;
@@ -173,7 +172,7 @@ namespace NLog.Layouts
             return defaultValue;
         }
 
-        private object? RenderObjectValue(LogEventInfo logEvent, [CanBeNull] StringBuilder? stringBuilder)
+        private object? RenderObjectValue(LogEventInfo logEvent, StringBuilder? stringBuilder)
         {
             if (logEvent is null)
                 return null;
@@ -238,7 +237,7 @@ namespace NLog.Layouts
             return new Layout<T>(layoutMethod, options);
         }
 
-        private void PrecalculateInnerLayout(LogEventInfo logEvent, [CanBeNull] StringBuilder? target)
+        private void PrecalculateInnerLayout(LogEventInfo logEvent, StringBuilder? target)
         {
             if (IsFixed || (_layoutValue.ThreadAgnostic && !_layoutValue.ThreadAgnosticImmutable))
                 return;

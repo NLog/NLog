@@ -38,6 +38,7 @@ namespace NLog
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Runtime.CompilerServices;
+    using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -126,6 +127,7 @@ namespace NLog
         /// <remarks>
         /// Setter will re-configure all <see cref="Logger"/>-objects, so no need to also call <see cref="ReconfigExistingLoggers()" />
         /// </remarks>
+        [CanBeNull]
         public static LoggingConfiguration? Configuration
         {
             get => LogFactory.Configuration;

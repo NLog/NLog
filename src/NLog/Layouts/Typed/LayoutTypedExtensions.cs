@@ -33,7 +33,6 @@
 
 namespace NLog
 {
-    using JetBrains.Annotations;
     using NLog.Layouts;
     using NLog.Targets;
 
@@ -51,7 +50,7 @@ namespace NLog
         /// <param name="logEvent">The logevent info.</param>
         /// <param name="defaultValue">Fallback value when no value available</param>
         /// <returns>Result value when available, else fallback to defaultValue</returns>
-        public static T? RenderValue<T>([CanBeNull] this Layout<T>? layout, LogEventInfo logEvent, T? defaultValue = default(T))
+        public static T? RenderValue<T>(this Layout<T>? layout, LogEventInfo logEvent, T? defaultValue = default(T))
         {
             return layout is null ? defaultValue : layout.RenderTypedValue(logEvent, defaultValue);
         }

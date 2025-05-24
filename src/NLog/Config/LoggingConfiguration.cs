@@ -40,8 +40,6 @@ namespace NLog.Config
     using System.Globalization;
     using System.Linq;
     using System.Threading;
-    using JetBrains.Annotations;
-
     using NLog.Common;
     using NLog.Internal;
     using NLog.Layouts;
@@ -172,7 +170,6 @@ namespace NLog.Config
         /// <value>
         /// Specific culture info or null to use <see cref="CultureInfo.CurrentCulture"/>
         /// </value>
-        [CanBeNull]
         public CultureInfo? DefaultCultureInfo { get; set; }
 
         /// <summary>
@@ -210,7 +207,7 @@ namespace NLog.Config
         /// The target object with a non <see langword="null"/> <see cref="Target.Name"/>
         /// </param>
         /// <exception cref="ArgumentNullException">when <paramref name="target"/> is <see langword="null"/></exception>
-        public void AddTarget([NotNull] Target target)
+        public void AddTarget(Target target)
         {
             Guard.ThrowIfNull(target);
 
@@ -228,7 +225,7 @@ namespace NLog.Config
         /// <param name="target">The target object.</param>
         /// <exception cref="ArgumentException">when <paramref name="name"/> is <see langword="null"/></exception>
         /// <exception cref="ArgumentNullException">when <paramref name="target"/> is <see langword="null"/></exception>
-        public void AddTarget(string name, [NotNull] Target target)
+        public void AddTarget(string name, Target target)
         {
             Guard.ThrowIfNull(name);
             Guard.ThrowIfNull(target);
@@ -866,13 +863,11 @@ namespace NLog.Config
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [NotNull]
         internal string ExpandSimpleVariables(string? input)
         {
             return ExpandSimpleVariables(input, out var _);
         }
 
-        [NotNull]
         internal string ExpandSimpleVariables(string? input, out string? matchingVariableName)
         {
             var output = input;

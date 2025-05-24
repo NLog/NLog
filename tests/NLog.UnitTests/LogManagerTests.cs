@@ -31,15 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using JetBrains.Annotations;
-
 namespace NLog.UnitTests
 {
     using System;
-    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using NLog.Common;
     using NLog.Config;
     using NLog.Targets;
     using Xunit;
@@ -242,13 +238,11 @@ namespace NLog.UnitTests
 
         private static class ImAStaticClass
         {
-            [UsedImplicitly]
             public static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
             static ImAStaticClass() { }
 
             public static void DummyToInvokeInitializers() { }
-
         }
 
         [Fact]

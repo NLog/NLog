@@ -37,7 +37,6 @@ namespace NLog.Internal
     using System.Collections.Generic;
     using System.Globalization;
     using System.Text;
-    using JetBrains.Annotations;
     using MessageTemplates;
     using NLog.Config;
 
@@ -62,7 +61,7 @@ namespace NLog.Internal
         /// <param name="forceMessageTemplateRenderer">When true: Do not fallback to StringBuilder.Format for positional templates</param>
         /// <param name="singleTargetOnly"></param>
         /// 
-        public LogMessageTemplateFormatter([NotNull] LogFactory logFactory, bool forceMessageTemplateRenderer, bool singleTargetOnly)
+        public LogMessageTemplateFormatter(LogFactory logFactory, bool forceMessageTemplateRenderer, bool singleTargetOnly)
         {
             _logFactory = logFactory;
             _forceMessageTemplateRenderer = forceMessageTemplateRenderer;

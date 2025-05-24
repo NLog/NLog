@@ -39,7 +39,6 @@ namespace NLog.Layouts
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text;
-    using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -83,7 +82,6 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the logging configuration this target is part of.
         /// </summary>
-        [CanBeNull]
         protected internal LoggingConfiguration? LoggingConfiguration { get; private set; }
 
         /// <summary>

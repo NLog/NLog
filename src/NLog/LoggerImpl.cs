@@ -36,7 +36,6 @@ namespace NLog
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Config;
     using NLog.Filters;
@@ -49,7 +48,7 @@ namespace NLog
     {
         private const int StackTraceSkipMethods = 0;
 
-        internal static void Write([NotNull] Type loggerType, [NotNull] TargetWithFilterChain targetsForLevel, LogEventInfo logEvent, LogFactory logFactory)
+        internal static void Write(Type loggerType, TargetWithFilterChain targetsForLevel, LogEventInfo logEvent, LogFactory logFactory)
         {
             logEvent.SetMessageFormatter(logFactory.ActiveMessageFormatter, targetsForLevel.NextInChain is null ? logFactory.SingleTargetMessageFormatter : null);
 

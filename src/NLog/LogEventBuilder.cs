@@ -53,7 +53,7 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogEventBuilder"/> class.
         /// </summary>
         /// <param name="logger">The <see cref="NLog.Logger"/> to send the log event.</param>
-        public LogEventBuilder([NotNull] ILogger logger)
+        public LogEventBuilder(ILogger logger)
         {
             _logger = Guard.ThrowIfNull(logger);
             _logEvent = new LogEventInfo() { LoggerName = _logger.Name };
@@ -64,7 +64,7 @@ namespace NLog
         /// </summary>
         /// <param name="logger">The <see cref="NLog.Logger"/> to send the log event.</param>
         /// <param name="logLevel">The log level. LogEvent is only created when <see cref="LogLevel"/> is enabled for <paramref name="logger"/></param>
-        public LogEventBuilder([NotNull] ILogger logger, [NotNull] LogLevel logLevel)
+        public LogEventBuilder(ILogger logger, LogLevel logLevel)
         {
             _logger = Guard.ThrowIfNull(logger);
 
@@ -83,13 +83,11 @@ namespace NLog
         /// <summary>
         /// The logger to write the log event to
         /// </summary>
-        [NotNull]
         public ILogger Logger => _logger;
 
         /// <summary>
         /// Logging event that will be written
         /// </summary>
-        [CanBeNull]
         public LogEventInfo? LogEvent => _logEvent is null ? null : ResolveLogEvent(_logEvent);
 
         /// <summary>
@@ -97,7 +95,7 @@ namespace NLog
         /// </summary>
         /// <param name="propertyName">The name of the context property.</param>
         /// <param name="propertyValue">The value of the context property.</param>
-        public LogEventBuilder Property<T>([NotNull] string propertyName, T? propertyValue)
+        public LogEventBuilder Property<T>(string propertyName, T? propertyValue)
         {
             Guard.ThrowIfNull(propertyName);
 
@@ -112,7 +110,7 @@ namespace NLog
         /// Sets multiple per-event context properties on the logging event.
         /// </summary>
         /// <param name="properties">The properties to set.</param>
-        public LogEventBuilder Properties([NotNull] IEnumerable<KeyValuePair<string, object?>> properties)
+        public LogEventBuilder Properties(IEnumerable<KeyValuePair<string, object?>> properties)
         {
             Guard.ThrowIfNull(properties);
 

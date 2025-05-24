@@ -54,7 +54,7 @@ namespace NLog
         /// <param name="logger">The logger to write the log event to.</param>
         /// <param name="logLevel">The log level. When not</param>
         /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
-        public static LogEventBuilder ForLogEvent([NotNull] this ILogger logger, LogLevel? logLevel = null)
+        public static LogEventBuilder ForLogEvent(this ILogger logger, LogLevel? logLevel = null)
         {
             return logLevel is null ? new LogEventBuilder(logger) : new LogEventBuilder(logger, logLevel);
         }
@@ -64,7 +64,7 @@ namespace NLog
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
-        public static LogEventBuilder ForTraceEvent([NotNull] this ILogger logger)
+        public static LogEventBuilder ForTraceEvent(this ILogger logger)
         {
             return new LogEventBuilder(logger, LogLevel.Trace);
         }
@@ -74,7 +74,7 @@ namespace NLog
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
-        public static LogEventBuilder ForDebugEvent([NotNull] this ILogger logger)
+        public static LogEventBuilder ForDebugEvent(this ILogger logger)
         {
             return new LogEventBuilder(logger, LogLevel.Debug);
         }
@@ -84,7 +84,7 @@ namespace NLog
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
-        public static LogEventBuilder ForInfoEvent([NotNull] this ILogger logger)
+        public static LogEventBuilder ForInfoEvent(this ILogger logger)
         {
             return new LogEventBuilder(logger, LogLevel.Info);
         }
@@ -94,7 +94,7 @@ namespace NLog
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
-        public static LogEventBuilder ForWarnEvent([NotNull] this ILogger logger)
+        public static LogEventBuilder ForWarnEvent(this ILogger logger)
         {
             return new LogEventBuilder(logger, LogLevel.Warn);
         }
@@ -104,7 +104,7 @@ namespace NLog
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
-        public static LogEventBuilder ForErrorEvent([NotNull] this ILogger logger)
+        public static LogEventBuilder ForErrorEvent(this ILogger logger)
         {
             return new LogEventBuilder(logger, LogLevel.Error);
         }
@@ -114,7 +114,7 @@ namespace NLog
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
-        public static LogEventBuilder ForFatalEvent([NotNull] this ILogger logger)
+        public static LogEventBuilder ForFatalEvent(this ILogger logger)
         {
             return new LogEventBuilder(logger, LogLevel.Fatal);
         }
@@ -126,7 +126,7 @@ namespace NLog
         /// <param name="exception">The exception information of the logging event.</param>
         /// <param name="logLevel">The <see cref="LogLevel"/> for the log event. Defaults to <see cref="LogLevel.Error"/> when not specified.</param>
         /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
-        public static LogEventBuilder ForExceptionEvent([NotNull] this ILogger logger, Exception? exception, LogLevel? logLevel = null)
+        public static LogEventBuilder ForExceptionEvent(this ILogger logger, Exception? exception, LogLevel? logLevel = null)
         {
             return ForLogEvent(logger, logLevel ?? LogLevel.Error).Exception(exception);
         }
@@ -143,7 +143,7 @@ namespace NLog
         /// <param name="logger">A logger implementation that will handle the message.</param>
         /// <param name="value">The value to be written.</param>
         [Conditional("DEBUG")]
-        public static void ConditionalDebug<T>([NotNull] this ILogger logger, T? value)
+        public static void ConditionalDebug<T>(this ILogger logger, T? value)
         {
             logger.Debug(value);
         }
@@ -156,7 +156,7 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">The value to be written.</param>
         [Conditional("DEBUG")]
-        public static void ConditionalDebug<T>([NotNull] this ILogger logger, IFormatProvider? formatProvider, T? value)
+        public static void ConditionalDebug<T>(this ILogger logger, IFormatProvider? formatProvider, T? value)
         {
             logger.Debug(formatProvider, value);
         }
@@ -167,7 +167,7 @@ namespace NLog
         /// <param name="logger">A logger implementation that will handle the message.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         [Conditional("DEBUG")]
-        public static void ConditionalDebug([NotNull] this ILogger logger, LogMessageGenerator messageFunc)
+        public static void ConditionalDebug(this ILogger logger, LogMessageGenerator messageFunc)
         {
             logger.Debug(messageFunc);
         }
@@ -181,7 +181,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalDebug([NotNull] this ILogger logger, Exception? exception, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
+        public static void ConditionalDebug(this ILogger logger, Exception? exception, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             logger.Debug(exception, message, args);
         }
@@ -196,7 +196,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalDebug([NotNull] this ILogger logger, Exception? exception, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
+        public static void ConditionalDebug(this ILogger logger, Exception? exception, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             logger.Debug(exception, formatProvider, message, args);
         }
@@ -207,7 +207,7 @@ namespace NLog
         /// <param name="logger">A logger implementation that will handle the message.</param>
         /// <param name="message">Log message.</param>
         [Conditional("DEBUG")]
-        public static void ConditionalDebug([NotNull] this ILogger logger, [Localizable(false)] string message)
+        public static void ConditionalDebug(this ILogger logger, [Localizable(false)] string message)
         {
             logger.Debug(message);
         }
@@ -220,7 +220,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalDebug([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
+        public static void ConditionalDebug(this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             logger.Debug(message, args);
         }
@@ -234,7 +234,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalDebug([NotNull] this ILogger logger, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
+        public static void ConditionalDebug(this ILogger logger, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             logger.Debug(formatProvider, message, args);
         }
@@ -248,7 +248,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalDebug<TArgument>([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument? argument)
+        public static void ConditionalDebug<TArgument>(this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument? argument)
         {
             if (logger.IsDebugEnabled)
             {
@@ -267,7 +267,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalDebug<TArgument1, TArgument2>([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2)
+        public static void ConditionalDebug<TArgument1, TArgument2>(this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2)
         {
             if (logger.IsDebugEnabled)
             {
@@ -288,7 +288,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalDebug<TArgument1, TArgument2, TArgument3>([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2, TArgument3? argument3)
+        public static void ConditionalDebug<TArgument1, TArgument2, TArgument3>(this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2, TArgument3? argument3)
         {
             if (logger.IsDebugEnabled)
             {
@@ -310,7 +310,7 @@ namespace NLog
         /// <param name="logger">A logger implementation that will handle the message.</param>
         /// <param name="value">The value to be written.</param>
         [Conditional("DEBUG")]
-        public static void ConditionalTrace<T>([NotNull] this ILogger logger, T? value)
+        public static void ConditionalTrace<T>(this ILogger logger, T? value)
         {
             logger.Trace(value);
         }
@@ -323,7 +323,7 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">The value to be written.</param>
         [Conditional("DEBUG")]
-        public static void ConditionalTrace<T>([NotNull] this ILogger logger, IFormatProvider? formatProvider, T? value)
+        public static void ConditionalTrace<T>(this ILogger logger, IFormatProvider? formatProvider, T? value)
         {
             logger.Trace(formatProvider, value);
         }
@@ -334,7 +334,7 @@ namespace NLog
         /// <param name="logger">A logger implementation that will handle the message.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         [Conditional("DEBUG")]
-        public static void ConditionalTrace([NotNull] this ILogger logger, LogMessageGenerator messageFunc)
+        public static void ConditionalTrace(this ILogger logger, LogMessageGenerator messageFunc)
         {
             logger.Trace(messageFunc);
         }
@@ -348,7 +348,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalTrace([NotNull] this ILogger logger, Exception? exception, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
+        public static void ConditionalTrace(this ILogger logger, Exception? exception, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             logger.Trace(exception, message, args);
         }
@@ -363,7 +363,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalTrace([NotNull] this ILogger logger, Exception? exception, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
+        public static void ConditionalTrace(this ILogger logger, Exception? exception, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             logger.Trace(exception, formatProvider, message, args);
         }
@@ -374,7 +374,7 @@ namespace NLog
         /// <param name="logger">A logger implementation that will handle the message.</param>
         /// <param name="message">Log message.</param>
         [Conditional("DEBUG")]
-        public static void ConditionalTrace([NotNull] this ILogger logger, [Localizable(false)] string message)
+        public static void ConditionalTrace(this ILogger logger, [Localizable(false)] string message)
         {
             logger.Trace(message);
         }
@@ -387,7 +387,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalTrace([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
+        public static void ConditionalTrace(this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             logger.Trace(message, args);
         }
@@ -401,7 +401,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalTrace([NotNull] this ILogger logger, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
+        public static void ConditionalTrace(this ILogger logger, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
             logger.Trace(formatProvider, message, args);
         }
@@ -415,7 +415,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalTrace<TArgument>([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument? argument)
+        public static void ConditionalTrace<TArgument>(this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument? argument)
         {
             if (logger.IsTraceEnabled)
             {
@@ -434,7 +434,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalTrace<TArgument1, TArgument2>([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2)
+        public static void ConditionalTrace<TArgument1, TArgument2>(this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2)
         {
             if (logger.IsTraceEnabled)
             {
@@ -455,7 +455,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalTrace<TArgument1, TArgument2, TArgument3>([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2, TArgument3? argument3)
+        public static void ConditionalTrace<TArgument1, TArgument2, TArgument3>(this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2, TArgument3? argument3)
         {
             if (logger.IsTraceEnabled)
             {
@@ -472,7 +472,7 @@ namespace NLog
         /// <param name="level">The log level.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public static void Log([NotNull] this ILogger logger, LogLevel level, Exception? exception, LogMessageGenerator messageFunc)
+        public static void Log(this ILogger logger, LogLevel level, Exception? exception, LogMessageGenerator messageFunc)
         {
             if (logger.IsEnabled(level))
             {
@@ -486,7 +486,7 @@ namespace NLog
         /// <param name="logger">A logger implementation that will handle the message.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public static void Trace([NotNull] this ILogger logger, Exception? exception, LogMessageGenerator messageFunc)
+        public static void Trace(this ILogger logger, Exception? exception, LogMessageGenerator messageFunc)
         {
             if (logger.IsTraceEnabled)
             {
@@ -502,7 +502,7 @@ namespace NLog
         /// <param name="logger">A logger implementation that will handle the message.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public static void Debug([NotNull] this ILogger logger, Exception? exception, LogMessageGenerator messageFunc)
+        public static void Debug(this ILogger logger, Exception? exception, LogMessageGenerator messageFunc)
         {
             if (logger.IsDebugEnabled)
             {
@@ -518,7 +518,7 @@ namespace NLog
         /// <param name="logger">A logger implementation that will handle the message.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public static void Info([NotNull] this ILogger logger, Exception? exception, LogMessageGenerator messageFunc)
+        public static void Info(this ILogger logger, Exception? exception, LogMessageGenerator messageFunc)
         {
             if (logger.IsInfoEnabled)
             {
@@ -534,7 +534,7 @@ namespace NLog
         /// <param name="logger">A logger implementation that will handle the message.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public static void Warn([NotNull] this ILogger logger, Exception? exception, LogMessageGenerator messageFunc)
+        public static void Warn(this ILogger logger, Exception? exception, LogMessageGenerator messageFunc)
         {
             if (logger.IsWarnEnabled)
             {
@@ -550,7 +550,7 @@ namespace NLog
         /// <param name="logger">A logger implementation that will handle the message.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public static void Error([NotNull] this ILogger logger, Exception? exception, LogMessageGenerator messageFunc)
+        public static void Error(this ILogger logger, Exception? exception, LogMessageGenerator messageFunc)
         {
             if (logger.IsErrorEnabled)
             {
@@ -566,7 +566,7 @@ namespace NLog
         /// <param name="logger">A logger implementation that will handle the message.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public static void Fatal([NotNull] this ILogger logger, Exception? exception, LogMessageGenerator messageFunc)
+        public static void Fatal(this ILogger logger, Exception? exception, LogMessageGenerator messageFunc)
         {
             if (logger.IsFatalEnabled)
             {

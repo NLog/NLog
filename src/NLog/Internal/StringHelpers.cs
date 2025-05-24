@@ -85,7 +85,7 @@ namespace NLog.Internal
         /// Replace string with <paramref name="comparison"/>
         /// </summary>
         /// <returns>The same reference of nothing has been replaced.</returns>
-        public static string Replace([NotNull] string str, [NotNull] string oldValue, string newValue, StringComparison comparison, bool wholeWords = false)
+        public static string Replace(string str, string oldValue, string newValue, StringComparison comparison, bool wholeWords = false)
         {
             Guard.ThrowIfNull(str);
 
