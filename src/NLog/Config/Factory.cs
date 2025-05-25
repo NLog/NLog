@@ -84,6 +84,28 @@ namespace NLog.Config
 
         public bool CheckTypeAliasExists(string typeAlias) => _items.ContainsKey(FactoryExtensions.NormalizeName(typeAlias));
 
+        public void RegisterType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(string typeAlias) where TType : TBaseType, new()
+        {
+            typeAlias = FactoryExtensions.NormalizeName(typeAlias);
+
+            lock (ConfigurationItemFactory.SyncRoot)
+            {
+                _parentFactory.RegisterTypeProperties<TType>(() => new TType());
+                _items[typeAlias] = () => new TType();
+            }
+        }
+
+        public void RegisterType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(string typeAlias, Func<TType> itemCreator) where TType : TBaseType
+        {
+            typeAlias = FactoryExtensions.NormalizeName(typeAlias);
+
+            lock (ConfigurationItemFactory.SyncRoot)
+            {
+                _parentFactory.RegisterTypeProperties<TType>(() => itemCreator());
+                _items[typeAlias] = () => itemCreator();
+            }
+        }
+
         /// <summary>
         /// Registers the type.
         /// </summary>
@@ -171,28 +193,6 @@ namespace NLog.Config
             {
                 _parentFactory.RegisterTypeProperties(itemType, () => itemCreator.Invoke());
                 _items[itemNamePrefix + typeAlias] = () => itemCreator.Invoke();
-            }
-        }
-
-        public void RegisterType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(string typeAlias) where TType : TBaseType, new()
-        {
-            typeAlias = FactoryExtensions.NormalizeName(typeAlias);
-
-            lock (ConfigurationItemFactory.SyncRoot)
-            {
-                _parentFactory.RegisterTypeProperties<TType>(() => new TType());
-                _items[typeAlias] = () => new TType();
-            }
-        }
-
-        public void RegisterType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(string typeAlias, Func<TType> itemCreator) where TType : TBaseType
-        {
-            typeAlias = FactoryExtensions.NormalizeName(typeAlias);
-
-            lock (ConfigurationItemFactory.SyncRoot)
-            {
-                _parentFactory.RegisterTypeProperties<TType>(() => itemCreator());
-                _items[typeAlias] = () => itemCreator();
             }
         }
 

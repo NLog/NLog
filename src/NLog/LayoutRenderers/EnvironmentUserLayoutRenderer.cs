@@ -102,7 +102,7 @@ namespace NLog.LayoutRenderers
             return GetValueSafe(() => Environment.UserDomainName, DefaultDomain);
         }
 
-        private string GetValueSafe(Func<string> getValue, string defaultValue)
+        private static string GetValueSafe(Func<string> getValue, string defaultValue)
         {
             try
             {

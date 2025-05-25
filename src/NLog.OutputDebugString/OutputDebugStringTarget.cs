@@ -106,7 +106,7 @@ namespace NLog.Targets
             WriteDebugString(RenderLogEvent(Layout, logEvent));
         }
 
-        private void WriteDebugString(string message)
+        private static void WriteDebugString(string message)
         {
             NativeMethods.OutputDebugString(message);
         }

@@ -1095,14 +1095,10 @@ namespace NLog.Config
             try
             {
                 if (targetObject is null)
-                {
                     throw new NLogConfigurationException($"'{typeof(T).Name}' is null, and cannot assign property '{propertyName}'='{propertyValue}'");
-                }
 
                 if (!PropertyHelper.TryGetPropertyInfo(ConfigurationItemFactory.Default, targetObject, propertyName, out var propertyInfo) || propertyInfo is null)
-                {
                     throw new NLogConfigurationException($"'{targetObject.GetType()?.Name}' cannot assign unknown property '{propertyName}'='{propertyValue}'");
-                }
 
                 var propertyValueExpanded = ExpandSimpleVariables(propertyValue, out var matchingVariableName);
                 if (matchingVariableName != null && TryLookupDynamicVariable(matchingVariableName, out var matchingLayout))
@@ -1126,7 +1122,7 @@ namespace NLog.Config
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                var configException = new NLogConfigurationException($"'{targetObject?.GetType()?.Name}' cannot assign property '{propertyName}'='{propertyValue}' in section '{element.Name}'. Error: {ex.Message}", ex);
+                var configException = new NLogConfigurationException($"'{targetObject.GetType()?.Name}' cannot assign property '{propertyName}'='{propertyValue}' in section '{element.Name}'. Error: {ex.Message}", ex);
                 if (MustThrowConfigException(configException))
                     throw;
             }
