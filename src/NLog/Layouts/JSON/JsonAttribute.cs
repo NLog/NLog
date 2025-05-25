@@ -41,6 +41,10 @@ namespace NLog.Layouts
     /// <summary>
     /// JSON attribute.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/JsonLayout">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/JsonLayout">Documentation on NLog Wiki</seealso>
     [NLogConfigurationItem]
     public class JsonAttribute
     {

@@ -66,11 +66,6 @@ namespace NLog.Targets
     /// demonstrates the NetCat tool receiving log messages from Network target.
     /// </p>
     /// <img src="examples/targets/Screenshots/Network/Output.gif" />
-    /// <p>
-    /// There are two specialized versions of the Network target: <a href="T_NLog_Targets_ChainsawTarget.htm">Chainsaw</a>
-    /// and <a href="T_NLog_Targets_NLogViewerTarget.htm">NLogViewer</a> which write to instances of Chainsaw log4j viewer
-    /// or NLogViewer application respectively.
-    /// </p>
     /// </example>
     [Target("Network")]
     public class NetworkTarget : TargetWithLayout

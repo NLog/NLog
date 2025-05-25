@@ -34,11 +34,14 @@
 namespace NLog.Layouts
 {
     using NLog.Config;
-    using NLog.Targets.Internal;
 
     /// <summary>
     /// Represents a parameter for the <see cref="Log4JXmlEventLayout"/>
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Log4JXmlEventLayout">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Log4JXmlEventLayout">Documentation on NLog Wiki</seealso>
     [NLogConfigurationItem]
     public class Log4JXmlEventParameter
     {

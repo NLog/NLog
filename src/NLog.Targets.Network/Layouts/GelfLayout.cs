@@ -11,6 +11,10 @@ namespace NLog.Layouts
     /// <summary>
     /// GELF (Graylog Extended Log Format) is a JSON-based, structured log format for Graylog Log Management.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/GelfLayout">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/GelfLayout">Documentation on NLog Wiki</seealso>
     /// <example><para>
     /// {
     ///  "version": "1.1",
@@ -56,7 +60,6 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the Graylog Message Full-Message-field
         /// </summary>
-        /// <remarks>Will truncate when longer than 250 chars</remarks>
         public Layout GelfFullMessage { get; set; }
 
         /// <summary>
