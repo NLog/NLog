@@ -132,8 +132,17 @@ namespace NLog.Internal
 
             processingInstructions = null;
 
-            while (_xmlSource.Current == '<' && _xmlSource.Peek() == '?')
+            while (_xmlSource.Current == '<')
             {
+                if (_xmlSource.Peek() == '!')
+                {
+                    _xmlSource.MoveNext();
+                    SkipXmlComment();
+                    continue;
+                }
+                if (_xmlSource.Peek() != '?')
+                    break;
+
                 if (!TryBeginReadStartElement(out var instructionName, processingInstruction: true))
                     throw new XmlParserException("Invalid XML document. Cannot parse XML processing instruction");
 
