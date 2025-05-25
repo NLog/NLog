@@ -4,6 +4,18 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.0 RC1 (2025/04/25)
+
+**Major changes**
+- Updated NLog API with `<Nullable>enable</Nullable>` and introduced `Layout.Empty`
+- Marked `[RequiredParameter]` as obsolete, and replaced with explicit option validation during initialization.
+- Marked `LogEventInfo.SequenceID` and `${sequenceid}` as obsolete, and instead use `${counter:sequence=global}`.
+- Added support for params ReadOnlySpan when using C# 13
+- Prioritize generic Logger-methods by marking legacy methods with `[OverloadResolutionPriority(-1)]` when using C# 13
+- Skip LogEventInfo.Parameters-array-allocation when unable to defer message-template formatting.
+- Renamed ChainsawTarget to Log4JXmlTarget to match Log4JXmlEventLayout
+- Updated NLog.Schema to include intellisense for multiple NLog-assemblies.
+
 ### Version 6.0 Preview 1 (2025/04/27)
 
 **Major Changes**
