@@ -7,27 +7,27 @@
 
   <ItemGroup>
     <!-- Include the packages needed for the API docs -->
-    <PackageReference Include="NLog.Database" Version="6.0.0-preview1" />
+    <PackageReference Include="NLog.Database" Version="6.0.0-rc1" />
     <PackageReference Include="NLog.DiagnosticSource" version="5.*" />
     <PackageReference Include="NLog.Extensions.Hosting" Version="5.*" />
     <PackageReference Include="NLog.Extensions.Logging" Version="5.*" />
     <PackageReference Include="NLog.MailKit" version="5.*" />
     <PackageReference Include="NLog.MSMQ" Version="5.*" />
-    <PackageReference Include="NLog.OutputDebugString" Version="6.0.0-preview1" />
+    <PackageReference Include="NLog.OutputDebugString" Version="6.0.0-rc1" />
     <PackageReference Include="NLog.Owin.Logging" version="4.*" />
     <PackageReference Include="NLog.PerformanceCounter" Version="5.*" />
-    <PackageReference Include="NLog.RegEx" Version="6.0.0-preview1" />
-    <PackageReference Include="NLog.Targets.AtomicFile" Version="6.0.0-preview1" />
-    <PackageReference Include="NLog.Targets.GZipFile" Version="6.0.0-preview1" />
-    <PackageReference Include="NLog.Targets.Mail" Version="6.0.0-preview1" />
-    <PackageReference Include="NLog.Targets.Network" Version="6.0.0-preview1" />
-    <PackageReference Include="NLog.Targets.Trace" Version="6.0.0-preview1" />
-    <PackageReference Include="NLog.Targets.WebService" Version="6.0.0-preview1" />
+    <PackageReference Include="NLog.RegEx" Version="6.0.0-rc1" />
+    <PackageReference Include="NLog.Targets.AtomicFile" Version="6.0.0-rc1" />
+    <PackageReference Include="NLog.Targets.GZipFile" Version="6.0.0-rc1" />
+    <PackageReference Include="NLog.Targets.Mail" Version="6.0.0-rc1" />
+    <PackageReference Include="NLog.Targets.Network" Version="6.0.0-rc1" />
+    <PackageReference Include="NLog.Targets.Trace" Version="6.0.0-rc1" />
+    <PackageReference Include="NLog.Targets.WebService" Version="6.0.0-rc1" />
     <PackageReference Include="NLog.Wcf" Version="5.*" />
     <PackageReference Include="NLog.Web" Version="5.*" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="5.*" />
     <PackageReference Include="NLog.WindowsIdentity" Version="5.*" />
-    <PackageReference Include="NLog.WindowsRegistry" Version="6.0.0-preview1" />
+    <PackageReference Include="NLog.WindowsRegistry" Version="6.0.0-rc1" />
   </ItemGroup>
 
 </Project>
