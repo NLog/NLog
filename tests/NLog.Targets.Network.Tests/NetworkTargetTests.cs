@@ -1302,7 +1302,7 @@ namespace NLog.Targets.Network
         {
             // this would fail because of stack overflow in the
             // constructor of NLogViewerTarget
-            var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterTarget<ChainsawTarget>("NLogViewer"))
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterTarget<Log4JXmlTarget>("NLogViewer"))
                 .LoadConfigurationFromXml(@"
 <nlog>
   <targets>
@@ -1313,7 +1313,7 @@ namespace NLog.Targets.Network
   </rules>
 </nlog>").LogFactory;
 
-            var target = logFactory.Configuration.LoggingRules[0].Targets[0] as ChainsawTarget;
+            var target = logFactory.Configuration.LoggingRules[0].Targets[0] as Log4JXmlTarget;
             Assert.NotNull(target);
         }
 

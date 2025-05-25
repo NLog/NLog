@@ -491,8 +491,9 @@ namespace NLog.Config
             SafeRegisterNamedType(_targets, "logreceiverservice", "NLog.Targets.LogReceiverWebServiceTarget, NLog.Wcf", skipCheckExists);
             SafeRegisterNamedType(_targets, "outputdebugstring", "NLog.Targets.OutputDebugStringTarget, NLog.OutputDebugString", skipCheckExists);
             SafeRegisterNamedType(_targets, "network", "NLog.Targets.NetworkTarget, NLog.Targets.Network", skipCheckExists);
-            SafeRegisterNamedType(_targets, "chainsaw", "NLog.Targets.ChainsawTarget, NLog.Targets.Network", skipCheckExists);
-            SafeRegisterNamedType(_targets, "nlogviewer", "NLog.Targets.ChainsawTarget, NLog.Targets.Network", skipCheckExists);
+            SafeRegisterNamedType(_targets, "log4jxml", "NLog.Targets.Log4JXmlTarget, NLog.Targets.Network", skipCheckExists);
+            SafeRegisterNamedType(_targets, "chainsaw", "NLog.Targets.Log4JXmlTarget, NLog.Targets.Network", skipCheckExists);
+            SafeRegisterNamedType(_targets, "nlogviewer", "NLog.Targets.Log4JXmlTarget, NLog.Targets.Network", skipCheckExists);
             SafeRegisterNamedType(_targets, "syslog", "NLog.Targets.SyslogTarget, NLog.Targets.Network", skipCheckExists);
             SafeRegisterNamedType(_targets, "gelf", "NLog.Targets.GelfTarget, NLog.Targets.Network", skipCheckExists);
             SafeRegisterNamedType(_targets, "mail", "NLog.Targets.MailTarget, NLog.Targets.Mail", skipCheckExists);

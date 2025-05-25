@@ -40,7 +40,7 @@ namespace NLog.Targets
     using NLog.Layouts;
 
     /// <summary>
-    /// Sends log messages to the remote instance of Chainsaw application from log4j.
+    /// Sends log messages to the remote instance of Chainsaw / NLogViewer application using Log4J Xml
     /// </summary>
     /// <remarks>
     /// <a href="https://github.com/nlog/nlog/wiki/Chainsaw-target">See NLog Wiki</a>
@@ -51,36 +51,37 @@ namespace NLog.Targets
     /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>,
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/Chainsaw/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/Log4JXml/NLog.config" />
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/Chainsaw/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/Log4JXml/Simple/Example.cs" />
     /// </example>
+    [Target("Log4JXml")]
     [Target("Chainsaw")]
     [Target("NLogViewer")]
-    public class ChainsawTarget : NetworkTarget
+    public class Log4JXmlTarget : NetworkTarget
     {
         private readonly Log4JXmlEventLayout _log4JLayout = new Log4JXmlEventLayout();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChainsawTarget" /> class.
+        /// Initializes a new instance of the <see cref="Log4JXmlTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
-        public ChainsawTarget()
+        public Log4JXmlTarget()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChainsawTarget" /> class.
+        /// Initializes a new instance of the <see cref="Log4JXmlTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name">Name of the target.</param>
-        public ChainsawTarget(string name) : this()
+        public Log4JXmlTarget(string name) : this()
         {
             Name = name;
         }

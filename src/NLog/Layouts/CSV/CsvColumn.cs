@@ -38,6 +38,10 @@ namespace NLog.Layouts
     /// <summary>
     /// A column in the CSV.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/CsvLayout">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/CsvLayout">Documentation on NLog Wiki</seealso>
     [NLogConfigurationItem]
     public class CsvColumn
     {

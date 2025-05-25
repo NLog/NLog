@@ -40,6 +40,10 @@ namespace NLog.Targets
     /// <summary>
     /// Sends log messages to GrayLog server using either TCP or UDP with GELF-format
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/nlog/nlog/wiki/GELF-target">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/GELF-target">Documentation on NLog Wiki</seealso>
     [Target("Gelf")]
     public class GelfTarget : NetworkTarget
     {

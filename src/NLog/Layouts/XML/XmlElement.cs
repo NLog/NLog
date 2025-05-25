@@ -38,6 +38,10 @@ namespace NLog.Layouts
     /// <summary>
     /// A XML Element
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/XmlLayout">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/XmlLayout">Documentation on NLog Wiki</seealso>
     [ThreadAgnostic]
     public class XmlElement : XmlElementBase
     {

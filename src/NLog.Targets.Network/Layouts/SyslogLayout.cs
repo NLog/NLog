@@ -11,6 +11,10 @@ namespace NLog.Layouts
     /// <summary>
     /// A specialized layout that renders Syslog-formatted events in format Rfc3164 / Rfc5424
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/SyslogLayout">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/SyslogLayout">Documentation on NLog Wiki</seealso>
     [Layout("SyslogLayout")]
     [ThreadAgnostic]
     [AppDomainFixedOutput]
