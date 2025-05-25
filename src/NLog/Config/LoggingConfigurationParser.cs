@@ -209,14 +209,14 @@ namespace NLog.Config
         /// </summary>
         /// <param name="nlogConfig"></param>
         /// <returns></returns>
-        private ICollection<KeyValuePair<string, string>> CreateUniqueSortedListFromConfig(ILoggingConfigurationElement nlogConfig)
+        private ICollection<KeyValuePair<string, string?>> CreateUniqueSortedListFromConfig(ILoggingConfigurationElement nlogConfig)
         {
             var configurationElement = ValidatedConfigurationElement.Create(nlogConfig, LogFactory);
             var dict = configurationElement.Values;
             if (dict.Count <= 1)
                 return dict;
 
-            var sortedList = new List<KeyValuePair<string, string>>(dict.Count);
+            var sortedList = new List<KeyValuePair<string, string?>>(dict.Count);
             var highPriorityList = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
                 "ThrowExceptions",
@@ -230,7 +230,7 @@ namespace NLog.Config
                 var settingValue = configurationElement.GetOptionalValue(highPrioritySetting, null);
                 if (settingValue != null)
                 {
-                    sortedList.Add(new KeyValuePair<string, string>(highPrioritySetting, settingValue));
+                    sortedList.Add(new KeyValuePair<string, string?>(highPrioritySetting, settingValue));
                 }
             }
             foreach (var configItem in configurationElement.Values)
@@ -582,7 +582,7 @@ namespace NLog.Config
                         namePattern = childProperty.Value;
                         break;
                     case "ENABLED":
-                        enabled = ParseBooleanValue(childProperty.Key, childProperty.Value, true);
+                        enabled = ParseBooleanValue(childProperty.Key, childProperty.Value ?? string.Empty, true);
                         break;
                     case "APPENDTO":
                         writeTargets = childProperty.Value;
@@ -591,7 +591,7 @@ namespace NLog.Config
                         writeTargets = childProperty.Value;
                         break;
                     case "FINAL":
-                        final = ParseBooleanValue(childProperty.Key, childProperty.Value, false);
+                        final = ParseBooleanValue(childProperty.Key, childProperty.Value ?? string.Empty, false);
                         break;
                     case "LEVEL":
                     case "LEVELS":
@@ -1078,8 +1078,8 @@ namespace NLog.Config
         {
             foreach (var kvp in element.Values)
             {
-                string childName = kvp.Key;
-                string childValue = kvp.Value;
+                var childName = kvp.Key;
+                var childValue = kvp.Value;
 
                 if (ignoreType && MatchesName(childName, "type"))
                 {
@@ -1090,7 +1090,7 @@ namespace NLog.Config
             }
         }
 
-        private void SetPropertyValueFromString<T>(T targetObject, string propertyName, string propertyValue, ValidatedConfigurationElement element) where T : class
+        private void SetPropertyValueFromString<T>(T targetObject, string propertyName, string? propertyValue, ValidatedConfigurationElement element) where T : class
         {
             try
             {
@@ -1568,8 +1568,8 @@ namespace NLog.Config
 
             public string Name { get; }
 
-            public ICollection<KeyValuePair<string, string>> Values => _valueLookup ?? (ICollection<KeyValuePair<string, string>>)ArrayHelper.Empty<KeyValuePair<string, string>>();
-            private readonly IDictionary<string, string>? _valueLookup;
+            public ICollection<KeyValuePair<string, string?>> Values => _valueLookup ?? (ICollection<KeyValuePair<string, string?>>)ArrayHelper.Empty<KeyValuePair<string, string?>>();
+            private readonly IDictionary<string, string?>? _valueLookup;
 
             public IEnumerable<ValidatedConfigurationElement> ValidChildren
             {
@@ -1600,7 +1600,7 @@ namespace NLog.Config
             /// </remarks>
             IEnumerable<ILoggingConfigurationElement> ILoggingConfigurationElement.Children => ValidChildren.Cast<ILoggingConfigurationElement>();
 
-            IEnumerable<KeyValuePair<string, string>> ILoggingConfigurationElement.Values => Values;
+            IEnumerable<KeyValuePair<string, string?>> ILoggingConfigurationElement.Values => Values;
 
             public string GetRequiredValue(string attributeName, string section)
             {
@@ -1624,18 +1624,18 @@ namespace NLog.Config
                 if (_valueLookup is null)
                     return defaultValue;
 
-                _valueLookup.TryGetValue(attributeName, out string value);
+                _valueLookup.TryGetValue(attributeName, out var value);
                 return value ?? defaultValue;
             }
 
-            private static IDictionary<string, string>? CreateValueLookup(ILoggingConfigurationElement element, bool throwConfigExceptions)
+            private static IDictionary<string, string?>? CreateValueLookup(ILoggingConfigurationElement element, bool throwConfigExceptions)
             {
-                IDictionary<string, string>? valueLookup = null;
+                IDictionary<string, string?>? valueLookup = null;
                 List<string>? warnings = null;
                 foreach (var attribute in element.Values)
                 {
                     var attributeKey = attribute.Key?.Trim() ?? string.Empty;
-                    valueLookup = valueLookup ?? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                    valueLookup = valueLookup ?? new Dictionary<string, string?>(StringComparer.OrdinalIgnoreCase);
                     if (!string.IsNullOrEmpty(attributeKey) && !valueLookup.ContainsKey(attributeKey))
                     {
                         valueLookup[attributeKey] = attribute.Value;

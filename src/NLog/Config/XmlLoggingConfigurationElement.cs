@@ -72,7 +72,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets the dictionary of attribute values.
         /// </summary>
-        public IList<KeyValuePair<string, string>> AttributeValues { get; }
+        public IList<KeyValuePair<string, string?>> AttributeValues { get; }
 
         /// <summary>
         /// Gets the collection of child elements.
@@ -86,7 +86,7 @@ namespace NLog.Config
 
         public string Name => LocalName;
 
-        public IEnumerable<KeyValuePair<string, string>> Values
+        public IEnumerable<KeyValuePair<string, string?>> Values
         {
             get
             {
@@ -96,7 +96,7 @@ namespace NLog.Config
                     if (SingleValueElement(child))
                     {
                         // Values assigned using nested node-elements. Maybe in combination with attributes
-                        return AttributeValues.Concat(Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string>(item.Name, item.Value ?? string.Empty)));
+                        return AttributeValues.Concat(Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string?>(item.Name, item.Value ?? string.Empty)));
                     }
                 }
                 return AttributeValues;
@@ -174,9 +174,9 @@ namespace NLog.Config
             return children ?? ArrayHelper.Empty<XmlLoggingConfigurationElement>();
         }
 
-        private static IList<KeyValuePair<string, string>> ParseAttributes(XmlReader reader, bool nestedElement)
+        private static IList<KeyValuePair<string, string?>> ParseAttributes(XmlReader reader, bool nestedElement)
         {
-            IList<KeyValuePair<string, string>>? attributes = null;
+            IList<KeyValuePair<string, string?>>? attributes = null;
             if (reader.MoveToFirstAttribute())
             {
                 do
@@ -186,14 +186,14 @@ namespace NLog.Config
                         continue;
                     }
 
-                    attributes = attributes ?? new List<KeyValuePair<string, string>>();
-                    attributes.Add(new KeyValuePair<string, string>(reader.LocalName, reader.Value));
+                    attributes = attributes ?? new List<KeyValuePair<string, string?>>();
+                    attributes.Add(new KeyValuePair<string, string?>(reader.LocalName, reader.Value));
                 }
                 while (reader.MoveToNextAttribute());
                 reader.MoveToElement();
             }
 
-            return attributes ?? ArrayHelper.Empty<KeyValuePair<string, string>>();
+            return attributes ?? ArrayHelper.Empty<KeyValuePair<string, string?>>();
         }
 
         /// <summary>

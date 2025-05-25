@@ -53,14 +53,14 @@ namespace NLog.Config
         /// <summary>
         /// Gets the dictionary of attribute values.
         /// </summary>
-        public IList<KeyValuePair<string, string>> AttributeValues { get; }
+        public IList<KeyValuePair<string, string?>> AttributeValues { get; }
 
         /// <summary>
         /// Gets the collection of child elements.
         /// </summary>
         public IList<XmlParserConfigurationElement> Children { get; }
 
-        public IEnumerable<KeyValuePair<string, string>> Values
+        public IEnumerable<KeyValuePair<string, string?>> Values
         {
             get
             {
@@ -70,7 +70,7 @@ namespace NLog.Config
                     if (SingleValueElement(child))
                     {
                         // Values assigned using nested node-elements. Maybe in combination with attributes
-                        return AttributeValues.Concat(Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string>(item.Name, item.Value ?? string.Empty)));
+                        return AttributeValues.Concat(Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string?>(item.Name, item.Value ?? string.Empty)));
                     }
                 }
                 return AttributeValues;
@@ -102,7 +102,9 @@ namespace NLog.Config
             var namePrefixIndex = xmlElement.Name.IndexOf(':');
             Name = namePrefixIndex >= 0 ? xmlElement.Name.Substring(namePrefixIndex + 1) : xmlElement.Name;
             Value = xmlElement.InnerText;
+#pragma warning disable CS8619 // Nullability of reference types in value doesn't match target type.
             AttributeValues = ParseAttributes(xmlElement, nestedElement);
+#pragma warning restore CS8619 // Nullability of reference types in value doesn't match target type.
             Children = ParseChildren(xmlElement, nestedElement);
         }
 
