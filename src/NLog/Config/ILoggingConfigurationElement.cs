@@ -47,7 +47,7 @@ namespace NLog.Config
         /// <summary>
         /// Configuration Key/Value Pairs
         /// </summary>
-        IEnumerable<KeyValuePair<string, string>> Values { get; }
+        IEnumerable<KeyValuePair<string, string?>> Values { get; }
         /// <summary>
         /// Child configuration elements
         /// </summary>
