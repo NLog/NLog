@@ -36,7 +36,11 @@ namespace NLog.Common
     /// <summary>
     /// Represents the logging event with asynchronous continuation.
     /// </summary>
-    public struct AsyncLogEventInfo : System.IEquatable<AsyncLogEventInfo>
+    public
+#if !NETFRAMEWORK
+    readonly
+#endif
+    struct AsyncLogEventInfo : System.IEquatable<AsyncLogEventInfo>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncLogEventInfo"/> struct.

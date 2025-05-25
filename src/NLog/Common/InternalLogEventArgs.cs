@@ -38,7 +38,11 @@ namespace NLog.Common
     /// <summary>
     /// Internal LogEvent details from <see cref="InternalLogger"/>
     /// </summary>
-    public readonly struct InternalLogEventArgs
+    public
+#if !NETFRAMEWORK
+    readonly
+#endif
+    struct InternalLogEventArgs
     {
         /// <summary>
         /// The rendered message

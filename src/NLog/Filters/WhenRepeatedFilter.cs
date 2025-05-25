@@ -351,7 +351,11 @@ namespace NLog.Filters
         /// <summary>
         /// Filter Lookup Key (immutable)
         /// </summary>
-        private struct FilterInfoKey : IEquatable<FilterInfoKey>
+        private
+#if !NETFRAMEWORK
+        readonly
+#endif
+        struct FilterInfoKey : IEquatable<FilterInfoKey>
         {
             private readonly StringBuilder? _stringBuffer;
             public readonly string? StringValue;

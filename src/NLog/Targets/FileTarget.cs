@@ -456,6 +456,10 @@ namespace NLog.Targets
         private IFileArchiveHandler FileAchiveHandler => _fileArchiveHandler ?? (_fileArchiveHandler = CreateFileArchiveHandler());
         private IFileArchiveHandler? _fileArchiveHandler;
 
+        private
+#if !NETFRAMEWORK
+        readonly
+#endif
         struct OpenFileAppender
         {
             public IFileAppender FileAppender { get; }

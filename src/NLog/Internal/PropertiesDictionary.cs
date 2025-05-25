@@ -49,7 +49,11 @@ namespace NLog.Internal
     [DebuggerDisplay("Count = {Count}")]
     internal sealed class PropertiesDictionary : IDictionary<object, object?>
     {
-        private struct PropertyValue
+        private
+#if !NETFRAMEWORK
+        readonly
+#endif
+        struct PropertyValue
         {
             /// <summary>
             /// Value of the property

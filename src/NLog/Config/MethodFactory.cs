@@ -47,6 +47,10 @@ namespace NLog.Config
     {
         private readonly Dictionary<string, MethodDetails> _nameToMethodDetails = new Dictionary<string, MethodDetails>(StringComparer.OrdinalIgnoreCase);
 
+        private
+#if !NETFRAMEWORK
+        readonly
+#endif
         struct MethodDetails
         {
             public readonly MethodInfo MethodInfo;
