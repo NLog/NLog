@@ -197,6 +197,10 @@ namespace NLog.Internal
             return true;
         }
 
+        private
+#if !NETFRAMEWORK
+        readonly
+#endif
         struct MruCacheItem
         {
             public readonly TValue Value;

@@ -110,6 +110,10 @@ namespace NLog.Targets.FileArchiveHandlers
             return FileInfoDateTime.ScanFileNamesForMaxSequenceNo(fileInfos, fileWildcardStartIndex, fileWildcardEndIndex);
         }
 
+        private
+#if !NETFRAMEWORK
+        readonly
+#endif
         struct FileInfoDateTime : IComparer<FileInfoDateTime>
         {
             public FileInfo FileInfo { get; }

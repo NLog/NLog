@@ -38,7 +38,11 @@ namespace NLog.MessageTemplates
     /// <summary>
     /// Description of a single parameter extracted from a MessageTemplate
     /// </summary>
-    public struct MessageTemplateParameter
+    public
+#if !NETFRAMEWORK
+    readonly
+#endif
+    struct MessageTemplateParameter
     {
         /// <summary>
         /// Parameter Name extracted from <see cref="LogEventInfo.Message"/>

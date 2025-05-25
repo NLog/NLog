@@ -122,7 +122,11 @@ namespace NLog.Config
             }
         }
 
-        private struct MinMaxLevels : IEquatable<MinMaxLevels>
+        private
+#if !NETFRAMEWORK
+        readonly
+#endif
+        struct MinMaxLevels : IEquatable<MinMaxLevels>
         {
             private readonly string _minLevel;
             private readonly string _maxLevel;

@@ -287,7 +287,7 @@ namespace NLog.Internal
 #if !NETFRAMEWORK
             readonly
 #endif
-                struct PropertyValue
+            struct PropertyValue
             {
                 public readonly string Name;
                 public readonly object? Value;
@@ -530,7 +530,11 @@ namespace NLog.Internal
             }
         }
 
-        private struct ObjectPropertyInfos : IEquatable<ObjectPropertyInfos>
+        private
+#if !NETFRAMEWORK
+        readonly
+#endif
+        struct ObjectPropertyInfos : IEquatable<ObjectPropertyInfos>
         {
             public readonly PropertyInfo[] Properties;
             public readonly FastPropertyLookup[]? FastLookup;

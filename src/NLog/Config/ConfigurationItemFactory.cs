@@ -72,7 +72,11 @@ namespace NLog.Config
         private readonly Factory<TimeSource, TimeSourceAttribute> _timeSources;
         private readonly Dictionary<Type, ItemFactory> _itemFactories = new Dictionary<Type, ItemFactory>(256);
 
-        private struct ItemFactory
+        private
+#if !NETFRAMEWORK
+        readonly
+#endif
+        struct ItemFactory
         {
             public readonly Func<Dictionary<string, PropertyInfo>> ItemProperties;
             public readonly Func<object?> ItemCreator;

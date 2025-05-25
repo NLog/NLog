@@ -488,7 +488,11 @@ namespace NLog.Conditions
         /// <summary>
         /// Mapping between characters and token types for punctuations.
         /// </summary>
-        private struct CharToTokenType
+        private
+#if !NETFRAMEWORK
+        readonly
+#endif
+        struct CharToTokenType
         {
             public readonly char Character;
             public readonly ConditionTokenType TokenType;
