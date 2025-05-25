@@ -104,12 +104,20 @@ namespace NLog.Layouts
         /// <summary>
         /// List of property names to exclude when <see cref="IncludeEventProperties"/> is true
         /// </summary>
+#if NET35
+        public HashSet<string> ExcludeProperties { get; set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+#else
         public ISet<string> ExcludeProperties { get; set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+#endif
 
         /// <summary>
         /// List of property names to include when <see cref="IncludeEventProperties"/> is true
         /// </summary>
+#if NET35
+        public HashSet<string> IncludeProperties { get; set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+#else
         public ISet<string> IncludeProperties { get; set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+#endif
 
         /// <summary>
         /// Disables <see cref="ThreadAgnosticAttribute"/> to capture ScopeContext-properties from active thread context
@@ -159,8 +167,6 @@ namespace NLog.Layouts
 
             _gelfHostNameString = ResolveJsonFixedString(_gelfHostName);
             _gelfFacilityString = ResolveJsonFixedString(_gelfFacility);
-            if (_gelfFacilityString != null && string.IsNullOrWhiteSpace(_gelfFacilityString))
-                _gelfFacilityString = "GELF";
         }
 
         /// <inheritdoc/>
@@ -323,7 +329,11 @@ namespace NLog.Layouts
             target.Append(_completeJsonMessage);
         }
 
+#if NET35
+        private static bool ExcludeScopeProperty(string propertyName, IDictionary<object, object?>? eventProperties, HashSet<string>? excludeProperties)
+#else
         private static bool ExcludeScopeProperty(string propertyName, IDictionary<object, object?>? eventProperties, ISet<string>? excludeProperties)
+#endif
         {
             if (excludeProperties?.Contains(propertyName) == true)
                 return true;
@@ -380,7 +390,7 @@ namespace NLog.Layouts
                 }
 
                 if (filterProperty)
-                    return foundProperty ? eventProperties.Where(p => IncludeProperties.Contains(p.Key)).ToDictionary(p => p.Key, p => p.Value) : null;
+                    return foundProperty ? eventProperties.Where(p => IncludeProperties.Contains(p.Key?.ToString() ?? string.Empty)).ToDictionary(p => p.Key, p => p.Value) : null;
             }
 
             return eventProperties;
@@ -485,7 +495,7 @@ namespace NLog.Layouts
 
         private static string EscapePropertyName(string propertyName)
         {
-            if (string.IsNullOrWhiteSpace(propertyName))
+            if (string.IsNullOrEmpty(propertyName))
                 return string.Empty;
 
             foreach (var chr in propertyName)

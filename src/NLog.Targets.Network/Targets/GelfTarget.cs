@@ -75,10 +75,18 @@ namespace NLog.Targets
         public bool ExcludeEmptyProperties { get => _gelfLayout.ExcludeEmptyProperties; set => _gelfLayout.ExcludeEmptyProperties = value; }
 
         /// <inheritdoc cref="GelfLayout.ExcludeProperties"/>
+#if NET35
+        public HashSet<string> ExcludeProperties { get => _gelfLayout.ExcludeProperties; }
+#else
         public ISet<string> ExcludeProperties { get => _gelfLayout.ExcludeProperties; }
+#endif
 
         /// <inheritdoc cref="GelfLayout.IncludeProperties"/>
+#if NET35
+        public HashSet<string> IncludeProperties { get => _gelfLayout.IncludeProperties; }
+#else
         public ISet<string> IncludeProperties { get => _gelfLayout.IncludeProperties; }
+#endif
 
         /// <inheritdoc/>
         public override Layout Layout
