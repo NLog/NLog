@@ -26,6 +26,7 @@
     <PackageReference Include="NLog.Wcf" Version="5.*" />
     <PackageReference Include="NLog.Web" Version="5.*" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="5.*" />
+    <PackageReference Include="NLog.Windows.Forms" Version="5.2.4" />
     <PackageReference Include="NLog.WindowsIdentity" Version="5.*" />
     <PackageReference Include="NLog.WindowsRegistry" Version="6.0.0-rc1" />
   </ItemGroup>
