@@ -35,6 +35,7 @@
     <LangVersion>9</LangVersion>
     <EnableTrimAnalyzer Condition=" '$(TargetFramework)' == 'net8.0' ">true</EnableTrimAnalyzer>
     <IsTrimmable Condition=" '$(TargetFramework)' == 'net8.0' ">true</IsTrimmable>
+    <IsAotCompatible Condition=" '$(TargetFramework)' == 'net8.0' ">true</IsAotCompatible>
     <SonarQubeExclude>true</SonarQubeExclude>
   </PropertyGroup>
 

@@ -38,6 +38,7 @@
     <LangVersion>9</LangVersion>
     <EnableTrimAnalyzer Condition=" '$(TargetFramework)' == 'netstandard2.1' ">true</EnableTrimAnalyzer>
     <IsTrimmable Condition=" '$(TargetFramework)' == 'netstandard2.1' ">true</IsTrimmable>
+    <IsAotCompatible Condition=" '$(TargetFramework)' == 'netstandard2.1' ">true</IsAotCompatible>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
