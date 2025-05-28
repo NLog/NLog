@@ -34,6 +34,7 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
+    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
 
@@ -69,6 +70,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// If not set explicitly then the value of the parent will be used as default.
         /// </remarks>
         /// <docgen category="Layout Options" order="10"/>
+        [Obsolete("Marked obsolete with NLog 5.5. Should never escape forward slash")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EscapeForwardSlash { get; set; }
 
         /// <inheritdoc/>
@@ -77,7 +80,10 @@ namespace NLog.LayoutRenderers.Wrappers
             Inner.Render(logEvent, builder);
             if (JsonEncode && builder.Length > orgLength)
             {
-                Targets.DefaultJsonSerializer.PerformJsonEscapeWhenNeeded(builder, orgLength, EscapeUnicode, EscapeForwardSlash);
+#pragma warning disable CS0618 // Type or member is obsolete
+                bool escapeForwardSlash = EscapeForwardSlash;
+#pragma warning restore CS0618 // Type or member is obsolete
+                Targets.DefaultJsonSerializer.PerformJsonEscapeWhenNeeded(builder, orgLength, EscapeUnicode, escapeForwardSlash);
             }
         }
 

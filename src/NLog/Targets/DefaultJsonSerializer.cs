@@ -96,9 +96,13 @@ namespace NLog.Targets
             }
             else if (value is string str)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
+                bool escapeForwardSlash = options.EscapeForwardSlash;
+#pragma warning restore CS0618 // Type or member is obsolete
+                bool escapeUnicode = options.EscapeUnicode;
                 foreach (var chr in str)
                 {
-                    if (RequiresJsonEscape(chr, options.EscapeUnicode, options.EscapeForwardSlash))
+                    if (RequiresJsonEscape(chr, escapeUnicode, escapeForwardSlash))
                     {
                         StringBuilder sb = new StringBuilder(str.Length + 4);
                         sb.Append('"');
@@ -267,7 +271,10 @@ namespace NLog.Targets
 #else
                 int startPos = destination.Length;
                 destination.AppendFormat(CultureInfo.InvariantCulture, "{0}", formattable); // Support ISpanFormattable
-                PerformJsonEscapeWhenNeeded(destination, startPos, options.EscapeUnicode, options.EscapeForwardSlash);
+#pragma warning disable CS0618 // Type or member is obsolete
+                var escapeForwardSlash = options.EscapeForwardSlash;
+#pragma warning restore CS0618 // Type or member is obsolete
+                PerformJsonEscapeWhenNeeded(destination, startPos, options.EscapeUnicode, escapeForwardSlash);
 #endif
                 destination.Append('"');
                 return true;
@@ -576,7 +583,10 @@ namespace NLog.Targets
         /// <returns>JSON escaped string</returns>
         private static void AppendStringEscape(StringBuilder destination, string text, JsonSerializeOptions options)
         {
-            AppendStringEscape(destination, text, options.EscapeUnicode, options.EscapeForwardSlash);
+#pragma warning disable CS0618 // Type or member is obsolete
+            var escapeForwardSlash = options.EscapeForwardSlash;
+#pragma warning restore CS0618 // Type or member is obsolete
+            AppendStringEscape(destination, text, options.EscapeUnicode, escapeForwardSlash);
         }
 
         /// <summary>
