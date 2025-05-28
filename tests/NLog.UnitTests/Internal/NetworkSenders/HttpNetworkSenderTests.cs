@@ -85,7 +85,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             Assert.Equal("HttpHappyPathTestLogger|test message1|", requestedString);
             Assert.Equal("POST", mock.Method);
 
-            networkSenderFactoryMock.Received(1).Create("http://test.with.mock", 1234, NetworkTargetQueueOverflowAction.Block, 0, SslProtocols.None, TimeSpan.Zero, TimeSpan.Zero);
+            networkSenderFactoryMock.Received(1).Create("http://test.with.mock", networkTarget);
 
             // Cleanup
             mock.Dispose();
@@ -131,7 +131,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             Assert.Equal("HttpHappyPathTestLogger|test message2|", requestedString);
             Assert.Equal("POST", mock.Method);
 
-            networkSenderFactoryMock.Received(1).Create("http://test.with.mock", 1234, NetworkTargetQueueOverflowAction.Block, 0, SslProtocols.None, TimeSpan.Zero, TimeSpan.Zero); // Only created one HttpNetworkSender
+            networkSenderFactoryMock.Received(1).Create("http://test.with.mock", networkTarget); // Only created one HttpNetworkSender
 
             // Cleanup
             mock.Dispose();
@@ -142,7 +142,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
         {
             var networkSenderFactoryMock = Substitute.For<INetworkSenderFactory>();
 
-            networkSenderFactoryMock.Create(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<NetworkTargetQueueOverflowAction>(), Arg.Any<int>(), Arg.Any<SslProtocols>(), Arg.Any<TimeSpan>(), Arg.Any<TimeSpan>())
+            networkSenderFactoryMock.Create(Arg.Any<string>(), Arg.Any<NetworkTarget>())
                 .Returns(url => new HttpNetworkSender(url.Arg<string>())
                 {
                     HttpRequestFactory = new WebRequestFactoryMock(webRequestMock)

@@ -1175,6 +1175,25 @@ namespace NLog.UnitTests.Targets
             logger.Info("Hello");
         }
 
+        [Theory]
+        [InlineData("false", false)]
+        [InlineData("true", true)]
+        public void NoDelayConfigTest(string noDelay, bool expected)
+        {
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterTarget<NetworkTarget>())
+                .LoadConfigurationFromXml($@"
+            <nlog>
+                <targets async='true'><target name='target1' type='network' layout='${{level}}|${{threadid}}|${{message}}' Address='tcp://127.0.0.1:50001' noDelay='{noDelay}' /></targets>
+                <rules><logger name='*' minLevel='Trace' writeTo='target1'/></rules>
+            </nlog>").LogFactory;
+
+            var target = logFactory.Configuration.FindTargetByName<NetworkTarget>("target1");
+            Assert.Equal(expected, target.NoDelay);
+
+            var logger = logFactory.GetLogger("SendTimeoutSeconds");
+            logger.Info("Hello");
+        }
+
         [Fact]
         public void Bug3990StackOverflowWhenUsingNLogViewerTarget()
         {
@@ -1247,9 +1266,9 @@ namespace NLog.UnitTests.Targets
             internal StringWriter Log = new StringWriter();
             private int _idCounter;
 
-            public QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime, TimeSpan sendTimeout)
+            public QueuedNetworkSender Create(string url, NetworkTarget networkTarget)
             {
-                var sender = new MyQueudNetworkSender(url, ++_idCounter, Log, this) { MaxQueueSize = maxQueueSize, OnQueueOverflow = onQueueOverflow };
+                var sender = new MyQueudNetworkSender(url, ++_idCounter, Log, this) { MaxQueueSize = networkTarget.MaxQueueSize, OnQueueOverflow = networkTarget.OnQueueOverflow };
                 Senders.Add(sender);
                 return sender;
             }
