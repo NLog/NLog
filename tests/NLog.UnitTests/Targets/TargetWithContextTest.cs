@@ -203,6 +203,22 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void TargetWithContextStringLayoutTest()
+        {
+            var target = new CustomTargetWithContext() { Layout = "${message}", SkipAssert = true };
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterTarget<CustomTargetWithContext>("contexttarget"))
+                                             .LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
+
+            var logEventInfo = LogEventInfo.Create(LogLevel.Info, null, null, "Hello {World}", new[] { "Earth" });
+            var expectedMessage = logEventInfo.FormattedMessage;
+
+            logFactory.GetCurrentClassLogger().Info(logEventInfo);
+
+            Assert.Same(expectedMessage, target.LastMessage);
+        }
+
+        [Fact]
         public void TargetWithContextConfigTest()
         {
             var logFactory = new LogFactory().Setup()
