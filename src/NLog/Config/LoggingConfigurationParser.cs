@@ -255,8 +255,7 @@ namespace NLog.Config
         {
             try
             {
-                var internalLogLevel = LogLevel.FromString(propertyValue?.Trim());
-                return internalLogLevel;
+                return LogLevel.FromString(propertyValue?.Trim() ?? string.Empty);
             }
             catch (Exception exception)
             {
@@ -553,11 +552,6 @@ namespace NLog.Config
             }
         }
 
-        private LogLevel LogLevelFromString(string text)
-        {
-            return LogLevel.FromString(ExpandSimpleVariables(text).Trim());
-        }
-
         /// <summary>
         /// Parse {Logger} xml element
         /// </summary>
@@ -670,41 +664,43 @@ namespace NLog.Config
         {
             if (enableLevels != null)
             {
-                enableLevels = ExpandSimpleVariables(enableLevels);
-                finalMinLevel = finalMinLevel != null ? ExpandSimpleVariables(finalMinLevel) : finalMinLevel;
+                enableLevels = ExpandSimpleVariables(enableLevels).Trim();
+                finalMinLevel = ExpandSimpleVariables(finalMinLevel).Trim();
+
                 if (IsLevelLayout(enableLevels) || IsLevelLayout(finalMinLevel))
                 {
-                    SimpleLayout simpleLayout = ParseLevelLayout(enableLevels);
-                    SimpleLayout finalMinLevelLayout = ParseLevelLayout(finalMinLevel);
+                    var simpleLayout = ParseLevelLayout(enableLevels);
+                    var finalMinLevelLayout = ParseLevelLayout(finalMinLevel);
                     rule.EnableLoggingForLevelLayout(simpleLayout, finalMinLevelLayout);
                 }
                 else
                 {
                     foreach (var logLevel in enableLevels.SplitAndTrimTokens(','))
                     {
-                        rule.EnableLoggingForLevel(LogLevelFromString(logLevel));
+                        rule.EnableLoggingForLevel(LogLevel.FromString(logLevel));
                     }
-                    if (finalMinLevel != null)
-                        rule.FinalMinLevel = LogLevelFromString(finalMinLevel);
+                    if (!string.IsNullOrEmpty(finalMinLevel))
+                        rule.FinalMinLevel = LogLevel.FromString(finalMinLevel);
                 }
             }
             else
             {
-                minLevel = minLevel != null ? ExpandSimpleVariables(minLevel) : minLevel;
-                maxLevel = maxLevel != null ? ExpandSimpleVariables(maxLevel) : maxLevel;
-                finalMinLevel = finalMinLevel != null ? ExpandSimpleVariables(finalMinLevel) : finalMinLevel;
+                minLevel = ExpandSimpleVariables(minLevel).Trim();
+                maxLevel = ExpandSimpleVariables(maxLevel).Trim();
+                finalMinLevel = ExpandSimpleVariables(finalMinLevel).Trim();
+
                 if (IsLevelLayout(minLevel) || IsLevelLayout(maxLevel) || IsLevelLayout(finalMinLevel))
                 {
-                    SimpleLayout finalMinLevelLayout = ParseLevelLayout(finalMinLevel);
-                    SimpleLayout minLevelLayout = ParseLevelLayout(minLevel) ?? finalMinLevelLayout;
-                    SimpleLayout maxLevelLayout = ParseLevelLayout(maxLevel);
+                    var finalMinLevelLayout = ParseLevelLayout(finalMinLevel);
+                    var minLevelLayout = ParseLevelLayout(minLevel) ?? finalMinLevelLayout;
+                    var maxLevelLayout = ParseLevelLayout(maxLevel);
                     rule.EnableLoggingForLevelsLayout(minLevelLayout, maxLevelLayout, finalMinLevelLayout);
                 }
                 else
                 {
-                    LogLevel finalMinLogLevel = finalMinLevel != null ? LogLevelFromString(finalMinLevel) : null;
-                    LogLevel minLogLevel = minLevel != null ? LogLevelFromString(minLevel) : (finalMinLogLevel ?? LogLevel.MinLevel);
-                    LogLevel maxLogLevel = maxLevel != null ? LogLevelFromString(maxLevel) : LogLevel.MaxLevel;
+                    var finalMinLogLevel = string.IsNullOrEmpty(finalMinLevel) ? null : LogLevel.FromString(finalMinLevel);
+                    var minLogLevel = string.IsNullOrEmpty(minLevel) ? (finalMinLogLevel ?? LogLevel.MinLevel) : LogLevel.FromString(minLevel);
+                    var maxLogLevel = string.IsNullOrEmpty(maxLevel) ? LogLevel.MaxLevel : LogLevel.FromString(maxLevel);
                     rule.SetLoggingLevels(minLogLevel, maxLogLevel);
                     if (finalMinLogLevel != null)
                         rule.FinalMinLevel = finalMinLogLevel;
@@ -807,8 +803,11 @@ namespace NLog.Config
             {
                 var filterType = filterElement.GetOptionalValue("type", null) ?? filterElement.Name;
                 Filter filter = FactoryCreateInstance(filterType, ConfigurationItemFactory.Default.FilterFactory);
-                ConfigureFromAttributesAndElements(filter, filterElement);
-                rule.Filters.Add(filter);
+                if (filter != null)
+                {
+                    ConfigureFromAttributesAndElements(filter, filterElement);
+                    rule.Filters.Add(filter);
+                }
             }
         }
 
@@ -1281,7 +1280,7 @@ namespace NLog.Config
 
             // Check if the 'type' attribute has been specified
             string classType = element.GetConfigItemTypeAttribute();
-            if (classType is null)
+            if (string.IsNullOrEmpty(classType))
                 return null;
 
             var expandedClassType = ExpandSimpleVariables(classType, out var matchingVariableName);
@@ -1324,7 +1323,7 @@ namespace NLog.Config
 
             // Check if the 'type' attribute has been specified
             string classType = element.GetConfigItemTypeAttribute();
-            if (classType is null)
+            if (string.IsNullOrEmpty(classType))
                 return null;
 
             return FactoryCreateInstance(classType, factory);
@@ -1418,22 +1417,20 @@ namespace NLog.Config
         private Target WrapWithDefaultWrapper(Target target, ValidatedConfigurationElement defaultWrapperElement)
         {
             string wrapperTypeName = defaultWrapperElement.GetConfigItemTypeAttribute("targets");
-            Target wrapperTargetInstance = CreateTargetType(wrapperTypeName);
-            WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
-            if (wtb is null)
+            var wrapperTargetInstance = CreateTargetType(wrapperTypeName) as WrapperTargetBase;
+            if (wrapperTargetInstance is null)
             {
-                throw new NLogConfigurationException("Target type specified on <default-wrapper /> is not a wrapper.");
+                throw new NLogConfigurationException($"Target type '{wrapperTypeName}' cannot be used as default target wrapper.");
             }
 
+            var wtb = wrapperTargetInstance;
             ParseTargetElement(wrapperTargetInstance, defaultWrapperElement);
             while (wtb.WrappedTarget != null)
             {
-                wtb = wtb.WrappedTarget as WrapperTargetBase;
-                if (wtb is null)
-                {
-                    throw new NLogConfigurationException(
-                        "Child target type specified on <default-wrapper /> is not a wrapper.");
-                }
+                if (wtb.WrappedTarget is WrapperTargetBase nestedWrapper)
+                    wtb = nestedWrapper;
+                else
+                    throw new NLogConfigurationException($"Target type '{wrapperTypeName}' with nested {wtb.WrappedTarget.GetType()} cannot be used as default target wrapper.");
             }
 
 #if !NET35

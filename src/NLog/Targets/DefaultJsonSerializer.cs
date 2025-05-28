@@ -61,7 +61,8 @@ namespace NLog.Targets
         /// </summary>
         [Obsolete("Instead use ResolveService<IJsonConverter>() in Layout / Target. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static DefaultJsonSerializer Instance { get; } = new DefaultJsonSerializer(null);
+        public static DefaultJsonSerializer Instance => _instance ?? (_instance = new DefaultJsonSerializer(LogManager.LogFactory.ServiceRepository));
+        private static DefaultJsonSerializer _instance;
 
         /// <summary>
         /// Private. Use <see cref="Instance"/>
