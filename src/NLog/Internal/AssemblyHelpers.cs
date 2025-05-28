@@ -99,6 +99,7 @@ namespace NLog.Internal
                 if (!string.IsNullOrEmpty(assemblyLocation))
                     assemblyLocation = System.IO.Path.GetDirectoryName(assemblyLocation);
 #endif
+
                 if (string.IsNullOrEmpty(assemblyLocation))
                 {
                     InternalLogger.Debug("Ignoring assembly location because has no valid directory: {0}", assemblyFullName);
