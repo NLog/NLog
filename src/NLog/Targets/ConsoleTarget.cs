@@ -131,10 +131,17 @@ namespace NLog.Targets
         public bool AutoFlush { get; set; }
 
         /// <summary>
-        /// Gets or sets whether to activate internal buffering to allow batch writing, instead of using <see cref="Console.WriteLine()"/>
+        /// Gets or sets whether to activate internal buffering to support batch writing, instead of using <see cref="Console.WriteLine()"/>
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        public bool WriteBuffer { get; set; }
+        public bool EnableBatchWrite { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets whether to activate internal buffering to allow batch writing, instead of using <see cref="Console.WriteLine()"/>
+        /// </summary>
+        /// <docgen category='Console Options' order='50' />
+        [Obsolete("Replaced by EnableBatchWrite. Marked obsolete with NLog v6.0")]
+        public bool WriteBuffer { get => EnableBatchWrite; set => EnableBatchWrite = value; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleTarget" /> class.
@@ -248,7 +255,7 @@ namespace NLog.Targets
                 return;
             }
 
-            if (WriteBuffer)
+            if (EnableBatchWrite)
             {
                 WriteBufferToOutput(logEvents);
             }
@@ -267,7 +274,7 @@ namespace NLog.Targets
 
             var stdErr = RenderLogEvent(StdErr, logEvent);
             var output = GetOutput(stdErr);
-            if (WriteBuffer)
+            if (EnableBatchWrite)
             {
                 WriteBufferToOutput(output, layout, logEvent);
             }
