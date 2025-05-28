@@ -33,7 +33,6 @@
 namespace NLog.Internal
 {
     using System;
-    using System.IO;
     using System.Linq;
     using System.Reflection;
     using NLog.Common;
@@ -75,29 +74,18 @@ namespace NLog.Internal
         }
 
 #if !NETSTANDARD1_3
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Returns empty string for assemblies embedded in a single-file app", "IL3000")]
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public static string GetAssemblyFileLocation(Assembly assembly)
         {
-            string assemblyFullName = string.Empty;
+            if (assembly is null)
+                return string.Empty;
+
+            var assemblyFullName = assembly.FullName;
 
             try
             {
-                if (assembly is null)
-                {
-                    return string.Empty;
-                }
-
-                assemblyFullName = assembly.FullName;
-
-#if NETSTANDARD
-                if (string.IsNullOrEmpty(assembly.Location))
-                {
-                    // Assembly with no actual location should be skipped (Avoid PlatformNotSupportedException)
-                    InternalLogger.Debug("Ignoring assembly location because location is empty: {0}", assemblyFullName);
-                    return string.Empty;
-                }
-#endif
-
+#if NETFRAMEWORK
                 Uri assemblyCodeBase;
                 if (!Uri.TryCreate(assembly.CodeBase, UriKind.RelativeOrAbsolute, out assemblyCodeBase))
                 {
@@ -105,14 +93,19 @@ namespace NLog.Internal
                     return string.Empty;
                 }
 
-                var assemblyLocation = Path.GetDirectoryName(assemblyCodeBase.LocalPath);
+                var assemblyLocation = System.IO.Path.GetDirectoryName(assemblyCodeBase.LocalPath);
+#else
+                var assemblyLocation = assembly.Location;
+                if (!string.IsNullOrEmpty(assemblyLocation))
+                    assemblyLocation = System.IO.Path.GetDirectoryName(assemblyLocation);
+#endif
                 if (string.IsNullOrEmpty(assemblyLocation))
                 {
-                    InternalLogger.Debug("Ignoring assembly location because it is not a valid directory: '{0}' ({1})", assemblyCodeBase.LocalPath, assemblyFullName);
+                    InternalLogger.Debug("Ignoring assembly location because has no valid directory: {0}", assemblyFullName);
                     return string.Empty;
                 }
 
-                DirectoryInfo directoryInfo = new DirectoryInfo(assemblyLocation);
+                var directoryInfo = new System.IO.DirectoryInfo(assemblyLocation);
                 if (!directoryInfo.Exists)
                 {
                     InternalLogger.Debug("Ignoring assembly location because directory doesn't exists: '{0}' ({1})", assemblyLocation, assemblyFullName);
