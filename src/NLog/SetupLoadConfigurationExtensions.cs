@@ -446,17 +446,18 @@ namespace NLog
         /// <param name="encoding">Override the default Encoding for output (Ex. UTF8)</param>
         /// <param name="stderr">Write to stderr instead of standard output (stdout)</param>
         /// <param name="detectConsoleAvailable">Skip overhead from writing to console, when not available (Ex. running as Windows Service)</param>
-        /// <param name="writeBuffered">Enable batch writing of logevents, instead of Console.WriteLine for each logevent (Requires <see cref="WithAsync"/>)</param>
-        public static ISetupConfigurationTargetBuilder WriteToConsole(this ISetupConfigurationTargetBuilder configBuilder, Layout? layout = null, System.Text.Encoding? encoding = null, bool stderr = false, bool detectConsoleAvailable = false, bool writeBuffered = false)
+        /// <param name="enableBatchWrite">Enable batch writing of logevents, instead of Console.WriteLine for each logevent (For optimal performance use <see cref="WithAsync"/>)</param>
+        public static ISetupConfigurationTargetBuilder WriteToConsole(this ISetupConfigurationTargetBuilder configBuilder, Layout? layout = null, System.Text.Encoding? encoding = null, bool stderr = false, bool detectConsoleAvailable = false, bool enableBatchWrite = true)
         {
             var consoleTarget = new ConsoleTarget();
             if (layout != null)
                 consoleTarget.Layout = layout;
             if (encoding != null)
                 consoleTarget.Encoding = encoding;
-            consoleTarget.StdErr = stderr;
+            if (stderr)
+                consoleTarget.StdErr = stderr;
             consoleTarget.DetectConsoleAvailable = detectConsoleAvailable;
-            consoleTarget.WriteBuffer = writeBuffered;
+            consoleTarget.EnableBatchWrite = enableBatchWrite;
             return configBuilder.WriteTo(consoleTarget);
         }
 
