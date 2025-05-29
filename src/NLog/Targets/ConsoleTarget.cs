@@ -131,17 +131,17 @@ namespace NLog.Targets
         public bool AutoFlush { get; set; }
 
         /// <summary>
-        /// Gets or sets whether to activate internal buffering to support batch writing, instead of using <see cref="Console.WriteLine()"/>
+        /// Gets or sets whether to force <see cref="Console.WriteLine()"/> (slower) instead of the faster internal buffering.
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        public bool EnableBatchWrite { get; set; } = true;
+        public bool ForceWriteLine { get; set; }
 
         /// <summary>
         /// Gets or sets whether to activate internal buffering to allow batch writing, instead of using <see cref="Console.WriteLine()"/>
         /// </summary>
         /// <docgen category='Console Options' order='50' />
-        [Obsolete("Replaced by EnableBatchWrite. Marked obsolete with NLog v6.0")]
-        public bool WriteBuffer { get => EnableBatchWrite; set => EnableBatchWrite = value; }
+        [Obsolete("Replaced by ForceWriteLine. Marked obsolete with NLog v6.0")]
+        public bool WriteBuffer { get => !ForceWriteLine; set => ForceWriteLine = !value; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleTarget" /> class.
@@ -255,13 +255,13 @@ namespace NLog.Targets
                 return;
             }
 
-            if (EnableBatchWrite)
+            if (ForceWriteLine)
             {
-                WriteBufferToOutput(logEvents);
+                base.Write(logEvents);  // Console.WriteLine
             }
             else
             {
-                base.Write(logEvents);  // Console.WriteLine
+                WriteBufferToOutput(logEvents);
             }
         }
 
@@ -274,13 +274,13 @@ namespace NLog.Targets
 
             var stdErr = RenderLogEvent(StdErr, logEvent);
             var output = GetOutput(stdErr);
-            if (EnableBatchWrite)
+            if (ForceWriteLine)
             {
-                WriteBufferToOutput(output, layout, logEvent);
+                WriteLineToOutput(output, RenderLogEvent(layout, logEvent));
             }
             else
             {
-                WriteLineToOutput(output, RenderLogEvent(layout, logEvent));
+                WriteBufferToOutput(output, layout, logEvent);
             }
         }
 

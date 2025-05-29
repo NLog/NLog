@@ -55,14 +55,14 @@ namespace NLog.UnitTests.Targets
             ConsoleOutTest(true);
         }
 
-        private static void ConsoleOutTest(bool writeBuffer)
+        private static void ConsoleOutTest(bool forceWriteLine)
         {
             var target = new ConsoleTarget()
             {
                 Header = "-- header --",
                 Layout = "${logger} ${message}",
                 Footer = "-- footer --",
-                WriteBuffer = writeBuffer,
+                ForceWriteLine = forceWriteLine,
             };
 
             var consoleOutWriter = new StringWriter();
