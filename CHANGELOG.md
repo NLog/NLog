@@ -4,9 +4,46 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.0 RC2 (2025/06/01)
+
+**Improvements**
+- Fixed NLog XmlParser to support XML comments within XML processing instructions.
+- NLog.Targets.Network now also supports NET35.
+- Updated structs to be readonly to allow compiler optimizations.
+- Updated interface ILoggingConfigurationElement to support nullable Values.
+- Updated all projects to include `<IsAotCompatible>`
+- Optimized ConsoleTarget to not use Console.WriteLine, and introduced option `ForceWriteLine`
+- Added new LogEventInfo constructor that supports `ReadOnlySpan<MessageTemplateParameter>`
+- Updated NLog.Schema nuget-package to include targets-file to copy NLog.xsd to project-folder.
+
+### Version 5.5 (2025/05/29)
+
+**Improvements**
+- [#5710](https://github.com/NLog/NLog/pull/5710) Restored LogFactory.Setup().SetupFromEnvironmentVariables() as not obsolete (#5710) @snakefoot
+- [#5717](https://github.com/NLog/NLog/pull/5717) Avoid using MakeGenericType for Dictionary enumeration when AOT (#5717) @snakefoot
+- [#5730](https://github.com/NLog/NLog/pull/5730) Stop using obsolete Assembly.CodeBase for NetStandard (#5730) @snakefoot
+- [#5742](https://github.com/NLog/NLog/pull/5742) ExceptionLayoutRenderer - Handle Exception properties like StackTrace can throw with AOT (#5742) @snakefoot
+- [#5743](https://github.com/NLog/NLog/pull/5743) ExceptionLayoutRenderer - Handle Data-collection-item ToString can throw with AOT (#5743) @snakefoot
+- [#5763](https://github.com/NLog/NLog/pull/5763) ExceptionLayoutRenderer - Handle Exception-properties can throw with AOT (#5763) @snakefoot
+- [#5756](https://github.com/NLog/NLog/pull/5756) ServiceRepository - Improve exception-handling when resolving service-types while disposing (#5756) @snakefoot
+- [#5759](https://github.com/NLog/NLog/pull/5759) LayoutRenderer - Optimize performance by skipping cache result from render Inner Layout (#5759) @snakefoot
+- [#5795](https://github.com/NLog/NLog/pull/5795) ConditionLayoutExpression  - Optimize performance by skipping cache result from render Inner Layout (#5795) @snakefoot
+- [#5731](https://github.com/NLog/NLog/pull/5731) Mark IFactory RegisterType as obsolete, since it will be removed with NLog v6 (#5731) @snakefoot
+- [#5766](https://github.com/NLog/NLog/pull/5766) Mark JsonLayout EscapeForwardSlash as obsolete, since disabled with NLog v6 (#5766) @snakefoot
+- [#5823](https://github.com/NLog/NLog/pull/5823) Mark ExceptionLayoutRenderer Formats-List as obsolete, since immutable with NLog v6 (#5823) @snakefoot
+- [#5769](https://github.com/NLog/NLog/pull/5769) Updated API-code examples to not depend on obsolete SimpleConfigurator (#5769) @snakefoot
+- [#5776](https://github.com/NLog/NLog/pull/5776) ObjectReflectionCache - Handle PropertyValue can throw with AOT (#5776) @snakefoot
+- [#5780](https://github.com/NLog/NLog/pull/5780) NetworkTarget - Introduced option NoDelay to disable delayed ACK (#5780) @snakefoot
+- [#5788](https://github.com/NLog/NLog/pull/5788) Fix InternalLogger noise about reflection for FuncLayoutRenderer (#5788) @snakefoot
+- [#5792](https://github.com/NLog/NLog/pull/5792) TargetWithContext - Reduce allocation for RenderLogEvent when SimpleLayout (#5792) @snakefoot
+- [#5810](https://github.com/NLog/NLog/pull/5810) Refactoring to improve null value handling (#5810) @snakefoot
+- [#5812](https://github.com/NLog/NLog/pull/5812) Refactoring to improve null value handling (#5812) @snakefoot
+- [#5817](https://github.com/NLog/NLog/pull/5817) LoggingConfigurationParser - Prioritize LoggingRules from current config (#5817) @snakefoot
+- [#5825](https://github.com/NLog/NLog/pull/5825) WhenEmptyLayoutRendererWrapper - Optimize IStringValueRenderer Logic (#5825) @snakefoot
+
 ### Version 6.0 RC1 (2025/04/25)
 
-**Major changes**
+**Improvements**
 - Updated NLog API with `<Nullable>enable</Nullable>` and introduced `Layout.Empty`
 - Marked `[RequiredParameter]` as obsolete, and replaced with explicit option validation during initialization.
 - Marked `LogEventInfo.SequenceID` and `${sequenceid}` as obsolete, and instead use `${counter:sequence=global}`.
