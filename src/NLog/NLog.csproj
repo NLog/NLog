@@ -28,7 +28,7 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-NLog v6.0 RC1 with the following major changes:
+NLog v6.0 RC2 with the following major changes:
 
 - Support AOT builds without build warnings.
 - New FileTarget without ConcurrentWrites support, but still support KeepFileOpen true / false.
@@ -51,6 +51,14 @@ NLog v6.0 RC1 with the following major changes:
 - Skip LogEventInfo.Parameters-array-allocation when unable to defer message-template formatting.
 - Renamed ChainsawTarget to Log4JXmlTarget to match Log4JXmlEventLayout
 - Updated NLog.Schema to include intellisense for multiple NLog-assemblies.
+- Fixed NLog XmlParser to support XML comments within XML processing instructions.
+- NLog.Targets.Network now also supports NET35.
+- Updated structs to be readonly to allow compiler optimizations.
+- Updated interface ILoggingConfigurationElement to support nullable Values.
+- Updated all projects to include &lt;IsAotCompatible&gt;
+- Optimized ConsoleTarget to not use Console.WriteLine, and introduced option ForceWriteLine
+- Added new LogEventInfo constructor that supports ReadOnlySpan&lt;MessageTemplateParameter&gt;
+- Updated NLog.Schema nuget-package to include targets-file to copy NLog.xsd to project-folder.
 
 NLog v6.0 release notes: https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html
 
