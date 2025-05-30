@@ -98,7 +98,7 @@ namespace NLog.Internal
         /// Transforms the list of event-properties into IDictionary-interface
         /// </summary>
         /// <param name="eventProperties">Message-template-parameters</param>
-        public PropertiesDictionary(IReadOnlyList<KeyValuePair<object, object>> eventProperties)
+        public PropertiesDictionary(IReadOnlyList<KeyValuePair<object, object?>> eventProperties)
         {
             var propertyCount = eventProperties.Count;
             if (propertyCount > 0)
