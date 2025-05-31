@@ -98,11 +98,10 @@ namespace NLog
         public LogEventBuilder Property<T>(string propertyName, T? propertyValue)
         {
             Guard.ThrowIfNull(propertyName);
-
-            if (_logEvent is null)
-                return this;
-
-            _logEvent.Properties[propertyName] = propertyValue;
+            if (_logEvent != null)
+            {
+                _logEvent.Properties[propertyName] = propertyValue;
+            }
             return this;
         }
 
@@ -113,12 +112,11 @@ namespace NLog
         public LogEventBuilder Properties(IEnumerable<KeyValuePair<string, object?>> properties)
         {
             Guard.ThrowIfNull(properties);
-
-            if (_logEvent is null)
-                return this;
-
-            foreach (var property in properties)
-                _logEvent.Properties[property.Key] = property.Value;
+            if (_logEvent != null)
+            {
+                foreach (var property in properties)
+                    _logEvent.Properties[property.Key] = property.Value;
+            }
             return this;
         }
 
@@ -129,27 +127,11 @@ namespace NLog
         /// <param name="properties">The properties to set.</param>
         public LogEventBuilder Properties(params ReadOnlySpan<(string, object?)> properties)
         {
-            if (_logEvent is null)
-                return this;
-
-            if (_logEvent.Parameters is null)
+            if (_logEvent != null)
             {
-                var eventProperties = _logEvent.TryCreatePropertiesInternal();
-                if (eventProperties is null)
-                {
-                    // Now allocate PropertiesDictionary and copy from properties
-                    var messageProperties = new MessageTemplates.MessageTemplateParameter[properties.Length];
-                    for (int i = 0; i < properties.Length; ++i)
-                    {
-                        messageProperties[i] = new MessageTemplates.MessageTemplateParameter(properties[i].Item1, properties[i].Item2, null);
-                    }
-                    _logEvent.TryCreatePropertiesInternal(messageProperties);
-                    return this;
-                }
+                foreach (var property in properties)
+                    _logEvent.Properties[property.Item1] = property.Item2;
             }
-
-            foreach (var property in properties)
-                _logEvent.Properties[property.Item1] = property.Item2;
             return this;
         }
 #endif
