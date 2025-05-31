@@ -2,17 +2,27 @@
 <package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>NLog.Schema</id>
-    <title>NLog Schema for Intellisense(TM)</title>
     <version>$BuildVersion$</version>
     <authors>Kim Christensen, Julian Verdurmen</authors>
     <owners>Kim Christenen, Julian Verdurmen </owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <summary>Enables Intellisense(TM) when editing NLog.config.</summary>
-    <description>XSD file to enables Intellisense(TM) when editing NLog configuration files, for example in Visual Studio.  
+    <title>NLog Schema for Intellisense</title>
+    <summary>Enables Intellisense when editing NLog.config XML file</summary>
+    <description>NLog Schema XSD-file for enabling Intellisense, when editing NLog.config XML file in Visual Studio.
+    
+The nuget-package will try to copy the XSD-file into the project-folder, so one can reference NLog.xsd from NLog.config:
+    
+   &lt;nlog xmlns=&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+          xsi:schemaLocation=&quot;http://www.nlog-project.org/schemas/NLog.xsd NLog.xsd&quot;&gt;
+   &lt;/nlog&gt;
 
-Notes:
-- Extensions could report XSD errors. Those errors could be ignored safely.  
-- Unfortunately this package won't work well when using &lt;PackageReference&gt;. You could download the lastest XSD from here: https://nlog-project.org/schemas/NLog.xsd 
+If this nuget-package fails to place the XSD-file into the project-folder then one can download latest here: https://nlog-project.org/schemas/NLog.xsd
+
+Alternative enable the Visual Studio option "Automatically download DTDs and schemas" and specify the complete URL:
+
+   &lt;nlog xmlns=&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+      xsi:schemaLocation=&quot;http://www.nlog-project.org/schemas/NLog.xsd http://www.nlog-project.org/schemas/NLog.xsd&quot;&gt;
+   &lt;/nlog&gt;
 </description>
     <releaseNotes>NLog $BuildVersion$</releaseNotes>
     <language>en-US</language>
@@ -27,6 +37,7 @@ Notes:
     </contentFiles>
   </metadata>
   <files>
+    <file src="NLog.Schema.targets" target="build" />
     <file src="content\**" target="contentFiles\any\any" />
     <file src="content\**" target="content\" /> <!-- legacy -->
   </files>
