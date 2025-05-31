@@ -1,0 +1,7 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Idea taken from issue https://github.com/NuGet/Home/issues/10734 -->
+  <Target Name="NLogSchema_Copy" AfterTargets="ResolveReferences">
+    <Message Importance="normal" Text="NLog.Schema copy '$(MSBuildThisFileDirectory)/../content/NLog.xsd' file to project folder '$(ProjectDir)'" />
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)/../content/NLog.xsd" DestinationFolder="$(ProjectDir)" SkipUnchangedFiles="true" Condition="Exists('$(MSBuildThisFileDirectory)/../content/NLog.xsd')" />
+  </Target>
+</Project>
