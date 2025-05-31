@@ -39,6 +39,9 @@ var result = consoleWriter.ToString();
 
 Console.WriteLine(result);
 
+var processPath = Environment.ProcessPath ?? string.Empty;
+Console.WriteLine($"ProcessPath: '{processPath}' with FileSize: {new FileInfo(processPath).Length}");
+
 if (result == $"{Environment.CurrentManagedThreadId}|Success{System.Environment.NewLine}")
     return 0;
 else
