@@ -8,9 +8,9 @@ Hi! Thanks for reporting this bug!
 
 Please keep / fill in the relevant info from this template so that we can help you as best as possible.
 
-**NLog version**: (e.g. 4.4.13)
+**NLog version**: (e.g. 4.7.15)
 
-**Platform**: .Net 3.5 / .Net 4.0 / .Net 4.5 / Mono 4 / Xamarin Android / Xamarin iOS / .NET Core / .NET5 / .NET6
+**Platform**: .NET8 / .NET Framework 4.8 / Linux / Android / iOS / UWP / Unity / etc.
 
 **Current NLog config** (xml or C#, if relevant)
 
