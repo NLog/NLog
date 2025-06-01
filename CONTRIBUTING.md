@@ -42,49 +42,23 @@ Please document any public method and property. Document **why** and not how. At
 
 
 Multiple .NET versions
-===
+----
 Keep in mind that multiple versions of .NET are supported. Some methods are not available in all .NET versions. The following conditional compilation symbols can be used:
 
 ```
 #if NET35
-#if NET45
-#if NET46
-#if NETSTANDARD
-#if NETSTANDARD1_3
-#if NETSTANDARD1_5
+#if NETFRAMEWORK
+#if NETSTANDARD2_1_OR_GREATER
 ```
 
-Update your fork
-===
-Is your fork not up-to-date with the NLog code? Most of the time that isn't a problem. But if you like to "sync back" the changes to your repository, execute the following command:
-
-The first time:
-```
-git remote add upstream https://github.com/NLog/NLog.git 
-```
-
-
-After that you repository will have two remotes. You could update your remote (the fork) in the following way:
-
-```
-git fetch upstream
-git checkout <your feature branch>
-git rebase upstream/master
-..fix if needed and
-git push -f 
-```
-
-if `rebase` won't work well, use `git merge master` as alternative.
-
-It's also possible to send a PR in the opposite direction, but that's not preferred as it will pollute the commit log.
-
+.NET Framework is now the odd one, so focus should be on using `NETFRAMEWORK` to mark code that doesn't support NetStandard or NetCore. 
 
 Contributing
----
+----
 As the current NLog team is a small team, we cannot fix every bug or implement every feature on our own. So contributions are really appreciated!
 
 If you like to start with a small task, then
-[up-for-grabs](https://github.com/NLog/NLog/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+label%3Aup-for-grabs) are nice to start with.
+[up-for-grabs](https://github.com/NLog/NLog/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+label%3Aup-for-grabs)  are nice to start with.
 
 Please note, we have a `dev` and `master` branch
 
@@ -101,9 +75,31 @@ A good way to get started (flow)
 
 Please note: bugfixes should target the **master** branch, others the **dev** branch (NLog 6)
 
+Update your fork
+----
+Is your fork not up-to-date with the NLog code? Most of the time that isn't a problem. But if you like to "sync back" the changes to your repository, execute the following command:
+
+The first time:
+```
+git remote add upstream https://github.com/NLog/NLog.git 
+```
+
+After that you repository will have two remotes. You could update your remote (the fork) in the following way:
+```
+git fetch upstream
+git checkout <your feature branch>
+git rebase upstream/master
+..fix if needed and
+git push -f 
+```
+
+if `rebase` won't work well, use `git merge master` as alternative.
+
+It's also possible to send a PR in the opposite direction, but that's not preferred as it will pollute the commit log.
+
 
 How to build
----
+----
 Use Visual Studio 2022 and open the solution 'NLog.sln'.
 
 For building in the cloud we use:
@@ -113,3 +109,17 @@ For building in the cloud we use:
 Trying to build your fork in the cloud? Check [this how-to](howto-build-your-fork.md)
 
 Note: master points to NLog 5.x and dev to NLog 6
+
+Official list of NLog extensions
+===
+NLog Project Homepage provides a list of available [NLog Targets and Layouts](https://nlog-project.org/config/)
+
+To add a new NLog extension, then just create pull-request here:
+
+- https://github.com/NLog/NLog.github.io/pulls
+
+Updating the relevant file:
+
+- **NLog Targets** - https://github.com/NLog/NLog.github.io/blob/master/config/targets.json
+- **NLog Layouts** -  https://github.com/NLog/NLog.github.io/blob/master/config/layouts.json
+- **NLog LayoutRenderers** - https://github.com/NLog/NLog.github.io/blob/master/config/layout-renderers.json
