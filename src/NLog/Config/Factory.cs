@@ -254,6 +254,54 @@ namespace NLog.Config
             {
                 message += " - Extension NLog.Database not included?";
             }
+            else if (normalName?.StartsWith("network", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.Targets.Network not included?";
+            }
+            else if (normalName?.StartsWith("nlogviewer", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.Targets.Network not included?";
+            }
+            else if (normalName?.StartsWith("chainsaw", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.Targets.Network not included?";
+            }
+            else if (normalName?.StartsWith("Log4JXml", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.Targets.Network not included?";
+            }
+            else if (normalName?.StartsWith("syslog", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.Targets.Network not included?";
+            }
+            else if (normalName?.StartsWith("gelf", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.Targets.Network not included?";
+            }
+            else if (normalName?.StartsWith("localip", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.Targets.Network not included?";
+            }
+            else if (normalName?.StartsWith("atomFile", StringComparison.OrdinalIgnoreCase) == true || normalName?.StartsWith("atomicFile", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.Targets.AtomicFile not included?";
+            }
+            else if (normalName?.StartsWith("GZipFile", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.Targets.GZipFile not included?";
+            }
+            else if (normalName?.StartsWith("trace", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.Targets.Trace not included?";
+            }
+            else if (normalName?.StartsWith("mailkit", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.MailKit not included?";
+            }
+            else if (normalName?.StartsWith("mail", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.Targets.Mail not included?";
+            }
             else if (normalName?.StartsWith("eventlog", StringComparison.OrdinalIgnoreCase) == true)
             {
                 message += " - Extension NLog.WindowsEventLog not included?";
@@ -269,6 +317,10 @@ namespace NLog.Config
             else if (normalName?.StartsWith("performancecounter", StringComparison.OrdinalIgnoreCase) == true)
             {
                 message += " - Extension NLog.PerformanceCounter not included?";
+            }
+            else if (normalName?.StartsWith("regexreplace", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.RegEx not included?";
             }
             else
             {
