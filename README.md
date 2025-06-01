@@ -16,7 +16,6 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=coverage&branch=dev)](https://sonarcloud.io/dashboard?id=nlog2&branch=dev)
 
 
-
 [![](https://img.shields.io/badge/Docs-GitHub%20wiki-brightgreen)](https://github.com/NLog/NLog/wiki)
 [![](https://img.shields.io/badge/Troubleshoot-Guide-orange)](https://github.com/nlog/nlog/wiki/Logging-troubleshooting)
 
@@ -42,30 +41,29 @@ For the possible options in the config, check the [Options list](https://nlog-pr
 
 Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/wiki/Logging-troubleshooting)
 
-
-
 -----
+
 
  ℹ️ NLog 6.0 will support AOT
 
 NLog 6.0 is now being prepared. See [List of goals for NLog 6.0](https://nlog-project.org/2024/10/01/nlog-6-0-goals.html)
 
+
 NLog Packages
 ---
-The NLog-nuget-package provides everything needed for doing file- and console-logging. But there are also multiple NLog extension packages,
+The NLog-nuget-package provides everything needed for doing file- and console-logging. But there are many NLog extension packages,
 that provides additional target- and layout-output. See [targets](https://nlog-project.org/config/?tab=targets) and [layout renderers](https://nlog-project.org/config/?tab=layout-renderers) overview!
 
-See Nuget/build status of all official packages [here](https://github.com/NLog/NLog/blob/dev/packages-and-status.md)
+See Nuget/build status of the NLog extension packages maintained by the NLog-project [here](https://github.com/NLog/NLog/blob/dev/packages-and-status.md)
 
 
 Questions, bug reports or feature requests?
 ---
-Issues with getting it working? 
-Please check the [troubleshooting guide](https://github.com/NLog/NLog/wiki/Logging-troubleshooting)  before asking! With a clear error message, it's really easier to solve the issue! 
+If having issues with getting NLog working? Then please check the [troubleshooting guide](https://github.com/NLog/NLog/wiki/Logging-troubleshooting) before asking! This will often provide you with clear error message when asking, so it is easier to solve the issue!
 
-Unclear how to configure NLog correctly of other questions? Please post questions on [StackOverflow](https://stackoverflow.com/).
+If having questions about how to configure NLog correctly? Then please post questions on [StackOverflow](https://stackoverflow.com/questions/tagged/nlog) (using the `nlog` tag)
 
-Do you have feature request or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow [these guidelines](.github/CONTRIBUTING.md).
+Have you found a bug or issue with NLog functionality? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow [these guidelines](/CONTRIBUTING.md).
 
 
 Frequently Asked Questions (FAQ)
@@ -73,45 +71,7 @@ Frequently Asked Questions (FAQ)
 See [FAQ on the Wiki](https://github.com/NLog/NLog/wiki/faq)
 
 
-Contributing
----
-As the current NLog team is a small team, we cannot fix every bug or implement every feature on our own. So contributions are really appreciated!
-
-If you like to start with a small task, then
-[up-for-grabs](https://github.com/NLog/NLog/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+label%3Aup-for-grabs+-label%3A%22almost+ready%22+)  are nice to start with.
-
-Please note, we have a `dev` and `master` branch
-
-- `master` is for pure bug fixes and targets NLog 5.x
-- `dev` targets NLog 6
-
-
-A good way to get started (flow)
-
-1. Fork the NLog repos.
-1. Create a new branch in you current repos from the 'dev' branch. (critical bugfixes from 'master')
-1. 'Check out' the code with Git or [GitHub Desktop](https://desktop.github.com/)
-1. Check [contributing.md](.github/CONTRIBUTING.md#sync-projects)
-1. Push commits and create a Pull Request (PR) to NLog
-
-Please note: bugfixes should target the **master** branch, others the **dev** branch (NLog 6)
-
-
 License
 ---
 NLog is open source software, licensed under the terms of BSD license.
 See [LICENSE.txt](LICENSE.txt) for details.
-
-
-How to build
----
-Use Visual Studio 2019 and open the solution 'NLog.sln'.
-
-For building in the cloud we use:
-- AppVeyor for Windows- and Linux-builds
-- SonarQube for code coverage
-
-Trying to build your fork in the cloud? Check [this how-to](howto-build-your-fork.md)
-
-Note: master points to NLog 5.x and dev to NLog 6
-
