@@ -133,6 +133,31 @@ namespace NLog
             _messageFormatter = (l) => l._formattedMessage ?? l.Message ?? string.Empty;
         }
 
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
+        /// </summary>
+        /// <param name="level">Log level.</param>
+        /// <param name="loggerName">Override default Logger name. Default <see cref="Logger.Name"/> is used when <c>null</c></param>
+        /// <param name="formattedMessage">Pre-formatted log message for ${message}.</param>
+        /// <param name="messageTemplate">Log message-template including parameter placeholders for ${message:raw=true}.</param>
+        /// <param name="messageTemplateParameters">Already parsed message template parameters.</param>
+        public LogEventInfo(LogLevel level, string? loggerName, [Localizable(false)] string formattedMessage, [Localizable(false)] string messageTemplate, ReadOnlySpan<MessageTemplateParameter> messageTemplateParameters)
+            : this(level, loggerName, messageTemplate)
+        {
+            _formattedMessage = formattedMessage;
+            _messageFormatter = (l) => l._formattedMessage ?? l.Message ?? string.Empty;
+
+            if (messageTemplateParameters.Length > 0)
+            {
+                var messageProperties = new MessageTemplateParameter[messageTemplateParameters.Length];
+                for (int i = 0; i < messageTemplateParameters.Length; ++i)
+                    messageProperties[i] = messageTemplateParameters[i];
+                _properties = new PropertiesDictionary(messageProperties);
+            }
+        }
+#endif
+
 #if !NET35
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.

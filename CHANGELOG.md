@@ -13,6 +13,7 @@ Date format: (year/month/day)
 - Updated interface ILoggingConfigurationElement to support nullable Values.
 - Updated all projects to include `<IsAotCompatible>`
 - Optimized ConsoleTarget to not use Console.WriteLine, and introduced option `ForceWriteLine`
+- Added new LogEventInfo constructor that supports `ReadOnlySpan<MessageTemplateParameter>`
 - Updated NLog.Schema nuget-package to include targets-file to copy NLog.xsd to project-folder.
 - Improved configuration-file loading to advise about NLog nuget-packages for missing types.
 
