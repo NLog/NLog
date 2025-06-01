@@ -47,11 +47,12 @@ Keep in mind that multiple versions of .NET are supported. Some methods are not 
 
 ```
 #if NET35
-#if NETFRAMEWORK
-#if NETSTANDARD2_1_OR_GREATER
+#if NET45
+#if NET46
+#if NETSTANDARD
+#if NETSTANDARD1_3
+#if NETSTANDARD1_5
 ```
-
-.NET Framework is now the odd one, so focus should be on using `NETFRAMEWORK` to mark code that doesn't support NetStandard or NetCore. 
 
 Contributing
 ----
