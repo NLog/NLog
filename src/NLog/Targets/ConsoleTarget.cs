@@ -133,6 +133,12 @@ namespace NLog.Targets
         public bool AutoFlush { get; set; }
 
         /// <summary>
+        /// Gets or sets whether to force <see cref="Console.WriteLine()"/> (slower) instead of the faster internal buffering.
+        /// </summary>
+        /// <docgen category='Console Options' order='10' />
+        public bool ForceWriteLine { get => !WriteBuffer; set => WriteBuffer = !value; }
+
+        /// <summary>
         /// Gets or sets whether to activate internal buffering to allow batch writing, instead of using <see cref="Console.WriteLine()"/>
         /// </summary>
         /// <docgen category='Console Options' order='10' />
