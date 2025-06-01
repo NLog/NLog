@@ -47,11 +47,9 @@ Keep in mind that multiple versions of .NET are supported. Some methods are not 
 
 ```
 #if NET35
-#if NET45
-#if NET46
+#if NETFRAMEWORK
 #if NETSTANDARD
-#if NETSTANDARD1_3
-#if NETSTANDARD1_5
+#if NETSTANDARD2_1_OR_GREATER
 ```
 
 Update your fork
