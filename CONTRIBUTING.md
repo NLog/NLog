@@ -42,7 +42,7 @@ Please document any public method and property. Document **why** and not how. At
 
 
 Multiple .NET versions
-===
+----
 Keep in mind that multiple versions of .NET are supported. Some methods are not available in all .NET versions. The following conditional compilation symbols can be used:
 
 ```
@@ -53,30 +53,8 @@ Keep in mind that multiple versions of .NET are supported. Some methods are not 
 
 .NET Framework is now the odd one, so focus should be on using `NETFRAMEWORK` to mark code that doesn't support NetStandard or NetCore. 
 
-Update your fork
-===
-Is your fork not up-to-date with the NLog code? Most of the time that isn't a problem. But if you like to "sync back" the changes to your repository, execute the following command:
-
-The first time:
-```
-git remote add upstream https://github.com/NLog/NLog.git 
-```
-
-After that you repository will have two remotes. You could update your remote (the fork) in the following way:
-```
-git fetch upstream
-git checkout <your feature branch>
-git rebase upstream/master
-..fix if needed and
-git push -f 
-```
-
-if `rebase` won't work well, use `git merge master` as alternative.
-
-It's also possible to send a PR in the opposite direction, but that's not preferred as it will pollute the commit log.
-
 Contributing
-===
+----
 As the current NLog team is a small team, we cannot fix every bug or implement every feature on our own. So contributions are really appreciated!
 
 If you like to start with a small task, then
@@ -97,9 +75,31 @@ A good way to get started (flow)
 
 Please note: bugfixes should target the **master** branch, others the **dev** branch (NLog 6)
 
+Update your fork
+----
+Is your fork not up-to-date with the NLog code? Most of the time that isn't a problem. But if you like to "sync back" the changes to your repository, execute the following command:
+
+The first time:
+```
+git remote add upstream https://github.com/NLog/NLog.git 
+```
+
+After that you repository will have two remotes. You could update your remote (the fork) in the following way:
+```
+git fetch upstream
+git checkout <your feature branch>
+git rebase upstream/master
+..fix if needed and
+git push -f 
+```
+
+if `rebase` won't work well, use `git merge master` as alternative.
+
+It's also possible to send a PR in the opposite direction, but that's not preferred as it will pollute the commit log.
+
 
 How to build
-===
+----
 Use Visual Studio 2022 and open the solution 'NLog.sln'.
 
 For building in the cloud we use:
