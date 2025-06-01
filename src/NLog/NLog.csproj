@@ -57,8 +57,8 @@ NLog v6.0 RC2 with the following major changes:
 - Updated interface ILoggingConfigurationElement to support nullable Values.
 - Updated all projects to include &lt;IsAotCompatible&gt;
 - Optimized ConsoleTarget to not use Console.WriteLine, and introduced option ForceWriteLine
-- Added new LogEventInfo constructor that supports ReadOnlySpan&lt;MessageTemplateParameter&gt;
 - Updated NLog.Schema nuget-package to include targets-file to copy NLog.xsd to project-folder.
+- Improved configuration-file loading to advise about NLog nuget-packages for missing types.
 
 NLog v6.0 release notes: https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html
 
