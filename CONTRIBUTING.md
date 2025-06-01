@@ -1,6 +1,6 @@
 Support & contributing guidelines
 ===
-Do you have feature requests, questions or would you like to report a bug? Please follow these guidelines when posting on the [issue list](https://github.com/NLog/NLog/issues). The issues are labeled with the [following guideline](/issue-labeling.md). 
+Do you have feature requests, questions or would you like to report a bug? Please follow these guidelines when posting on the [issue list](https://github.com/NLog/NLog/issues).
 
 Feature requests
 ----
@@ -77,3 +77,39 @@ git push -f
 if `rebase` won't work well, use `git merge master` as alternative.
 
 It's also possible to send a PR in the opposite direction, but that's not preferred as it will pollute the commit log.
+
+
+Contributing
+---
+As the current NLog team is a small team, we cannot fix every bug or implement every feature on our own. So contributions are really appreciated!
+
+If you like to start with a small task, then
+[up-for-grabs](https://github.com/NLog/NLog/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+label%3Aup-for-grabs) are nice to start with.
+
+Please note, we have a `dev` and `master` branch
+
+- `master` is for pure bug fixes and targets NLog 5.x
+- `dev` targets NLog 6
+
+
+A good way to get started (flow)
+
+1. Fork the NLog repos.
+2. Create a new branch in you current repos from the 'dev' branch. (critical bugfixes from 'master')
+3. 'Check out' the code with Git or [GitHub Desktop](https://desktop.github.com/)
+4. Push commits and create a Pull Request (PR) to NLog
+
+Please note: bugfixes should target the **master** branch, others the **dev** branch (NLog 6)
+
+
+How to build
+---
+Use Visual Studio 2022 and open the solution 'NLog.sln'.
+
+For building in the cloud we use:
+- AppVeyor for Windows- and Linux-builds
+- SonarQube for code coverage
+
+Trying to build your fork in the cloud? Check [this how-to](howto-build-your-fork.md)
+
+Note: master points to NLog 5.x and dev to NLog 6
