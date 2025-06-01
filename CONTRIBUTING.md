@@ -111,7 +111,7 @@ Trying to build your fork in the cloud? Check [this how-to](howto-build-your-for
 
 Note: master points to NLog 5.x and dev to NLog 6
 
-Official list of NLog extensions
+List of NLog extensions
 ===
 NLog Project Homepage provides a list of available [NLog Targets and Layouts](https://nlog-project.org/config/)
 
