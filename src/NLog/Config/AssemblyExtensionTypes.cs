@@ -330,6 +330,10 @@ namespace NLog.Config
                 factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WhenEmptyLayoutRendererWrapper>("whenEmpty");
             if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("WhenEmpty"))
                 factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WhenEmptyLayoutRendererWrapper>("WhenEmpty");
+            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("whenNotEmpty"))
+                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WhenNotEmptyLayoutRendererWrapper>("whenNotEmpty");
+            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("whenNotEmpty"))
+                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WhenNotEmptyLayoutRendererWrapper>("whenNotEmpty");
             if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("when"))
                 factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WhenLayoutRendererWrapper>("when");
             if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("When"))

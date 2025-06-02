@@ -169,6 +169,26 @@ namespace NLog.Layouts
             return new SimpleLayout(new[] { layoutRenderer }, layoutRenderer.LayoutRendererName);
         }
 
+        /// <summary>
+        /// Create a <see cref="SimpleLayout"/> that outputs alternative layout when the inner layout produces empty result.
+        /// </summary>
+        public static Layout WhenEmpty(Layout inner, Layout whenEmpty)
+        {
+            Guard.ThrowIfNull(inner);
+            Guard.ThrowIfNull(whenEmpty);
+            return new SimpleLayout(new[] { new NLog.LayoutRenderers.Wrappers.WhenEmptyLayoutRendererWrapper() { Inner = inner, WhenEmpty = whenEmpty } }, $"${{whenEmpty:inner={inner}:whenEmpty={whenEmpty}}}");
+        }
+
+        /// <summary>
+        /// Create a <see cref="SimpleLayout"/> that outputs alternative layout when the inner layout produces not-empty result.
+        /// </summary>
+        public static Layout WhenNotEmpty(Layout inner, Layout whenNotEmpty)
+        {
+            Guard.ThrowIfNull(inner);
+            Guard.ThrowIfNull(whenNotEmpty);
+            return new SimpleLayout(new[] { new NLog.LayoutRenderers.Wrappers.WhenNotEmptyLayoutRendererWrapper() { Inner = inner, WhenNotEmpty = whenNotEmpty } }, $"${{whenNotEmpty:inner={inner}:whenNotEmpty={whenNotEmpty}}}");
+        }
+
         internal static LayoutRenderers.FuncLayoutRenderer CreateFuncLayoutRenderer(Func<LogEventInfo, LoggingConfiguration?, object> layoutMethod, LayoutRenderOptions options, string name)
         {
             if ((options & LayoutRenderOptions.ThreadAgnostic) == LayoutRenderOptions.ThreadAgnostic)

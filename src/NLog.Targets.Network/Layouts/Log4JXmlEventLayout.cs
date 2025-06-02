@@ -296,13 +296,13 @@ namespace NLog.Layouts
 
             foreach (var parameter in Parameters)
             {
+                var parameterName = Layout.FromLiteral(parameter.Name);
                 var propertyElement = new XmlElement("log4j:data", Layout.Empty)
                 {
-                    IncludeEmptyValue = parameter.IncludeEmptyValue,
                     Attributes =
                     {
-                        new XmlAttribute("name", parameter.Name),
-                        new XmlAttribute("value", parameter.Layout),
+                        new XmlAttribute("name", parameter.IncludeEmptyValue ? parameterName : Layout.WhenNotEmpty(parameter.Layout, parameterName)) { IncludeEmptyValue = parameter.IncludeEmptyValue },
+                        new XmlAttribute("value", parameter.Layout) { IncludeEmptyValue = parameter.IncludeEmptyValue },
                     }
                 };
                 dataProperties.Elements.Add(propertyElement);
