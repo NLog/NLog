@@ -105,7 +105,7 @@ See [LICENSE.txt](LICENSE.txt) for details.
 
 How to build
 ---
-Use Visual Studio 2019 and open the solution 'NLog.sln'.
+Use Visual Studio 2022 (or later) to open the solution 'NLog.sln'.
 
 For building in the cloud we use:
 - AppVeyor for Windows- and Linux-builds
