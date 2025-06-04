@@ -49,13 +49,14 @@ Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/
 [NLog 6.0 RC1](https://www.nuget.org/packages/NLog/6.0.0-rc1#releasenotes-body-tab) now available. See also [List of major changes in NLog 6.0](https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html)
 
 
-NLog Packages
+NLog Extensions
 ---
-The NLog-nuget-package provides everything needed for doing file- and console-logging. But there are many NLog extension packages,
-that provides additional target- and layout-output. See [targets](https://nlog-project.org/config/?tab=targets) and [layout renderers](https://nlog-project.org/config/?tab=layout-renderers) overview!
+The NLog-nuget-package provides everything needed for doing file- and console-logging. If you need other output options, then there are many NLog extension packages available (such as databases, email, cloud services, etc.).
+See [targets](https://nlog-project.org/config/?tab=targets) and [layout renderers](https://nlog-project.org/config/?tab=layout-renderers) overview!
 
-See Nuget/build status of the NLog extension packages maintained by the NLog-project [here](https://github.com/NLog/NLog/blob/dev/packages-and-status.md)
+The NLog extension packages maintained by the NLog-project are [listed here](https://github.com/NLog/NLog/blob/dev/packages-and-status.md) with Nuget/build status.
 
+It is also possible to [Create your own custom NLog extensions](https://github.com/NLog/NLog/wiki/Extending-NLog).
 
 Questions, bug reports or feature requests?
 ---
