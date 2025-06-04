@@ -138,6 +138,17 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Create a <see cref="SimpleLayout"/> containing literal value
+        /// </summary>
+        public static Layout FromLiteral([Localizable(false)] string literalText)
+        {
+            if (string.IsNullOrEmpty(literalText))
+                return new SimpleLayout(ArrayHelper.Empty<LayoutRenderers.LayoutRenderer>(), string.Empty, ConfigurationItemFactory.Default);
+            else
+                return new SimpleLayout(new[] { new NLog.LayoutRenderers.LiteralLayoutRenderer(literalText) }, literalText, ConfigurationItemFactory.Default);
+        }
+
+        /// <summary>
         /// Create a <see cref="SimpleLayout"/> from a lambda method.
         /// </summary>
         /// <param name="layoutMethod">Method that renders the layout.</param>
