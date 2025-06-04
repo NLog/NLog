@@ -12,16 +12,18 @@
     
 The nuget-package will try to copy the XSD-file into the project-folder, so one can reference NLog.xsd from NLog.config:
     
-   &lt;nlog xmlns=&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-          xsi:schemaLocation=&quot;http://www.nlog-project.org/schemas/NLog.xsd NLog.xsd&quot;&gt;
+   &lt;nlog xmlns=&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot;
+     xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+     xsi:schemaLocation=&quot;http://www.nlog-project.org/schemas/NLog.xsd NLog.xsd&quot;&gt;
    &lt;/nlog&gt;
 
 If this nuget-package fails to place the XSD-file into the project-folder then one can download latest here: https://nlog-project.org/schemas/NLog.xsd
 
 Alternative enable the Visual Studio option "Automatically download DTDs and schemas" and specify the complete URL:
 
-   &lt;nlog xmlns=&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-      xsi:schemaLocation=&quot;http://www.nlog-project.org/schemas/NLog.xsd http://www.nlog-project.org/schemas/NLog.xsd&quot;&gt;
+   &lt;nlog xmlns=&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot;
+     xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+     xsi:schemaLocation=&quot;http://www.nlog-project.org/schemas/NLog.xsd http://www.nlog-project.org/schemas/NLog.xsd&quot;&gt;
    &lt;/nlog&gt;
 </description>
     <releaseNotes>NLog $BuildVersion$</releaseNotes>

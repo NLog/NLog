@@ -46,7 +46,7 @@ Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/
 
  ℹ️ NLog 6.0 will support AOT
 
-[NLog 6.0 RC1](https://www.nuget.org/packages/NLog/6.0.0-rc1#releasenotes-body-tab) now available. See also [List of major changes in NLog 6.0](https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html)
+[NLog 6.0 RC2](https://www.nuget.org/packages/NLog/6.0.0-rc2#releasenotes-body-tab) now available. See also [List of major changes in NLog 6.0](https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html)
 
 
 NLog Extensions
