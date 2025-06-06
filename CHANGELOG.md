@@ -4,6 +4,11 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.0 RC2 (2025/06/08)
+
+**Improvements**
+- Log4JXmlEventLayout - Fixed IncludeEmptyValue for Parameters
+
 ### Version 6.0 RC2 (2025/06/01)
 
 **Improvements**
