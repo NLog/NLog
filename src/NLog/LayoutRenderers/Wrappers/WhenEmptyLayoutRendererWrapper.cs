@@ -50,7 +50,7 @@ namespace NLog.LayoutRenderers.Wrappers
         private Func<LogEventInfo, string>? _stringValueRenderer;
 
         /// <summary>
-        /// Gets or sets the layout to be rendered when original layout produced empty result.
+        /// Gets or sets the layout to be rendered when Inner-layout produces empty result.
         /// </summary>
         /// <docgen category="Layout Options" order="10"/>
         public Layout WhenEmpty { get; set; } = Layout.Empty;
@@ -60,7 +60,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             _stringValueRenderer = null;
 
-            if (WhenEmpty is null)
+            if (WhenEmpty is null || ReferenceEquals(WhenEmpty, Layout.Empty))
                 throw new NLogConfigurationException("WhenEmpty-LayoutRenderer WhenEmpty-property must be assigned.");
 
             base.InitializeLayoutRenderer();

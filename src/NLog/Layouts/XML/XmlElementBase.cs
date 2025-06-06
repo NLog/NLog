@@ -40,6 +40,7 @@ namespace NLog.Layouts
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Targets;
 
     /// <summary>
     /// A specialized layout that renders XML-formatted events.
@@ -82,7 +83,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Auto indent and create new lines
         /// </summary>
-        /// <docgen category='Layout Options' order='100' />
+        /// <docgen category='Layout Options' order='50' />
         public bool IndentXml { get; set; }
 
         /// <summary>
@@ -100,8 +101,16 @@ namespace NLog.Layouts
         public IList<XmlAttribute> Attributes { get; } = new List<XmlAttribute>();
 
         /// <summary>
+        /// Gets the collection of context properties that should be included with the other properties.
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        [ArrayParameter(typeof(TargetPropertyWithContext), "contextproperty")]
+        public List<TargetPropertyWithContext>? ContextProperties { get; set; }
+
+        /// <summary>
         /// Gets or sets whether empty XML-element should be included in the output. Default = false
         /// </summary>
+        /// <docgen category='Layout Output' order='10' />
         public bool IncludeEmptyValue { get; set; }
 
         /// <summary>
@@ -122,7 +131,7 @@ namespace NLog.Layouts
         ///
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdc { get => _includeMdc ?? false; set => _includeMdc = value; }
@@ -133,7 +142,7 @@ namespace NLog.Layouts
         ///
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdlc { get => _includeMdlc ?? false; set => _includeMdlc = value; }
@@ -144,15 +153,15 @@ namespace NLog.Layouts
         ///
         /// Gets or sets the option to include all properties from the log event (as XML)
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
 
         /// <summary>
-        /// List of property names to exclude when <see cref="IncludeAllProperties"/> is true
+        /// List of property names to exclude when <see cref="IncludeEventProperties"/> is true
         /// </summary>
-        /// <docgen category='Layout Options' order='100' />
+        /// <docgen category='Layout Options' order='50' />
 #if !NET35
         public ISet<string> ExcludeProperties { get; set; }
 #else
@@ -167,7 +176,7 @@ namespace NLog.Layouts
         ///
         /// Skips closing element tag when having configured <see cref="PropertiesElementValueAttribute"/>
         /// </remarks>
-        /// <docgen category='Layout Options' order='100' />
+        /// <docgen category='Layout Options' order='50' />
         public string PropertiesElementName
         {
             get => _propertiesElementName;
@@ -190,7 +199,7 @@ namespace NLog.Layouts
         /// <remarks>
         /// Will replace newlines in attribute-value with &#13;&#10;
         /// </remarks>
-        /// <docgen category='Layout Options' order='100' />
+        /// <docgen category='Layout Options' order='50' />
         public string PropertiesElementKeyAttribute { get; set; } = DefaultPropertyKeyAttribute;
 
         /// <summary>
@@ -204,19 +213,19 @@ namespace NLog.Layouts
         ///
         /// Will replace newlines in attribute-value with &#13;&#10;
         /// </remarks>
-        /// <docgen category='Layout Options' order='100' />
+        /// <docgen category='Layout Options' order='50' />
         public string PropertiesElementValueAttribute { get; set; } = string.Empty;
 
         /// <summary>
         /// XML element name to use for rendering IList-collections items
         /// </summary>
-        /// <docgen category='Layout Options' order='100' />
+        /// <docgen category='Layout Options' order='50' />
         public string PropertiesCollectionItemName { get; set; } = DefaultCollectionItemName;
 
         /// <summary>
         /// How far should the XML serializer follow object references before backing off
         /// </summary>
-        /// <docgen category='Layout Options' order='100' />
+        /// <docgen category='Layout Options' order='50' />
         public int MaxRecursionLimit { get; set; } = 1;
 
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));
@@ -257,8 +266,17 @@ namespace NLog.Layouts
                 }
             }
 
+            if (ContextProperties != null && ContextProperties.Count > 0)
+            {
+                foreach (var contextProperty in ContextProperties)
+                {
+                    if (string.IsNullOrEmpty(contextProperty.Name))
+                        throw new NLogConfigurationException($"XmlElement(Name={ElementNameInternal}): Contains invalid ContextProperty with unassigned Name-property");
+                }
+            }
+
             var innerLayouts = LayoutWrapper.Inner is null ? ArrayHelper.Empty<Layout>() : new[] { LayoutWrapper.Inner };
-            _precalculateLayouts = (IncludeEventProperties || IncludeScopeProperties) ? null : ResolveLayoutPrecalculation(Attributes.Select(atr => atr.Layout).Concat(Elements.Where(elm => elm.Layout != null).Select(elm => elm.Layout)).Concat(innerLayouts));
+            _precalculateLayouts = (IncludeEventProperties || IncludeScopeProperties) ? null : ResolveLayoutPrecalculation(Attributes.Select(atr => atr.Layout).Concat(Elements.Where(elm => elm.Layout != null).Select(elm => elm.Layout)).Concat(ContextProperties?.Select(ctx => ctx.Layout) ?? Enumerable.Empty<Layout>()).Concat(innerLayouts));
         }
 
         /// <inheritdoc/>
@@ -369,6 +387,9 @@ namespace NLog.Layouts
             if (Elements.Count > 0)
                 return true;
 
+            if (ContextProperties?.Count > 0)
+                return true;
+
             if (IncludeScopeProperties)
                 return true;
 
@@ -380,6 +401,18 @@ namespace NLog.Layouts
 
         private void AppendLogEventXmlProperties(LogEventInfo logEventInfo, StringBuilder sb, int orgLength)
         {
+            if (ContextProperties != null)
+            {
+                foreach (var contextProperty in ContextProperties)
+                {
+                    var propertyValue = contextProperty.RenderValue(logEventInfo);
+                    if (!contextProperty.IncludeEmptyValue && StringHelpers.IsNullOrEmptyString(propertyValue))
+                        continue;
+
+                    AppendXmlPropertyValue(contextProperty.Name, propertyValue, sb, orgLength);
+                }
+            }
+
             if (IncludeScopeProperties)
             {
                 bool checkExcludeProperties = ExcludeProperties.Count > 0;

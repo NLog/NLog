@@ -225,13 +225,14 @@ namespace NLog.Targets.Network
         {
             var log4jLayout = new Log4JXmlEventLayout()
             {
+                IncludeEventProperties = false,
                 Parameters =
                 {
                     new Log4JXmlEventParameter
                     {
                         Name = "mt",
-                        Layout = "${message:raw=true}",
-                    }
+                        Layout = "${event-properties:planet}",
+                    },
                 },
             };
             log4jLayout.AppInfo = "MyApp";
@@ -240,14 +241,25 @@ namespace NLog.Targets.Network
                 LoggerName = "MyLOgger",
                 TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56, DateTimeKind.Utc),
                 Level = LogLevel.Info,
-                Message = "hello, <{0}>",
-                Parameters = new[] { "world" }
+                Message = "hello, {planet}",
+                Parameters = new[] { "<earth>" }
             };
 
             var threadid = Environment.CurrentManagedThreadId;
             var machinename = Environment.MachineName;
             var result = log4jLayout.Render(logEventInfo);
-            Assert.Equal($"<log4j:event logger=\"MyLOgger\" level=\"INFO\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>hello, &lt;world&gt;</log4j:message><log4j:properties><log4j:data name=\"mt\" value=\"hello, &lt;{{0}}&gt;\"/><log4j:data name=\"log4japp\" value=\"MyApp\"/><log4j:data name=\"log4jmachinename\" value=\"{machinename}\"/></log4j:properties></log4j:event>", result);
+            Assert.Equal($"<log4j:event logger=\"MyLOgger\" level=\"INFO\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>hello, &lt;earth&gt;</log4j:message><log4j:properties><log4j:data name=\"log4japp\" value=\"MyApp\"/><log4j:data name=\"log4jmachinename\" value=\"{machinename}\"/><log4j:data name=\"mt\" value=\"&lt;earth&gt;\"/></log4j:properties></log4j:event>", result);
+
+            var logEventInfo2 = new LogEventInfo
+            {
+                LoggerName = "MyLOgger",
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56, DateTimeKind.Utc),
+                Level = LogLevel.Info,
+                Message = "hello, <earth>",
+            };
+
+            var result2 = log4jLayout.Render(logEventInfo2);
+            Assert.Equal($"<log4j:event logger=\"MyLOgger\" level=\"INFO\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>hello, &lt;earth&gt;</log4j:message><log4j:properties><log4j:data name=\"log4japp\" value=\"MyApp\"/><log4j:data name=\"log4jmachinename\" value=\"{machinename}\"/></log4j:properties></log4j:event>", result2);
         }
 
         [Fact]

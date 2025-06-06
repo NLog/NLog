@@ -294,18 +294,15 @@ namespace NLog.Layouts
                 IncludeScopeProperties = IncludeScopeProperties
             };
 
-            foreach (var parameter in Parameters)
+            dataProperties.ContextProperties?.Clear();
+            if (Parameters.Count > 0)
             {
-                var propertyElement = new XmlElement("log4j:data", Layout.Empty)
+                if (dataProperties.ContextProperties is null)
+                    dataProperties.ContextProperties = new List<Targets.TargetPropertyWithContext>();
+                foreach (var parameter in Parameters)
                 {
-                    IncludeEmptyValue = parameter.IncludeEmptyValue,
-                    Attributes =
-                    {
-                        new XmlAttribute("name", parameter.Name),
-                        new XmlAttribute("value", parameter.Layout),
-                    }
-                };
-                dataProperties.Elements.Add(propertyElement);
+                    dataProperties.ContextProperties.Add(new Targets.TargetPropertyWithContext(parameter.Name, parameter.Layout) { IncludeEmptyValue = parameter.IncludeEmptyValue });
+                }
             }
 
             dataProperties.Elements.Add(_log4jAppName);
