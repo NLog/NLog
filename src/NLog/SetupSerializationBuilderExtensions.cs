@@ -34,6 +34,8 @@
 namespace NLog
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
 
@@ -82,11 +84,22 @@ namespace NLog
         }
 
         /// <summary>
+        /// Registers object Type transformation so build trimming will keep public properties.
+        /// </summary>
+        public static ISetupSerializationBuilder RegisterObjectTransformation<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] T>(this ISetupSerializationBuilder setupBuilder)
+        {
+            Guard.ThrowIfNull(setupBuilder);
+            InternalLogger.Debug("RegisterObjectTransformation for {0} to keep public properties", typeof(T));
+            return setupBuilder;
+        }
+
+        /// <summary>
         /// Registers object Type transformation from dangerous (massive) object to safe (reduced) object
         /// </summary>
         public static ISetupSerializationBuilder RegisterObjectTransformation<T>(this ISetupSerializationBuilder setupBuilder, Func<T, object> transformer)
         {
             Guard.ThrowIfNull(transformer);
+            InternalLogger.Debug("RegisterObjectTransformation for {0} to convert safely", typeof(T));
 
             var original = setupBuilder.LogFactory.ServiceRepository.GetService<IObjectTypeTransformer>();
             setupBuilder.LogFactory.ServiceRepository.RegisterObjectTypeTransformer(new ObjectTypeTransformation<T>(transformer, original));
