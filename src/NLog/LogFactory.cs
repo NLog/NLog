@@ -1090,7 +1090,11 @@ namespace NLog
         /// <summary>
         /// Logger cache key.
         /// </summary>
-        private struct LoggerCacheKey : IEquatable<LoggerCacheKey>
+        private
+#if !NETFRAMEWORK
+            readonly
+#endif
+            struct LoggerCacheKey : IEquatable<LoggerCacheKey>
         {
             public readonly string Name;
             public readonly Type ConcreteType;

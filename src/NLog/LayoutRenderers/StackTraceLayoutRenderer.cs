@@ -151,7 +151,11 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private struct StackFrameList
+        private
+#if !NETFRAMEWORK
+            readonly
+#endif
+            struct StackFrameList
         {
             private readonly StackTrace _stackTrace;
             private readonly int _startingFrame;

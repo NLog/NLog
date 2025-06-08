@@ -120,7 +120,11 @@ namespace NLog.Internal
         /// <summary>
         /// Keeps track of acquired pool item
         /// </summary>
-        public struct ItemHolder : IDisposable
+        public
+#if !NETFRAMEWORK
+            readonly
+#endif
+            struct ItemHolder : IDisposable
         {
             public readonly StringBuilder Item;
             readonly StringBuilderPool? _owner;

@@ -69,7 +69,11 @@ namespace NLog.Internal
             _reusableObject = reusableObject;
         }
 
-        public struct LockOject : IDisposable
+        public
+#if !NETFRAMEWORK
+            readonly
+#endif
+            struct LockOject : IDisposable
         {
             /// <summary>
             /// Access the acquired reusable object
