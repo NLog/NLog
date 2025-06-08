@@ -35,7 +35,6 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
 
     using System.Data;
     using System.Data.Common;
@@ -80,6 +79,7 @@ namespace NLog.Targets
     [Target("Database")]
     public class DatabaseTarget : Target, IInstallable
     {
+        private readonly Func<IDbConnection> _createDbConnectionInstance;
         private IDbConnection? _activeConnection;
         private string? _activeConnectionString;
 
@@ -92,6 +92,8 @@ namespace NLog.Targets
             ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
 #endif
             CommandType = CommandType.Text;
+            _createDbConnectionInstance = CreateDbConnectionFromType;
+            DbConnectionFactory = _createDbConnectionInstance;
         }
 
         /// <summary>
@@ -131,7 +133,6 @@ namespace NLog.Targets
         /// </ul>
         /// </remarks>
         /// <docgen category='Connection Options' order='10' />
-        [DefaultValue("sqlserver")]
         public string DBProvider { get; set; } = "sqlserver";
 
 #if NETFRAMEWORK
@@ -174,7 +175,6 @@ namespace NLog.Targets
         /// database connection open between the log events.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        [DefaultValue(false)]
         public bool KeepConnection { get; set; }
 
         /// <summary>
@@ -245,7 +245,6 @@ namespace NLog.Targets
         /// normally be the name of the stored procedure. TableDirect method is not supported in this context.
         /// </remarks>
         /// <docgen category='SQL Statement' order='11' />
-        [DefaultValue(CommandType.Text)]
         public CommandType CommandType { get; set; }
 
         /// <summary>
@@ -277,6 +276,11 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
         public System.Data.IsolationLevel? IsolationLevel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the <see cref="IDbConnection" /> factory. By default resolved from <see cref="DBProvider"/> type-name
+        /// </summary>
+        public Func<IDbConnection> DbConnectionFactory { get; set; }
 
 #if NETFRAMEWORK
         internal DbProviderFactory? ProviderFactory { get; set; }
@@ -319,32 +323,35 @@ namespace NLog.Targets
 
         internal IDbConnection OpenConnection(string connectionString, LogEventInfo logEventInfo)
         {
-            IDbConnection connection;
+            var dbConnection = DbConnectionFactory?.Invoke();
+            if (dbConnection is null)
+            {
+                throw new NLogRuntimeException("Creation of DbConnection failed");
+            }
 
+            dbConnection.ConnectionString = connectionString;
+            if (ConnectionProperties?.Count > 0)
+            {
+                ApplyDatabaseObjectProperties(dbConnection, ConnectionProperties, logEventInfo ?? LogEventInfo.CreateNullEvent());
+            }
+
+            dbConnection.Open();
+            return dbConnection;
+        }
+
+        private IDbConnection CreateDbConnectionFromType()
+        {
 #if NETFRAMEWORK
             if (ProviderFactory != null)
             {
-                connection = ProviderFactory.CreateConnection();
+                return ProviderFactory.CreateConnection();
             }
-            else
 #endif
+            if (ConnectionType is null)
             {
-                connection = (IDbConnection)Activator.CreateInstance(ConnectionType);
+                throw new NLogRuntimeException($"Failed to resolve ConnectionType from DbProvider: {DBProvider}");
             }
-
-            if (connection is null)
-            {
-                throw new NLogRuntimeException("Creation of connection failed");
-            }
-
-            connection.ConnectionString = connectionString;
-            if (ConnectionProperties?.Count > 0)
-            {
-                ApplyDatabaseObjectProperties(connection, ConnectionProperties, logEventInfo ?? LogEventInfo.CreateNullEvent());
-            }
-
-            connection.Open();
-            return connection;
+            return (IDbConnection)Activator.CreateInstance(ConnectionType);
         }
 
         private void ApplyDatabaseObjectProperties(object databaseObject, IList<DatabaseObjectPropertyInfo> objectProperties, LogEventInfo logEventInfo)
@@ -416,7 +423,7 @@ namespace NLog.Targets
             }
 #endif
 
-            if (!foundProvider)
+            if (!foundProvider && ReferenceEquals(DbConnectionFactory, _createDbConnectionInstance))
             {
                 try
                 {
