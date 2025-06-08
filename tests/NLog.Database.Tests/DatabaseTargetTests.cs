@@ -541,7 +541,7 @@ Dispose()
             DatabaseTarget dt = new DatabaseTarget()
             {
                 CommandText = "INSERT INTO FooBar VALUES(@lvl, @msg)",
-                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                DbConnectionFactory = () => new MockDbConnection(),
                 KeepConnection = true,
                 Parameters =
                 {
@@ -551,8 +551,6 @@ Dispose()
             };
 
             var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt)).LogFactory;
-
-            Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
             List<Exception> exceptions = new List<Exception>();
             var events = new[]
