@@ -3,7 +3,7 @@
 dotnet --version
 
 $versionPrefix = "6.0.0"
-$versionSuffix = "rc2"
+$versionSuffix = "rc3"
 $versionFile = $versionPrefix + "." + ${env:APPVEYOR_BUILD_NUMBER}
 $versionProduct = $versionPrefix;
 if (-Not $versionSuffix.Equals(""))
@@ -45,7 +45,7 @@ create-package 'NLog.OutputDebugString' '"net35;net45;net46;netstandard2.0;netst
 create-package 'NLog.RegEx' '"net35;net45;net46;netstandard2.0;netstandard2.1"'
 create-package 'NLog.WindowsRegistry' '"net35;net45;net46;netstandard2.0;netstandard2.1"'
 create-package 'NLog.Targets.ConcurrentFile' '"net35;net45;net46;netstandard2.0"'
-msbuild /t:Restore,Pack ./src/NLog.Targets.AtomicFile/ /p:targetFrameworks="net35;net45;net46;net8.0" /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:ContinuousIntegrationBuild=true /p:EmbedUntrackedSources=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal  /maxcpucount
+msbuild /t:Restore,Pack ./src/NLog.Targets.AtomicFile/ /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:ContinuousIntegrationBuild=true /p:EmbedUntrackedSources=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal  /maxcpucount
 create-package 'NLog.WindowsEventLog' '"netstandard2.0;netstandard2.1"'
 
 msbuild /t:xsd /t:NuGetSchemaPackage ./src/NLog.proj /p:Configuration=Release /p:BuildNetFX45=true /p:BuildVersion=$versionProduct /p:Configuration=Release /p:BuildLabelOverride=NONE /verbosity:minimal
