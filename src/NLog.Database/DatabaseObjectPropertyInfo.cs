@@ -91,6 +91,7 @@ namespace NLog.Targets
         /// <returns>Result value when available, else fallback to defaultValue</returns>
         public object? RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
 
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Not supported", "IL2075")]
         internal bool SetPropertyValue(object dbObject, object? propertyValue)
         {
             var dbConnectionType = dbObject.GetType();

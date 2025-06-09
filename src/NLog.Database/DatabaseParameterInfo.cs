@@ -250,27 +250,23 @@ namespace NLog.Targets
 
         private sealed class DbTypeSetter
         {
-            private readonly Type _dbPropertyInfoType;
+            private readonly Type _dbParameterType;
             private readonly string _dbTypeName;
-            private readonly PropertyInfo? _dbTypeSetter;
             private readonly Enum? _dbTypeValue;
-            private Action<IDbDataParameter>? _dbTypeSetterFast;
+            private readonly Action<IDbDataParameter>? _dbTypeSetter;
 
             public DbTypeSetter(Type dbParameterType, string dbTypeName)
             {
-                _dbPropertyInfoType = dbParameterType;
+                _dbParameterType = dbParameterType;
                 _dbTypeName = dbTypeName is null ? string.Empty : dbTypeName.Trim();
                 if (!string.IsNullOrEmpty(_dbTypeName))
                 {
                     string[] dbTypeNames = _dbTypeName.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
                     if (dbTypeNames.Length > 1 && !string.Equals(dbTypeNames[0], nameof(System.Data.DbType), StringComparison.OrdinalIgnoreCase))
                     {
-                        PropertyInfo propInfo = dbParameterType.GetProperty(dbTypeNames[0], BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-                        if (propInfo != null && TryParseEnum(dbTypeNames[1], propInfo.PropertyType, out var enumType) && enumType != null)
-                        {
-                            _dbTypeSetter = propInfo;
-                            _dbTypeValue = enumType;
-                        }
+                        var customDbSetter = BuildCustomDbSetter(dbParameterType, dbTypeNames[0], dbTypeNames[1]);
+                        _dbTypeValue = customDbSetter.Key;
+                        _dbTypeSetter = customDbSetter.Value;
                     }
                     else
                     {
@@ -278,21 +274,28 @@ namespace NLog.Targets
                         if (!string.IsNullOrEmpty(dbTypeName) && ConversionHelpers.TryParseEnum(dbTypeName, out DbType dbType))
                         {
                             _dbTypeValue = dbType;
-                            _dbTypeSetterFast = (p) => p.DbType = dbType;
+                            _dbTypeSetter = (p) => p.DbType = dbType;
                         }
                     }
                 }
             }
 
+            [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Not supported", "IL2070")]
+            KeyValuePair<Enum?, Action<IDbDataParameter>?> BuildCustomDbSetter(Type dbParameterType, string dbTypePropertyName, string dbTypeEnumValue)
+            {
+                PropertyInfo propInfo = dbParameterType.GetProperty(dbTypePropertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                if (propInfo != null && TryParseEnum(dbTypeEnumValue, propInfo.PropertyType, out var enumType) && enumType != null)
+                {
+                    var propertySetter = propInfo.CreatePropertySetter();
+                    return new KeyValuePair<Enum?, Action<IDbDataParameter>?>(enumType, (p) => propertySetter.Invoke(p, _dbTypeValue));
+                }
+                return default;
+            }
+
             public bool IsValid(Type dbParameterType, string dbTypeName)
             {
-                if (ReferenceEquals(_dbPropertyInfoType, dbParameterType) && ReferenceEquals(_dbTypeName, dbTypeName))
+                if (ReferenceEquals(_dbParameterType, dbParameterType) && ReferenceEquals(_dbTypeName, dbTypeName))
                 {
-                    if (_dbTypeSetterFast == null && _dbTypeSetter != null && _dbTypeValue != null)
-                    {
-                        var propertySetter = _dbTypeSetter.CreatePropertySetter();
-                        _dbTypeSetterFast = (p) => propertySetter.Invoke(p, _dbTypeValue);
-                    }
                     return true;
                 }
                 return false;
@@ -300,14 +303,9 @@ namespace NLog.Targets
 
             public bool SetDbType(IDbDataParameter dbParameter)
             {
-                if (_dbTypeSetterFast != null)
+                if (_dbTypeSetter != null)
                 {
-                    _dbTypeSetterFast.Invoke(dbParameter);
-                    return true;
-                }
-                else if (_dbTypeSetter != null && _dbTypeValue != null)
-                {
-                    _dbTypeSetter.SetValue(dbParameter, _dbTypeValue, null);
+                    _dbTypeSetter.Invoke(dbParameter);
                     return true;
                 }
                 return false;
