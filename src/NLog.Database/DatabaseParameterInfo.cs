@@ -252,7 +252,6 @@ namespace NLog.Targets
         {
             private readonly Type _dbParameterType;
             private readonly string _dbTypeName;
-            private readonly Enum? _dbTypeValue;
             private readonly Action<IDbDataParameter>? _dbTypeSetter;
 
             public DbTypeSetter(Type dbParameterType, string dbTypeName)
@@ -264,32 +263,41 @@ namespace NLog.Targets
                     string[] dbTypeNames = _dbTypeName.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
                     if (dbTypeNames.Length > 1 && !string.Equals(dbTypeNames[0], nameof(System.Data.DbType), StringComparison.OrdinalIgnoreCase))
                     {
-                        var customDbSetter = BuildCustomDbSetter(dbParameterType, dbTypeNames[0], dbTypeNames[1]);
-                        _dbTypeValue = customDbSetter.Key;
-                        _dbTypeSetter = customDbSetter.Value;
+                        _dbTypeSetter = BuildCustomDbSetter(dbParameterType, dbTypeNames[0], dbTypeNames[1]);
                     }
                     else
                     {
                         dbTypeName = dbTypeNames[dbTypeNames.Length - 1];
                         if (!string.IsNullOrEmpty(dbTypeName) && ConversionHelpers.TryParseEnum(dbTypeName, out DbType dbType))
                         {
-                            _dbTypeValue = dbType;
                             _dbTypeSetter = (p) => p.DbType = dbType;
+                        }
+                        else
+                        {
+                            InternalLogger.Error("DatabaseTarget: Failed to resolve enum to assign DbType={0}", dbTypeName);
                         }
                     }
                 }
             }
 
             [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Not supported", "IL2070")]
-            KeyValuePair<Enum?, Action<IDbDataParameter>?> BuildCustomDbSetter(Type dbParameterType, string dbTypePropertyName, string dbTypeEnumValue)
+            Action<IDbDataParameter>? BuildCustomDbSetter(Type dbParameterType, string dbTypePropertyName, string dbTypeEnumValue)
             {
                 PropertyInfo propInfo = dbParameterType.GetProperty(dbTypePropertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-                if (propInfo != null && TryParseEnum(dbTypeEnumValue, propInfo.PropertyType, out var enumType) && enumType != null)
+                if (propInfo is null)
                 {
-                    var propertySetter = propInfo.CreatePropertySetter();
-                    return new KeyValuePair<Enum?, Action<IDbDataParameter>?>(enumType, (p) => propertySetter.Invoke(p, _dbTypeValue));
+                    InternalLogger.Error("DatabaseTarget: Failed to resolve type {0} property '{1}' to assign DbType={2}", dbParameterType, dbTypePropertyName, dbTypeEnumValue);
+                    return default;
                 }
-                return default;
+
+                if (!TryParseEnum(dbTypeEnumValue, propInfo.PropertyType, out var dbType) || dbType is null)
+                {
+                    InternalLogger.Error("DatabaseTarget: Failed to resolve enum {0} to assign DbType={1}", propInfo.PropertyType, dbTypeEnumValue);
+                    return default;
+                }
+
+                var propertySetter = propInfo.CreatePropertySetter();
+                return (p) => propertySetter.Invoke(p, dbType);
             }
 
             public bool IsValid(Type dbParameterType, string dbTypeName)
