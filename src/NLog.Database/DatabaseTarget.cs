@@ -339,6 +339,7 @@ namespace NLog.Targets
             return dbConnection;
         }
 
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Not supported, instead assign " + nameof(DbConnectionFactory), "IL2072")]
         private IDbConnection CreateDbConnectionFromType()
         {
 #if NETFRAMEWORK
@@ -544,6 +545,8 @@ namespace NLog.Targets
         /// <summary>
         /// Set the <see cref="ConnectionType"/> to use it for opening connections to the database.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Not supported, instead assign " + nameof(DbConnectionFactory), "IL2026")]
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Not supported, instead assign " + nameof(DbConnectionFactory), "IL2096")]
         private void SetConnectionType()
         {
             switch (DBProvider.ToUpperInvariant())
@@ -1031,7 +1034,7 @@ namespace NLog.Targets
                     var connectionString = GetConnectionStringFromCommand(commandInfo, logEvent);
 
                     // Set ConnectionType if it has not been initialized already
-                    if (ConnectionType is null)
+                    if (ConnectionType is null && ReferenceEquals(DbConnectionFactory, _createDbConnectionInstance))
                     {
                         SetConnectionType();
                     }
