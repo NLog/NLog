@@ -291,7 +291,8 @@ namespace NLog.Layouts
                 PropertiesElementKeyAttribute = "name",
                 PropertiesElementValueAttribute = "value",
                 IncludeEventProperties = IncludeEventProperties,
-                IncludeScopeProperties = IncludeScopeProperties
+                IncludeScopeProperties = IncludeScopeProperties,
+                MaxRecursionLimit = 0,  // ToString for everything
             };
 
             dataProperties.ContextProperties?.Clear();

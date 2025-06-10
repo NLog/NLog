@@ -503,6 +503,13 @@ namespace NLog.Layouts
                 return false;
             }
 
+            if (MaxRecursionLimit == 0 || (nextDepth == MaxRecursionLimit && !(propertyValue is System.Collections.IEnumerable)))
+            {
+                string xmlValueString = XmlHelper.XmlConvertToStringSafe(propertyValue);
+                AppendXmlPropertyStringValue(propName, xmlValueString, sb, orgLength, false, ignorePropertiesElementName);
+                return true;
+            }
+
             if (propertyValue is System.Collections.IDictionary dict)
             {
                 using (StartCollectionScope(ref objectsInPath, dict))
