@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace NLog.Targets
 {
     using System;
@@ -79,13 +81,24 @@ namespace NLog.Targets
     [Target("Database")]
     public class DatabaseTarget : Target, IInstallable
     {
-        private readonly Func<IDbConnection> _createDbConnectionInstance;
+        private readonly Func<IDbConnection>? _createDbConnectionInstance;
         private IDbConnection? _activeConnection;
         private string? _activeConnectionString;
 
         /// <summary>
+        /// Gets or sets the <see cref="IDbConnection" /> factory. By default, resolved from <see cref="DBProvider"/> type-name
+        /// </summary>
+        private readonly Func<IDbConnection>? _dbConnectionFactory;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="DatabaseTarget" /> class.
         /// </summary>
+        /// <remarks>
+        /// This constructor could not be compatible with trimming. Use it only when the code will not be AOT compiled.
+        /// </remarks>
+#if NET5_0_OR_GREATER
+        [RequiresUnreferencedCode("This is not compatible with trimming. Use the constructor with `Func<IDbConnection>` instead")]
+#endif
         public DatabaseTarget()
         {
 #if NETFRAMEWORK
@@ -93,14 +106,39 @@ namespace NLog.Targets
 #endif
             CommandType = CommandType.Text;
             _createDbConnectionInstance = CreateDbConnectionFromType;
-            DbConnectionFactory = _createDbConnectionInstance;
+            _dbConnectionFactory = _createDbConnectionInstance;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DatabaseTarget" /> class.
         /// </summary>
         /// <param name="name">Name of the target.</param>
+        /// <remarks>
+        /// This constructor could not be compatible with trimming. Use it only when the code will not be AOT compiled.
+        /// </remarks>
+#if NET5_0_OR_GREATER
+        [RequiresUnreferencedCode("This is not compatible with trimming. Use the constructor with `Func<IDbConnection>` instead")]
+#endif
         public DatabaseTarget(string name) : this()
+        {
+            Name = name;
+        }
+
+        /// <inheritdoc cref="DatabaseTarget(string, Func{IDbConnection})"/>>
+        public DatabaseTarget(Func<IDbConnection> dbConnectionFactory)
+        {
+            CommandType = CommandType.Text;
+            _dbConnectionFactory = dbConnectionFactory;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatabaseTarget"/> class.
+        /// </summary>
+        /// <param name="name">The name of the database target.</param>
+        /// <param name="dbConnectionFactory">
+        /// A factory function that creates instances of <see cref="IDbConnection"/> for connecting to the database.
+        /// </param>
+        public DatabaseTarget(string name, Func<IDbConnection> dbConnectionFactory) : this(dbConnectionFactory)
         {
             Name = name;
         }
@@ -277,16 +315,11 @@ namespace NLog.Targets
         /// <docgen category='Performance Tuning Options' order='10' />
         public System.Data.IsolationLevel? IsolationLevel { get; set; }
 
-        /// <summary>
-        /// Gets or sets the <see cref="IDbConnection" /> factory. By default resolved from <see cref="DBProvider"/> type-name
-        /// </summary>
-        public Func<IDbConnection> DbConnectionFactory { get; set; }
-
 #if NETFRAMEWORK
         internal DbProviderFactory? ProviderFactory { get; set; }
 
         // this is so we can mock the connection string without creating sub-processes
-        internal ConnectionStringSettingsCollection ConnectionStringsSettings { get; set; }
+        internal ConnectionStringSettingsCollection? ConnectionStringsSettings { get; set; }
 #endif
 
         internal Type? ConnectionType { get; private set; }
@@ -321,14 +354,10 @@ namespace NLog.Targets
             return null;
         }
 
-        internal IDbConnection OpenConnection(string connectionString, LogEventInfo logEventInfo)
+        internal IDbConnection OpenConnection(string connectionString, LogEventInfo? logEventInfo)
         {
-            var dbConnection = DbConnectionFactory?.Invoke();
-            if (dbConnection is null)
-            {
-                throw new NLogRuntimeException("Creation of DbConnection failed");
-            }
-
+            var dbConnection = _dbConnectionFactory?.Invoke()
+                               ?? throw new NLogRuntimeException("Creation of DbConnection failed");
             dbConnection.ConnectionString = connectionString;
             if (ConnectionProperties?.Count > 0)
             {
@@ -339,20 +368,24 @@ namespace NLog.Targets
             return dbConnection;
         }
 
-        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Not supported, instead assign " + nameof(DbConnectionFactory), "IL2072")]
+        [UnconditionalSuppressMessage("Trimming - Not supported, instead assign " + nameof(_dbConnectionFactory), "IL2072")]
         private IDbConnection CreateDbConnectionFromType()
         {
 #if NETFRAMEWORK
             if (ProviderFactory != null)
             {
-                return ProviderFactory.CreateConnection();
+                return ProviderFactory.CreateConnection() ?? throw new NLogRuntimeException($"Failed to create IDbConnection from ProviderFactory={ProviderFactory.GetType().FullName}");
             }
 #endif
             if (ConnectionType is null)
             {
                 throw new NLogRuntimeException($"Failed to resolve ConnectionType from DbProvider: {DBProvider}");
             }
-            return (IDbConnection)Activator.CreateInstance(ConnectionType);
+
+            var instance = Activator.CreateInstance(ConnectionType);
+            return instance is null
+                ? throw new NLogRuntimeException($"Failed to create instance of {ConnectionType}")
+                : (IDbConnection)instance;
         }
 
         private void ApplyDatabaseObjectProperties(object databaseObject, IList<DatabaseObjectPropertyInfo> objectProperties, LogEventInfo logEventInfo)
@@ -378,6 +411,7 @@ namespace NLog.Targets
         }
 
         /// <inheritdoc/>
+        [UnconditionalSuppressMessage("Trimming - Not supported", "IL2026")]
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
@@ -392,12 +426,8 @@ namespace NLog.Targets
             if (!string.IsNullOrEmpty(ConnectionStringName))
             {
                 // read connection string and provider factory from the configuration file
-                var cs = ConnectionStringsSettings[ConnectionStringName];
-                if (cs is null)
-                {
-                    throw new NLogConfigurationException($"Connection string '{ConnectionStringName}' is not declared in <connectionStrings /> section.");
-                }
-
+                var cs = ConnectionStringsSettings?[ConnectionStringName] 
+                         ?? throw new NLogConfigurationException($"Connection string '{ConnectionStringName}' is not declared in <connectionStrings /> section.");
                 var connectionString = cs.ConnectionString ?? string.Empty;
                 if (!string.IsNullOrEmpty(connectionString.Trim()))
                 {
@@ -424,7 +454,7 @@ namespace NLog.Targets
             }
 #endif
 
-            if (!foundProvider && ReferenceEquals(DbConnectionFactory, _createDbConnectionInstance))
+            if (!foundProvider && ReferenceEquals(_dbConnectionFactory, _createDbConnectionInstance))
             {
                 try
                 {
@@ -488,7 +518,9 @@ namespace NLog.Targets
                     }
 
                     // ConnectionString was overriden by ConnectionString :)
-                    ConnectionString = Layout.FromLiteral(connectionStringValue.ToString());
+                    var literal = connectionStringValue?.ToString();
+                    if (literal != null)
+                        ConnectionString = Layout.FromLiteral(literal);
                 }
             }
             catch (Exception ex)
@@ -542,11 +574,12 @@ namespace NLog.Targets
         }
 #endif
 
-        /// <summary>
-        /// Set the <see cref="ConnectionType"/> to use it for opening connections to the database.
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Not supported, instead assign " + nameof(DbConnectionFactory), "IL2026")]
-        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Not supported, instead assign " + nameof(DbConnectionFactory), "IL2096")]
+/// <summary>
+/// Set the <see cref="ConnectionType"/> to use it for opening connections to the database.
+/// </summary>
+#if NET5_0_OR_GREATER
+        [RequiresUnreferencedCode("This is not compatible with trimming")]
+#endif
         private void SetConnectionType()
         {
             switch (DBProvider.ToUpperInvariant())
@@ -701,7 +734,7 @@ namespace NLog.Targets
             }
 
             if (dictionary is null)
-                return new KeyValuePair<string, IList<AsyncLogEventInfo>>[] { new KeyValuePair<string, IList<AsyncLogEventInfo>>(firstConnectionString, logEvents) };
+                return new[] { new KeyValuePair<string, IList<AsyncLogEventInfo>>(firstConnectionString, logEvents) };
             else
                 return dictionary;
         }
@@ -1022,6 +1055,7 @@ namespace NLog.Targets
             }
         }
 
+        [UnconditionalSuppressMessage("Trimming - Not supported", "IL2026")]
         private void RunInstallCommands(InstallationContext installationContext, IEnumerable<DatabaseCommandInfo> commands)
         {
             // create log event that will be used to render all layouts
@@ -1034,7 +1068,7 @@ namespace NLog.Targets
                     var connectionString = GetConnectionStringFromCommand(commandInfo, logEvent);
 
                     // Set ConnectionType if it has not been initialized already
-                    if (ConnectionType is null && ReferenceEquals(DbConnectionFactory, _createDbConnectionInstance))
+                    if (ConnectionType is null && ReferenceEquals(_dbConnectionFactory, _createDbConnectionInstance))
                     {
                         SetConnectionType();
                     }

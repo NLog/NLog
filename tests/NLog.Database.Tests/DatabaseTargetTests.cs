@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+using System.Collections.Concurrent;
+using System.Linq;
+
 namespace NLog.Database.Tests
 {
     using System;
@@ -538,10 +541,9 @@ Dispose()
             string lvlLayout = noRawValue ? "${level:format=Ordinal:norawvalue=true}" : "${level:format=Ordinal}";
 
             MockDbConnection.ClearLog();
-            DatabaseTarget dt = new DatabaseTarget()
+            DatabaseTarget dt = new DatabaseTarget(() => new MockDbConnection())
             {
                 CommandText = "INSERT INTO FooBar VALUES(@lvl, @msg)",
-                DbConnectionFactory = () => new MockDbConnection(),
                 KeepConnection = true,
                 Parameters =
                 {
@@ -1980,6 +1982,122 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             var expected = $"Server=localhost;User id=user;Password={expectedPassword};Database=MyDatabase";
             Assert.Equal(expected, result);
         }
+
+#if NET8_0_OR_GREATER
+        public sealed class DbTypeTestData() : TheoryData<DbType>(Enum.GetValues<DbType>());
+        [ClassData(typeof(DbTypeTestData))]
+#else
+        public static IEnumerable<object[]> DbTypeTestData() => Enum
+            .GetValues(typeof(DbType))
+            .Cast<DbType>()
+            .Select(t => new object[] { t });
+
+        [MemberData(nameof(DbTypeTestData))]
+#endif
+        [Theory]
+        public void DbTypeSetterTest(DbType type)
+        {
+            // Clear log
+            MockDbConnection.ClearLog();
+
+            // Arrange
+            var con = new MockDbConnection();
+            var dt = new DatabaseTarget(() => con)
+            {
+                Parameters =
+                {
+                    new DatabaseParameterInfo(p =>
+                    {
+                        p.DbType = type;
+                        return true;
+                    })
+                }
+            };
+            dt.CreateDbCommand(new LogEventInfo(), con);
+
+            // Assert
+            var log = MockDbConnection.Log;
+            Assert.Contains($"DbType={type}", log);
+        }
+
+        [Fact]
+        public void DbTypeSetterExceptionTest()
+        {
+            // Init
+            var exceptions = new ConcurrentBag<Exception>();
+
+            // Enable internal logger
+            LogLevel level = Common.InternalLogger.LogLevel;
+            Common.InternalLogger.LogLevel = LogLevel.Error;
+            Common.InternalLogger.InternalEventOccurred += InternalEventOccurred;
+
+            // Arrange
+            var expectedException = new Exception("Test exception");
+            var con = new MockDbConnection();
+            var dt = new DatabaseTarget(() => con)
+            {
+                Parameters =
+                {
+                    new DatabaseParameterInfo(_ => throw expectedException)
+                }
+            };
+            Assert.Throws<Exception>(() => dt.CreateDbCommand(new LogEventInfo(), con));
+
+            // Reset internal logger
+            Common.InternalLogger.LogLevel = level;
+            Common.InternalLogger.InternalEventOccurred -= InternalEventOccurred;
+
+            // Assert
+            var exceptionThrown = exceptions.TryTake(out Exception exception);
+            Assert.True(exceptionThrown);
+            Assert.True(exceptions.IsEmpty);
+            Assert.Equal(expectedException, exception);
+
+            return;
+
+            void InternalEventOccurred(object sender, Common.InternalLogEventArgs e) =>
+                exceptions.Add(e.Exception);
+        }
+
+        [Fact]
+        public void DbTypeSetterFalseTest()
+        {
+            // Init
+            var logs = new ConcurrentBag<string>();
+
+            // Enable internal logger
+            LogLevel level = Common.InternalLogger.LogLevel;
+            Common.InternalLogger.LogLevel = LogLevel.Warn;
+            Common.InternalLogger.InternalEventOccurred += InternalEventOccurred;
+
+            // Arrange
+            var con = new MockDbConnection();
+            var dt = new DatabaseTarget(() => con)
+            {
+                Parameters =
+                {
+                    new DatabaseParameterInfo(_ => false)
+                }
+            };
+            dt.CreateDbCommand(new LogEventInfo(), con);
+
+            // Reset internal logger
+            Common.InternalLogger.LogLevel = level;
+            Common.InternalLogger.InternalEventOccurred -= InternalEventOccurred;
+
+            // Assert
+            var logGiven = logs.TryTake(out var log);
+            Assert.True(logGiven);
+            Assert.True(logs.IsEmpty);
+            Assert.NotNull(log);
+            Assert.Contains("Failed to assign DbType=", log);
+
+            return;
+
+            void InternalEventOccurred(object sender, Common.InternalLogEventArgs e) =>
+                logs.Add(e.Message);
+        }
+
 
         private static void AssertLog(string expectedLog)
         {
