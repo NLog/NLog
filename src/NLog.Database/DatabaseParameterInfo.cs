@@ -285,8 +285,6 @@ namespace NLog.Targets
         [UnconditionalSuppressMessage("Trimming", "IL2026")]
         internal bool SetDbType(IDbDataParameter dbParameter)
         {
-            // TODO: Remove this suppression after splitting this function into two parts
-
             // AOT compatible DbTypeSetter
             if (_dbTypeSetter != null)
                 _cachedDbTypeSetter ??= new DbTypeSetter(_dbTypeSetter);
@@ -306,11 +304,11 @@ namespace NLog.Targets
 
         private static Type? TryParseDbType(string? dbTypeName)
         {
-            // retrieve the type name if a full name is given
-            dbTypeName = dbTypeName is null ? string.Empty : dbTypeName.Substring(dbTypeName.LastIndexOf('.') + 1).Trim();
-
-            if (string.IsNullOrEmpty(dbTypeName))
+            if (dbTypeName is null or "")
                 return null;
+
+            // retrieve the type name if a full name is given
+            dbTypeName = dbTypeName.Substring(dbTypeName.LastIndexOf('.') + 1).Trim();
 
             return _typesByDbTypeName.TryGetValue(dbTypeName, out var type) ? type : null;
         }

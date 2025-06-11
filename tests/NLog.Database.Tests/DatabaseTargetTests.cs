@@ -2009,8 +2009,11 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 {
                     new DatabaseParameterInfo(p =>
                     {
+                        // set DbType
                         p.DbType = type;
-                        return true;
+
+                        // Verify the assignment was successful
+                        return p.DbType == type;
                     })
                 }
             };
