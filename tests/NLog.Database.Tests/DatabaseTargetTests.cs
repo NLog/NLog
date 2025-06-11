@@ -59,6 +59,7 @@ namespace NLog.Database.Tests
 #else
     using Microsoft.Data.SqlClient;
     using Microsoft.Data.Sqlite;
+    using System.Drawing;
 #endif
 
     public class DatabaseTargetTests
@@ -2096,6 +2097,12 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
             void InternalEventOccurred(object sender, Common.InternalLogEventArgs e) =>
                 logs.Add(e.Message);
+        }
+
+        [Fact]
+        public void DbTypeSetterNullTest()
+        {
+            Assert.Throws<ArgumentNullException>(() => new DatabaseParameterInfo(null));
         }
 
 

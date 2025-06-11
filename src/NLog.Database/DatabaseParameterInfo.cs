@@ -124,7 +124,7 @@ namespace NLog.Targets
         /// <param name="parameterType">
         /// The optional type of the parameter. If specified, it is used to determine the parameter's value type.
         /// </param>
-        public DatabaseParameterInfo(Func<IDbDataParameter, bool> dbTypeSetter, Type? parameterType = null) : this(string.Empty, dbTypeSetter, parameterType)
+        public DatabaseParameterInfo(Func<IDbDataParameter, bool>? dbTypeSetter, Type? parameterType = null) : this(string.Empty, dbTypeSetter, parameterType)
         {
         }
 
@@ -139,7 +139,7 @@ namespace NLog.Targets
         /// <param name="parameterType">
         /// The optional type of the parameter. If specified, it is used to determine the parameter's value type.
         /// </param>
-        public DatabaseParameterInfo(string parameterName, Func<IDbDataParameter, bool> dbTypeSetter, Type? parameterType = null) : this(
+        public DatabaseParameterInfo(string parameterName, Func<IDbDataParameter, bool>? dbTypeSetter, Type? parameterType = null) : this(
             parameterName, Layout.Empty, dbTypeSetter, parameterType)
         {
         }
@@ -156,12 +156,12 @@ namespace NLog.Targets
         /// <param name="parameterType">
         /// The optional type of the parameter. If specified, it is used to determine the parameter's value type.
         /// </param>
-        public DatabaseParameterInfo(string parameterName, Layout parameterLayout, Func<IDbDataParameter, bool> dbTypeSetter, Type? parameterType = null)
+        public DatabaseParameterInfo(string parameterName, Layout parameterLayout, Func<IDbDataParameter, bool>? dbTypeSetter, Type? parameterType = null)
         {
+            _dbTypeSetter = dbTypeSetter ?? throw new ArgumentNullException(nameof(dbTypeSetter));
             Name = parameterName;
             Layout = parameterLayout;
             ParameterType = parameterType;
-            _dbTypeSetter = dbTypeSetter;
         }
 
         /// <summary>
@@ -289,17 +289,18 @@ namespace NLog.Targets
 
             // AOT compatible DbTypeSetter
             if (_dbTypeSetter != null)
-            {
                 _cachedDbTypeSetter ??= new DbTypeSetter(_dbTypeSetter);
-                return _cachedDbTypeSetter.SetDbType(dbParameter);
-            }
+
+            // DbType not in use
+            else if (string.IsNullOrEmpty(DbType)) return true;
 
             // Non-AOT compatible DbTypeSetter
-            if (string.IsNullOrEmpty(DbType)) return true; // DbType not in use
-            if (_cachedDbTypeSetter is null || !_cachedDbTypeSetter.IsValid(dbParameter.GetType(), DbType))
+            else if (_cachedDbTypeSetter is null || !_cachedDbTypeSetter.IsValid(dbParameter.GetType(), DbType))
             {
                 _cachedDbTypeSetter = new DbTypeSetter(dbParameter.GetType(), DbType);
             }
+
+            // invoke the setter to set the DbType on the parameter
             return _cachedDbTypeSetter.SetDbType(dbParameter);
         }
 
@@ -396,7 +397,7 @@ namespace NLog.Targets
 
             public bool IsValid(Type dbParameterType, string dbTypeName)
             {
-                return ReferenceEquals(_dbParameterType, dbParameterType) && ReferenceEquals(_dbTypeName, dbTypeName);
+                return ReferenceEquals(_dbParameterType, dbParameterType) && string.Equals(_dbTypeName, dbTypeName, StringComparison.OrdinalIgnoreCase);
             }
 
             public bool SetDbType(IDbDataParameter dbParameter)
