@@ -93,9 +93,7 @@ namespace NLog.Targets
         /// <remarks>
         /// This constructor could not be compatible with trimming. Use it only when the code will not be AOT compiled.
         /// </remarks>
-#if NET5_0_OR_GREATER
         [RequiresUnreferencedCode("This is not compatible with trimming. Use the constructor with `Func<IDbDataParameter, bool>` instead")]
-#endif
         public DatabaseParameterInfo()
             : this(string.Empty, Layout.Empty)
         {
@@ -109,9 +107,7 @@ namespace NLog.Targets
         /// <remarks>
         /// This constructor could not be compatible with trimming. Use it only when the code will not be AOT compiled.
         /// </remarks>
-#if NET5_0_OR_GREATER
         [RequiresUnreferencedCode("This is not compatible with trimming. Use the constructor with `Func<IDbDataParameter, bool>` instead")]
-#endif
         public DatabaseParameterInfo(string parameterName, Layout parameterLayout)
         {
             Name = parameterName;
@@ -336,9 +332,7 @@ namespace NLog.Targets
                 _dbTypeSetter = dbTypeSetter;
             }
 
-#if NET5_0_OR_GREATER
             [RequiresUnreferencedCode("This is not compatible with trimming. Use the constructor with `Func<IDbDataParameter, bool>?` instead")]
-#endif
             public DbTypeSetter(Type dbParameterType, string? dbTypeName)
             {
                 _dbParameterType = dbParameterType;
@@ -367,9 +361,7 @@ namespace NLog.Targets
                 }
             }
 
-#if NET5_0_OR_GREATER
             [RequiresUnreferencedCode("This is not compatible with trimming. Use the constructor with `Func<IDbDataParameter, bool>?` instead")]
-#endif
             private static Func<IDbDataParameter, bool>? BuildCustomDbSetter(Type dbParameterType, string dbTypePropertyName, string dbTypeEnumValue)
             {
                 PropertyInfo? propInfo = dbParameterType.GetProperty(dbTypePropertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);

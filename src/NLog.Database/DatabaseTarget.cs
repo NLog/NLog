@@ -96,9 +96,7 @@ namespace NLog.Targets
         /// <remarks>
         /// This constructor could not be compatible with trimming. Use it only when the code will not be AOT compiled.
         /// </remarks>
-#if NET5_0_OR_GREATER
         [RequiresUnreferencedCode("This is not compatible with trimming. Use the constructor with `Func<IDbConnection>` instead")]
-#endif
         public DatabaseTarget()
         {
 #if NETFRAMEWORK
@@ -116,9 +114,7 @@ namespace NLog.Targets
         /// <remarks>
         /// This constructor could not be compatible with trimming. Use it only when the code will not be AOT compiled.
         /// </remarks>
-#if NET5_0_OR_GREATER
         [RequiresUnreferencedCode("This is not compatible with trimming. Use the constructor with `Func<IDbConnection>` instead")]
-#endif
         public DatabaseTarget(string name) : this()
         {
             Name = name;
@@ -577,9 +573,7 @@ namespace NLog.Targets
 /// <summary>
 /// Set the <see cref="ConnectionType"/> to use it for opening connections to the database.
 /// </summary>
-#if NET5_0_OR_GREATER
         [RequiresUnreferencedCode("This is not compatible with trimming")]
-#endif
         private void SetConnectionType()
         {
             switch (DBProvider.ToUpperInvariant())

@@ -132,6 +132,6 @@ namespace NLog.Targets
             }
         }
 
-        PropertySetterCacheItem _propertySetter;
+        private PropertySetterCacheItem _propertySetter;
     }
 }
