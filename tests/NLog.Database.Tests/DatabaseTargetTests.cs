@@ -2034,7 +2034,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             // Arrange
             var expectedException = new Exception("Test exception");
             var con = new MockDbConnection();
-            var dt = new DatabaseTarget(() => con)
+            var dt = new DatabaseTarget("Db", () => con)
             {
                 Parameters =
                 {

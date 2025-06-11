@@ -124,8 +124,7 @@ namespace NLog.Targets
         /// <param name="parameterType">
         /// The optional type of the parameter. If specified, it is used to determine the parameter's value type.
         /// </param>
-        public DatabaseParameterInfo(Func<IDbDataParameter, bool> dbTypeSetter, Type? parameterType = null) : this(
-            string.Empty, Layout.Empty, dbTypeSetter, parameterType)
+        public DatabaseParameterInfo(Func<IDbDataParameter, bool> dbTypeSetter, Type? parameterType = null) : this(string.Empty, dbTypeSetter, parameterType)
         {
         }
 
