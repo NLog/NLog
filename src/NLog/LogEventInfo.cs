@@ -169,9 +169,18 @@ namespace NLog
         public LogEventInfo(LogLevel level, string? loggerName, [Localizable(false)] string message, IReadOnlyList<KeyValuePair<object, object?>>? eventProperties)
             : this(level, loggerName, null, message, null, null)
         {
-            if (eventProperties?.Count > 0)
+            if (eventProperties != null)
             {
-                _properties = new PropertiesDictionary(eventProperties);
+                var propertyCount = eventProperties.Count;
+                if (propertyCount > 0)
+                {
+                    _properties = new PropertiesDictionary(propertyCount);
+                    for (int i = 0; i < propertyCount; ++i)
+                    {
+                        var property = eventProperties[i];
+                        _properties[property.Key] = property.Value;
+                    }
+                }
             }
         }
 #endif
@@ -417,11 +426,11 @@ namespace NLog
             return properties;
         }
 
-        internal PropertiesDictionary CreatePropertiesInternal(IList<MessageTemplateParameter>? templateParameters = null)
+        internal PropertiesDictionary CreatePropertiesInternal(IList<MessageTemplateParameter>? templateParameters = null, int initialCapacity = 0)
         {
             if (_properties is null)
             {
-                PropertiesDictionary properties = new PropertiesDictionary(templateParameters);
+                PropertiesDictionary properties = templateParameters is null ? new PropertiesDictionary(initialCapacity) : new PropertiesDictionary(templateParameters);
                 Interlocked.CompareExchange(ref _properties, properties, null);
                 if (templateParameters is null && HasMessageTemplateParameters)
                 {
