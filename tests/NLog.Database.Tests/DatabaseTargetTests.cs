@@ -2099,12 +2099,13 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 logs.Add(e.Message);
         }
 
+#if NET8_0_OR_GREATER
         [Fact]
         public void DbTypeSetterNullTest()
         {
-            Assert.Throws<ArgumentNullException>(() => new DatabaseParameterInfo(null));
+            Assert.Throws<ArgumentNullException>(() => new DatabaseParameterInfo(null!));
         }
-
+#endif
 
         private static void AssertLog(string expectedLog)
         {

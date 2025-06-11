@@ -124,7 +124,7 @@ namespace NLog.Targets
         /// <param name="parameterType">
         /// The optional type of the parameter. If specified, it is used to determine the parameter's value type.
         /// </param>
-        public DatabaseParameterInfo(Func<IDbDataParameter, bool>? dbTypeSetter, Type? parameterType = null) : this(string.Empty, dbTypeSetter, parameterType)
+        public DatabaseParameterInfo(Func<IDbDataParameter, bool> dbTypeSetter, Type? parameterType = null) : this(string.Empty, dbTypeSetter, parameterType)
         {
         }
 
@@ -139,7 +139,7 @@ namespace NLog.Targets
         /// <param name="parameterType">
         /// The optional type of the parameter. If specified, it is used to determine the parameter's value type.
         /// </param>
-        public DatabaseParameterInfo(string parameterName, Func<IDbDataParameter, bool>? dbTypeSetter, Type? parameterType = null) : this(
+        public DatabaseParameterInfo(string parameterName, Func<IDbDataParameter, bool> dbTypeSetter, Type? parameterType = null) : this(
             parameterName, Layout.Empty, dbTypeSetter, parameterType)
         {
         }
@@ -156,7 +156,7 @@ namespace NLog.Targets
         /// <param name="parameterType">
         /// The optional type of the parameter. If specified, it is used to determine the parameter's value type.
         /// </param>
-        public DatabaseParameterInfo(string parameterName, Layout parameterLayout, Func<IDbDataParameter, bool>? dbTypeSetter, Type? parameterType = null)
+        public DatabaseParameterInfo(string parameterName, Layout parameterLayout, Func<IDbDataParameter, bool> dbTypeSetter, Type? parameterType = null)
         {
             _dbTypeSetter = dbTypeSetter ?? throw new ArgumentNullException(nameof(dbTypeSetter));
             Name = parameterName;
