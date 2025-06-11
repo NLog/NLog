@@ -570,9 +570,9 @@ namespace NLog.Targets
         }
 #endif
 
-/// <summary>
-/// Set the <see cref="ConnectionType"/> to use it for opening connections to the database.
-/// </summary>
+        /// <summary>
+        /// Set the <see cref="ConnectionType"/> to use it for opening connections to the database.
+        /// </summary>
         [RequiresUnreferencedCode("This is not compatible with trimming")]
         private void SetConnectionType()
         {

@@ -286,20 +286,22 @@ namespace NLog.Targets
         [UnconditionalSuppressMessage("Trimming", "IL2026")]
         internal bool SetDbType(IDbDataParameter dbParameter)
         {
+            // TODO: Remove this suppression after splitting this function into two parts
+
+            // AOT compatible DbTypeSetter
             if (_dbTypeSetter != null)
             {
                 _cachedDbTypeSetter ??= new DbTypeSetter(_dbTypeSetter);
                 return _cachedDbTypeSetter.SetDbType(dbParameter);
             }
 
+            // Non-AOT compatible DbTypeSetter
             if (string.IsNullOrEmpty(DbType)) return true; // DbType not in use
             if (_cachedDbTypeSetter is null || !_cachedDbTypeSetter.IsValid(dbParameter.GetType(), DbType))
             {
                 _cachedDbTypeSetter = new DbTypeSetter(dbParameter.GetType(), DbType);
             }
-
             return _cachedDbTypeSetter.SetDbType(dbParameter);
-
         }
 
         private static Type? TryParseDbType(string? dbTypeName)
@@ -395,11 +397,7 @@ namespace NLog.Targets
 
             public bool IsValid(Type dbParameterType, string dbTypeName)
             {
-                if (ReferenceEquals(_dbParameterType, dbParameterType) && ReferenceEquals(_dbTypeName, dbTypeName))
-                {
-                    return true;
-                }
-                return false;
+                return ReferenceEquals(_dbParameterType, dbParameterType) && ReferenceEquals(_dbTypeName, dbTypeName);
             }
 
             public bool SetDbType(IDbDataParameter dbParameter)
@@ -423,11 +421,9 @@ namespace NLog.Targets
                         return false;
                     }
                 }
-                else
-                {
-                    enumValue = null;
-                    return false;
-                }
+
+                enumValue = null;
+                return false;
             }
         }
     }
