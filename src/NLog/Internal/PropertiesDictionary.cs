@@ -93,25 +93,16 @@ namespace NLog.Internal
             }
         }
 
-#if !NET35
         /// <summary>
         /// Transforms the list of event-properties into IDictionary-interface
         /// </summary>
-        /// <param name="eventProperties">Message-template-parameters</param>
-        public PropertiesDictionary(IReadOnlyList<KeyValuePair<object, object?>> eventProperties)
+        public PropertiesDictionary(int initialCapacity)
         {
-            var propertyCount = eventProperties.Count;
-            if (propertyCount > 0)
+            if (initialCapacity > 3)
             {
-                _eventProperties = new Dictionary<object, PropertyValue>(propertyCount, PropertyKeyComparer.Default);
-                for (int i = 0; i < propertyCount; ++i)
-                {
-                    var property = eventProperties[i];
-                    _eventProperties[property.Key] = new PropertyValue(property.Value, false);
-                }
+                _eventProperties = new Dictionary<object, PropertyValue>(initialCapacity, PropertyKeyComparer.Default);
             }
         }
-#endif
 
         private bool IsEmpty => (_eventProperties is null || _eventProperties.Count == 0) && (_messageProperties is null || _messageProperties.Count == 0);
 

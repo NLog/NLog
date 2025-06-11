@@ -125,12 +125,13 @@ namespace NLog
         /// Sets multiple per-event context properties on the logging event.
         /// </summary>
         /// <param name="properties">The properties to set.</param>
-        public LogEventBuilder Properties(params ReadOnlySpan<(string, object?)> properties)
+        public LogEventBuilder Properties(ReadOnlySpan<(string, object?)> properties)
         {
             if (_logEvent != null)
             {
+                var dictionary = _logEvent.CreatePropertiesInternal(initialCapacity: properties.Length);
                 foreach (var property in properties)
-                    _logEvent.Properties[property.Item1] = property.Item2;
+                    dictionary[property.Item1] = property.Item2;
             }
             return this;
         }
