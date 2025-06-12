@@ -109,7 +109,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="parameterName">Name of the parameter.</param>
         /// <param name="parameterLayout">The parameter layout.</param>
-        /// <param name="dbTypeSetter"></param>
+        /// <param name="dbTypeSetter">Method-delegate to perform custom initialization database-parameter. Ex. assign custom DbType.</param>
         public DatabaseParameterInfo(string parameterName, Layout parameterLayout, Action<IDbDataParameter> dbTypeSetter)
             : this(parameterName, parameterLayout)
         {
