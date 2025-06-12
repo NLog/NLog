@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace NLog.Targets
 {
     using System;
