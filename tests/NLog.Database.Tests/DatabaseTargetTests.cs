@@ -31,9 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System.Collections.Concurrent;
-using System.Linq;
-
 namespace NLog.Database.Tests
 {
     using System;
@@ -46,6 +43,7 @@ namespace NLog.Database.Tests
     using System.Data.Common;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using NLog.Config;
     using NLog.Targets;
     using Xunit;
@@ -59,7 +57,6 @@ namespace NLog.Database.Tests
 #else
     using Microsoft.Data.SqlClient;
     using Microsoft.Data.Sqlite;
-    using System.Drawing;
 #endif
 
     public class DatabaseTargetTests
@@ -2005,14 +2002,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             {
                 Parameters =
                 {
-                    new DatabaseParameterInfo(p =>
-                    {
-                        // set DbType
-                        p.DbType = type;
-
-                        // Verify the assignment was successful
-                        return p.DbType == type;
-                    })
+                    new DatabaseParameterInfo("Test", "AOT", p => p.DbType = type)
                 }
             };
             dt.CreateDbCommand(new LogEventInfo(), con);
@@ -2026,7 +2016,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         public void DbTypeSetterExceptionTest()
         {
             // Init
-            var exceptions = new ConcurrentBag<Exception>();
+            var exceptions = new List<Exception>();
 
             // Enable internal logger
             LogLevel level = Common.InternalLogger.LogLevel;
@@ -2036,11 +2026,12 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             // Arrange
             var expectedException = new Exception("Test exception");
             var con = new MockDbConnection();
-            var dt = new DatabaseTarget("Db", () => con)
+            var dt = new DatabaseTarget(() => con)
             {
+                Name = "db",
                 Parameters =
                 {
-                    new DatabaseParameterInfo(_ => throw expectedException)
+                    new DatabaseParameterInfo("Test", "AOT", (p) => throw expectedException)
                 }
             };
             Assert.Throws<Exception>(() => dt.CreateDbCommand(new LogEventInfo(), con));
@@ -2050,63 +2041,21 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             Common.InternalLogger.InternalEventOccurred -= InternalEventOccurred;
 
             // Assert
-            var exceptionThrown = exceptions.TryTake(out Exception exception);
-            Assert.True(exceptionThrown, "Expected a thrown exception");
-            Assert.True(exceptions.IsEmpty, "Expected only 1 log statement (level Error)");
-            Assert.Equal(expectedException, exception);
-
-            return;
+            var exceptionThrown = exceptions.FirstOrDefault();
+            Assert.NotNull(exceptionThrown);
+            Assert.Single(exceptions);
+            Assert.Equal(expectedException, exceptionThrown);
 
             void InternalEventOccurred(object sender, Common.InternalLogEventArgs e) =>
                 exceptions.Add(e.Exception);
         }
 
-        [Fact]
-        public void DbTypeSetterFalseTest()
-        {
-            // Init
-            var logs = new ConcurrentBag<string>();
 
-            // Enable internal logger
-            LogLevel level = Common.InternalLogger.LogLevel;
-            Common.InternalLogger.LogLevel = LogLevel.Warn;
-            Common.InternalLogger.InternalEventOccurred += InternalEventOccurred;
-
-            // Arrange
-            var con = new MockDbConnection();
-            var dt = new DatabaseTarget(() => con)
-            {
-                Parameters =
-                {
-                    new DatabaseParameterInfo(_ => false)
-                }
-            };
-            dt.CreateDbCommand(new LogEventInfo(), con);
-
-            // Reset internal logger
-            Common.InternalLogger.LogLevel = level;
-            Common.InternalLogger.InternalEventOccurred -= InternalEventOccurred;
-
-            // Assert
-            var logGiven = logs.TryTake(out var log);
-            Assert.True(logGiven, "Expected a log statement (level Warning or higher)");
-            Assert.True(logs.IsEmpty, "Expected only 1 log statement (level Warning or higher)");
-            Assert.NotNull(log);
-            Assert.Contains("Failed to assign DbType=", log);
-
-            return;
-
-            void InternalEventOccurred(object sender, Common.InternalLogEventArgs e) =>
-                logs.Add(e.Message);
-        }
-
-#if NET8_0_OR_GREATER
         [Fact]
         public void DbTypeSetterNullTest()
         {
-            Assert.Throws<ArgumentNullException>(() => new DatabaseParameterInfo(null!));
+            Assert.Throws<ArgumentNullException>(() => new DatabaseParameterInfo("Test", "AOT", null));
         }
-#endif
 
         private static void AssertLog(string expectedLog)
         {
