@@ -1991,6 +1991,29 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 #endif
         [ClassData(typeof(DbTypeTestData))]
         [Theory]
+        public void DbTypeEnumSetterTest(DbType type)
+        {
+            // Clear log
+            MockDbConnection.ClearLog();
+
+            // Arrange
+            var con = new MockDbConnection();
+            var dt = new DatabaseTarget(() => con)
+            {
+                Parameters =
+                {
+                    new DatabaseParameterInfo("Test", "AOT") { DbTypeEnum = type },
+                }
+            };
+            dt.CreateDbCommand(new LogEventInfo(), con);
+
+            // Assert
+            var log = MockDbConnection.Log;
+            Assert.Contains($"DbType={type}", log);
+        }
+
+        [ClassData(typeof(DbTypeTestData))]
+        [Theory]
         public void DbTypeSetterTest(DbType type)
         {
             // Clear log
@@ -2011,6 +2034,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             var log = MockDbConnection.Log;
             Assert.Contains($"DbType={type}", log);
         }
+
 
         [Fact]
         public void DbTypeSetterExceptionTest()
