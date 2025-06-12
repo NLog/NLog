@@ -170,7 +170,7 @@ namespace NLog.Targets
         private Type? _dbParameterType;
 
         /// <summary>
-        /// Gets or sets the database parameter DbType.
+        /// Gets or sets the database parameter DbType (without reflection logic)
         /// </summary>
         public DbType DbTypeEnum
         {
@@ -344,13 +344,13 @@ namespace NLog.Targets
                 if (propInfo is null)
                 {
                     InternalLogger.Error("DatabaseTarget: Failed to resolve type {0} property '{1}' to assign DbType={2}", dbParameterType, dbTypePropertyName, dbTypeEnumValue);
-                    return default;
+                    return null;
                 }
 
                 if (!TryParseEnum(dbTypeEnumValue, propInfo.PropertyType, out var dbType) || dbType is null)
                 {
                     InternalLogger.Error("DatabaseTarget: Failed to resolve enum {0} to assign DbType={1}", propInfo.PropertyType, dbTypeEnumValue);
-                    return default;
+                    return null;
                 }
 
                 var propertySetter = propInfo.CreatePropertySetter();
@@ -359,11 +359,7 @@ namespace NLog.Targets
 
             public bool IsValid(Type dbParameterType, string dbTypeName)
             {
-                if (ReferenceEquals(_dbParameterType, dbParameterType) && ReferenceEquals(_dbTypeName, dbTypeName))
-                {
-                    return true;
-                }
-                return false;
+                return ReferenceEquals(_dbParameterType, dbParameterType) && string.Equals(_dbTypeName, dbTypeName, StringComparison.OrdinalIgnoreCase);
             }
 
             public bool SetDbType(IDbDataParameter dbParameter)
