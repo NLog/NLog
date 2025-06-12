@@ -1986,15 +1986,13 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
 #if NET8_0_OR_GREATER
         public sealed class DbTypeTestData() : TheoryData<DbType>(Enum.GetValues<DbType>());
-        [ClassData(typeof(DbTypeTestData))]
 #else
-        public static IEnumerable<object[]> DbTypeTestData() => Enum
-            .GetValues(typeof(DbType))
-            .Cast<DbType>()
-            .Select(t => new object[] { t });
-
-        [MemberData(nameof(DbTypeTestData))]
+        public sealed class DbTypeTestData : TheoryData<DbType>
+        {
+            public DbTypeTestData() => AddRange(Enum.GetValues(typeof(DbType)).Cast<DbType>().ToArray());
+        }
 #endif
+        [ClassData(typeof(DbTypeTestData))]
         [Theory]
         public void DbTypeSetterTest(DbType type)
         {
@@ -2053,8 +2051,8 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
             // Assert
             var exceptionThrown = exceptions.TryTake(out Exception exception);
-            Assert.True(exceptionThrown);
-            Assert.True(exceptions.IsEmpty);
+            Assert.True(exceptionThrown, "Expected a thrown exception");
+            Assert.True(exceptions.IsEmpty, "Expected only 1 log statement (level Error)");
             Assert.Equal(expectedException, exception);
 
             return;
@@ -2091,8 +2089,8 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
             // Assert
             var logGiven = logs.TryTake(out var log);
-            Assert.True(logGiven);
-            Assert.True(logs.IsEmpty);
+            Assert.True(logGiven, "Expected a log statement (level Warning or higher)");
+            Assert.True(logs.IsEmpty, "Expected only 1 log statement (level Warning or higher)");
             Assert.NotNull(log);
             Assert.Contains("Failed to assign DbType=", log);
 
