@@ -81,6 +81,8 @@ namespace NLog.Targets
                 { nameof(System.Data.DbType.DateTimeOffset), typeof(DateTimeOffset) }
             };
 
+        private Func<IDbDataParameter, bool>? _dbTypeSetter;
+
         private readonly ValueTypeLayoutInfo _layoutInfo = new ValueTypeLayoutInfo();
 
         /// <summary>
@@ -103,6 +105,24 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="DatabaseParameterInfo" /> class.
+        /// </summary>
+        /// <param name="parameterName">Name of the parameter.</param>
+        /// <param name="parameterLayout">The parameter layout.</param>
+        /// <param name="dbTypeSetter">Method-delegate to perform custom initialization database-parameter. Ex. for AOT to assign custom DbType.</param>
+        public DatabaseParameterInfo(string parameterName, Layout parameterLayout, Action<IDbDataParameter> dbTypeSetter)
+            : this(parameterName, parameterLayout)
+        {
+            if (dbTypeSetter is null) throw new ArgumentNullException(nameof(dbTypeSetter));
+
+            _dbTypeSetter = (dbParameter) =>
+            {
+                dbTypeSetter.Invoke(dbParameter);
+                return true;
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the database parameter name.
         /// </summary>
         /// <docgen category='Parameter Options' order='0' />
@@ -117,13 +137,18 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the database parameter DbType.
         /// </summary>
+        /// <remarks>
+        /// Not compatible with AOT since using type-reflection to convert into Enum and assigning value.
+        /// </remarks>
         /// <docgen category='Parameter Options' order='2' />
         public string DbType
         {
-            get => _dbType;
+            get => _dbTypeEnum.HasValue ? _dbTypeEnum.ToString() : _dbType;
             set
             {
                 _dbType = value;
+                _dbTypeEnum = null;
+
                 if (!string.IsNullOrEmpty(_dbType))
                 {
                     if (ParameterType is null || ParameterType == _dbParameterType)
@@ -140,10 +165,42 @@ namespace NLog.Targets
                 {
                     ParameterType = null;
                 }
+
+                _dbTypeSetter = AssignParameterDbType;
             }
         }
         private string _dbType = string.Empty;
         private Type? _dbParameterType;
+
+        /// <summary>
+        /// Gets or sets the database parameter DbType (without reflection logic)
+        /// </summary>
+        public DbType DbTypeEnum
+        {
+            get => _dbTypeEnum ?? default;
+            set
+            {
+                _dbTypeEnum = value;
+                _dbType = string.Empty;
+
+                if (ParameterType is null || ParameterType == _dbParameterType)
+                {
+                    var dbParameterType = TryParseDbType(value.ToString());
+                    if (dbParameterType != null)
+                    {
+                        ParameterType = dbParameterType;
+                    }
+                    _dbParameterType = dbParameterType;
+                }
+
+                _dbTypeSetter = (dbParam) =>
+                {
+                    dbParam.DbType = value;
+                    return true;
+                };
+            }
+        }
+        private DbType? _dbTypeEnum;
 
         /// <summary>
         /// Gets or sets the database parameter size.
@@ -222,17 +279,7 @@ namespace NLog.Targets
 
         internal bool SetDbType(IDbDataParameter dbParameter)
         {
-            if (!string.IsNullOrEmpty(DbType))
-            {
-                if (_cachedDbTypeSetter is null || !_cachedDbTypeSetter.IsValid(dbParameter.GetType(), DbType))
-                {
-                    _cachedDbTypeSetter = new DbTypeSetter(dbParameter.GetType(), DbType);
-                }
-
-                return _cachedDbTypeSetter.SetDbType(dbParameter);
-            }
-
-            return true;    // DbType not in use
+            return _dbTypeSetter?.Invoke(dbParameter) ?? true;
         }
 
         private static Type? TryParseDbType(string dbTypeName)
@@ -246,7 +293,17 @@ namespace NLog.Targets
             return _typesByDbTypeName.TryGetValue(dbTypeName, out var type) ? type : null;
         }
 
-        DbTypeSetter? _cachedDbTypeSetter;
+        private bool AssignParameterDbType(IDbDataParameter dbParameter)
+        {
+            if (_cachedDbTypeSetter is null || !_cachedDbTypeSetter.IsValid(dbParameter.GetType(), DbType))
+            {
+                _cachedDbTypeSetter = new DbTypeSetter(dbParameter.GetType(), _dbType);
+            }
+
+            return _cachedDbTypeSetter.SetDbType(dbParameter);
+        }
+
+        private DbTypeSetter? _cachedDbTypeSetter;
 
         private sealed class DbTypeSetter
         {
@@ -257,7 +314,7 @@ namespace NLog.Targets
             public DbTypeSetter(Type dbParameterType, string dbTypeName)
             {
                 _dbParameterType = dbParameterType;
-                _dbTypeName = dbTypeName is null ? string.Empty : dbTypeName.Trim();
+                _dbTypeName = dbTypeName?.Trim() ?? string.Empty;
                 if (!string.IsNullOrEmpty(_dbTypeName))
                 {
                     string[] dbTypeNames = _dbTypeName.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
@@ -278,22 +335,25 @@ namespace NLog.Targets
                         }
                     }
                 }
+                else
+                {
+                    _dbTypeSetter = (p) => { };
+                }
             }
 
-            [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Not supported", "IL2070")]
-            Action<IDbDataParameter>? BuildCustomDbSetter(Type dbParameterType, string dbTypePropertyName, string dbTypeEnumValue)
+            private static Action<IDbDataParameter>? BuildCustomDbSetter(Type dbParameterType, string dbTypePropertyName, string dbTypeEnumValue)
             {
                 PropertyInfo propInfo = dbParameterType.GetProperty(dbTypePropertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
                 if (propInfo is null)
                 {
                     InternalLogger.Error("DatabaseTarget: Failed to resolve type {0} property '{1}' to assign DbType={2}", dbParameterType, dbTypePropertyName, dbTypeEnumValue);
-                    return default;
+                    return null;
                 }
 
                 if (!TryParseEnum(dbTypeEnumValue, propInfo.PropertyType, out var dbType) || dbType is null)
                 {
                     InternalLogger.Error("DatabaseTarget: Failed to resolve enum {0} to assign DbType={1}", propInfo.PropertyType, dbTypeEnumValue);
-                    return default;
+                    return null;
                 }
 
                 var propertySetter = propInfo.CreatePropertySetter();
@@ -302,11 +362,7 @@ namespace NLog.Targets
 
             public bool IsValid(Type dbParameterType, string dbTypeName)
             {
-                if (ReferenceEquals(_dbParameterType, dbParameterType) && ReferenceEquals(_dbTypeName, dbTypeName))
-                {
-                    return true;
-                }
-                return false;
+                return ReferenceEquals(_dbParameterType, dbParameterType) && string.Equals(_dbTypeName, dbTypeName, StringComparison.OrdinalIgnoreCase);
             }
 
             public bool SetDbType(IDbDataParameter dbParameter)
@@ -335,11 +391,9 @@ namespace NLog.Targets
                         return false;
                     }
                 }
-                else
-                {
-                    enumValue = null;
-                    return false;
-                }
+
+                enumValue = null;
+                return false;
             }
         }
     }

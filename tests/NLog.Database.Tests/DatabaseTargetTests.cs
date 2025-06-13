@@ -43,6 +43,7 @@ namespace NLog.Database.Tests
     using System.Data.Common;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using NLog.Config;
     using NLog.Targets;
     using Xunit;
@@ -538,10 +539,9 @@ Dispose()
             string lvlLayout = noRawValue ? "${level:format=Ordinal:norawvalue=true}" : "${level:format=Ordinal}";
 
             MockDbConnection.ClearLog();
-            DatabaseTarget dt = new DatabaseTarget()
+            DatabaseTarget dt = new DatabaseTarget(() => new MockDbConnection())
             {
                 CommandText = "INSERT INTO FooBar VALUES(@lvl, @msg)",
-                DbConnectionFactory = () => new MockDbConnection(),
                 KeepConnection = true,
                 Parameters =
                 {
@@ -1979,6 +1979,88 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             // Assert
             var expected = $"Server=localhost;User id=user;Password={expectedPassword};Database=MyDatabase";
             Assert.Equal(expected, result);
+        }
+
+#if NET8_0_OR_GREATER
+        public sealed class DbTypeTestData() : TheoryData<DbType>(Enum.GetValues<DbType>());
+#else
+        public sealed class DbTypeTestData : TheoryData<DbType>
+        {
+            public DbTypeTestData() => AddRange(Enum.GetValues(typeof(DbType)).Cast<DbType>().ToArray());
+        }
+#endif
+        [ClassData(typeof(DbTypeTestData))]
+        [Theory]
+        public void DbTypeEnumSetterTest(DbType type)
+        {
+            // Clear log
+            MockDbConnection.ClearLog();
+
+            // Arrange
+            var con = new MockDbConnection();
+            var dt = new DatabaseTarget(() => con)
+            {
+                Parameters =
+                {
+                    new DatabaseParameterInfo("Test", "AOT") { DbTypeEnum = type },
+                }
+            };
+            dt.CreateDbCommand(new LogEventInfo(), con);
+
+            // Assert
+            var log = MockDbConnection.Log;
+            Assert.Contains($"DbType={type}", log);
+        }
+
+        [ClassData(typeof(DbTypeTestData))]
+        [Theory]
+        public void DbTypeSetterTest(DbType type)
+        {
+            // Clear log
+            MockDbConnection.ClearLog();
+
+            // Arrange
+            var con = new MockDbConnection();
+            var dt = new DatabaseTarget(() => con)
+            {
+                Parameters =
+                {
+                    new DatabaseParameterInfo("Test", "AOT", p => p.DbType = type)
+                }
+            };
+            dt.CreateDbCommand(new LogEventInfo(), con);
+
+            // Assert
+            var log = MockDbConnection.Log;
+            Assert.Contains($"DbType={type}", log);
+        }
+
+
+        [Fact]
+        public void DbTypeSetterExceptionTest()
+        {
+            // Arrange
+            var expectedException = new Exception("Test exception");
+            var con = new MockDbConnection();
+            var dt = new DatabaseTarget(() => con)
+            {
+                Name = "db",
+                Parameters =
+                {
+                    new DatabaseParameterInfo("Test", "AOT", (p) => throw expectedException)
+                }
+            };
+            var actualException = Assert.Throws<Exception>(() => dt.CreateDbCommand(new LogEventInfo(), con));
+
+            // Assert
+            Assert.Equal(expectedException, actualException);
+        }
+
+
+        [Fact]
+        public void DbTypeSetterNullTest()
+        {
+            Assert.Throws<ArgumentNullException>(() => new DatabaseParameterInfo("Test", "AOT", null));
         }
 
         private static void AssertLog(string expectedLog)
