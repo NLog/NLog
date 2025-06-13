@@ -88,7 +88,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="DatabaseTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// This constructor could not be compatible with trimming. Use it only when the code will not be AOT compiled.
+        /// Not compatible with AOT since using type-reflection with <see cref="DBProvider"/> to resolve DbConnection-factory.
         /// </remarks>
         public DatabaseTarget()
         {
@@ -105,7 +105,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="name">Name of the target.</param>
         /// <remarks>
-        /// This constructor could not be compatible with trimming. Use it only when the code will not be AOT compiled.
+        /// Not compatible with AOT since using type-reflection with <see cref="DBProvider"/> to resolve DbConnection-factory.
         /// </remarks>
         public DatabaseTarget(string name) : this()
         {
@@ -116,7 +116,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="DatabaseTarget"/> class.
         /// </summary>
         /// <param name="dbConnectionFactory">
-        /// A factory function that creates instances of <see cref="IDbConnection"/> for connecting to the database.
+        /// A factory function that creates instances of <see cref="IDbConnection"/> for connecting to the database (AOT compatible)
         /// </param>
         public DatabaseTarget(Func<IDbConnection> dbConnectionFactory)
         {

@@ -2039,14 +2039,6 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         [Fact]
         public void DbTypeSetterExceptionTest()
         {
-            // Init
-            var exceptions = new List<Exception>();
-
-            // Enable internal logger
-            LogLevel level = Common.InternalLogger.LogLevel;
-            Common.InternalLogger.LogLevel = LogLevel.Error;
-            Common.InternalLogger.InternalEventOccurred += InternalEventOccurred;
-
             // Arrange
             var expectedException = new Exception("Test exception");
             var con = new MockDbConnection();
@@ -2058,20 +2050,10 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                     new DatabaseParameterInfo("Test", "AOT", (p) => throw expectedException)
                 }
             };
-            Assert.Throws<Exception>(() => dt.CreateDbCommand(new LogEventInfo(), con));
-
-            // Reset internal logger
-            Common.InternalLogger.LogLevel = level;
-            Common.InternalLogger.InternalEventOccurred -= InternalEventOccurred;
+            var actualException = Assert.Throws<Exception>(() => dt.CreateDbCommand(new LogEventInfo(), con));
 
             // Assert
-            var exceptionThrown = exceptions.FirstOrDefault();
-            Assert.NotNull(exceptionThrown);
-            Assert.Single(exceptions);
-            Assert.Equal(expectedException, exceptionThrown);
-
-            void InternalEventOccurred(object sender, Common.InternalLogEventArgs e) =>
-                exceptions.Add(e.Exception);
+            Assert.Equal(expectedException, actualException);
         }
 
 
