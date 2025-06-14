@@ -401,5 +401,56 @@ namespace NLog.UnitTests.Targets
             Assert.Contains(new KeyValuePair<string, object>("object-non-existing", null), lastCombinedProperties);
             Assert.DoesNotContain("object-non-existing-empty", lastCombinedProperties.Keys);
         }
+
+        [Theory]
+        [MemberData(nameof(ConvertFromStringTestCases))]
+        public void GetPropertyValueFromStringTest(string value, Type propertyType, object expected, bool? includeEmptyValue = null)
+        {
+            // Arrange
+            var targetPropertyWithContext = new TargetPropertyWithContext("@test", value)
+            {
+                PropertyType = propertyType,
+                IncludeEmptyValue = includeEmptyValue ?? false,
+            };
+
+            // Act
+            var result = targetPropertyWithContext.RenderValue(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(expected, result);
+        }
+
+        public static IEnumerable<object[]> ConvertFromStringTestCases()
+        {
+            yield return new object[] { "true", typeof(bool), true };
+            yield return new object[] { "True", typeof(bool), true };
+            yield return new object[] { 1.2.ToString(), typeof(decimal), (decimal)1.2 };
+            yield return new object[] { 1.2.ToString(), typeof(double), (double)1.2 };
+            yield return new object[] { 1.2.ToString(), typeof(float), (float)1.2 };
+            yield return new object[] { "2:30", typeof(TimeSpan), new TimeSpan(0, 2, 30, 0), };
+            yield return new object[] { "2018-12-23 22:56", typeof(DateTime), new DateTime(2018, 12, 23, 22, 56, 0), };
+            //yield return new object[] { new DateTime(2018, 12, 23, 22, 56, 0).ToString(CultureInfo.InvariantCulture), typeof(DateTime), new DateTime(2018, 12, 23, 22, 56, 0) };
+            yield return new object[] { "2018-12-23", typeof(DateTime), new DateTime(2018, 12, 23, 0, 0, 0), };
+            yield return new object[] { "2018-12-23 +2:30", typeof(DateTimeOffset), new DateTimeOffset(2018, 12, 23, 0, 0, 0, new TimeSpan(2, 30, 0)) };
+            yield return new object[] { "3888CCA3-D11D-45C9-89A5-E6B72185D287", typeof(Guid), Guid.Parse("3888CCA3-D11D-45C9-89A5-E6B72185D287") };
+            yield return new object[] { "3888CCA3D11D45C989A5E6B72185D287", typeof(Guid), Guid.Parse("3888CCA3-D11D-45C9-89A5-E6B72185D287") };
+            yield return new object[] { "3", typeof(byte), (byte)3 };
+            yield return new object[] { "3", typeof(sbyte), (sbyte)3 };
+            yield return new object[] { "3", typeof(short), (short)3 };
+            yield return new object[] { " 3 ", typeof(short), (short)3 };
+            yield return new object[] { "3", typeof(int), 3 };
+            yield return new object[] { "3", typeof(long), (long)3 };
+            yield return new object[] { "3", typeof(ushort), (ushort)3 };
+            yield return new object[] { "3", typeof(uint), (uint)3 };
+            yield return new object[] { "3", typeof(ulong), (ulong)3 };
+            yield return new object[] { "3", typeof(string), "3" };
+            yield return new object[] { "${event-properties:userid}", typeof(int), 0, true };
+            yield return new object[] { "${event-properties:userid}", typeof(int), (int?)null, false };
+            yield return new object[] { "${date:universalTime=true:format=yyyy-MM:norawvalue=true}", typeof(DateTime), DateTime.SpecifyKind(DateTime.UtcNow.Date.AddDays(-DateTime.UtcNow.Day + 1), DateTimeKind.Unspecified) };
+            yield return new object[] { "${shortdate:universalTime=true}", typeof(DateTime), DateTime.UtcNow.Date, true };
+            yield return new object[] { "${shortdate:universalTime=true}", typeof(DateTime), DateTime.UtcNow.Date, false };
+            yield return new object[] { "${shortdate:universalTime=true}", typeof(string), DateTime.UtcNow.Date.ToString("yyyy-MM-dd"), true };
+            yield return new object[] { "${shortdate:universalTime=true}", typeof(string), DateTime.UtcNow.Date.ToString("yyyy-MM-dd"), false };
+        }
     }
 }

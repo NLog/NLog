@@ -286,26 +286,6 @@ namespace NLog.Targets.Network
             Assert.Equal($"<log4j:event logger=\"TestLogger\" level=\"ERROR\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>Error occurred</log4j:message><log4j:throwable><![CDATA[System.Exception: Something went wrong <>&]]></log4j:throwable><log4j:properties><log4j:data name=\"log4japp\" value=\"TestApp\"/><log4j:data name=\"log4jmachinename\" value=\"{machinename}\"/></log4j:properties></log4j:event>", result);
         }
 
-
-        public readonly struct PathString
-        {
-            public PathString(string value)
-            {
-                Value = value;
-            }
-
-            public string Value { get; }
-            public bool HasValue
-            {
-                get { return !string.IsNullOrEmpty(Value); }
-            }
-
-            public override string ToString()
-            {
-                return Value ?? string.Empty;
-            }
-        }
-
         [Fact]
         public void Log4JXmlEventLayout_IncludeEventProperties_Test()
         {
@@ -315,7 +295,7 @@ namespace NLog.Targets.Network
                 AppInfo = "MyApp",
             };
 
-            var pathString = new PathString("/test");
+            var pathString = new KeyValuePair<string, string>("path", "/test");
             var logEvent = LogEventInfo.Create(LogLevel.Info, "TestLogger", null, "Test Message {Path}", new object[] { pathString });
             logEvent.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56, DateTimeKind.Utc);
             var result = log4jLayout.Render(logEvent);
@@ -323,7 +303,7 @@ namespace NLog.Targets.Network
             var threadid = Environment.CurrentManagedThreadId;
             var machinename = Environment.MachineName;
 
-            Assert.Equal($"<log4j:event logger=\"TestLogger\" level=\"INFO\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>Test Message /test</log4j:message><log4j:properties><log4j:data name=\"log4japp\" value=\"MyApp\"/><log4j:data name=\"log4jmachinename\" value=\"{machinename}\"/><log4j:data name=\"Path\" value=\"/test\"/></log4j:properties></log4j:event>", result);
+            Assert.Equal($"<log4j:event logger=\"TestLogger\" level=\"INFO\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>Test Message [path, /test]</log4j:message><log4j:properties><log4j:data name=\"log4japp\" value=\"MyApp\"/><log4j:data name=\"log4jmachinename\" value=\"{machinename}\"/><log4j:data name=\"Path\" value=\"[path, /test]\"/></log4j:properties></log4j:event>", result);
         }
 
         [Fact]
