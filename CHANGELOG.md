@@ -4,7 +4,16 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### Version 6.0 RC2 (2025/06/08)
+### Version 6.0 RC4 (2025/06/15)
+
+**Improvements**
+- Mark struct as readonly to allow compiler optimization
+- RegisterObjectTransformation to preserve public properties
+- Log4JXmlEventLayout - Enforce MaxRecursionLimit = 0
+- DatabaseTarget with support for AOT (@JohnVerheij)
+- DatabaseTarget only assign ConnectionString when specified (@JohnVerheij)
+
+### Version 6.0 RC3 (2025/06/08)
 
 **Improvements**
 - Log4JXmlEventLayout - Fixed IncludeEmptyValue for Parameters
