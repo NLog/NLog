@@ -922,21 +922,28 @@ Dispose()
         [Fact]
         public void ConnectionStringBuilderTest1()
         {
+            var dbProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            Assert.NotNull(dbProvider);
+
             DatabaseTarget dt;
 
             dt = new DatabaseTarget();
+            dt.DBProvider = dbProvider;
             Assert.Equal("Server=.;Trusted_Connection=SSPI;", GetConnectionString(dt));
 
             dt = new DatabaseTarget();
+            dt.DBProvider = dbProvider;
             dt.DBHost = "${logger}";
             Assert.Equal("Server=Logger1;Trusted_Connection=SSPI;", GetConnectionString(dt));
 
             dt = new DatabaseTarget();
+            dt.DBProvider = dbProvider;
             dt.DBHost = "HOST1";
             dt.DBDatabase = "${logger}";
             Assert.Equal("Server=HOST1;Trusted_Connection=SSPI;Database=Logger1", GetConnectionString(dt));
 
             dt = new DatabaseTarget();
+            dt.DBProvider = dbProvider;
             dt.DBHost = "HOST1";
             dt.DBDatabase = "${logger}";
             dt.DBUserName = "user1";
@@ -944,6 +951,7 @@ Dispose()
             Assert.Equal("Server=HOST1;User id=user1;Password=password1;Database=Logger1", GetConnectionString(dt));
 
             dt = new DatabaseTarget();
+            dt.DBProvider = dbProvider;
             dt.ConnectionString = "customConnectionString42";
             dt.DBHost = "HOST1";
             dt.DBDatabase = "${logger}";
@@ -2064,26 +2072,36 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         }
 
         [Theory]
-        [InlineData("A", "B", "B")]
+        [InlineData("A", "A")]
+        [InlineData("", "Server=.;Trusted_Connection=SSPI;")]
+        [InlineData(null, "Server=.;Trusted_Connection=SSPI;")]
+        public void DbFactoryConnectionStringTest1(string csInConn, string csExpected)
+        {
+            // Arrange
+            var dt = new DatabaseTarget(() => new MockDbConnection(csInConn));
+            var cs = GetConnectionString(dt);
+
+            // Assert
+            Assert.Equal(csExpected, cs);
+        }
+
+        [Theory]
         [InlineData("A", "", "A")]
         [InlineData("A", null, "A")]
-        public void DbFactoryConnectionStringTest(string csInConn, string csInDbTarget, string csExpected)
+        [InlineData("A", "B", "A")]
+        [InlineData("", "B", "B")]
+        [InlineData(null, "B", "B")]
+        public void DbFactoryConnectionStringTest2(string csInConn, string csInDbTarget, string csExpected)
         {
-            // Clear log
-            MockDbConnection.ClearLog();
-
             // Arrange
-            var con = new MockDbConnection(csInConn);
-            var dt = new DatabaseTarget(() => con)
+            var dt = new DatabaseTarget(() => new MockDbConnection(csInConn))
             {
                 ConnectionString = csInDbTarget
             };
-            IDbConnection openedConnection = dt.OpenConnection(csInDbTarget, new LogEventInfo());
+            var cs = GetConnectionString(dt);
 
             // Assert
-            var log = MockDbConnection.Log;
-            Assert.Contains($"Open('{csExpected}')", log);
-            Assert.Same(con, openedConnection);        // Ensure factory-provided connection is used
+            Assert.Equal(csExpected, cs);
         }
 
         private static void AssertLog(string expectedLog)
@@ -2091,10 +2109,11 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             Assert.Equal(expectedLog.Replace("\r", ""), MockDbConnection.Log.Replace("\r", ""));
         }
 
-        private string GetConnectionString(DatabaseTarget dt)
+        private static string GetConnectionString(DatabaseTarget dt)
         {
             MockDbConnection.ClearLog();
-            dt.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            MockDbConnection.ClearLastConnectionString();
+
             dt.CommandText = "NotImportant";
             var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt)).LogFactory;
 
@@ -2173,6 +2192,11 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             public static void ClearLog()
             {
                 Log = string.Empty;
+            }
+
+            public static void ClearLastConnectionString()
+            {
+                LastConnectionString = string.Empty;
             }
 
             public void AddToLog(string message, params object[] args)
