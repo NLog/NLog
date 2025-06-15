@@ -343,7 +343,11 @@ namespace NLog.Targets
                 throw new NLogRuntimeException("Creation of DbConnection failed");
             }
 
-            dbConnection.ConnectionString = connectionString;
+            if (!string.IsNullOrEmpty(connectionString))
+            {
+                dbConnection.ConnectionString = connectionString;
+            }
+
             if (ConnectionProperties?.Count > 0)
             {
                 ApplyDatabaseObjectProperties(dbConnection, ConnectionProperties, logEventInfo ?? LogEventInfo.CreateNullEvent());
