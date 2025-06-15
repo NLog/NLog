@@ -2064,26 +2064,22 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         }
 
         [Theory]
-        [InlineData("A", "B", "B")]
         [InlineData("A", "", "A")]
         [InlineData("A", null, "A")]
+        [InlineData("A", "B", "A")]
+        [InlineData("", "B", "B")]
+        [InlineData(null, "B", "B")]
         public void DbFactoryConnectionStringTest(string csInConn, string csInDbTarget, string csExpected)
         {
-            // Clear log
-            MockDbConnection.ClearLog();
-
             // Arrange
-            var con = new MockDbConnection(csInConn);
-            var dt = new DatabaseTarget(() => con)
+            var dt = new DatabaseTarget(() => new MockDbConnection(csInConn))
             {
                 ConnectionString = csInDbTarget
             };
-            IDbConnection openedConnection = dt.OpenConnection(csInDbTarget, new LogEventInfo());
-
+            var cs = GetConnectionString(dt, false);
+            
             // Assert
-            var log = MockDbConnection.Log;
-            Assert.Contains($"Open('{csExpected}')", log);
-            Assert.Same(con, openedConnection);        // Ensure factory-provided connection is used
+            Assert.Equal(csExpected, cs);
         }
 
         private static void AssertLog(string expectedLog)
@@ -2091,10 +2087,13 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             Assert.Equal(expectedLog.Replace("\r", ""), MockDbConnection.Log.Replace("\r", ""));
         }
 
-        private string GetConnectionString(DatabaseTarget dt)
+        private static string GetConnectionString(DatabaseTarget dt, bool setDbProvider = true)
         {
             MockDbConnection.ClearLog();
-            dt.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            if (setDbProvider)
+            {
+                dt.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            }
             dt.CommandText = "NotImportant";
             var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt)).LogFactory;
 
