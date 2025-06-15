@@ -2063,6 +2063,25 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             Assert.Throws<ArgumentNullException>(() => new DatabaseParameterInfo("Test", "AOT", null));
         }
 
+        [Fact]
+        public void DbFactoryConnectionStringTest()
+        {
+            // Data
+            const string connectionString = "MyConnectionString;User Id=myUser;Password=myPassword;";
+            
+            // Clear log
+            MockDbConnection.ClearLog();
+
+            // Arrange
+            var con = new MockDbConnection(connectionString);
+            var dt = new DatabaseTarget(() => con);
+            dt.OpenConnection(string.Empty, new LogEventInfo());
+
+            // Assert
+            var log = MockDbConnection.Log;
+            Assert.Contains($"Open('{connectionString}')", log);
+        }
+
         private static void AssertLog(string expectedLog)
         {
             Assert.Equal(expectedLog.Replace("\r", ""), MockDbConnection.Log.Replace("\r", ""));
