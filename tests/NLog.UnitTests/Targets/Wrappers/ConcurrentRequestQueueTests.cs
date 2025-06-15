@@ -68,44 +68,17 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void RaiseEventLogEventQueueGrow_OnLogItems()
         {
-            const int RequestsLimit = 2;
-            const int EventsCount = 5;
-            const int ExpectedCountOfGrovingTimes = 2;
-            const int ExpectedFinalSize = 8;
-            int grovingItemsCount = 0;
-
-            ConcurrentRequestQueue requestQueue = new ConcurrentRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Grow);
-
-            requestQueue.LogEventQueueGrow += (o, e) => { grovingItemsCount++; };
-
-            for (int i = 0; i < EventsCount; i++)
-            {
-                requestQueue.Enqueue(new AsyncLogEventInfo());
-            }
-
-            Assert.Equal(ExpectedCountOfGrovingTimes, grovingItemsCount);
-            Assert.Equal(ExpectedFinalSize, requestQueue.RequestLimit);
+            CommonRequestQueueTests.RaiseEventLogEventQueueGrow_OnLogItems(GetConcurrentReuestQueue);
         }
 
         [Fact]
         public void RaiseEventLogEventDropped_OnLogItems()
         {
-            const int RequestsLimit = 2;
-            const int EventsCount = 5;
-            int discardedItemsCount = 0;
-
-            int ExpectedDiscardedItemsCount = EventsCount - RequestsLimit;
-            ConcurrentRequestQueue requestQueue = new ConcurrentRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Discard);
-
-            requestQueue.LogEventDropped += (o, e) => { discardedItemsCount++; };
-
-            for (int i = 0; i < EventsCount; i++)
-            {
-                requestQueue.Enqueue(new AsyncLogEventInfo());
-            }
-
-            Assert.Equal(ExpectedDiscardedItemsCount, discardedItemsCount);
+            CommonRequestQueueTests.RaiseEventLogEventDropped_OnLogItems(GetConcurrentReuestQueue);
         }
+
+        private AsyncRequestQueueBase GetConcurrentReuestQueue(int size, AsyncTargetWrapperOverflowAction action) =>
+            new ConcurrentRequestQueue(size, action);
     }
 }
 
