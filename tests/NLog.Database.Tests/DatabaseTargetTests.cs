@@ -2071,11 +2071,13 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         [InlineData(null, "B", "B")]
         public void DbFactoryConnectionStringTest(string csInConn, string csInDbTarget, string csExpected)
         {
-            // Arrange
+            // Create a DatabaseTarget with a mock connection
             var dt = new DatabaseTarget(() => new MockDbConnection(csInConn))
             {
                 ConnectionString = csInDbTarget
             };
+
+            // Get the connection string without setting the DBProvider
             var cs = GetConnectionString(dt, false);
 
             // Assert
