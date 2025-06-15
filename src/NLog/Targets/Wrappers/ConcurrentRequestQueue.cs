@@ -97,8 +97,8 @@ namespace NLog.Targets.Wrappers
                     case AsyncTargetWrapperOverflowAction.Grow:
                         {
                             InternalLogger.Debug("AsyncQueue - Growing the size of queue, because queue is full");
-                            OnLogEventQueueGrows(currentCount);
                             RequestLimit *= 2;
+                            OnLogEventQueueGrows(currentCount);
                         }
                         break;
                 }
