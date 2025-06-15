@@ -61,6 +61,10 @@ NLog v6.0 RC3 with the following major changes:
 - Updated NLog.Schema nuget-package to include targets-file to copy NLog.xsd to project-folder.
 - Improved configuration-file loading to advise about NLog nuget-packages for missing types.
 - Log4JXmlEventLayout - Fixed IncludeEmptyValue for Parameters.
+- Log4JXmlEventLayout - Enforce MaxRecursionLimit = 0
+- RegisterObjectTransformation to preserve public properties
+- DatabaseTarget with support for AOT (@JohnVerheij)
+- DatabaseTarget only assign ConnectionString when specified (@JohnVerheij)
 
 NLog v6.0 release notes: https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html
 
