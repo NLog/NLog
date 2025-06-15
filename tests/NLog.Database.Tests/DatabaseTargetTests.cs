@@ -2063,23 +2063,27 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             Assert.Throws<ArgumentNullException>(() => new DatabaseParameterInfo("Test", "AOT", null));
         }
 
-        [Fact]
-        public void DbFactoryConnectionStringTest()
+        [Theory]
+        [InlineData("A", "B", "B")]
+        [InlineData("A", "", "A")]
+        [InlineData("A", null, "A")]
+        public void DbFactoryConnectionStringTest(string csInConn, string csInDbTarget, string csExpected)
         {
-            // Data
-            const string connectionString = "MyConnectionString;User Id=myUser;Password=myPassword;";
-            
             // Clear log
             MockDbConnection.ClearLog();
 
             // Arrange
-            var con = new MockDbConnection(connectionString);
-            var dt = new DatabaseTarget(() => con);
-            dt.OpenConnection(string.Empty, new LogEventInfo());
+            var con = new MockDbConnection(csInConn);
+            var dt = new DatabaseTarget(() => con)
+            {
+                ConnectionString = csInDbTarget
+            };
+            IDbConnection openedConnection = dt.OpenConnection(csInDbTarget, new LogEventInfo());
 
             // Assert
             var log = MockDbConnection.Log;
-            Assert.Contains($"Open('{connectionString}')", log);
+            Assert.Contains($"Open('{csExpected}')", log);
+            Assert.Same(con, openedConnection);        // Ensure factory-provided connection is used
         }
 
         private static void AssertLog(string expectedLog)
