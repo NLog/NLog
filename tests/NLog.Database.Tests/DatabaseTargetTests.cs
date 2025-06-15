@@ -2077,7 +2077,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 ConnectionString = csInDbTarget
             };
             var cs = GetConnectionString(dt, false);
-            
+
             // Assert
             Assert.Equal(csExpected, cs);
         }
