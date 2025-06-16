@@ -40,18 +40,12 @@ namespace NLog.Targets.Wrappers
 
     internal abstract class AsyncRequestQueueBase
     {
-        protected volatile int _requestLimit;
-
         public abstract bool IsEmpty { get; }
 
         /// <summary>
         /// Gets or sets the request limit.
         /// </summary>
-        public int RequestLimit
-        {
-            get => _requestLimit;
-            set => _requestLimit = value;
-        }
+        public int RequestLimit { get; set; }
 
         /// <summary>
         /// Gets or sets the action to be taken when there's no more room in

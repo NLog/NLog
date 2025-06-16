@@ -78,10 +78,9 @@ namespace NLog.Targets.Wrappers
         /// <returns>Queue was empty before enqueue</returns>
         public override bool Enqueue(AsyncLogEventInfo logEventInfo)
         {
-            int currentRequestLimit = _requestLimit;
             long currentCount = Interlocked.Increment(ref _count);
             bool queueWasEmpty = currentCount == 1;  // Inserted first item in empty queue
-            if (currentCount > currentRequestLimit)
+            if (currentCount > RequestLimit)
             {
                 switch (OnOverflow)
                 {
@@ -98,8 +97,11 @@ namespace NLog.Targets.Wrappers
                     case AsyncTargetWrapperOverflowAction.Grow:
                         {
                             InternalLogger.Debug("AsyncQueue - Growing the size of queue, because queue is full");
-                            Interlocked.CompareExchange(ref _requestLimit, currentRequestLimit * 2,
-                                currentRequestLimit);
+                            var currentRequestLimit = RequestLimit;
+                            if (currentCount > currentRequestLimit)
+                            {
+                                  RequestLimit = currentRequestLimit * 2;
+                            }
                             OnLogEventQueueGrows(currentCount);
                         }
                         break;
@@ -125,7 +127,7 @@ namespace NLog.Targets.Wrappers
                 }
                 currentCount = Interlocked.Read(ref _count);
                 queueWasEmpty = true;
-            } while (currentCount > _requestLimit);
+            } while (currentCount > RequestLimit);
 
             return queueWasEmpty;
         }
@@ -136,14 +138,14 @@ namespace NLog.Targets.Wrappers
             long currentCount = TrySpinWaitForLowerCount();
 
             // If yield did not help, then wait on a lock
-            if (currentCount > _requestLimit)
+            if (currentCount > RequestLimit)
             {
                 InternalLogger.Debug("AsyncQueue - Blocking until ready, because queue is full");
                 lock (_logEventInfoQueue)
                 {
                     InternalLogger.Trace("AsyncQueue - Entered critical section.");
                     currentCount = Interlocked.Read(ref _count);
-                    while (currentCount > _requestLimit)
+                    while (currentCount > RequestLimit)
                     {
                         Interlocked.Decrement(ref _count);
                         Monitor.Wait(_logEventInfoQueue);
@@ -173,7 +175,7 @@ namespace NLog.Targets.Wrappers
 
                 spinWait.SpinOnce();
                 currentCount = Interlocked.Read(ref _count);
-                if (currentCount <= _requestLimit)
+                if (currentCount <= RequestLimit)
                     break;
             }
 
