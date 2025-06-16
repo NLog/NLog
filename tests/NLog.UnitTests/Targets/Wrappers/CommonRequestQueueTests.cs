@@ -43,6 +43,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         internal static void RaiseEventLogEventQueueGrow_OnLogItems(Func<int, AsyncTargetWrapperOverflowAction, AsyncRequestQueueBase> getQueue)
         {
             const int InitialSize = 1;
+            const int ExpectedFinalGrowingTimes = 3;
             const int ExpectedFinalSize = 8;
 
             var requestQueue = getQueue(InitialSize, AsyncTargetWrapperOverflowAction.Grow);
@@ -50,12 +51,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             int growingTimesCount = 0;
             long reportedRequestsCount = 0;
             long reportedNewQueueSize = 0;
-            requestQueue.LogEventQueueGrow += (_, e) =>
-            {
-                growingTimesCount++;
-                reportedRequestsCount = e.RequestsCount;
-                reportedNewQueueSize = e.NewQueueSize;
-            };
+
+            requestQueue.LogEventQueueGrow += OnLogEventQueueGrow;
 
             requestQueue.Enqueue(new AsyncLogEventInfo());
             Assert.Equal(0, growingTimesCount);
@@ -74,10 +71,29 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(2, growingTimesCount);
 
             requestQueue.Enqueue(new AsyncLogEventInfo());
-            Assert.Equal(3, growingTimesCount);
+            Assert.Equal(ExpectedFinalGrowingTimes, growingTimesCount);
             Assert.Equal(5, reportedRequestsCount);
             Assert.Equal(ExpectedFinalSize, reportedNewQueueSize);
             Assert.Equal(ExpectedFinalSize, requestQueue.RequestLimit);
+
+            requestQueue.LogEventQueueGrow -= OnLogEventQueueGrow;
+
+            for (var i = reportedRequestsCount; i < ExpectedFinalSize + 1; i++)
+            {
+                requestQueue.Enqueue(new AsyncLogEventInfo());
+            }
+
+            Assert.Equal(ExpectedFinalGrowingTimes, growingTimesCount);
+            Assert.Equal(ExpectedFinalSize * 2, requestQueue.RequestLimit);
+
+            return;
+
+            void OnLogEventQueueGrow(object _, LogEventQueueGrowEventArgs e)
+            {
+                growingTimesCount++;
+                reportedRequestsCount = e.RequestsCount;
+                reportedNewQueueSize = e.NewQueueSize;
+            }
         }
 
         internal static void RaiseEventLogEventDropped_OnLogItems(Func<int, AsyncTargetWrapperOverflowAction, AsyncRequestQueueBase> getQueue)
@@ -85,11 +101,10 @@ namespace NLog.UnitTests.Targets.Wrappers
             const int RequestsLimit = 2;
             const int EventsCount = 5;
             const int ExpectedDiscardedItemsCount = EventsCount - RequestsLimit;
+            int discardedItemsCount = 0;
 
             var requestQueue = getQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Discard);
-
-            int discardedItemsCount = 0;
-            requestQueue.LogEventDropped += (o, e) => { discardedItemsCount++; };
+            requestQueue.LogEventDropped += OnLogEventDropped;
 
             for (int i = 0; i < EventsCount; i++)
             {
@@ -97,6 +112,17 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
 
             Assert.Equal(ExpectedDiscardedItemsCount, discardedItemsCount);
+
+            requestQueue.LogEventDropped -= OnLogEventDropped;
+            requestQueue.Enqueue(new AsyncLogEventInfo());
+            Assert.Equal(ExpectedDiscardedItemsCount, discardedItemsCount);
+
+            return;
+
+            void OnLogEventDropped(object o, LogEventDroppedEventArgs e)
+            {
+                discardedItemsCount++;
+            }
         }
     }
 }
