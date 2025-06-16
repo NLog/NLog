@@ -932,7 +932,7 @@ namespace NLog.Targets
                 sb.Append("User id=");
                 sb.Append(dbUserName);
                 sb.Append(";Password=");
-                var password = _dbPasswordFixed ?? EscapeValueForConnectionString(_dbPassword?.Render(logEvent) ?? string.Empty);
+                var password = _dbPasswordFixed ?? EscapeValueForConnectionString(RenderLogEvent(_dbPassword, logEvent));
                 sb.Append(password);
                 sb.Append(";");
             }

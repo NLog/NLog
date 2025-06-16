@@ -40,6 +40,8 @@ namespace NLog.Targets
     /// </summary>
     public abstract class TargetWithLayoutHeaderAndFooter : TargetWithLayout
     {
+        private Layout _layout;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetWithLayoutHeaderAndFooter" /> class.
         /// </summary>
@@ -48,6 +50,8 @@ namespace NLog.Targets
         /// </remarks>
         protected TargetWithLayoutHeaderAndFooter()
         {
+            var layout = base.Layout;
+            _layout = layout is LayoutWithHeaderAndFooter headerAndFooter ? headerAndFooter.Layout : layout;
         }
 
         /// <summary>
@@ -59,24 +63,23 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='1' />
         public override Layout Layout
         {
-            get => LHF.Layout;
-
+            get => _layout;
             set
             {
-                if (value is LayoutWithHeaderAndFooter)
+                if (value is LayoutWithHeaderAndFooter layout)
                 {
                     base.Layout = value;
+                    _layout = layout.Layout;
                 }
-                else if (LHF is null)
+                else if (base.Layout is LayoutWithHeaderAndFooter headerAndFooter)
                 {
-                    LHF = new LayoutWithHeaderAndFooter()
-                    {
-                        Layout = value
-                    };
+                    headerAndFooter.Layout = value;
+                    _layout = value;
                 }
                 else
                 {
-                    LHF.Layout = value;
+                    base.Layout = new LayoutWithHeaderAndFooter() { Layout = value };
+                    _layout = value;
                 }
             }
         }
@@ -87,8 +90,18 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='3' />
         public Layout? Footer
         {
-            get => LHF.Footer;
-            set => LHF.Footer = value;
+            get => (base.Layout as LayoutWithHeaderAndFooter)?.Footer;
+            set
+            {
+                if (base.Layout is LayoutWithHeaderAndFooter headerAndFooter)
+                {
+                    headerAndFooter.Footer = value;
+                }
+                else if (value is not null)
+                {
+                    base.Layout = new LayoutWithHeaderAndFooter() { Layout = base.Layout, Footer = value };
+                }
+            }
         }
 
         /// <summary>
@@ -97,18 +110,18 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='2' />
         public Layout? Header
         {
-            get => LHF.Header;
-            set => LHF.Header = value;
-        }
-
-        /// <summary>
-        /// Gets or sets the layout with header and footer.
-        /// </summary>
-        /// <value>The layout with header and footer.</value>
-        private LayoutWithHeaderAndFooter LHF
-        {
-            get => (LayoutWithHeaderAndFooter)base.Layout;
-            set => base.Layout = value;
+            get => (base.Layout as LayoutWithHeaderAndFooter)?.Header;
+            set
+            {
+                if (base.Layout is LayoutWithHeaderAndFooter headerAndFooter)
+                {
+                    headerAndFooter.Header = value;
+                }
+                else if (value is not null)
+                {
+                    base.Layout = new LayoutWithHeaderAndFooter() { Layout = base.Layout, Header = value };
+                }
+            }
         }
     }
 }
