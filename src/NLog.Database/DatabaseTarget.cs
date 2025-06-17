@@ -79,7 +79,6 @@ namespace NLog.Targets
     [Target("Database")]
     public class DatabaseTarget : Target, IInstallable
     {
-        private readonly bool _dbConnectionFactoryProvided;
         private readonly Func<IDbConnection> _dbConnectionFactory;
         private readonly Func<Type?>? _resolveConnectionType;
         private IDbConnection? _activeConnection;
@@ -121,9 +120,9 @@ namespace NLog.Targets
         /// </param>
         public DatabaseTarget(Func<IDbConnection> dbConnectionFactory)
         {
-            CommandType = CommandType.Text;
             _dbConnectionFactory = dbConnectionFactory ?? throw new ArgumentNullException(nameof(dbConnectionFactory));
-            _dbConnectionFactoryProvided = true;
+            CommandType = CommandType.Text;
+            ConnectionString = new SimpleLayout("");
         }
 
         /// <summary>
@@ -165,8 +164,8 @@ namespace NLog.Targets
 #endif
 
         /// <summary>
-        /// Gets or sets the connection string. Only used when dbConnectionFactory is not provided.
-        /// When provided, it overrides the values specified in DBHost, DBUserName, DBPassword, DBDatabase.
+        /// Gets or sets the connection string. When provided, it overrides the values
+        /// specified in DBHost, DBUserName, DBPassword, DBDatabase.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         public Layout ConnectionString { get; set; } = Layout.Empty;
@@ -199,7 +198,7 @@ namespace NLog.Targets
         public bool KeepConnection { get; set; }
 
         /// <summary>
-        /// Gets or sets the database host name. If the dbConnectionFactory and ConnectionString are not provided
+        /// Gets or sets the database host name. If the ConnectionString is not provided
         /// this value will be used to construct the "Server=" part of the
         /// connection string.
         /// </summary>
@@ -207,7 +206,7 @@ namespace NLog.Targets
         public Layout DBHost { get; set; } = ".";
 
         /// <summary>
-        /// Gets or sets the database user name. If the dbConnectionFactory and ConnectionString are not provided
+        /// Gets or sets the database user name. If the ConnectionString is not provided
         /// this value will be used to construct the "User ID=" part of the
         /// connection string.
         /// </summary>
@@ -215,7 +214,7 @@ namespace NLog.Targets
         public Layout? DBUserName { get; set; }
 
         /// <summary>
-        /// Gets or sets the database password. If the dbConnectionFactory and ConnectionString are not provided
+        /// Gets or sets the database password. If the ConnectionString is not provided
         /// this value will be used to construct the "Password=" part of the
         /// connection string.
         /// </summary>
@@ -236,7 +235,7 @@ namespace NLog.Targets
         private string? _dbPasswordFixed;
 
         /// <summary>
-        /// Gets or sets the database name. If the dbConnectionFactory and ConnectionString are not provided
+        /// Gets or sets the database name. If the ConnectionString is not provided
         /// this value will be used to construct the "Database=" part of the
         /// connection string.
         /// </summary>
@@ -914,12 +913,6 @@ namespace NLog.Targets
         /// <returns></returns>
         protected string BuildConnectionString(LogEventInfo logEvent)
         {
-            // ConnectionString is already set by the factory, so no need to build it again.
-            if (_dbConnectionFactoryProvided)
-            {
-                return string.Empty; 
-            }
-            
             if (ConnectionString != null && !ReferenceEquals(ConnectionString, Layout.Empty))
             {
                 return RenderLogEvent(ConnectionString, logEvent);

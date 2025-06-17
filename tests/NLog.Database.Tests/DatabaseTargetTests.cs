@@ -2082,13 +2082,14 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         }
 
         [Theory]
-        [InlineData("A", "", "A")]
+        [InlineData("A", "", "Server=.;Trusted_Connection=SSPI;")]
+        [InlineData(null, "", "Server=.;Trusted_Connection=SSPI;")]
+        [InlineData("", "", "Server=.;Trusted_Connection=SSPI;")]
         [InlineData("A", null, "A")]
-        [InlineData("A", "B", "A")]
-        [InlineData("", "B", "")]
         [InlineData("", null, "")]
-        [InlineData(null, "B", null)]
-        [InlineData(null, "", null)]
+        [InlineData("A", "B", "B")]
+        [InlineData("", "B", "B")]
+        [InlineData(null, "B", "B")]
         public void DbFactoryConnectionStringTest2(string csInConn, string csInDbTarget, string csExpected)
         {
             // Arrange
