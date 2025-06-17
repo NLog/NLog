@@ -84,7 +84,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             RetryingIntegrationTest(3, () =>
             {
-                AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(false);                
+                AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(false);
             });
         }
 
@@ -514,11 +514,12 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Fact]
-        public void LogEventDropped_OnRequestqueueOverflow()
+        public void LogEventDropped_OnRequestQueueOverflow()
         {
-            int queueLimit = 2;
-            int loggedEventCount = 5;
-            int eventsCounter = 0;
+            const int queueLimit = 2;
+            const int loggedEventCount = 5;
+            const int expectedEventsDropped = loggedEventCount - queueLimit;
+            int eventsDroppedCounter = 0;
             var myTarget = new MyTarget();
 
             var targetWrapper = new AsyncTargetWrapper()
@@ -537,18 +538,38 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             try
             {
-                targetWrapper.LogEventDropped += (o, e) => { eventsCounter++; };
+                // subscribe, log, assert values were reported
+                targetWrapper.LogEventDropped += OnLogEventDropped;
 
-                for (int i = 0; i < loggedEventCount; i++)
-                {
-                    logger.Info("Hello");
-                }
+                LogEvents();
 
-                Assert.Equal(loggedEventCount - queueLimit, eventsCounter);
+                Assert.Equal(expectedEventsDropped, eventsDroppedCounter);
+
+                // unsubscribe, log, assert values were not reported
+                targetWrapper.LogEventDropped -= OnLogEventDropped;
+
+                LogEvents();
+
+                Assert.Equal(expectedEventsDropped, eventsDroppedCounter);
             }
             finally
             {
                 logFactory.Configuration = null;
+            }
+
+            return;
+
+            void LogEvents()
+            {
+                for (int i = 0; i < loggedEventCount; i++)
+                {
+                    logger.Info("Hello");
+                }
+            }
+
+            void OnLogEventDropped(object _, LogEventDroppedEventArgs logEventDroppedEventArgs)
+            {
+                eventsDroppedCounter++;
             }
         }
 
@@ -631,12 +652,15 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void EventQueueGrow_OnQueueGrow()
         {
-            int queueLimit = 2;
-            int loggedEventCount = 10;
+            const int queueLimit = 2;
+            const int loggedEventCount = 10;
+            const int expectedGrowingNumber = 3;
+            const int expectedNewQueueSize = 16;
+            const int expectedRequestsCount = expectedNewQueueSize / 2 + 1;
 
-            int expectedGrowingNumber = 3;
-
-            int eventsCounter = 0;
+            int growEventsCounter = 0;
+            long reportedRequestsCount = 0;
+            long reportedNewQueueSize = 0;
             var myTarget = new MyTarget();
 
             var targetWrapper = new AsyncTargetWrapper()
@@ -655,18 +679,145 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             try
             {
-                targetWrapper.EventQueueGrow += (o, e) => { eventsCounter++; };
+                // subscribe, log, assert values were reported
+                targetWrapper.EventQueueGrow += OnEventQueueGrow;
 
-                for (int i = 0; i < loggedEventCount; i++)
-                {
-                    logger.Info("Hello");
-                }
+                LogEvents();
 
-                Assert.Equal(expectedGrowingNumber, eventsCounter);
+                Assert.Equal(expectedGrowingNumber, growEventsCounter);
+                Assert.Equal(expectedRequestsCount, reportedRequestsCount);
+                Assert.Equal(expectedNewQueueSize, reportedNewQueueSize);
+
+                // unsubscribe, log, assert values were not reported
+                targetWrapper.EventQueueGrow -= OnEventQueueGrow;
+
+                LogEvents();
+
+                Assert.Equal(expectedGrowingNumber, growEventsCounter);
+                Assert.Equal(expectedRequestsCount, reportedRequestsCount);
+                Assert.Equal(expectedNewQueueSize, reportedNewQueueSize);
             }
             finally
             {
                 logFactory.Configuration = null;
+            }
+
+            return;
+
+            void LogEvents()
+            {
+                for (int i = 0; i < loggedEventCount; i++)
+                {
+                    logger.Info("Hello");
+                }
+            }
+
+            void OnEventQueueGrow(object _, LogEventQueueGrowEventArgs e)
+            {
+                growEventsCounter++;
+                reportedRequestsCount = e.RequestsCount;
+                reportedNewQueueSize = e.NewQueueSize;
+            }
+        }
+
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void EnqueueLimitReached_EventsAreCalled_SubscriptionOrderDoesntMatter(bool reverseSubscribeOrder)
+        {
+            const int queueLimit = 2;
+            const int loggedEventCount = 5;
+            const int expectedEventsDropped = loggedEventCount - queueLimit;
+            const int expectedGrowingNumber = 2;
+            const int expectedNewQueueSize = 8;
+
+            int eventsDroppedCounter = 0;
+            int growEventsCounter = 0;
+            long reportedRequestsCount = 0;
+            long reportedNewQueueSize = 0;
+            var myTarget = new MyTarget();
+
+            var targetWrapper = new AsyncTargetWrapper()
+            {
+                WrappedTarget = myTarget,
+                QueueLimit = queueLimit,
+                TimeToSleepBetweenBatches = 500,    // Make it slow
+                OverflowAction = AsyncTargetWrapperOverflowAction.Discard,
+            };
+
+            var logFactory = new LogFactory();
+            var loggingConfig = new NLog.Config.LoggingConfiguration(logFactory);
+            loggingConfig.AddRuleForAllLevels(targetWrapper);
+            logFactory.Configuration = loggingConfig;
+            var logger = logFactory.GetLogger("Test");
+
+            try
+            {
+                // subscribe, log, assert values were reported - discards at first, then grows
+                if (reverseSubscribeOrder)
+                {
+                    targetWrapper.LogEventDropped += OnLogEventDropped;
+                    targetWrapper.EventQueueGrow += OnEventQueueGrow;
+                }
+                else
+                {
+                    targetWrapper.EventQueueGrow += OnEventQueueGrow;
+                    targetWrapper.LogEventDropped += OnLogEventDropped;
+                }
+
+                LogEvents();
+
+                Assert.Equal(expectedEventsDropped, eventsDroppedCounter);
+                Assert.Equal(0, growEventsCounter);
+
+                // and now grow
+                targetWrapper.OverflowAction = AsyncTargetWrapperOverflowAction.Grow;
+
+                LogEvents();
+
+                Assert.Equal(expectedGrowingNumber, growEventsCounter);
+                Assert.Equal(loggedEventCount, reportedRequestsCount);
+                Assert.Equal(expectedNewQueueSize, reportedNewQueueSize);
+                Assert.Equal(expectedEventsDropped, eventsDroppedCounter);
+
+                // unsubscribe, log, assert values were not reported
+                targetWrapper.LogEventDropped -= OnLogEventDropped;
+                targetWrapper.EventQueueGrow -= OnEventQueueGrow;
+
+                targetWrapper.OverflowAction = AsyncTargetWrapperOverflowAction.Discard;
+                LogEvents();
+
+                targetWrapper.OverflowAction = AsyncTargetWrapperOverflowAction.Grow;
+                LogEvents();
+
+                Assert.Equal(expectedGrowingNumber, growEventsCounter);
+                Assert.Equal(expectedEventsDropped, eventsDroppedCounter);
+            }
+            finally
+            {
+                logFactory.Configuration = null;
+            }
+
+            return;
+
+            void LogEvents()
+            {
+                for (int i = 0; i < loggedEventCount; i++)
+                {
+                    logger.Info("Hello");
+                }
+            }
+
+            void OnLogEventDropped(object _, LogEventDroppedEventArgs logEventDroppedEventArgs)
+            {
+                eventsDroppedCounter++;
+            }
+
+            void OnEventQueueGrow(object _, LogEventQueueGrowEventArgs e)
+            {
+                growEventsCounter++;
+                reportedRequestsCount = e.RequestsCount;
+                reportedNewQueueSize = e.NewQueueSize;
             }
         }
 

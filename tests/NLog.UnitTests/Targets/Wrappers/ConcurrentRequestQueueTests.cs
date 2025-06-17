@@ -34,6 +34,8 @@
 #if !NET35
 
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using NLog.Common;
 using NLog.Targets.Wrappers;
 using Xunit;
@@ -66,46 +68,74 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Fact]
-        public void RaiseEventLogEventQueueGrow_OnLogItems()
+        public void Enqueue_WhenGrowBehaviourAndHighlyConcurrent_GrowOnce()
         {
-            const int RequestsLimit = 2;
-            const int EventsCount = 5;
-            const int ExpectedCountOfGrovingTimes = 2;
-            const int ExpectedFinalSize = 8;
-            int grovingItemsCount = 0;
+            // Arrange
+            var requestQueue = new ConcurrentRequestQueue(2, AsyncTargetWrapperOverflowAction.Grow);
 
-            ConcurrentRequestQueue requestQueue = new ConcurrentRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Grow);
-
-            requestQueue.LogEventQueueGrow += (o, e) => { grovingItemsCount++; };
-
-            for (int i = 0; i < EventsCount; i++)
+            for (int i = 0; i < 4; i++)
             {
                 requestQueue.Enqueue(new AsyncLogEventInfo());
             }
 
-            Assert.Equal(ExpectedCountOfGrovingTimes, grovingItemsCount);
-            Assert.Equal(ExpectedFinalSize, requestQueue.RequestLimit);
+            const int initialRequestCount = 4;
+            const int initialRequestLimit = 4;
+            Assert.Equal(initialRequestCount, requestQueue.Count);
+            Assert.Equal(initialRequestLimit, requestQueue.RequestLimit);
+
+            const int threadCount = 4;
+            var readyToEnqueue = new Barrier(threadCount);
+            var enqueued = new CountdownEvent(threadCount);
+
+            // Act
+            for (int i = 0; i < 100; i++)
+            {
+                for (int j = 0; j < threadCount; j++)
+                {
+                    Task.Run(EnqueueWhenAllThreadsReady);
+                }
+
+                enqueued.Wait();
+                enqueued.Reset();
+
+                // Assert
+                const int expectedRequestCount = initialRequestCount + threadCount;
+                const int expectedRequestLimit = initialRequestLimit * 2;
+                Assert.Equal(expectedRequestCount, requestQueue.Count);
+                Assert.Equal(expectedRequestLimit, requestQueue.RequestLimit);
+
+                // rollback requests count and limit
+                requestQueue.DequeueBatch(threadCount);
+                requestQueue.RequestLimit = initialRequestLimit;
+            }
+
+            return;
+
+            void EnqueueWhenAllThreadsReady()
+            {
+                var logEvent = new AsyncLogEventInfo();
+                readyToEnqueue.SignalAndWait();
+
+                requestQueue.Enqueue(logEvent);
+
+                enqueued.Signal();
+            }
+        }
+
+        [Fact]
+        public void RaiseEventLogEventQueueGrow_OnLogItems()
+        {
+            CommonRequestQueueTests.RaiseEventLogEventQueueGrow_OnLogItems(GetConcurrentReuestQueue);
         }
 
         [Fact]
         public void RaiseEventLogEventDropped_OnLogItems()
         {
-            const int RequestsLimit = 2;
-            const int EventsCount = 5;
-            int discardedItemsCount = 0;
-
-            int ExpectedDiscardedItemsCount = EventsCount - RequestsLimit;
-            ConcurrentRequestQueue requestQueue = new ConcurrentRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Discard);
-
-            requestQueue.LogEventDropped += (o, e) => { discardedItemsCount++; };
-
-            for (int i = 0; i < EventsCount; i++)
-            {
-                requestQueue.Enqueue(new AsyncLogEventInfo());
-            }
-
-            Assert.Equal(ExpectedDiscardedItemsCount, discardedItemsCount);
+            CommonRequestQueueTests.RaiseEventLogEventDropped_OnLogItems(GetConcurrentReuestQueue);
         }
+
+        private AsyncRequestQueueBase GetConcurrentReuestQueue(int size, AsyncTargetWrapperOverflowAction action) =>
+            new ConcurrentRequestQueue(size, action);
     }
 }
 
