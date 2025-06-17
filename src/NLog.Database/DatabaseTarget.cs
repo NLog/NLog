@@ -120,8 +120,9 @@ namespace NLog.Targets
         /// </param>
         public DatabaseTarget(Func<IDbConnection> dbConnectionFactory)
         {
-            CommandType = CommandType.Text;
             _dbConnectionFactory = dbConnectionFactory ?? throw new ArgumentNullException(nameof(dbConnectionFactory));
+            CommandType = CommandType.Text;
+            ConnectionString = new SimpleLayout("");
         }
 
         /// <summary>
