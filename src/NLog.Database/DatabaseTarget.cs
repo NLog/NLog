@@ -345,7 +345,6 @@ namespace NLog.Targets
                 throw new NLogRuntimeException("Creation of DbConnection failed");
             }
 
-            // do not overwrite the connection string if it is already set
             if (!string.IsNullOrEmpty(connectionString))
             {
                 dbConnection.ConnectionString = connectionString;

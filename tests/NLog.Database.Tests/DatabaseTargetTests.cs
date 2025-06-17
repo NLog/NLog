@@ -539,7 +539,7 @@ Dispose()
             string lvlLayout = noRawValue ? "${level:format=Ordinal:norawvalue=true}" : "${level:format=Ordinal}";
 
             MockDbConnection.ClearLog();
-            DatabaseTarget dt = new DatabaseTarget(() => new MockDbConnection())
+            DatabaseTarget dt = new DatabaseTarget(() => new MockDbConnection("A"))
             {
                 CommandText = "INSERT INTO FooBar VALUES(@lvl, @msg)",
                 KeepConnection = true,
@@ -564,7 +564,7 @@ Dispose()
                 Assert.Null(ex);
             }
 
-            string expectedLog = string.Format(@"Open('Server=.;Trusted_Connection=SSPI;').
+            string expectedLog = string.Format(@"Open('A').
 CreateParameter(0)
 Parameter #0 Direction=Input
 Parameter #0 Name=lvl{0}
@@ -925,39 +925,35 @@ Dispose()
             var dbProvider = typeof(MockDbConnection).AssemblyQualifiedName;
             Assert.NotNull(dbProvider);
 
-            DatabaseTarget dt;
-
-            dt = new DatabaseTarget();
-            dt.DBProvider = dbProvider;
+            DatabaseTarget dt = CreateTargetWithProvider();
             Assert.Equal("Server=.;Trusted_Connection=SSPI;", GetConnectionString(dt));
 
-            dt = new DatabaseTarget();
-            dt.DBProvider = dbProvider;
+            dt = CreateTargetWithProvider();
             dt.DBHost = "${logger}";
             Assert.Equal("Server=Logger1;Trusted_Connection=SSPI;", GetConnectionString(dt));
 
-            dt = new DatabaseTarget();
-            dt.DBProvider = dbProvider;
+            dt = CreateTargetWithProvider();
             dt.DBHost = "HOST1";
             dt.DBDatabase = "${logger}";
             Assert.Equal("Server=HOST1;Trusted_Connection=SSPI;Database=Logger1", GetConnectionString(dt));
 
-            dt = new DatabaseTarget();
-            dt.DBProvider = dbProvider;
+            dt = CreateTargetWithProvider();
             dt.DBHost = "HOST1";
             dt.DBDatabase = "${logger}";
             dt.DBUserName = "user1";
             dt.DBPassword = "password1";
             Assert.Equal("Server=HOST1;User id=user1;Password=password1;Database=Logger1", GetConnectionString(dt));
 
-            dt = new DatabaseTarget();
-            dt.DBProvider = dbProvider;
+            dt = CreateTargetWithProvider();
             dt.ConnectionString = "customConnectionString42";
             dt.DBHost = "HOST1";
             dt.DBDatabase = "${logger}";
             dt.DBUserName = "user1";
             dt.DBPassword = "password1";
             Assert.Equal("customConnectionString42", GetConnectionString(dt));
+            return;
+            
+            DatabaseTarget CreateTargetWithProvider() => new DatabaseTarget { DBProvider = dbProvider };
         }
 
         [Fact]
@@ -2090,7 +2086,9 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         [InlineData("A", null, "A")]
         [InlineData("A", "B", "A")]
         [InlineData("", "B", "")]
+        [InlineData("", null, "")]
         [InlineData(null, "B", null)]
+        [InlineData(null, "", null)]
         public void DbFactoryConnectionStringTest2(string csInConn, string csInDbTarget, string csExpected)
         {
             // Arrange
@@ -2196,7 +2194,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
             public static void ClearLastConnectionString()
             {
-                LastConnectionString = string.Empty;
+                LastConnectionString = null;
             }
 
             public void AddToLog(string message, params object[] args)
