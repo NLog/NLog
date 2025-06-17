@@ -161,7 +161,7 @@ namespace NLog.Targets.Wrappers
         {
             add
             {
-                if (_eventQueueGrowEvent == null && _requestQueue != null)
+                if (_logEventDroppedEvent is null)
                 {
                     _requestQueue.LogEventDropped += OnRequestQueueDropItem;
                 }
@@ -172,7 +172,7 @@ namespace NLog.Targets.Wrappers
             {
                 _logEventDroppedEvent -= value;
 
-                if (_eventQueueGrowEvent == null && _requestQueue != null)
+                if (_logEventDroppedEvent is null)
                 {
                     _requestQueue.LogEventDropped -= OnRequestQueueDropItem;
                 }
@@ -186,7 +186,7 @@ namespace NLog.Targets.Wrappers
         {
             add
             {
-                if (_eventQueueGrowEvent == null && _requestQueue != null)
+                if (_eventQueueGrowEvent is null)
                 {
                     _requestQueue.LogEventQueueGrow += OnRequestQueueGrow;
                 }
@@ -197,7 +197,7 @@ namespace NLog.Targets.Wrappers
             {
                 _eventQueueGrowEvent -= value;
 
-                if (_eventQueueGrowEvent == null && _requestQueue != null)
+                if (_eventQueueGrowEvent is null)
                 {
                     _requestQueue.LogEventQueueGrow -= OnRequestQueueGrow;
                 }
