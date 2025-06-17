@@ -951,8 +951,8 @@ Dispose()
             dt.DBUserName = "user1";
             dt.DBPassword = "password1";
             Assert.Equal("customConnectionString42", GetConnectionString(dt));
-            return;
             
+            // local function to create a target with the provider set
             DatabaseTarget CreateTargetWithProvider() => new DatabaseTarget { DBProvider = dbProvider };
         }
 
@@ -2111,7 +2111,6 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         private static string GetConnectionString(DatabaseTarget dt)
         {
             MockDbConnection.ClearLog();
-            MockDbConnection.ClearLastConnectionString();
 
             dt.CommandText = "NotImportant";
             var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt)).LogFactory;
@@ -2191,10 +2190,6 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             public static void ClearLog()
             {
                 Log = string.Empty;
-            }
-
-            public static void ClearLastConnectionString()
-            {
                 LastConnectionString = null;
             }
 
