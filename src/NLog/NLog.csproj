@@ -28,10 +28,10 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-NLog v6.0 RC3 with the following major changes:
+NLog v6.0 with the following major changes:
 
 - Support AOT builds without build warnings.
-- New FileTarget without ConcurrentWrites support, but still support KeepFileOpen true / false.
+- New FileTarget without ConcurrentWrites support, but still support KeepFileOpen (true/false).
 - Moved old FileTarget into the new nuget-package NLog.Targets.ConcurrentFile.
 - Created new nuget-package NLog.Targets.AtomicFile that supports ConcurrentWrites for NET8 on both Windows / Linux.
 - Created new nuget-package NLog.Targets.GZipFile that uses GZipStream for writing directly to compressed files.
@@ -41,30 +41,13 @@ NLog v6.0 RC3 with the following major changes:
 - New SyslogTarget introduced for the new nuget-package NLog.Targets.Network.
 - Moved TraceTarget and NLogTraceListener into the new nuget-package NLog.Targets.Trace.
 - Moved WebServiceTarget into the new nuget-package NLog.Targets.WebService
+- Renamed ChainsawTarget to Log4JXmlTarget to match Log4JXmlEventLayout
 - Removed dependency on System.Text.RegularExpressions and introduced new nuget-package NLog.RegEx.
 - Removed dependency on System.Xml.XmlReader by implementing own internal basic XML-Parser.
-- Updated NLog API with Nullable-support and introduced Layout.Empty
-- Marked [RequiredParameter] as obsolete, and replaced with explicit option validation during initialization.
-- Marked LogEventInfo.SequenceID and ${sequenceid} as obsolete, and instead use ${counter:sequence=global}.
 - Added support for params ReadOnlySpan when using C# 13
-- Prioritize generic Logger-methods by marking legacy methods with [OverloadResolutionPriority(-1)] when using C# 13
 - Skip LogEventInfo.Parameters-array-allocation when unable to defer message-template formatting.
-- Renamed ChainsawTarget to Log4JXmlTarget to match Log4JXmlEventLayout
-- Updated NLog.Schema to include intellisense for multiple NLog-assemblies.
-- Fixed NLog XmlParser to support XML comments within XML processing instructions.
-- NLog.Targets.Network now also supports NET35.
-- Updated structs to be readonly to allow compiler optimizations.
-- Updated interface ILoggingConfigurationElement to support nullable Values.
-- Updated all projects to include &lt;IsAotCompatible&gt;
-- Optimized ConsoleTarget to not use Console.WriteLine, and introduced option ForceWriteLine
-- Added new LogEventInfo constructor that supports ReadOnlySpan
-- Updated NLog.Schema nuget-package to include targets-file to copy NLog.xsd to project-folder.
-- Improved configuration-file loading to advise about NLog nuget-packages for missing types.
-- Log4JXmlEventLayout - Fixed IncludeEmptyValue for Parameters.
-- Log4JXmlEventLayout - Enforce MaxRecursionLimit = 0
-- RegisterObjectTransformation to preserve public properties
-- DatabaseTarget with support for AOT (@JohnVerheij)
-- DatabaseTarget only assign ConnectionString when specified (@JohnVerheij)
+- Updated NLog API with Nullable-support and introduced Layout.Empty
+- Marked [RequiredParameter] as obsolete with Nullable-support, and instead validate options at initialization.
 
 NLog v6.0 release notes: https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html
 
@@ -135,10 +118,6 @@ For all config options and platform support, check https://nlog-project.org/conf
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(monobuild)' != '' ">
-    <Reference Include="Mono.Posix" />
   </ItemGroup>
 
   <ItemGroup>

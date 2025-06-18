@@ -86,13 +86,13 @@ namespace NLog
         /// Defines <see cref="LoggingRule" /> for redirecting output from matching <see cref="Logger"/> to wanted targets.
         /// </summary>
         /// <param name="configBuilder">Fluent interface parameter.</param>
-        /// <param name="finalMinLevel">Restrict minimum LogLevel for <see cref="Logger"/> names that matches this rule</param>
+        /// <param name="minLevel">Restrict minimum LogLevel for <see cref="Logger"/> names that matches this rule</param>
         /// <param name="loggerNamePattern">Logger name pattern to check which <see cref="Logger"/> names matches this rule</param>
         /// <param name="ruleName">Rule identifier to allow rule lookup</param>
-        public static ISetupConfigurationLoggingRuleBuilder ForLogger(this ISetupLoadConfigurationBuilder configBuilder, LogLevel finalMinLevel, string loggerNamePattern = "*", string? ruleName = null)
+        public static ISetupConfigurationLoggingRuleBuilder ForLogger(this ISetupLoadConfigurationBuilder configBuilder, LogLevel minLevel, string loggerNamePattern = "*", string? ruleName = null)
         {
             var ruleBuilder = new SetupConfigurationLoggingRuleBuilder(configBuilder.LogFactory, configBuilder.Configuration, loggerNamePattern, ruleName);
-            ruleBuilder.LoggingRule.EnableLoggingForLevels(finalMinLevel ?? LogLevel.MinLevel, LogLevel.MaxLevel);
+            ruleBuilder.LoggingRule.EnableLoggingForLevels(minLevel ?? LogLevel.MinLevel, LogLevel.MaxLevel);
             return ruleBuilder;
         }
 
