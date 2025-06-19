@@ -580,15 +580,24 @@ namespace NLog.Targets
                 throw new ArgumentException("The path is not of a legal form.");
             }
 
-            using (var targetStream = _reusableBatchFileWriteStream.Allocate())
+            try
             {
-                using (var targetBuilder = ReusableLayoutBuilder.Allocate())
-                using (var targetBuffer = _reusableEncodingBuffer.Allocate())
+                using (var targetStream = _reusableBatchFileWriteStream.Allocate())
                 {
-                    RenderFormattedMessageToStream(logEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
-                }
+                    using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+                    using (var targetBuffer = _reusableEncodingBuffer.Allocate())
+                    {
+                        RenderFormattedMessageToStream(logEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
+                    }
 
-                WriteToFile(filename, logEvent, targetStream.Result, out var _);
+                    var bytes = new ArraySegment<byte>(targetStream.Result.GetBuffer(), 0, (int)targetStream.Result.Length);
+                    WriteBytesToFile(filename, logEvent, bytes);
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: Failed writing to FileName: '{1}'", this, filename);
+                throw;
             }
         }
 
@@ -596,42 +605,53 @@ namespace NLog.Targets
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
             var buckets = logEvents.BucketSort(_getFileNameFromLayout);
+            foreach (var bucket in buckets)
+            {
+                if (string.IsNullOrEmpty(bucket.Key))
+                {
+                    InternalLogger.Warn("{0}: FileName Layout returned empty string. The path is not of a legal form.", this);
+                    var emptyPathException = new ArgumentException("The path is not of a legal form.");
+                    for (int i = 0; i < logEvents.Count; ++i)
+                    {
+                        logEvents[i].Continuation(emptyPathException);
+                    }
+                    continue;
+                }
 
+                try
+                {
+                    WriteLogEventsToFile(bucket.Key, bucket.Value);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "{0}: Failed writing to FileName: '{1}'", this, bucket.Key);
+                    if (ExceptionMustBeRethrown(ex))
+                        throw;
+
+                    for (int i = 0; i < bucket.Value.Count; ++i)
+                        bucket.Value[i].Continuation(ex);
+                }
+            }
+        }
+
+        private void WriteLogEventsToFile(string filename, IList<AsyncLogEventInfo> logEvents)
+        {
             using (var reusableStream = _reusableBatchFileWriteStream.Allocate())
             {
                 var ms = reusableStream.Result ?? new MemoryStream();
 
-                foreach (var bucket in buckets)
+                int currentIndex = 0;
+                while (currentIndex < logEvents.Count)
                 {
-                    int bucketCount = bucket.Value.Count;
-                    if (bucketCount <= 0)
-                        continue;
+                    ms.Position = 0;
+                    ms.SetLength(0);
 
-                    string filename = bucket.Key;
-                    if (string.IsNullOrEmpty(filename))
-                    {
-                        InternalLogger.Warn("{0}: FileName Layout returned empty string. The path is not of a legal form.", this);
-                        var emptyPathException = new ArgumentException("The path is not of a legal form.");
-                        for (int i = 0; i < bucketCount; ++i)
-                        {
-                            bucket.Value[i].Continuation(emptyPathException);
-                        }
-                        continue;
-                    }
+                    var logEventWriteCount = WriteToMemoryStream(logEvents, currentIndex, ms);
+                    var bytes = new ArraySegment<byte>(ms.GetBuffer(), 0, (int)ms.Length);
+                    WriteBytesToFile(filename, logEvents[currentIndex].LogEvent, bytes);
 
-                    int currentIndex = 0;
-                    while (currentIndex < bucketCount)
-                    {
-                        ms.Position = 0;
-                        ms.SetLength(0);
-
-                        var written = WriteToMemoryStream(bucket.Value, currentIndex, ms);
-                        WriteToFile(filename, bucket.Value[currentIndex].LogEvent, ms, out var lastException);
-                        for (int i = 0; i < written; ++i)
-                        {
-                            bucket.Value[currentIndex++].Continuation(lastException);
-                        }
-                    }
+                    for (int i = 0; i < logEventWriteCount; ++i)
+                        logEvents[currentIndex++].Continuation(null);
                 }
             }
         }
@@ -701,24 +721,6 @@ namespace NLog.Targets
         protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             Layout.Render(logEvent, target);
-        }
-
-        private void WriteToFile(string filename, LogEventInfo firstLogEvent, MemoryStream ms, out Exception? lastException)
-        {
-            try
-            {
-                ArraySegment<byte> bytes = new ArraySegment<byte>(ms.GetBuffer(), 0, (int)ms.Length);
-                WriteBytesToFile(filename, firstLogEvent, bytes);
-                lastException = null;
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Error(ex, "{0}: Failed writing to FileName: '{1}'", this, filename);
-                if (ExceptionMustBeRethrown(ex))
-                    throw;
-
-                lastException = ex;
-            }
         }
 
         private void WriteBytesToFile(string filename, LogEventInfo firstLogEvent, ArraySegment<byte> bytes)
