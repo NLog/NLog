@@ -590,8 +590,7 @@ namespace NLog.Targets
                         RenderFormattedMessageToStream(logEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
                     }
 
-                    var bytes = new ArraySegment<byte>(targetStream.Result.GetBuffer(), 0, (int)targetStream.Result.Length);
-                    WriteBytesToFile(filename, logEvent, bytes);
+                    WriteBytesToFile(filename, logEvent, targetStream.Result);
                 }
             }
             catch (Exception ex)
@@ -647,8 +646,7 @@ namespace NLog.Targets
                     ms.SetLength(0);
 
                     var logEventWriteCount = WriteToMemoryStream(logEvents, currentIndex, ms);
-                    var bytes = new ArraySegment<byte>(ms.GetBuffer(), 0, (int)ms.Length);
-                    WriteBytesToFile(filename, logEvents[currentIndex].LogEvent, bytes);
+                    WriteBytesToFile(filename, logEvents[currentIndex].LogEvent, ms);
 
                     for (int i = 0; i < logEventWriteCount; ++i)
                         logEvents[currentIndex++].Continuation(null);
@@ -723,7 +721,7 @@ namespace NLog.Targets
             Layout.Render(logEvent, target);
         }
 
-        private void WriteBytesToFile(string filename, LogEventInfo firstLogEvent, ArraySegment<byte> bytes)
+        private void WriteBytesToFile(string filename, LogEventInfo firstLogEvent, MemoryStream ms)
         {
             bool hasWritten = true;
             if (!_openFileCache.TryGetValue(filename, out var openFile))
@@ -739,7 +737,7 @@ namespace NLog.Targets
                     openFile = RollArchiveFile(filename, openFile, firstLogEvent, hasWritten);
                 }
 
-                openFile.FileAppender.Write(bytes.Array, bytes.Offset, bytes.Count);
+                openFile.FileAppender.Write(ms.GetBuffer(), 0, (int)ms.Length);
 
                 if (AutoFlush)
                 {

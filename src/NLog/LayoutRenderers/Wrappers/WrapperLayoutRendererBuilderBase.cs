@@ -35,6 +35,7 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
     using System.Text;
+    using NLog.Internal;
 
     /// <summary>
     /// Base class for <see cref="LayoutRenderer"/>s which wrapping other <see cref="LayoutRenderer"/>s.
@@ -47,11 +48,22 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            using (var localTarget = new Internal.AppendBuilderCreator(builder, true))
+            if (builder.Length > 0)
+            {
+                using (var localTarget = new AppendBuilderCreator(true))
+                {
+#pragma warning disable CS0618 // Type or member is obsolete
+                    RenderFormattedMessage(logEvent, localTarget.Builder);
+                    TransformFormattedMesssage(logEvent, localTarget.Builder);
+#pragma warning restore CS0618 // Type or member is obsolete
+                    localTarget.Builder.CopyTo(builder);
+                }
+            }
+            else
             {
 #pragma warning disable CS0618 // Type or member is obsolete
-                RenderFormattedMessage(logEvent, localTarget.Builder);
-                TransformFormattedMesssage(logEvent, localTarget.Builder);
+                RenderFormattedMessage(logEvent, builder);
+                TransformFormattedMesssage(logEvent, builder);
 #pragma warning restore CS0618 // Type or member is obsolete
             }
         }
