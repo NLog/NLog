@@ -100,14 +100,11 @@ namespace NLog.LayoutRenderers
 
         private static string GetUpperCaseString(LogLevel level)
         {
-            try
-            {
-                return _upperCaseMapper[level.Ordinal];
-            }
-            catch (IndexOutOfRangeException)
-            {
+            var ordinal = level.Ordinal;
+            if (ordinal < 0 || ordinal >= _upperCaseMapper.Length)
                 return level.ToString().ToUpperInvariant();
-            }
+            else
+                return _upperCaseMapper[ordinal];
         }
 
         private string GetFullNameString(LogLevel level)
