@@ -217,6 +217,7 @@ namespace NLog.Config
             factory.RegisterType<NLog.Layouts.XmlAttribute>();
             factory.LayoutFactory.RegisterType<NLog.Layouts.XmlLayout>("XmlLayout");
             factory.TargetFactory.RegisterType<NLog.Targets.ChainsawTarget>("Chainsaw");
+            factory.TargetFactory.RegisterType<NLog.Targets.ChainsawTarget>("Log4JXml");
 #if !NETSTANDARD1_3
             factory.TargetFactory.RegisterType<NLog.Targets.ColoredConsoleTarget>("ColoredConsole");
 #endif

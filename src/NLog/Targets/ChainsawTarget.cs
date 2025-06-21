@@ -52,6 +52,7 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/Chainsaw/Simple/Example.cs" />
     /// </example>
     [Target("Chainsaw")]
+    [Target("Log4JXml")]
 #pragma warning disable CS0618 // Type or member is obsolete
     public class ChainsawTarget : NLogViewerTarget
 #pragma warning restore CS0618 // Type or member is obsolete
