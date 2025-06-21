@@ -274,6 +274,7 @@ namespace NLog.Layouts
                     PropertiesElementKeyAttribute = "name",
                     PropertiesElementValueAttribute = "value",
                     IncludeEventProperties = true,
+                    MaxRecursionLimit = 0,  // ToString for everything
                 });
             }
 #pragma warning restore CS0618 // Type or member is obsolete

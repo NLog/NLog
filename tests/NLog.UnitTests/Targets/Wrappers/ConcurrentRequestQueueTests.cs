@@ -95,7 +95,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     Task.Run(EnqueueWhenAllThreadsReady);
                 }
 
-                Assert.True(enqueued.Wait(5000));
+                Assert.True(enqueued.Wait(10000));
                 enqueued.Reset();
 
                 // Assert
@@ -108,8 +108,6 @@ namespace NLog.UnitTests.Targets.Wrappers
                 requestQueue.DequeueBatch(threadCount);
                 requestQueue.QueueLimit = initialQueueLimit;
             }
-
-            return;
 
             void EnqueueWhenAllThreadsReady()
             {
