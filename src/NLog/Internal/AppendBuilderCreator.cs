@@ -42,7 +42,6 @@ namespace NLog.Internal
     internal struct AppendBuilderCreator : IDisposable
     {
         private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
-        private readonly StringBuilder _appendTarget;
 
         /// <summary>
         /// Access the new builder allocated
@@ -54,26 +53,10 @@ namespace NLog.Internal
         public AppendBuilderCreator(bool mustBeEmpty)
         {
             _builder = _builderPool.Acquire();
-            _appendTarget = _builder.Item;
-        }
-
-        public AppendBuilderCreator(StringBuilder appendTarget, bool mustBeEmpty)
-        {
-            _appendTarget = appendTarget;
-            if (_appendTarget.Length > 0 && mustBeEmpty)
-            {
-                _builder = _builderPool.Acquire();
-            }
-            else
-            {
-                _builder = new StringBuilderPool.ItemHolder(_appendTarget, null, 0);
-            }
         }
 
         public void Dispose()
         {
-            if (!ReferenceEquals(_builder.Item, _appendTarget))
-                _builder.Item.CopyTo(_appendTarget);
             _builder.Dispose();
         }
     }

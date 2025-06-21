@@ -36,6 +36,7 @@ namespace NLog.Internal
     using System;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using NLog.MessageTemplates;
 
@@ -75,6 +76,7 @@ namespace NLog.Internal
         /// <param name="value">value to append</param>
         public static void AppendInvariant(this StringBuilder builder, int value)
         {
+#if NETFRAMEWORK
             // Deal with negative numbers
             if (value < 0)
             {
@@ -86,6 +88,9 @@ namespace NLog.Internal
             {
                 AppendInvariant(builder, (uint)value);
             }
+#else
+            builder.Append(value);
+#endif
         }
 
         /// <summary>
@@ -97,6 +102,7 @@ namespace NLog.Internal
         /// <param name="value">value to append</param>
         public static void AppendInvariant(this StringBuilder builder, uint value)
         {
+#if NETFRAMEWORK
             if (value == 0)
             {
                 builder.Append('0');
@@ -105,6 +111,9 @@ namespace NLog.Internal
 
             int digitCount = CalculateDigitCount(value);
             ApppendValueWithDigitCount(builder, value, digitCount);
+#else
+            builder.Append(value);
+#endif
         }
 
         private static int CalculateDigitCount(uint value)
@@ -386,9 +395,17 @@ namespace NLog.Internal
         /// <param name="number">the number</param>
         internal static void Append2DigitsZeroPadded(this StringBuilder builder, int number)
         {
-            builder.Append((char)((number / 10) + '0'));
-            builder.Append((char)((number % 10) + '0'));
+            if (number < 0 || number >= _zeroPaddedDigits.Length)
+            {
+                builder.Append((char)((number / 10) + '0'));
+                builder.Append((char)((number % 10) + '0'));
+            }
+            else
+            {
+                builder.Append(_zeroPaddedDigits[number]);
+            }
         }
+        private static readonly string[] _zeroPaddedDigits = Enumerable.Range(0, 60).Select(i => i.ToString("D2")).ToArray();
 
         /// <summary>
         /// Append a number and pad with 0 to 4 digits
@@ -397,10 +414,19 @@ namespace NLog.Internal
         /// <param name="number">the number</param>
         internal static void Append4DigitsZeroPadded(this StringBuilder builder, int number)
         {
-            builder.Append((char)(((number / 1000) % 10) + '0'));
-            builder.Append((char)(((number / 100) % 10) + '0'));
-            builder.Append((char)(((number / 10) % 10) + '0'));
-            builder.Append((char)(((number / 1) % 10) + '0'));
+#if !NETFRAMEWORK
+            if (number > 999 && number < 10000)
+            {
+                builder.Append(number);
+            }
+            else
+#endif
+            {
+                builder.Append((char)(((number / 1000) % 10) + '0'));
+                builder.Append((char)(((number / 100) % 10) + '0'));
+                builder.Append((char)(((number / 10) % 10) + '0'));
+                builder.Append((char)((number % 10) + '0'));
+            }
         }
 
         /// <summary>
