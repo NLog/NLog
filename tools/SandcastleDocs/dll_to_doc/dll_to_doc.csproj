@@ -1,21 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<OutputType>Exe</OutputType>
-		<TargetFramework>net472</TargetFramework>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net472</TargetFramework>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="NLog" Version="6.0.0-preview1" />
-    <PackageReference Include="NLog.Windows.Forms" version="5.*" />
-	</ItemGroup>
+  </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NLog" Version="6.*" />
     <ProjectReference Include="..\..\NLogNugetPackages\NLogNugetPackages.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
     </ProjectReference>
-	</ItemGroup>
+  </ItemGroup>
 
   <Target Name="_ResolveCopyLocalNuGetPackageXmls" AfterTargets="ResolveReferences">
     <ItemGroup>

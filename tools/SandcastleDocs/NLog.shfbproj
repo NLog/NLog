@@ -29,12 +29,34 @@
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.xml" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Database.dll" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Database.xml" />
-      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.OutputDebugString.dll" />
-      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.OutputDebugString.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.DiagnosticSource.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.DiagnosticSource.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Extensions.Logging.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Extensions.Logging.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Extensions.Hosting.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Extensions.Hosting.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.MailKit.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.MailKit.xml" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.MSMQ.dll" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.MSMQ.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.OutputDebugString.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.OutputDebugString.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Owin.Logging.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Owin.Logging.xml" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.PerformanceCounter.dll" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.PerformanceCounter.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.RegEx.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.RegEx.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Targets.AtomicFile.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Targets.AtomicFile.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Targets.GZipFile.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Targets.GZipFile.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Targets.Network.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Targets.Network.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Targets.Trace.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Targets.Trace.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Targets.WebService.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Targets.WebService.xml" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Wcf.dll" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Wcf.xml" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.WindowsIdentity.dll" />
@@ -43,20 +65,10 @@
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.WindowsRegistry.xml" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Windows.Forms.dll" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Windows.Forms.xml" />
-      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Extensions.Logging.dll" />
-      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Extensions.Logging.xml" />
-      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Extensions.Hosting.dll" />
-      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Extensions.Hosting.xml" />
-      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.MailKit.dll" />
-      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.MailKit.xml" />
-      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Owin.Logging.dll" />
-      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Owin.Logging.xml" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Web.AspNetCore.dll" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Web.AspNetCore.xml" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Web.dll" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Web.xml" />
-      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.DiagnosticSource.dll" />
-      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.DiagnosticSource.xml" />
     </DocumentationSources>
     <HelpTitle>NLog $(BuildVersion)</HelpTitle>
     <CopyrightText>Copyright %28c%29 2004-2024 NLog</CopyrightText>
