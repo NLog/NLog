@@ -161,7 +161,7 @@ namespace NLog.Targets
         /// </tr>
         /// <tr>
         /// <td>level == LogLevel.Trace</td>
-        /// <td>DarkGray</td>
+        /// <td>Gray</td>
         /// <td>NoChange</td>
         /// </tr>
         /// </table>

@@ -40,9 +40,9 @@ namespace NLog.Targets
     /// Extended standard FileTarget with GZip compression as part of file-logging
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/GZipFile-target">See NLog Wiki</a>
+    /// <a href="https://github.com/nlog/nlog/wiki/GZip-File-target">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/GZipFile-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/GZip-File-target">Documentation on NLog Wiki</seealso>
     [Target("GZipFile")]
     public class GZipFileTarget : FileTarget
     {

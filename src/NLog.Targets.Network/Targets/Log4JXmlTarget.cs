@@ -43,9 +43,9 @@ namespace NLog.Targets
     /// Sends log messages to the remote instance of Chainsaw / NLogViewer application using Log4J Xml
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/Chainsaw-target">See NLog Wiki</a>
+    /// <a href="https://github.com/nlog/nlog/wiki/Log4JXml-target">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/Chainsaw-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/Log4JXml-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>,

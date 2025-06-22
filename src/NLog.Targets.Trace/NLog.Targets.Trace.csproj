@@ -15,8 +15,14 @@
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-      Trace-Target Docs:
-      https://github.com/NLog/NLog/wiki/Trace-target
+Trace-Target Docs:
+https://github.com/NLog/NLog/wiki/Trace-target
+
+Trace-ActivityId Docs:
+https://github.com/NLog/NLog/wiki/Trace-Activity-Id-Layout-Renderer
+
+NLogTraceListener Docs:
+https://github.com/NLog/NLog/wiki/NLog-Trace-Listener-for-System-Diagnostics-Trace
     </PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>NLog;Trace;Diagnostics;logging;log</PackageTags>

@@ -15,8 +15,8 @@
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-      FileTarget Docs:
-      https://github.com/NLog/NLog/wiki/File-target
+      GZipFile Target Docs:
+      https://github.com/nlog/nlog/wiki/GZip-File-target
     </PackageReleaseNotes>
     <PackageTags>NLog;File;Archive;GZip;logging;log</PackageTags>
     <PackageIcon>N.png</PackageIcon>
