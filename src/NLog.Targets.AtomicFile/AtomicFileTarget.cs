@@ -41,9 +41,9 @@ namespace NLog.Targets
     /// Extended standard FileTarget with atomic file append for multi-process logging to the same file
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/AtomicFile-target">See NLog Wiki</a>
+    /// <a href="https://github.com/nlog/nlog/wiki/Atomic-File-target">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/AtomicFile-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/Atomic-File-target">Documentation on NLog Wiki</seealso>
     [Target("AtomFile")]
     [Target("AtomicFile")]
     public class AtomicFileTarget : FileTarget
@@ -107,26 +107,27 @@ namespace NLog.Targets
                 bufferSize: 1,  // No internal buffer, write directly from user-buffer
                 FileOptions.None);
 #else
-            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
-            {
-                var systemRights = System.Security.AccessControl.FileSystemRights.AppendData | System.Security.AccessControl.FileSystemRights.Synchronize;
-                return FileSystemAclExtensions.Create(
-                    new FileInfo(filePath),
-                    FileMode.Append,
-                    systemRights,
-                    fileShare,
-                    bufferSize: 1,    // No internal buffer, write directly from user-buffer
-                    FileOptions.None,
-                    fileSecurity: null);
-            }
-            else
+
+#if !WINDOWS
+            if (!System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
             {
                 return CreateUnixStream(filePath);
             }
 #endif
+
+            var systemRights = System.Security.AccessControl.FileSystemRights.AppendData | System.Security.AccessControl.FileSystemRights.Synchronize;
+            return FileSystemAclExtensions.Create(
+                new FileInfo(filePath),
+                FileMode.Append,
+                systemRights,
+                fileShare,
+                bufferSize: 1,    // No internal buffer, write directly from user-buffer
+                FileOptions.None,
+                fileSecurity: null);
+#endif
         }
 
-#if !NETFRAMEWORK
+#if !NETFRAMEWORK && !WINDOWS
         private Stream CreateUnixStream(string filePath)
         {
             // Use 0666 (read/write for all)
