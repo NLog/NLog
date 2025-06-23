@@ -295,6 +295,8 @@ namespace NLog.UnitTests.Internal
         [Theory]
         [InlineData("<nlog><variable name='abc' layout='${message}'/></nlog>")]
         [InlineData("<nlog>\n<variable\nname='abc'\nlayout='${message}'/>\n</nlog>")]
+        [InlineData("<nlog>\n<variable\nname='abc'\nlayout='${message}'>\n</variable></nlog>")]
+        [InlineData("<nlog>\n<variable\nname='abc'\nlayout='${message}'>\n<!--  <variable name='abc' layout='${message}' /> -->\n</variable></nlog>")]
         [InlineData("<nlog><variable><name>abc</name><layout>${message}</layout></variable></nlog>")]
         [InlineData("<nlog>\n<variable>\n<name>abc</name>\n<layout>${message}</layout>\n</variable>\n</nlog>")]
         public void XmlParse_Children(string xmlSource)

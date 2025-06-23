@@ -250,6 +250,7 @@ namespace NLog.Internal
             while (_xmlSource.Current == '<' && _xmlSource.Peek() == '!')
             {
                 _xmlSource.MoveNext();
+                currentChar = _xmlSource.Current;
                 if (_xmlSource.Peek() == '-')
                 {
                     // <!-- XML-Comment -->
