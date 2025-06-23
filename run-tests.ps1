@@ -39,13 +39,6 @@ if ($isWindows -or $Env:WinDir)
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
-	dotnet msbuild /t:Build /p:targetFramework=net462 /p:Configuration=Release /p:DebugType=Full /p:TestTargetFramework=net45 ./tests/NLog.UnitTests/
-	if (-Not $LastExitCode -eq 0)
-		{ exit $LastExitCode }
-	dotnet vstest ./tests/NLog.UnitTests/bin/release/net45/NLog.UnitTests.dll
-	if (-Not $LastExitCode -eq 0)
-		{ exit $LastExitCode }
-
 	dotnet list ./src package --vulnerable --include-transitive | findstr /S /c:"has the following vulnerable packages"
 	if (-Not $LastExitCode -eq 1)
 	{
