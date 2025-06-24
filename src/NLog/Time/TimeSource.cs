@@ -40,6 +40,10 @@ namespace NLog.Time
     /// <summary>
     /// Defines source of current time.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Time-Source">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Time-Source">Documentation on NLog Wiki</seealso>
     [NLogConfigurationItem]
     public abstract class TimeSource
     {

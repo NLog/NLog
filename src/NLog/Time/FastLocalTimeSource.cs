@@ -38,6 +38,10 @@ namespace NLog.Time
     /// <summary>
     /// Fast local time source that is updated once per tick (15.6 milliseconds).
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Time-Source">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Time-Source">Documentation on NLog Wiki</seealso>
     [TimeSource("FastLocal")]
     public sealed class FastLocalTimeSource : CachedTimeSource
     {
