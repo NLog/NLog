@@ -214,7 +214,7 @@ namespace NLog.Conditions
                 var simpleLayout = string.IsNullOrEmpty(stringTokenValue) ? SimpleLayout.Default : new SimpleLayout(stringTokenValue, _configurationItemFactory);
                 _tokenizer.GetNextToken();
                 if (simpleLayout.IsFixedText)
-                    return string.IsNullOrEmpty(simpleLayout.FixedText) ? ConditionLiteralExpression.Empty : new ConditionLiteralExpression(simpleLayout.FixedText);
+                    return new ConditionLiteralExpression(simpleLayout.FixedText);
                 else
                     return new ConditionLayoutExpression(simpleLayout);
             }

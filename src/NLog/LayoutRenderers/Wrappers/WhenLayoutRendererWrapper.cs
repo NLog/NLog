@@ -56,7 +56,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets the condition that must be met for the <see cref="WrapperLayoutRendererBase.Inner"/> layout to be printed.
         /// </summary>
         /// <docgen category="Condition Options" order="10"/>
-        public ConditionExpression When { get; set; } = ConditionExpression.Empty;
+        public ConditionExpression? When { get; set; }
 
         /// <summary>
         /// If <see cref="When"/> is not met, print this layout.
@@ -67,7 +67,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
-            if (When is null || ReferenceEquals(When, ConditionExpression.Empty))
+            if (When is null)
                 throw new NLogConfigurationException("When-LayoutRenderer When-property must be assigned.");
 
             base.InitializeLayoutRenderer();
@@ -103,7 +103,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
         private bool ShouldRenderInner(LogEventInfo logEvent)
         {
-            return When is null || ReferenceEquals(When, ConditionExpression.Empty) || true.Equals(When.Evaluate(logEvent));
+            return When is null || true.Equals(When.Evaluate(logEvent));
         }
 
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object? value)

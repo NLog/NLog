@@ -95,7 +95,7 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the default filter to be applied when no specific rule matches.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        public ConditionExpression DefaultFilter { get; set; } = ConditionExpression.Empty;
+        public ConditionExpression? DefaultFilter { get; set; }
 
         /// <summary>
         /// Gets the collection of filtering rules. The rules are processed top-down
@@ -113,10 +113,10 @@ namespace NLog.Targets.Wrappers
 
             foreach (var rule in Rules)
             {
-                if (rule.Exists is null || ReferenceEquals(rule.Exists, ConditionExpression.Empty))
+                if (rule.Exists is null)
                     throw new NLogConfigurationException("PostFilteringTargetWrapper When-Rules with unassigned Exists-property.");
 
-                if (rule.Filter is null || ReferenceEquals(rule.Filter, ConditionExpression.Empty))
+                if (rule.Filter is null)
                     throw new NLogConfigurationException("PostFilteringTargetWrapper When-Rules with unassigned Filter-property.");
             }
         }
@@ -139,7 +139,7 @@ namespace NLog.Targets.Wrappers
             InternalLogger.Trace("{0}: Running on {1} events", this, logEvents.Count);
 
             var resultFilter = EvaluateAllRules(logEvents);
-            if (resultFilter is null || ReferenceEquals(resultFilter, ConditionExpression.Empty))
+            if (resultFilter is null)
             {
                 WrappedTarget?.WriteAsyncLogEvents(logEvents);
             }
@@ -175,7 +175,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="logEvents"></param>
         /// <returns></returns>
-        private ConditionExpression EvaluateAllRules(IList<AsyncLogEventInfo> logEvents)
+        private ConditionExpression? EvaluateAllRules(IList<AsyncLogEventInfo> logEvents)
         {
             if (Rules.Count == 0)
                 return DefaultFilter;
@@ -185,7 +185,7 @@ namespace NLog.Targets.Wrappers
                 for (int j = 0; j < Rules.Count; ++j)
                 {
                     var rule = Rules[j];
-                    var v = rule.Exists.Evaluate(logEvents[i].LogEvent);
+                    var v = rule.Exists?.Evaluate(logEvents[i].LogEvent);
                     if (ConditionExpression.BoxedTrue.Equals(v))
                     {
                         InternalLogger.Trace("{0}: Rule matched: {1}", this, rule.Exists);
