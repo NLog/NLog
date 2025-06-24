@@ -49,17 +49,13 @@ namespace NLog.Conditions
         internal static readonly object BoxedFalse = false;
 
         /// <summary>
-        /// Default Condition-value that evalutes to string.Empty
-        /// </summary>
-        public static ConditionExpression Empty { get; } = new ConditionLiteralExpression(string.Empty);
-
-        /// <summary>
         /// Converts condition text to a condition expression tree.
         /// </summary>
         /// <param name="conditionExpressionText">Condition text to be converted.</param>
         /// <returns>Condition expression tree.</returns>
-        public static implicit operator ConditionExpression(string conditionExpressionText)
+        public static implicit operator ConditionExpression?(string? conditionExpressionText)
         {
+            if (conditionExpressionText is null) return null;
             return ConditionParser.ParseExpression(conditionExpressionText);
         }
 

@@ -68,7 +68,7 @@ namespace NLog.Targets
         /// Gets or sets the condition that must be met before scanning the row for highlight of words
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
-        public ConditionExpression Condition { get; set; } = ConditionExpression.Empty;
+        public ConditionExpression? Condition { get; set; }
 
         /// <summary>
         /// Gets or sets the text to be matched. You must specify either <c>text</c> or <c>regex</c>.
@@ -155,7 +155,7 @@ namespace NLog.Targets
         /// </summary>
         internal bool CheckCondition(LogEventInfo logEvent)
         {
-            return Condition is null || ReferenceEquals(Condition, ConditionExpression.Empty) || true.Equals(Condition.Evaluate(logEvent));
+            return Condition is null || true.Equals(Condition.Evaluate(logEvent));
         }
     }
 }

@@ -64,7 +64,7 @@ namespace NLog.Targets.Wrappers
         /// a flush on the wrapped target.
         /// </summary>
         /// <docgen category='General Options' order='10' />
-        public ConditionExpression Condition { get; set; } = ConditionExpression.Empty;
+        public ConditionExpression? Condition { get; set; }
 
         /// <summary>
         /// Delay the flush until the LogEvent has been confirmed as written
@@ -149,7 +149,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">Logging event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            if (Condition is null || ReferenceEquals(Condition, ConditionExpression.Empty) ||  ConditionExpression.BoxedTrue.Equals(Condition.Evaluate(logEvent.LogEvent)))
+            if (Condition is null || ConditionExpression.BoxedTrue.Equals(Condition.Evaluate(logEvent.LogEvent)))
             {
                 if (AsyncFlush)
                 {

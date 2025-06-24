@@ -98,7 +98,7 @@ namespace NLog.Targets.Wrappers
         /// to the wrapped target.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        public ConditionExpression? Condition { get => (Filter as ConditionBasedFilter)?.Condition; set => Filter = CreateFilter(value ?? ConditionExpression.Empty); }
+        public ConditionExpression? Condition { get => (Filter as ConditionBasedFilter)?.Condition; set => Filter = CreateFilter(value); }
 
         /// <summary>
         /// Gets or sets the filter. Log events who evaluates to <see cref="FilterResult.Ignore"/> will be discarded
@@ -109,7 +109,7 @@ namespace NLog.Targets.Wrappers
         /// <inheritdoc/>
         protected override void InitializeTarget()
         {
-            if (Filter is null || ReferenceEquals(Condition, ConditionExpression.Empty))
+            if (Filter is null || ReferenceEquals(Filter, ConditionBasedFilter.Empty))
                 throw new NLogConfigurationException($"FilteringTargetWrapper Filter-property must be assigned. Filter LogEvents using blank Filter not supported.");
 
             base.InitializeTarget();
@@ -153,9 +153,9 @@ namespace NLog.Targets.Wrappers
             }
         }
 
-        private static ConditionBasedFilter CreateFilter(ConditionExpression value)
+        private static ConditionBasedFilter CreateFilter(ConditionExpression? value)
         {
-            if (value is null || ReferenceEquals(value, ConditionExpression.Empty))
+            if (value is null)
                 return ConditionBasedFilter.Empty;
 
             return new ConditionBasedFilter { Condition = value, FilterDefaultAction = FilterResult.Ignore };

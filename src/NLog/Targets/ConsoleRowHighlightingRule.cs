@@ -55,7 +55,7 @@ namespace NLog.Targets
         /// <param name="condition">The condition.</param>
         /// <param name="foregroundColor">Color of the foreground.</param>
         /// <param name="backgroundColor">Color of the background.</param>
-        public ConsoleRowHighlightingRule(ConditionExpression condition, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
+        public ConsoleRowHighlightingRule(ConditionExpression? condition, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
         {
             Condition = condition;
             ForegroundColor = foregroundColor;
@@ -65,13 +65,13 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the default highlighting rule. Doesn't change the color.
         /// </summary>
-        public static ConsoleRowHighlightingRule Default { get; } = new ConsoleRowHighlightingRule(ConditionExpression.Empty, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange);
+        public static ConsoleRowHighlightingRule Default { get; } = new ConsoleRowHighlightingRule(null, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange);
 
         /// <summary>
         /// Gets or sets the condition that must be met in order to set the specified foreground and background color.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
-        public ConditionExpression Condition { get; set; } = ConditionExpression.Empty;
+        public ConditionExpression? Condition { get; set; }
 
         /// <summary>
         /// Gets or sets the foreground color.
@@ -90,7 +90,7 @@ namespace NLog.Targets
         /// </summary>
         public bool CheckCondition(LogEventInfo logEvent)
         {
-            return Condition is null || ReferenceEquals(Condition, ConditionExpression.Empty) || true.Equals(Condition.Evaluate(logEvent));
+            return Condition is null || true.Equals(Condition.Evaluate(logEvent));
         }
     }
 }

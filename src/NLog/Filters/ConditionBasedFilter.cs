@@ -51,14 +51,14 @@ namespace NLog.Filters
         /// Gets or sets the condition expression.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        public ConditionExpression Condition { get; set; } = ConditionExpression.Empty;
+        public ConditionExpression? Condition { get; set; }
 
         internal FilterResult FilterDefaultAction { get; set; } = FilterResult.Neutral;
 
         /// <inheritdoc/>
         protected override FilterResult Check(LogEventInfo logEvent)
         {
-            var val = Condition.Evaluate(logEvent);
+            var val = Condition?.Evaluate(logEvent);
             return ConditionExpression.BoxedTrue.Equals(val) ? Action : FilterDefaultAction;
         }
     }
