@@ -38,6 +38,10 @@ namespace NLog.Time
     /// <summary>
     /// Current local time retrieved directly from DateTime.Now.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Time-Source">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Time-Source">Documentation on NLog Wiki</seealso>
     [TimeSource("AccurateLocal")]
     public sealed class AccurateLocalTimeSource : TimeSource
     {
