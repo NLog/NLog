@@ -491,10 +491,7 @@ namespace NLog.Internal
                 }
 
                 if (chr == '<' && (!includeSpaces || expectedChar == '<'))
-                    throw new XmlParserException($"Invalid XML document. Cannot parse value with '<'");
-
-                if (chr == '>' && (!includeSpaces || expectedChar == '<'))
-                    throw new XmlParserException($"Invalid XML document. Cannot parse value with '>'");
+                    throw new XmlParserException($"Invalid XML document. Cannot parse value with '<', maybe encode to &lt;");
 
                 if (includeSpaces && chr == '&')
                 {
