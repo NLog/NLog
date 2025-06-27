@@ -4,6 +4,16 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.0.1 (2025/06/27)
+
+**Improvements**
+
+- Changed ConditionExpression to be nullable by default since no Condition means no filtering. (#5898) (@snakefoot)
+- Include ConditionExpression in the static type registration. (#5906) (@snakefoot)
+- Fixed the new XML parser to handle XML comments just before end-tag. (#5895) (@snakefoot)
+- Fixed the new XML parser to allow InnerText with greater-than characters. (#5905) (@snakefoot)
+- Updated NLog.Targets.AtomicFile to support net8.0-windows without dependency on Mono.Posix.NETStandard. (#5891) (@snakefoot)
+
 ### Version 6.0 (2025/06/21)
 
 **Major Changes**
