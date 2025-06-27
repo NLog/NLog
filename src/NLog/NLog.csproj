@@ -28,26 +28,13 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-NLog v6.0 with the following major changes:
+Changelog:
 
-- Support AOT builds without build warnings.
-- New FileTarget without ConcurrentWrites support, but still support KeepFileOpen (true/false).
-- Moved old FileTarget into the new nuget-package NLog.Targets.ConcurrentFile.
-- Created new nuget-package NLog.Targets.AtomicFile that supports ConcurrentWrites for NET8 on both Windows / Linux.
-- Created new nuget-package NLog.Targets.GZipFile that uses GZipStream for writing directly to compressed files.
-- Moved MailTarget into the new nuget-package NLog.Targets.Mail.
-- Moved NetworkTarget into the new nuget-package NLog.Targets.Network.
-- New GelfTarget introduced for the new nuget-package NLog.Targets.Network.
-- New SyslogTarget introduced for the new nuget-package NLog.Targets.Network.
-- Moved TraceTarget and NLogTraceListener into the new nuget-package NLog.Targets.Trace.
-- Moved WebServiceTarget into the new nuget-package NLog.Targets.WebService
-- Renamed ChainsawTarget to Log4JXmlTarget to match Log4JXmlEventLayout
-- Removed dependency on System.Text.RegularExpressions and introduced new nuget-package NLog.RegEx.
-- Removed dependency on System.Xml.XmlReader by implementing own internal basic XML-Parser.
-- Added support for params ReadOnlySpan when using C# 13
-- Skip LogEventInfo.Parameters-array-allocation when unable to defer message-template formatting.
-- Updated NLog API with Nullable-support and introduced Layout.Empty
-- Marked [RequiredParameter] as obsolete with Nullable-support, and instead validate options at initialization.
+- Changed ConditionExpression to be nullable by default since no Condition means no filtering. (#5898) (@snakefoot)
+- Include ConditionExpression in the static type registration. (#5906) (@snakefoot)
+- Fixed the new XML parser to handle XML comments just before end-tag. (#5895) (@snakefoot)
+- Fixed the new XML parser to allow InnerText with greater-than characters. (#5905) (@snakefoot)
+- Updated NLog.Targets.AtomicFile to support net8.0-windows without dependency on Mono.Posix.NETStandard. (#5891) (@snakefoot)
 
 NLog v6.0 release notes: https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html
 
