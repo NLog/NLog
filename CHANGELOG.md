@@ -8,11 +8,11 @@ Date format: (year/month/day)
 
 **Improvements**
 
-- Changed ConditionExpression to be nullable by default since no Condition means no filtering. (#5898) (@snakefoot)
-- Include ConditionExpression in the static type registration. (#5906) (@snakefoot)
-- Fixed the new XML parser to handle XML comments just before end-tag. (#5895) (@snakefoot)
-- Fixed the new XML parser to allow InnerText with greater-than characters. (#5905) (@snakefoot)
-- Updated NLog.Targets.AtomicFile to support net8.0-windows without dependency on Mono.Posix.NETStandard. (#5891) (@snakefoot)
+- [#5898](https://github.com/NLog/NLog/pull/5898) Changed ConditionExpression to be nullable by default since no Condition means no filtering. (@snakefoot)
+- [#5906](https://github.com/NLog/NLog/pull/5906) Include ConditionExpression in the static type registration. (@snakefoot)
+- [#5895](https://github.com/NLog/NLog/pull/5895) Fixed the new XML parser to handle XML comments just before end-tag. (@snakefoot)
+- [#5905](https://github.com/NLog/NLog/pull/5905) Fixed the new XML parser to allow InnerText with greater-than characters. (@snakefoot)
+- [#5891](https://github.com/NLog/NLog/pull/5891) Updated NLog.Targets.AtomicFile to support net8.0-windows without dependency on Mono.Posix.NETStandard. (@snakefoot)
 
 ### Version 6.0 (2025/06/21)
 
