@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net35;net46;net8.0</TargetFrameworks>
+    <TargetFrameworks>net35;net46;net8.0;net8.0-windows</TargetFrameworks>
 
     <Title>NLog.Targets.AtomicFile</Title>
     <Company>NLog</Company>
@@ -13,8 +13,8 @@
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-      FileTarget Docs:
-      https://github.com/NLog/NLog/wiki/File-target
+      AtomFile Target Docs:
+      https://github.com/NLog/NLog/wiki/Atomic-File-target
     </PackageReleaseNotes>
     <PackageTags>NLog;File;Archive;NTFS;logging;log</PackageTags>
     <PackageIcon>N.png</PackageIcon>
@@ -56,6 +56,10 @@
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
     <Title>NLog.Targets.AtomicFile for NET8</Title>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net8.0-windows' ">
+    <Title>NLog.Targets.AtomicFile for NET8 Windows</Title>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
