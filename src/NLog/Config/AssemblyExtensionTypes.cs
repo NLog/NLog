@@ -374,6 +374,18 @@ namespace NLog.Config
 
         public static void RegisterConditionTypes(ConfigurationItemFactory factory, bool skipCheckExists)
         {
+            factory.RegisterTypeProperties<NLog.Conditions.ConditionAndExpression>(() => null);
+            factory.RegisterTypeProperties<NLog.Conditions.ConditionExceptionExpression>(() => null);
+            factory.RegisterTypeProperties<NLog.Conditions.ConditionLayoutExpression>(() => null);
+            factory.RegisterTypeProperties<NLog.Conditions.ConditionLevelExpression>(() => null);
+            factory.RegisterTypeProperties<NLog.Conditions.ConditionLiteralExpression>(() => null);
+            factory.RegisterTypeProperties<NLog.Conditions.ConditionLoggerNameExpression>(() => null);
+            factory.RegisterTypeProperties<NLog.Conditions.ConditionMessageExpression>(() => null);
+            factory.RegisterTypeProperties<NLog.Conditions.ConditionMethodExpression>(() => null);
+            factory.RegisterTypeProperties<NLog.Conditions.ConditionNotExpression>(() => null);
+            factory.RegisterTypeProperties<NLog.Conditions.ConditionOrExpression>(() => null);
+            factory.RegisterTypeProperties<NLog.Conditions.ConditionRelationalExpression>(() => null);
+
             if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("length"))
                 factory.GetConditionMethodFactory().RegisterOneParameter("length", (logEvent, arg1) => NLog.Conditions.ConditionMethods.Length(arg1?.ToString()));
             if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("equals"))

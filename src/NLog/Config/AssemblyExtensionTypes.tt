@@ -235,6 +235,18 @@ namespace NLog.Config
 
         public static void RegisterConditionTypes(ConfigurationItemFactory factory, bool skipCheckExists)
         {
+<#
+    foreach(var type in AllTypes)
+    {
+        if (typeof(NLog.Conditions.ConditionExpression).IsAssignableFrom(type))
+        {
+#>
+            factory.RegisterTypeProperties<<#= type #>>(() => null);
+<#
+        }
+    }
+#>
+
             if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("length"))
                 factory.GetConditionMethodFactory().RegisterOneParameter("length", (logEvent, arg1) => NLog.Conditions.ConditionMethods.Length(arg1?.ToString()));
             if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("equals"))
