@@ -297,8 +297,10 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog>\n<variable\nname='abc'\nlayout='${message}'/>\n</nlog>")]
         [InlineData("<nlog>\n<variable\nname='abc'\nlayout='${message}'>\n</variable></nlog>")]
         [InlineData("<nlog>\n<variable\nname='abc'\nlayout='${message}'>\n<!--  <variable name='abc' layout='${message}' /> -->\n</variable></nlog>")]
+        [InlineData("<nlog>\n<variable\nname='abc'\nlayout='level >= LogLevel.Warn'/>\n</nlog>")]
         [InlineData("<nlog><variable><name>abc</name><layout>${message}</layout></variable></nlog>")]
         [InlineData("<nlog>\n<variable>\n<name>abc</name>\n<layout>${message}</layout>\n</variable>\n</nlog>")]
+        [InlineData("<nlog>\n<variable>\n<name>abc</name>\n<layout>level >= LogLevel.Warn</layout>\n</variable>\n</nlog>")]
         public void XmlParse_Children(string xmlSource)
         {
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
