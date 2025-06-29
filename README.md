@@ -24,9 +24,9 @@ NLog is a free logging platform for .NET with rich log routing and management
 capabilities. It makes it easy to produce and manage high-quality logs for
 your application regardless of its size or complexity.
 
-It can process diagnostic messages emitted from any .NET language, augment
-them with contextual information, format them according to your preference
-and send them to one or more targets such as file or database.
+Handles both structured logging and traditional logging from any .NET language,
+augment with contextual information, format according to your preference
+and send them to one or more targets such as file or console.
 
 Major and minor releases will be posted on [project news](https://nlog-project.org/archives/). 
 
