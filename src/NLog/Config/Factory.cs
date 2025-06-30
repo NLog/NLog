@@ -282,6 +282,10 @@ namespace NLog.Config
             {
                 message += " - Extension NLog.Targets.Network not included?";
             }
+            else if (normalName?.StartsWith("webservice", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.Targets.WebService not included?";
+            }
             else if (normalName?.StartsWith("atomFile", StringComparison.OrdinalIgnoreCase) == true || normalName?.StartsWith("atomicFile", StringComparison.OrdinalIgnoreCase) == true)
             {
                 message += " - Extension NLog.Targets.AtomicFile not included?";
@@ -291,6 +295,10 @@ namespace NLog.Config
                 message += " - Extension NLog.Targets.GZipFile not included?";
             }
             else if (normalName?.StartsWith("trace", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += " - Extension NLog.Targets.Trace not included?";
+            }
+            else if (normalName?.StartsWith("activityid", StringComparison.OrdinalIgnoreCase) == true)
             {
                 message += " - Extension NLog.Targets.Trace not included?";
             }
