@@ -8,8 +8,8 @@
   <ItemGroup>
     <!-- Include the packages needed for the API docs -->
     <PackageReference Include="NLog.Database" Version="6.*" />
-    <PackageReference Include="NLog.DiagnosticSource" version="5.*" />
-    <PackageReference Include="NLog.Extensions.Hosting" Version="5.*" />
+    <PackageReference Include="NLog.DiagnosticSource" version="6.*" />
+    <PackageReference Include="NLog.Extensions.Hosting" Version="6.*" />
     <PackageReference Include="NLog.Extensions.Logging" Version="6.*" />
     <PackageReference Include="NLog.MailKit" version="5.*" />
     <PackageReference Include="NLog.MSMQ" Version="5.*" />
@@ -23,10 +23,10 @@
     <PackageReference Include="NLog.Targets.Network" Version="6.*" />
     <PackageReference Include="NLog.Targets.Trace" Version="6.*" />
     <PackageReference Include="NLog.Targets.WebService" Version="6.*" />
-    <PackageReference Include="NLog.Wcf" Version="5.*" />
+    <PackageReference Include="NLog.Wcf" Version="6.*" />
     <PackageReference Include="NLog.Web" Version="6.*" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="6.*" />
-    <PackageReference Include="NLog.Windows.Forms" Version="5.2.4" />
+    <PackageReference Include="NLog.Windows.Forms" Version="6.*" />
     <PackageReference Include="NLog.WindowsIdentity" Version="5.*" />
     <PackageReference Include="NLog.WindowsRegistry" Version="6.*" />
   </ItemGroup>
