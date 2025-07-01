@@ -93,22 +93,18 @@ namespace NLog.Targets.FileAppenders
             _countedFileSize = RefreshCountedFileSize();
         }
 
-        private bool SkipRefreshFileBirthTime()
-        {
-            return (_fileTarget.ArchiveFileName is null && _fileTarget.ArchiveEvery == FileArchivePeriod.None);
-        }
-
         private void RefreshFileBirthTimeUtc(bool forceRefresh)
         {
             FileLastModified = NLog.Time.TimeSource.Current.Time;
 
-            if (SkipRefreshFileBirthTime())
+            if (_fileTarget.ArchiveFileName is null && _fileTarget.ArchiveEvery == FileArchivePeriod.None && _fileTarget.ArchiveAboveSize <= 0)
                 return;
 
             try
             {
                 FileInfo fileInfo = new FileInfo(_filePath);
-                if (fileInfo.Exists && fileInfo.Length != 0)
+                long fileSize = fileInfo.Exists ? fileInfo.Length : 0;
+                if (fileSize > 0)
                 {
                     var fileBirthTimeUtc = FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo) ?? DateTime.MinValue;
                     var fileBirthTime = fileBirthTimeUtc != DateTime.MinValue ? NLog.Time.TimeSource.Current.FromSystemTime(fileBirthTimeUtc) : OpenStreamTime;
@@ -117,6 +113,8 @@ namespace NLog.Targets.FileAppenders
                     FileBirthTime = fileBirthTime;
                     FileLastModified = NLog.Time.TimeSource.Current.FromSystemTime(fileInfo.LastWriteTimeUtc);
                 }
+
+                _countedFileSize = _fileTarget.ArchiveAboveSize > 0 ? fileSize : null;
             }
             catch (Exception ex)
             {
@@ -131,8 +129,7 @@ namespace NLog.Targets.FileAppenders
             {
                 MonitorFileHasBeenDeleted();
                 _lastFileDeletedCheck = Environment.TickCount;
-                if (!SkipRefreshFileBirthTime())
-                    FileLastModified = NLog.Time.TimeSource.Current.Time;
+                FileLastModified = NLog.Time.TimeSource.Current.Time;
             }
 
             _fileStream.Write(buffer, offset, count);
@@ -162,14 +159,14 @@ namespace NLog.Targets.FileAppenders
                 InternalLogger.Debug("{0}: Recreating FileStream because no longer File.Exists: '{1}'", _fileTarget, _filePath);
                 SafeCloseFile(_filePath, _fileStream);
                 _fileStream = _fileTarget.CreateFileStreamWithRetry(this, _fileTarget.BufferSize, initialFileOpen: false);
-                _countedFileSize = RefreshCountedFileSize();
                 RefreshFileBirthTimeUtc(false);
+                _countedFileSize = RefreshCountedFileSize();
             }
         }
 
         private long? RefreshCountedFileSize()
         {
-            return (_fileTarget.ArchiveAboveSize > 0 && _fileTarget.GetType().Equals(typeof(FileTarget))) ? _fileStream.Length : default(long?);
+            return (_fileTarget.ArchiveAboveSize > 0 && _fileTarget.GetType().Equals(typeof(FileTarget))) ? _fileStream.Length : _countedFileSize;
         }
 
         private void SafeCloseFile(string filepath, Stream? fileStream)
