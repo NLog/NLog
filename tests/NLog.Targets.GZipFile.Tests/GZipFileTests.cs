@@ -103,6 +103,84 @@ namespace NLog.Targets.GZipFile.Tests
         }
 
         [Fact]
+        public void SimpleFileGZipStream_ArchiveAboveSize()
+        {
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+            var logFileName = Path.Combine(tempDir, "log.gzip");
+            var rollFileName = Path.Combine(tempDir, "log_01.gzip");
+
+            try
+            {
+                var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+                {
+                    cfg.ForLogger().WriteTo(new GZipFileTarget() { FileName = logFileName, Layout = "${message}", LineEnding = LineEndingMode.LF, CompressionLevel = CompressionLevel.Optimal, ArchiveAboveSize = 10, ArchiveSuffixFormat = "_{0:00}" });
+                }).LogFactory;
+
+                logFactory.GetCurrentClassLogger().Info("Hello");
+                logFactory.GetCurrentClassLogger().Info("World");
+                logFactory.GetCurrentClassLogger().Info("Again");
+                logFactory.Shutdown();
+
+                using (var logFile = new StreamReader(new GZipStream(new FileStream(logFileName, FileMode.Open), CompressionMode.Decompress)))
+                {
+                    Assert.Equal("Hello", logFile.ReadLine());
+                    Assert.Equal("World", logFile.ReadLine());
+                    Assert.Null(logFile.ReadLine());
+                }
+
+                using (var logFile = new StreamReader(new GZipStream(new FileStream(rollFileName, FileMode.Open), CompressionMode.Decompress)))
+                {
+                    Assert.Equal("Again", logFile.ReadLine());
+                    Assert.Null(logFile.ReadLine());
+                }
+            }
+            finally
+            {
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
+            }
+        }
+
+        [Fact]
+        public void SimpleFileGZipStream_ArchiveFileName_ArchiveAboveSize()
+        {
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+            var logFileName = Path.Combine(tempDir, "log.gzip");
+            var rollFileName = Path.Combine(tempDir, "log_01.gzip");
+
+            try
+            {
+                var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+                {
+                    cfg.ForLogger().WriteTo(new GZipFileTarget() { FileName = logFileName, Layout = "${message}", LineEnding = LineEndingMode.LF, CompressionLevel = CompressionLevel.Optimal, ArchiveAboveSize = 10, ArchiveSuffixFormat = "_{0:00}", ArchiveFileName = logFileName });
+                }).LogFactory;
+
+                logFactory.GetCurrentClassLogger().Info("Hello");
+                logFactory.GetCurrentClassLogger().Info("World");
+                logFactory.GetCurrentClassLogger().Info("Again");
+                logFactory.Shutdown();
+
+                using (var logFile = new StreamReader(new GZipStream(new FileStream(logFileName, FileMode.Open), CompressionMode.Decompress)))
+                {
+                    Assert.Equal("Again", logFile.ReadLine());
+                    Assert.Null(logFile.ReadLine());
+                }
+
+                using (var logFile = new StreamReader(new GZipStream(new FileStream(rollFileName, FileMode.Open), CompressionMode.Decompress)))
+                {
+                    Assert.Equal("Hello", logFile.ReadLine());
+                    Assert.Equal("World", logFile.ReadLine());
+                    Assert.Null(logFile.ReadLine());
+                }
+            }
+            finally
+            {
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
+            }
+        }
+
+        [Fact]
         public void SimpleFileGZipStream_ArchiveOldFileOnStartup()
         {
             var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());

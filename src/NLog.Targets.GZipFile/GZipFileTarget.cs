@@ -88,7 +88,10 @@ namespace NLog.Targets
         protected override Stream CreateFileStream(string filePath, int bufferSize)
         {
             if (!EnableArchiveFileCompression || CompressionLevel == CompressionLevel.NoCompression || !ArchiveOldFileOnStartup || !KeepFileOpen)
+            {
+                NLog.Common.InternalLogger.Debug("{0}: File Compression has been disabled, fallback to normal FileStream", this);
                 return base.CreateFileStream(filePath, bufferSize);
+            }
 
             var underlyingStream = base.CreateFileStream(filePath, bufferSize);
             var compressStream = new GZipStream(underlyingStream, CompressionLevel);
