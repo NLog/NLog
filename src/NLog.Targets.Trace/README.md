@@ -1,10 +1,22 @@
-# NLog WebService Target
+# NLog Trace Target
 
-NLog Trace Target for forwarding to System.Diagnostic.Trace for each logevent, with support for also subscribing using TraceListener.
+NLog Trace Target for writing to System.Diagnostics.Trace for each logevent.
 
 If having trouble with output, then check [NLog InternalLogger](https://github.com/NLog/NLog/wiki/Internal-Logging) for clues. See also [Troubleshooting NLog](https://github.com/NLog/NLog/wiki/Logging-Troubleshooting)
 
-See the [NLog Wiki](https://github.com/NLog/NLog/wiki/Trace-target) for available options and examples.
+See the [NLog Wiki - Trace Target](https://github.com/NLog/NLog/wiki/Trace-target) for available options and examples.
+
+# NLog TraceListener
+
+NLog TraceListener for redirecting System.Diagnostics.Trace into NLog Logger output.
+
+See the [NLog Wiki - NLogTraceListener](https://github.com/NLog/NLog/wiki/NLog-Trace-Listener-for-System-Diagnostics-Trace) for available options and examples.
+
+# NLog ActivityId LayoutRenderer
+
+NLog LayoutRenderer `${activityid}` renders Guid from System.Diagnostics.Trace.CorrelationManager.ActivityId
+
+See the [NLog Wiki - ActivityId](https://github.com/NLog/NLog/wiki/Trace-Activity-Id-Layout-Renderer) for available options and examples.
 
 ## Register Extension
 
