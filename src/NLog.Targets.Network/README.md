@@ -4,31 +4,25 @@ NLog Network Target for sending mesages using TCP / UDP sockets with support for
 
 If having trouble with output, then check [NLog InternalLogger](https://github.com/NLog/NLog/wiki/Internal-Logging) for clues. See also [Troubleshooting NLog](https://github.com/NLog/NLog/wiki/Logging-Troubleshooting)
 
-See the [NLog Wiki](https://github.com/NLog/NLog/wiki/Network-target) for available options and examples.
+See the [NLog Wiki - Network Target](https://github.com/NLog/NLog/wiki/Network-target) for available options and examples.
 
 ## NLog SysLog Target
 
 NLog Syslog Target combines the NLog NetworkTarget with NLog SyslogLayout
 
-If having trouble with output, then check [NLog InternalLogger](https://github.com/NLog/NLog/wiki/Internal-Logging) for clues. See also [Troubleshooting NLog](https://github.com/NLog/NLog/wiki/Logging-Troubleshooting)
-
-See the [NLog Wiki](https://github.com/NLog/NLog/wiki/Syslog-target) for available options and examples.
+See the [NLog Wiki - Syslog Target](https://github.com/NLog/NLog/wiki/Syslog-target) for available options and examples.
 
 ## NLog GELF Target
 
 NLog Gelf Target combines the NLog NetworkTarget with NLog GelfLayout for Graylog Extended Logging Format (GELF)
 
-If having trouble with output, then check [NLog InternalLogger](https://github.com/NLog/NLog/wiki/Internal-Logging) for clues. See also [Troubleshooting NLog](https://github.com/NLog/NLog/wiki/Logging-Troubleshooting)
-
-See the [NLog Wiki](https://github.com/NLog/NLog/wiki/Gelf-target) for available options and examples.
+See the [NLog Wiki - Gelf Target](https://github.com/NLog/NLog/wiki/Gelf-target) for available options and examples.
 
 ## NLog Log4JXml Target
 
 NLog Log4JXml Target combines the NLog NetworkTarget with NLog Log4JXmlEventLayout for NLogViewer / Chainsaw.
 
-If having trouble with output, then check [NLog InternalLogger](https://github.com/NLog/NLog/wiki/Internal-Logging) for clues. See also [Troubleshooting NLog](https://github.com/NLog/NLog/wiki/Logging-Troubleshooting)
-
-See the [NLog Wiki](https://github.com/NLog/NLog/wiki/Chainsaw-target) for available options and examples.
+See the [NLog Wiki - Chainsaw Target](https://github.com/NLog/NLog/wiki/Chainsaw-target) for available options and examples.
 
 ## Register Extension
 

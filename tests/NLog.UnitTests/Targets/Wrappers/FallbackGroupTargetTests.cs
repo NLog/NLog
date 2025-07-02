@@ -294,7 +294,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 ManualResetEvent resetEvent = new ManualResetEvent(false);
                 myTarget1Async.Flush((ex) => { Assert.Null(ex); resetEvent.Set(); });
-                resetEvent.WaitOne(1000);
+                Assert.True(resetEvent.WaitOne(10000));
 
                 Assert.Equal(10, exceptions.Count);
                 for (var i = 0; i < 10; ++i)
