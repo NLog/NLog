@@ -34,6 +34,7 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
+    using System.Linq;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -51,9 +52,6 @@ namespace NLog.LayoutRenderers.Wrappers
     [ThreadAgnostic]
     public sealed class ReplaceNewLinesLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        private const string WindowsNewLine = "\r\n";
-        private const string UnixNewLine = "\n";
-
         /// <summary>
         /// Gets or sets a value indicating the string that should be used to replace newlines.
         /// </summary>
@@ -64,11 +62,9 @@ namespace NLog.LayoutRenderers.Wrappers
             set
             {
                 _replacement = value;
-                _replaceWithNewLines = value?.IndexOf('\n') >= 0;
             }
         }
         private string _replacement = " ";
-        private bool _replaceWithNewLines;
 
         /// <summary>
         /// Gets or sets a value indicating the string that should be used to replace newlines.
@@ -76,21 +72,41 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category='Layout Options' order='50' />
         public string ReplaceNewLines { get => Replacement; set => Replacement = value; }
 
+        private static readonly char[] LineEndCharacters = new char[] { '\u000D', '\u000A', '\u0085', '\u2028', '\u000C', '\u2029' };
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
             Inner?.Render(logEvent, builder);
             if (builder.Length > orgLength)
             {
-                var containsNewLines = builder.IndexOf('\n', orgLength) >= 0;
+                var containsNewLines = builder.IndexOfAny(LineEndCharacters, orgLength) >= 0;
                 if (containsNewLines)
                 {
-                    string str = builder.ToString(orgLength, builder.Length - orgLength)
-                                        .Replace(WindowsNewLine, _replaceWithNewLines ? UnixNewLine : Replacement)
-                                        .Replace(UnixNewLine, Replacement);
-
+                    string str = builder.ToString(orgLength, builder.Length - orgLength);
+                    // If replacement is longer than single character then reserve some extra capacity in StringBuilder to avoid some resize operations.
+                    var sb = new StringBuilder(str.Length + (Replacement.Length <= 1 ? 0 : 10 * Replacement.Length));
+                    for (int i = 0; i < str.Length; i++)
+                    {
+                        char currentChar = str[i];
+                        if (LineEndCharacters.Contains(currentChar))
+                        {
+                            if (i < str.Length - 1 && currentChar == '\u000D' && str[i + 1] == '\u000A')
+                            {
+                                i++;
+                                sb.Append(Replacement);
+                            }
+                            else
+                            {
+                                sb.Append(Replacement);
+                            }
+                        }
+                        else
+                        {
+                            sb.Append(currentChar);
+                        }
+                    }
                     builder.Length = orgLength;
-                    builder.Append(str);
+                    builder.Append(sb.ToString());
                 }
             }
         }
