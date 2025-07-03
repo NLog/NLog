@@ -22,7 +22,7 @@ See the [NLog Wiki - Gelf Target](https://github.com/NLog/NLog/wiki/Gelf-target)
 
 NLog Log4JXml Target combines the NLog NetworkTarget with NLog Log4JXmlEventLayout for NLogViewer / Chainsaw.
 
-See the [NLog Wiki - Chainsaw Target](https://github.com/NLog/NLog/wiki/Chainsaw-target) for available options and examples.
+See the [NLog Wiki - Log4JXml Target](https://github.com/NLog/NLog/wiki/Log4JXml-target) for available options and examples.
 
 ## Register Extension
 

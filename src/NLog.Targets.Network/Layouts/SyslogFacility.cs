@@ -72,16 +72,16 @@ namespace NLog.Layouts
         /// <summary>FTP daemon - LOG_FTP</summary>
         Ftp = 11,
 
-        /// <summary>NTP subsystem</summary>
+        /// <summary>NTP subsystem - LOG_NTP</summary>
         Ntp = 12,
 
-        /// <summary>Log audit</summary>
+        /// <summary>Log audit - LOG_SECURITY</summary>
         Audit = 13,
 
-        /// <summary>Log alert</summary>
+        /// <summary>Log alert - LOG_CONSOLE</summary>
         Alert = 14,
 
-        /// <summary>Clock daemon</summary>
+        /// <summary>Clock daemon / Scheduling daemon</summary>
         Clock2 = 15,
 
         /// <summary>Reserved for local use - LOG_LOCAL0</summary>
