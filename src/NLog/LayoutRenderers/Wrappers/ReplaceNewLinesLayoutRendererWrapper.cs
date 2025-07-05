@@ -72,15 +72,13 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category='Layout Options' order='50' />
         public string ReplaceNewLines { get => Replacement; set => Replacement = value; }
 
-        private static readonly char[] LineEndCharacters = new char[] { '\u000D', '\u000A', '\u0085', '\u2028', '\u000C', '\u2029' };
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
             Inner?.Render(logEvent, builder);
             if (builder.Length > orgLength)
             {
-                var containsNewLines = builder.IndexOfAny(LineEndCharacters, orgLength) >= 0;
-                if (containsNewLines)
+                if (ContainsLineEndCharacters(builder, orgLength))
                 {
                     string str = builder.ToString(orgLength, builder.Length - orgLength);
                     builder.Length = orgLength;
@@ -125,6 +123,24 @@ namespace NLog.LayoutRenderers.Wrappers
                 }
             }
             return -1;
+        }
+
+        private static bool ContainsLineEndCharacters(StringBuilder builder, int startPosition)
+        {
+            for (int i = startPosition; i < builder.Length; i++)
+            {
+                switch (builder[i])
+                {
+                    case '\r':
+                    case '\n':
+                    case '\u0085':
+                    case '\u2028':
+                    case '\u000C':
+                    case '\u2029':
+                        return true;
+                }
+            }
+            return false;
         }
 
 

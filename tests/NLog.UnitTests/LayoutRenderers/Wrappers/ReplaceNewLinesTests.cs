@@ -173,6 +173,18 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         }
 
         [Fact]
+        public void ReplaceUnicodeConsecutiveLineEndingsWithSpecifiedMulticharacterSeparationStringTest()
+        {
+            // Arrange
+            var foo = "line1\r\r\n\nline2";
+            SimpleLayout l = "${replace-newlines:replacement=||:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("line1||||||line2", result);
+        }
+
+        [Fact]
         public void ReplaceWindowsLineEndingsEndOfTextWithSpecifiedSeparationStringTest()
         {
             // Arrange

@@ -485,7 +485,6 @@ namespace NLog.UnitTests
                 "NLog.LayoutRenderers.CounterLayoutRenderer",
                 "NLog.LayoutRenderers.ExceptionLayoutRenderer",
                 "NLog.LayoutRenderers.LevelLayoutRenderer",
-                "NLog.LayoutRenderers.Wrappers.ReplaceNewLinesLayoutRendererWrapper",
                 "NLog.Internal.AppendBuilderCreator",
                 "NLog.Internal.CallSiteInformation",
                 "NLog.Internal.DictionaryEntryEnumerable+EmptyDictionaryEnumerator",
