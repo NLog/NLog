@@ -135,5 +135,89 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             // Assert
             Assert.Equal("bar\r\n123\r\n", result);
         }
+
+        [Fact]
+        public void ReplaceCarriageReturnWithSpecifiedSeparationStringTest()
+        {
+            // Arrange
+            var foo = "bar\r123";
+            SimpleLayout l = "${replace-newlines:replacement=|:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("bar|123", result);
+        }
+
+        [Fact]
+        public void ReplaceUnicodeLineEndingsWithSpecifiedSeparationStringTest()
+        {
+            // Arrange
+            var foo = "line1\nline2\r\nline3\rline4\u0085line5\u2028line6\u000Cline7\u2029line8";
+            SimpleLayout l = "${replace-newlines:replacement=|:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("line1|line2|line3|line4|line5|line6|line7|line8", result);
+        }
+
+        [Fact]
+        public void ReplaceUnicodeLineEndingsWithSpecifiedMulticharacterSeparationStringTest()
+        {
+            // Arrange
+            var foo = "line1\nline2\r\nline3\rline4\u0085line5\u2028line6\u000Cline7\u2029line8\r\n";
+            SimpleLayout l = "${replace-newlines:replacement=||||:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("line1||||line2||||line3||||line4||||line5||||line6||||line7||||line8||||", result);
+        }
+
+        [Fact]
+        public void ReplaceUnicodeConsecutiveLineEndingsWithSpecifiedMulticharacterSeparationStringTest()
+        {
+            // Arrange
+            var foo = "line1\r\r\n\nline2";
+            SimpleLayout l = "${replace-newlines:replacement=||:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("line1||||||line2", result);
+        }
+
+        [Fact]
+        public void ReplaceWindowsLineEndingsEndOfTextWithSpecifiedSeparationStringTest()
+        {
+            // Arrange
+            var foo = "line1\r\n";
+            SimpleLayout l = "${replace-newlines:replacement=|:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("line1|", result);
+        }
+
+        [Fact]
+        public void ReplaceUnicodeLineEndingsWithDefault()
+        {
+            // Arrange
+            var foo = "line1\nline2\r\nline3\rline4\u0085line5\u2028line6\u000Cline7\u2029line8";
+            SimpleLayout l = "${replace-newlines:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("line1 line2 line3 line4 line5 line6 line7 line8", result);
+        }
+
+        [Fact]
+        public void ReplaceSingleLineEndingWithDefault()
+        {
+            // Arrange
+            var foo = "\n";
+            SimpleLayout l = "${replace-newlines:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal(" ", result);
+        }
     }
 }

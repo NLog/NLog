@@ -36,7 +36,6 @@ namespace NLog.LayoutRenderers.Wrappers
     using System;
     using System.Text;
     using NLog.Config;
-    using NLog.Internal;
 
     /// <summary>
     /// Replaces newline characters from the result of another layout renderer with spaces.
@@ -51,24 +50,11 @@ namespace NLog.LayoutRenderers.Wrappers
     [ThreadAgnostic]
     public sealed class ReplaceNewLinesLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        private const string WindowsNewLine = "\r\n";
-        private const string UnixNewLine = "\n";
-
         /// <summary>
         /// Gets or sets a value indicating the string that should be used to replace newlines.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public string Replacement
-        {
-            get => _replacement;
-            set
-            {
-                _replacement = value;
-                _replaceWithNewLines = value?.IndexOf('\n') >= 0;
-            }
-        }
-        private string _replacement = " ";
-        private bool _replaceWithNewLines;
+        public string Replacement { get; set; } = " ";
 
         /// <summary>
         /// Gets or sets a value indicating the string that should be used to replace newlines.
@@ -82,18 +68,61 @@ namespace NLog.LayoutRenderers.Wrappers
             Inner?.Render(logEvent, builder);
             if (builder.Length > orgLength)
             {
-                var containsNewLines = builder.IndexOf('\n', orgLength) >= 0;
-                if (containsNewLines)
+                int lineEndIndex = IndexOfLineEndCharacters(builder, orgLength);
+                if (lineEndIndex > -1)
                 {
-                    string str = builder.ToString(orgLength, builder.Length - orgLength)
-                                        .Replace(WindowsNewLine, _replaceWithNewLines ? UnixNewLine : Replacement)
-                                        .Replace(UnixNewLine, Replacement);
-
+                    orgLength = lineEndIndex > orgLength ? lineEndIndex - 1 : orgLength;
+                    string str = builder.ToString(orgLength, builder.Length - orgLength);
                     builder.Length = orgLength;
-                    builder.Append(str);
+
+                    bool ignoreNewLine = false;
+                    foreach (var chr in str)
+                    {
+                        if (IsLineEndCharacter(chr))  // switches on chr, and allow method-reuse
+                        {
+                            if (!ignoreNewLine || chr != '\n')
+                            {
+                                builder.Append(Replacement);
+                            }
+                            ignoreNewLine = chr == '\r';
+                        }
+                        else
+                        {
+                            builder.Append(chr);
+                            ignoreNewLine = false;
+                        }
+                    }
                 }
             }
         }
+
+        private static bool IsLineEndCharacter(char ch)
+        {
+            switch (ch)
+            {
+                case '\r':      // CARRIAGE RETURN
+                case '\n':      // LINE FEED
+                case '\f':      // FORM FEED (FF)
+                case '\u0085':  // NEXT LINE (NEL)
+                case '\u2028':  // LINE SEPARATOR
+                case '\u2029':  // PARAGRAPH SEPARATOR
+                    return true;
+            }
+            return false;
+        }
+
+        private static int IndexOfLineEndCharacters(StringBuilder builder, int startPosition)
+        {
+            for (int i = startPosition; i < builder.Length; i++)
+            {
+                if (IsLineEndCharacter(builder[i]))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
 
         /// <inheritdoc/>
         protected override string Transform(string text)
