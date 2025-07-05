@@ -59,7 +59,6 @@ namespace NLog.Targets
     /// </example>
     [Target("Log4JXml")]
     [Target("Chainsaw")]
-    [Target("NLogViewer")]
     public class Log4JXmlTarget : NetworkTarget
     {
         private readonly Log4JXmlEventLayout _log4JLayout = new Log4JXmlEventLayout();
