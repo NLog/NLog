@@ -83,7 +83,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
                 if (chunkLength + pos < text.Length)
                 {
-                    result.Append(Environment.NewLine);
+                    result.AppendLine();
                 }
             }
 

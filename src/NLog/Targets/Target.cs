@@ -69,6 +69,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the name of the target.
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="String.Empty"/></remarks>
         /// <docgen category='General Options' order='1' />
         public string Name
         {

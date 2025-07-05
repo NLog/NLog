@@ -92,12 +92,14 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the name of the parameter.
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Parameter Options' order='1' />
         public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the layout used for rendering the method-parameter value.
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="Layout.Empty"/></remarks>
         /// <docgen category='Parameter Options' order='10' />
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
 
@@ -105,6 +107,7 @@ namespace NLog.Targets
         /// Obsolete and replaced by <see cref="ParameterType"/> with NLog v4.6.
         /// Gets or sets the type of the parameter. Obsolete alias for <see cref="ParameterType"/>
         /// </summary>
+        /// <remarks>Default: <c>null</c></remarks>
         /// <docgen category='Parameter Options' order='50' />
         [Obsolete("Use property ParameterType instead. Marked obsolete on NLog 4.6")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -113,12 +116,14 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the type of the parameter.
         /// </summary>
+        /// <remarks>Default: <c>null</c></remarks>
         /// <docgen category='Parameter Options' order='50' />
         public Type ParameterType { get => _layoutInfo.ValueType ?? typeof(string); set => _layoutInfo.ValueType = value; }
 
         /// <summary>
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
+        /// <remarks>Default: <c>null</c></remarks>
         /// <docgen category='Parameter Options' order='50' />
         public Layout? DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 

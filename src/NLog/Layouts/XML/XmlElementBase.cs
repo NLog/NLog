@@ -83,6 +83,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Auto indent and create new lines
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Options' order='50' />
         public bool IndentXml { get; set; }
 
@@ -110,18 +111,21 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets whether empty XML-element should be included in the output. Default = false
         /// </summary>
+        /// <remarks>Default: <c>false</c> . Empty value is either null or empty string</remarks>
         /// <docgen category='Layout Output' order='10' />
         public bool IncludeEmptyValue { get; set; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as XML)
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Output' order='10' />
         public bool IncludeEventProperties { get; set; }
 
         /// <summary>
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> dictionary.
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeProperties { get => _includeScopeProperties ?? (_includeMdlc == true || _includeMdc == true); set => _includeScopeProperties = value; }
         private bool? _includeScopeProperties;
@@ -131,6 +135,7 @@ namespace NLog.Layouts
         ///
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Options' order='100' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -142,6 +147,7 @@ namespace NLog.Layouts
         ///
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Options' order='100' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -153,6 +159,7 @@ namespace NLog.Layouts
         ///
         /// Gets or sets the option to include all properties from the log event (as XML)
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Options' order='100' />
         [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -196,9 +203,7 @@ namespace NLog.Layouts
         ///
         /// When null (or empty) then key-attribute is not included
         /// </summary>
-        /// <remarks>
-        /// Will replace newlines in attribute-value with &#13;&#10;
-        /// </remarks>
+        /// <remarks>Default: <c>key</c> . Newlines in attribute-value will be replaced with <c>&#13;&#10;</c></remarks>
         /// <docgen category='Layout Options' order='50' />
         public string PropertiesElementKeyAttribute { get; set; } = DefaultPropertyKeyAttribute;
 
@@ -206,25 +211,23 @@ namespace NLog.Layouts
         /// XML attribute name to use when rendering property-value
         ///
         /// When null (or empty) then value-attribute is not included and
-        /// value is formatted as XML-element-value
+        /// value is formatted as XML-element-value.
         /// </summary>
-        /// <remarks>
-        /// Skips closing element tag when using attribute for value
-        ///
-        /// Will replace newlines in attribute-value with &#13;&#10;
-        /// </remarks>
+        /// <remarks>Default: <see cref="string.Empty"/> . Newlines in attribute-value will be replaced with <c>&#13;&#10;</c></remarks>
         /// <docgen category='Layout Options' order='50' />
         public string PropertiesElementValueAttribute { get; set; } = string.Empty;
 
         /// <summary>
         /// XML element name to use for rendering IList-collections items
         /// </summary>
+        /// <remarks>Default: <c>item</c></remarks>
         /// <docgen category='Layout Options' order='50' />
         public string PropertiesCollectionItemName { get; set; } = DefaultCollectionItemName;
 
         /// <summary>
         /// How far should the XML serializer follow object references before backing off
         /// </summary>
+        /// <remarks>Default: <c>1</c></remarks>
         /// <docgen category='Layout Options' order='50' />
         public int MaxRecursionLimit { get; set; } = 1;
 

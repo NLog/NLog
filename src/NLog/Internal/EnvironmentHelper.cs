@@ -41,14 +41,6 @@ namespace NLog.Internal
     /// </summary>
     internal static class EnvironmentHelper
     {
-        internal static string NewLine
-        {
-            get
-            {
-                return Environment.NewLine;
-            }
-        }
-
         internal static string GetMachineName()
         {
             try

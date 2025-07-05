@@ -101,24 +101,28 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the name of the machine on which Event Log service is running.
         /// </summary>
+        /// <remarks>Default: <see cref="String.Empty"/></remarks>
         /// <docgen category='Event Log Options' order='10' />
         public Layout MachineName { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets the layout that renders event ID.
         /// </summary>
+        /// <remarks>Default: <code>${event-properties:item=EventId}</code></remarks>
         /// <docgen category='Event Log Options' order='10' />
         public Layout<int> EventId { get; set; } = "${event-properties:item=EventId}";
 
         /// <summary>
         /// Gets or sets the layout that renders event Category.
         /// </summary>
+        /// <remarks>Default: <c>null</c></remarks>
         /// <docgen category='Event Log Options' order='10' />
         public Layout<short>? Category { get; set; }
 
         /// <summary>
         /// Optional entry type. When not set, or when not convertible to <see cref="EventLogEntryType"/> then determined by <see cref="NLog.LogLevel"/>
         /// </summary>
+        /// <remarks>Default: <c>null</c></remarks>
         /// <docgen category='Event Log Options' order='10' />
         public Layout<EventLogEntryType>? EntryType { get; set; }
 
@@ -126,7 +130,7 @@ namespace NLog.Targets
         /// Gets or sets the value to be used as the event Source.
         /// </summary>
         /// <remarks>
-        /// By default this is the friendly name of the current AppDomain.
+        /// <b>[Required]</b> Default: <see cref="AppDomain.FriendlyName"/>
         /// </remarks>
         /// <docgen category='Event Log Options' order='10' />
         public Layout Source { get; set; } = Layout.Empty;
@@ -134,12 +138,14 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the name of the Event Log to write to. This can be System, Application or any user-defined name.
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <c>Application</c></remarks>
         /// <docgen category='Event Log Options' order='10' />
         public Layout Log { get; set; } = "Application";
 
         /// <summary>
         /// Gets or sets the message length limit to write to the Event Log.
         /// </summary>
+        /// <remarks>Default: <c>30000</c></remarks>
         /// <docgen category='Event Log Options' order='10' />
         public Layout<int> MaxMessageLength { get; set; } = EventLogMaxMessageLength;
 
@@ -156,6 +162,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the action to take if the message is larger than the <see cref="MaxMessageLength"/> option.
         /// </summary>
+        /// <remarks>Default: <see cref="EventLogTargetOverflowAction.Truncate"/></remarks>
         /// <docgen category='Event Log Options' order='100' />
         public EventLogTargetOverflowAction OnOverflow { get; set; } = EventLogTargetOverflowAction.Truncate;
 

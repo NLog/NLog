@@ -45,9 +45,9 @@ namespace NLog.Targets
     public sealed class LineEndingMode : IEquatable<LineEndingMode>
     {
         /// <summary>
-        /// Insert platform-dependent end-of-line sequence after each line.
+        /// Insert platform-dependent <see cref="Environment.NewLine"/> sequence after each line.
         /// </summary>
-        public static readonly LineEndingMode Default = new LineEndingMode("Default", EnvironmentHelper.NewLine);
+        public static readonly LineEndingMode Default = new LineEndingMode("Default", Environment.NewLine);
 
         /// <summary>
         /// Insert CR LF sequence (ASCII 13, ASCII 10) after each line.

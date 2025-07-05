@@ -33,9 +33,9 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
     using System.Text;
     using NLog.Config;
-    using NLog.Internal;
 
     /// <summary>
     /// A newline literal.
@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(EnvironmentHelper.NewLine);
+            builder.AppendLine();
         }
     }
 }

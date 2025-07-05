@@ -81,31 +81,35 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets a value indicating whether CVS should include header.
         /// </summary>
-        /// <value>A value of <c>true</c> if CVS should include header; otherwise, <c>false</c>.</value>
+        /// <remarks>Default: <c>true</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool WithHeader { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the column delimiter.
         /// </summary>
+        /// <remarks>Default: <see cref="CsvColumnDelimiterMode.Auto"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public CsvColumnDelimiterMode Delimiter { get; set; } = CsvColumnDelimiterMode.Auto;
 
         /// <summary>
         /// Gets or sets the quoting mode.
         /// </summary>
+        /// <remarks>Default: <see cref="CsvQuotingMode.Auto"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public CsvQuotingMode Quoting { get; set; } = CsvQuotingMode.Auto;
 
         /// <summary>
         /// Gets or sets the quote Character.
         /// </summary>
+        /// <remarks>Default: <c>&quot;</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         public string QuoteChar { get; set; } = "\"";
 
         /// <summary>
         /// Gets or sets the custom column delimiter value (valid when <see cref="Delimiter"/> is set to <see cref="CsvColumnDelimiterMode.Custom"/>).
         /// </summary>
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public string CustomColumnDelimiter { get; set; } = string.Empty;
 

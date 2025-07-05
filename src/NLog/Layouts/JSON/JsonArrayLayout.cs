@@ -63,12 +63,14 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the option to suppress the extra spaces in the output json. Default: true
         /// </summary>
+        /// <remarks>Default: <c>true</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool SuppressSpaces { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the option to render the empty object value {}
         /// </summary>
+        /// <remarks>Default: <c>true</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool RenderEmptyObject { get; set; } = true;
 

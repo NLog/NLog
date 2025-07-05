@@ -64,31 +64,35 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the name of the property.
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Layout Options' order='1' />
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the layout used for rendering the property value.
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="Layout.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
 
         /// <summary>
         /// Gets or sets the type of the property.
         /// </summary>
+        /// <remarks>Default: <c>null</c></remarks>
         /// <docgen category='Layout Options' order='100' />
         public Type PropertyType { get => _layoutInfo.ValueType ?? typeof(string); set => _layoutInfo.ValueType = value; }
 
         /// <summary>
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
+        /// <remarks>Default: <c>null</c></remarks>
         /// <docgen category='Layout Options' order='100' />
         public Layout? DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
-        /// Gets or sets whether empty property value should be included in the output. Default = false
+        /// Gets or sets whether empty property value should be included in the output.
         /// </summary>
-        /// <remarks>Empty value is either null or empty string</remarks>
+        /// <remarks>Default: <c>false</c> . Empty value is either null or empty string</remarks>
         /// <docgen category='Layout Options' order='100' />
         public bool IncludeEmptyValue
         {

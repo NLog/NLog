@@ -89,8 +89,9 @@ namespace NLog.Targets
         public IList<string> Logs => _logs;
 
         /// <summary>
-        /// Gets or sets the max number of items to have in memory
+        /// Gets or sets the max number of items to have in memory. Zero or Negative means no limit.
         /// </summary>
+        /// <remarks>Default: <c>0</c></remarks>
         /// <docgen category='Buffering Options' order='10' />
         public int MaxLogsCount { get; set; }
 

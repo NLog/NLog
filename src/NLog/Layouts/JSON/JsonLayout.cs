@@ -105,6 +105,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the option to suppress the extra spaces in the output json. Default: true
         /// </summary>
+        /// <remarks>Default: <c>true</c></remarks>
         /// <docgen category='Layout Options' order='100' />
         public bool SuppressSpaces
         {
@@ -123,6 +124,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the option to render the empty object value {}
         /// </summary>
+        /// <remarks>Default: <c>true</c></remarks>
         /// <docgen category='Layout Options' order='100' />
         public bool RenderEmptyObject { get => _renderEmptyObject ?? true; set => _renderEmptyObject = value; }
         private bool? _renderEmptyObject;
@@ -130,6 +132,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Auto indent and create new lines
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Options' order='100' />
         public bool IndentJson
         {
@@ -150,18 +153,21 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeEventProperties { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="GlobalDiagnosticsContext"/> dictionary.
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeGdc { get; set; }
 
         /// <summary>
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> dictionary.
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeProperties { get => _includeScopeProperties ?? (_includeMdlc == true || _includeMdc == true); set => _includeScopeProperties = value; }
         private bool? _includeScopeProperties;
@@ -171,6 +177,7 @@ namespace NLog.Layouts
         ///
         /// Gets or sets the option to include all properties from the log event (as JSON)
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -181,6 +188,7 @@ namespace NLog.Layouts
         ///
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -192,6 +200,7 @@ namespace NLog.Layouts
         ///
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -201,6 +210,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the option to exclude null/empty properties from the log event (as JSON)
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Options' order='100' />
         public bool ExcludeEmptyProperties { get; set; }
 
@@ -217,15 +227,14 @@ namespace NLog.Layouts
         /// <summary>
         /// How far should the JSON serializer follow object references before backing off
         /// </summary>
+        /// <remarks>Default: <c>1</c></remarks>
         /// <docgen category='Layout Options' order='100' />
         public int MaxRecursionLimit { get; set; } = 1;
 
         /// <summary>
         /// Should forward slashes be escaped? If true, / will be converted to \/
         /// </summary>
-        /// <remarks>
-        /// If not set explicitly then the value of the parent will be used as default.
-        /// </remarks>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Layout Options' order='100' />
         [Obsolete("Marked obsolete with NLog 5.5. Should never escape forward slash")]
         [EditorBrowsable(EditorBrowsableState.Never)]

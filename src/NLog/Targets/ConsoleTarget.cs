@@ -100,7 +100,6 @@ namespace NLog.Targets
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
         /// </summary>
-        /// <remarks>Has side effect</remarks>
         /// <docgen category='Console Options' order='10' />
         public Encoding Encoding
         {
@@ -118,13 +117,14 @@ namespace NLog.Targets
         ///  - Disables console writing if Environment.UserInteractive = False (Windows Service)
         ///  - Disables console writing if Console Standard Input is not available (Non-Console-App)
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Console Options' order='10' />
         public bool DetectConsoleAvailable { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to auto-flush after <see cref="Console.WriteLine()"/>
         /// </summary>
-        /// <remarks>
+        /// <remarks>Default: <c>false</c> .
         /// Normally not required as standard Console.Out will have <see cref="StreamWriter.AutoFlush"/> = true, but not when pipe to file
         /// </remarks>
         /// <docgen category='Console Options' order='10' />
@@ -133,12 +133,14 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets whether to force <see cref="Console.WriteLine()"/> (slower) instead of the faster internal buffering.
         /// </summary>
+        /// <remarks>Default: <c>false</c></remarks>
         /// <docgen category='Console Options' order='10' />
         public bool ForceWriteLine { get; set; }
 
         /// <summary>
         /// Gets or sets whether to activate internal buffering to allow batch writing, instead of using <see cref="Console.WriteLine()"/>
         /// </summary>
+        /// <remarks>Default: <c>true</c></remarks>
         /// <docgen category='Console Options' order='50' />
         [Obsolete("Replaced by ForceWriteLine. Marked obsolete with NLog v6.0")]
         public bool WriteBuffer { get => !ForceWriteLine; set => ForceWriteLine = !value; }
