@@ -61,7 +61,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Require escaping backward slashes in <see cref="DefaultValue"/>. Need to be backwards-compatible.
         ///
-        /// When true:
+        /// When <see langword="true"/>:
         ///
         /// `\` in value should be configured as `\\`
         /// `\\` in value should be configured as `\\\\`.

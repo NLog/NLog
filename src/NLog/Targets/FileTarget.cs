@@ -62,7 +62,7 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>
         /// <b>[Required]</b> Default: <see cref="Layout.Empty"/> .
-        /// When not absolute path then it will be relative to <see cref="AppDomain.BaseDirectory"/>.
+        /// When not absolute path then relative path will be resolved against <see cref="AppDomain.BaseDirectory"/>.
         /// The FileName Layout supports layout-renderers, where a single FileTarget can write to multiple files.
         /// </remarks>
         /// <example>
@@ -89,8 +89,8 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to create directories if they do not exist.
         /// </summary>
         /// <remarks>
-        /// Default: <b>true</b> .
-        /// Setting this to false may improve performance a bit, but will always fail
+        /// Default: <see langword="true"/> .
+        /// Setting this to <see langword="false"/> may improve performance a bit, but will always fail
         /// when attempt writing to a non-existing directory.
         /// </remarks>
         /// <docgen category='Output Options' order='50' />
@@ -100,7 +100,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to delete old log file on startup.
         /// </summary>
         /// <remarks>
-        /// Default: <b>false</b> .
+        /// Default: <see langword="false"/> .
         /// When current log-file exists, then it is deleted (and resetting sequence number)
         /// </remarks>
         /// <docgen category='Output Options' order='50' />
@@ -109,7 +109,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to replace file contents on each write instead of appending log message at the end.
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Output Options' order='100' />
         public bool ReplaceFileContentsOnEachWrite { get; set; }
 
@@ -117,9 +117,9 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to keep log file open instead of opening and closing it on each logging event.
         /// </summary>
         /// <remarks>
-        /// Default: <c>true</c> .
-        /// KeepFileOpen = true gives the best performance, and ensure the file-lock is not lost to other applications.<br/>
-        /// KeepFileOpen = false gives the best compability, but slow performance and lead to file-locking issues with other applications.
+        /// Default: <see langword="true"/> .
+        /// KeepFileOpen = <see langword="true"/> gives the best performance, and ensure the file-lock is not lost to other applications.<br/>
+        /// KeepFileOpen = <see langword="false"/> gives the best compatibility, but slow performance and lead to file-locking issues with other applications.
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
         public bool KeepFileOpen { get; set; } = true;
@@ -127,7 +127,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to enable log file(s) to be deleted.
         /// </summary>
-        /// <remarks>Default: <c>true</c></remarks>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Output Options' order='50' />
         public bool EnableFileDelete { get; set; } = true;
 
@@ -141,7 +141,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to automatically flush the file buffers after each log message.
         /// </summary>
-        /// <remarks>Default: <c>true</c></remarks>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Performance Tuning Options' order='50' />
         public bool AutoFlush { get; set; } = true;
 
@@ -149,7 +149,7 @@ namespace NLog.Targets
         /// Gets or sets the maximum number of files to be kept open.
         /// </summary>
         /// <remarks>
-        /// Default: <c>5</c> . Higher number might improve performance when single FileTarget
+        /// Default: <see langword="5"/> . Higher number might improve performance when single FileTarget
         /// is writing to many files (such as splitting by loglevel or by logger-name).
         /// Files are closed in FIFO (First in First out) ordering, so the oldest
         /// file-handle is closed first. Careful with number higher than 10-15,
@@ -161,21 +161,21 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the maximum number of seconds that files are kept open. Zero or negative means disabled.
         /// </summary>
-        /// <remarks>Default: <c>0</c></remarks>
+        /// <remarks>Default: <see langword="0"/></remarks>
         /// <docgen category='Performance Tuning Options' order='50' />
         public int OpenFileCacheTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum number of seconds before open files are flushed. Zero or negative means disabled.
         /// </summary>
-        /// <remarks>Default: <c>0</c></remarks>
+        /// <remarks>Default: <see langword="0"/></remarks>
         /// <docgen category='Performance Tuning Options' order='50' />
         public int OpenFileFlushTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets the log file buffer size in bytes.
         /// </summary>
-        /// <remarks>Default: <c>32768</c></remarks>
+        /// <remarks>Default: <see langword="32768"/></remarks>
         /// <docgen category='Performance Tuning Options' order='50' />
         public int BufferSize { get; set; } = 32768;
 
@@ -200,14 +200,14 @@ namespace NLog.Targets
         /// Gets or sets whether or not this target should just discard all data that its asked to write.
         /// Mostly used for when testing NLog Stack except final write
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Output Options' order='100' />
         public bool DiscardAll { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to write BOM (byte order mark) in created files.
         /// </summary>
-        /// <remarks>Default: <c>false</c> (Unless UTF16 / UTF32)</remarks>
+        /// <remarks>Default: <see langword="false"/> (Unless UTF16 / UTF32)</remarks>
         /// <docgen category='Output Options' order='50' />
         public bool WriteBom
         {
@@ -219,7 +219,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether any existing log-file should be archived on startup.
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Archival Options' order='50' />
         public bool ArchiveOldFileOnStartup { get; set; }
 
@@ -228,7 +228,7 @@ namespace NLog.Targets
         /// Default value is <see langword="false"/>, which means only write header when initial file is empty (Ex. ensures valid CSV files)
         /// </summary>
         /// <remarks>
-        /// Default: <c>false</c> .
+        /// Default: <see langword="false"/> .
         /// Alternative use <see cref="ArchiveOldFileOnStartup"/> to ensure each application session gets individual log-file.
         /// </remarks>
         /// <docgen category='Archival Options' order='50' />
@@ -238,7 +238,7 @@ namespace NLog.Targets
         /// Gets or sets a value specifying the date format when using <see cref="ArchiveFileName"/>.
         /// Obsolete and only here for Legacy reasons, instead use <see cref="ArchiveSuffixFormat"/>.
         /// </summary>
-        /// <remarks>Default: <c>null</c></remarks>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Archival Options' order='50' />
         [Obsolete("Instead use ArchiveSuffixFormat. Marked obsolete with NLog 6.0")]
         public string? ArchiveDateFormat
@@ -259,7 +259,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the size in bytes above which log files will be automatically archived. Zero or negative means disabled.
         /// </summary>
-        /// <remarks>Default: <c>0</c></remarks>
+        /// <remarks>Default: <see langword="0"/></remarks>
         /// <docgen category='Archival Options' order='50' />
         public long ArchiveAboveSize
         {
@@ -299,7 +299,7 @@ namespace NLog.Targets
         /// Use <see cref="ArchiveSuffixFormat"/> to control suffix format, instead of now obsolete token {#}
         /// </summary>
         /// <remarks>
-        /// Default: <c>null</c> .
+        /// Default: <see langword="null"/> .
         /// Archive file-move operation only works if <see cref="FileName"/> is static in nature, and not rolling automatically because of ${date} or ${shortdate} .
         /// 
         /// Legacy archive file-move operation can fail because of file-locks, so file-archiving can stop working because of environment issues (Other applications locking files).
@@ -346,7 +346,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the maximum number of archive files that should be kept. Negative means disabled.
         /// </summary>
-        /// <remarks>Default: <c>-1</c></remarks>
+        /// <remarks>Default: <see langword="-1"/></remarks>
         /// <docgen category='Archival Options' order='50' />
         public int MaxArchiveFiles
         {
@@ -362,7 +362,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the maximum days of archive files that should be kept. Zero or negative means disabled.
         /// </summary>
-        /// <remarks>Default: <c>0</c></remarks>
+        /// <remarks>Default: <see langword="0"/></remarks>
         /// <docgen category='Archival Options' order='50' />
         public int MaxArchiveDays
         {
@@ -454,7 +454,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether the footer should be written only when the file is archived.
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Archival Options' order='50' />
         public bool WriteFooterOnArchivingOnly { get; set; }
 

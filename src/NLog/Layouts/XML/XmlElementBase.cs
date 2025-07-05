@@ -83,7 +83,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Auto indent and create new lines
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public bool IndentXml { get; set; }
 
@@ -109,23 +109,23 @@ namespace NLog.Layouts
         public List<TargetPropertyWithContext>? ContextProperties { get; set; }
 
         /// <summary>
-        /// Gets or sets whether empty XML-element should be included in the output. Default = false
+        /// Gets or sets whether empty XML-element should be included in the output.
         /// </summary>
-        /// <remarks>Default: <c>false</c> . Empty value is either null or empty string</remarks>
+        /// <remarks>Default: <see langword="false"/> . Empty value is either null or empty string</remarks>
         /// <docgen category='Layout Output' order='10' />
         public bool IncludeEmptyValue { get; set; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as XML)
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Output' order='10' />
         public bool IncludeEventProperties { get; set; }
 
         /// <summary>
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> dictionary.
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeProperties { get => _includeScopeProperties ?? (_includeMdlc == true || _includeMdc == true); set => _includeScopeProperties = value; }
         private bool? _includeScopeProperties;
@@ -135,7 +135,7 @@ namespace NLog.Layouts
         ///
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -147,7 +147,7 @@ namespace NLog.Layouts
         ///
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -159,14 +159,14 @@ namespace NLog.Layouts
         ///
         /// Gets or sets the option to include all properties from the log event (as XML)
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
 
         /// <summary>
-        /// List of property names to exclude when <see cref="IncludeEventProperties"/> is true
+        /// List of property names to exclude when <see cref="IncludeEventProperties"/> is <see langword="true"/>
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
 #if !NET35
@@ -227,7 +227,7 @@ namespace NLog.Layouts
         /// <summary>
         /// How far should the XML serializer follow object references before backing off
         /// </summary>
-        /// <remarks>Default: <c>1</c></remarks>
+        /// <remarks>Default: <see langword="1"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public int MaxRecursionLimit { get; set; } = 1;
 

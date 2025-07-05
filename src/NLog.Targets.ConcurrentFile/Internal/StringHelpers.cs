@@ -54,7 +54,7 @@ namespace NLog.Targets
         /// <summary>
         /// Compares the contents of a StringBuilder and a String
         /// </summary>
-        /// <returns>True when content is the same</returns>
+        /// <returns><see langword="true"/> when content is the same</returns>
         public static bool EqualTo(this StringBuilder builder, string other)
         {
             if (builder.Length != other.Length)

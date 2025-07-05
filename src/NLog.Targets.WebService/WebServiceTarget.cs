@@ -185,7 +185,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value whether escaping be done according to Rfc3986 (Supports Internationalized Resource Identifiers - IRIs)
         /// </summary>
-        /// <value>A value of <c>true</c> if Rfc3986; otherwise, <c>false</c> for legacy Rfc2396.</value>
+        /// <value>A value of <see langword="true"/> if Rfc3986; otherwise, <see langword="false"/> for legacy Rfc2396.</value>
         /// <docgen category='Web Service Options' order='100' />
         [Obsolete("Replaced by WebUtility.UrlEncode. Marked obsolete with NLog 6.0")]
         public bool EscapeDataRfc3986 { get; set; }
@@ -193,7 +193,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value whether escaping be done according to the old NLog style (Very non-standard)
         /// </summary>
-        /// <value>A value of <c>true</c> if legacy encoding; otherwise, <c>false</c> for standard UTF8 encoding.</value>
+        /// <value>A value of <see langword="true"/> if legacy encoding; otherwise, <see langword="false"/> for standard UTF8 encoding.</value>
         /// <docgen category='Web Service Options' order='100' />
         [Obsolete("Replaced by WebUtility.UrlEncode. Marked obsolete with NLog 6.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -90,7 +90,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Determines whether or not this attribute will be Xml encoded.
         /// </summary>
-        /// <remarks>Default: <c>true</c></remarks>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public bool ElementEncode
         {

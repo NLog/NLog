@@ -102,7 +102,7 @@ namespace NLog.Layouts
         public bool ExcludeEmptyProperties { get; set; }
 
         /// <summary>
-        /// List of property names to exclude when <see cref="IncludeEventProperties"/> is true
+        /// List of property names to exclude when <see cref="IncludeEventProperties"/> is <see langword="true"/>
         /// </summary>
 #if NET35
         public HashSet<string> ExcludeProperties { get; set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -111,7 +111,7 @@ namespace NLog.Layouts
 #endif
 
         /// <summary>
-        /// List of property names to include when <see cref="IncludeEventProperties"/> is true
+        /// List of property names to include when <see cref="IncludeEventProperties"/> is <see langword="true"/>
         /// </summary>
 #if NET35
         public HashSet<string> IncludeProperties { get; set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);

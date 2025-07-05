@@ -53,20 +53,20 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets whether output should be encoded with XML-string escaping.
         /// </summary>
-        /// <remarks>Default: <c>true</c></remarks>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category="Layout Options" order="10"/>
         public bool XmlEncode { get; set; } = true;
 
         /// <summary>
         /// Gets or sets whether output should be wrapped using CDATA section instead of XML-string escaping
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         public bool CDataEncode { get; set; } = false;
 
         /// <summary>
         /// Gets or sets a value indicating whether to transform newlines (\r\n) into (&#13;&#10;)
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category="Layout Options" order="10"/>
         public bool XmlEncodeNewlines { get; set; }
 

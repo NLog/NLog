@@ -43,7 +43,7 @@ namespace NLog.Layouts
         public bool Rfc5424 { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating what DateTime format should be used when <see cref="Rfc5424"/> = true
+        /// Gets or sets a value indicating what DateTime format should be used when <see cref="Rfc5424"/> = <see langword="true"/>
         /// </summary>
         public Layout SyslogTimestamp { get; set; } = "${date:format=o}";
 
@@ -126,17 +126,17 @@ namespace NLog.Layouts
         public SyslogFacility SyslogFacility { get; set; } = SyslogFacility.User;
 
         /// <summary>
-        /// Gets or sets the prefix for StructuredData when <see cref="Rfc5424"/> = true
+        /// Gets or sets the prefix for StructuredData when <see cref="Rfc5424"/> = <see langword="true"/>
         /// </summary>
         public Layout StructuredDataId { get; set; } = "meta";
 
         /// <summary>
-        /// Gets or sets a value indicating whether LogEvent Properties should be included for StructuredData when <see cref="Rfc5424"/> = true
+        /// Gets or sets a value indicating whether LogEvent Properties should be included for StructuredData when <see cref="Rfc5424"/> = <see langword="true"/>
         /// </summary>
         public bool IncludeEventProperties { get; set; }
 
         /// <summary>
-        /// List of StructuredData Parameters to include when <see cref="Rfc5424"/> = true
+        /// List of StructuredData Parameters to include when <see cref="Rfc5424"/> = <see langword="true"/>
         /// </summary>
         [ArrayParameter(typeof(TargetPropertyWithContext), "StructuredDataParam")]
         public List<TargetPropertyWithContext> StructuredDataParams { get; } = new List<TargetPropertyWithContext>();

@@ -17,7 +17,7 @@ namespace NLog.Conditions
         /// <param name="input">The string to search for a match.</param>
         /// <param name="pattern">The regular expression pattern to match.</param>
         /// <param name="options">A string consisting of the desired options for the test. The possible values are those of the <see cref="RegexOptions"/> separated by commas.</param>
-        /// <returns>true if the regular expression finds a match; otherwise, false.</returns>
+        /// <returns><see langword="true"/> if the regular expression finds a match; otherwise, <see langword="false"/>.</returns>
         [ConditionMethod("regex-matches")]
         public static bool RegexMatches(string input, string pattern, [Optional, DefaultParameterValue("")] string options)
         {

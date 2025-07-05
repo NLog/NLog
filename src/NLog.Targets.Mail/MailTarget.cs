@@ -196,7 +196,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to add new lines between log entries.
         /// </summary>
-        /// <value>A value of <c>true</c> if new lines should be added; otherwise, <c>false</c>.</value>
+        /// <value>A value of <see langword="true"/> if new lines should be added; otherwise, <see langword="false"/>.</value>
         /// <docgen category='Message Options' order='99' />
         public bool AddNewLines { get; set; }
 
@@ -292,7 +292,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether NewLine characters in the body should be replaced with <br/> tags.
         /// </summary>
-        /// <remarks>Only happens when <see cref="Html"/> is set to true.</remarks>
+        /// <remarks>Only happens when <see cref="Html"/> is set to <see langword="true"/>.</remarks>
         /// <docgen category='Message Options' order='100' />
         public bool ReplaceNewlineWithBrTagInHtml { get; set; }
 

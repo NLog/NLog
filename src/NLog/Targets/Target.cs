@@ -517,7 +517,7 @@ namespace NLog.Targets
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
-        /// <param name="disposing">True to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        /// <param name="disposing"><see langword="true"/> to release both managed and unmanaged resources; <see langword="false"/> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing && _isInitialized)

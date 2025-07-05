@@ -79,9 +79,9 @@ namespace NLog.Layouts
         public IList<CsvColumn> Columns { get; } = new List<CsvColumn>();
 
         /// <summary>
-        /// Gets or sets a value indicating whether CVS should include header.
+        /// Gets or sets a value indicating whether CSV should include header.
         /// </summary>
-        /// <remarks>Default: <c>true</c></remarks>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool WithHeader { get; set; } = true;
 

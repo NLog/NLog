@@ -64,7 +64,7 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool EscapeUnicode { get; set; } = true;
 
         /// <summary>
-        /// Should forward slashes be escaped? If true, / will be converted to \/
+        /// Should forward slashes be escaped? If <see langword="true"/>, / will be converted to \/
         /// </summary>
         /// <remarks>
         /// If not set explicitly then the value of the parent will be used as default.

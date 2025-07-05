@@ -54,7 +54,7 @@ namespace NLog.Config
         /// <summary>
         /// Tries to create an item instance with type-alias
         /// </summary>
-        /// <returns>True if instance was created successfully, false otherwise.</returns>
+        /// <returns><see langword="true"/> if instance was created successfully, <see langword="false"/> otherwise.</returns>
         bool TryCreateInstance(string typeAlias, out TBaseType? result);
     }
 }

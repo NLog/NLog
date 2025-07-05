@@ -284,9 +284,9 @@ namespace NLog.Config
         /// Perform message template parsing and formatting of LogEvent messages (True = Always, False = Never, Null = Auto Detect)
         /// </summary>
         /// <remarks>
-        /// - Null (Auto Detect) : NLog-parser checks <see cref="LogEventInfo.Message"/> for positional parameters, and will then fallback to string.Format-rendering.
-        /// - True: Always performs the parsing of <see cref="LogEventInfo.Message"/> and rendering of <see cref="LogEventInfo.FormattedMessage"/> using the NLog-parser (Allows custom formatting with <see cref="IValueFormatter"/>)
-        /// - False: Always performs parsing and rendering using string.Format (Fastest if not using structured logging)
+        /// - <see langword="null"/> (Auto Detect) : NLog-parser checks <see cref="LogEventInfo.Message"/> for positional parameters, and will then fallback to string.Format-rendering.
+        /// - <see langword="true"/>: Always performs the parsing of <see cref="LogEventInfo.Message"/> and rendering of <see cref="LogEventInfo.FormattedMessage"/> using the NLog-parser (Allows custom formatting with <see cref="IValueFormatter"/>)
+        /// - <see langword="false"/>: Always performs parsing and rendering using string.Format (Fastest if not using structured logging)
         /// </remarks>
         public bool? ParseMessageTemplates
         {

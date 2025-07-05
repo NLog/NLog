@@ -67,7 +67,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the condition that must be met before scanning the row for highlight of words
         /// </summary>
-        /// <remarks>Default: <c>null</c></remarks>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Highlighting Rules' order='10' />
         public ConditionExpression? Condition { get; set; }
 
@@ -82,14 +82,14 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to match whole words only.
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Highlighting Rules' order='10' />
         public bool WholeWords { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case when comparing texts.
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Highlighting Rules' order='10' />
         public bool IgnoreCase { get; set; }
 

@@ -385,7 +385,7 @@ namespace NLog.Common
         /// Determine if logging should be avoided because of exception type.
         /// </summary>
         /// <param name="exception">The exception to check.</param>
-        /// <returns><c>true</c> if logging should be avoided; otherwise, <c>false</c>.</returns>
+        /// <returns><see langword="true"/> if logging should be avoided; otherwise, <see langword="false"/>.</returns>
         private static bool IsSeriousException(Exception? exception)
         {
             return exception != null && exception.MustBeRethrownImmediately();
@@ -395,7 +395,7 @@ namespace NLog.Common
         /// Determine if logging is enabled for given LogLevel
         /// </summary>
         /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
-        /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
+        /// <returns><see langword="true"/> if logging is enabled; otherwise, <see langword="false"/>.</returns>
         private static bool IsLogLevelEnabled(LogLevel logLevel)
         {
             return !ReferenceEquals(_logLevel, LogLevel.Off) && _logLevel.CompareTo(logLevel) <= 0;
@@ -404,7 +404,7 @@ namespace NLog.Common
         /// <summary>
         /// Determine if logging is enabled.
         /// </summary>
-        /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
+        /// <returns><see langword="true"/> if logging is enabled; otherwise, <see langword="false"/>.</returns>
         internal static bool HasActiveLoggers()
         {
             if (InternalEventOccurred is null && LogWriter is null)

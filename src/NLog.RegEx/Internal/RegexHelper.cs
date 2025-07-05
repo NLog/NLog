@@ -67,7 +67,7 @@ namespace NLog.RegEx.Internal
         }
 
         /// <summary>
-        /// Compile the <see cref="Regex"/>? This can improve the performance, but at the costs of more memory usage. If <c>false</c>, the Regex Cache is used.
+        /// Compile the <see cref="Regex"/>? This can improve the performance, but at the costs of more memory usage. If <see langword="false"/>, the Regex Cache is used.
         /// </summary>
         public bool CompileRegex { get; set; }
 

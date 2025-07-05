@@ -127,7 +127,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to use default row highlighting rules.
         /// </summary>
         /// <remarks>
-        /// Default: <c>true</c> which enables the following rules:
+        /// Default: <see langword="true"/> which enables the following rules:
         /// <table>
         /// <tr>
         /// <th>Condition</th>
@@ -187,18 +187,18 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets or sets a value indicating whether to auto-check if the console is available.
-        ///  - Disables console writing if Environment.UserInteractive = False (Windows Service)
+        ///  - Disables console writing if Environment.UserInteractive = <see langword="false"/> (Windows Service)
         ///  - Disables console writing if Console Standard Input is not available (Non-Console-App)
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Console Options' order='10' />
         public bool DetectConsoleAvailable { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to auto-check if the console has been redirected to file
-        ///   - Disables coloring logic when System.Console.IsOutputRedirected = true
+        ///   - Disables coloring logic when System.Console.IsOutputRedirected = <see langword="true"/>
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Console Options' order='11' />
         public bool DetectOutputRedirected { get; set; }
 
@@ -206,7 +206,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to auto-flush after <see cref="Console.WriteLine()"/>
         /// </summary>
         /// <remarks>
-        /// Default: <c>false</c> .
+        /// Default: <see langword="false"/> .
         /// Normally not required as standard Console.Out will have <see cref="StreamWriter.AutoFlush"/> = true, but not when pipe to file
         /// </remarks>
         /// <docgen category='Console Options' order='11' />
@@ -215,7 +215,7 @@ namespace NLog.Targets
         /// <summary>
         /// Enables output using ANSI Color Codes
         /// </summary>
-        /// <remarks>Default: <c>false</c></remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Console Options' order='10' />
         public bool EnableAnsiOutput { get; set; }
 

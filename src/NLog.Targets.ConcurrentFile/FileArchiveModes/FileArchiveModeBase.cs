@@ -60,7 +60,7 @@ namespace NLog.Targets.FileArchiveModes
         /// <param name="archiveFilePath">Base archive file pattern</param>
         /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept</param>
         /// <param name="maxArchiveDays">Maximum days of archive files that should be kept</param>
-        /// <returns>True, when archive cleanup is needed</returns>
+        /// <returns><see langword="true"/>, when archive cleanup is needed</returns>
         public virtual bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles, int maxArchiveDays)
         {
             if (maxArchiveFiles > 0 && _lastArchiveFileCount++ > maxArchiveFiles)

@@ -115,14 +115,14 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the layout that renders event Category.
         /// </summary>
-        /// <remarks>Default: <c>null</c></remarks>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Event Log Options' order='10' />
         public Layout<short>? Category { get; set; }
 
         /// <summary>
         /// Optional entry type. When not set, or when not convertible to <see cref="EventLogEntryType"/> then determined by <see cref="NLog.LogLevel"/>
         /// </summary>
-        /// <remarks>Default: <c>null</c></remarks>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Event Log Options' order='10' />
         public Layout<EventLogEntryType>? EntryType { get; set; }
 
@@ -145,7 +145,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the message length limit to write to the Event Log.
         /// </summary>
-        /// <remarks>Default: <c>30000</c></remarks>
+        /// <remarks>Default: <see langword="30000"/></remarks>
         /// <docgen category='Event Log Options' order='10' />
         public Layout<int> MaxMessageLength { get; set; } = EventLogMaxMessageLength;
 

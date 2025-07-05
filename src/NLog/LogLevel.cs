@@ -369,8 +369,8 @@ namespace NLog
         /// Determines whether the specified <see cref="NLog.LogLevel"/> instance is equal to this instance.
         /// </summary>
         /// <param name="other">The <see cref="NLog.LogLevel"/> to compare with this instance.</param>
-        /// <returns>Value of <c>true</c> if the specified <see cref="NLog.LogLevel"/> is equal to
-        /// this instance; otherwise, <c>false</c>.</returns>
+        /// <returns>Value of <see langword="true"/> if the specified <see cref="NLog.LogLevel"/> is equal to
+        /// this instance; otherwise, <see langword="false"/>.</returns>
         public bool Equals(LogLevel? other)
         {
             return _ordinal == other?._ordinal;

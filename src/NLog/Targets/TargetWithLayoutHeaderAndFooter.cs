@@ -81,7 +81,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the footer.
         /// </summary>
-        /// <remarks>Default: <c>null</c></remarks>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='3' />
         public Layout? Footer
         {
@@ -102,7 +102,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the header.
         /// </summary>
-        /// <remarks>Default: <c>null</c></remarks>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='2' />
         public Layout? Header
         {
