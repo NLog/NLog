@@ -100,12 +100,12 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             switch (ch)
             {
-                case '\r':
-                case '\n':
-                case '\u000C':  // FORM FEED (FF)
+                case '\r':      // CARRIAGE RETURN
+                case '\n':      // LINE FEED
+                case '\f':      // FORM FEED (FF)
                 case '\u0085':  // NEXT LINE (NEL)
                 case '\u2028':  // LINE SEPARATOR
-                case '\u2029': // PARAGRAPH SEPARATOR
+                case '\u2029':  // PARAGRAPH SEPARATOR
                     return true;
             }
             return false;
