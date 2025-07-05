@@ -84,29 +84,41 @@ namespace NLog.LayoutRenderers.Wrappers
                     orgLength = lineEndIndex > orgLength ? lineEndIndex - 1 : orgLength;
                     string str = builder.ToString(orgLength, builder.Length - orgLength);
                     builder.Length = orgLength;
-                    int current = 0;
-                    int index = IndexOfLineEndCharacters(str, 0);
-                    while (index > -1)
+
+                    bool ignoreNewLine = false;
+                    foreach (var chr in str)
                     {
-                        builder.Append(str.Substring(current, index - current));
-                        builder.Append(Replacement);
-                        if (index < str.Length - 1 && str[index] == '\r' && str[index + 1] == '\n')
+                        if (IsLineEndCharacter(chr))  // switches on chr, and allow method-reuse
                         {
-                            index += 2;
+                            if (!ignoreNewLine || chr != '\n')
+                            {
+                                builder.Append(Replacement);
+                            }
+                            ignoreNewLine = chr == '\r';
                         }
                         else
                         {
-                            index++;
+                            builder.Append(chr);
+                            ignoreNewLine = false;
                         }
-                        current = index;
-                        index = IndexOfLineEndCharacters(str, index);
-                    }
-                    if (current < str.Length - 1)
-                    {
-                        builder.Append(str.Substring(current));
                     }
                 }
             }
+        }
+
+        private static bool IsLineEndCharacter(char ch)
+        {
+            switch (ch)
+            {
+                case '\r':
+                case '\n':
+                case '\u0085':
+                case '\u2028':
+                case '\u000C':
+                case '\u2029':
+                    return true;
+            }
+            return false;
         }
 
         private static int IndexOfLineEndCharacters(string builder, int startPosition)
