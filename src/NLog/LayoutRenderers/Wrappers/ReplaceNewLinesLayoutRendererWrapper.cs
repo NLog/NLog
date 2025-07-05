@@ -78,12 +78,14 @@ namespace NLog.LayoutRenderers.Wrappers
             Inner?.Render(logEvent, builder);
             if (builder.Length > orgLength)
             {
-                if (ContainsLineEndCharacters(builder, orgLength))
+                int lineEndIndex = IndexOfLineEndCharacters(builder, orgLength);
+                if (lineEndIndex > -1)
                 {
+                    orgLength = lineEndIndex > orgLength ? lineEndIndex - 1 : orgLength;
                     string str = builder.ToString(orgLength, builder.Length - orgLength);
                     builder.Length = orgLength;
                     int current = 0;
-                    int index = IndexOfLineEndChar(str, 0);
+                    int index = IndexOfLineEndCharacters(str, 0);
                     while (index > -1)
                     {
                         builder.Append(str.Substring(current, index - current));
@@ -97,7 +99,7 @@ namespace NLog.LayoutRenderers.Wrappers
                             index++;
                         }
                         current = index;
-                        index = IndexOfLineEndChar(str, index);
+                        index = IndexOfLineEndCharacters(str, index);
                     }
                     if (current < str.Length - 1)
                     {
@@ -107,7 +109,7 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
-        private static int IndexOfLineEndChar(string builder, int startPosition)
+        private static int IndexOfLineEndCharacters(string builder, int startPosition)
         {
             for (int i = startPosition; i < builder.Length; i++)
             {
@@ -125,7 +127,7 @@ namespace NLog.LayoutRenderers.Wrappers
             return -1;
         }
 
-        private static bool ContainsLineEndCharacters(StringBuilder builder, int startPosition)
+        private static int IndexOfLineEndCharacters(StringBuilder builder, int startPosition)
         {
             for (int i = startPosition; i < builder.Length; i++)
             {
@@ -137,10 +139,10 @@ namespace NLog.LayoutRenderers.Wrappers
                     case '\u2028':
                     case '\u000C':
                     case '\u2029':
-                        return true;
+                        return i;
                 }
             }
-            return false;
+            return -1;
         }
 
 

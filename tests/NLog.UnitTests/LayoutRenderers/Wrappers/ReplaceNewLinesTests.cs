@@ -207,5 +207,17 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             // Assert
             Assert.Equal("line1 line2 line3 line4 line5 line6 line7 line8", result);
         }
+
+        [Fact]
+        public void ReplaceSingleLineEndingWithDefault()
+        {
+            // Arrange
+            var foo = "\n";
+            SimpleLayout l = "${replace-newlines:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal(" ", result);
+        }
     }
 }
