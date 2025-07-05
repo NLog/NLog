@@ -34,10 +34,8 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
-    using System.Linq;
     using System.Text;
     using NLog.Config;
-    using NLog.Internal;
 
     /// <summary>
     /// Replaces newline characters from the result of another layout renderer with spaces.
@@ -121,37 +119,13 @@ namespace NLog.LayoutRenderers.Wrappers
             return false;
         }
 
-        private static int IndexOfLineEndCharacters(string builder, int startPosition)
-        {
-            for (int i = startPosition; i < builder.Length; i++)
-            {
-                switch (builder[i])
-                {
-                    case '\r':
-                    case '\n':
-                    case '\u0085':
-                    case '\u2028':
-                    case '\u000C':
-                    case '\u2029':
-                        return i;
-                }
-            }
-            return -1;
-        }
-
         private static int IndexOfLineEndCharacters(StringBuilder builder, int startPosition)
         {
             for (int i = startPosition; i < builder.Length; i++)
             {
-                switch (builder[i])
+                if (IsLineEndCharacter(builder[i]))
                 {
-                    case '\r':
-                    case '\n':
-                    case '\u0085':
-                    case '\u2028':
-                    case '\u000C':
-                    case '\u2029':
-                        return i;
+                    return i;
                 }
             }
             return -1;
