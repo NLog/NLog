@@ -161,6 +161,30 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         }
 
         [Fact]
+        public void ReplaceUnicodeLineEndingsWithSpecifiedMulticharacterSeparationStringTest()
+        {
+            // Arrange
+            var foo = "line1\nline2\r\nline3\rline4\u0085line5\u2028line6\u000Cline7\u2029line8\r\n";
+            SimpleLayout l = "${replace-newlines:replacement=||||:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("line1||||line2||||line3||||line4||||line5||||line6||||line7||||line8||||", result);
+        }
+
+        [Fact]
+        public void ReplaceWindowsLineEndingsEndOfTextWithSpecifiedSeparationStringTest()
+        {
+            // Arrange
+            var foo = "line1\r\n";
+            SimpleLayout l = "${replace-newlines:replacement=|:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("line1|", result);
+        }
+
+        [Fact]
         public void ReplaceUnicodeLineEndingsWithDefault()
         {
             // Arrange
