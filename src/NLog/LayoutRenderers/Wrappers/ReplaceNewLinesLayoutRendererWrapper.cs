@@ -54,15 +54,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets a value indicating the string that should be used to replace newlines.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public string Replacement
-        {
-            get => _replacement;
-            set
-            {
-                _replacement = value;
-            }
-        }
-        private string _replacement = " ";
+        public string Replacement { get; set; } = " ";
 
         /// <summary>
         /// Gets or sets a value indicating the string that should be used to replace newlines.
