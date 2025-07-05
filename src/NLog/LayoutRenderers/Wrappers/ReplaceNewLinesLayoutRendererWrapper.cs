@@ -83,33 +83,50 @@ namespace NLog.LayoutRenderers.Wrappers
                 if (containsNewLines)
                 {
                     string str = builder.ToString(orgLength, builder.Length - orgLength);
-                    // If replacement is longer than single character then reserve some extra capacity in StringBuilder to avoid some resize operations.
-                    var sb = new StringBuilder(str.Length + (Replacement.Length <= 1 ? 0 : 10 * Replacement.Length));
-                    for (int i = 0; i < str.Length; i++)
+                    builder.Length = orgLength;
+                    int current = 0;
+                    int index = IndexOfLineEndChar(str, 0);
+                    while (index > -1)
                     {
-                        char currentChar = str[i];
-                        if (LineEndCharacters.Contains(currentChar))
+                        builder.Append(str.Substring(current, index - current));
+                        builder.Append(Replacement);
+                        if (index < str.Length - 1 && str[index] == '\r' && str[index + 1] == '\n')
                         {
-                            if (i < str.Length - 1 && currentChar == '\u000D' && str[i + 1] == '\u000A')
-                            {
-                                i++;
-                                sb.Append(Replacement);
-                            }
-                            else
-                            {
-                                sb.Append(Replacement);
-                            }
+                            index += 2;
                         }
                         else
                         {
-                            sb.Append(currentChar);
+                            index++;
                         }
+                        current = index;
+                        index = IndexOfLineEndChar(str, index);
                     }
-                    builder.Length = orgLength;
-                    builder.Append(sb.ToString());
+                    if (current < str.Length - 1)
+                    {
+                        builder.Append(str.Substring(current));
+                    }
                 }
             }
         }
+
+        private static int IndexOfLineEndChar(string builder, int startPosition)
+        {
+            for (int i = startPosition; i < builder.Length; i++)
+            {
+                switch (builder[i])
+                {
+                    case '\r':
+                    case '\n':
+                    case '\u0085':
+                    case '\u2028':
+                    case '\u000C':
+                    case '\u2029':
+                        return i;
+                }
+            }
+            return -1;
+        }
+
 
         /// <inheritdoc/>
         protected override string Transform(string text)
