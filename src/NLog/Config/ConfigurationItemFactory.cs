@@ -491,6 +491,7 @@ namespace NLog.Config
 #if !NETFRAMEWORK
             SafeRegisterNamedType(_targets, "eventlog", "NLog.Targets.EventLogTarget, NLog.WindowsEventLog", skipCheckExists);
 #endif
+            SafeRegisterNamedType(_targets, "gzipfile", "NLog.Targets.GZipFileTarget, NLog.Targets.GZipFile", skipCheckExists);
             SafeRegisterNamedType(_targets, "impersonatingwrapper", "NLog.Targets.Wrappers.ImpersonatingTargetWrapper, NLog.WindowsIdentity", skipCheckExists);
             SafeRegisterNamedType(_targets, "logreceiverservice", "NLog.Targets.LogReceiverWebServiceTarget, NLog.Wcf", skipCheckExists);
             SafeRegisterNamedType(_targets, "outputdebugstring", "NLog.Targets.OutputDebugStringTarget, NLog.OutputDebugString", skipCheckExists);
@@ -503,6 +504,7 @@ namespace NLog.Config
             SafeRegisterNamedType(_targets, "mail", "NLog.Targets.MailTarget, NLog.Targets.Mail", skipCheckExists);
             SafeRegisterNamedType(_targets, "email", "NLog.Targets.MailTarget, NLog.Targets.Mail", skipCheckExists);
             SafeRegisterNamedType(_targets, "smtp", "NLog.Targets.MailTarget, NLog.Targets.Mail", skipCheckExists);
+            SafeRegisterNamedType(_targets, "mailkit", "NLog.MailKit.MailTarget, NLog.MailKit", skipCheckExists);
             SafeRegisterNamedType(_targets, "performancecounter", "NLog.Targets.PerformanceCounterTarget, NLog.PerformanceCounter", skipCheckExists);
             SafeRegisterNamedType(_targets, "richtextbox", "NLog.Windows.Forms.RichTextBoxTarget, NLog.Windows.Forms", skipCheckExists);
             SafeRegisterNamedType(_targets, "messagebox", "NLog.Windows.Forms.MessageBoxTarget, NLog.Windows.Forms", skipCheckExists);
@@ -531,9 +533,14 @@ namespace NLog.Config
 #if !NET35 && !NET40
             SafeRegisterNamedType(_layoutRenderers, "configsetting", "NLog.Extensions.Logging.ConfigSettingLayoutRenderer, NLog.Extensions.Logging", skipCheckExists);
             SafeRegisterNamedType(_layoutRenderers, "microsoftconsolelayout", "NLog.Extensions.Logging.MicrosoftConsoleLayoutRenderer, NLog.Extensions.Logging", skipCheckExists);
+            SafeRegisterNamedType(_layoutRenderers, "hostappname", "NLog.Extensions.Hosting.HostAppNameLayoutRenderer, NLog.Extensions.Hosting", skipCheckExists);
+            SafeRegisterNamedType(_layoutRenderers, "hostenvironment", "NLog.Extensions.Hosting.HostEnvironmentLayoutRenderer, NLog.Extensions.Hosting", skipCheckExists);
+            SafeRegisterNamedType(_layoutRenderers, "hostrootdir", "NLog.Extensions.Hosting.HostRootDirLayoutRenderer, NLog.Extensions.Hosting", skipCheckExists);
 #endif
+            SafeRegisterNamedType(_layoutRenderers, "localip", "NLog.LayoutRenderers.LocalIpAddressLayoutRenderer, NLog.Targets.Network", skipCheckExists);
             SafeRegisterNamedType(_layoutRenderers, "performancecounter", "NLog.LayoutRenderers.PerformanceCounterLayoutRenderer, NLog.PerformanceCounter", skipCheckExists);
             SafeRegisterNamedType(_layoutRenderers, "registry", "NLog.LayoutRenderers.RegistryLayoutRenderer, NLog.WindowsRegistry", skipCheckExists);
+            SafeRegisterNamedType(_layoutRenderers, "regexreplace", "NLog.LayoutRenderers.RegexReplaceLayoutRendererWrapper, NLog.RegEx", skipCheckExists);
             SafeRegisterNamedType(_layoutRenderers, "windowsidentity", "NLog.LayoutRenderers.WindowsIdentityLayoutRenderer, NLog.WindowsIdentity", skipCheckExists);
             SafeRegisterNamedType(_layoutRenderers, "rtblink", "NLog.Windows.Forms.RichTextBoxLinkLayoutRenderer, NLog.Windows.Forms", skipCheckExists);
             SafeRegisterNamedType(_layoutRenderers, "activity", "NLog.LayoutRenderers.ActivityTraceLayoutRenderer, NLog.DiagnosticSource", skipCheckExists);
