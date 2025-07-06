@@ -114,6 +114,7 @@ namespace NLog.LayoutRenderers
         /// properties: Message, Type, ShortType, ToString, Method, StackTrace.
         /// This parameter value is case-insensitive.
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <c>ToString,Data</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public string Format
@@ -132,6 +133,7 @@ namespace NLog.LayoutRenderers
         /// properties: Message, Type, ShortType, ToString, Method, StackTrace.
         /// This parameter value is case-insensitive.
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public string? InnerFormat
         {
@@ -147,6 +149,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the separator used to concatenate parts specified in the Format.
         /// </summary>
+        /// <remarks>Default: <c> </c></remarks>
         /// <docgen category='Layout Options' order='50' />
         public string Separator
         {
@@ -163,6 +166,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the separator used to concatenate exception data specified in the Format.
         /// </summary>
+        /// <remarks>Default: <c>;</c></remarks>
         /// <docgen category='Layout Options' order='50' />
         public string ExceptionDataSeparator
         {
@@ -180,18 +184,21 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the maximum number of inner exceptions to include in the output.
         /// By default inner exceptions are not enabled for compatibility with NLog 1.0.
         /// </summary>
+        /// <remarks>Default: <see langword="0"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public int MaxInnerExceptionLevel { get; set; }
 
         /// <summary>
         /// Gets or sets the separator between inner exceptions.
         /// </summary>
+        /// <remarks>Default: <see cref="Environment.NewLine"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public string InnerExceptionSeparator { get; set; } = Environment.NewLine;
 
         /// <summary>
         /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public bool BaseException { get; set; }
 
@@ -199,11 +206,13 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets whether to collapse exception tree using <see cref="AggregateException.Flatten()"/>
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='50' />
 #else
         /// <summary>
         /// Gets or sets whether to collapse exception tree using AggregateException.Flatten()
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='50' />
 #endif
         public bool FlattenException { get; set; } = true;

@@ -50,6 +50,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the indent token.
         /// </summary>
+        /// <remarks>Default: <c>  </c></remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public Layout Indent { get; set; } = Layout.FromLiteral("  ");

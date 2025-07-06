@@ -76,10 +76,16 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Format string. Possible values: "Short", "Long" or custom like {0} {1}. Default "Long"
-        /// The first parameter is the AppDomain.Id, the second the second the AppDomain.FriendlyName
-        /// This string is used in <see cref="string.Format(string,object[])"/>
+        /// Gets or sets format-string for displaying <see cref="AppDomain"/> details.
+        /// This string is used in <see cref="string.Format(string,object[])"/> where
+        /// first parameter is <see cref="AppDomain.Id"/> and second is <see cref="AppDomain.FriendlyName"/>
         /// </summary>
+        /// <remarks>
+        /// Default: <c>Long</c> . How alias names are mapped:
+        /// <code>Short = {0:00}</code>
+        /// <code>Long = {0:0000}:{1}</code>
+        /// <code>Friendly = {1}</code>
+        /// </remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public string Format { get; set; } = LongFormatCode;

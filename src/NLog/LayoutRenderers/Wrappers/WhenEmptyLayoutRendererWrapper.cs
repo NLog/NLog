@@ -52,6 +52,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets the layout to be rendered when Inner-layout produces empty result.
         /// </summary>
+        /// <remarks>Default: <see cref="Layout.Empty"/></remarks>
         /// <docgen category="Layout Options" order="10"/>
         public Layout WhenEmpty { get; set; } = Layout.Empty;
 

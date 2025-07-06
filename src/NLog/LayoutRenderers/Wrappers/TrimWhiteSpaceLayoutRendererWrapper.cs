@@ -52,9 +52,9 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class TrimWhiteSpaceLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Gets or sets a value indicating whether lower case conversion should be applied.
+        /// Gets or sets a value indicating whether whitespace should be trimmed.
         /// </summary>
-        /// <value>A value of <see langword="true"/> if lower case conversion should be applied; otherwise, <see langword="false"/>.</value>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool TrimWhiteSpace { get; set; } = true;
 

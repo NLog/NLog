@@ -68,18 +68,20 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
-        public Environment.SpecialFolder Folder { get; set; }
+        public Environment.SpecialFolder Folder { get; set; } = Environment.SpecialFolder.CommonApplicationData;
 
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with the directory name.
         /// </summary>
-        /// <docgen category='Advanced Options' order='10' />
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
+        /// <docgen category='Advanced Options' order='50' />
         public string File { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the name of the directory to be Path.Combine()'d with the directory name.
         /// </summary>
-        /// <docgen category='Advanced Options' order='10' />
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
+        /// <docgen category='Advanced Options' order='50' />
         public string Dir { get; set; } = string.Empty;
 
         /// <inheritdoc/>

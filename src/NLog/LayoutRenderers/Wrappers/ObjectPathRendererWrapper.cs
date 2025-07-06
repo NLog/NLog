@@ -60,6 +60,7 @@ namespace NLog.LayoutRenderers.Wrappers
         ///
         /// Shortcut for <see cref="ObjectPath"/>
         /// </summary>
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category="Layout Options" order="10"/>
         public string Path
         {
@@ -70,6 +71,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets the object-property-navigation-path for lookup of nested property
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="string.Empty"/></remarks>
         /// <docgen category="Layout Options" order="10"/>
         public string ObjectPath
         {
@@ -80,13 +82,15 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Format string for conversion from object to string.
         /// </summary>
-        /// <docgen category="Layout Options" order="100"/>
+        /// <remarks>Default: <see langword="null"/></remarks>
+        /// <docgen category='Layout Options' order='50' />
         public string? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering.
         /// </summary>
-        /// <docgen category="Layout Options" order="100"/>
+        /// <remarks>Default: <see cref="CultureInfo.InvariantCulture"/></remarks>
+        /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <inheritdoc/>

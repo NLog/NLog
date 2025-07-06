@@ -54,21 +54,21 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets whether output should be encoded with Json-string escaping.
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category="Layout Options" order="10"/>
         public bool JsonEncode { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to escape non-ascii characters
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category="Layout Options" order="10"/>
         public bool EscapeUnicode { get; set; } = true;
 
         /// <summary>
         /// Should forward slashes be escaped? If <see langword="true"/>, / will be converted to \/
         /// </summary>
-        /// <remarks>
-        /// If not set explicitly then the value of the parent will be used as default.
-        /// </remarks>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category="Layout Options" order="10"/>
         [Obsolete("Marked obsolete with NLog 5.5. Should never escape forward slash")]
         [EditorBrowsable(EditorBrowsableState.Never)]

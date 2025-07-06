@@ -57,6 +57,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets the number of characters to pad the output to.
         /// </summary>
         /// <remarks>
+        /// Default: <see langword="0"/> .
         /// Positive padding values cause left padding, negative values
         /// cause right padding to the desired width.
         /// </remarks>
@@ -66,6 +67,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets the padding character.
         /// </summary>
+        /// <remarks>Default: <c> </c></remarks>
         /// <docgen category='Layout Options' order='10' />
         public char PadCharacter { get; set; } = ' ';
 
@@ -73,6 +75,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets a value indicating whether to trim the
         /// rendered text to the absolute value of the padding length.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool FixedLength { get; set; }
 
@@ -83,6 +86,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// or right-aligned (characters removed from the left). The
         /// default is left alignment.
         /// </summary>
+        /// <remarks>Default: <see cref="PaddingHorizontalAlignment.Left"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public PaddingHorizontalAlignment AlignmentOnTruncation { get; set; } = PaddingHorizontalAlignment.Left;
 

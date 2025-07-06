@@ -52,24 +52,28 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets a value indicating whether to render the class name.
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool ClassName { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to render the include the namespace with <see cref="ClassName"/>.
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeNamespace { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to render the method name.
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool MethodName { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether the method name will be cleaned up if it is detected as an anonymous delegate.
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool CleanNamesOfAnonymousDelegates { get; set; } = true;
 
@@ -77,30 +81,35 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether the method and class names will be cleaned up if it is detected as an async continuation
         /// (everything after an await-statement inside of an async method).
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool CleanNamesOfAsyncContinuations { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the number of frames to skip.
         /// </summary>
+        /// <remarks>Default: <see langword="0"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public int SkipFrames { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to render the source file name and line number.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool FileName { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include source file path.
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeSourcePath { get; set; } = true;
 
         /// <summary>
         /// Logger should capture StackTrace, if it was not provided manually
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool CaptureStackTrace { get; set; } = true;
 

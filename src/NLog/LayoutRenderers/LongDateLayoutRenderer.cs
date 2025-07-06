@@ -52,6 +52,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool UniversalTime { get => _universalTime ?? false; set => _universalTime = value; }
         private bool? _universalTime;

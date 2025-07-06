@@ -69,6 +69,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets string that will be used to separate key/value pairs.
         /// </summary>
+        /// <remarks>Default: <c>, </c></remarks>
         /// <docgen category='Layout Options' order='10' />
         public string Separator
         {
@@ -85,13 +86,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets whether empty property-values should be included in the output.
         /// </summary>
-        /// <remarks>Empty value is either null or empty string</remarks>
+        /// <remarks>Default: <see langword="false"/> . Empty value is either null or empty string</remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeEmptyValues { get; set; }
 
         /// <summary>
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeProperties { get; set; }
 
@@ -147,6 +149,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the culture used for rendering.
         /// </summary>
+        /// <remarks>Default: <see cref="CultureInfo.InvariantCulture"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 

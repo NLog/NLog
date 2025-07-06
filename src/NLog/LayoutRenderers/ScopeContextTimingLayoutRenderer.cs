@@ -52,18 +52,21 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets whether to only include the duration of the last scope created
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool CurrentScope { get; set; }
 
         /// <summary>
         /// Gets or sets whether to just display the scope creation time, and not the duration
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool StartTime { get; set; }
 
         /// <summary>
         /// Gets or sets whether to just display the scope creation time, and not the duration
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by StartTime. Marked obsolete on NLog 6.0")]
         public bool ScopeBeginTime { get => StartTime; set => StartTime = value; }
@@ -73,13 +76,15 @@ namespace NLog.LayoutRenderers
         ///
         /// When Format has not been specified, then it will render TimeSpan.TotalMilliseconds
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public string? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
+        /// <remarks>Default: <see cref="CultureInfo.InvariantCulture"/></remarks>
+        /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <inheritdoc/>

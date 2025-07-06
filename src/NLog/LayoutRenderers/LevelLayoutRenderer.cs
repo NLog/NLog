@@ -64,13 +64,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets a value indicating the output format of the level.
         /// </summary>
+        /// <remarks>Default: <see cref="LevelFormat.Name"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public LevelFormat Format { get; set; } = LevelFormat.Name;
 
         /// <summary>
         /// Gets or sets a value indicating whether upper case conversion should be applied.
         /// </summary>
-        /// <value>A value of <see langword="true"/> if upper case conversion should be applied otherwise, <see langword="false"/>.</value>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool Uppercase { get; set; }
 

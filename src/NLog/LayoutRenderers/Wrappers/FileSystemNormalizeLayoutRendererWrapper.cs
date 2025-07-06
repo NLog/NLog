@@ -54,6 +54,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets a value indicating whether to modify the output of this renderer so it can be used as a part of file path
         /// (illegal characters are replaced with '_').
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Advanced Options' order='50' />
         public bool FSNormalize { get; set; } = true;
 

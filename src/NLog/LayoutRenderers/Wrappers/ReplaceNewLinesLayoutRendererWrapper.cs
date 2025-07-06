@@ -53,12 +53,14 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating the string that should be used to replace newlines.
         /// </summary>
+        /// <remarks>Default: <c> </c></remarks>
         /// <docgen category='Layout Options' order='10' />
         public string Replacement { get; set; } = " ";
 
         /// <summary>
-        /// Gets or sets a value indicating the string that should be used to replace newlines.
+        /// Gets or sets a value indicating the string that should be used to replace newlines (alias for <see cref="Replacement"/>)
         /// </summary>
+        /// <remarks>Default: <c> </c></remarks>
         /// <docgen category='Layout Options' order='50' />
         public string ReplaceNewLines { get => Replacement; set => Replacement = value; }
 

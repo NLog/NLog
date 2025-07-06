@@ -54,6 +54,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// If <see cref="LogEventInfo.HasProperties"/> is not found, print this layout.
         /// </summary>
+        /// <remarks>Default: <see cref="Layout.Empty"/></remarks>
         /// <docgen category="Condition Options" order="10"/>
         public Layout Else { get; set; } = Layout.Empty;
 

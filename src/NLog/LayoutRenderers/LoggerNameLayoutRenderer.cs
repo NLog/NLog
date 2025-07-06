@@ -52,63 +52,67 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets a value indicating whether to render short logger name (the part after the trailing dot character).
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool ShortName { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to render prefix of logger name (the part before the trailing dot character).
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool PrefixName { get; set; }
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            var loggerName = logEvent.LoggerName;
             if (ShortName)
             {
-                int lastDot = TryGetLastDotForShortName(logEvent);
+                int lastDot = TryGetLastDotForShortName(loggerName);
                 if (lastDot >= 0)
                 {
-                    builder.Append(logEvent.LoggerName, lastDot + 1, logEvent.LoggerName.Length - lastDot - 1);
+                    builder.Append(loggerName, lastDot + 1, loggerName.Length - lastDot - 1);
                     return;
                 }
             }
             else if (PrefixName)
             {
-                int lastDot = TryGetLastDotForShortName(logEvent);
+                int lastDot = TryGetLastDotForShortName(loggerName);
                 if (lastDot > 0)
                 {
-                    builder.Append(logEvent.LoggerName, 0, lastDot);
+                    builder.Append(loggerName, 0, lastDot);
                     return;
                 }
             }
-            builder.Append(logEvent.LoggerName);
+            builder.Append(loggerName);
         }
 
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
+            var loggerName = logEvent.LoggerName;
             if (ShortName)
             {
-                int lastDot = TryGetLastDotForShortName(logEvent);
+                int lastDot = TryGetLastDotForShortName(loggerName);
                 if (lastDot >= 0)
                 {
-                    return logEvent.LoggerName.Substring(lastDot + 1);
+                    return loggerName.Substring(lastDot + 1);
                 }
             }
             else if (PrefixName)
             {
-                int lastDot = TryGetLastDotForShortName(logEvent);
+                int lastDot = TryGetLastDotForShortName(loggerName);
                 if (lastDot > 0)
                 {
-                    return logEvent.LoggerName.Substring(0, lastDot);
+                    return loggerName.Substring(0, lastDot);
                 }
             }
-            return logEvent.LoggerName ?? string.Empty;
+            return loggerName ?? string.Empty;
         }
 
-        private static int TryGetLastDotForShortName(LogEventInfo logEvent)
+        private static int TryGetLastDotForShortName(string loggerName)
         {
-            return logEvent.LoggerName?.LastIndexOf('.') ?? -1;
+            return loggerName?.LastIndexOf('.') ?? -1;
         }
     }
 }

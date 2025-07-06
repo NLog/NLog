@@ -54,18 +54,21 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the number of top stack frames to be rendered.
         /// </summary>
+        /// <remarks>Default: <see langword="-1"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public int TopFrames { get; set; } = -1;
 
         /// <summary>
         /// Gets or sets the number of bottom stack frames to be rendered.
         /// </summary>
+        /// <remarks>Default: <see langword="-1"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public int BottomFrames { get; set; } = -1;
 
         /// <summary>
         /// Gets or sets the separator to be used for concatenating nested logical context output.
         /// </summary>
+        /// <remarks>Default: <c> </c></remarks>
         /// <docgen category='Layout Options' order='100' />
         public string Separator
         {
@@ -82,12 +85,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets how to format each nested state. Ex. like JSON = @
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public string? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering.
         /// </summary>
+        /// <remarks>Default: <see cref="CultureInfo.InvariantCulture"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 

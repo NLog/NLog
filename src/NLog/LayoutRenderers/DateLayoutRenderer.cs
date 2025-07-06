@@ -61,12 +61,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the culture used for rendering.
         /// </summary>
+        /// <remarks>Default: <see cref="CultureInfo.InvariantCulture"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <summary>
         /// Gets or sets the date format. Can be any argument accepted by DateTime.ToString(format).
         /// </summary>
+        /// <remarks>Default: <c>yyyy/MM/dd HH:mm:ss.fff</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public string Format
@@ -91,6 +93,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public bool UniversalTime
         {

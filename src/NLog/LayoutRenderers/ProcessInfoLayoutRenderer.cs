@@ -56,19 +56,23 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the property to retrieve.
         /// </summary>
+        /// <remarks>Default: <see cref="ProcessInfoProperty.Id"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public ProcessInfoProperty Property { get; set; } = ProcessInfoProperty.Id;
 
         /// <summary>
-        /// Gets or sets the format-string to use if the property supports it (Ex. DateTime / TimeSpan / Enum)
+        /// Gets or sets the format string used when converting the property value to a string, when the
+        /// property supports formatting (e.g., <see cref="DateTime"/>, <see cref="TimeSpan"/>, or enum types).
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
+        /// <remarks>Default: <see langword="null"/></remarks>
+        /// <docgen category='Layout Options' order='50' />
         public string? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering.
         /// </summary>
+        /// <remarks>Default: <see cref="CultureInfo.InvariantCulture"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 

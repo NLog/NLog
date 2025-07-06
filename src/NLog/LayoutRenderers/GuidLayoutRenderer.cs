@@ -52,12 +52,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the GUID format as accepted by Guid.ToString() method.
         /// </summary>
+        /// <remarks>Default: <c>N</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         public string Format { get; set; } = "N";
 
         /// <summary>
         /// Generate the Guid from the NLog LogEvent (Will be the same for all targets)
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public bool GeneratedFromLogEvent { get; set; }
 

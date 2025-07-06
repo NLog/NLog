@@ -74,6 +74,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the initial value of the counter.
         /// </summary>
+        /// <remarks>Default: <see langword="0"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public long Value { get => _value; set => _value = value; }
         private long _value;
@@ -81,12 +82,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the value for incrementing the counter for every layout rendering.
         /// </summary>
+        /// <remarks>Default: <see langword="1"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public int Increment { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets the name of the sequence. Different named sequences can have individual values.
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public Layout? Sequence { get; set; }
 
