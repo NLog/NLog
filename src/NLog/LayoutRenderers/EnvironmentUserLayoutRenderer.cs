@@ -72,7 +72,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the default value to be used when the Domain is not set.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />'
+        /// <docgen category='Layout Options' order='10' />
         /// <remarks>Default: <c>DomainUnknown</c></remarks>
         public string DefaultDomain { get; set; } = "DomainUnknown";
 

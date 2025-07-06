@@ -78,7 +78,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets format-string for displaying <see cref="AppDomain"/> details.
         /// This string is used in <see cref="string.Format(string,object[])"/> where
-        /// first paramter is <see cref="AppDomain.Id"/> and second is <see cref="AppDomain.FriendlyName"/>
+        /// first parameter is <see cref="AppDomain.Id"/> and second is <see cref="AppDomain.FriendlyName"/>
         /// </summary>
         /// <remarks>
         /// Default: <c>Long</c> . How alias names are mapped:

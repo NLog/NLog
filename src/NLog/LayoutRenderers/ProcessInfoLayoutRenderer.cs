@@ -62,7 +62,8 @@ namespace NLog.LayoutRenderers
         public ProcessInfoProperty Property { get; set; } = ProcessInfoProperty.Id;
 
         /// <summary>
-        /// Format string for conversion from object to string. when property supports it (Ex. DateTime / TimeSpan / Enum)
+        /// Gets or sets the format string used when converting the property value to a string, when the
+        /// property supports formatting (e.g., <see cref="DateTime"/>, <see cref="TimeSpan"/>, or enum types).
         /// </summary>
         /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='50' />

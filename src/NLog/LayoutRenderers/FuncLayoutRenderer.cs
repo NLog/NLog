@@ -70,7 +70,6 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Name used in config without ${}. E.g. "test" could be used as "${test}".
         /// </summary>
-        /// <remarks>Default: <see langword="null"/></remarks>
         public string LayoutRendererName { get; }
 
         /// <summary>

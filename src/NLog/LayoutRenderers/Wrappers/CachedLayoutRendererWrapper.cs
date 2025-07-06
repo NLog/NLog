@@ -89,7 +89,7 @@ namespace NLog.LayoutRenderers.Wrappers
         public ClearCacheOption ClearCache { get; set; } = ClearCacheOption.OnInit | ClearCacheOption.OnClose;
 
         /// <summary>
-        /// Cachekey. If the cachekey changes, resets the value. For example, the cachekey would be the current day.s
+        /// Gets or sets whether to reset cached value when CacheKey output changes. Example CacheKey could render current day, so the cached-value is reset on day roll.
         /// </summary>
         /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='10' />
