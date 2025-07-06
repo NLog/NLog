@@ -53,6 +53,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the name of the item.
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public string Item { get; set; } = string.Empty;
@@ -60,12 +61,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Format string for conversion from object to string.
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public string? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering.
         /// </summary>
+        /// <remarks>Default: <see cref="CultureInfo.InvariantCulture"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 

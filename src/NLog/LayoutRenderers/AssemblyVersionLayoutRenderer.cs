@@ -56,6 +56,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The (full) name of the assembly. If <c>null</c>, using the entry assembly.
         /// </summary>
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public string Name { get; set; } = string.Empty;
@@ -63,16 +64,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the type of assembly version to retrieve.
         /// </summary>
-        /// <remarks>
-        /// Some version type and platform combinations are not fully supported.
-        /// - UWP earlier than .NET Standard 1.5: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned unless the <see cref="Name"/> parameter is specified.
-        /// </remarks>
+        /// <remarks>Default: <see cref="AssemblyVersionType.Assembly"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public AssemblyVersionType Type { get; set; } = AssemblyVersionType.Assembly;
 
         ///<summary>
         /// The default value to render if the Version is not available
         ///</summary>
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public string Default { get => _default ?? GenerateDefaultValue(); set => _default = value; }
         private string? _default;
@@ -81,10 +80,8 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the custom format of the assembly version output.
         /// </summary>
         /// <remarks>
-        /// Supported placeholders are 'major', 'minor', 'build' and 'revision'.
-        /// The default .NET template for version numbers is 'major.minor.build.revision'. See
-        /// https://docs.microsoft.com/en-gb/dotnet/api/system.version?view=netframework-4.7.2#remarks
-        /// for details.
+        /// Default: <c>major.minor.build.revision</c> .
+        /// Supported placeholders are 'major', 'minor', 'build' and 'revision'. For more details <see href="https://learn.microsoft.com/dotnet/api/system.version"/>
         /// </remarks>
         /// <docgen category='Layout Options' order='10' />
         public string Format

@@ -58,6 +58,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <value>The layout to be wrapped.</value>
         /// <remarks>This variable is for backwards compatibility</remarks>
         /// <docgen category='Layout Options' order='10' />
+        [Obsolete("Replaced by Inner. Marked obsolete with NLog 2.0")]
         public Layout Text
         {
             get => Inner;

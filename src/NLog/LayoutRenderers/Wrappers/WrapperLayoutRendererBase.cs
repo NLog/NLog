@@ -53,6 +53,7 @@ namespace NLog.LayoutRenderers.Wrappers
         ///
         /// [DefaultParameter] so Inner: is not required if it's the first
         /// </summary>
+        /// <remarks>Default: <see cref="Layout.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public Layout Inner { get; set; } = Layout.Empty;

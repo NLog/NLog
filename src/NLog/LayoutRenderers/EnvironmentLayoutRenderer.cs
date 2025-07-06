@@ -52,6 +52,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the name of the environment variable.
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public string Variable { get; set; } = string.Empty;
@@ -59,6 +60,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the default value to be used when the environment variable is not set.
         /// </summary>
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public string Default { get; set; } = string.Empty;
 

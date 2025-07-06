@@ -60,6 +60,7 @@ namespace NLog.LayoutRenderers
         ///<summary>
         /// The AppSetting item-name
         ///</summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public string Item { get; set; } = string.Empty;
@@ -76,6 +77,7 @@ namespace NLog.LayoutRenderers
         ///<summary>
         /// The default value to render if the AppSetting value is null.
         ///</summary>
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public string Default { get; set; } = string.Empty;
 

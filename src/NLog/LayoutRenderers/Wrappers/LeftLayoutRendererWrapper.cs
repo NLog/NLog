@@ -51,14 +51,16 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class LeftLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Gets or sets the length in characters.
+        /// Gets or sets the length in characters. Zero or negative means disabled.
         /// </summary>
+        /// <remarks>Default: <see langword="0"/></remarks>
         /// <docgen category="Layout Options" order="10"/>
         public int Length { get; set; }
 
         /// <summary>
         /// Same as <see cref="Length"/>-property, so it can be used as ambient property.
         /// </summary>
+        /// <remarks>Default: <see langword="0"/></remarks>
         /// <example>
         /// ${message:truncate=80}
         /// </example>

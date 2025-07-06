@@ -47,11 +47,9 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class WrapLineLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Gets or sets the line length for wrapping.
+        /// Gets or sets the line length for wrapping. Only positive values are allowed.
         /// </summary>
-        /// <remarks>
-        /// Only positive values are allowed
-        /// </remarks>
+        /// <remarks>Default: <see langword="80"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public int WrapLine { get; set; } = 80;
 

@@ -50,6 +50,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the name of the parameter.
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public string Parameter { get; set; } = string.Empty;

@@ -60,13 +60,14 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating whether upper case conversion should be applied.
         /// </summary>
-        /// <value>A value of <see langword="true"/> if upper case conversion should be applied otherwise, <see langword="false"/>.</value>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool Uppercase { get; set; } = true;
 
         /// <summary>
         /// Same as <see cref="Uppercase"/>-property, so it can be used as ambient property.
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <example>
         /// ${level:toupper}
         /// </example>
@@ -76,6 +77,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets the culture used for rendering.
         /// </summary>
+        /// <remarks>Default: <see cref="CultureInfo.InvariantCulture"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 

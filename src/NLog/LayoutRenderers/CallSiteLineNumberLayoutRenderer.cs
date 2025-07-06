@@ -51,12 +51,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the number of frames to skip.
         /// </summary>
+        /// <remarks>Default: <see langword="0"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public int SkipFrames { get; set; }
 
         /// <summary>
         /// Logger should capture StackTrace, if it was not provided manually
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool CaptureStackTrace { get; set; } = true;
 

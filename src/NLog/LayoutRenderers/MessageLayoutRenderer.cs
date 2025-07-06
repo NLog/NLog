@@ -50,28 +50,23 @@ namespace NLog.LayoutRenderers
     public class MessageLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MessageLayoutRenderer" /> class.
-        /// </summary>
-        public MessageLayoutRenderer()
-        {
-            ExceptionSeparator = "|";
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether to log exception along with message.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool WithException { get; set; }
 
         /// <summary>
         /// Gets or sets the string that separates message from the exception.
         /// </summary>
+        /// <remarks>Default: <c>|</c></remarks>
         /// <docgen category='Layout Options' order='10' />
-        public string ExceptionSeparator { get; set; }
+        public string ExceptionSeparator { get; set; } = "|";
 
         /// <summary>
         /// Gets or sets whether it should render the raw message without formatting parameters
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool Raw { get; set; }
 

@@ -52,31 +52,23 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class UrlEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UrlEncodeLayoutRendererWrapper" /> class.
-        /// </summary>
-        public UrlEncodeLayoutRendererWrapper()
-        {
-            SpaceAsPlus = true;
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether spaces should be translated to '+' or '%20'.
         /// </summary>
-        /// <value>A value of <see langword="true"/> if space should be translated to '+'; otherwise, <see langword="false"/>.</value>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
-        public bool SpaceAsPlus { get; set; }
+        public bool SpaceAsPlus { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value whether escaping be done according to Rfc3986 (Supports Internationalized Resource Identifiers - IRIs)
         /// </summary>
-        /// <value>A value of <see langword="true"/> if Rfc3986; otherwise, <see langword="false"/> for legacy Rfc2396.</value>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public bool EscapeDataRfc3986 { get; set; }
 
         /// <summary>
         /// Gets or sets a value whether escaping be done according to the old NLog style (Very non-standard)
         /// </summary>
-        /// <value>A value of <see langword="true"/> if legacy encoding; otherwise, <see langword="false"/> for standard UTF8 encoding.</value>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         [Obsolete("Instead use default Rfc2396 or EscapeDataRfc3986. Marked obsolete with NLog v5.3")]
         [EditorBrowsable(EditorBrowsableState.Never)]

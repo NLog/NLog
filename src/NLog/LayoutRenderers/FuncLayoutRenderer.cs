@@ -70,6 +70,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Name used in config without ${}. E.g. "test" could be used as "${test}".
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         public string LayoutRendererName { get; }
 
         /// <summary>
@@ -81,12 +82,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Format string for conversion from object to string.
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public string? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering.
         /// </summary>
+        /// <remarks>Default: <see cref="CultureInfo.InvariantCulture"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 

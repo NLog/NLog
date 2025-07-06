@@ -50,6 +50,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the property to retrieve.
         /// </summary>
+        /// <remarks>Default: <see cref="GarbageCollectorProperty.TotalMemory"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public GarbageCollectorProperty Property { get; set; } = GarbageCollectorProperty.TotalMemory;
 

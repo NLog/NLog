@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets the text to search for.
         /// </summary>
-        /// <value>The text search for.</value>
+        /// <remarks><b>[Required]</b> Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public string SearchFor
         {
@@ -72,7 +72,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets the replacement string.
         /// </summary>
-        /// <value>The replacement string.</value>
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public string ReplaceWith
         {
@@ -89,14 +89,14 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case.
         /// </summary>
-        /// <value>A value of <see langword="true"/> if case should be ignored when searching; otherwise, <see langword="false"/>.</value>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Condition Options' order='10' />
         public bool IgnoreCase { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to search for whole words
         /// </summary>
-        /// <value>A value of <see langword="true"/> if whole words should be searched for; otherwise, <see langword="false"/>.</value>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Condition Options' order='10' />
         public bool WholeWords { get; set; }
 

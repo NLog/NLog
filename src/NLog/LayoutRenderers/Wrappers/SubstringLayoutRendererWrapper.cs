@@ -57,14 +57,14 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets the start index.
         /// </summary>
-        /// <value>Index</value>
+        /// <remarks>Default: <see langword="0"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public int Start { get; set; }
 
         /// <summary>
         /// Gets or sets the length in characters. If <c>null</c>, then the whole string
         /// </summary>
-        /// <value>Index</value>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public int? Length { get; set; }
 

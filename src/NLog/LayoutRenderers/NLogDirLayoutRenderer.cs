@@ -54,12 +54,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with the directory name.
         /// </summary>
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Advanced Options' order='50' />
         public string File { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the name of the directory to be Path.Combine()'d with the directory name.
         /// </summary>
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Advanced Options' order='50' />
         public string Dir { get; set; } = string.Empty;
 
