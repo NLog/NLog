@@ -64,7 +64,7 @@ namespace NLog.Internal.FileAppenders
         /// Gets or sets a value indicating whether to create directories if they do not exist.
         /// </summary>
         /// <remarks>
-        /// Setting this to false may improve performance a bit, but you'll receive an error
+        /// Setting this to <see langword="false"/> may improve performance a bit, but you'll receive an error
         /// when attempting to write to a directory that's not present.
         /// </remarks>
         bool CreateDirs { get; }

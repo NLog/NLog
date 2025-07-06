@@ -187,7 +187,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the separator between inner exceptions.
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
-        public string InnerExceptionSeparator { get; set; } = EnvironmentHelper.NewLine;
+        public string InnerExceptionSeparator { get; set; } = Environment.NewLine;
 
         /// <summary>
         /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
@@ -441,7 +441,7 @@ namespace NLog.LayoutRenderers
                 sb.Append($"{ex.GetType()}: {exceptionMessage}");
                 if (innerException != null)
                 {
-                    sb.Append(Environment.NewLine);
+                    sb.AppendLine();
                     AppendToString(sb, innerException);
                 }
             }

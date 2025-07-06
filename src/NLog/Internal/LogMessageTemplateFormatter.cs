@@ -49,7 +49,7 @@ namespace NLog.Internal
         private IValueFormatter? _valueFormatter;
 
         /// <summary>
-        /// When true: Do not fallback to StringBuilder.Format for positional templates
+        /// When <see langword="true"/> Do not fallback to StringBuilder.Format for positional templates
         /// </summary>
         private readonly bool _forceMessageTemplateRenderer;
         private readonly bool _singleTargetOnly;
@@ -58,9 +58,8 @@ namespace NLog.Internal
         /// New formatter
         /// </summary>
         /// <param name="logFactory"></param>
-        /// <param name="forceMessageTemplateRenderer">When true: Do not fallback to StringBuilder.Format for positional templates</param>
+        /// <param name="forceMessageTemplateRenderer">When <see langword="true"/> Do not fallback to StringBuilder.Format for positional templates</param>
         /// <param name="singleTargetOnly"></param>
-        /// 
         public LogMessageTemplateFormatter(LogFactory logFactory, bool forceMessageTemplateRenderer, bool singleTargetOnly)
         {
             _logFactory = logFactory;

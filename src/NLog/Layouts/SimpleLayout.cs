@@ -156,7 +156,7 @@ namespace NLog.Layouts
         public bool IsFixedText => FixedText != null;
 
         /// <summary>
-        /// Get the fixed text. Only set when <see cref="IsFixedText"/> is <c>true</c>
+        /// Get the fixed text. Only set when <see cref="IsFixedText"/> is <see langword="true"/>
         /// </summary>
         public string? FixedText { get; }
 

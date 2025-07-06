@@ -122,7 +122,7 @@ namespace NLog.Layouts
         /// Parses the specified string as LayoutRenderer-expression into a <see cref="SimpleLayout"/>.
         /// </summary>
         /// <param name="layoutText">The layout string.</param>
-        /// <param name="throwConfigExceptions">Whether <see cref="NLogConfigurationException"/> should be thrown on parse errors (false = replace unrecognized tokens with a space).</param>
+        /// <param name="throwConfigExceptions">Whether <see cref="NLogConfigurationException"/> should be thrown on parse errors (<see langword="false"/> = replace unrecognized tokens with a space).</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
         public static Layout FromString([Localizable(false)] string layoutText, bool throwConfigExceptions)
         {
@@ -515,8 +515,8 @@ namespace NLog.Layouts
         /// Try get value
         /// </summary>
         /// <param name="logEvent"></param>
-        /// <param name="rawValue">rawValue if return result is true</param>
-        /// <returns>false if we could not determine the rawValue</returns>
+        /// <param name="rawValue">rawValue if return result is <see langword="true"/></param>
+        /// <returns><see langword="false"/> if we could not determine the rawValue</returns>
         internal virtual bool TryGetRawValue(LogEventInfo logEvent, out object? rawValue)
         {
             rawValue = null;

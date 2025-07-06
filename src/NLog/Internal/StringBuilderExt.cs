@@ -351,7 +351,7 @@ namespace NLog.Internal
         /// <remarks>
         /// Correct implementation of <see cref="StringBuilder.Equals(StringBuilder)" /> that also works when <see cref="StringBuilder.Capacity"/> is not the same
         /// </remarks>
-        /// <returns>True when content is the same</returns>
+        /// <returns><see langword="true"/> when content is the same</returns>
         public static bool EqualTo(this StringBuilder builder, StringBuilder other)
         {
             var builderLength = builder.Length;
@@ -372,7 +372,7 @@ namespace NLog.Internal
         /// <summary>
         /// Compares the contents of a StringBuilder and a String
         /// </summary>
-        /// <returns>True when content is the same</returns>
+        /// <returns><see langword="true"/> when content is the same</returns>
         public static bool EqualTo(this StringBuilder builder, string other)
         {
             if (builder.Length != other.Length)

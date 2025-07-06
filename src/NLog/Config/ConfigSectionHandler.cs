@@ -83,7 +83,7 @@ namespace NLog.Config
         /// of the relevant app.config section.
         /// </summary>
         /// <param name="reader">The XmlReader that reads from the configuration file.</param>
-        /// <param name="serializeCollectionKey">true to serialize only the collection key properties; otherwise, false.</param>
+        /// <param name="serializeCollectionKey"><see langword="true"/> to serialize only the collection key properties; otherwise, <see langword="false"/>.</param>
         protected override void DeserializeElement(XmlReader reader, bool serializeCollectionKey)
         {
             try

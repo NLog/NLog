@@ -60,7 +60,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating whether upper case conversion should be applied.
         /// </summary>
-        /// <value>A value of <c>true</c> if upper case conversion should be applied otherwise, <c>false</c>.</value>
+        /// <value>A value of <see langword="true"/> if upper case conversion should be applied otherwise, <see langword="false"/>.</value>
         /// <docgen category='Layout Options' order='10' />
         public bool Uppercase { get; set; } = true;
 

@@ -70,18 +70,21 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the condition that must be met in order to set the specified foreground and background color.
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Highlighting Rules' order='10' />
         public ConditionExpression? Condition { get; set; }
 
         /// <summary>
         /// Gets or sets the foreground color.
         /// </summary>
+        /// <remarks>Default: <see cref="ConsoleOutputColor.NoChange"/></remarks>
         /// <docgen category='Highlighting Rules' order='10' />
         public ConsoleOutputColor ForegroundColor { get; set; } = ConsoleOutputColor.NoChange;
 
         /// <summary>
         /// Gets or sets the background color.
         /// </summary>
+        /// <remarks>Default: <see cref="ConsoleOutputColor.NoChange"/></remarks>
         /// <docgen category='Highlighting Rules' order='10' />
         public ConsoleOutputColor BackgroundColor { get; set; } = ConsoleOutputColor.NoChange;
 

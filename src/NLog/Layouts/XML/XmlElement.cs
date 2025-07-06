@@ -64,9 +64,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Name of the element
         /// </summary>
-        /// <remarks>
-        /// Default value "item"
-        /// </remarks>
+        /// <remarks><b>[Required]</b> Default: <c>item</c></remarks>
         /// <docgen category='Layout Options' order='1' />
         public string Name
         {
@@ -77,6 +75,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Value inside the element
         /// </summary>
+        /// <remarks>Default: <see cref="Layout.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public Layout Value
         {
@@ -87,12 +86,14 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the layout used for rendering the XML-element InnerText.
         /// </summary>
+        /// <remarks>Default: <see cref="Layout.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public Layout Layout { get => Value; set => Value = value; }
 
         /// <summary>
         /// Gets or sets whether output should be encoded with XML-string escaping, or be treated as valid xml-element-value
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public bool Encode
         {
@@ -103,6 +104,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets whether output should be wrapped using CDATA section instead of XML-string escaping
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         public bool CDataEncode 
         {
             get => LayoutWrapper.CDataEncode;

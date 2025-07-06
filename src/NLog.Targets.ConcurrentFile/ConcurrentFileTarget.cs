@@ -206,7 +206,7 @@ namespace NLog.Targets
 
         /// <summary>
         /// Cleanup invalid values in a filename, e.g. slashes in a filename. If set to <c>true</c>, this can impact the performance of massive writes.
-        /// If set to <c>false</c>, nothing gets written when the filename is wrong.
+        /// If set to <see langword="false"/>, nothing gets written when the filename is wrong.
         /// </summary>
         /// <docgen category='Output Options' order='100' />
         public bool CleanupFileName
@@ -247,7 +247,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to create directories if they do not exist.
         /// </summary>
         /// <remarks>
-        /// Setting this to false may improve performance a bit, but you'll receive an error
+        /// Setting this to <see langword="false"/> may improve performance a bit, but you'll receive an error
         /// when attempting to write to a directory that's not present.
         /// </remarks>
         /// <docgen category='Output Options' order='50' />
@@ -272,8 +272,8 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to keep log file open instead of opening and closing it on each logging event.
         /// </summary>
         /// <remarks>
-        /// KeepFileOpen = true gives the best performance, and ensure the file-lock is not lost to other applications.<br/>
-        /// KeepFileOpen = false gives the best compability, but slow performance and lead to file-locking issues with other applications.
+        /// KeepFileOpen = <see langword="true"/> gives the best performance, and ensure the file-lock is not lost to other applications.<br/>
+        /// KeepFileOpen = <see langword="false"/> gives the best compatibility, but slow performance and lead to file-locking issues with other applications.
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
         public bool KeepFileOpen
@@ -410,7 +410,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="KeepFileOpen"/> = <c>false</c> with NLog v5.3.
+        /// Obsolete and replaced by <see cref="KeepFileOpen"/> = <see langword="false"/> with NLog v5.3.
         /// Gets or sets a value indicating whether concurrent writes to the log file by multiple processes on different network hosts.
         /// </summary>
         /// <remarks>
@@ -424,7 +424,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to write BOM (byte order mark) in created files.
         ///
-        /// Defaults to true for UTF-16 and UTF-32
+        /// Defaults to <see langword="true"/> for UTF-16 and UTF-32
         /// </summary>
         /// <docgen category='Output Options' order='50' />
         public bool WriteBom
@@ -490,7 +490,7 @@ namespace NLog.Targets
         /// Gets or sets a value of the file size threshold to archive old log file on startup.
         /// </summary>
         /// <remarks>
-        /// This option won't work if <see cref="ArchiveOldFileOnStartup"/> is set to <c>false</c>
+        /// This option won't work if <see cref="ArchiveOldFileOnStartup"/> is set to <see langword="false"/>
         /// Default value is 0 which means that the file is archived as soon as archival on
         /// startup is enabled.
         /// </remarks>
@@ -1725,7 +1725,7 @@ namespace NLog.Targets
         /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
         /// <param name="previousLogEventTimestamp">The DateTime of the previous log event for this file.</param>
         /// <param name="initializedNewFile">File has just been opened.</param>
-        /// <returns>True when archive operation of the file was completed (by this target or a concurrent target)</returns>
+        /// <returns><see langword="true"/> when archive operation of the file was completed (by this target or a concurrent target)</returns>
         private bool TryArchiveFile(string fileName, LogEventInfo ev, int upcomingWriteSize, DateTime previousLogEventTimestamp, bool initializedNewFile)
         {
             if (!IsArchivingEnabled)

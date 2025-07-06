@@ -171,7 +171,7 @@ namespace NLog.Targets
         public NetworkTargetConnectionsOverflowAction OnConnectionOverflow { get; set; } = NetworkTargetConnectionsOverflowAction.Discard;
 
         /// <summary>
-        /// Gets or sets the maximum queue size for a single connection. Requires <see cref="KeepConnection"/> = true
+        /// Gets or sets the maximum queue size for a single connection. Requires <see cref="KeepConnection"/> = <see langword="true"/>
         /// </summary>
         /// <remarks>
         /// When having reached the maximum limit, then <see cref="OnQueueOverflow"/> action will apply.
@@ -196,7 +196,7 @@ namespace NLog.Targets
         public event EventHandler<NetworkLogEventDroppedEventArgs>? LogEventDropped;
 
         /// <summary>
-        /// Gets or sets the size of the connection cache (number of connections which are kept alive). Requires <see cref="KeepConnection"/> = true
+        /// Gets or sets the size of the connection cache (number of connections which are kept alive). Requires <see cref="KeepConnection"/> = <see langword="true"/>
         /// </summary>
         /// <docgen category="Connection Options" order="10"/>
         public int ConnectionCacheSize { get; set; } = 5;
@@ -252,8 +252,9 @@ namespace NLog.Targets
         public int SendTimeoutSeconds { get; set; } = 100;
 
         /// <summary>
-        /// Gets or sets whether to disable the delayed ACK timer, and avoid delay of 200 ms. Default = true.
+        /// Gets or sets whether to disable the delayed ACK timer, and avoid delay of 200 ms.
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         public bool NoDelay { get; set; } = true;
 
         /// <summary>

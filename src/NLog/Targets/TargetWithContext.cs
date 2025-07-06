@@ -92,18 +92,21 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeEventProperties { get => _contextLayout.IncludeEventProperties; set => _contextLayout.IncludeEventProperties = value; }
 
         /// <summary>
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeProperties { get => _contextLayout.IncludeScopeProperties; set => _contextLayout.IncludeScopeProperties = value; }
 
         /// <summary>
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> nested-state-stack.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeNested { get => _contextLayout.IncludeScopeNested; set => _contextLayout.IncludeScopeNested = value; }
 
@@ -111,6 +114,7 @@ namespace NLog.Targets
         /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
         /// Gets or sets whether to include the contents of the <see cref="MappedDiagnosticsContext"/>-dictionary.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -120,6 +124,7 @@ namespace NLog.Targets
         /// Obsolete and replaced by <see cref="IncludeScopeNested"/> with NLog v5.
         /// Gets or sets whether to include the contents of the <see cref="NestedDiagnosticsContext"/>-stack.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -129,6 +134,7 @@ namespace NLog.Targets
         /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
         /// Gets or sets whether to include the contents of the <see cref="MappedDiagnosticsLogicalContext"/>-properties.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -138,6 +144,7 @@ namespace NLog.Targets
         /// Obsolete and replaced by <see cref="IncludeScopeNested"/> with NLog v5.
         /// Gets or sets whether to include the contents of the <see cref="NestedDiagnosticsLogicalContext"/>-stack.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -146,18 +153,21 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="GlobalDiagnosticsContext"/> dictionary
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeGdc { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include call site (class and method name) in the <see cref="LogEventInfo" />
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeCallSite { get => _contextLayout.IncludeCallSite; set => _contextLayout.IncludeCallSite = value; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include source info (file name and line number) in the <see cref="LogEventInfo" />
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeCallSiteStackTrace { get => _contextLayout.IncludeCallSiteStackTrace; set => _contextLayout.IncludeCallSiteStackTrace = value; }
 
@@ -169,7 +179,7 @@ namespace NLog.Targets
         public virtual IList<TargetPropertyWithContext> ContextProperties { get; } = new List<TargetPropertyWithContext>();
 
         /// <summary>
-        /// List of property names to exclude when <see cref="IncludeEventProperties"/> is true
+        /// List of property names to exclude when <see cref="IncludeEventProperties"/> is <see langword="true"/>
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
 #if !NET35
@@ -206,7 +216,7 @@ namespace NLog.Targets
         /// Check if logevent has properties (or context properties)
         /// </summary>
         /// <param name="logEvent"></param>
-        /// <returns>True if properties should be included</returns>
+        /// <returns><see langword="true"/> if properties should be included</returns>
         protected bool ShouldIncludeProperties(LogEventInfo logEvent)
         {
             return IncludeGdc

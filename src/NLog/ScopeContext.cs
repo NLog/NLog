@@ -273,7 +273,7 @@ namespace NLog
         /// </summary>
         /// <param name="key">Name of property</param>
         /// <param name="value">When this method returns, contains the value associated with the specified key</param>
-        /// <returns>Returns true when value is found with the specified key</returns>
+        /// <returns>Returns <see langword="true"/> when value is found with the specified key</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
         public static bool TryGetProperty(string key, out object? value)
         {

@@ -90,7 +90,7 @@ namespace NLog
         /// <summary>
         /// Gets or sets a value indicating whether <see cref="NLogConfigurationException"/> should be thrown.
         /// </summary>
-        /// <value>A value of <c>true</c> if exception should be thrown; otherwise, <c>false</c>.</value>
+        /// <value>A value of <see langword="true"/> if exception should be thrown; otherwise, <see langword="false"/>.</value>
         /// <remarks>
         /// This option is for backwards-compatibility.
         /// By default exceptions are not thrown under any circumstances.

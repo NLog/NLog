@@ -54,13 +54,7 @@ namespace NLog.Targets
             _layout = layout is LayoutWithHeaderAndFooter headerAndFooter ? headerAndFooter.Layout : layout;
         }
 
-        /// <summary>
-        /// Gets or sets the text to be rendered.
-        /// </summary>
-        /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
-        /// </remarks>
-        /// <docgen category='Layout Options' order='1' />
+        /// <inheritdoc />
         public override Layout Layout
         {
             get => _layout;
@@ -87,6 +81,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the footer.
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='3' />
         public Layout? Footer
         {
@@ -107,6 +102,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the header.
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='2' />
         public Layout? Header
         {

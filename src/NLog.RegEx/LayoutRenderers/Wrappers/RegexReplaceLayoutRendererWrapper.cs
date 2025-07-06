@@ -84,19 +84,19 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case.
         /// </summary>
-        /// <value>A value of <c>true</c> if case should be ignored when searching; otherwise, <c>false</c>.</value>
+        /// <value>A value of <see langword="true"/> if case should be ignored when searching; otherwise, <see langword="false"/>.</value>
         /// <docgen category='Condition Options' order='10' />
         public bool IgnoreCase { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to search for whole words.
         /// </summary>
-        /// <value>A value of <c>true</c> if whole words should be searched for; otherwise, <c>false</c>.</value>
+        /// <value>A value of <see langword="true"/> if whole words should be searched for; otherwise, <see langword="false"/>.</value>
         /// <docgen category='Condition Options' order='10' />
         public bool WholeWords { get; set; }
 
         /// <summary>
-        /// Compile the <see cref="Regex"/>? This can improve the performance, but at the costs of more memory usage. If <c>false</c>, the Regex Cache is used.
+        /// Compile the <see cref="Regex"/>? This can improve the performance, but at the costs of more memory usage. If <see langword="false"/>, the Regex Cache is used.
         /// </summary>
         /// <docgen category='Condition Options' order='10' />
         public bool CompileRegex { get; set; }

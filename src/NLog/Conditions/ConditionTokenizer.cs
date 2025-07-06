@@ -97,7 +97,7 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="keyword">The keyword.</param>
         /// <returns>
-        /// A value of <c>true</c> if current keyword is equal to the specified value; otherwise, <c>false</c>.
+        /// A value of <see langword="true"/> if current keyword is equal to the specified value; otherwise, <see langword="false"/>.
         /// </returns>
         public bool IsKeyword(string keyword)
         {
@@ -113,7 +113,7 @@ namespace NLog.Conditions
         /// Gets or sets a value indicating whether the tokenizer has reached the end of the token stream.
         /// </summary>
         /// <returns>
-        /// A value of <c>true</c> if the tokenizer has reached the end of the token stream; otherwise, <c>false</c>.
+        /// A value of <see langword="true"/> if the tokenizer has reached the end of the token stream; otherwise, <see langword="false"/>.
         /// </returns>
         public bool IsEOF()
         {
@@ -124,7 +124,7 @@ namespace NLog.Conditions
         /// Gets or sets a value indicating whether current token is a number.
         /// </summary>
         /// <returns>
-        /// A value of <c>true</c> if current token is a number; otherwise, <c>false</c>.
+        /// A value of <see langword="true"/> if current token is a number; otherwise, <see langword="false"/>.
         /// </returns>
         public bool IsNumber()
         {
@@ -136,7 +136,7 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="tokenType">The token type.</param>
         /// <returns>
-        /// A value of <c>true</c> if current token is of specified type; otherwise, <c>false</c>.
+        /// A value of <see langword="true"/> if current token is of specified type; otherwise, <see langword="false"/>.
         /// </returns>
         public bool IsToken(ConditionTokenType tokenType)
         {

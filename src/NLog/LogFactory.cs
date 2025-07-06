@@ -172,7 +172,7 @@ namespace NLog
         /// <summary>
         /// Gets or sets a value indicating whether exceptions should be thrown. See also <see cref="ThrowConfigExceptions"/>.
         /// </summary>
-        /// <value>A value of <c>true</c> if exception should be thrown; otherwise, <c>false</c>.</value>
+        /// <value>A value of <see langword="true"/> if exception should be thrown; otherwise, <see langword="false"/>.</value>
         /// <remarks>By default exceptions are not thrown under any circumstances.</remarks>
         public bool ThrowExceptions { get; set; }
 
@@ -181,7 +181,7 @@ namespace NLog
         ///
         /// If <c>null</c> then <see cref="ThrowExceptions"/> is used.
         /// </summary>
-        /// <value>A value of <c>true</c> if exception should be thrown; otherwise, <c>false</c>.</value>
+        /// <value>A value of <see langword="true"/> if exception should be thrown; otherwise, <see langword="false"/>.</value>
         /// <remarks>
         /// This option is for backwards-compatibility.
         /// By default exceptions are not thrown under any circumstances.
@@ -863,8 +863,8 @@ namespace NLog
         /// <summary>
         /// Shutdown logging without flushing async
         /// </summary>
-        /// <param name="disposing"><c>True</c> to release both managed and unmanaged resources;
-        /// <c>false</c> to release only unmanaged resources.</param>
+        /// <param name="disposing"><see langword="true"/> to release both managed and unmanaged resources;
+        /// <see langword="false"/> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -1105,29 +1105,16 @@ namespace NLog
                 ConcreteType = concreteType;
             }
 
-            /// <summary>
-            /// Serves as a hash function for a particular type.
-            /// </summary>
             public override int GetHashCode()
             {
                 return ConcreteType.GetHashCode() ^ Name.GetHashCode();
             }
 
-            /// <summary>
-            /// Determines if two objects are equal in value.
-            /// </summary>
-            /// <param name="obj">Other object to compare to.</param>
-            /// <returns>True if objects are equal, false otherwise.</returns>
             public override bool Equals(object obj)
             {
                 return obj is LoggerCacheKey key && Equals(key);
             }
 
-            /// <summary>
-            /// Determines if two objects of the same type are equal in value.
-            /// </summary>
-            /// <param name="other">Other object to compare to.</param>
-            /// <returns>True if objects are equal, false otherwise.</returns>
             public bool Equals(LoggerCacheKey other)
             {
                 return (ConcreteType == other.ConcreteType) && string.Equals(other.Name, Name, StringComparison.Ordinal);

@@ -301,7 +301,7 @@ namespace NLog.Common
 
             var sb = new StringBuilder();
             string separator = string.Empty;
-            string newline = EnvironmentHelper.NewLine;
+            string newline = Environment.NewLine;
             foreach (var ex in exceptions)
             {
                 sb.Append(separator);

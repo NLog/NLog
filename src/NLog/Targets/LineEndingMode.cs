@@ -45,9 +45,9 @@ namespace NLog.Targets
     public sealed class LineEndingMode : IEquatable<LineEndingMode>
     {
         /// <summary>
-        /// Insert platform-dependent end-of-line sequence after each line.
+        /// Insert platform-dependent <see cref="Environment.NewLine"/> sequence after each line.
         /// </summary>
-        public static readonly LineEndingMode Default = new LineEndingMode("Default", EnvironmentHelper.NewLine);
+        public static readonly LineEndingMode Default = new LineEndingMode("Default", Environment.NewLine);
 
         /// <summary>
         /// Insert CR LF sequence (ASCII 13, ASCII 10) after each line.
@@ -191,7 +191,7 @@ namespace NLog.Targets
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
-        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        /// <returns><see langword="true"/> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
         public bool Equals(LineEndingMode other)
         {

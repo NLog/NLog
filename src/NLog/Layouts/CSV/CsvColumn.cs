@@ -67,12 +67,14 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the name of the column.
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Layout Options' order='1' />
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the layout used for rendering the column value.
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="Layout.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public Layout Layout { get; set; }
 
@@ -80,7 +82,9 @@ namespace NLog.Layouts
         /// Gets or sets the override of Quoting mode
         /// </summary>
         /// <remarks>
-        /// <see cref="CsvQuotingMode.All"/> and <see cref="CsvQuotingMode.Nothing"/> are faster than the default <see cref="CsvQuotingMode.Auto"/>
+        /// Default: <see cref="CsvQuotingMode.Auto"/> .
+        ///
+        /// For faster performance then consider <see cref="CsvQuotingMode.All"/> and <see cref="CsvQuotingMode.Nothing"/>
         /// </remarks>
         /// <docgen category='Layout Options' order='50' />
         public CsvQuotingMode Quoting { get => _quoting ?? CsvQuotingMode.Auto; set => _quoting = value; }

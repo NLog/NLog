@@ -65,14 +65,15 @@ namespace NLog.Targets
         /// Gets or sets the class name.
         /// </summary>
         /// <docgen category='Invocation Options' order='10' />
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         public string ClassName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the method name. The method must be public and static.
         ///
-        /// Use the AssemblyQualifiedName , https://msdn.microsoft.com/en-us/library/system.type.assemblyqualifiedname(v=vs.110).aspx
-        /// e.g.
+        /// Use the AssemblyQualifiedName - <see href="https://learn.microsoft.com/dotnet/api/system.type.assemblyqualifiedname"/>
         /// </summary>
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Invocation Options' order='10' />
         public string MethodName { get; set; } = string.Empty;
 

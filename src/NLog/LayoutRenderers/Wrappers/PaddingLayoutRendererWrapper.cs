@@ -78,7 +78,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
         /// <summary>
         /// Gets or sets a value indicating whether a value that has
-        /// been truncated (when <see cref="FixedLength" /> is true)
+        /// been truncated (when <see cref="FixedLength" /> is <see langword="true"/>)
         /// will be left-aligned (characters removed from the right)
         /// or right-aligned (characters removed from the left). The
         /// default is left alignment.

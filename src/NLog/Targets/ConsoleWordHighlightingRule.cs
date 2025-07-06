@@ -67,12 +67,14 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the condition that must be met before scanning the row for highlight of words
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Highlighting Rules' order='10' />
         public ConditionExpression? Condition { get; set; }
 
         /// <summary>
         /// Gets or sets the text to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Highlighting Rules' order='10' />
         public string Text { get => _text; set => _text = string.IsNullOrEmpty(value) ? string.Empty : value; }
         private string _text = string.Empty;
@@ -80,24 +82,28 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to match whole words only.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Highlighting Rules' order='10' />
         public bool WholeWords { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case when comparing texts.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Highlighting Rules' order='10' />
         public bool IgnoreCase { get; set; }
 
         /// <summary>
         /// Gets or sets the foreground color.
         /// </summary>
+        /// <remarks>Default: <see cref="ConsoleOutputColor.NoChange"/></remarks>
         /// <docgen category='Highlighting Rules' order='10' />
         public ConsoleOutputColor ForegroundColor { get; set; } = ConsoleOutputColor.NoChange;
 
         /// <summary>
         /// Gets or sets the background color.
         /// </summary>
+        /// <remarks>Default: <see cref="ConsoleOutputColor.NoChange"/></remarks>
         /// <docgen category='Highlighting Rules' order='10' />
         public ConsoleOutputColor BackgroundColor { get; set; } = ConsoleOutputColor.NoChange;
 

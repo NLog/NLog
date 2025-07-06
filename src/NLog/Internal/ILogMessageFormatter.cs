@@ -41,7 +41,10 @@ namespace NLog.Internal
     internal interface ILogMessageFormatter
     {
         /// <summary>
-        /// Perform message template parsing and formatting of LogEvent messages (True = Always, False = Never, Null = Auto Detect)
+        /// Perform message template parsing and formatting of LogEvent messages:
+        /// - <see langword="true"/> = Always
+        /// - <see langword="false"/> = Never
+        /// - <see langword="null"/> = Auto Detect
         /// </summary>
         bool? EnableMessageTemplateParser { get; }
 
@@ -56,7 +59,7 @@ namespace NLog.Internal
         /// Has the logevent properties?
         /// </summary>
         /// <param name="logEvent">LogEvent with message to be formatted</param>
-        /// <returns>False when logevent has no properties to be extracted</returns>
+        /// <returns><see langword="false"/> when logevent has no properties to be extracted</returns>
         bool HasProperties(LogEventInfo logEvent);
 
         /// <summary>

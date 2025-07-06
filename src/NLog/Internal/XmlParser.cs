@@ -171,7 +171,7 @@ namespace NLog.Internal
         /// <summary>
         /// Reads a start element.
         /// </summary>
-        /// <returns>True if start element was found.</returns>
+        /// <returns><see langword="true"/> if start element was found.</returns>
         /// <exception cref="Exception">Something unexpected has failed.</exception>
         public bool TryReadStartElement(out string? name, out List<KeyValuePair<string, string>>? attributes)
         {
@@ -200,7 +200,7 @@ namespace NLog.Internal
         /// Skips an end element.
         /// </summary>
         /// <param name="name">The name of the element to skip.</param>
-        /// <returns>True if an end element was skipped; otherwise, false.</returns>
+        /// <returns><see langword="true"/> if an end element was skipped; otherwise, <see langword="false"/>.</returns>
         /// <exception cref="Exception">Something unexpected has failed.</exception>
         public bool TryReadEndElement(string name)
         {

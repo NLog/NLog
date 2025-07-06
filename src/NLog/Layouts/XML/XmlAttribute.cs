@@ -79,6 +79,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the name of the attribute.
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Layout Options' order='1' />
         public string Name { get => _name; set => _name = XmlHelper.XmlConvertToElementName(value?.Trim() ?? string.Empty); }
         private string _name = string.Empty;
@@ -86,31 +87,35 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the layout used for rendering the attribute value.
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="Layout.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
 
         /// <summary>
         /// Gets or sets the result value type, for conversion of layout rendering output
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public Type? ValueType { get => _layoutInfo.ValueType; set => _layoutInfo.ValueType = value; }
 
         /// <summary>
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public Layout? DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
         /// Gets or sets whether output should be encoded with Xml-string escaping, or be treated as valid xml-attribute-value
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public bool Encode { get; set; }
 
         /// <summary>
-        /// Gets or sets whether empty attribute value should be included in the output. Default = false
+        /// Gets or sets whether empty attribute value should be included in the output.
         /// </summary>
-        /// <remarks>Empty value is either null or empty string</remarks>
+        /// <remarks>Default: <see langword="false"/> . Empty value is either null or empty string</remarks>
         /// <docgen category='Layout Options' order='50' />
         public bool IncludeEmptyValue
         {

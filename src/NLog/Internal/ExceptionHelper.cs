@@ -61,7 +61,7 @@ namespace NLog.Internal
         /// Is this exception logged to the <see cref="InternalLogger"/>?
         /// </summary>
         /// <param name="exception"></param>
-        /// <returns><c>true</c>if the <paramref name="exception"/> has been logged to the <see cref="InternalLogger"/>.</returns>
+        /// <returns><see langword="true"/> if the <paramref name="exception"/> has been logged to the <see cref="InternalLogger"/>.</returns>
         public static bool IsLoggedToInternalLogger(this Exception exception)
         {
             if (exception?.Data?.Count > 0)
@@ -72,14 +72,14 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Determines whether the exception must be rethrown and logs the error to the <see cref="InternalLogger"/> if <see cref="IsLoggedToInternalLogger"/> is <c>false</c>.
+        /// Determines whether the exception must be rethrown and logs the error to the <see cref="InternalLogger"/> if <see cref="IsLoggedToInternalLogger"/> is <see langword="false"/>.
         ///
         /// Advised to log first the error to the <see cref="InternalLogger"/> before calling this method.
         /// </summary>
         /// <param name="exception">The exception to check.</param>
         /// <param name="loggerContext">Target Object context of the exception.</param>
         /// <param name="callerMemberName">Target Method context of the exception.</param>
-        /// <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
+        /// <returns><see langword="true"/> if the <paramref name="exception"/> must be rethrown, <see langword="false"/> otherwise.</returns>
         public static bool MustBeRethrown(this Exception exception, IInternalLoggerContext? loggerContext = null, string? callerMemberName = null)
         {
             if (exception.MustBeRethrownImmediately())
@@ -119,7 +119,7 @@ namespace NLog.Internal
         /// Only used this method in special cases.
         /// </summary>
         /// <param name="exception">The exception to check.</param>
-        /// <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
+        /// <returns><see langword="true"/> if the <paramref name="exception"/> must be rethrown, <see langword="false"/> otherwise.</returns>
         public static bool MustBeRethrownImmediately(this Exception exception)
         {
             if (exception is StackOverflowException)

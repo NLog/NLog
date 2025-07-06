@@ -347,8 +347,8 @@ namespace NLog.UnitTests.LayoutRenderers
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
 
             logFactory.GetCurrentClassLogger().Error(ex, "msg");
-            logFactory.AssertDebugLastMessage("ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
-                                             "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
+            logFactory.AssertDebugLastMessage("ApplicationException Wrapper2" + Environment.NewLine +
+                                             "ArgumentException Wrapper1" + Environment.NewLine +
                                              "CustomArgumentException Test exception");
         }
 
@@ -853,8 +853,8 @@ namespace NLog.UnitTests.LayoutRenderers
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
 
             logFactory.GetCurrentClassLogger().Error(ex, "msg");
-            logFactory.AssertDebugLastMessage("ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
-                                             "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
+            logFactory.AssertDebugLastMessage("ApplicationException Wrapper2" + Environment.NewLine +
+                                             "ArgumentException Wrapper1" + Environment.NewLine +
                                              "CustomArgumentException Test exception");
 
             var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
@@ -881,8 +881,8 @@ namespace NLog.UnitTests.LayoutRenderers
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
 
             logFactory.GetCurrentClassLogger().Error(ex, "msg");
-            logFactory.AssertDebugLastMessage("ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
-                                             "Wrapper1" + EnvironmentHelper.NewLine +
+            logFactory.AssertDebugLastMessage("ApplicationException Wrapper2" + Environment.NewLine +
+                                             "Wrapper1" + Environment.NewLine +
                                              "Test exception");
         }
 

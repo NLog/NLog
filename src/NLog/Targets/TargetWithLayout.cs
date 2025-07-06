@@ -33,7 +33,6 @@
 
 namespace NLog.Targets
 {
-    using NLog.Config;
     using NLog.Layouts;
 
     /// <summary>
@@ -71,9 +70,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the layout used to format log messages.
         /// </summary>
-        /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
-        /// </remarks>
+        /// <remarks><b>[Required]</b> Default: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code></remarks>
         /// <docgen category='Layout Options' order='1' />
         public virtual Layout Layout { get; set; }
     }

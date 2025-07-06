@@ -68,9 +68,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Name of the root XML element
         /// </summary>
-        /// <remarks>
-        /// Default value "logevent"
-        /// </remarks>
+        /// <remarks><b>[Required]</b> Default: <c>logevent</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         public string ElementName
         {
@@ -81,6 +79,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Value inside the root XML element
         /// </summary>
+        /// <remarks>Default: <see cref="Layout.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public Layout ElementValue
         {
@@ -91,6 +90,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Determines whether or not this attribute will be Xml encoded.
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public bool ElementEncode
         {

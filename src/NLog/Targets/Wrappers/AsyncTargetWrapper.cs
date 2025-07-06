@@ -351,7 +351,7 @@ namespace NLog.Targets.Wrappers
         /// Attempts to start an instant timer-worker-thread which can write
         /// queued log messages.
         /// </summary>
-        /// <returns>Returns true when scheduled a timer-worker-thread</returns>
+        /// <returns>Returns <see langword="true"/> when scheduled a timer-worker-thread</returns>
         protected virtual bool StartInstantWriterTimer()
         {
             return StartLazyWriterThread(true);

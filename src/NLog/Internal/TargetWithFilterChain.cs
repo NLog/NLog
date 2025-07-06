@@ -395,29 +395,16 @@ namespace NLog.Internal
             public readonly string FileSourceName;
             public readonly int FileSourceLineNumber;
 
-            /// <summary>
-            /// Serves as a hash function for a particular type.
-            /// </summary>
             public override int GetHashCode()
             {
                 return MethodName.GetHashCode() ^ FileSourceName.GetHashCode() ^ FileSourceLineNumber;
             }
 
-            /// <summary>
-            /// Determines if two objects are equal in value.
-            /// </summary>
-            /// <param name="obj">Other object to compare to.</param>
-            /// <returns>True if objects are equal, false otherwise.</returns>
             public override bool Equals(object obj)
             {
                 return obj is CallSiteKey key && Equals(key);
             }
 
-            /// <summary>
-            /// Determines if two objects of the same type are equal in value.
-            /// </summary>
-            /// <param name="other">Other object to compare to.</param>
-            /// <returns>True if objects are equal, false otherwise.</returns>
             public bool Equals(CallSiteKey other)
             {
                 return FileSourceLineNumber == other.FileSourceLineNumber

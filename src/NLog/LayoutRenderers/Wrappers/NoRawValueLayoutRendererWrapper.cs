@@ -50,7 +50,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating whether to disable the IRawValue-interface
         /// </summary>
-        /// <value>A value of <c>true</c> if IRawValue-interface should be ignored; otherwise, <c>false</c>.</value>
+        /// <value>A value of <see langword="true"/> if IRawValue-interface should be ignored; otherwise, <see langword="false"/>.</value>
         /// <docgen category='Layout Options' order='10' />
         public bool NoRawValue { get; set; } = true;
 

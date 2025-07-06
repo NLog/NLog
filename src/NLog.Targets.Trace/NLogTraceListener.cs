@@ -142,7 +142,7 @@ namespace NLog
         /// Gets a value indicating whether the trace listener is thread safe.
         /// </summary>
         /// <value></value>
-        /// <returns>true if the trace listener is thread safe; otherwise, false. The default is false.</returns>
+        /// <returns><see langword="true"/> if the trace listener is thread safe; otherwise, false. The default is <see langword="false"/>.</returns>
         public override bool IsThreadSafe => true;
 
         /// <summary>
@@ -251,7 +251,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Flushes the output (if <see cref="DisableFlush"/> is not <c>true</c>) buffer with the default timeout of 15 seconds.
+        /// Flushes the output (if <see cref="DisableFlush"/> is not <see langword="true"/>) buffer with the default timeout of 15 seconds.
         /// </summary>
         public override void Flush()
         {
