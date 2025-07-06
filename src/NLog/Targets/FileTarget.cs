@@ -309,7 +309,7 @@ namespace NLog.Targets
         /// <docgen category='Archival Options' order='50' />
         public Layout? ArchiveFileName
         {
-            get => _archiveFileName;
+            get => _archiveFileName ?? (_archiveSuffixFormat?.IndexOf("{1") >= 0 ? FileName : null);
             set
             {
                 var archiveSuffixFormat = _archiveSuffixFormat;
@@ -439,6 +439,7 @@ namespace NLog.Targets
             {
                 if (!string.IsNullOrEmpty(value) && ArchiveFileName is SimpleLayout simpleLayout)
                 {
+                    // When legacy ArchiveFileName only contains file-extension, then strip away leading underscore from suffix
                     var fileName = Path.GetFileNameWithoutExtension(simpleLayout.OriginalText);
                     if (StringHelpers.IsNullOrWhiteSpace(fileName) && value.IndexOf('_') == 0)
                     {
