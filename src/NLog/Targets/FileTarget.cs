@@ -751,7 +751,7 @@ namespace NLog.Targets
 
             try
             {
-                if (ArchiveAboveSize != 0 || ArchiveEvery != FileArchivePeriod.None)
+                if (ArchiveAboveSize > 0 || ArchiveEvery != FileArchivePeriod.None)
                 {
                     openFile = RollArchiveFile(filename, openFile, firstLogEvent, hasWritten);
                 }
@@ -805,7 +805,7 @@ namespace NLog.Targets
 
         private bool MustArchiveFile(IFileAppender fileAppender, LogEventInfo firstLogEvent)
         {
-            if (ArchiveAboveSize != 0 && MustArchiveBySize(fileAppender))
+            if (ArchiveAboveSize > 0 && MustArchiveBySize(fileAppender))
                 return true;
 
             if (ArchiveEvery != FileArchivePeriod.None && MustArchiveEveryTimePeriod(fileAppender, firstLogEvent))

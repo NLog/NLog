@@ -69,7 +69,7 @@ namespace NLog.Targets.FileArchiveHandlers
 
             if (initialFileOpen)
             {
-                if (_fileTarget.ArchiveOldFileOnStartup || _fileTarget.ArchiveAboveSize != 0 || _fileTarget.ArchiveEvery != FileArchivePeriod.None)
+                if (_fileTarget.ArchiveOldFileOnStartup || _fileTarget.ArchiveAboveSize > 0 || _fileTarget.ArchiveEvery != FileArchivePeriod.None)
                 {
                     var newFilePath = FileTarget.CleanFullFilePath(newFileName);
                     return RollToInitialSequenceNumber(newFilePath);
@@ -85,6 +85,18 @@ namespace NLog.Targets.FileArchiveHandlers
 
             try
             {
+                if (AllowOptimizedRollingForArchiveAboveSize())
+                {
+                    // Fast FileSize check of a single file, and skip enumerating all archive-files
+                    var newFileInfo = new FileInfo(newFilePath);
+                    var newFileLength = newFileInfo.Exists ? newFileInfo.Length : 0;
+                    if (newFileLength > 0 && newFileLength < _fileTarget.ArchiveAboveSize)
+                    {
+                        InternalLogger.Debug("{0}: Archive rolling skipped because file-size={1} < ArchiveAboveSize for file: {2}", _fileTarget, newFileLength, newFilePath);
+                        return newSequenceNumber;
+                    }
+                }
+
                 var filedir = Path.GetDirectoryName(newFilePath);
                 if (string.IsNullOrEmpty(filedir))
                     return 0;
@@ -138,6 +150,11 @@ namespace NLog.Targets.FileArchiveHandlers
 
                 return newSequenceNumber;
             }
+        }
+
+        private bool AllowOptimizedRollingForArchiveAboveSize()
+        {
+            return _fileTarget.ArchiveAboveSize > 0 && _fileTarget.ArchiveEvery == FileArchivePeriod.None && !_fileTarget.ArchiveOldFileOnStartup && !_fileTarget.DeleteOldFileOnStartup && _fileTarget.GetType().Equals(typeof(FileTarget));
         }
     }
 }

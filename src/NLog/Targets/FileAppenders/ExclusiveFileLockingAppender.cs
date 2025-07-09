@@ -87,28 +87,24 @@ namespace NLog.Targets.FileAppenders
             OpenStreamTime = Time.TimeSource.Current.Time;
             _lastFileDeletedCheck = Environment.TickCount;
 
-            RefreshFileBirthTimeUtc(true);
+            var fileInfoSize = RefreshFileBirthTimeUtc(true);
 
             _fileStream = _fileTarget.CreateFileStreamWithRetry(this, fileTarget.BufferSize, initialFileOpen: true);
-            _countedFileSize = RefreshCountedFileSize();
+            _countedFileSize = RefreshCountedFileSize(_fileStream, fileInfoSize);
         }
 
-        private bool SkipRefreshFileBirthTime()
-        {
-            return (_fileTarget.ArchiveFileName is null && _fileTarget.ArchiveEvery == FileArchivePeriod.None);
-        }
-
-        private void RefreshFileBirthTimeUtc(bool forceRefresh)
+        private long RefreshFileBirthTimeUtc(bool forceRefresh)
         {
             FileLastModified = NLog.Time.TimeSource.Current.Time;
 
-            if (SkipRefreshFileBirthTime())
-                return;
+            if (_fileTarget.ArchiveFileName is null && _fileTarget.ArchiveEvery == FileArchivePeriod.None && _fileTarget.ArchiveAboveSize <= 0)
+                return 0;
 
             try
             {
                 FileInfo fileInfo = new FileInfo(_filePath);
-                if (fileInfo.Exists && fileInfo.Length != 0)
+                long fileInfoSize = fileInfo.Exists ? fileInfo.Length : 0;
+                if (fileInfoSize > 0)
                 {
                     var fileBirthTimeUtc = FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo) ?? DateTime.MinValue;
                     var fileBirthTime = fileBirthTimeUtc != DateTime.MinValue ? NLog.Time.TimeSource.Current.FromSystemTime(fileBirthTimeUtc) : OpenStreamTime;
@@ -117,10 +113,13 @@ namespace NLog.Targets.FileAppenders
                     FileBirthTime = fileBirthTime;
                     FileLastModified = NLog.Time.TimeSource.Current.FromSystemTime(fileInfo.LastWriteTimeUtc);
                 }
+
+                return fileInfoSize;
             }
             catch (Exception ex)
             {
                 InternalLogger.Debug(ex, "{0}: Failed to refresh BirthTime for file: '{1}'", _fileTarget, _filePath);
+                return 0;
             }
         }
 
@@ -131,8 +130,7 @@ namespace NLog.Targets.FileAppenders
             {
                 MonitorFileHasBeenDeleted();
                 _lastFileDeletedCheck = Environment.TickCount;
-                if (!SkipRefreshFileBirthTime())
-                    FileLastModified = NLog.Time.TimeSource.Current.Time;
+                FileLastModified = NLog.Time.TimeSource.Current.Time;
             }
 
             _fileStream.Write(buffer, offset, count);
@@ -162,14 +160,25 @@ namespace NLog.Targets.FileAppenders
                 InternalLogger.Debug("{0}: Recreating FileStream because no longer File.Exists: '{1}'", _fileTarget, _filePath);
                 SafeCloseFile(_filePath, _fileStream);
                 _fileStream = _fileTarget.CreateFileStreamWithRetry(this, _fileTarget.BufferSize, initialFileOpen: false);
-                _countedFileSize = RefreshCountedFileSize();
-                RefreshFileBirthTimeUtc(false);
+                var fileInfoSize = RefreshFileBirthTimeUtc(false);
+                _countedFileSize = RefreshCountedFileSize(_fileStream, fileInfoSize);
             }
         }
 
-        private long? RefreshCountedFileSize()
+        private long? RefreshCountedFileSize(Stream fileStream, long fileInfoSize)
         {
-            return (_fileTarget.ArchiveAboveSize > 0 && _fileTarget.GetType().Equals(typeof(FileTarget))) ? _fileStream.Length : default(long?);
+            if (_fileTarget.ArchiveAboveSize > 0)
+            {
+                if (_fileTarget.GetType().Equals(typeof(FileTarget)))
+                    return fileStream.Length;
+
+                if (fileStream.GetType().Equals(typeof(FileStream)))
+                    return null;        // NLog.Targets.AtomicFile should not use counted filesize
+
+                return fileInfoSize;    // NLog.Targets.GZipFile should use counted uncompressed filesize
+            }
+
+            return null;
         }
 
         private void SafeCloseFile(string filepath, Stream? fileStream)
