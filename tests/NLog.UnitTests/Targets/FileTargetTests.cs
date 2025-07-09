@@ -2691,8 +2691,10 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Fact]
-        public void FileTarget_ArchiveAboveSize_NewStyle_RollWhenFull()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void FileTarget_ArchiveAboveSize_NewStyle_RollWhenFull(bool reloadConfig)
         {
             var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "Application");
@@ -2713,11 +2715,15 @@ namespace NLog.UnitTests.Targets
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
 
                 logger.Debug("aaaa");
+                if (reloadConfig)
+                    LogManager.Setup().ReloadConfiguration();
                 logger.Debug("bbbb");    // Not roll (new style so all agree when rolling)
                 logger.Debug("cccc");    // Roll
                 logger.Debug("dddd");    // Not roll (new style so all agree when rolling)
                 logger.Debug("eeee");    // Roll
                 logger.Debug("ffff");    // Not roll (new style so all agree when rolling)
+                if (reloadConfig)
+                    LogManager.Setup().ReloadConfiguration();
                 logger.Debug("gggg");    // Roll
 
                 LogManager.Configuration = null;    // Flush

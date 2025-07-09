@@ -142,7 +142,7 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Console Options' order='50' />
-        [Obsolete("Replaced by ForceWriteLine. Marked obsolete with NLog v6.0")]
+        [Obsolete("Replaced by ForceWriteLine (but inverted value). Marked obsolete with NLog v6.0")]
         public bool WriteBuffer { get => !ForceWriteLine; set => ForceWriteLine = !value; }
 
         /// <summary>

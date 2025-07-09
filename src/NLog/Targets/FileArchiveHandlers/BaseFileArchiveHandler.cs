@@ -55,7 +55,7 @@ namespace NLog.Targets.FileArchiveHandlers
             //  - First start with removing the oldest files
             string fileDirectory = Path.GetDirectoryName(filePath);
             // Replace all non-letter with '*' replace all '**' with single '*'
-            string fileWildcard = GetFileNameWildcard(filePath);
+            string fileWildcard = GetDeleteOldFileNameWildcard(filePath);
             return DeleteOldFilesBeforeArchive(fileDirectory, fileWildcard, initialFileOpen, excludeFileName);
         }
 
@@ -270,7 +270,7 @@ namespace NLog.Targets.FileArchiveHandlers
             }
         }
 
-        private static string GetFileNameWildcard(string filepath)
+        private static string GetDeleteOldFileNameWildcard(string filepath)
         {
             var filename = Path.GetFileNameWithoutExtension(filepath) ?? string.Empty;
             var fileext = Path.GetExtension(filepath) ?? string.Empty;
@@ -311,6 +311,12 @@ namespace NLog.Targets.FileArchiveHandlers
 
             if (lastLength > 0)
             {
+                if (lastStart > 0 && lastLength > 1 && !char.IsDigit(filename[lastStart + 1]))
+                {
+                    lastStart += 1;
+                    lastLength -= 1;
+                }
+
                 var prefix = filename.Substring(0, lastStart);
                 var suffix = filename.Substring(lastStart + lastLength, filename.Length - lastStart - lastLength);
                 return string.IsNullOrEmpty(suffix) ? string.Concat(prefix, "*", fileext) : string.Concat(prefix, "*", suffix, "*", fileext);
