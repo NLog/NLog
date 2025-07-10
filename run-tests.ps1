@@ -2,7 +2,7 @@ dotnet restore ./tests/NLog.UnitTests/
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-dotnet test ./tests/NLog.UnitTests/ --framework net6.0 --configuration release --no-restore
+dotnet test ./tests/NLog.UnitTests/ --framework net8.0 --configuration release --no-restore
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
@@ -87,27 +87,27 @@ else
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
-	dotnet test ./tests/NLog.RegEx.Tests/ --framework net6.0 --configuration release
+	dotnet test ./tests/NLog.RegEx.Tests/ --framework net8.0 --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
-	dotnet test ./tests/NLog.Targets.Mail.Tests/ --framework net6.0 --configuration release
+	dotnet test ./tests/NLog.Targets.Mail.Tests/ --framework net8.0 --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
-	dotnet test ./tests/NLog.Targets.Network.Tests/ --framework net6.0 --configuration release
+	dotnet test ./tests/NLog.Targets.Network.Tests/ --framework net8.0 --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
-	dotnet test ./tests/NLog.Targets.Trace.Tests/ --framework net6.0 --configuration release
+	dotnet test ./tests/NLog.Targets.Trace.Tests/ --framework net8.0 --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
-	dotnet test ./tests/NLog.Targets.WebService.Tests/ --framework net6.0 --configuration release
+	dotnet test ./tests/NLog.Targets.WebService.Tests/ --framework net8.0 --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
-	dotnet test ./tests/NLog.Targets.GZipFile.Tests/ --framework net6.0 --configuration release
+	dotnet test ./tests/NLog.Targets.GZipFile.Tests/ --framework net8.0 --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
