@@ -3,7 +3,7 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
     <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' AND '$(VisualStudioVersion)' &lt; '17.0' ">net462</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net462;net6.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net462;net8.0</TargetFrameworks>
 
     <IsPackable>false</IsPackable>
 
@@ -20,16 +20,12 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' != 'net6.0' AND '$(TestTargetFramework)' == 'net35' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' != 'net8.0' AND '$(TestTargetFramework)' == 'net35' ">
     <DefineConstants>$(DefineConstants);NET35</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' != 'net6.0' AND '$(TestTargetFramework)' == 'net45' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' != 'net8.0' AND '$(TestTargetFramework)' == 'net45' ">
     <DefineConstants>$(DefineConstants);NET45</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
-    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(monobuild)' != '' ">
@@ -58,7 +54,7 @@
     <PackageReference Include="DotNetZip.Reduced" Version="1.9.1.8" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' != 'net6.0' AND '$(TestTargetFramework)' != '' ">
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net8.0' AND '$(TestTargetFramework)' != '' ">
     <Reference Include="NLog">
       <HintPath>../../src/NLog/bin/$(Configuration)/$(TestTargetFramework)/NLog.dll</HintPath>
       <Private>True</Private>

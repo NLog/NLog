@@ -52,11 +52,11 @@ namespace NLog.UnitTests.Config
 
         private static string GetExtensionAssemblyFullPath()
         {
-#if NETSTANDARD
+#if NETFRAMEWORK
+            return extensionAssemblyFullPath1;
+#else
             Assert.NotNull(typeof(FooLayout));
             return typeof(FooLayout).GetTypeInfo().Assembly.Location;
-#else
-            return extensionAssemblyFullPath1;
 #endif
         }
 
@@ -625,7 +625,7 @@ namespace NLog.UnitTests.Config
             var configurationDirectory = nlogDirectory.Parent;
             var testsDirectory = configurationDirectory.Parent.Parent.Parent;
             var manuallyLoadedAssemblyPath = Path.Combine(testsDirectory.FullName, "ManuallyLoadedExtension", "bin", configurationDirectory.Name,
-#if NETSTANDARD
+#if !NETFRAMEWORK
                 "netstandard2.0",
 #elif NET35 || NET40 || NET45
                 "net462",

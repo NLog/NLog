@@ -3,7 +3,7 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
     <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' AND '$(VisualStudioVersion)' &lt; '17.0' ">net462</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net462;net6.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net462;net8.0</TargetFrameworks>
     
     <IsPackable>false</IsPackable>
 
