@@ -63,14 +63,14 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the condition expression. Log events who meet this condition will cause
         /// a flush on the wrapped target.
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='General Options' order='10' />
         public ConditionExpression? Condition { get; set; }
 
         /// <summary>
         /// Delay the flush until the LogEvent has been confirmed as written
         /// </summary>
-        /// <remarks>If not explicitly set, then disabled by default for <see cref="BufferingTargetWrapper"/> and AsyncTaskTarget
-        /// </remarks>
+        /// <remarks>Default: <see langword="true"/> . When not explicitly set, then automatically disabled when <see cref="BufferingTargetWrapper"/> or AsyncTaskTarget</remarks>
         /// <docgen category='General Options' order='10' />
         public bool AsyncFlush
         {
@@ -82,6 +82,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Only flush when LogEvent matches condition. Ignore explicit-flush, config-reload-flush and shutdown-flush
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='General Options' order='10' />
         public bool FlushOnConditionOnly { get; set; }
 

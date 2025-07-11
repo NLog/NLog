@@ -94,6 +94,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the default filter to be applied when no specific rule matches.
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Filtering Options' order='10' />
         public ConditionExpression? DefaultFilter { get; set; }
 

@@ -101,18 +101,21 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the number of retries that should be attempted on the wrapped target in case of a failure.
         /// </summary>
+        /// <remarks>Default: <see langword="3"/></remarks>
         /// <docgen category='Retrying Options' order='10' />
         public Layout<int> RetryCount { get; set; }
 
         /// <summary>
         /// Gets or sets the time to wait between retries in milliseconds.
         /// </summary>
+        /// <remarks>Default: <see langword="100"/>ms</remarks>
         /// <docgen category='Retrying Options' order='10' />
         public Layout<int> RetryDelayMilliseconds { get; set; }
 
         /// <summary>
         /// Gets or sets whether to enable batching, and only apply single delay when a whole batch fails
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Retrying Options' order='10' />
         public bool EnableBatchWrite { get; set; } = true;
 

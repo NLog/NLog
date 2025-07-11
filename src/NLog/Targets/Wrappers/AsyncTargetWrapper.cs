@@ -145,12 +145,14 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the number of log events that should be processed in a batch
         /// by the lazy writer thread.
         /// </summary>
+        /// <remarks>Default: <see langword="200"/></remarks>
         /// <docgen category='Buffering Options' order='100' />
         public int BatchSize { get; set; } = 200;
 
         /// <summary>
         /// Gets or sets the time in milliseconds to sleep between batches. (1 or less means trigger on new activity)
         /// </summary>
+        /// <remarks>Default: <see langword="1"/>ms</remarks>
         /// <docgen category='Buffering Options' order='100' />
         public int TimeToSleepBetweenBatches { get; set; } = 1;
 
@@ -208,6 +210,7 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the action to be taken when the lazy writer thread request queue count
         /// exceeds the set limit.
         /// </summary>
+        /// <remarks>Default: <see cref="AsyncTargetWrapperOverflowAction.Discard"/></remarks>
         /// <docgen category='Buffering Options' order='10' />
         public AsyncTargetWrapperOverflowAction OverflowAction
         {
@@ -218,6 +221,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the limit on the number of requests in the lazy writer thread request queue.
         /// </summary>
+        /// <remarks>Default: <see langword="10000"/></remarks>
         /// <docgen category='Buffering Options' order='10' />
         public int QueueLimit
         {
@@ -228,18 +232,14 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the number of batches of <see cref="BatchSize"/> to write before yielding into <see cref="TimeToSleepBetweenBatches"/>
         /// </summary>
-        /// <remarks>
-        /// Performance is better when writing many small batches, than writing a single large batch
-        /// </remarks>
+        /// <remarks>Default: <see langword="10"/> . Better performance when writing small batches, than single large batch.</remarks>
         /// <docgen category='Buffering Options' order='100' />
         public int FullBatchSizeWriteLimit { get; set; } = 10;
 
         /// <summary>
         /// Gets or sets whether to use the locking queue, instead of a lock-free concurrent queue
         /// </summary>
-        /// <remarks>
-        /// The locking queue is less concurrent when many logger threads, but reduces memory allocation
-        /// </remarks>
+        /// <remarks>Default: <see langword="false"/> . Queue with Monitor.Lock is less concurrent when many logger threads, but reduces memory allocation</remarks>
         /// <docgen category='Buffering Options' order='100' />
         public bool ForceLockingQueue { get => _forceLockingQueue ?? false; set => _forceLockingQueue = value; }
         private bool? _forceLockingQueue;

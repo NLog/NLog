@@ -97,12 +97,14 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the condition expression. Log events who meet this condition will be forwarded
         /// to the wrapped target.
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Filtering Options' order='10' />
         public ConditionExpression? Condition { get => (Filter as ConditionBasedFilter)?.Condition; set => Filter = CreateFilter(value); }
 
         /// <summary>
         /// Gets or sets the filter. Log events who evaluates to <see cref="FilterResult.Ignore"/> will be discarded
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see langword="null"/></remarks>
         /// <docgen category='Filtering Options' order='10' />
         public Filter Filter { get; set; }
 

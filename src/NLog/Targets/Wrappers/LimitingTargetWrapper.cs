@@ -95,18 +95,14 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the maximum allowed number of messages written per <see cref="Interval"/>.
         /// </summary>
-        /// <remarks>
-        /// Messages received after <see cref="MessageLimit"/> has been reached in the current <see cref="Interval"/> will be discarded.
-        /// </remarks>
+        /// <remarks>Default: <see langword="1000"/> . Messages received after <see cref="MessageLimit"/> has been reached in the current <see cref="Interval"/> will be discarded.</remarks>
         /// <docgen category='General Options' order='10' />
         public Layout<int> MessageLimit { get; set; }
 
         /// <summary>
         /// Gets or sets the interval in which messages will be written up to the <see cref="MessageLimit"/> number of messages.
         /// </summary>
-        /// <remarks>
-        /// Messages received after <see cref="MessageLimit"/> has been reached in the current <see cref="Interval"/> will be discarded.
-        /// </remarks>
+        /// <remarks>Default: <see langword="1"/> hour. Messages received after <see cref="MessageLimit"/> has been reached in the current <see cref="Interval"/> will be discarded.</remarks>
         /// <docgen category='General Options' order='10' />
         public Layout<TimeSpan> Interval { get; set; }
 
