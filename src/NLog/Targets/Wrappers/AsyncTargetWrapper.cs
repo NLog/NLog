@@ -232,7 +232,7 @@ namespace NLog.Targets.Wrappers
         /// Performance is better when writing many small batches, than writing a single large batch
         /// </remarks>
         /// <docgen category='Buffering Options' order='100' />
-        public int FullBatchSizeWriteLimit { get; set; } = 5;
+        public int FullBatchSizeWriteLimit { get; set; } = 10;
 
         /// <summary>
         /// Gets or sets whether to use the locking queue, instead of a lock-free concurrent queue
