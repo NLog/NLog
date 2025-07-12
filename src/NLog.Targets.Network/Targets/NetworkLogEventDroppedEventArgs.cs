@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-
 namespace NLog.Targets
 {
+    using System;
+
     /// <summary>
     /// Arguments for <see cref="NetworkTarget.LogEventDropped"/> events.
     /// </summary>
