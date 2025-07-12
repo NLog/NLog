@@ -1177,9 +1177,11 @@ namespace NLog.Targets.Network
 
         [Theory]
         [InlineData("none", SslProtocols.None)] //we can't set it on ""
+#pragma warning disable SYSLIB0039 // Type or member is obsolete
         [InlineData("tls", SslProtocols.Tls)]
         [InlineData("tls11", SslProtocols.Tls11)]
         [InlineData("tls,tls11", SslProtocols.Tls11 | SslProtocols.Tls)]
+#pragma warning restore SYSLIB0039 // Type or member is obsolete
 #if NET6_0_OR_GREATER
         [InlineData("Tls13", SslProtocols.Tls13)]
 #endif
