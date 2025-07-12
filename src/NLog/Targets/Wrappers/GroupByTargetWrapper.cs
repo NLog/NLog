@@ -53,6 +53,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Identifier to perform group-by
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="Layout.Empty"/></remarks>
         public Layout Key { get; set; } = Layout.Empty;
 
         /// <summary>

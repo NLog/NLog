@@ -122,6 +122,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the number of log events to be buffered.
         /// </summary>
+        /// <remarks>Default: <see langword="100"/></remarks>
         /// <docgen category='Buffering Options' order='10' />
         public Layout<int> BufferSize { get; set; }
 
@@ -129,6 +130,7 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the timeout (in milliseconds) after which the contents of buffer will be flushed
         /// if there's no write in the specified period of time. Use -1 to disable timed flushes.
         /// </summary>
+        /// <remarks>Default: <see langword="-1"/> . Zero or Negative means disabled.</remarks>
         /// <docgen category='Buffering Options' order='100' />
         public Layout<int> FlushTimeout { get; set; }
 
@@ -136,8 +138,9 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets a value indicating whether to use sliding timeout.
         /// </summary>
         /// <remarks>
-        /// This value determines how the inactivity period is determined. If sliding timeout is enabled,
-        /// the inactivity timer is reset after each write, if it is disabled - inactivity timer will
+        /// Default: <see langword="true"/> . 
+        /// This value determines how the inactivity period is determined. When <see langword="true"/>
+        /// the inactivity timer is reset after each write, if <see langword="false"/>- inactivity timer will
         /// count from the first event written to the buffer.
         /// </remarks>
         /// <docgen category='Buffering Options' order='100' />
@@ -147,10 +150,9 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the action to take if the buffer overflows.
         /// </summary>
         /// <remarks>
-        /// Setting to <see cref="BufferingTargetWrapperOverflowAction.Discard"/> will replace the
-        /// oldest event with new events without sending events down to the wrapped target, and
-        /// setting to <see cref="BufferingTargetWrapperOverflowAction.Flush"/> will flush the
-        /// entire buffer to the wrapped target.
+        /// Default: <see cref="BufferingTargetWrapperOverflowAction.Flush"/> . Setting to <see cref="BufferingTargetWrapperOverflowAction.Flush"/>
+        /// will flush the entire buffer to the wrapped target. Setting to <see cref="BufferingTargetWrapperOverflowAction.Discard"/>
+        /// will replace the oldest event with new events without sending events down to the wrapped target.
         /// </remarks>
         /// <docgen category='Buffering Options' order='50' />
         public BufferingTargetWrapperOverflowAction OverflowAction { get; set; }

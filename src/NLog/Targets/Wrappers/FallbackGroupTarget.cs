@@ -93,12 +93,14 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets a value indicating whether to return to the first target after any successful write.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Fallback Options' order='10' />
         public bool ReturnToFirstOnSuccess { get; set; }
 
         /// <summary>
         /// Gets or sets whether to enable batching, but fallback will be handled individually
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Fallback Options' order='50' />
         public bool EnableBatchWrite { get; set; } = true;
 
