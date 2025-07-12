@@ -62,7 +62,7 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class SplunkLayout : JsonLayout
     {
-        private static DateTime UnixDateStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        private static readonly DateTime UnixDateStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         /// <summary>
         /// Gets the array of attributes for the "event"-section
@@ -226,7 +226,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="SplunkLayout"/> class.
         /// </summary>
         public SplunkLayout()
         {
@@ -238,9 +238,7 @@ namespace NLog.Layouts
             Attributes.Add(new JsonAttribute("event", new JsonLayout() { IncludeEventProperties = true }) { Encode = false });
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeLayout()
         {
             var index = LookupNamedAttributeIndex("event");

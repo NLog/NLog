@@ -80,7 +80,7 @@ namespace NLog.Targets
         public override Layout Layout
         {
             get => _splunkLayout;
-            set { /* Fixed GelfLayout */ } // NOSONAR
+            set { /* Fixed SplunkLayout  */ } // NOSONAR
         }
 
         /// <summary>

@@ -522,7 +522,7 @@ namespace NLog.Layouts
         private readonly string _beginJsonPropertyName = ",\"";
         private readonly string _completeJsonPropertyName = "\":";
         private const string GelfVersion11 = "1.1";
-        private static DateTime UnixDateStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        private static readonly DateTime UnixDateStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         private const int ShortMessageMaxLength = 250;
         private const int FullMessageMaxLength = 16383; // Truncate due to: https://github.com/Graylog2/graylog2-server/issues/873
 
