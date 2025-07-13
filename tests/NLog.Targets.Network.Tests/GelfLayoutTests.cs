@@ -82,7 +82,7 @@ namespace NLog.Targets.Network
                         + "\"short_message\":\"{1}\","
                         + "\"timestamp\":{2},"
                         + "\"level\":{3},"
-                        + "\"_logLevel\":\"{4}\","
+                        + "\"_loglevel\":\"{4}\","
                         + "\"_logger\":\"{5}\""
                         + "}}",
                     HostName,
