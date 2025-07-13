@@ -173,11 +173,11 @@ namespace NLog.Layouts
         {
             if (GelfFields.Count == 0)
             {
-                GelfFields.Add(new TargetPropertyWithContext("_logLevel", "${level}"));
+                GelfFields.Add(new TargetPropertyWithContext("_loglevel", "${level}"));
                 GelfFields.Add(new TargetPropertyWithContext("_logger", "${logger}"));
-                GelfFields.Add(new TargetPropertyWithContext("_exceptionType", "${exception:Format=Type}") { IncludeEmptyValue = false });
-                GelfFields.Add(new TargetPropertyWithContext("_exceptionMessage", "${exception:Format=Message}") { IncludeEmptyValue = false });
-                GelfFields.Add(new TargetPropertyWithContext("_stackTrace", "${exception:Format=ToString}") { IncludeEmptyValue = false });
+                GelfFields.Add(new TargetPropertyWithContext("_exception_type", "${exception:Format=Type}"));
+                GelfFields.Add(new TargetPropertyWithContext("_exception_msg", "${exception:Format=Message}"));
+                GelfFields.Add(new TargetPropertyWithContext("_exception", "${exception:Format=ToString}"));
             }
 
             // CompoundLayout includes optimization, so only doing precalculate/caching of relevant Layouts (instead of the entire GELF-message)
