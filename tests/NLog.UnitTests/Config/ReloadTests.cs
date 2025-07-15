@@ -718,12 +718,11 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [Fact]
-        public void TestThrowExceptionWhenInvalidXml()
+        [Theory]
+        [InlineData(@"<nlog throwExceptions='true' internalLogLevel='debug' internalLogLevel='error'></nlog>")]
+        [InlineData(@"<nlog throwExceptions='true'></nlog-invalid>")]
+        public void TestThrowExceptionWhenInvalidXml(string invalidXmlConfig)
         {
-            var invalidXmlConfig = @"<nlog throwExceptions='true' internalLogLevel='debug' internalLogLevel='error'>
-                </nlog>";
-
             string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempDir);
 

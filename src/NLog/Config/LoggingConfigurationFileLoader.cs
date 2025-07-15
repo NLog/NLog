@@ -142,7 +142,8 @@ namespace NLog.Config
                     if (ex.MustBeRethrown() || (logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions))
                         throw;
 
-                    if (ThrowXmlConfigExceptions(configFile, ex is XmlParserException, logFactory, out var autoReload))
+                    var invalidXml = ex is XmlParserException || ex.InnerException is XmlParserException;
+                    if (ThrowXmlConfigExceptions(configFile, invalidXml, logFactory, out var autoReload))
                         throw;
 
                     return CreateEmptyDefaultConfig(configFile, logFactory, autoReload);
