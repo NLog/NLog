@@ -115,6 +115,11 @@ namespace NLog.Internal
                     throw new XmlParserException($"Invalid XML document. Cannot parse end-tag: {currentRoot.Name}");
 
                 SkipWhiteSpaces();
+                while (_xmlSource.Peek() == '!' && _xmlSource.Current == '<')
+                {
+                    _xmlSource.MoveNext();
+                    SkipXmlComment();
+                }
                 if (_xmlSource.MoveNext())
                     throw new XmlParserException($"Invalid XML document. Unexpected characters after end-tag: {currentRoot.Name}");
 
