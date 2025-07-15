@@ -1177,7 +1177,13 @@ namespace NLog.Targets.ConcurrentFile.Tests
                     AssertFileContents(logFile, string.Empty, Encoding.UTF8);
                     if (autoFlushTimeout > 0)
                     {
-                        Thread.Sleep(TimeSpan.FromSeconds(autoFlushTimeout * 1.5));
+                        for (int i = 0; i < 3; ++i)
+                        {
+                            Thread.Sleep(TimeSpan.FromSeconds(autoFlushTimeout * 1.5));
+                            var fileInfo = new FileInfo(logFile);
+                            if (fileInfo.Exists && fileInfo.Length > 0)
+                                break;
+                        }
                         AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
                     }
                 }

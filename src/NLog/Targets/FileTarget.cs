@@ -464,7 +464,7 @@ namespace NLog.Targets
             get
             {
                 if (OpenFileFlushTimeout <= 0 || AutoFlush || !KeepFileOpen)
-                    return OpenFileCacheTimeout;
+                    return (OpenFileCacheTimeout > 500 && OpenFileCacheTimeout < 3600) ? 300 : OpenFileCacheTimeout;
                 else if (OpenFileCacheTimeout <= 0)
                     return OpenFileFlushTimeout;
                 else
