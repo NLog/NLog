@@ -155,7 +155,7 @@ namespace NLog.UnitTests
 #endif
 
         [Fact]
-        public void InvalidXMLConfiguration_DoesNotThrowErrorWhen_ThrowExceptionFlagIsNotSet()
+        public void InvalidXMLConfigurationValue_DoesNotThrowErrorWhen_ThrowExceptionFlagIsNotSet()
         {
             using (new NoThrowNLogExceptions())
             {
@@ -171,7 +171,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
-        public void InvalidXMLConfiguration_ThrowErrorWhen_ThrowExceptionFlagIsSet()
+        public void InvalidXMLConfigurationValue_ThrowErrorWhen_ThrowExceptionFlagIsSet()
         {
             Boolean ExceptionThrown = false;
             try
@@ -182,6 +182,28 @@ namespace NLog.UnitTests
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
+            </nlog>");
+            }
+            catch (Exception)
+            {
+                ExceptionThrown = true;
+            }
+
+            Assert.True(ExceptionThrown);
+        }
+
+        [Fact]
+        public void InvalidXMLConfiguration_ThrowErrorWhen_ThrowExceptionFlagIsSet()
+        {
+            Boolean ExceptionThrown = false;
+            try
+            {
+                new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets><target type='Debug' name='test' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeto='test'></logger>
+                </rules-invalid>
             </nlog>");
             }
             catch (Exception)
