@@ -248,7 +248,7 @@ namespace NLog.Targets.Network
 
     internal sealed class NetworkInterfaceRetrieverBuilder
     {
-        private readonly IDictionary<int, List<KeyValuePair<string, string>>> _ips = new Dictionary<int, List<KeyValuePair<string, string>>>();
+        private readonly Dictionary<int, List<KeyValuePair<string, string>>> _ips = new Dictionary<int, List<KeyValuePair<string, string>>>();
 
         struct NetworkInfo
         {

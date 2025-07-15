@@ -379,6 +379,7 @@ namespace NLog.Internal
             LoggerImpl.Write(loggerType, this, logEvent, logFactory);
         }
 
+        private
 #if !NETFRAMEWORK
         readonly
 #endif
