@@ -639,9 +639,7 @@ namespace NLog
                 if (templateEnumerator.MoveNext() && !templateEnumerator.Current.MaybePositionalTemplate)
                 {
                     // Convert parameters into Properties and skip Parameters-array-allocation (Like with Microsoft Extension Logging)
-                    var formattedMessage = Factory.AutoMessageTemplateFormatter.Render(ref templateEnumerator, formatProvider, in args, out var messageTemplateParameters);
-                    var logEvent = new LogEventInfo(level, Name, formattedMessage, message, messageTemplateParameters);
-                    logEvent.Exception = exception;
+                    LogEventInfo logEvent = RenderPreformattedLogEvent(Factory.AutoMessageTemplateFormatter, level, exception, formatProvider, message, args, ref templateEnumerator);
                     WriteLogEventToTargets(logEvent, targetsForLevel);
                 }
                 else
@@ -652,6 +650,31 @@ namespace NLog
                     WriteLogEventToTargets(logEvent, targetsForLevel);
                 }
             }
+        }
+
+        private LogEventInfo RenderPreformattedLogEvent(LogMessageTemplateFormatter messageTemplateFormatter, LogLevel level, Exception? exception, IFormatProvider? formatProvider, string messageTemplate, in ReadOnlySpan<object?> args, ref MessageTemplates.TemplateEnumerator templateEnumerator)
+        {
+            string formattedMessage = messageTemplate;
+            IList<MessageTemplates.MessageTemplateParameter>? messageTemplateParameters = null;
+
+            try
+            {
+                formattedMessage = messageTemplateFormatter.Render(ref templateEnumerator, formatProvider, in args, out messageTemplateParameters);
+            }
+            catch (Exception ex)
+            {
+                Common.InternalLogger.Warn(ex, "Error when formatting a message.");
+                if (ex.MustBeRethrown())
+                    throw;
+            }
+
+            var logEvent = new LogEventInfo(level, Name, formattedMessage, messageTemplate, (IList<MessageTemplates.MessageTemplateParameter>?)null);
+            if (messageTemplateParameters is null)
+                logEvent.Parameters = args.ToArray();   // Failed to parse message-template, so lets captures message-format-parameters
+            else
+                logEvent.CreatePropertiesInternal(messageTemplateParameters);
+            logEvent.Exception = exception;
+            return logEvent;
         }
 #endif
         #endregion
