@@ -2393,9 +2393,15 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|hello from 1=James, 2=Mike, 3=Jane");
 
                 logger.Error("message {a} {b}", 1, 2);
-                if (enabled == 1)
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|message 1 2");
+
+                using (new NoThrowNLogExceptions())
                 {
-                    AssertDebugLastMessage("debug", "A|message 1 2");
+                    logger.Error("invalid format {age:l}", 30);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "A|invalid format {age:l}");
+
+                    logger.Error("invalid format {guid:l}", Guid.NewGuid());
+                    if (enabled == 1) AssertDebugLastMessage("debug", "A|invalid format {guid:l}");
                 }
 
                 logger.Error("message{a}{b}{c}", 1, 2, 3);
