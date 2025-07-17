@@ -270,6 +270,32 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void XmlLayout_LogEventProperties_NoRecursion()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                IncludeEventProperties = true,
+                MaxRecursionLimit = 0,
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "message 1"
+            };
+            logEventInfo.Properties["prop1"] = "a";
+            logEventInfo.Properties["prop2"] = new KeyValuePair<string, string>("path", "test");
+            logEventInfo.Properties["prop3"] = "c";
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected = @"<logevent><property key=""prop1"">a</property><property key=""prop2"">[path, test]</property><property key=""prop3"">c</property></logevent>";
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
         public void XmlLayout_InvalidXmlPropertyName_RenderNameCorrect()
         {
             // Arrange

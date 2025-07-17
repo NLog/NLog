@@ -24,9 +24,9 @@ NLog is a free logging platform for .NET with rich log routing and management
 capabilities. It makes it easy to produce and manage high-quality logs for
 your application regardless of its size or complexity.
 
-It can process diagnostic messages emitted from any .NET language, augment
-them with contextual information, format them according to your preference
-and send them to one or more targets such as file or database.
+Handles both structured logging and traditional logging from any .NET language,
+augment with contextual information, format according to your preference
+and send them to one or more targets such as file or console.
 
 Major and minor releases will be posted on [project news](https://nlog-project.org/archives/). 
 
@@ -44,9 +44,9 @@ Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/
 -----
 
 
- ℹ️ NLog 6.0 will support AOT
+ ℹ️ NLog 6.0 supports AOT
 
-NLog 6.0 is now being prepared. See [List of major changes in NLog 6.0](https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html)
+[NLog 6.0](https://www.nuget.org/packages/NLog/6.0.0#releasenotes-body-tab) now available. See also [List of major changes in NLog 6.0](https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html)
 
 
 NLog Extensions
@@ -57,7 +57,6 @@ See [targets](https://nlog-project.org/config/?tab=targets) and [layout renderer
 The NLog extension packages maintained by the NLog-project are [listed here](https://github.com/NLog/NLog/blob/dev/packages-and-status.md) with Nuget/build status.
 
 It is also possible to [Create your own custom NLog extensions](https://github.com/NLog/NLog/wiki/Extending-NLog).
-
 
 Questions, bug reports or feature requests?
 ---
