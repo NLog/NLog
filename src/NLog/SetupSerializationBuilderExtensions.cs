@@ -34,7 +34,9 @@
 namespace NLog
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
 
@@ -70,6 +72,17 @@ namespace NLog
         public static ISetupSerializationBuilder RegisterValueFormatter(this ISetupSerializationBuilder setupBuilder, IValueFormatter valueFormatter)
         {
             setupBuilder.LogFactory.ServiceRepository.RegisterValueFormatter(valueFormatter ?? new MessageTemplates.ValueFormatter(setupBuilder.LogFactory.ServiceRepository));
+            return setupBuilder;
+        }
+
+        
+        /// <summary>
+        /// Registers object Type transformation so build trimming will keep public properties.
+        /// </summary>
+        public static ISetupSerializationBuilder RegisterObjectTransformation<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] T>(this ISetupSerializationBuilder setupBuilder)
+        {
+            Guard.ThrowIfNull(setupBuilder);
+            InternalLogger.Debug("RegisterObjectTransformation for {0} to keep public properties", typeof(T));
             return setupBuilder;
         }
 
