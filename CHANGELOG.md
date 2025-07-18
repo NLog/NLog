@@ -4,6 +4,17 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.5.1 (2025/07/18)
+
+**Improvements**
+- [#5858](https://github.com/NLog/NLog/pull/5858) ConsoleTarget - Added ForceWriteLine to match NLog v6 Schema (#5858) @snakefoot
+- [#5866](https://github.com/NLog/NLog/pull/5866) Layout.FromLiteral to match NLog v6 (#5866)  @snakefoot
+- [#5888](https://github.com/NLog/NLog/pull/5888) ChainsawTarget with type-alias Log4JXml to match NLog v6 (#5888) @snakefoot
+- [#5883](https://github.com/NLog/NLog/pull/5883) AsyncTargetWrapper - LogEventDropped and EventQueueGrow events fixes (#5883) @dance
+- [#5890](https://github.com/NLog/NLog/pull/5890) StringBuilderExt - Change Append2DigitsZeroPadded to array-lookup (#5890) @snakefoot
+- [#5936](https://github.com/NLog/NLog/pull/5936) XmlLayout - Support MaxRecursionLimit == 0 (#5936) @snakefoot
+- [#5936](https://github.com/NLog/NLog/pull/5936) RegisterObjectTransformation so build trimming will keep public properties (#5936) @snakefoot
+
 ### Version 5.5 (2025/05/29)
 
 **Improvements**
