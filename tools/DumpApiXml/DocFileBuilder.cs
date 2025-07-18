@@ -18,6 +18,7 @@ namespace DumpApiXml
             { typeof(bool).FullName, "Boolean" },
             { typeof(char).FullName, "Char" },
             { typeof(byte).FullName, "Byte" },
+            { typeof(short).FullName, "Integer" },
             { typeof(CultureInfo).FullName, "Culture" },
             { typeof(Encoding).FullName, "Encoding" },
             { "NLog.Layouts.Layout", "Layout" },
@@ -118,7 +119,6 @@ namespace DumpApiXml
         private static string GetTypeName(Type type)
         {
             string simpleName;
-
             type = GetUnderlyingType(type);
 
             if (simpleTypeNames.TryGetValue(type.FullName, out simpleName))
@@ -131,6 +131,11 @@ namespace DumpApiXml
 
         private static Type GetUnderlyingType(Type type)
         {
+            if (type.IsGenericType && type.Name.StartsWith("Layout"))
+            {
+                type = type.GetGenericArguments()[0];
+            }
+
             if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 type = type.GetGenericArguments()[0];
@@ -477,6 +482,35 @@ namespace DumpApiXml
                 {
                     defaultValue = encoding.WebName;
                     return true;
+                }
+
+                var underlyingType = GetUnderlyingType(propInfo.PropertyType);
+                if (propertyValue != null && underlyingType != null && !ReferenceEquals(underlyingType, propInfo.PropertyType) && !underlyingType.Equals(propertyValue?.GetType()))
+                {
+                    try
+                    {
+                        if (underlyingType.IsEnum)
+                        {
+                            var enumStringValue = propertyValue?.ToString();
+                            defaultValue = Enum.Parse(underlyingType, enumStringValue, true).ToString();
+                            return true;
+                        }
+                        else if (typeof(IConvertible).IsAssignableFrom(underlyingType))
+                        {
+                            var convStringValue = propertyValue?.ToString();
+                            propertyValue = Convert.ChangeType(convStringValue, underlyingType);
+                        }
+                        else
+                        {
+                            defaultValue = null;
+                            return false;
+                        }
+                    }
+                    catch
+                    {
+                        defaultValue = null;
+                        return false;
+                    }
                 }
 
                 IConvertible convertibleValue = propertyValue as IConvertible;
