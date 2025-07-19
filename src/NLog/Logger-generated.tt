@@ -156,7 +156,7 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, message, args);
+                WriteToTargets(LogLevel.<#=level#>, Factory.DefaultCultureInfo, message, args);
             }
         }
 
@@ -200,7 +200,7 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, exception, message, null);
+                WriteToTargets(LogLevel.<#=level#>, exception, Factory.DefaultCultureInfo, message, null);
             }
         }
 
@@ -215,7 +215,7 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, exception, message, args);
+                WriteToTargets(LogLevel.<#=level#>, exception, Factory.DefaultCultureInfo, message, args);
             }
         }
 
@@ -269,7 +269,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.<#=level#>, null, Factory.DefaultCultureInfo, message, argument);
 #else
-                WriteToTargets(LogLevel.<#=level#>, message, new object?[] { argument });
+                WriteToTargets(LogLevel.<#=level#>, Factory.DefaultCultureInfo, message, new object?[] { argument });
 #endif
             }
         }
@@ -312,7 +312,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.<#=level#>, null, Factory.DefaultCultureInfo, message, argument1, argument2);
 #else
-                WriteToTargets(LogLevel.<#=level#>, message, new object?[] { argument1, argument2 });
+                WriteToTargets(LogLevel.<#=level#>, Factory.DefaultCultureInfo, message, new object?[] { argument1, argument2 });
 #endif
             }
         }
@@ -359,7 +359,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.<#=level#>, null, Factory.DefaultCultureInfo, message, argument1, argument2, argument3);
 #else
-                WriteToTargets(LogLevel.<#=level#>, message, new object?[] { argument1, argument2, argument3 });
+                WriteToTargets(LogLevel.<#=level#>, Factory.DefaultCultureInfo, message, new object?[] { argument1, argument2, argument3 });
 #endif
             }
         }

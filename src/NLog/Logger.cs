@@ -337,11 +337,11 @@ namespace NLog
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         public void Log(LogLevel level, LogMessageGenerator messageFunc)
         {
-            if (IsEnabled(level))
+            var targetsForLevel = GetTargetsForLevelSafe(level);
+            if (targetsForLevel != null)
             {
                 Guard.ThrowIfNull(messageFunc);
-
-                WriteToTargets(level, messageFunc());
+                WriteToTargets(targetsForLevel, level, null, Factory.DefaultCultureInfo, messageFunc(), null);
             }
         }
 
@@ -355,9 +355,10 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
-            if (IsEnabled(level))
+            var targetsForLevel = GetTargetsForLevelSafe(level);
+            if (targetsForLevel != null)
             {
-                WriteToTargets(level, formatProvider, message, args);
+                WriteToTargets(targetsForLevel, level, null, formatProvider, message, args);
             }
         }
 
@@ -368,9 +369,10 @@ namespace NLog
         /// <param name="message">Log message.</param>
         public void Log(LogLevel level, [Localizable(false)] string message)
         {
-            if (IsEnabled(level))
+            var targetsForLevel = GetTargetsForLevelSafe(level);
+            if (targetsForLevel != null)
             {
-                WriteToTargets(level, message);
+                WriteToTargets(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, null);
             }
         }
 
@@ -383,9 +385,10 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
-            if (IsEnabled(level))
+            var targetsForLevel = GetTargetsForLevelSafe(level);
+            if (targetsForLevel != null)
             {
-                WriteToTargets(level, message, args);
+                WriteToTargets(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, args);
             }
         }
 
@@ -399,9 +402,10 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log(LogLevel level, Exception? exception, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
-            if (IsEnabled(level))
+            var targetsForLevel = GetTargetsForLevelSafe(level);
+            if (targetsForLevel != null)
             {
-                WriteToTargets(level, exception, message, args);
+                WriteToTargets(targetsForLevel, level, exception, Factory.DefaultCultureInfo, message, args);
             }
         }
 
@@ -416,9 +420,10 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log(LogLevel level, Exception? exception, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object?[] args)
         {
-            if (IsEnabled(level))
+            var targetsForLevel = GetTargetsForLevelSafe(level);
+            if (targetsForLevel != null)
             {
-                WriteToTargets(level, exception, formatProvider, message, args);
+                WriteToTargets(targetsForLevel, level, exception, formatProvider, message, args);
             }
         }
 
@@ -433,18 +438,15 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument>(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument? argument)
         {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(targetsForLevel, level, null, formatProvider, message, argument);
-            }
 #else
-            if (IsEnabled(level))
-            {
-                WriteToTargets(level, formatProvider, message, new object?[] { argument });
+                WriteToTargets(targetsForLevel, level, null, formatProvider, message, new object?[] { argument });
+#endif         
             }
-#endif
         }
 
         /// <summary>
@@ -457,18 +459,15 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument>(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, TArgument? argument)
         {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, argument);
-            }
 #else
-            if (IsEnabled(level))
-            {
-                WriteToTargets(level, message, new object?[] { argument });
-            }
+                WriteToTargets(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, new object?[] { argument });
 #endif
+            }
         }
 
         /// <summary>
@@ -484,18 +483,15 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument1, TArgument2>(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2)
         {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(targetsForLevel, level, null, formatProvider, message, argument1, argument2);
-            }
 #else
-            if (IsEnabled(level))
-            {
-                WriteToTargets(level, formatProvider, message, new object?[] { argument1, argument2 });
-            }
+                WriteToTargets(targetsForLevel, level, null, formatProvider, message, new object?[] { argument1, argument2 });
 #endif
+            }
         }
 
         /// <summary>
@@ -510,18 +506,15 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument1, TArgument2>(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2)
         {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, argument1, argument2);
-            }
 #else
-            if (IsEnabled(level))
-            {
-                WriteToTargets(level, message, new object?[] { argument1, argument2 });
-            }
+                WriteToTargets(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, new object?[] { argument1, argument2 });
 #endif
+            }
         }
 
         /// <summary>
@@ -539,18 +532,15 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2, TArgument3? argument3)
         {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(targetsForLevel, level, null, formatProvider, message, argument1, argument2, argument3);
-            }
 #else
-            if (IsEnabled(level))
-            {
-                WriteToTargets(level, formatProvider, message, new object?[] { argument1, argument2, argument3 });
-            }
+                WriteToTargets(targetsForLevel, level, null, formatProvider, message, new object?[] { argument1, argument2, argument3 });
 #endif
+            }
         }
 
         /// <summary>
@@ -567,18 +557,15 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1? argument1, TArgument2? argument2, TArgument3? argument3)
         {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, argument1, argument2, argument3);
-            }
 #else
-            if (IsEnabled(level))
-            {
-                WriteToTargets(level, message, new object?[] { argument1, argument2, argument3 });
-            }
+                WriteToTargets(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, new object?[] { argument1, argument2, argument3 });
 #endif
+            }
         }
 
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
@@ -835,9 +822,10 @@ namespace NLog
             SetConfiguration(targetsByLevel);
         }
 
-        private void WriteToTargets(LogLevel level, string message, object?[] args)
+        private void WriteToTargets(ITargetWithFilterChain targetsForLevel, LogLevel level, Exception? exception, IFormatProvider? formatProvider, string message, object?[]? args)
         {
-            WriteToTargets(level, Factory.DefaultCultureInfo, message, args);
+            var logEvent = LogEventInfo.Create(level, Name, exception, formatProvider, message, args);
+            WriteLogEventToTargets(logEvent, targetsForLevel);
         }
 
         private void WriteToTargets(LogLevel level, IFormatProvider? formatProvider, string message, object?[] args)
@@ -872,20 +860,8 @@ namespace NLog
             }
         }
 
-        private void WriteToTargets(LogLevel level, Exception? ex, string message, object?[]? args)
-        {
-            var targetsForLevel = GetTargetsForLevel(level);
-            if (targetsForLevel != null)
-            {
-                // Translate Exception with missing LogEvent message as log single value
-                var logEvent = message is null && ex != null && !(args?.Length > 0) ?
-                    LogEventInfo.Create(level, Name, ExceptionMessageFormatProvider.Instance, ex) :
-                    LogEventInfo.Create(level, Name, ex, Factory.DefaultCultureInfo, message ?? string.Empty, args);
-                WriteLogEventToTargets(logEvent, targetsForLevel);
-            }
-        }
 
-        private void WriteToTargets(LogLevel level, Exception? ex, IFormatProvider? formatProvider, string message, object?[] args)
+        private void WriteToTargets(LogLevel level, Exception? ex, IFormatProvider? formatProvider, string message, object?[]? args)
         {
             var targetsForLevel = GetTargetsForLevel(level);
             if (targetsForLevel != null)
