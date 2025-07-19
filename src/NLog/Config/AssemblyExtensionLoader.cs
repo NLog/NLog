@@ -43,13 +43,7 @@ namespace NLog.Config
     [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
     internal sealed class AssemblyExtensionLoader : IAssemblyExtensionLoader
     {
-        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2072")]
-        public void LoadTypeFromName(ConfigurationItemFactory factory, string typeName, string itemNamePrefix)
-        {
-            var configType = PropertyTypeConverter.ConvertToType(typeName, true);
-            factory.RegisterType(configType, itemNamePrefix);
-        }
-
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         public void LoadAssemblyFromName(ConfigurationItemFactory factory, string assemblyName, string itemNamePrefix)
         {
             if (SkipAlreadyLoadedAssembly(factory, assemblyName, itemNamePrefix))
@@ -63,6 +57,7 @@ namespace NLog.Config
             LoadAssembly(factory, extensionAssembly, itemNamePrefix);
         }
 
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         public void LoadAssembly(ConfigurationItemFactory factory, Assembly assembly, string itemNamePrefix)
         {
             AssemblyHelpers.LogAssemblyVersion(assembly);
@@ -103,7 +98,7 @@ namespace NLog.Config
         /// <param name="assembly">Assembly to scan.</param>
         /// <returns>Usable types from the given assembly.</returns>
         /// <remarks>Types which cannot be loaded are skipped.</remarks>
-        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2026")]
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         private static Type[] SafeGetTypes(Assembly assembly)
         {
             try
@@ -258,6 +253,7 @@ namespace NLog.Config
             return false;
         }
 
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         public void LoadAssemblyFromPath(ConfigurationItemFactory factory, string assemblyFileName, string? baseDirectory, string itemNamePrefix)
         {
             var assembly = LoadAssemblyFromPath(assemblyFileName, baseDirectory);
@@ -265,6 +261,7 @@ namespace NLog.Config
                 LoadAssembly(factory, assembly, itemNamePrefix);
         }
 
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         public void ScanForAutoLoadExtensions(ConfigurationItemFactory factory)
         {
             try
@@ -312,6 +309,7 @@ namespace NLog.Config
             InternalLogger.Debug("Auto loading done");
         }
 
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.LoadFrom() Incompatible with trimming.")]
         private HashSet<string> LoadNLogExtensionAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, string[] extensionDlls)
         {
             HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
@@ -348,6 +346,7 @@ namespace NLog.Config
             return alreadyRegistered;
         }
 
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         private void RegisterAppDomainAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, HashSet<string> alreadyRegistered)
         {
             alreadyRegistered.Add(nlogAssembly.FullName);
@@ -464,8 +463,7 @@ namespace NLog.Config
         /// <param name="assemblyFileName">file or path, including .dll</param>
         /// <param name="baseDirectory">basepath, optional</param>
         /// <returns></returns>
-        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2026")]
-        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.LoadFrom() Incompatible with trimming.")]
         private static Assembly LoadAssemblyFromPath(string assemblyFileName, string? baseDirectory = null)
         {
             string fullFileName = assemblyFileName;
@@ -523,14 +521,15 @@ namespace NLog.Config
 
     internal interface IAssemblyExtensionLoader
     {
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         void ScanForAutoLoadExtensions(ConfigurationItemFactory factory);
-
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         void LoadAssemblyFromPath(ConfigurationItemFactory factory, string assemblyFileName, string? baseDirectory, string itemNamePrefix);
 
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         void LoadAssemblyFromName(ConfigurationItemFactory factory, string assemblyName, string itemNamePrefix);
 
-        void LoadTypeFromName(ConfigurationItemFactory factory, string typeName, string itemNamePrefix);
-
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         void LoadAssembly(ConfigurationItemFactory factory, Assembly assembly, string itemNamePrefix);
     }
 }

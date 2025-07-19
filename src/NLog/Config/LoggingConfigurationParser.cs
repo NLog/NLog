@@ -198,10 +198,16 @@ namespace NLog.Config
 
             if (autoLoadExtensions)
             {
-                ConfigurationItemFactory.Default.AssemblyLoader.ScanForAutoLoadExtensions(ConfigurationItemFactory.Default);
+                ScanForAutoLoadExtensions();
             }
 
             LogFactory.ServiceRepository.ParseMessageTemplates(LogFactory, parseMessageTemplates);
+        }
+
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2026")]
+        private static void ScanForAutoLoadExtensions()
+        {
+            ConfigurationItemFactory.Default.AssemblyLoader.ScanForAutoLoadExtensions(ConfigurationItemFactory.Default);
         }
 
         /// <summary>
@@ -354,11 +360,15 @@ namespace NLog.Config
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2072")]
         private void RegisterExtension(string typeName, string itemNamePrefix)
         {
             try
             {
-                ConfigurationItemFactory.Default.AssemblyLoader.LoadTypeFromName(ConfigurationItemFactory.Default, typeName, itemNamePrefix);
+                var configType = PropertyTypeConverter.ConvertToType(typeName, true);
+#pragma warning disable CS0618 // Type or member is obsolete
+                ConfigurationItemFactory.Default.RegisterType(configType, itemNamePrefix);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
             catch (Exception exception)
             {
@@ -372,6 +382,7 @@ namespace NLog.Config
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2026")]
         private void ParseExtensionWithAssemblyFile(string assemblyFile, string? baseDirectory, string prefix)
         {
             try
@@ -396,6 +407,7 @@ namespace NLog.Config
             return ParseExtensionWithAssemblyName(assemblyName, string.Empty);
         }
 
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2026")]
         private bool ParseExtensionWithAssemblyName(string assemblyName, string itemNamePrefix)
         {
             try
