@@ -95,18 +95,15 @@ namespace NLog
 #endif
         public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2)
         {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, arg1, arg2);
-            }
 #else
-            if (IsEnabled(level))
-            {
-                WriteToTargets(level, message, new[] { arg1, arg2 });
-            }
+                WriteToTargets(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, new object?[] { arg1, arg2 });
 #endif
+            }
         }
 
         /// <summary>
@@ -124,18 +121,15 @@ namespace NLog
 #endif
         public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, object? arg1, object? arg2, object? arg3)
         {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, arg1, arg2, arg3);
-            }
 #else
-            if (IsEnabled(level))
-            {
-                WriteToTargets(level, message, new[] { arg1, arg2, arg3 });
-            }
+                WriteToTargets(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, new object?[] { arg1, arg2, arg3 });
 #endif
+            }
         }
 
         /// <summary>
@@ -173,7 +167,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -212,7 +206,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -251,7 +245,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -290,7 +284,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, message, new object?[] { argument });
+                WriteToTargets(level, Factory.DefaultCultureInfo, message, new object?[] { argument });
             }
         }
 
@@ -329,7 +323,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -368,7 +362,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -407,7 +401,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -446,7 +440,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -485,7 +479,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -503,18 +497,15 @@ namespace NLog
 #endif
         public void Log(LogLevel level, IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(targetsForLevel, level, null, formatProvider, message, argument);
-            }
 #else
-            if (IsEnabled(level))
-            {
-                WriteToTargets(level, formatProvider, message, new object?[] { argument });
-            }
+                WriteToTargets(targetsForLevel, level, null, formatProvider, message, new object?[] { argument });
 #endif
+            }
         }
 
         /// <summary>
@@ -530,18 +521,15 @@ namespace NLog
 #endif
         public void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, object? argument)
         {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, argument);
-            }
 #else
-            if (IsEnabled(level))
-            {
-                WriteToTargets(level, message, new object?[] { argument });
-            }
+                WriteToTargets(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, new object?[] { argument });
 #endif
+            }
         }
 
         /// <summary>
@@ -581,7 +569,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -622,7 +610,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -663,7 +651,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -722,7 +710,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Trace, null, Factory.DefaultCultureInfo, message, arg1, arg2);
 #else
-                WriteToTargets(LogLevel.Trace, message, new object?[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object?[] { arg1, arg2 });
 #endif
             }
         }
@@ -746,7 +734,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Trace, null, Factory.DefaultCultureInfo, message, arg1, arg2, arg3);
 #else
-                WriteToTargets(LogLevel.Trace, message, new object?[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object?[] { arg1, arg2, arg3 });
 #endif
             }
         }
@@ -784,7 +772,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -821,7 +809,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -858,7 +846,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -895,7 +883,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, message, new object?[] { argument });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object?[] { argument });
             }
         }
 
@@ -932,7 +920,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -969,7 +957,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1006,7 +994,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1043,7 +1031,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1080,7 +1068,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1124,7 +1112,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Trace, null, Factory.DefaultCultureInfo, message, argument);
 #else
-                WriteToTargets(LogLevel.Trace, message, new object?[] { argument });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object?[] { argument });
 #endif
             }
         }
@@ -1164,7 +1152,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1203,7 +1191,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1242,7 +1230,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1301,7 +1289,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Debug, null, Factory.DefaultCultureInfo, message, arg1, arg2);
 #else
-                WriteToTargets(LogLevel.Debug, message, new object?[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object?[] { arg1, arg2 });
 #endif
             }
         }
@@ -1325,7 +1313,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Debug, null, Factory.DefaultCultureInfo, message, arg1, arg2, arg3);
 #else
-                WriteToTargets(LogLevel.Debug, message, new object?[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object?[] { arg1, arg2, arg3 });
 #endif
             }
         }
@@ -1363,7 +1351,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1400,7 +1388,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1437,7 +1425,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1474,7 +1462,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, message, new object?[] { argument });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object?[] { argument });
             }
         }
 
@@ -1511,7 +1499,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1548,7 +1536,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1585,7 +1573,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1622,7 +1610,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1659,7 +1647,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1703,7 +1691,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Debug, null, Factory.DefaultCultureInfo, message, argument);
 #else
-                WriteToTargets(LogLevel.Debug, message, new object?[] { argument });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object?[] { argument });
 #endif
             }
         }
@@ -1743,7 +1731,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1782,7 +1770,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1821,7 +1809,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1880,7 +1868,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Info, null, Factory.DefaultCultureInfo, message, arg1, arg2);
 #else
-                WriteToTargets(LogLevel.Info, message, new object?[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object?[] { arg1, arg2 });
 #endif
             }
         }
@@ -1904,7 +1892,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Info, null, Factory.DefaultCultureInfo, message, arg1, arg2, arg3);
 #else
-                WriteToTargets(LogLevel.Info, message, new object?[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object?[] { arg1, arg2, arg3 });
 #endif
             }
         }
@@ -1942,7 +1930,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -1979,7 +1967,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2016,7 +2004,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2053,7 +2041,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, message, new object?[] { argument });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object?[] { argument });
             }
         }
 
@@ -2090,7 +2078,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2127,7 +2115,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2164,7 +2152,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2201,7 +2189,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2238,7 +2226,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2282,7 +2270,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Info, null, Factory.DefaultCultureInfo, message, argument);
 #else
-                WriteToTargets(LogLevel.Info, message, new object?[] { argument });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object?[] { argument });
 #endif
             }
         }
@@ -2322,7 +2310,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2361,7 +2349,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2400,7 +2388,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2459,7 +2447,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Warn, null, Factory.DefaultCultureInfo, message, arg1, arg2);
 #else
-                WriteToTargets(LogLevel.Warn, message, new object?[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object?[] { arg1, arg2 });
 #endif
             }
         }
@@ -2483,7 +2471,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Warn, null, Factory.DefaultCultureInfo, message, arg1, arg2, arg3);
 #else
-                WriteToTargets(LogLevel.Warn, message, new object?[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object?[] { arg1, arg2, arg3 });
 #endif
             }
         }
@@ -2521,7 +2509,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2558,7 +2546,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2595,7 +2583,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2632,7 +2620,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, message, new object?[] { argument });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object?[] { argument });
             }
         }
 
@@ -2669,7 +2657,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2706,7 +2694,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2743,7 +2731,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2780,7 +2768,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2817,7 +2805,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2861,7 +2849,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Warn, null, Factory.DefaultCultureInfo, message, argument);
 #else
-                WriteToTargets(LogLevel.Warn, message, new object?[] { argument });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object?[] { argument });
 #endif
             }
         }
@@ -2901,7 +2889,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2940,7 +2928,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -2979,7 +2967,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3038,7 +3026,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Error, null, Factory.DefaultCultureInfo, message, arg1, arg2);
 #else
-                WriteToTargets(LogLevel.Error, message, new object?[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object?[] { arg1, arg2 });
 #endif
             }
         }
@@ -3062,7 +3050,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Error, null, Factory.DefaultCultureInfo, message, arg1, arg2, arg3);
 #else
-                WriteToTargets(LogLevel.Error, message, new object?[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object?[] { arg1, arg2, arg3 });
 #endif
             }
         }
@@ -3100,7 +3088,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3137,7 +3125,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3174,7 +3162,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3211,7 +3199,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, message, new object?[] { argument });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object?[] { argument });
             }
         }
 
@@ -3248,7 +3236,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3285,7 +3273,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3322,7 +3310,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3359,7 +3347,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3396,7 +3384,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3440,7 +3428,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Error, null, Factory.DefaultCultureInfo, message, argument);
 #else
-                WriteToTargets(LogLevel.Error, message, new object?[] { argument });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object?[] { argument });
 #endif
             }
         }
@@ -3480,7 +3468,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3519,7 +3507,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3558,7 +3546,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3617,7 +3605,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Fatal, null, Factory.DefaultCultureInfo, message, arg1, arg2);
 #else
-                WriteToTargets(LogLevel.Fatal, message, new object?[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object?[] { arg1, arg2 });
 #endif
             }
         }
@@ -3641,7 +3629,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Fatal, null, Factory.DefaultCultureInfo, message, arg1, arg2, arg3);
 #else
-                WriteToTargets(LogLevel.Fatal, message, new object?[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object?[] { arg1, arg2, arg3 });
 #endif
             }
         }
@@ -3679,7 +3667,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3716,7 +3704,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3753,7 +3741,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3790,7 +3778,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, message, new object?[] { argument });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object?[] { argument });
             }
         }
 
@@ -3827,7 +3815,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3864,7 +3852,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3901,7 +3889,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3938,7 +3926,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -3975,7 +3963,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -4019,7 +4007,7 @@ namespace NLog
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
                 WriteToTargetsWithSpan(LogLevel.Fatal, null, Factory.DefaultCultureInfo, message, argument);
 #else
-                WriteToTargets(LogLevel.Fatal, message, new object?[] { argument });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object?[] { argument });
 #endif
             }
         }
@@ -4059,7 +4047,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -4098,7 +4086,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
@@ -4137,7 +4125,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, message, new object[] { argument });
             }
         }
 
