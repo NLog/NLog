@@ -4,6 +4,43 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.0.2 (2025/07/20)
+
+**Improvements**
+
+- [#5930](https://github.com/NLog/NLog/pull/5930) XmlParser - Handle XML comments after root-end-tag. (@snakefoot)
+- [#5929](https://github.com/NLog/NLog/pull/5929) XmlLoggingConfiguration - Improve handling of invalid XML. (@snakefoot)
+- [#5933](https://github.com/NLog/NLog/pull/5933) Handle invalid message template when skipping parameters array. (@snakefoot)
+- [#5915](https://github.com/NLog/NLog/pull/5915) ReplaceNewLinesLayoutRendererWrapper - Replace more line ending characters. (@oikku)
+- [#5911](https://github.com/NLog/NLog/pull/5911) NLog.Targets.GZipFile - Improve support for ArchiveAboveSize. (@snakefoot)
+- [#5921](https://github.com/NLog/NLog/pull/5921) FileTarget - Activate legacy ArchiveFileName when ArchiveSuffixFormat contains legacy placeholder. (@snakefoot)
+- [#5924](https://github.com/NLog/NLog/pull/5924) AsyncTargetWrapper - Updated FullBatchSizeWriteLimit default value from 5 to 10. (@snakefoot)
+- [#5937](https://github.com/NLog/NLog/pull/5937) Mark Assembly loading with RequiresUnreferencedCodeAttribute for AOT. (@snakefoot)
+- [#5938](https://github.com/NLog/NLog/pull/5938) Logger - Align WriteToTargets with WriteToTargetsWithSpan. (@snakefoot)
+- [#5909](https://github.com/NLog/NLog/pull/5909) ConfigurationItemFactory - Added extension hints for webservice and activityid. (@snakefoot)
+- [#5918](https://github.com/NLog/NLog/pull/5918) Log4JXmlTarget - Removed alias NLogViewer as conflicts with other nuget-packages. (@snakefoot)
+- [#5926](https://github.com/NLog/NLog/pull/5926) SplunkTarget - NetworkTarget with SplunkLayout. (@snakefoot)
+- [#5927](https://github.com/NLog/NLog/pull/5927) GelfLayout - Align with SplunkLayout. (@snakefoot)
+- [#5913](https://github.com/NLog/NLog/pull/5913) NLog.Targets.Network - Updated nuget-package README.md. (@snakefoot)
+- [#5912](https://github.com/NLog/NLog/pull/5912) NLog.Targets.Trace - Updated nuget-package README.md. (@snakefoot)
+- [#5919](https://github.com/NLog/NLog/pull/5919) XML docs for Targets and Layouts with remarks about default value. (@snakefoot)
+- [#5922](https://github.com/NLog/NLog/pull/5922) XML docs for LayoutRenderers with remarks about default value. (@snakefoot)
+- [#5925](https://github.com/NLog/NLog/pull/5925) XML docs for Target Wrappers with remarks about default value. (@snakefoot)
+- [#5935](https://github.com/NLog/NLog/pull/5935) Improve NLog XSD Schema with better handling of typed Layout. (@snakefoot)
+- [#5923](https://github.com/NLog/NLog/pull/5923) Updated unit-tests from NET6 to NET8. (@snakefoot)
+
+### Version 5.5.1 (2025/07/18)
+
+**Improvements**
+
+- [#5858](https://github.com/NLog/NLog/pull/5858) ConsoleTarget - Added ForceWriteLine to match NLog v6 Schema (#5858) (@snakefoot)
+- [#5866](https://github.com/NLog/NLog/pull/5866) Layout.FromLiteral to match NLog v6 (#5866) (@snakefoot)
+- [#5888](https://github.com/NLog/NLog/pull/5888) ChainsawTarget with type-alias Log4JXml to match NLog v6 (#5888) (@snakefoot)
+- [#5883](https://github.com/NLog/NLog/pull/5883) AsyncTargetWrapper - LogEventDropped and EventQueueGrow events fixes (#5883) (@dance)
+- [#5890](https://github.com/NLog/NLog/pull/5890) StringBuilderExt - Change Append2DigitsZeroPadded to array-lookup (#5890) (@snakefoot)
+- [#5936](https://github.com/NLog/NLog/pull/5936) XmlLayout - Support MaxRecursionLimit == 0 (#5936) (@snakefoot)
+- [#5936](https://github.com/NLog/NLog/pull/5936) RegisterObjectTransformation so build trimming will keep public properties (#5936) (@snakefoot)
+
 ### Version 6.0.1 (2025/06/27)
 
 **Improvements**
