@@ -61,9 +61,9 @@ namespace NLog.Targets
         /// <inheritdoc cref="SplunkLayout.SplunkIndex"/>
         public Layout SplunkIndex { get => _splunkLayout.SplunkIndex; set => _splunkLayout.SplunkIndex = value; }
 
-        /// <inheritdoc cref="SplunkLayout.SplunkEvents"/>
-        [ArrayParameter(typeof(JsonAttribute), "SplunkEvent")]
-        public IList<JsonAttribute>? SplunkEvents { get => _splunkLayout.SplunkEvents; }
+        /// <inheritdoc cref="SplunkLayout.SplunkFields"/>
+        [ArrayParameter(typeof(JsonAttribute), "SplunkField")]
+        public IList<JsonAttribute>? SplunkFields { get => _splunkLayout.SplunkFields; }
 
         /// <inheritdoc cref="SplunkLayout.IncludeEventProperties"/>
         public bool IncludeEventProperties { get => _splunkLayout.IncludeEventProperties; set => _splunkLayout.IncludeEventProperties = value; }
