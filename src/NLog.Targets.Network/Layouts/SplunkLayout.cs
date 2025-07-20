@@ -67,8 +67,8 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the array of attributes for the "event"-section
         /// </summary>
-        [ArrayParameter(typeof(JsonAttribute), "splunkevent")]
-        public IList<JsonAttribute>? SplunkEvents
+        [ArrayParameter(typeof(JsonAttribute), "SplunkField")]
+        public IList<JsonAttribute>? SplunkFields
         {
             get
             {

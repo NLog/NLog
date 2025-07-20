@@ -153,7 +153,7 @@ namespace NLog.Targets.Network
         public void CanRenderSplunkAdditionalEventCustomMessage()
         {
             var splunkLayout = new SplunkLayout();
-            splunkLayout.SplunkEvents.Add(new JsonAttribute("threadid", "${threadid}") { Encode = false });
+            splunkLayout.SplunkFields.Add(new JsonAttribute("threadid", "${threadid}") { Encode = false });
 
             var memTarget = new NLog.Targets.MemoryTarget() { Layout = splunkLayout };
             using (var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(memTarget).WithAsync()).LogFactory)
@@ -199,7 +199,7 @@ namespace NLog.Targets.Network
         public void CanRenderEventProperties()
         {
             var splunkLayout = new SplunkLayout();
-            splunkLayout.SplunkEvents.Add(new JsonAttribute("mt", "${message:raw=true}"));
+            splunkLayout.SplunkFields.Add(new JsonAttribute("mt", "${message:raw=true}"));
             splunkLayout.IncludeEventProperties = true;
 
             var memTarget = new NLog.Targets.MemoryTarget() { Layout = splunkLayout };
@@ -250,7 +250,7 @@ namespace NLog.Targets.Network
         public void CanRenderScopeContext()
         {
             var splunkLayout = new SplunkLayout();
-            splunkLayout.SplunkEvents.Add(new JsonAttribute("mt", "${message:raw=true}"));
+            splunkLayout.SplunkFields.Add(new JsonAttribute("mt", "${message:raw=true}"));
             splunkLayout.IncludeEventProperties = true;
             splunkLayout.IncludeScopeProperties = true;
             splunkLayout.ExcludeProperties.Add("World");
