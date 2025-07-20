@@ -195,7 +195,7 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void InitializeLayout()
         {
-            // CompoundLayout includes optimization, so only doing precalculate/caching of relevant Layouts (instead of the entire SysLog-message)
+            // CompoundLayout includes optimization, so only doing precalculate/caching of relevant Layouts (instead of the entire Syslog-message)
             Layouts.Clear();
             if (!IncludeEventProperties)
             {
