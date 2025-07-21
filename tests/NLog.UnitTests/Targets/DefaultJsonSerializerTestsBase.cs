@@ -573,16 +573,16 @@ namespace NLog.UnitTests.Targets
             var actual = SerializeObject(object1);
             Assert.Equal("{\"Id\":123,\"Name\":\"test name\"}", actual);
         }
-#endif
-
-#if !NET35 && !NET40 && NETFRAMEWORK
 
         [Fact]
-        public void SerializeDynamicObject_Test()
+        public void RegisterDynamicObjectTransformation()
         {
-            var object1 = new MyDynamicClass();
-            var actual = SerializeObject(object1);
-            Assert.Equal("{\"Id\":123,\"Name\":\"test name\"}", actual);
+            var logFactory = new LogFactory().Setup().SetupSerialization(s => s.RegisterDynamicObjectTransformation()).LogFactory;
+            var objectTransformer = logFactory.ServiceRepository.GetService<IObjectTypeTransformer>();
+            var obj = new MyDynamicClass();
+            var expandoObject = objectTransformer.TryTransformObject(obj) as IDictionary<string, object>;
+            Assert.NotNull(expandoObject);
+            Assert.NotEmpty(expandoObject);
         }
 
         private class MyDynamicClass : DynamicObject
@@ -626,6 +626,18 @@ namespace NLog.UnitTests.Targets
             {
                 return new List<string>() { "Id", "Name" };
             }
+        }
+
+#endif
+
+#if !NET35 && !NET40 && NETFRAMEWORK
+
+        [Fact]
+        public void SerializeDynamicObject_Test()
+        {
+            var object1 = new MyDynamicClass();
+            var actual = SerializeObject(object1);
+            Assert.Equal("{\"Id\":123,\"Name\":\"test name\"}", actual);
         }
 
 #endif

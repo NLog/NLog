@@ -83,6 +83,41 @@ namespace NLog
             return setupBuilder;
         }
 
+#if !NET35 && !NET40
+        /// <summary>
+        /// Registers <see cref="System.Dynamic.DynamicObject"/> transformation.
+        /// </summary>
+        public static ISetupSerializationBuilder RegisterDynamicObjectTransformation(this ISetupSerializationBuilder setupBuilder)
+        {
+            return setupBuilder.RegisterObjectTransformation<System.Dynamic.DynamicObject>(obj =>
+            {
+                var newVal = new System.Collections.Generic.Dictionary<string, object>();
+                foreach (var propName in obj.GetDynamicMemberNames())
+                {
+                    if (obj.TryGetMember(new GetMemberAdapter(propName), out var result))
+                        newVal[propName] = result;
+                }
+                return newVal;
+            });
+        }
+
+        private sealed class GetMemberAdapter : System.Dynamic.GetMemberBinder
+        {
+            internal GetMemberAdapter(string name)
+                : base(name, false)
+            {
+            }
+
+            /// <inheritdoc/>
+            public override System.Dynamic.DynamicMetaObject FallbackGetMember(
+               System.Dynamic.DynamicMetaObject target,
+               System.Dynamic.DynamicMetaObject errorSuggestion)
+            {
+                return target;
+            }
+        }
+#endif
+
         /// <summary>
         /// Registers object Type transformation so build trimming will keep public properties.
         /// </summary>
