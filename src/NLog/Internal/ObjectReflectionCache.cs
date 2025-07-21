@@ -37,9 +37,6 @@ namespace NLog.Internal
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-#if !NET35 && !NET40 && NETFRAMEWORK
-    using System.Dynamic;
-#endif
     using System.Linq;
     using System.Reflection;
     using NLog.Common;
@@ -142,7 +139,7 @@ namespace NLog.Internal
             }
 
 #if !NET35 && !NET40 && NETFRAMEWORK
-            if (value is DynamicObject d)
+            if (value is System.Dynamic.DynamicObject d)
             {
                 var dictionary = DynamicObjectToDict(d);
                 objectPropertyList = new ObjectPropertyList(dictionary);
@@ -556,7 +553,7 @@ namespace NLog.Internal
         }
 
 #if !NET35 && !NET40 && NETFRAMEWORK
-        private static Dictionary<string, object> DynamicObjectToDict(DynamicObject d)
+        private static Dictionary<string, object> DynamicObjectToDict(System.Dynamic.DynamicObject d)
         {
             var newVal = new Dictionary<string, object>();
             foreach (var propName in d.GetDynamicMemberNames())
@@ -571,9 +568,9 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Binder for retrieving value of <see cref="DynamicObject"/>
+        /// Binder for retrieving value of <see cref="System.Dynamic.DynamicObject"/>
         /// </summary>
-        private sealed class GetBinderAdapter : GetMemberBinder
+        private sealed class GetBinderAdapter : System.Dynamic.GetMemberBinder
         {
             internal GetBinderAdapter(string name)
                 : base(name, false)
@@ -581,7 +578,7 @@ namespace NLog.Internal
             }
 
             /// <inheritdoc/>
-            public override DynamicMetaObject FallbackGetMember(DynamicMetaObject target, DynamicMetaObject errorSuggestion)
+            public override System.Dynamic.DynamicMetaObject FallbackGetMember(System.Dynamic.DynamicMetaObject target, System.Dynamic.DynamicMetaObject errorSuggestion)
             {
                 return target;
             }

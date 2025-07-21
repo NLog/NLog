@@ -563,8 +563,7 @@ namespace NLog.UnitTests.Targets
             public override string ToString() => "nullValue";
         }
 
-#if !NET35 && !NET40 && NETFRAMEWORK
-
+#if !NET35 && !NET40
         [Fact]
         public void SerializeExpandoObject_Test()
         {
@@ -574,6 +573,9 @@ namespace NLog.UnitTests.Targets
             var actual = SerializeObject(object1);
             Assert.Equal("{\"Id\":123,\"Name\":\"test name\"}", actual);
         }
+#endif
+
+#if !NET35 && !NET40 && NETFRAMEWORK
 
         [Fact]
         public void SerializeDynamicObject_Test()
