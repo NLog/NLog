@@ -33,6 +33,8 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
+    using System.ComponentModel;
     using System.IO;
     using System.Text;
     using NLog.Config;
@@ -75,6 +77,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
+        [Obsolete("Should always be enabled. Marked obsolete with v6.1")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CleanNamesOfAnonymousDelegates { get; set; } = true;
 
         /// <summary>
@@ -83,6 +87,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
+        [Obsolete("Should always be enabled. Marked obsolete with v6.1")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CleanNamesOfAsyncContinuations { get; set; } = true;
 
         /// <summary>
@@ -141,13 +147,17 @@ namespace NLog.LayoutRenderers
 
                 if (ClassName)
                 {
+#pragma warning disable CS0618 // Type or member is obsolete
                     var className = logEventCallSize.GetCallerClassName(method, IncludeNamespace, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
+#pragma warning restore CS0618 // Type or member is obsolete
                     builder.Append(string.IsNullOrEmpty(className) ? "<no type>" : className);
                 }
 
                 if (MethodName)
                 {
+#pragma warning disable CS0618 // Type or member is obsolete
                     var methodName = logEventCallSize.GetCallerMethodName(method, false, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
+#pragma warning restore CS0618 // Type or member is obsolete
                     if (ClassName)
                     {
                         builder.Append('.');
@@ -192,7 +202,9 @@ namespace NLog.LayoutRenderers
             {
                 if (ClassName)
                 {
+#pragma warning disable CS0618 // Type or member is obsolete
                     var className = StackTraceUsageUtils.GetStackFrameMethodClassName(targetSite, true, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
+#pragma warning restore CS0618 // Type or member is obsolete
                     builder.Append(className);
                 }
 
@@ -202,7 +214,9 @@ namespace NLog.LayoutRenderers
                     {
                         builder.Append('.');
                     }
+#pragma warning disable CS0618 // Type or member is obsolete
                     var methodName = StackTraceUsageUtils.GetStackFrameMethodName(targetSite, false, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
+#pragma warning restore CS0618 // Type or member is obsolete
                     builder.Append(methodName);
                 }
             }
