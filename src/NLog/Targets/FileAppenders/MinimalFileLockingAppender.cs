@@ -54,12 +54,23 @@ namespace NLog.Targets.FileAppenders
         {
             get
             {
-                var fileInfo = new FileInfo(_filePath);
-                if (fileInfo.Exists && fileInfo.Length != 0)
+                try
                 {
-                    return Time.TimeSource.Current.FromSystemTime(fileInfo.LastWriteTimeUtc);
+                    var fileInfo = new FileInfo(_filePath);
+                    if (fileInfo.Exists && fileInfo.Length != 0)
+                    {
+                        return Time.TimeSource.Current.FromSystemTime(fileInfo.LastWriteTimeUtc);
+                    }
+                    return OpenStreamTime;
                 }
-                return OpenStreamTime;
+                catch (Exception ex)
+                {
+                    NLog.Common.InternalLogger.Error(ex, "{0}: Failed to lookup FileInfo.LastWriteTimeUtc for file: {1}", _fileTarget, _filePath);
+                    if (ex.MustBeRethrown())
+                        throw;
+
+                    return OpenStreamTime;
+                }
             }
         }
 
@@ -88,9 +99,20 @@ namespace NLog.Targets.FileAppenders
         {
             get
             {
-                var fileInfo = new FileInfo(_filePath);
-                var fileSize = fileInfo.Exists ? fileInfo.Length : 0;
-                return fileSize;
+                try
+                {
+                    var fileInfo = new FileInfo(_filePath);
+                    var fileSize = fileInfo.Exists ? fileInfo.Length : 0;
+                    return fileSize;
+                }
+                catch (Exception ex)
+                {
+                    NLog.Common.InternalLogger.Error(ex, "{0}: Failed to lookup FileInfo.Length for file: {1}", _fileTarget, _filePath);
+                    if (ex.MustBeRethrown())
+                        throw;
+
+                    return 0;
+                }
             }
         }
 
