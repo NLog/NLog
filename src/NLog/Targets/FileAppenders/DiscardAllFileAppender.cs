@@ -41,6 +41,8 @@ namespace NLog.Targets.FileAppenders
 
         public DateTime OpenStreamTime { get; }
 
+        public DateTime LastWriteTime => OpenStreamTime;
+
         public DateTime FileLastModified => OpenStreamTime;
 
         public DateTime NextArchiveTime => DateTime.MaxValue;
