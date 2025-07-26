@@ -50,6 +50,8 @@ namespace NLog.Targets.FileAppenders
 
         public DateTime OpenStreamTime { get; }
 
+        public DateTime LastWriteTime { get; private set; }
+
         public DateTime FileLastModified
         {
             get
@@ -99,7 +101,7 @@ namespace NLog.Targets.FileAppenders
             _fileTarget = fileTarget;
             _filePath = filePath;
             _initialFileOpen = true;
-            OpenStreamTime = Time.TimeSource.Current.Time;
+            OpenStreamTime = LastWriteTime = Time.TimeSource.Current.Time;
         }
 
         public void Write(byte[] buffer, int offset, int count)
@@ -122,6 +124,8 @@ namespace NLog.Targets.FileAppenders
                     }
                 }
             }
+
+            LastWriteTime = NLog.Time.TimeSource.Current.Time;
         }
 
         public void Dispose()

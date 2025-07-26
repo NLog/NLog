@@ -44,6 +44,7 @@ namespace NLog.Targets.FileAppenders
         long FileSize { get; }
 
         DateTime OpenStreamTime { get; }
+        DateTime LastWriteTime { get; }
         DateTime FileLastModified { get; }
         DateTime NextArchiveTime { get; }
 

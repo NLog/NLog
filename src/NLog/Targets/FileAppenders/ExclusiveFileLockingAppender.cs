@@ -53,6 +53,8 @@ namespace NLog.Targets.FileAppenders
 
         public DateTime OpenStreamTime { get; }
 
+        public DateTime LastWriteTime => FileLastModified;
+
         public DateTime FileLastModified { get; private set; }
 
         private DateTime FileBirthTime
@@ -97,7 +99,7 @@ namespace NLog.Targets.FileAppenders
         {
             FileLastModified = NLog.Time.TimeSource.Current.Time;
 
-            if (_fileTarget.ArchiveFileName is null && _fileTarget.ArchiveEvery == FileArchivePeriod.None && _fileTarget.ArchiveAboveSize <= 0)
+            if (_fileTarget.ArchiveEvery == FileArchivePeriod.None && _fileTarget.ArchiveAboveSize <= 0 && _fileTarget.ArchiveFileName is null)
                 return 0;
 
             try

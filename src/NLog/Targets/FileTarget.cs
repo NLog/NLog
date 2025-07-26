@@ -151,8 +151,8 @@ namespace NLog.Targets
         /// <remarks>
         /// Default: <see langword="5"/> . Higher number might improve performance when single FileTarget
         /// is writing to many files (such as splitting by loglevel or by logger-name).
-        /// Files are closed in FIFO (First in First out) ordering, so the oldest
-        /// file-handle is closed first. Careful with number higher than 10-15,
+        /// Files are closed in LRU (least recently used) ordering, so files unused
+        /// for longest period are closed first. Careful with number higher than 10-15,
         /// because a large number of open files consumes system resources.
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
@@ -309,7 +309,7 @@ namespace NLog.Targets
         /// <docgen category='Archival Options' order='50' />
         public Layout? ArchiveFileName
         {
-            get => _archiveFileName ?? (_archiveSuffixFormat?.IndexOf("{1") >= 0 ? FileName : null);
+            get => _archiveFileName ?? (_archiveSuffixFormatLegacy ? FileName : null);
             set
             {
                 var archiveSuffixFormat = _archiveSuffixFormat;
@@ -448,9 +448,11 @@ namespace NLog.Targets
                 }
 
                 _archiveSuffixFormat = value;
+                _archiveSuffixFormatLegacy = _archiveSuffixFormat?.IndexOf("{1") >= 0;
             }
         }
         private string? _archiveSuffixFormat;
+        private bool _archiveSuffixFormatLegacy;
 
         /// <summary>
         /// Gets or sets a value indicating whether the footer should be written only when the file is archived.
@@ -499,7 +501,6 @@ namespace NLog.Targets
 
         private readonly SortHelpers.KeySelector<AsyncLogEventInfo, string> _getFileNameFromLayout;
 
-        private DateTime _lastWriteTime;
         private Timer? _openFileMonitorTimer;
 
         /// <summary>
@@ -770,10 +771,6 @@ namespace NLog.Targets
                 openFile.FileAppender.Dispose();
                 throw;
             }
-            finally
-            {
-                _lastWriteTime = firstLogEvent.TimeStamp;
-            }
         }
 
         private OpenFileAppender RollArchiveFile(string filename, OpenFileAppender openFile, LogEventInfo firstLogEvent, bool hasWritten)
@@ -787,8 +784,8 @@ namespace NLog.Targets
                 lastSequenceNo = openFile.SequenceNumber;
 
                 DateTime? previousFileLastModified = skipFileLastModified ? default(DateTime?) : openFile.FileAppender.FileLastModified;
-                if (_lastWriteTime > DateTime.MinValue && previousFileLastModified > _lastWriteTime && (previousFileLastModified == openFile.FileAppender.OpenStreamTime || firstLogEvent.TimeStamp.Date == previousFileLastModified?.Date))
-                    previousFileLastModified = _lastWriteTime;
+                if (previousFileLastModified > openFile.FileAppender.LastWriteTime && (previousFileLastModified == openFile.FileAppender.OpenStreamTime || firstLogEvent.TimeStamp.Date == previousFileLastModified?.Date))
+                    previousFileLastModified = openFile.FileAppender.LastWriteTime;
 
                 // Close file and roll to next file
                 if (hasWritten)
@@ -931,12 +928,12 @@ namespace NLog.Targets
 
             while (_openFileCache.Count >= OpenFileCacheSize)
             {
-                // Close the oldest filestream (not the least recently used)
+                // Closing the least recently used
                 DateTime oldestFileTime = DateTime.MaxValue;
                 KeyValuePair<string, OpenFileAppender> oldestOpenFile = default;
                 foreach (var oldOpenFile in _openFileCache)
                 {
-                    if (oldOpenFile.Value.FileAppender.OpenStreamTime < oldestFileTime)
+                    if (oldOpenFile.Value.FileAppender.LastWriteTime < oldestFileTime)
                     {
                         oldestOpenFile = oldOpenFile;
                     }
@@ -1035,10 +1032,10 @@ namespace NLog.Targets
                     if (OpenFileFlushTimeout > 0 && !AutoFlush)
                     {
                         DateTime flushTime = Time.TimeSource.Current.Time.AddSeconds(-(OpenFileFlushTimeout + 1) * 1.5);
-                        if (_lastWriteTime > flushTime)
+                        // Only Flush when something has been written
+                        foreach (var openFile in _openFileCache)
                         {
-                            // Only Flush when something has been written
-                            foreach (var openFile in _openFileCache)
+                            if (openFile.Value.FileAppender.LastWriteTime > flushTime)
                             {
                                 openFile.Value.FileAppender.Flush();
                             }
@@ -1062,22 +1059,24 @@ namespace NLog.Targets
         private void PruneOpenFileCacheUsingTimeout()
         {
             DateTime closeTime = Time.TimeSource.Current.Time.AddSeconds(-OpenFileCacheTimeout);
-            bool oldFilesMustBeClosed = false;
+            bool unusedFileMustBeClosed = false;
 
             foreach (var openFile in _openFileCache)
             {
-                if (openFile.Value.FileAppender.OpenStreamTime < closeTime)
+                // Closing the least recently used, because dangerous to momentarily close "active" file-handles,
+                // since other background services might take over the file-handle and block application logging.
+                if (openFile.Value.FileAppender.LastWriteTime < closeTime)
                 {
-                    oldFilesMustBeClosed = true;
+                    unusedFileMustBeClosed = true;
                     break;
                 }
             }
 
-            if (oldFilesMustBeClosed)
+            if (unusedFileMustBeClosed)
             {
                 foreach (var openFile in _openFileCache.ToList())
                 {
-                    if (openFile.Value.FileAppender.OpenStreamTime < closeTime)
+                    if (openFile.Value.FileAppender.LastWriteTime < closeTime)
                     {
                         CloseFile(openFile.Key, openFile.Value);
                     }
