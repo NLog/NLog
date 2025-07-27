@@ -34,6 +34,7 @@
 namespace NLog.Config
 {
     using System;
+    using System.ComponentModel;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -43,6 +44,7 @@ namespace NLog.Config
     [AttributeUsage(AttributeTargets.Property)]
     [MeansImplicitUse]
     [Obsolete("Instead perform relevant config validation in InitializeTarget / InitializeLayout. Marked obsolete with NLog v6.0")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class RequiredParameterAttribute : Attribute
     {
     }

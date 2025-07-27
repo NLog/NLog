@@ -34,6 +34,7 @@
 namespace NLog.Layouts
 {
     using System;
+    using System.ComponentModel;
 
     /// <summary>
     /// Options available for <see cref="Layout.FromMethod"/>
@@ -49,6 +50,7 @@ namespace NLog.Layouts
         /// Layout renderer method can handle concurrent threads
         /// </summary>
         [Obsolete("All LayoutRenderers and Layout should be ThreadSafe by default. Marked obsolete with NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         ThreadSafe = 1,
         /// <summary>
         /// Layout renderer method is agnostic to current thread context. This means it will render the same result independent of thread-context.

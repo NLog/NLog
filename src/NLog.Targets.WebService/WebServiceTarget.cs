@@ -188,6 +188,7 @@ namespace NLog.Targets
         /// <value>A value of <see langword="true"/> if Rfc3986; otherwise, <see langword="false"/> for legacy Rfc2396.</value>
         /// <docgen category='Web Service Options' order='100' />
         [Obsolete("Replaced by WebUtility.UrlEncode. Marked obsolete with NLog 6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EscapeDataRfc3986 { get; set; }
 
         /// <summary>

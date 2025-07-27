@@ -35,6 +35,7 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using NLog.Internal;
 
     /// <summary>
@@ -49,6 +50,7 @@ namespace NLog
     /// NLog library so that state can be maintained for multiple threads in asynchronous situations.
     /// </remarks>
     [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static class MappedDiagnosticsLogicalContext
     {
         /// <summary>

@@ -34,6 +34,7 @@
 namespace NLog.Config
 {
     using System;
+    using System.ComponentModel;
 
     /// <summary>
     /// Value indicating how stack trace should be captured when processing the log event.
@@ -70,6 +71,7 @@ namespace NLog.Config
         /// Stack trace should be captured. This option won't add the filenames and linenumbers.
         /// </summary>
         [Obsolete("Replace with `WithStackTrace`. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         WithoutSource = WithStackTrace,
 
         /// <summary>

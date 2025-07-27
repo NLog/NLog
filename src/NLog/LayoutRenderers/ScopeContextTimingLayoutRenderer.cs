@@ -34,6 +34,7 @@
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.ComponentModel;
     using System.Globalization;
     using System.Text;
     using NLog.Internal;
@@ -69,6 +70,7 @@ namespace NLog.LayoutRenderers
         /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by StartTime. Marked obsolete on NLog 6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ScopeBeginTime { get => StartTime; set => StartTime = value; }
 
         /// <summary>

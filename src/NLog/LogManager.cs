@@ -178,6 +178,7 @@ namespace NLog
         /// </summary>
         /// <param name="assembly">The assembly to skip.</param>
         [Obsolete("Replaced by LogManager.Setup().SetupLogFactory(setup => setup.AddCallSiteHiddenAssembly(assembly)). Marked obsolete on NLog 5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void AddHiddenAssembly(Assembly assembly)
         {
             CallSiteInformation.AddCallSiteHiddenAssembly(assembly);

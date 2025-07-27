@@ -34,6 +34,7 @@
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.ComponentModel;
     using System.Globalization;
     using System.Text;
     using NLog.Config;
@@ -76,6 +77,7 @@ namespace NLog.LayoutRenderers
         /// Method that renders the layout.
         /// </summary>
         [Obsolete("Public API-property was a mistake. Marked obsolete with NLog v6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Func<LogEventInfo, LoggingConfiguration?, object> RenderMethod => _renderMethod;
 
         /// <summary>

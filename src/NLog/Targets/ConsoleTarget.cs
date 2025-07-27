@@ -143,6 +143,7 @@ namespace NLog.Targets
         /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Console Options' order='50' />
         [Obsolete("Replaced by ForceWriteLine (but inverted value). Marked obsolete with NLog v6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool WriteBuffer { get => !ForceWriteLine; set => ForceWriteLine = !value; }
 
         /// <summary>

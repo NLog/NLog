@@ -35,6 +35,7 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -241,6 +242,7 @@ namespace NLog.Targets
         /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Archival Options' order='50' />
         [Obsolete("Instead use ArchiveSuffixFormat. Marked obsolete with NLog 6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string? ArchiveDateFormat
         {
             get => _archiveDateFormat;
@@ -382,6 +384,7 @@ namespace NLog.Targets
         /// <remarks>Default: <c>Sequence</c></remarks>
         /// <docgen category='Archival Options' order='50' />
         [Obsolete("Instead use ArchiveSuffixFormat. Marked obsolete with NLog 6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ArchiveNumbering
         {
             get => _archiveNumbering ?? "Sequence";
