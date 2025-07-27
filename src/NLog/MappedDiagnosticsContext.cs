@@ -35,6 +35,7 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using NLog.Config;
     using NLog.Internal;
 
@@ -45,6 +46,7 @@ namespace NLog
     /// Stores the dictionary in the thread-local static variable, and provides methods to output dictionary values in layouts.
     /// </summary>
     [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static class MappedDiagnosticsContext
     {
         /// <summary>

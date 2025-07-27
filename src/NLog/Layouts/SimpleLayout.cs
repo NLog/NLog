@@ -207,6 +207,7 @@ namespace NLog.Layouts
         /// '${' with '${literal:text=${}'
         /// </remarks>
         [Obsolete("Instead use Layout.FromLiteral()")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static string Escape([Localizable(false)] string text)
         {
             return text.Replace("${", @"${literal:text=\$\{}");

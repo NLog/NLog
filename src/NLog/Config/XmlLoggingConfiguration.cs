@@ -121,6 +121,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="reader">XML reader to read from.</param>
         [Obsolete("Instead use TextReader as input. Marked obsolete with NLog 6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XmlLoggingConfiguration(System.Xml.XmlReader reader)
             : this(reader, null) { }
 
@@ -130,6 +131,7 @@ namespace NLog.Config
         /// <param name="reader">XmlReader containing the configuration section.</param>
         /// <param name="fileName">Path to the config-file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         [Obsolete("Instead use TextReader as input. Marked obsolete with NLog 6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XmlLoggingConfiguration(System.Xml.XmlReader reader, string? fileName)
             : this(reader, fileName, LogManager.LogFactory)
         { }
@@ -141,6 +143,7 @@ namespace NLog.Config
         /// <param name="fileName">Path to the config-file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         [Obsolete("Instead use TextReader as input. Marked obsolete with NLog 6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XmlLoggingConfiguration(System.Xml.XmlReader reader, string? fileName, LogFactory logFactory)
             : base(logFactory)
         {

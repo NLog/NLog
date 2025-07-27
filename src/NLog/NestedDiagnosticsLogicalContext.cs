@@ -34,6 +34,7 @@
 namespace NLog
 {
     using System;
+    using System.ComponentModel;
     using System.Linq;
     using NLog.Internal;
 
@@ -44,6 +45,7 @@ namespace NLog
     /// Stores the stack in the logical thread callcontexte, and provides methods to output the values in layouts.
     /// </summary>
     [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeNested using ${scopenested}. Marked obsolete on NLog 5.0")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static class NestedDiagnosticsLogicalContext
     {
         /// <summary>

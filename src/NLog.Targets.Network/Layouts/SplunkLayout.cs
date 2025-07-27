@@ -35,6 +35,7 @@ namespace NLog.Layouts
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using NLog.Config;
 
     /// <summary>
@@ -76,6 +77,14 @@ namespace NLog.Layouts
                 return index >= 0 ? (Attributes[index]?.Layout as JsonLayout)?.Attributes : null;
             }
         }
+
+        /// <summary>
+        /// Gets the array of attributes for the "event"-section
+        /// </summary>
+        [ArrayParameter(typeof(JsonAttribute), "splunkevent")]
+        [Obsolete("Replaced by SplunkFields to match GelfFields. Marked obsolete with NLog.Targets.Network v6.1")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IList<JsonAttribute>? SplunkEvents => SplunkFields;
 
         /// <summary>
         /// Gets or sets Splunk Message Host-attribute

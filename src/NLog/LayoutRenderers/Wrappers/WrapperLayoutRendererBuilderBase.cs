@@ -34,6 +34,7 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
+    using System.ComponentModel;
     using System.Text;
     using NLog.Internal;
 
@@ -43,6 +44,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// This expects the transformation to work on a <see cref="StringBuilder"/>
     /// </summary>
     [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 5.0")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class WrapperLayoutRendererBuilderBase : WrapperLayoutRendererBase
     {
         /// <inheritdoc/>
