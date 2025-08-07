@@ -31,12 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+using System.Diagnostics.CodeAnalysis;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
 [assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
 
 [assembly: Xunit.TestFramework("NLogThrowExceptionsDefault", "NLog.UnitTests")]
+
+[assembly: SuppressMessage("Performance", "CA1861:Avoid constant arrays as arguments", Justification = "Not production code.")]
+[assembly: SuppressMessage("Maintainability", "CA1822:Member does not access instance data and can be marked as static", Justification = "Not production code.")]
 
 public class NLogThrowExceptionsDefault : XunitTestFramework
 {

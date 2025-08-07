@@ -15,9 +15,24 @@
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-      NetworkTarget Docs:
-      https://github.com/NLog/NLog/wiki/Network-target
-    </PackageReleaseNotes>
+NetworkTarget Docs:
+https://github.com/NLog/NLog/wiki/Network-target
+
+SyslogTarget Docs:
+https://github.com/NLog/NLog/wiki/Syslog-target
+
+Log4JXmlTarget Docs:
+https://github.com/NLog/NLog/wiki/Log4JXml-target
+
+GelfTarget Docs:
+https://github.com/NLog/NLog/wiki/Gelf-target
+
+SplunkTarget Docs:
+https://github.com/NLog/NLog/wiki/Splunk-target
+
+Local IP Docs:
+https://github.com/NLog/NLog/wiki/Local-IP-Address-Layout-Renderer
+</PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>NLog;TCPIP;TCP;UDP;Network;logging;log</PackageTags>
     <PackageIcon>N.png</PackageIcon>
