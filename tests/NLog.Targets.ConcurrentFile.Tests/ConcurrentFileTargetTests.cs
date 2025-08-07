@@ -403,6 +403,7 @@ namespace NLog.Targets.ConcurrentFile.Tests
                     ArchiveNumbering = ArchiveNumberingMode.Rolling,
                     ArchiveEvery = FileArchiveEveryPeriod.Month,
                     MaxArchiveFiles = 1,
+                    EnableFileDelete = false,
                 };
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
@@ -425,6 +426,20 @@ namespace NLog.Targets.ConcurrentFile.Tests
                 {
                     Assert.Equal(14, Path.GetFileName(file).Length);
                 }
+
+                var fileOpenList = files.Where(f =>
+                {
+                    try
+                    {
+                        File.Delete(f);
+                        return false;
+                    }
+                    catch
+                    {
+                        return true;
+                    }
+                }).ToList();
+                Assert.Equal(fileTarget.OpenFileCacheSize, fileOpenList.Count);
 
                 LogManager.Configuration = null;    // Flush and close
             }

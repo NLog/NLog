@@ -72,7 +72,7 @@ namespace NLog.Targets
         public ConditionExpression? Condition { get; set; }
 
         /// <summary>
-        /// Gets or sets the text to be matched. You must specify either <c>text</c> or <c>regex</c>.
+        /// Gets or sets the text to be matched.
         /// </summary>
         /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Highlighting Rules' order='10' />

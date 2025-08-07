@@ -941,7 +941,7 @@ namespace NLog.Targets
                         oldestOpenFile = oldOpenFile;
                     }
                 }
-                if (!string.IsNullOrEmpty(oldestOpenFile.Key))
+                if (string.IsNullOrEmpty(oldestOpenFile.Key))
                     break;
 
                 CloseFileWithFooter(oldestOpenFile.Key, oldestOpenFile.Value, false);

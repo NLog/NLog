@@ -360,6 +360,7 @@ namespace NLog.UnitTests.Targets
                     ArchiveEvery = FileArchivePeriod.Monday,
                     MaxArchiveFiles = 1,
                     KeepFileOpen = keepFileOpen,
+                    EnableFileDelete = false,
                 };
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
@@ -373,10 +374,17 @@ namespace NLog.UnitTests.Targets
                     }
                 }
 
+                LogManager.Flush();
+
+                Assert.True(File.Exists(Path.Combine(tempDir, "OO_AppName.log")));
+                Assert.Equal(3, new FileInfo(Path.Combine(tempDir, "OO_AppName.log")).Length);
+                File.Delete(Path.Combine(tempDir, "OO_AppName.log"));
+                Assert.False(File.Exists(Path.Combine(tempDir, "OO_AppName.log")));
+
                 LogManager.Configuration = null;    // Flush and close
 
                 var files = new DirectoryInfo(tempDir).GetFiles();
-                Assert.Equal(25, files.Length);
+                Assert.Equal(24, files.Length);
 
                 foreach (var file in files)
                 {
@@ -2318,7 +2326,9 @@ namespace NLog.UnitTests.Targets
                 {
                     FileName = Path.Combine(tempDir, "${level}.txt"),
                     LineEnding = LineEndingMode.LF,
-                    Layout = "${message}"
+                    Layout = "${message}",
+                    OpenFileCacheSize = 4,
+                    EnableFileDelete = false,
                 };
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger(LogLevel.Debug).WriteTo(fileTarget));
@@ -2334,7 +2344,7 @@ namespace NLog.UnitTests.Targets
                     logger.Fatal("eee");
                 }
 
-                LogManager.Configuration = null;    // Flush
+                LogManager.Configuration = null;    // Flush and close
 
                 Assert.False(File.Exists(Path.Combine(tempDir, "Trace.txt")));
 
@@ -2370,7 +2380,8 @@ namespace NLog.UnitTests.Targets
                 {
                     FileName = Path.Combine(tempDir, "${level}.txt"),
                     LineEnding = LineEndingMode.LF,
-                    Layout = "${message}"
+                    Layout = "${message}",
+                    OpenFileCacheSize = 4,
                 };
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger(LogLevel.Debug).WriteTo(new BufferingTargetWrapper(fileTarget, 10)));
@@ -2386,7 +2397,7 @@ namespace NLog.UnitTests.Targets
                     logger.Fatal("eee");
                 }
 
-                LogManager.Configuration = null; // Flush
+                LogManager.Configuration = null;    // Flush and close
 
                 Assert.False(File.Exists(Path.Combine(tempDir, "Trace.txt")));
 
@@ -2422,7 +2433,8 @@ namespace NLog.UnitTests.Targets
                 {
                     FileName = Path.Combine(tempDir, "${level}.txt"),
                     LineEnding = LineEndingMode.LF,
-                    Layout = "${message} ${threadid}"
+                    Layout = "${message} ${threadid}",
+                    OpenFileCacheSize = 4,
                 };
 
                 // this also checks that thread-volatile layouts
@@ -2443,7 +2455,7 @@ namespace NLog.UnitTests.Targets
                     logger.Fatal("eee");
                 }
 
-                LogManager.Configuration = null;    // Flush
+                LogManager.Configuration = null;    // Flush and close
 
                 Assert.False(File.Exists(Path.Combine(tempDir, "Trace.txt")));
 
