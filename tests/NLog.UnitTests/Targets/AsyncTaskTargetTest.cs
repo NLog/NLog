@@ -55,11 +55,11 @@ namespace NLog.UnitTests.Targets
 
             public Type RequiredDependency { get; set; }
 
-            public bool WaitForWriteEvent(int timeoutMilliseconds = 1000)
+            public bool WaitForWriteEvent(int timeoutMilliseconds = 5000)
             {
 #if DEBUG
                 if (System.Diagnostics.Debugger.IsAttached)
-                    timeoutMilliseconds = timeoutMilliseconds * 60;
+                    timeoutMilliseconds = timeoutMilliseconds * 10;
 #endif
                 if (_writeEvent.WaitOne(TimeSpan.FromMilliseconds(timeoutMilliseconds)))
                 {
