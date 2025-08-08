@@ -235,7 +235,7 @@ namespace NLog.UnitTests.Targets
             target.UseDefaultRowHighlightingRules = false;
             target.WordHighlightingRules.Add(new ConsoleWordHighlightingRule
             {
-                Words = new List<string>(new string[] { "big", "bigger", "big big bigger" }),
+                Words = new List<string>(new string[] { "big", "bigger", "big big bigger", "b" }),
                 ForegroundColor = ConsoleOutputColor.DarkRed,
                 BackgroundColor = ConsoleOutputColor.NoChange
             });

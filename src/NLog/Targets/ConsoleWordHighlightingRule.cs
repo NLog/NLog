@@ -83,6 +83,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the list of words to be matched for Highlighting.
         /// </summary>
+        /// <docgen category='Highlighting Rules' order='10' />
         public List<string>? Words { get; set; }
 
         /// <summary>
@@ -143,14 +144,7 @@ namespace NLog.Targets
                 if (needleMatch is null)
                     continue;
 
-                if (allMatches is null)
-                {
-                    allMatches = needleMatch;
-                }
-                else
-                {
-                    allMatches = MergeWordMatches(allMatches, needleMatch);
-                }
+                allMatches = allMatches is null ? needleMatch : MergeWordMatches(allMatches, needleMatch);
             }
 
             return allMatches;
@@ -168,18 +162,18 @@ namespace NLog.Targets
             else
             {
                 var allMatchesList = PrepareAllMatchesList(allMatches, 3);
+                int startIndex = 0;
                 foreach (var match in needleMatch)
                 {
-                    MergeAllNeedleMatches(allMatchesList, match);
+                    startIndex = MergeAllNeedleMatches(allMatchesList, match, startIndex);
                 }
                 return allMatchesList;
             }
         }
 
-        private static void MergeAllNeedleMatches(IList<KeyValuePair<int, int>> allMatchesList, KeyValuePair<int, int> newMatch)
+        private static int MergeAllNeedleMatches(IList<KeyValuePair<int, int>> allMatchesList, KeyValuePair<int, int> newMatch, int startIndex = 0)
         {
-            bool matchFound = false;
-            for (int i = 0; i < allMatchesList.Count; ++i)
+            for (int i = startIndex; i < allMatchesList.Count; ++i)
             {
                 var existingMatch = allMatchesList[i];
                 if (NeedleMatchOverlaps(newMatch, existingMatch))
@@ -193,18 +187,17 @@ namespace NLog.Targets
                         allMatchesList[i] = newMatch;
                         allMatchesList.RemoveAt(i + 1);
                     }
-                    matchFound = true;
-                    break;
+                    return i;
                 }
                 else if (newMatch.Key < existingMatch.Key)
                 {
                     allMatchesList.Insert(i, newMatch);
-                    matchFound = true;
-                    break;
+                    return i + 1;
                 }
             }
-            if (!matchFound)
-                allMatchesList.Add(newMatch);
+
+            allMatchesList.Add(newMatch);
+            return allMatchesList.Count;
         }
 
         private static bool NeedleMatchOverlaps(KeyValuePair<int, int> first, KeyValuePair<int, int> second)
