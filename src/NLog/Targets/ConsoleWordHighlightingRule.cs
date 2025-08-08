@@ -33,6 +33,7 @@
 
 namespace NLog.Targets
 {
+    using System;
     using System.Collections.Generic;
     using NLog.Conditions;
     using NLog.Config;
@@ -72,12 +73,17 @@ namespace NLog.Targets
         public ConditionExpression? Condition { get; set; }
 
         /// <summary>
-        /// Gets or sets the text to be matched.
+        /// Gets or sets the text to be matched for Highlighting.
         /// </summary>
         /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Highlighting Rules' order='10' />
         public string Text { get => _text; set => _text = string.IsNullOrEmpty(value) ? string.Empty : value; }
         private string _text = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the list of words to be matched for Highlighting.
+        /// </summary>
+        public List<string>? Words { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to match whole words only.
@@ -114,44 +120,165 @@ namespace NLog.Targets
         internal protected virtual IEnumerable<KeyValuePair<int, int>>? GetWordsForHighlighting(string haystack)
         {
             if (ReferenceEquals(_text, string.Empty))
+            {
+                if (Words?.Count > 0)
+                {
+                    return YieldWordMatchesForHighlighting(haystack, Words);
+                }
                 return null;
+            }
 
-            int firstIndex = FindNextWordForHighlighting(haystack, null);
+            return YieldMatchesForHighlighting(_text, haystack);
+        }
+
+        private IEnumerable<KeyValuePair<int, int>>? YieldWordMatchesForHighlighting(string haystack, List<string> words)
+        {
+            IEnumerable<KeyValuePair<int, int>>? allMatches = null;
+            foreach (var needle in words)
+            {
+                if (string.IsNullOrEmpty(needle))
+                    continue;
+
+                var needleMatch = YieldMatchesForHighlighting(needle, haystack);
+                if (needleMatch is null)
+                    continue;
+
+                if (allMatches is null)
+                {
+                    allMatches = needleMatch;
+                }
+                else
+                {
+                    allMatches = MergeWordMatches(allMatches, needleMatch);
+                }
+            }
+
+            return allMatches;
+        }
+
+        private static IEnumerable<KeyValuePair<int, int>> MergeWordMatches(IEnumerable<KeyValuePair<int, int>> allMatches, IEnumerable<KeyValuePair<int, int>> needleMatch)
+        {
+            if (needleMatch is IList<KeyValuePair<int, int>> singleMatch && singleMatch.Count == 1)
+            {
+                var match = singleMatch[0];
+                var allMatchesList = PrepareAllMatchesList(allMatches, 1);
+                MergeAllNeedleMatches(allMatchesList, match);
+                return allMatchesList;
+            }
+            else
+            {
+                var allMatchesList = PrepareAllMatchesList(allMatches, 3);
+                foreach (var match in needleMatch)
+                {
+                    MergeAllNeedleMatches(allMatchesList, match);
+                }
+                return allMatchesList;
+            }
+        }
+
+        private static void MergeAllNeedleMatches(IList<KeyValuePair<int, int>> allMatchesList, KeyValuePair<int, int> newMatch)
+        {
+            bool matchFound = false;
+            for (int i = 0; i < allMatchesList.Count; ++i)
+            {
+                var existingMatch = allMatchesList[i];
+                if (NeedleMatchOverlaps(newMatch, existingMatch))
+                {
+                    newMatch = MergeNeedleMatch(newMatch, existingMatch);
+                    allMatchesList[i] = newMatch;
+                    // Handle that the new merged match can also overlap following matches
+                    while (i < allMatchesList.Count - 1 && NeedleMatchOverlaps(newMatch, allMatchesList[i + 1]))
+                    {
+                        newMatch = MergeNeedleMatch(newMatch, allMatchesList[i + 1]);
+                        allMatchesList[i] = newMatch;
+                        allMatchesList.RemoveAt(i + 1);
+                    }
+                    matchFound = true;
+                    break;
+                }
+                else if (newMatch.Key < existingMatch.Key)
+                {
+                    allMatchesList.Insert(i, newMatch);
+                    matchFound = true;
+                    break;
+                }
+            }
+            if (!matchFound)
+                allMatchesList.Add(newMatch);
+        }
+
+        private static bool NeedleMatchOverlaps(KeyValuePair<int, int> first, KeyValuePair<int, int> second)
+        {
+            if (first.Key < second.Key)
+                return (first.Key + first.Value) > second.Key;
+            else
+                return (second.Key + second.Value) > first.Key;
+        }
+
+        private static KeyValuePair<int, int> MergeNeedleMatch(KeyValuePair<int, int> first, KeyValuePair<int, int> second)
+        {
+            if (first.Key < second.Key)
+                return new KeyValuePair<int, int>(first.Key, Math.Max(first.Key + first.Value, second.Key + second.Value) - first.Key);
+            else
+                return new KeyValuePair<int, int>(second.Key, Math.Max(first.Key + first.Value, second.Key + second.Value) - second.Key);
+        }
+
+        private static IList<KeyValuePair<int, int>> PrepareAllMatchesList(IEnumerable<KeyValuePair<int, int>> allMatches, int extraCapacity)
+        {
+            int existingCapacity = 3;
+
+            if (allMatches is IList<KeyValuePair<int, int>> allMatchesList)
+            {
+                if (!allMatchesList.IsReadOnly)
+                    return allMatchesList;
+
+                existingCapacity = Math.Max(allMatchesList.Count, existingCapacity);
+            }
+
+            allMatchesList = new List<KeyValuePair<int, int>>(existingCapacity + extraCapacity);
+            foreach (var match in allMatches)
+                allMatchesList.Add(match);
+            return allMatchesList;
+        }
+
+        private IEnumerable<KeyValuePair<int, int>>? YieldMatchesForHighlighting(string needle, string haystack)
+        {
+            int firstIndex = FindNextWordForHighlighting(needle, haystack, null);
             if (firstIndex < 0)
                 return null;
 
-            int nextIndex = FindNextWordForHighlighting(haystack, firstIndex);
+            int nextIndex = FindNextWordForHighlighting(needle, haystack, firstIndex);
             if (nextIndex < 0)
-                return new[] { new KeyValuePair<int, int>(firstIndex, Text.Length) };
+                return new[] { new KeyValuePair<int, int>(firstIndex, needle.Length) };
 
-            return YieldWordsForHighlighting(haystack, firstIndex, nextIndex);
+            return YieldWordsForHighlighting(needle, haystack, firstIndex, nextIndex);
         }
 
-        private IEnumerable<KeyValuePair<int, int>> YieldWordsForHighlighting(string haystack, int firstIndex, int nextIndex)
+        private IEnumerable<KeyValuePair<int, int>> YieldWordsForHighlighting(string needle, string haystack, int firstIndex, int nextIndex)
         {
-            yield return new KeyValuePair<int, int>(firstIndex, _text.Length);
+            yield return new KeyValuePair<int, int>(firstIndex, needle.Length);
 
-            yield return new KeyValuePair<int, int>(nextIndex, _text.Length);
+            yield return new KeyValuePair<int, int>(nextIndex, needle.Length);
 
             int index = nextIndex;
             while (index >= 0)
             {
-                index = FindNextWordForHighlighting(haystack, index);
+                index = FindNextWordForHighlighting(needle, haystack, index);
                 if (index >= 0)
-                    yield return new KeyValuePair<int, int>(index, _text.Length);
+                    yield return new KeyValuePair<int, int>(index, needle.Length);
             }
         }
 
-        private int FindNextWordForHighlighting(string haystack, int? prevIndex)
+        private int FindNextWordForHighlighting(string needle, string haystack, int? prevIndex)
         {
-            int index = prevIndex.HasValue ? prevIndex.Value + _text.Length : 0;
+            int index = prevIndex.HasValue ? prevIndex.Value + needle.Length : 0;
             while (index >= 0)
             {
-                index = IgnoreCase ? haystack.IndexOf(_text, index, System.StringComparison.CurrentCultureIgnoreCase) : haystack.IndexOf(_text, index);
-                if (index < 0 || (!WholeWords || StringHelpers.IsWholeWord(haystack, _text, index)))
+                index = IgnoreCase ? haystack.IndexOf(needle, index, System.StringComparison.CurrentCultureIgnoreCase) : haystack.IndexOf(needle, index);
+                if (index < 0 || (!WholeWords || StringHelpers.IsWholeWord(haystack, needle, index)))
                     return index;
 
-                index += _text.Length;
+                index += needle.Length;
             }
             return index;
         }

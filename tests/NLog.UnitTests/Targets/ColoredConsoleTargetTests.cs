@@ -224,6 +224,27 @@ namespace NLog.UnitTests.Targets
                     string.Empty);
         }
 
+        [Theory]
+        [InlineData("The big warning message", "The \x1b[31mbig\x1b[0m warning message\x1b[0m")]
+        [InlineData("The big\r\nwarning message", "The \x1b[31mbig\x1b[0m\x1b[0m\r\nwarning message\x1b[0m")]
+        [InlineData("The bigger warning message", "The \x1b[31mbigger\x1b[0m warning message\x1b[0m")]
+        [InlineData("The big big bigger warning message", "The \x1b[31mbig big bigger\x1b[0m warning message\x1b[0m")]
+        public void ColoredConsoleAnsi_WordColor_VerificationTest(string inputText, string expectedResult)
+        {
+            var target = new ColoredConsoleTarget { Layout = "${message}", EnableAnsiOutput = true };
+            target.UseDefaultRowHighlightingRules = false;
+            target.WordHighlightingRules.Add(new ConsoleWordHighlightingRule
+            {
+                Words = new List<string>(new string[] { "big", "bigger", "big big bigger" }),
+                ForegroundColor = ConsoleOutputColor.DarkRed,
+                BackgroundColor = ConsoleOutputColor.NoChange
+            });
+
+            AssertOutput(target, inputText,
+                    new string[] { expectedResult },
+                    string.Empty);
+        }
+
         [Fact]
         public void ColoredConsoleAnsi_RowColorWithWordHighlight_VerificationTest()
         {
