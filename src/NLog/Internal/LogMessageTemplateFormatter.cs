@@ -169,7 +169,7 @@ namespace NLog.Internal
                     if (hole.Index != -1 && messageTemplateParameters is null)
                     {
                         holeIndex++;
-                        RenderHole(sb, hole, formatProvider, parameters[hole.Index], true);
+                        RenderHolePositional(sb, hole, formatProvider, parameters[hole.Index]);
                     }
                     else
                     {
@@ -204,22 +204,28 @@ namespace NLog.Internal
             }
         }
 
-        private void RenderHole(StringBuilder sb, Hole hole, IFormatProvider formatProvider, object value, bool legacy = false)
+        private void RenderHolePositional(StringBuilder sb, in Hole hole, IFormatProvider formatProvider, object value)
         {
-            RenderHole(sb, hole.CaptureType, hole.Format, formatProvider, value, legacy);
+            if (hole.CaptureType == CaptureType.Serialize)
+            {
+                RenderHole(sb, CaptureType.Serialize, hole.Format, formatProvider, value);
+            }
+            else
+            {
+                RenderHole(sb, CaptureType.Stringify, hole.Format ?? string.Empty, formatProvider, value);
+            }
         }
 
-        private void RenderHole(StringBuilder sb, CaptureType captureType, string holeFormat, IFormatProvider formatProvider, object value, bool legacy = false)
+        private void RenderHole(StringBuilder sb, in Hole hole, IFormatProvider formatProvider, object value)
+        {
+            RenderHole(sb, hole.CaptureType, hole.Format, formatProvider, value);
+        }
+
+        private void RenderHole(StringBuilder sb, CaptureType captureType, string holeFormat, IFormatProvider formatProvider, object value)
         {
             if (value is null)
             {
                 sb.Append("NULL");
-                return;
-            }
-
-            if (captureType == CaptureType.Normal && legacy)
-            {
-                MessageTemplates.ValueFormatter.FormatToString(value, holeFormat, formatProvider, sb);
             }
             else
             {
