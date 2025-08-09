@@ -143,7 +143,7 @@ namespace NLog.MessageTemplates
         /// <returns></returns>
         public bool FormatObject(object? value, string? format, IFormatProvider? formatProvider, StringBuilder builder)
         {
-            if (SerializeSimpleObject(value, format, formatProvider, builder, false))
+            if (SerializeSimpleObject(value, format, formatProvider, builder))
             {
                 return true;
             }
@@ -160,7 +160,7 @@ namespace NLog.MessageTemplates
         /// <summary>
         /// Try serializing a scalar (string, int, NULL) or simple type (IFormattable)
         /// </summary>
-        private bool SerializeSimpleObject(object? value, string? format, IFormatProvider? formatProvider, StringBuilder builder, bool convertToString = true)
+        private bool SerializeSimpleObject(object? value, string? format, IFormatProvider? formatProvider, StringBuilder builder)
         {
             if (value is string stringValue)
             {
@@ -189,12 +189,6 @@ namespace NLog.MessageTemplates
             if (value is null)
             {
                 builder.Append("NULL");
-                return true;
-            }
-
-            if (convertToString)
-            {
-                SerializeConvertToString(value, formatProvider, builder);
                 return true;
             }
 
@@ -364,8 +358,8 @@ namespace NLog.MessageTemplates
                 SerializeConvertibleObject(convertible, format, formatProvider, builder);
             else if (item is IEnumerable enumerable)
                 SerializeWithoutCyclicLoop(enumerable, format, formatProvider, builder, objectsInPath, depth + 1);
-            else
-                SerializeSimpleObject(item, format, formatProvider, builder);
+            else if (!SerializeSimpleObject(item, format, formatProvider, builder))
+                SerializeConvertToString(item, formatProvider, builder);
         }
 
         /// <summary>
