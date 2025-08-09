@@ -241,8 +241,8 @@ namespace NLog.Config
 
             var normalName = NormalizeName(typeAlias);
             var message = $"Failed to create {typeof(TBaseType).Name} with unknown type-alias: '{typeAlias}'";
-            if (normalName != null && (normalName.StartsWith("aspnet", StringComparison.OrdinalIgnoreCase) ||
-                                 normalName.StartsWith("iis", StringComparison.OrdinalIgnoreCase)))
+            if (normalName.StartsWith("aspnet", StringComparison.OrdinalIgnoreCase) ||
+                normalName.StartsWith("iis", StringComparison.OrdinalIgnoreCase))
             {
 #if NETFRAMEWORK
                 message += " - Extension NLog.Web not included?";
@@ -250,83 +250,107 @@ namespace NLog.Config
                 message += " - Extension NLog.Web.AspNetCore not included?";                
 #endif
             }
-            else if (normalName?.StartsWith("database", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("HostAppName", StringComparison.OrdinalIgnoreCase))
+            {
+                message += " - Extension NLog.Web.AspNetCore not included?";
+            }
+            else if (normalName.StartsWith("HostEnvironment", StringComparison.OrdinalIgnoreCase))
+            {
+                message += " - Extension NLog.Web.AspNetCore not included?";
+            }
+            else if (normalName.StartsWith("HostRootDir", StringComparison.OrdinalIgnoreCase))
+            {
+                message += " - Extension NLog.Web.AspNetCore not included?";
+            }
+            else if (normalName.StartsWith("configsetting", StringComparison.OrdinalIgnoreCase))
+            {
+                message += " - Extension NLog.Extensions.Logging not included?";
+            }
+            else if (normalName.StartsWith("MicrosoftConsoleJsonLayout", StringComparison.OrdinalIgnoreCase))
+            {
+                message += " - Extension NLog.Extensions.Logging not included?";
+            }
+            else if (normalName.StartsWith("MicrosoftConsoleLayout", StringComparison.OrdinalIgnoreCase))
+            {
+                message += " - Extension NLog.Extensions.Logging not included?";
+            }
+            else if (normalName.StartsWith("database", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.Database not included?";
             }
-            else if (normalName?.StartsWith("network", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("network", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.Targets.Network not included?";
             }
-            else if (normalName?.StartsWith("nlogviewer", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("nlogviewer", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.Targets.Network not included?";
             }
-            else if (normalName?.StartsWith("chainsaw", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("chainsaw", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.Targets.Network not included?";
             }
-            else if (normalName?.StartsWith("Log4JXml", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("Log4JXml", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.Targets.Network not included?";
             }
-            else if (normalName?.StartsWith("syslog", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("syslog", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.Targets.Network not included?";
             }
-            else if (normalName?.StartsWith("gelf", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("gelf", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.Targets.Network not included?";
             }
-            else if (normalName?.StartsWith("localip", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("localip", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.Targets.Network not included?";
             }
-            else if (normalName?.StartsWith("webservice", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("webservice", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.Targets.WebService not included?";
             }
-            else if (normalName?.StartsWith("atomFile", StringComparison.OrdinalIgnoreCase) == true || normalName?.StartsWith("atomicFile", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("atomFile", StringComparison.OrdinalIgnoreCase) || normalName.StartsWith("atomicFile", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.Targets.AtomicFile not included?";
             }
-            else if (normalName?.StartsWith("GZipFile", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("GZipFile", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.Targets.GZipFile not included?";
             }
-            else if (normalName?.StartsWith("trace", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("trace", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.Targets.Trace not included?";
             }
-            else if (normalName?.StartsWith("activityid", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("activityid", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.Targets.Trace not included?";
             }
-            else if (normalName?.StartsWith("mailkit", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("mailkit", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.MailKit not included?";
             }
-            else if (normalName?.StartsWith("mail", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("mail", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.Targets.Mail not included?";
             }
-            else if (normalName?.StartsWith("eventlog", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("eventlog", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.WindowsEventLog not included?";
             }
-            else if (normalName?.StartsWith("windowsidentity", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("windowsidentity", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.WindowsIdentity not included?";
             }
-            else if (normalName?.StartsWith("outputdebugstring", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("outputdebugstring", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.OutputDebugString not included?";
             }
-            else if (normalName?.StartsWith("performancecounter", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("performancecounter", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.PerformanceCounter not included?";
             }
-            else if (normalName?.StartsWith("regexreplace", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName.StartsWith("regexreplace", StringComparison.OrdinalIgnoreCase))
             {
                 message += " - Extension NLog.RegEx not included?";
             }

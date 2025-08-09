@@ -4,6 +4,18 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.0.3 (2025/08/10)
+
+**Improvements**
+- [#5952](https://github.com/NLog/NLog/pull/5952) FileTarget - Close old files when reaching OpenFileCacheSize. (@snakefoot)
+- [#5948](https://github.com/NLog/NLog/pull/5948) FileTarget - Closing on OpenFileCacheTimeout apply least recently used. (@snakefoot)
+- [#5947](https://github.com/NLog/NLog/pull/5947) FileTarget - Improved file-archive exception handling when KeepFileOpen=false. (@snakefoot)
+- [#5954](https://github.com/NLog/NLog/pull/5954) ColoredConsoleTarget - Added Words-property for easy highlighting of many words without RegEx. (@snakefoot)
+- [#5955](https://github.com/NLog/NLog/pull/5955) LogMessageTemplateFormatter - Also use IValueFormatter for positional templates. (@snakefoot)
+- [#5953](https://github.com/NLog/NLog/pull/5953) NLog.Targets.Network - Updated links in README.md for nuget-package. (@snakefoot)
+- [#5945](https://github.com/NLog/NLog/pull/5945) NLog.Targets.AtomicFile - Added README.md for nuget-package. (@snakefoot)
+- [#5940](https://github.com/NLog/NLog/pull/5940) SplunkTarget - Support SplunkFields-property. (@snakefoot)
+
 ### Version 6.0.2 (2025/07/20)
 
 **Improvements**
