@@ -118,9 +118,12 @@ namespace NLog.MessageTemplates
                     }
                 case CaptureType.Stringify:
                     {
-                        builder.Append('"');
-                        FormatToString(value, null, formatProvider, builder);
-                        builder.Append('"');
+                        bool includeQuotes = format is null || _legacyStringQuotes;
+                        if (includeQuotes)
+                            builder.Append('"');
+                        FormatToString(value, format, formatProvider, builder);
+                        if (includeQuotes)
+                            builder.Append('"');
                         return true;
                     }
                 default:
@@ -165,34 +168,37 @@ namespace NLog.MessageTemplates
                 return true;
             }
 
+            // Optimize for types that are pretty much invariant in all cultures when no format-string
+            if (value is IConvertible convertible)
+            {
+                SerializeConvertibleObject(convertible, format, formatProvider, builder);
+                return true;
+            }
+
+            if (value is IFormattable formattable)
+            {
+#if !NETFRAMEWORK
+                if (string.IsNullOrEmpty(format))
+                    builder.AppendFormat(formatProvider, "{0}", formattable); // Support ISpanFormattable
+                else
+#endif
+                    builder.Append(formattable.ToString(format, formatProvider));
+                return true;
+            }
+
             if (value is null)
             {
                 builder.Append("NULL");
                 return true;
             }
 
-            // Optimize for types that are pretty much invariant in all cultures when no format-string
-            if (value is IConvertible convertibleValue)
+            if (convertToString)
             {
-                SerializeConvertibleObject(convertibleValue, format, formatProvider, builder);
+                SerializeConvertToString(value, formatProvider, builder);
                 return true;
             }
-            else
-            {
-                if (!string.IsNullOrEmpty(format) && value is IFormattable formattable)
-                {
-                    builder.Append(formattable.ToString(format, formatProvider));
-                    return true;
-                }
 
-                if (convertToString)
-                {
-                    SerializeConvertToString(value, formatProvider, builder);
-                    return true;
-                }
-
-                return false;
-            }
+            return false;
         }
 
         private void SerializeConvertibleObject(IConvertible value, string? format, IFormatProvider? formatProvider, StringBuilder builder)
@@ -371,8 +377,7 @@ namespace NLog.MessageTemplates
         /// <param name="builder">Append to this</param>
         public static void FormatToString(object? value, string? format, IFormatProvider? formatProvider, StringBuilder builder)
         {
-            var stringValue = value as string;
-            if (stringValue != null)
+            if (value is string stringValue)
             {
                 builder.Append(stringValue);
             }

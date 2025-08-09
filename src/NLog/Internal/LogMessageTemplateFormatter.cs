@@ -279,17 +279,13 @@ namespace NLog.Internal
 
         private void RenderHolePositional(StringBuilder sb, in Hole hole, IFormatProvider? formatProvider, object? value)
         {
-            if (value is null)
+            if (hole.CaptureType == CaptureType.Serialize)
             {
-                sb.Append("NULL");
-            }
-            else if (hole.CaptureType == CaptureType.Normal)
-            {
-                MessageTemplates.ValueFormatter.FormatToString(value, hole.Format, formatProvider, sb);
+                RenderHole(sb, CaptureType.Serialize, hole.Format, formatProvider, value);
             }
             else
             {
-                RenderHole(sb, hole.CaptureType, hole.Format, formatProvider, value);
+                RenderHole(sb, CaptureType.Stringify, hole.Format ?? string.Empty, formatProvider, value);
             }
         }
 

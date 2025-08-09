@@ -128,7 +128,7 @@ namespace NLog.Config
             var sortedList = CreateUniqueSortedListFromConfig(nlogConfig);
 
             CultureInfo? defaultCultureInfo = DefaultCultureInfo ?? LogFactory._defaultCultureInfo;
-            bool? parseMessageTemplates = null;
+            bool? parseMessageTemplates = LogFactory.ServiceRepository.ResolveParseMessageTemplates();
             bool internalLoggerEnabled = false;
             bool autoLoadExtensions = false;
             foreach (var configItem in sortedList)
