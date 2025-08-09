@@ -42,10 +42,234 @@ namespace NLog.UnitTests.MessageTemplates
 {
     public class ValueFormatterTest : NLogTestBase
     {
+        [Fact]
+        public void TestSerialisationOfStringToJsonIsSuccessful()
+        {
+            var str = "Test";
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(str, null, CaptureType.Serialize, null, builder);
+            Assert.True(result);
+            Assert.Equal("\"Test\"", builder.ToString());
+        }
+
+        [Fact]
+        public void TestSerialisationOfClassObjectToJsonIsSuccessful()
+        {
+            var @class = new Test2();
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Serialize, null, builder);
+            Assert.True(result);
+            Assert.Equal("{\"Str\":\"Test\", \"Integer\":1}", builder.ToString());
+        }
+
+        [Fact]
+        public void TestSerialisationOfRecursiveClassObjectToJsonIsSuccessful()
+        {
+            var @class = new RecursiveTest(0);
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Serialize, null, builder);
+            Assert.True(result);
+            var actual = builder.ToString();
+
+            var deepestInteger = @"""Integer"":10";
+            Assert.Contains(deepestInteger, actual);
+
+            var deepestNext = @"""Next"":""NLog.UnitTests.MessageTemplates.ValueFormatterTest+RecursiveTest""";
+            Assert.Contains(deepestNext, actual);
+        }
+
+        [Fact]
+        public void TestStringifyOfStringIsSuccessful()
+        {
+            var @class = "str";
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            Assert.Equal("\"str\"", builder.ToString());
+        }
+
+        [Fact]
+        public void TestStringifyOfIFormatableObjectIsSuccessful()
+        {
+            var @class = new Test();
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            Assert.Equal("\"Test\"", builder.ToString());
+        }
+
+        [Fact]
+        public void TestStringifyOfNonIFormatableObjectIsSuccessful()
+        {
+            var @class = new Test1();
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            var expectedValue = $"\"{typeof(Test1).FullName}\"";
+            Assert.Equal(expectedValue, builder.ToString());
+        }
+
+        [Fact]
+        public void TestSerializationOfListObjectIsSuccessful()
+        {
+            var list = new List<int>() { 1, 2, 3, 4, 5, 6 };
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(list, null, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            Assert.Equal("1, 2, 3, 4, 5, 6", builder.ToString());
+        }
+
+        [Fact]
+        public void TestSerializationOfDictionaryObjectIsSuccessful()
+        {
+            var list = new Dictionary<int, object>() { { 1, new Test() }, { 2, new Test1() } };
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(list, null, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            Assert.Equal($"1=Test, 2={typeof(Test1).FullName}", builder.ToString());
+        }
+
+        [Fact]
+        public void TestSerializationOfCollectionOfListObjectWithDepth2IsNotSuccessful()
+        {
+            var list = new List<List<List<List<int>>>>() { new List<List<List<int>>>() { new List<List<int>>() { new List<int>() { 1, 2 }, new List<int>() { 3, 4 } }, new List<List<int>>() { new List<int>() { 4, 5 }, new List<int>() { 6, 7 } } } };
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(list, null, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            Assert.NotEqual("1,2,3,4,5,6,7", builder.ToString());
+        }
+
+        [Fact]
+        public void TestSerializationWillbeSkippedForElementsThatHaveRepeatedElements()
+        {
+            var list = new List<List<List<List<int>>>>() { new List<List<List<int>>>() { new List<List<int>>() { new List<int>() { 1, 2 }, new List<int>() { 1, 2 } }, new List<List<int>>() { new List<int>() { 1, 2 }, new List<int>() { 1, 2 } } } };
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(list, null, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            Assert.NotEqual("1,2", builder.ToString());
+        }
+
+        [Theory]
+        [InlineData(CaptureType.Normal, "NULL")]
+        [InlineData(CaptureType.Serialize, "null")]
+        [InlineData(CaptureType.Stringify, "\"\"")]
+        public void TestSerializationWillBeSuccessfulForNull(CaptureType captureType, string expected)
+        {
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(null, null, captureType, null, builder);
+            Assert.True(result);
+            Assert.Equal(expected, builder.ToString());
+        }
+
+        [Fact]
+        public void TestSerializationWillBeSuccessfulForNullObjects()
+        {
+            object list = null;
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(list, null, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            Assert.Equal("NULL", builder.ToString());
+        }
+
+        [Fact]
+        public void TestSerializationOfStringIsSuccessful()
+        {
+            var @class = "str";
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            Assert.Equal("\"str\"", builder.ToString());
+        }
+
+        [Fact]
+        public void TestSerialisationOfIConvertibleObjectIsSuccessful()
+        {
+            var @class = new Test(TypeCode.Object);
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            Assert.Equal("Test", builder.ToString());
+        }
+
+        [Fact]
+        public void TestSerialisationOfIConvertibleStringObjectIsSuccessful()
+        {
+            var @class = new Test(TypeCode.String);
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            var expectedValue = $"\"{typeof(Test).FullName}\"";
+            Assert.Equal(expectedValue, builder.ToString());
+        }
+
+        [Fact]
+        public void TestSerialisationOfIConvertibleBooleanObjectIsSuccessful()
+        {
+            var @class = new Test(TypeCode.Boolean);
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            Assert.Equal("true", builder.ToString());
+        }
+
+        [Fact]
+        public void TestSerialisationOfIConvertibleCharObjectIsSuccessful()
+        {
+            var @class = new Test(TypeCode.Char);
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            Assert.Equal("\"t\"", builder.ToString());
+        }
+
+        [Theory]
+        [InlineData(TypeCode.Byte)]
+        [InlineData(TypeCode.SByte)]
+        [InlineData(TypeCode.Int16)]
+        [InlineData(TypeCode.Int32)]
+        [InlineData(TypeCode.Int64)]
+        [InlineData(TypeCode.UInt16)]
+        [InlineData(TypeCode.UInt32)]
+        [InlineData(TypeCode.UInt64)]
+        public void TestSerialisationOfIConvertibleNumericObjectIsSuccessful(TypeCode code)
+        {
+            var @class = new Test(code);
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            Assert.Equal("1", builder.ToString());
+        }
+
+        [Fact]
+        public void TestSerialisationOfIConvertibleEnumObjectIsSuccessful()
+        {
+            var @class = new Test(TypeCode.Byte);
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(@class.Data, null, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            Assert.Equal("Foo", builder.ToString());
+        }
+
+        [Fact]
+        public void TestSerialisationOfIConvertibleDateTimeObjectIsSuccessful()
+        {
+            var @class = new Test(TypeCode.DateTime);
+            StringBuilder builder = new StringBuilder();
+            var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            Assert.True(result);
+            Assert.Equal("Test", builder.ToString());
+        }
+
+        private static ValueFormatter CreateValueFormatter()
+        {
+            return new ValueFormatter(LogManager.LogFactory.ServiceRepository);
+        }
+
         enum TestData
         {
             Foo, Bar
         };
+
         private sealed class Test : IFormattable, IConvertible
         {
             public Test()
@@ -179,7 +403,6 @@ namespace NLog.UnitTests.MessageTemplates
             public string Str { get; set; }
 
             public int Integer { get; set; }
-
         }
 
         private sealed class RecursiveTest
@@ -191,230 +414,6 @@ namespace NLog.UnitTests.MessageTemplates
             public RecursiveTest Next => new RecursiveTest(Integer);
 
             public int Integer { get; set; }
-
-        }
-
-        private static ValueFormatter CreateValueFormatter()
-        {
-            return new ValueFormatter(LogManager.LogFactory.ServiceRepository);
-        }
-
-        [Fact]
-        public void TestSerialisationOfStringToJsonIsSuccessful()
-        {
-            var str = "Test";
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(str, string.Empty, CaptureType.Serialize, null, builder);
-            Assert.True(result);
-            Assert.Equal("\"Test\"", builder.ToString());
-        }
-
-        [Fact]
-        public void TestSerialisationOfClassObjectToJsonIsSuccessful()
-        {
-            var @class = new Test2();
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Serialize, null, builder);
-            Assert.True(result);
-            Assert.Equal("{\"Str\":\"Test\", \"Integer\":1}", builder.ToString());
-        }
-
-        [Fact]
-        public void TestSerialisationOfRecursiveClassObjectToJsonIsSuccessful()
-        {
-            var @class = new RecursiveTest(0);
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Serialize, null, builder);
-            Assert.True(result);
-            var actual = builder.ToString();
-
-            var deepestInteger = @"""Integer"":10";
-            Assert.Contains(deepestInteger, actual);
-
-            var deepestNext = @"""Next"":""NLog.UnitTests.MessageTemplates.ValueFormatterTest+RecursiveTest""";
-            Assert.Contains(deepestNext, actual);
-        }
-
-        [Fact]
-        public void TestStringifyOfStringIsSuccessful()
-        {
-            var @class = "str";
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            Assert.Equal("\"str\"", builder.ToString());
-        }
-
-        [Fact]
-        public void TestStringifyOfIFormatableObjectIsSuccessful()
-        {
-            var @class = new Test();
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            Assert.Equal("\"Test\"", builder.ToString());
-        }
-
-        [Fact]
-        public void TestStringifyOfNonIFormatableObjectIsSuccessful()
-        {
-            var @class = new Test1();
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            var expectedValue = $"\"{typeof(Test1).FullName}\"";
-            Assert.Equal(expectedValue, builder.ToString());
-        }
-
-        [Fact]
-        public void TestSerializationOfListObjectIsSuccessful()
-        {
-            var list = new List<int>() { 1, 2, 3, 4, 5, 6 };
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            Assert.Equal("1, 2, 3, 4, 5, 6", builder.ToString());
-        }
-
-        [Fact]
-        public void TestSerializationOfDictionaryObjectIsSuccessful()
-        {
-            var list = new Dictionary<int, object>() { { 1, new Test() }, { 2, new Test1() } };
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            Assert.Equal($"1=Test, 2={typeof(Test1).FullName}", builder.ToString());
-        }
-
-        [Fact]
-        public void TestSerializationOfCollectionOfListObjectWithDepth2IsNotSuccessful()
-        {
-            var list = new List<List<List<List<int>>>>() { new List<List<List<int>>>() { new List<List<int>>() { new List<int>() { 1, 2 }, new List<int>() { 3, 4 } }, new List<List<int>>() { new List<int>() { 4, 5 }, new List<int>() { 6, 7 } } } };
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            Assert.NotEqual("1,2,3,4,5,6,7", builder.ToString());
-        }
-
-        [Fact]
-        public void TestSerializationWillbeSkippedForElementsThatHaveRepeatedElements()
-        {
-            var list = new List<List<List<List<int>>>>() { new List<List<List<int>>>() { new List<List<int>>() { new List<int>() { 1, 2 }, new List<int>() { 1, 2 } }, new List<List<int>>() { new List<int>() { 1, 2 }, new List<int>() { 1, 2 } } } };
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            Assert.NotEqual("1,2", builder.ToString());
-        }
-
-        [Theory]
-        [InlineData(CaptureType.Normal, "NULL")]
-        [InlineData(CaptureType.Serialize, "null")]
-        [InlineData(CaptureType.Stringify, "\"\"")]
-        public void TestSerializationWillBeSuccessfulForNull(CaptureType captureType, string expected)
-        {
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(null, string.Empty, captureType, null, builder);
-            Assert.True(result);
-            Assert.Equal(expected, builder.ToString());
-        }
-
-        [Fact]
-        public void TestSerializationWillBeSuccessfulForNullObjects()
-        {
-            object list = null;
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            Assert.Equal("NULL", builder.ToString());
-        }
-
-        [Fact]
-        public void TestSerializationOfStringIsSuccessful()
-        {
-            var @class = "str";
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            Assert.Equal("\"str\"", builder.ToString());
-        }
-
-        [Fact]
-        public void TestSerialisationOfIConvertibleObjectIsSuccessful()
-        {
-            var @class = new Test(TypeCode.Object);
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            Assert.Equal("Test", builder.ToString());
-        }
-
-        [Fact]
-        public void TestSerialisationOfIConvertibleStringObjectIsSuccessful()
-        {
-            var @class = new Test(TypeCode.String);
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            var expectedValue = $"\"{typeof(Test).FullName}\"";
-            Assert.Equal(expectedValue, builder.ToString());
-        }
-
-        [Fact]
-        public void TestSerialisationOfIConvertibleBooleanObjectIsSuccessful()
-        {
-            var @class = new Test(TypeCode.Boolean);
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            Assert.Equal("true", builder.ToString());
-        }
-
-        [Fact]
-        public void TestSerialisationOfIConvertibleCharObjectIsSuccessful()
-        {
-            var @class = new Test(TypeCode.Char);
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            Assert.Equal("\"t\"", builder.ToString());
-        }
-
-        [Theory]
-        [InlineData(TypeCode.Byte)]
-        [InlineData(TypeCode.SByte)]
-        [InlineData(TypeCode.Int16)]
-        [InlineData(TypeCode.Int32)]
-        [InlineData(TypeCode.Int64)]
-        [InlineData(TypeCode.UInt16)]
-        [InlineData(TypeCode.UInt32)]
-        [InlineData(TypeCode.UInt64)]
-        public void TestSerialisationOfIConvertibleNumericObjectIsSuccessful(TypeCode code)
-        {
-            var @class = new Test(code);
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            Assert.Equal("1", builder.ToString());
-        }
-
-        [Fact]
-        public void TestSerialisationOfIConvertibleEnumObjectIsSuccessful()
-        {
-            var @class = new Test(TypeCode.Byte);
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(@class.Data, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            Assert.Equal("Foo", builder.ToString());
-        }
-
-        [Fact]
-        public void TestSerialisationOfIConvertibleDateTimeObjectIsSuccessful()
-        {
-            var @class = new Test(TypeCode.DateTime);
-            StringBuilder builder = new StringBuilder();
-            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
-            Assert.True(result);
-            Assert.Equal("Test", builder.ToString());
         }
     }
 }
