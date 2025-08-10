@@ -30,26 +30,14 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 Changelog:
 
-- (#5930) XmlParser - Handle XML comments after root-end-tag. (@snakefoot)
-- (#5929) XmlLoggingConfiguration - Improve handling of invalid XML. (@snakefoot)
-- (#5933) Handle invalid message template when skipping parameters array. (@snakefoot)
-- (#5915) ReplaceNewLinesLayoutRendererWrapper - Replace more line ending characters. (@oikku)
-- (#5911) NLog.Targets.GZipFile - Improve support for ArchiveAboveSize. (@snakefoot)
-- (#5921) FileTarget - Activate legacy ArchiveFileName when ArchiveSuffixFormat contains legacy placeholder. (@snakefoot)
-- (#5924) AsyncTargetWrapper - Updated FullBatchSizeWriteLimit default value from 5 to 10. (@snakefoot)
-- (#5937) Mark Assembly loading with RequiresUnreferencedCodeAttribute for AOT. (@snakefoot)
-- (#5938) Logger - Align WriteToTargets with WriteToTargetsWithSpan. (@snakefoot)
-- (#5909) ConfigurationItemFactory - Added extension hints for webservice and activityid. (@snakefoot)
-- (#5918) Log4JXmlTarget - Removed alias NLogViewer as conflicts with other nuget-packages. (@snakefoot)
-- (#5926) SplunkTarget - NetworkTarget with SplunkLayout. (@snakefoot)
-- (#5927) GelfLayout - Align with SplunkLayout. (@snakefoot)
-- (#5913) NLog.Targets.Network - Updated nuget-package README.md. (@snakefoot)
-- (#5912) NLog.Targets.Trace - Updated nuget-package README.md. (@snakefoot)
-- (#5919) XML docs for Targets and Layouts with remarks about default value. (@snakefoot)
-- (#5922) XML docs for LayoutRenderers with remarks about default value. (@snakefoot)
-- (#5925) XML docs for Target Wrappers with remarks about default value. (@snakefoot)
-- (#5935) Improve NLog XSD Schema with better handling of typed Layout. (@snakefoot)
-- (#5923) Updated unit-tests from NET6 to NET8. (@snakefoot)
+- [#5952] FileTarget - Close old files when reaching OpenFileCacheSize. (@snakefoot)
+- [#5948] FileTarget - Closing on OpenFileCacheTimeout apply least recently used. (@snakefoot)
+- [#5947] FileTarget - Improved file-archive exception handling when KeepFileOpen=false. (@snakefoot)
+- [#5954] ColoredConsoleTarget - Added Words-property for easy highlighting of many words without RegEx. (@snakefoot)
+- [#5955] LogMessageTemplateFormatter - Also use IValueFormatter for positional templates. (@snakefoot)
+- [#5953] NLog.Targets.Network - Updated links in README.md for nuget-package. (@snakefoot)
+- [#5945] NLog.Targets.AtomicFile - Added README.md for nuget-package. (@snakefoot)
+- [#5940] SplunkTarget - Support SplunkFields-property. (@snakefoot)
 
 NLog v6.0 release notes: https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html
 
