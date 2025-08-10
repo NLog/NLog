@@ -18,6 +18,7 @@
       GZipFile Target Docs:
       https://github.com/nlog/nlog/wiki/GZip-File-target
     </PackageReleaseNotes>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>NLog;File;Archive;GZip;logging;log</PackageTags>
     <PackageIcon>N.png</PackageIcon>
     <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
