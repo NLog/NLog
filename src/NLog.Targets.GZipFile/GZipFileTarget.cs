@@ -52,6 +52,7 @@ namespace NLog.Targets
         public GZipFileTarget()
         {
             ArchiveOldFileOnStartup = true; // Not possible to append to existing file using GZip, must read the entire file into memory and rewrite everything again
+            OpenFileCacheSize = 1;  // Ensure previously opened files are closed, before appending to new GZip file
         }
 
         /// <summary>
