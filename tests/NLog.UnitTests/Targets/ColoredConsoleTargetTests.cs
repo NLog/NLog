@@ -119,6 +119,22 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void WordHighlightingOnlyTextWholeWords()
+        {
+            var target = new ColoredConsoleTarget { Layout = "${logger} ${message}" };
+            target.WordHighlightingRules.Add(
+                new ConsoleWordHighlightingRule
+                {
+                    ForegroundColor = ConsoleOutputColor.Red,
+                    Text = "| at |",
+                    WholeWords = true,
+                });
+
+            AssertOutput(target, "The cat sat| at |the bar.",
+                new string[] { "The cat sat| ", "at", " |the bar." });
+        }
+
+        [Fact]
         public void ColoredConsoleAnsi_OverlappingWordHighlight_VerificationTest()
         {
             var target = new ColoredConsoleTarget { Layout = "${logger} ${message}", EnableAnsiOutput = true };
