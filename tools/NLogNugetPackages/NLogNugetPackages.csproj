@@ -11,7 +11,7 @@
     <PackageReference Include="NLog.DiagnosticSource" version="6.*" />
     <PackageReference Include="NLog.Extensions.Hosting" Version="6.*" />
     <PackageReference Include="NLog.Extensions.Logging" Version="6.*" />
-    <PackageReference Include="NLog.MailKit" version="5.*" />
+    <PackageReference Include="NLog.MailKit" version="6.*" />
     <PackageReference Include="NLog.MSMQ" Version="5.*" />
     <PackageReference Include="NLog.OutputDebugString" Version="6.*" />
     <PackageReference Include="NLog.Owin.Logging" version="4.*" />
@@ -27,7 +27,7 @@
     <PackageReference Include="NLog.Web" Version="6.*" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="6.*" />
     <PackageReference Include="NLog.Windows.Forms" Version="6.*" />
-    <PackageReference Include="NLog.WindowsIdentity" Version="5.*" />
+    <PackageReference Include="NLog.WindowsIdentity" Version="6.*" />
     <PackageReference Include="NLog.WindowsRegistry" Version="6.*" />
   </ItemGroup>
 
