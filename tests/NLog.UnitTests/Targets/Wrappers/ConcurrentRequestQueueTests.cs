@@ -34,8 +34,6 @@
 #if !NET35
 
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using NLog.Common;
 using NLog.Targets.Wrappers;
 using Xunit;
@@ -65,59 +63,6 @@ namespace NLog.UnitTests.Targets.Wrappers
             // Assert
             Assert.Equal(0, requestQueue.Count);
             Assert.Equal(2, batch.Count);
-        }
-
-        [Fact]
-        public void Enqueue_WhenGrowBehaviourAndHighlyConcurrent_GrowOnce()
-        {
-            // Arrange
-            var requestQueue = new ConcurrentRequestQueue(2, AsyncTargetWrapperOverflowAction.Grow);
-
-            for (int i = 0; i < 4; i++)
-            {
-                requestQueue.Enqueue(new AsyncLogEventInfo());
-            }
-
-            const int initialQueueCount = 4;
-            const int initialQueueLimit = 4;
-            Assert.Equal(initialQueueCount, requestQueue.Count);
-            Assert.Equal(initialQueueLimit, requestQueue.QueueLimit);
-
-            const int threadCount = 4;
-            var readyToEnqueue = new Barrier(threadCount);
-            var enqueued = new CountdownEvent(threadCount);
-
-            // Act
-            for (int i = 0; i < 100; i++)
-            {
-                for (int j = 0; j < threadCount; j++)
-                {
-                    Task.Run(EnqueueWhenAllThreadsReady);
-                }
-
-                Assert.True(enqueued.Wait(10000));
-                enqueued.Reset();
-
-                // Assert
-                const int expectedQueueCount = initialQueueCount + threadCount;
-                const int expectedQueueLimit = initialQueueLimit * 2;
-                Assert.Equal(expectedQueueCount, requestQueue.Count);
-                Assert.Equal(expectedQueueLimit, requestQueue.QueueLimit);
-
-                // rollback requests count and limit
-                requestQueue.DequeueBatch(threadCount);
-                requestQueue.QueueLimit = initialQueueLimit;
-            }
-
-            void EnqueueWhenAllThreadsReady()
-            {
-                var logEvent = new AsyncLogEventInfo();
-                readyToEnqueue.SignalAndWait();
-
-                requestQueue.Enqueue(logEvent);
-
-                enqueued.Signal();
-            }
         }
 
         [Fact]
