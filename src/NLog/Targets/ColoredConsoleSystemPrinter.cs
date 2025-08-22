@@ -101,12 +101,12 @@ namespace NLog.Targets
 
         public IList<ConsoleRowHighlightingRule> DefaultConsoleRowHighlightingRules { get; } = new List<ConsoleRowHighlightingRule>()
         {
-            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Fatal", static (evt) => evt.Level == LogLevel.Fatal ? NLog.Conditions.ConditionExpression.BoxedTrue : NLog.Conditions.ConditionExpression.BoxedFalse), ConsoleOutputColor.Red, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Error", static (evt) => evt.Level == LogLevel.Error ? NLog.Conditions.ConditionExpression.BoxedTrue : NLog.Conditions.ConditionExpression.BoxedFalse), ConsoleOutputColor.Red, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Warn", static (evt) => evt.Level == LogLevel.Warn ? NLog.Conditions.ConditionExpression.BoxedTrue : NLog.Conditions.ConditionExpression.BoxedFalse), ConsoleOutputColor.Yellow, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Info", static (evt) => evt.Level == LogLevel.Info ? NLog.Conditions.ConditionExpression.BoxedTrue : NLog.Conditions.ConditionExpression.BoxedFalse), ConsoleOutputColor.White, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Debug", static (evt) => evt.Level == LogLevel.Debug ? NLog.Conditions.ConditionExpression.BoxedTrue : NLog.Conditions.ConditionExpression.BoxedFalse), ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Trace", static (evt) => evt.Level == LogLevel.Trace ? NLog.Conditions.ConditionExpression.BoxedTrue : NLog.Conditions.ConditionExpression.BoxedFalse), ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Fatal", (evt) => evt.Level == LogLevel.Fatal), ConsoleOutputColor.Red, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Error", (evt) => evt.Level == LogLevel.Error), ConsoleOutputColor.Red, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Warn", (evt) => evt.Level == LogLevel.Warn), ConsoleOutputColor.Yellow, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Info", (evt) => evt.Level == LogLevel.Info), ConsoleOutputColor.White, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Debug", (evt) => evt.Level == LogLevel.Debug), ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule(Conditions.ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Trace", (evt) => evt.Level == LogLevel.Trace), ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange),
         };
     }
 }
