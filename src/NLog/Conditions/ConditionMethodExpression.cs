@@ -87,6 +87,11 @@ namespace NLog.Conditions
             return new ConditionMethodExpression(conditionMethodName, ArrayHelper.Empty<ConditionExpression>(), new EvaluateMethodNoParameters(method));
         }
 
+        public static ConditionMethodExpression CreateMethodNoParameters(string conditionMethodName, Func<LogEventInfo, bool> method)
+        {
+            return CreateMethodNoParameters(conditionMethodName, (evt) => method(evt) ? BoxedTrue : BoxedFalse);
+        }
+
         public static ConditionMethodExpression CreateMethodOneParameter(string conditionMethodName, Func<LogEventInfo, object?, object?> method, IList<ConditionExpression> methodParameters)
         {
             var methodParameter = methodParameters[0];
