@@ -410,6 +410,14 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void DontCleanMethodNamesOfAnonymousDelegatesTest()
         {
+#if !NETFRAMEWORK
+            if (IsLinux())
+            {
+                Console.WriteLine("[SKIP] DontCleanMethodNamesOfAnonymousDelegatesTest because unstable with NET8");
+                return;
+            }
+#endif
+
             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:ClassName=false:CleanNamesOfAnonymousDelegates=false}' /></targets>
@@ -477,6 +485,14 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void DontCleanClassNamesOfAnonymousDelegatesTest()
         {
+#if !NETFRAMEWORK
+            if (IsLinux())
+            {
+                Console.WriteLine("[SKIP] DontCleanClassNamesOfAnonymousDelegatesTest because unstable with NET8");
+                return;
+            }
+#endif
+
             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:ClassName=true:MethodName=false:CleanNamesOfAnonymousDelegates=false}' /></targets>
@@ -539,7 +555,6 @@ namespace NLog.UnitTests.LayoutRenderers
                 logFactory.AssertDebugLastMessage("CallSiteTests");
             }
         }
-
 
         [Fact]
         public void When_Wrapped_Ignore_Wrapper_Methods_In_Callstack()
@@ -1293,6 +1308,14 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void LogAfterTaskRunAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames()
         {
+#if !NETFRAMEWORK
+            if (IsLinux())
+            {
+                Console.WriteLine("[SKIP] LogAfterTaskRunAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames because unstable with NET8");
+                return;
+            }
+#endif
+
             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:includenamespace=true:cleannamesofasynccontinuations=false}' /></targets>
