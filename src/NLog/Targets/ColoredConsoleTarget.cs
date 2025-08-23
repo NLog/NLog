@@ -41,6 +41,7 @@ namespace NLog.Targets
     using System.Text;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -64,6 +65,8 @@ namespace NLog.Targets
     [Target("ColoredConsole")]
     public sealed class ColoredConsoleTarget : TargetWithLayoutHeaderAndFooter
     {
+        private readonly Func<bool, TextWriter> _resolveConsoleStream;
+
         /// <summary>
         /// Should logging being paused/stopped because of the race condition bug in Console.Writeline?
         /// </summary>
@@ -94,6 +97,7 @@ namespace NLog.Targets
         public ColoredConsoleTarget()
         {
             _consolePrinter = CreateConsolePrinter(EnableAnsiOutput);
+            _resolveConsoleStream = GetOutputStream;
         }
 
         /// <summary>
@@ -106,6 +110,14 @@ namespace NLog.Targets
         public ColoredConsoleTarget(string name) : this()
         {
             Name = name;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ColoredConsoleTarget" /> class for Unit-Testing.
+        /// </summary>
+        internal ColoredConsoleTarget(Func<bool, TextWriter> resolveConsoleStream) : this()
+        {
+            _resolveConsoleStream = Guard.ThrowIfNull(resolveConsoleStream);
         }
 
         /// <summary>
@@ -269,7 +281,7 @@ namespace NLog.Targets
                     if (_disableColors)
                     {
                         InternalLogger.Info("{0}: Console output is redirected so no colors. Set DetectOutputRedirected=false to skip detection.", this);
-                        if (!AutoFlush && GetOutput(stdErr) is StreamWriter streamWriter && !streamWriter.AutoFlush)
+                        if (!AutoFlush && _resolveConsoleStream(stdErr) is StreamWriter streamWriter && !streamWriter.AutoFlush)
                         {
                             AutoFlush = true;
                         }
@@ -340,14 +352,14 @@ namespace NLog.Targets
                 if ((StdErr?.IsFixed ?? true))
                 {
                     var stdErr = StdErr?.FixedValue ?? false;
-                    var output = GetOutput(stdErr);
+                    var output = _resolveConsoleStream(stdErr);
                     output.Flush();
                 }
                 else
                 {
-                    var output = GetOutput(false);
+                    var output = _resolveConsoleStream(false);
                     output.Flush();
-                    output = GetOutput(true);
+                    output = _resolveConsoleStream(true);
                     output.Flush();
                 }
             }
@@ -399,7 +411,7 @@ namespace NLog.Targets
             }
 
             var stdErr = RenderLogEvent(StdErr, logEvent);
-            var consoleStream = GetOutput(stdErr);
+            var consoleStream = _resolveConsoleStream(stdErr);
             if (ReferenceEquals(colorMessage, message) && !newForegroundColor.HasValue && !newBackgroundColor.HasValue)
             {
                 ConsoleTargetHelper.WriteLineThreadSafe(consoleStream, message, AutoFlush);
@@ -663,7 +675,7 @@ namespace NLog.Targets
             }
         }
 
-        private static TextWriter GetOutput(bool stdErr)
+        private static TextWriter GetOutputStream(bool stdErr)
         {
             return stdErr ? Console.Error : Console.Out;
         }
