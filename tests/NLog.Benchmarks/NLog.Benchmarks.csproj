@@ -1,10 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <OutputType>Exe</OutputType>
     <SonarQubeTestProject>true</SonarQubeTestProject>
     <IsPackable>false</IsPackable>
+
+    <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <SignAssembly>true</SignAssembly>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NLog\NLog.csproj" />
+    <ProjectReference Include="..\..\src\NLog\NLog.csproj" />
   </ItemGroup>
+
 </Project>
