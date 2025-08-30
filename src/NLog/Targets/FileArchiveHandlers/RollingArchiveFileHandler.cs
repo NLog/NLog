@@ -118,7 +118,7 @@ namespace NLog.Targets.FileArchiveHandlers
                     // Delete all files in the directory with matching filename-wildcard
                     foreach (var fileInfo in fileInfos)
                     {
-                        DeleteOldArchiveFile(fileInfo.FullName);
+                        DeleteOldArchiveFile(fileInfo.FullName, "DeleteOldFileOnStartup=true");
                     }
 
                     return 0;
