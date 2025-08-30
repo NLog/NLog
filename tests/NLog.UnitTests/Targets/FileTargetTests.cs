@@ -3247,7 +3247,7 @@ namespace NLog.UnitTests.Targets
         public void FileTarget_SameDirectory_MaxArchiveFiles(int maxArchiveFiles)
         {
             var tempDir = ArchiveFileNameHelper.GenerateTempPath();
-            var logFile1 = Path.Combine(tempDir, "Log{0}.txt");
+            var logFile1 = Path.Combine(tempDir, "Log-file{0}.txt");
             try
             {
                 var fileTarget = new FileTarget
