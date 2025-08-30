@@ -53,6 +53,9 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="conditionExpressionText">Condition text to be converted.</param>
         /// <returns>Condition expression tree.</returns>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_0_OR_GREATER
+        [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(conditionExpressionText))]
+#endif
         public static implicit operator ConditionExpression?(string? conditionExpressionText)
         {
             if (conditionExpressionText is null) return null;
