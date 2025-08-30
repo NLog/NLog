@@ -78,7 +78,8 @@ namespace NLog.Targets.FileArchiveHandlers
                 // Wildcard not detected as required, so just delete/truncate the active file
                 if (File.Exists(newFilePath))
                 {
-                    return DeleteOldArchiveFile(newFilePath);
+                    var archiveCleanupReason = (_fileTarget.MaxArchiveFiles < 0 && _fileTarget.ArchiveOldFileOnStartup) ? "ArchiveOldFileOnStartup=true" : $"MaxArchiveFiles={_fileTarget.MaxArchiveFiles}";
+                    return DeleteOldArchiveFile(newFilePath, archiveCleanupReason);
                 }
             }
             catch (Exception ex)

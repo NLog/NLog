@@ -225,7 +225,7 @@ namespace NLog.Targets.FileArchiveHandlers
                 newFileStream.SetLength(0);
 
                 // Attempt to delete file to reset File-Creation-Time (Delete under file-lock)
-                if (!DeleteOldArchiveFile(newFilePath))
+                if (!DeleteOldArchiveFile(newFilePath, "Truncate Active File"))
                 {
                     fileShare &= ~FileShare.Delete;  // Retry after having released file-lock
                 }
@@ -235,7 +235,7 @@ namespace NLog.Targets.FileArchiveHandlers
 
             if ((fileShare & FileShare.Delete) == 0)
             {
-                DeleteOldArchiveFile(newFilePath); // Attempt to delete file to reset File-Creation-Time
+                DeleteOldArchiveFile(newFilePath, "Truncate Active File"); // Attempt to delete file to reset File-Creation-Time
             }
         }
 

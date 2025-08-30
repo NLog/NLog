@@ -71,29 +71,36 @@ namespace NLog.Targets.FileArchiveHandlers
 
                 var directoryInfo = new DirectoryInfo(fileDirectory);
                 if (!directoryInfo.Exists)
+                {
+                    InternalLogger.Debug("{0}: Archive Cleanup found no files matching wildcard {1} in directory: {2}", _fileTarget, fileWildcard, fileDirectory);
                     return false;
+                }
 
                 var fileInfos = directoryInfo.GetFiles(fileWildcard);
                 InternalLogger.Debug("{0}: Archive Cleanup found {1} files matching wildcard {2} in directory: {3}", _fileTarget, fileInfos.Length, fileWildcard, fileDirectory);
-                if (fileInfos.Length != 0)
+                if (fileInfos.Length == 0)
+                    return false;
+
+                int fileWildcardStartIndex = fileWildcard.IndexOf('*');
+                int fileWildcardEndIndex = fileWildcard.Length - fileWildcardStartIndex;
+                var maxArchiveFiles = _fileTarget.MaxArchiveFiles;
+                if (initialFileOpen && (!_fileTarget.ArchiveOldFileOnStartup || _fileTarget.DeleteOldFileOnStartup))
+                    maxArchiveFiles = _fileTarget.DeleteOldFileOnStartup ? 0 : maxArchiveFiles;
+                else if (maxArchiveFiles > 0)
+                    maxArchiveFiles -= 1;
+
+                var archiveCleanupReason = (_fileTarget.MaxArchiveFiles < 0 && _fileTarget.MaxArchiveDays > 0) ? $"MaxArchiveDays={_fileTarget.MaxArchiveDays}" : $"MaxArchiveFiles={_fileTarget.MaxArchiveFiles}";
+                if (initialFileOpen && _fileTarget.DeleteOldFileOnStartup)
+                    archiveCleanupReason = "DeleteOldFileOnStartup=true";
+
+                bool oldFilesDeleted = false;
+                foreach (var cleanupFileInfo in FileInfoDateTime.CleanupFiles(fileInfos, maxArchiveFiles, _fileTarget.MaxArchiveDays, fileWildcardStartIndex, fileWildcardEndIndex, excludeFileName, wildCardContainsSeqNo))
                 {
-                    int fileWildcardStartIndex = fileWildcard.IndexOf('*');
-                    int fileWildcardEndIndex = fileWildcard.Length - fileWildcardStartIndex;
-                    var maxArchiveFiles = _fileTarget.MaxArchiveFiles;
-                    if (initialFileOpen && (!_fileTarget.ArchiveOldFileOnStartup || _fileTarget.DeleteOldFileOnStartup))
-                        maxArchiveFiles = _fileTarget.DeleteOldFileOnStartup ? 0 : maxArchiveFiles;
-                    else if (maxArchiveFiles > 0)
-                        maxArchiveFiles -= 1;
-
-                    bool oldFilesDeleted = false;
-                    foreach (var cleanupFileInfo in FileInfoDateTime.CleanupFiles(fileInfos, maxArchiveFiles, _fileTarget.MaxArchiveDays, fileWildcardStartIndex, fileWildcardEndIndex, excludeFileName, wildCardContainsSeqNo))
-                    {
-                        oldFilesDeleted = true;
-                        DeleteOldArchiveFile(cleanupFileInfo.FullName);
-                    }
-
-                    return oldFilesDeleted;
+                    oldFilesDeleted = true;
+                    DeleteOldArchiveFile(cleanupFileInfo.FullName, archiveCleanupReason);
                 }
+
+                return oldFilesDeleted;
             }
             catch (Exception exception)
             {
@@ -325,13 +332,13 @@ namespace NLog.Targets.FileArchiveHandlers
             return string.Concat(filename, "*", fileext);
         }
 
-        protected bool DeleteOldArchiveFile(string filepath)
+        protected bool DeleteOldArchiveFile(string filepath, string archiveCleanupReason)
         {
             for (int i = 1; i <= 3; ++i)
             {
                 try
                 {
-                    InternalLogger.Info("{0}: Deleting old archive file: '{1}'.", _fileTarget, filepath);
+                    InternalLogger.Info("{0}: {1} deleting old archive file: '{2}'.", _fileTarget, archiveCleanupReason, filepath);
                     _fileTarget.CloseOpenFileBeforeArchiveCleanup(filepath);
                     File.Delete(filepath);
                     return true;
