@@ -281,13 +281,18 @@ namespace NLog.Targets.FileArchiveHandlers
             int lastLength = 0;
             int currentLength = 0;
             int currentStart = 0;
+            bool hasDigit = false;
             for (int i = 0; i < filename.Length; ++i)
             {
                 if (!char.IsLetter(filename[i]))
                 {
-                    if (currentLength == 0)
-                        currentStart = i;
-                    ++currentLength;
+                    hasDigit = hasDigit || char.IsDigit(filename[i]);
+                    if (hasDigit)
+                    {
+                        if (currentLength == 0)
+                            currentStart = i;
+                        ++currentLength;
+                    }
                 }
                 else
                 {
@@ -300,6 +305,7 @@ namespace NLog.Targets.FileArchiveHandlers
                         }
                         currentLength = 0;
                     }
+                    hasDigit = false;
                 }
             }
 
@@ -311,12 +317,6 @@ namespace NLog.Targets.FileArchiveHandlers
 
             if (lastLength > 0)
             {
-                if (lastStart > 0 && lastLength > 1 && !char.IsDigit(filename[lastStart + 1]))
-                {
-                    lastStart += 1;
-                    lastLength -= 1;
-                }
-
                 var prefix = filename.Substring(0, lastStart);
                 var suffix = filename.Substring(lastStart + lastLength, filename.Length - lastStart - lastLength);
                 return string.IsNullOrEmpty(suffix) ? string.Concat(prefix, "*", fileext) : string.Concat(prefix, "*", suffix, "*", fileext);
