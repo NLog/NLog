@@ -188,6 +188,9 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="text">Text to be converted.</param>
         /// <returns>A <see cref="SimpleLayout"/> object.</returns>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_0_OR_GREATER
+        [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(text))]
+#endif
         public static implicit operator SimpleLayout?([Localizable(false)] string text)
         {
             if (text is null) return null;
