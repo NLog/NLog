@@ -264,7 +264,7 @@ namespace NLog.Targets.FileArchiveHandlers
                 return 0;
 
             int fileWildcardEndIndex = archiveWildCardFileName.Length - fileWildcardStartIndex;
-            if (fileWildcardStartIndex > 0 && !char.IsLetter(archiveWildCardFileName[fileWildcardStartIndex - 1]) && !char.IsDigit(archiveWildCardFileName[fileWildcardStartIndex - 1]))
+            if (fileWildcardStartIndex > 0 && !char.IsLetterOrDigit(archiveWildCardFileName[fileWildcardStartIndex - 1]))
             {
                 archiveWildCardFileName = archiveWildCardFileName.Substring(0, fileWildcardStartIndex - 1) + archiveWildCardFileName.Substring(fileWildcardStartIndex);
             }

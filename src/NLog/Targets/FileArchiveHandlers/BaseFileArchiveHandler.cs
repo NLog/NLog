@@ -81,8 +81,6 @@ namespace NLog.Targets.FileArchiveHandlers
                 if (fileInfos.Length == 0)
                     return false;
 
-                int fileWildcardStartIndex = fileWildcard.IndexOf('*');
-                int fileWildcardEndIndex = fileWildcard.Length - fileWildcardStartIndex;
                 var maxArchiveFiles = _fileTarget.MaxArchiveFiles;
                 if (initialFileOpen && (!_fileTarget.ArchiveOldFileOnStartup || _fileTarget.DeleteOldFileOnStartup))
                     maxArchiveFiles = _fileTarget.DeleteOldFileOnStartup ? 0 : maxArchiveFiles;
@@ -92,6 +90,9 @@ namespace NLog.Targets.FileArchiveHandlers
                 var archiveCleanupReason = (_fileTarget.MaxArchiveFiles < 0 && _fileTarget.MaxArchiveDays > 0) ? $"MaxArchiveDays={_fileTarget.MaxArchiveDays}" : $"MaxArchiveFiles={_fileTarget.MaxArchiveFiles}";
                 if (initialFileOpen && _fileTarget.DeleteOldFileOnStartup)
                     archiveCleanupReason = "DeleteOldFileOnStartup=true";
+
+                int fileWildcardStartIndex = fileWildcard.IndexOf('*');
+                int fileWildcardEndIndex = (fileWildcardStartIndex >= 0 && fileWildcardStartIndex == fileWildcard.LastIndexOf('*')) ? fileWildcard.Length - fileWildcardStartIndex : -1;
 
                 bool oldFilesDeleted = false;
                 foreach (var cleanupFileInfo in FileInfoDateTime.CleanupFiles(fileInfos, maxArchiveFiles, _fileTarget.MaxArchiveDays, fileWildcardStartIndex, fileWildcardEndIndex, excludeFileName, wildCardContainsSeqNo))
@@ -158,6 +159,8 @@ namespace NLog.Targets.FileArchiveHandlers
             public static int? ScanFileNamesForMaxSequenceNo(FileInfo[] fileInfos, int fileWildcardStartIndex, int fileWildcardEndIndex)
             {
                 int? maxArchiveSequenceNo = null;
+                if (fileWildcardStartIndex < 0)
+                    return default(int?);
 
                 foreach (var fileInfo in fileInfos)
                 {
