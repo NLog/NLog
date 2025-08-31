@@ -103,7 +103,10 @@ namespace NLog.Targets.FileArchiveHandlers
 
                 var directoryInfo = new DirectoryInfo(filedir);
                 if (!directoryInfo.Exists)
+                {
+                    InternalLogger.Debug("{0}: Archive Sequence Rolling found no files in directory: {1}", _fileTarget, filedir);
                     return 0;
+                }
 
                 var filename = Path.GetFileNameWithoutExtension(newFilePath);
                 var fileext = Path.GetExtension(newFilePath);
@@ -123,24 +126,22 @@ namespace NLog.Targets.FileArchiveHandlers
 
                     return 0;
                 }
-                else
+
+                var archivePathWildCard = _fileTarget.BuildFullFilePath(newFilePath, int.MaxValue, DateTime.MinValue).Replace(int.MaxValue.ToString(), "*");
+                var archiveFileName = Path.GetFileName(archivePathWildCard);
+                var fileWildcardStartIndex = archiveFileName.IndexOf('*');
+                var fileWildcardEndIndex = fileWildcardStartIndex >= 0 ? archiveFileName.Length - fileWildcardStartIndex : -1;
+
+                // Search for matching files to find the highest sequence-number
+                newSequenceNumber = GetMaxArchiveSequenceNo(fileInfos, fileWildcardStartIndex, fileWildcardEndIndex) ?? 0;
+
+                if (_fileTarget.ArchiveOldFileOnStartup)
                 {
-                    var archivePathWildCard = _fileTarget.BuildFullFilePath(newFilePath, int.MaxValue, DateTime.MinValue).Replace(int.MaxValue.ToString(), "*");
-                    var archiveFileName = Path.GetFileName(archivePathWildCard);
-                    var fileWildcardStartIndex = archiveFileName.IndexOf('*');
-                    var fileWildcardEndIndex = fileWildcardStartIndex >= 0 ? archiveFileName.Length - fileWildcardStartIndex : filename.Length;
-
-                    // Search for matching files to find the highest sequence-number
-                    newSequenceNumber = GetMaxArchiveSequenceNo(fileInfos, fileWildcardStartIndex, fileWildcardEndIndex) ?? 0;
-
-                    if (_fileTarget.ArchiveOldFileOnStartup)
-                    {
-                        // Search for matching files to find the highest sequence-number, and roll to next sequence-no
-                        newSequenceNumber += 1;
-                    }
-
-                    return newSequenceNumber;
+                    // Search for matching files to find the highest sequence-number, and roll to next sequence-no
+                    newSequenceNumber += 1;
                 }
+
+                return newSequenceNumber;
             }
             catch (Exception ex)
             {
