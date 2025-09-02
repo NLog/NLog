@@ -415,18 +415,31 @@ namespace NLog.Internal
         internal static void Append4DigitsZeroPadded(this StringBuilder builder, int number)
         {
 #if !NETFRAMEWORK
-            if (number > 999 && number < 10000)
+            if (999 < number && number < 10000)
             {
                 builder.Append(number);
             }
             else
 #endif
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_0_OR_GREATER
+            {
+                Span<char> buffer =
+                [
+                    (char)(((number / 1000) % 10) + '0'),
+                    (char)(((number / 100) % 10) + '0'),
+                    (char)(((number / 10) % 10) + '0'),
+                    (char)((number % 10) + '0'),
+                ];
+                builder.Append(buffer); // Single Append instead of many
+            }
+#else
             {
                 builder.Append((char)(((number / 1000) % 10) + '0'));
                 builder.Append((char)(((number / 100) % 10) + '0'));
                 builder.Append((char)(((number / 10) % 10) + '0'));
                 builder.Append((char)((number % 10) + '0'));
             }
+#endif
         }
 
         /// <summary>
