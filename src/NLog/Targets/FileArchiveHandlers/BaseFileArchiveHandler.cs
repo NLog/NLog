@@ -49,17 +49,17 @@ namespace NLog.Targets.FileArchiveHandlers
             _fileTarget = fileTarget;
         }
 
-        protected bool DeleteOldFilesBeforeArchive(string filePath, bool initialFileOpen, string? excludeFileName = null)
+        protected bool DeleteOldFilesBeforeArchive(string filePath, bool initialFileOpen, string? excludeFileName = null, bool archiveSuffixWithSeqNo = true)
         {
             // Get all files matching the filename, order by timestamp, and when same timestamp then order by filename
             //  - First start with removing the oldest files
             string fileDirectory = Path.GetDirectoryName(filePath);
             // Replace all non-letter with '*' replace all '**' with single '*'
             string fileWildcard = GetDeleteOldFileNameWildcard(filePath);
-            return DeleteOldFilesBeforeArchive(fileDirectory, fileWildcard, initialFileOpen, excludeFileName);
+            return DeleteOldFilesBeforeArchive(fileDirectory, fileWildcard, initialFileOpen, excludeFileName, archiveSuffixWithSeqNo);
         }
 
-        protected bool DeleteOldFilesBeforeArchive(string fileDirectory, string fileWildcard, bool initialFileOpen, string? excludeFileName = null, bool wildCardContainsSeqNo = false)
+        protected bool DeleteOldFilesBeforeArchive(string fileDirectory, string fileWildcard, bool initialFileOpen, string? excludeFileName = null, bool archiveSuffixWithSeqNo = true)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace NLog.Targets.FileArchiveHandlers
                 int fileWildcardEndIndex = (fileWildcardStartIndex >= 0 && fileWildcardStartIndex == fileWildcard.LastIndexOf('*')) ? fileWildcard.Length - fileWildcardStartIndex : -1;
 
                 bool oldFilesDeleted = false;
-                foreach (var cleanupFileInfo in FileInfoDateTime.CleanupFiles(fileInfos, maxArchiveFiles, _fileTarget.MaxArchiveDays, fileWildcardStartIndex, fileWildcardEndIndex, excludeFileName, wildCardContainsSeqNo))
+                foreach (var cleanupFileInfo in FileInfoDateTime.CleanupFiles(fileInfos, maxArchiveFiles, _fileTarget.MaxArchiveDays, fileWildcardStartIndex, fileWildcardEndIndex, excludeFileName, archiveSuffixWithSeqNo))
                 {
                     oldFilesDeleted = true;
                     DeleteOldArchiveFile(cleanupFileInfo.FullName, archiveCleanupReason);
@@ -164,12 +164,12 @@ namespace NLog.Targets.FileArchiveHandlers
 
                 foreach (var fileInfo in fileInfos)
                 {
-                    var fileName = fileInfo.Name;
+                    var archiveFileName = fileInfo.Name;
 
-                    if (ExcludeFileName(fileName, fileWildcardStartIndex, fileWildcardEndIndex, null))
+                    if (ExcludeFileName(archiveFileName, fileWildcardStartIndex, fileWildcardEndIndex, null))
                         continue;
 
-                    if (TryParseStartSequenceNumber(fileName, fileWildcardStartIndex, out var archiveSequenceNo))
+                    if (TryParseStartSequenceNumber(archiveFileName, fileWildcardStartIndex, fileWildcardEndIndex, out var archiveSequenceNo))
                     {
                         if (!maxArchiveSequenceNo.HasValue || archiveSequenceNo > maxArchiveSequenceNo.Value)
                             maxArchiveSequenceNo = archiveSequenceNo;
@@ -185,7 +185,7 @@ namespace NLog.Targets.FileArchiveHandlers
             ///         - Trim away sequencer-number, so not part of sorting
             ///     - Use DateTime part from FileSystem for ordering by Date-only, and sort by FileName
             /// </summary>
-            public static IEnumerable<FileInfo> CleanupFiles(FileInfo[] fileInfos, int maxArchiveFiles, int maxArchiveDays, int fileWildcardStartIndex, int fileWildcardEndIndex, string? excludeFileName = null, bool wildCardContainsSeqNo = false)
+            public static IEnumerable<FileInfo> CleanupFiles(FileInfo[] fileInfos, int maxArchiveFiles, int maxArchiveDays, int fileWildcardStartIndex, int fileWildcardEndIndex, string? excludeFileName = null, bool archiveSuffixWithSeqNo = false)
             {
                 if (fileInfos.Length <= 1)
                 {
@@ -200,12 +200,13 @@ namespace NLog.Targets.FileArchiveHandlers
                 var fileInfoDates = new List<FileInfoDateTime>(fileInfos.Length);
                 foreach (var fileInfo in fileInfos)
                 {
-                    var fileName = fileInfo.Name;
-                    if (ExcludeFileName(fileName, fileWildcardStartIndex, fileWildcardEndIndex, excludeFileName))
+                    var archiveFileName = fileInfo.Name;
+                    if (ExcludeFileName(archiveFileName, fileWildcardStartIndex, fileWildcardEndIndex, excludeFileName))
                         continue;
 
-                    var fileCreatedTimeUtc = (FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo) ?? NLog.Time.TimeSource.Current.Time).Date;
-                    if (wildCardContainsSeqNo && TryParseStartSequenceNumber(fileName, fileWildcardStartIndex, out var archiveSequenceNo))
+                    var fileCreatedTimeUtc = (FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo) ?? NLog.Time.TimeSource.Current.Time);
+                    fileCreatedTimeUtc = new DateTime(fileCreatedTimeUtc.Year, fileCreatedTimeUtc.Month, fileCreatedTimeUtc.Day, fileCreatedTimeUtc.Hour, 0, 0, fileCreatedTimeUtc.Kind);
+                    if (archiveSuffixWithSeqNo && TryParseStartSequenceNumber(archiveFileName, fileWildcardStartIndex, fileWildcardEndIndex, out var archiveSequenceNo))
                         fileInfoDates.Add(new FileInfoDateTime(fileInfo, fileCreatedTimeUtc, archiveSequenceNo));
                     else
                         fileInfoDates.Add(new FileInfoDateTime(fileInfo, fileCreatedTimeUtc));
@@ -225,13 +226,13 @@ namespace NLog.Targets.FileArchiveHandlers
                 }
             }
 
-            private static bool ExcludeFileName(string fileName, int fileWildcardStartIndex, int fileWildcardEndIndex, string? excludeFileName)
+            private static bool ExcludeFileName(string archiveFileName, int fileWildcardStartIndex, int fileWildcardEndIndex, string? excludeFileName)
             {
-                if (fileWildcardStartIndex >= 0 && fileWildcardEndIndex >= 0 && fileName.Length > fileWildcardEndIndex)
+                if (fileWildcardStartIndex >= 0 && fileWildcardEndIndex >= 0)
                 {
-                    for (int i = fileWildcardStartIndex; i < fileName.Length - fileWildcardEndIndex; ++i)
+                    for (int i = fileWildcardStartIndex; i <= archiveFileName.Length - fileWildcardEndIndex; ++i)
                     {
-                        if (char.IsLetter(fileName[i]))
+                        if (char.IsLetter(archiveFileName[i]))
                             return true;
                     }
                 }
@@ -239,7 +240,7 @@ namespace NLog.Targets.FileArchiveHandlers
                 if (excludeFileName is null)
                     return false;
                 else
-                    return string.Equals(fileName, excludeFileName, StringComparison.OrdinalIgnoreCase);
+                    return string.Equals(archiveFileName, excludeFileName, StringComparison.OrdinalIgnoreCase);
             }
 
             private static bool ShouldDeleteFile(FileInfoDateTime existingArchiveFile, int remainingFileCount, int maxArchiveFiles, int maxArchiveDays)
@@ -261,16 +262,29 @@ namespace NLog.Targets.FileArchiveHandlers
                 return false;
             }
 
-            private static bool TryParseStartSequenceNumber(string archiveFileName, int seqStartIndex, out int archiveSequenceNo)
+            private static bool TryParseStartSequenceNumber(string archiveFileName, int fileWildcardStartIndex, int fileWildcardEndIndex, out int archiveSequenceNo)
             {
                 int? parsedSequenceNo = null;
+                bool foundSequenceNo = false;
+                if (fileWildcardStartIndex < 0 || fileWildcardEndIndex < 0)
+                {
+                    archiveSequenceNo = 0;
+                    return false;
+                }
 
-                int startIndex = seqStartIndex;
-                for (int i = startIndex; i < archiveFileName.Length; ++i)
+                for (int i = fileWildcardStartIndex; i <= archiveFileName.Length - fileWildcardEndIndex; ++i)
                 {
                     char chr = archiveFileName[i];
-                    if (!char.IsNumber(chr))
-                        break;
+                    if (!char.IsDigit(chr))
+                    {
+                        foundSequenceNo = parsedSequenceNo.HasValue;
+                        continue;
+                    }
+                    else if (foundSequenceNo)
+                    {
+                        archiveSequenceNo = 0;
+                        return false;   // Abort bonus sequence-number found, so cannot trust anything
+                    }
 
                     parsedSequenceNo = parsedSequenceNo > 0 ? parsedSequenceNo * 10 : 0;
                     parsedSequenceNo += (chr - '0');
@@ -341,7 +355,7 @@ namespace NLog.Targets.FileArchiveHandlers
             {
                 try
                 {
-                    InternalLogger.Info("{0}: {1} deleting old archive file: '{2}'.", _fileTarget, archiveCleanupReason, filepath);
+                    InternalLogger.Info("{0}: Cleanup file archive {1}. Delete file: '{2}'.", _fileTarget, archiveCleanupReason, filepath);
                     _fileTarget.CloseOpenFileBeforeArchiveCleanup(filepath);
                     File.Delete(filepath);
                     return true;

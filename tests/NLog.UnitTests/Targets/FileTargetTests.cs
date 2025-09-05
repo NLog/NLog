@@ -3253,6 +3253,7 @@ namespace NLog.UnitTests.Targets
                 var fileTarget = new FileTarget
                 {
                     FileName = string.Format(logFile1, ""),
+                    ArchiveSuffixFormat = "_{0}",
                     ArchiveAboveSize = 100,
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message}",
@@ -3265,24 +3266,33 @@ namespace NLog.UnitTests.Targets
                 Generate100BytesLog('a');
                 Generate100BytesLog('b');
                 Generate100BytesLog('c');
+                Generate100BytesLog('d');
+                Generate100BytesLog('e');
+                Generate100BytesLog('f');
+                Generate100BytesLog('g');
+                Generate100BytesLog('h');
+                Generate100BytesLog('i');
+                Generate100BytesLog('j');
+                Generate100BytesLog('k');
+                Generate100BytesLog('l');
 
                 var times = 25;
                 if (maxArchiveFiles > 1)
                 {
                     Assert.False(File.Exists(string.Format(logFile1, "")));
 
-                    AssertFileContents(string.Format(logFile1, "_01"),
-                        StringRepeat(times, "bbb\n"),
+                    AssertFileContents(string.Format(logFile1, "_10"),
+                        StringRepeat(times, "kkk\n"),
                         Encoding.ASCII);
 
-                    AssertFileContents(string.Format(logFile1, "_02"),
-                        StringRepeat(times, "ccc\n"),
+                    AssertFileContents(string.Format(logFile1, "_11"),
+                        StringRepeat(times, "lll\n"),
                         Encoding.ASCII);
                 }
                 else
                 {
                     AssertFileContents(string.Format(logFile1, ""),
-                        StringRepeat(times, "ccc\n"),
+                        StringRepeat(times, "lll\n"),
                         Encoding.ASCII);
                 }
 
