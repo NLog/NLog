@@ -35,6 +35,7 @@ namespace NLog.Targets.FileArchiveHandlers
 {
     using System;
     using System.IO;
+    using System.Linq;
     using NLog.Common;
     using NLog.Internal;
 
@@ -55,7 +56,8 @@ namespace NLog.Targets.FileArchiveHandlers
             if (_fileTarget.MaxArchiveFiles >= 0 || _fileTarget.MaxArchiveDays > 0 || (initialFileOpen && _fileTarget.DeleteOldFileOnStartup))
             {
                 var newFilePath = FileTarget.CleanFullFilePath(newFileName);
-                bool deletedOldFiles = DeleteOldFilesBeforeArchive(newFilePath, initialFileOpen);
+                var archiveSuffixWithSeqNo = !Path.GetFileNameWithoutExtension(newFilePath).Any(c => char.IsDigit(c));
+                bool deletedOldFiles = DeleteOldFilesBeforeArchive(newFilePath, initialFileOpen, archiveSuffixWithSeqNo: archiveSuffixWithSeqNo);
 
                 if (_fileTarget.MaxArchiveFiles == 0 || _fileTarget.MaxArchiveFiles == 1 || (initialFileOpen && _fileTarget.DeleteOldFileOnStartup))
                 {
