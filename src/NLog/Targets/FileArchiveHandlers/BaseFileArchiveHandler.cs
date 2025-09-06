@@ -228,7 +228,7 @@ namespace NLog.Targets.FileArchiveHandlers
 
             private static bool ExcludeFileName(string archiveFileName, int fileWildcardStartIndex, int fileWildcardEndIndex, string? excludeFileName)
             {
-                if (fileWildcardStartIndex >= 0 && fileWildcardEndIndex >= 0)
+                if (fileWildcardStartIndex >= 0 && fileWildcardEndIndex > 0)
                 {
                     for (int i = fileWildcardStartIndex; i <= archiveFileName.Length - fileWildcardEndIndex; ++i)
                     {
@@ -266,7 +266,7 @@ namespace NLog.Targets.FileArchiveHandlers
             {
                 int? parsedSequenceNo = null;
                 bool foundSequenceNo = false;
-                if (fileWildcardStartIndex < 0 || fileWildcardEndIndex < 0)
+                if (fileWildcardStartIndex < 0 || fileWildcardEndIndex <= 0)
                 {
                     archiveSequenceNo = 0;
                     return false;
