@@ -83,12 +83,9 @@ namespace NLog.MessageTemplates
                     }
                 case CaptureType.Stringify:
                     {
-                        bool includeQuotes = format is null;
-                        if (includeQuotes)
-                            builder.Append('"');
+                        builder.Append('"');
                         FormatToString(value, format, formatProvider, builder);
-                        if (includeQuotes)
-                            builder.Append('"');
+                        builder.Append('"');
                         return true;
                     }
                 default:
