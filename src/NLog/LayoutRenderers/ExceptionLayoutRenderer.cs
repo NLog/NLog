@@ -440,8 +440,8 @@ namespace NLog.LayoutRenderers
 
             try
             {
-                exceptionMessage = ex.Message;
                 innerException = ex.InnerException;
+                exceptionMessage = ex.Message;
                 sb.Append(ex.ToString());
             }
             catch (Exception exception)
