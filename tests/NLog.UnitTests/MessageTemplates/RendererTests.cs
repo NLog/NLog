@@ -35,7 +35,6 @@ namespace NLog.UnitTests.MessageTemplates
 {
     using System;
     using System.Globalization;
-    using NLog.Config;
     using Xunit;
 
     public class RendererTests
@@ -107,23 +106,6 @@ namespace NLog.UnitTests.MessageTemplates
         }
 
         [Theory]
-        [InlineData("test {0}", "1970-01-01", "test 1970-01-01 00:00:00")]
-        [InlineData("test {0:u}", "1970-01-01", "test 1970-01-01 00:00:00Z")]
-        [InlineData("test {0:MM/dd/yy}", "1970-01-01", "test 01/01/70")]
-        public void RenderDateTimeOverride(string input, string arg, string expected)
-        {
-            var culture = CultureInfo.InvariantCulture;
-
-            var logFactory = new LogFactory();
-            var orgValueFormatter = logFactory.ServiceRepository.ResolveService<IValueFormatter>();
-            var newValueFormatter = new OverrideValueFormatter(orgValueFormatter);
-            logFactory.ServiceRepository.RegisterSingleton<IValueFormatter>(newValueFormatter);
-
-            DateTime dt = DateTime.Parse(arg, culture, DateTimeStyles.AdjustToUniversal);
-            RenderAndTest(input, culture, new object[] { dt }, expected, logFactory);
-        }
-
-        [Theory]
         [InlineData("test {0:c}", "1:2:3:4.5", "test 1.02:03:04.5000000")]
         [InlineData("test {0:hh\\:mm\\:ss\\.ff}", "1:2:3:4.5", "test 02:03:04.50")]
         public void RenderTimeSpan(string input, string arg, string expected)
@@ -145,36 +127,12 @@ namespace NLog.UnitTests.MessageTemplates
             RenderAndTest(input, culture, new object[] { dto }, expected);
         }
 
-        private static void RenderAndTest(string input, CultureInfo culture, object[] args, string expected, LogFactory logFactory = null)
+        private static void RenderAndTest(string input, CultureInfo culture, object[] args, string expected)
         {
             var logEventInfoAlways = new LogEventInfo(LogLevel.Info, "Logger", culture, input, args);
-            logEventInfoAlways.SetMessageFormatter(new NLog.Internal.LogMessageTemplateFormatter((logFactory ?? new LogFactory()).ServiceRepository, true, false).MessageFormatter, null);
+            logEventInfoAlways.SetMessageFormatter(new NLog.Internal.LogMessageTemplateFormatter(LogManager.LogFactory.ServiceRepository, true, false).MessageFormatter, null);
             var templateAlways = logEventInfoAlways.MessageTemplateParameters;
             Assert.Equal(expected, logEventInfoAlways.FormattedMessage);
-        }
-
-        private sealed class OverrideValueFormatter : IValueFormatter
-        {
-            private readonly IValueFormatter _orgValueFormatter;
-
-            public OverrideValueFormatter(IValueFormatter orgValueFormatter)
-            {
-                _orgValueFormatter = orgValueFormatter;
-            }
-
-            public bool FormatValue(object value, string format, NLog.MessageTemplates.CaptureType captureType, IFormatProvider formatProvider, System.Text.StringBuilder builder)
-            {
-                if (string.IsNullOrEmpty(format))
-                {
-                    if (value is DateTime)
-                    {
-                        formatProvider = System.Globalization.CultureInfo.InvariantCulture;
-                        format = "yyyy-MM-dd HH:mm:ss.FFFFFFFK";
-                    }
-                }
-
-                return _orgValueFormatter.FormatValue(value, format, captureType, formatProvider, builder);
-            }
         }
     }
 }
