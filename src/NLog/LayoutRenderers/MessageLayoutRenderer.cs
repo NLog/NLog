@@ -35,6 +35,7 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.Text;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
 
@@ -101,7 +102,31 @@ namespace NLog.LayoutRenderers
                 Exception primaryException = GetPrimaryException(logEvent.Exception);
                 if (!exceptionOnly)
                     builder.Append(ExceptionSeparator);
-                builder.Append(primaryException.ToString());
+
+                AppendExceptionToString(builder, primaryException);
+            }
+        }
+
+        private static void AppendExceptionToString(StringBuilder builder, Exception exception)
+        {
+            string exceptionMessage = string.Empty;
+            Exception innerException = null;
+
+            try
+            {
+                innerException = exception.InnerException;
+                exceptionMessage = exception.Message;
+                builder.Append(exception.ToString());
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Message-LayoutRenderer Could not output ToString for Exception: {0}", exception.GetType());
+                builder.Append($"{exception.GetType()}: {exceptionMessage}");
+                if (innerException != null)
+                {
+                    builder.AppendLine();
+                    AppendExceptionToString(builder, innerException);
+                }
             }
         }
 
