@@ -242,23 +242,57 @@ namespace NLog.Targets
 
             int nextIndex = FindNextWordForHighlighting(needle, haystack, firstIndex);
             if (nextIndex < 0)
-                return new[] { new KeyValuePair<int, int>(firstIndex, needle.Length) };
+            {
+                return new[] { GenerateMatch(needle, firstIndex) };
+            }
 
             return YieldWordsForHighlighting(needle, haystack, firstIndex, nextIndex);
         }
 
+        private KeyValuePair<int, int> GenerateMatch(string needle, int startIndex)
+        {
+            var needleLength = needle.Length;
+            if (WholeWords)
+            {
+                // Only highlight the word, and nothing else
+                for (int i = 0; i < needle.Length; ++i)
+                {
+                    var chr = needle[i];
+                    if (char.IsLetterOrDigit(chr))
+                        break;
+
+                    --needleLength;
+                    ++startIndex;
+                }
+
+                if (needleLength <= 0)
+                    return new KeyValuePair<int, int>(startIndex - needle.Length, needle.Length);
+
+                for (int i = needle.Length - 1; i >= 0; --i)
+                {
+                    var chr = needle[i];
+                    if (char.IsLetterOrDigit(chr))
+                        break;
+
+                    --needleLength;
+                }
+            }
+
+            return new KeyValuePair<int, int>(startIndex, needleLength);
+        }
+
         private IEnumerable<KeyValuePair<int, int>> YieldWordsForHighlighting(string needle, string haystack, int firstIndex, int nextIndex)
         {
-            yield return new KeyValuePair<int, int>(firstIndex, needle.Length);
+            yield return GenerateMatch(needle, firstIndex);
 
-            yield return new KeyValuePair<int, int>(nextIndex, needle.Length);
+            yield return GenerateMatch(needle, nextIndex);
 
             int index = nextIndex;
             while (index >= 0)
             {
                 index = FindNextWordForHighlighting(needle, haystack, index);
                 if (index >= 0)
-                    yield return new KeyValuePair<int, int>(index, needle.Length);
+                    yield return GenerateMatch(needle, index);
             }
         }
 
@@ -268,7 +302,10 @@ namespace NLog.Targets
             while (index >= 0)
             {
                 index = IgnoreCase ? haystack.IndexOf(needle, index, System.StringComparison.CurrentCultureIgnoreCase) : haystack.IndexOf(needle, index);
-                if (index < 0 || (!WholeWords || StringHelpers.IsWholeWord(haystack, needle, index)))
+                if (index < 0 || !WholeWords)
+                    return index;
+
+                if (StringHelpers.IsWholeWord(haystack, needle, index) || ((index == 0 || !char.IsLetterOrDigit(needle[0])) && !char.IsLetterOrDigit(needle[needle.Length - 1])))
                     return index;
 
                 index += needle.Length;
