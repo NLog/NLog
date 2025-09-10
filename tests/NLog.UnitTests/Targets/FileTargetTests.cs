@@ -1102,7 +1102,14 @@ namespace NLog.UnitTests.Targets
                     AssertFileContents(logFile, string.Empty, Encoding.UTF8);
                     if (autoFlushTimeout > 0)
                     {
-                        Thread.Sleep(TimeSpan.FromSeconds(autoFlushTimeout * 1.5));
+                        for (int i = 0; i < 100; ++i)
+                        {
+                            var fileInfo = new FileInfo(logFile);
+                            if (fileInfo.Exists && fileInfo.Length > 0)
+                                break;
+                            Thread.Sleep(50);
+                        }
+                        Thread.Sleep(500);
                         AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
                     }
                 }

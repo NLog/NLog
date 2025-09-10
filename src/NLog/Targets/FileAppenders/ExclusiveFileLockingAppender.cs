@@ -108,8 +108,8 @@ namespace NLog.Targets.FileAppenders
                 long fileInfoSize = fileInfo.Exists ? fileInfo.Length : 0;
                 if (fileInfoSize > 0)
                 {
-                    var fileBirthTimeUtc = FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo) ?? DateTime.MinValue;
-                    var fileBirthTime = fileBirthTimeUtc != DateTime.MinValue ? NLog.Time.TimeSource.Current.FromSystemTime(fileBirthTimeUtc) : OpenStreamTime;
+                    var fileBirthTimeUtc = FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo);
+                    var fileBirthTime = fileBirthTimeUtc.Year > FileInfoHelper.MinReliableBirthYear ? NLog.Time.TimeSource.Current.FromSystemTime(fileBirthTimeUtc) : OpenStreamTime;
                     if (!forceRefresh && fileBirthTime.Date < FileBirthTime.Date)
                         fileBirthTime = FileBirthTime;
                     FileBirthTime = fileBirthTime;

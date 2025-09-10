@@ -141,7 +141,7 @@ namespace NLog.Targets.FileArchiveHandlers
                 {
                     return x.ArchiveSequenceNumber.Value.CompareTo(y.ArchiveSequenceNumber.Value);
                 }
-                else if (x.FileCreatedTimeUtc == y.FileCreatedTimeUtc)
+                else if (x.FileCreatedTimeUtc.Date == y.FileCreatedTimeUtc.Date)
                 {
                     return StringComparer.OrdinalIgnoreCase.Compare(x.FileInfo.Name, y.FileInfo.Name);
                 }
@@ -204,8 +204,7 @@ namespace NLog.Targets.FileArchiveHandlers
                     if (ExcludeFileName(archiveFileName, fileWildcardStartIndex, fileWildcardEndIndex, excludeFileName))
                         continue;
 
-                    var fileCreatedTimeUtc = (FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo) ?? NLog.Time.TimeSource.Current.Time);
-                    fileCreatedTimeUtc = new DateTime(fileCreatedTimeUtc.Year, fileCreatedTimeUtc.Month, fileCreatedTimeUtc.Day, fileCreatedTimeUtc.Hour, 0, 0, fileCreatedTimeUtc.Kind);
+                    var fileCreatedTimeUtc = FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo);
                     if (archiveSuffixWithSeqNo && TryParseStartSequenceNumber(archiveFileName, fileWildcardStartIndex, fileWildcardEndIndex, out var archiveSequenceNo))
                         fileInfoDates.Add(new FileInfoDateTime(fileInfo, fileCreatedTimeUtc, archiveSequenceNo));
                     else
