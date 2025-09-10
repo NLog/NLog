@@ -4,6 +4,31 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.0.4 (2025/09/11)
+
+**Improvements**
+- [#5979](https://github.com/NLog/NLog/pull/5979) FileTarget - Improve file-wildcard for archive cleanup. (@snakefoot)
+- [#5980](https://github.com/NLog/NLog/pull/5980) FileTarget - Extend InternalLogger output with archive cleanup reason. (@snakefoot)
+- [#5981](https://github.com/NLog/NLog/pull/5981) FileTarget - Strict wildcard check only possible when single wildcard. (@snakefoot)
+- [#5987](https://github.com/NLog/NLog/pull/5987) FileTarget - Improve archive cleanup with dynamic seq-no. (@snakefoot)
+- [#5988](https://github.com/NLog/NLog/pull/5988) FileTarget - Avoid parsing archive sequence number when other digits. (@snakefoot)
+- [#5996](https://github.com/NLog/NLog/pull/5996) FileTarget - Improve fallback logic when missing file system birthtime. (@snakefoot)
+- [#5964](https://github.com/NLog/NLog/pull/5964) ColoredConsoleTarget - WholeWords should only highlight the word. (@snakefoot)
+- [#5967](https://github.com/NLog/NLog/pull/5967) ColoredConsoleTarget - Fixed boxing issue in ConsoleRowHighlightingRule. (@karpinsn)
+- [#5968](https://github.com/NLog/NLog/pull/5968) Simplify WithAutoFlush-method for fluent config API. (@snakefoot)
+- [#5970](https://github.com/NLog/NLog/pull/5970) Fix boxing for registration of builtin condition methods. (@snakefoot)
+- [#5977](https://github.com/NLog/NLog/pull/5977) ConditionExpression - Implicit operator with NotNullIfNotNull-attribute. (@GREsau)
+- [#5982](https://github.com/NLog/NLog/pull/5982) SimpleLayout - Implicit operator with NotNullIfNotNull-attribute. (@snakefoot)
+- [#5992](https://github.com/NLog/NLog/pull/5992) MessageLayoutRenderer - Handle Exception.ToString() can throw with AOT. (@snakefoot)
+- [#5983](https://github.com/NLog/NLog/pull/5983) Append4DigitsZeroPadded - Use Span instead of multiple StringBuilder.Append(). (@snakefoot)
+- [#5985](https://github.com/NLog/NLog/pull/5985) Extracted NLog.WindowsRegistry to own git repository. (@snakefoot)
+- [#5985](https://github.com/NLog/NLog/pull/5985) Extracted NLog.Targets.Trace to own git repository. (@snakefoot)
+- [#5985](https://github.com/NLog/NLog/pull/5985) Extracted NLog.Targets.ConcurrentFile to own git repository. (@snakefoot)
+- [#5985](https://github.com/NLog/NLog/pull/5985) Extracted NLog.Targets.Database to own git repository. (@snakefoot)
+- [#5985](https://github.com/NLog/NLog/pull/5985) Extracted NLog.Targets.Mail to own git repository. (@snakefoot)
+- [#5985](https://github.com/NLog/NLog/pull/5985) Extracted NLog.Targets.WebService to own git repository. (@snakefoot)
+- [#5985](https://github.com/NLog/NLog/pull/5985) Extracted NLog.Targets.Network to own git repository. (@snakefoot)
+
 ### Version 6.0.3 (2025/08/10)
 
 **Improvements**
