@@ -30,14 +30,27 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 Changelog:
 
-- [#5952] FileTarget - Close old files when reaching OpenFileCacheSize. (@snakefoot)
-- [#5948] FileTarget - Closing on OpenFileCacheTimeout apply least recently used. (@snakefoot)
-- [#5947] FileTarget - Improved file-archive exception handling when KeepFileOpen=false. (@snakefoot)
-- [#5954] ColoredConsoleTarget - Added Words-property for easy highlighting of many words without RegEx. (@snakefoot)
-- [#5955] LogMessageTemplateFormatter - Also use IValueFormatter for positional templates. (@snakefoot)
-- [#5953] NLog.Targets.Network - Updated links in README.md for nuget-package. (@snakefoot)
-- [#5945] NLog.Targets.AtomicFile - Added README.md for nuget-package. (@snakefoot)
-- [#5940] SplunkTarget - Support SplunkFields-property. (@snakefoot)
+- [#5979] FileTarget - Improve file-wildcard for archive cleanup. (@snakefoot)
+- [#5980] FileTarget - Extend InternalLogger output with archive cleanup reason. (@snakefoot)
+- [#5981] FileTarget - Strict wildcard check only possible when single wildcard. (@snakefoot)
+- [#5987] FileTarget - Improve archive cleanup with dynamic seq-no. (@snakefoot)
+- [#5988] FileTarget - Avoid parsing archive sequence number when other digits. (@snakefoot)
+- [#5996] FileTarget - Improve fallback logic when missing file system birthtime. (@snakefoot)
+- [#5964] ColoredConsoleTarget - WholeWords should only highlight the word. (@snakefoot)
+- [#5967] ColoredConsoleTarget - Fixed boxing issue in ConsoleRowHighlightingRule. (@karpinsn)
+- [#5968] Simplify WithAutoFlush-method for fluent config API. (@snakefoot)
+- [#5970] Fix boxing for registration of builtin condition methods. (@snakefoot)
+- [#5977] ConditionExpression - Implicit operator with NotNullIfNotNull-attribute. (@GREsau)
+- [#5982] SimpleLayout - Implicit operator with NotNullIfNotNull-attribute. (@snakefoot)
+- [#5992] MessageLayoutRenderer - Handle Exception.ToString() can throw with AOT. (@snakefoot)
+- [#5983] Append4DigitsZeroPadded - Use Span instead of multiple StringBuilder.Append(). (@snakefoot)
+- [#5985] Extracted NLog.WindowsRegistry to own git repository. (@snakefoot)
+- [#5985] Extracted NLog.Targets.Trace to own git repository. (@snakefoot)
+- [#5985] Extracted NLog.Targets.ConcurrentFile to own git repository. (@snakefoot)
+- [#5985] Extracted NLog.Targets.Database to own git repository. (@snakefoot)
+- [#5985] Extracted NLog.Targets.Mail to own git repository. (@snakefoot)
+- [#5985] Extracted NLog.Targets.WebService to own git repository. (@snakefoot)
+- [#5985] Extracted NLog.Targets.Network to own git repository. (@snakefoot)
 
 NLog v6.0 release notes: https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html
 
