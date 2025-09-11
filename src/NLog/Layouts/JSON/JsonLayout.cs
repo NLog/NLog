@@ -58,6 +58,8 @@ namespace NLog.Layouts
         private LimitRecursionJsonConvert? _jsonConverter;
         private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = ResolveService<IValueFormatter>());
         private IValueFormatter? _valueFormatter;
+        private Internal.ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new Internal.ObjectReflectionCache(ResolveService<System.IServiceProvider>()));
+        private Internal.ObjectReflectionCache? _objectReflectionCache;
 
         private sealed class LimitRecursionJsonConvert : IJsonConverter
         {
@@ -149,6 +151,13 @@ namespace NLog.Layouts
             }
         }
         private bool _indentJson;
+
+        /// <summary>
+        /// Gets or sets whether to flatten nested object properties using dotted notation
+        /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
+        /// <docgen category='Layout Options' order='10' />
+        public bool DottedRecursion { get; set; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
@@ -365,7 +374,14 @@ namespace NLog.Layouts
                         if (checkExcludeProperties && ExcludeProperties.Contains(prop.Name))
                             continue;
 
-                        AppendJsonPropertyValue(prop.Name, prop.Value, prop.Format, logEvent.FormatProvider, prop.CaptureType, sb, sb.Length == orgLength);
+                        if (DottedRecursion)
+                        {
+                            AppendFlattenedPropertyValue(prop.Name, prop.Value, prop.Format, logEvent.FormatProvider, prop.CaptureType, sb, sb.Length == orgLength);
+                        }
+                        else
+                        {
+                            AppendJsonPropertyValue(prop.Name, prop.Value, prop.Format, logEvent.FormatProvider, prop.CaptureType, sb, sb.Length == orgLength);
+                        }
                     }
                 }
             }
@@ -462,6 +478,84 @@ namespace NLog.Layouts
             {
                 AppendJsonPropertyValue(propName, propertyValue, sb, beginJsonMessage);
             }
+        }
+
+        private void AppendFlattenedPropertyValue(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
+        {
+            if (captureType == MessageTemplates.CaptureType.Serialize && MaxRecursionLimit <= 1)
+            {
+                if (ExcludeEmptyProperties && propertyValue is null)
+                    return;
+
+                var initialLength = sb.Length;
+                BeginJsonProperty(sb, propName, beginJsonMessage, true);
+
+                if (!JsonConverter.SerializeObjectNoLimit(propertyValue, sb))
+                {
+                    sb.Length = initialLength;
+                }
+            }
+            else if (captureType == MessageTemplates.CaptureType.Stringify)
+            {
+                if (ExcludeEmptyProperties && Internal.StringHelpers.IsNullOrEmptyString(propertyValue))
+                    return;
+
+                BeginJsonProperty(sb, propName, beginJsonMessage, true);
+
+                int originalStart = sb.Length;
+                ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
+                PerformJsonEscapeIfNeeded(sb, originalStart);
+            }
+            else
+            {
+                FlattenObjectProperties(propName, propertyValue, sb, beginJsonMessage);
+            }
+        }
+
+        private void FlattenObjectProperties(string basePropertyName, object? propertyValue, StringBuilder sb, bool beginJsonMessage)
+        {
+            if (ExcludeEmptyProperties && (propertyValue is null || ReferenceEquals(propertyValue, string.Empty)))
+                return;
+
+            if (propertyValue is null)
+            {
+                AppendJsonPropertyValue(basePropertyName, propertyValue, sb, beginJsonMessage);
+                return;
+            }
+
+            if (IsSimpleValue(propertyValue))
+            {
+                AppendJsonPropertyValue(basePropertyName, propertyValue, sb, beginJsonMessage);
+                return;
+            }
+
+            var objectPropertyList = ObjectReflectionCache.LookupObjectProperties(propertyValue);
+            if (objectPropertyList.IsSimpleValue)
+            {
+                AppendJsonPropertyValue(basePropertyName, objectPropertyList.ObjectValue, sb, beginJsonMessage);
+                return;
+            }
+
+            foreach (var property in objectPropertyList)
+            {
+                if (!property.HasNameAndValue)
+                    continue;
+
+                string dottedPropertyName = $"{basePropertyName}.{property.Name}";
+                FlattenObjectProperties(dottedPropertyName, property.Value, sb, beginJsonMessage);
+            }
+        }
+
+        private bool IsSimpleValue(object? value)
+        {
+            if (value is null) return true;
+            if (value is string) return true;
+            if (value is IConvertible convertible)
+            {
+                var typeCode = convertible.GetTypeCode();
+                return typeCode != TypeCode.Object;
+            }
+            return false;
         }
 
         private static void PerformJsonEscapeIfNeeded(StringBuilder sb, int valueStart)
