@@ -71,7 +71,7 @@ namespace NLog.Targets.FileArchiveHandlers
                     if (filePathWithoutExtension.Any(chr => char.IsDigit(chr)))
                     {
                         // Delete with wildcard (also files from yesterday)
-                        return DeleteOldFilesBeforeArchive(newFilePath, initialFileOpen, archiveSuffixWithSeqNo: false);
+                        return DeleteOldFilesBeforeArchive(newFilePath, initialFileOpen, parseArchiveSequenceNo: false);
                     }
                 }
 
