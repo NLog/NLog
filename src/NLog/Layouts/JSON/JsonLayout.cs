@@ -160,6 +160,11 @@ namespace NLog.Layouts
         public bool DottedRecursion { get; set; }
 
         /// <summary>
+        /// Cached StringBuilder to avoid allocations in hot paths when constructing dotted property names
+        /// </summary>
+        private readonly StringBuilder _dottedNameBuilder = new StringBuilder();
+
+        /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
         /// </summary>
         /// <remarks>Default: <see langword="false"/></remarks>
@@ -427,6 +432,38 @@ namespace NLog.Layouts
             _completeJsonPropertyName = SuppressSpaces ? "\":" : "\": ";
         }
 
+        private void AppendPropertyValueInternal(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
+        {
+            if (captureType == MessageTemplates.CaptureType.Serialize && MaxRecursionLimit <= 1)
+            {
+                if (ExcludeEmptyProperties && propertyValue is null)
+                    return;
+
+                var initialLength = sb.Length;
+                BeginJsonProperty(sb, propName, beginJsonMessage, true);
+
+                if (!JsonConverter.SerializeObjectNoLimit(propertyValue, sb))
+                {
+                    sb.Length = initialLength;
+                }
+            }
+            else if (captureType == MessageTemplates.CaptureType.Stringify)
+            {
+                if (ExcludeEmptyProperties && Internal.StringHelpers.IsNullOrEmptyString(propertyValue))
+                    return;
+
+                BeginJsonProperty(sb, propName, beginJsonMessage, true);
+
+                int originalStart = sb.Length;
+                ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
+                PerformJsonEscapeIfNeeded(sb, originalStart);
+            }
+            else
+            {
+                AppendJsonPropertyValue(propName, propertyValue, sb, beginJsonMessage);
+            }
+        }
+
         private void AppendJsonPropertyValue(string propName, object? propertyValue, StringBuilder sb, bool beginJsonMessage)
         {
             if (ExcludeEmptyProperties && (propertyValue is null || ReferenceEquals(propertyValue, string.Empty)))
@@ -445,85 +482,35 @@ namespace NLog.Layouts
                 sb.Length = initialLength;
             }
         }
-
         private void AppendJsonPropertyValue(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
         {
-            if (captureType == MessageTemplates.CaptureType.Serialize && MaxRecursionLimit <= 1)
-            {
-                if (ExcludeEmptyProperties && propertyValue is null)
-                    return;
-
-                var initialLength = sb.Length;
-                BeginJsonProperty(sb, propName, beginJsonMessage, true);
-
-                // Overrides MaxRecursionLimit as message-template tells us it is safe
-                if (!JsonConverter.SerializeObjectNoLimit(propertyValue, sb))
-                {
-                    sb.Length = initialLength;
-                }
-            }
-            else if (captureType == MessageTemplates.CaptureType.Stringify)
-            {
-                if (ExcludeEmptyProperties && Internal.StringHelpers.IsNullOrEmptyString(propertyValue))
-                    return;
-
-                BeginJsonProperty(sb, propName, beginJsonMessage, true);
-
-                // Overrides MaxRecursionLimit as message-template tells us it is unsafe
-                int originalStart = sb.Length;
-                ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
-                PerformJsonEscapeIfNeeded(sb, originalStart);
-            }
-            else
-            {
-                AppendJsonPropertyValue(propName, propertyValue, sb, beginJsonMessage);
-            }
+            AppendPropertyValueInternal(propName, propertyValue, format, formatProvider, captureType, sb, beginJsonMessage);
         }
 
         private void AppendFlattenedPropertyValue(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
         {
-            if (captureType == MessageTemplates.CaptureType.Serialize && MaxRecursionLimit <= 1)
+            if (captureType == MessageTemplates.CaptureType.Serialize || captureType == MessageTemplates.CaptureType.Stringify)
             {
-                if (ExcludeEmptyProperties && propertyValue is null)
-                    return;
-
-                var initialLength = sb.Length;
-                BeginJsonProperty(sb, propName, beginJsonMessage, true);
-
-                if (!JsonConverter.SerializeObjectNoLimit(propertyValue, sb))
-                {
-                    sb.Length = initialLength;
-                }
-            }
-            else if (captureType == MessageTemplates.CaptureType.Stringify)
-            {
-                if (ExcludeEmptyProperties && Internal.StringHelpers.IsNullOrEmptyString(propertyValue))
-                    return;
-
-                BeginJsonProperty(sb, propName, beginJsonMessage, true);
-
-                int originalStart = sb.Length;
-                ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
-                PerformJsonEscapeIfNeeded(sb, originalStart);
+                AppendPropertyValueInternal(propName, propertyValue, format, formatProvider, captureType, sb, beginJsonMessage);
             }
             else
             {
-                FlattenObjectProperties(propName, propertyValue, sb, beginJsonMessage);
+                FlattenObjectProperties(propName, propertyValue, sb, beginJsonMessage, 0);
             }
         }
 
-        private void FlattenObjectProperties(string basePropertyName, object? propertyValue, StringBuilder sb, bool beginJsonMessage)
+        private void FlattenObjectProperties(string basePropertyName, object? propertyValue, StringBuilder sb, bool beginJsonMessage, int depth = 0)
         {
-            if (ExcludeEmptyProperties && (propertyValue is null || ReferenceEquals(propertyValue, string.Empty)))
-                return;
-
-            if (propertyValue is null)
+            if (depth >= MaxRecursionLimit)
             {
                 AppendJsonPropertyValue(basePropertyName, propertyValue, sb, beginJsonMessage);
                 return;
             }
 
-            if (IsSimpleValue(propertyValue))
+            if (ExcludeEmptyProperties && (propertyValue is null || ReferenceEquals(propertyValue, string.Empty)))
+                return;
+
+            if (propertyValue is null || IsSimpleValue(propertyValue))
             {
                 AppendJsonPropertyValue(basePropertyName, propertyValue, sb, beginJsonMessage);
                 return;
@@ -541,8 +528,12 @@ namespace NLog.Layouts
                 if (!property.HasNameAndValue)
                     continue;
 
-                string dottedPropertyName = $"{basePropertyName}.{property.Name}";
-                FlattenObjectProperties(dottedPropertyName, property.Value, sb, beginJsonMessage);
+                _dottedNameBuilder.Length = 0;
+                _dottedNameBuilder.Append(basePropertyName).Append('.').Append(property.Name);
+                string dottedPropertyName = _dottedNameBuilder.ToString();
+
+                // Nested properties should never have beginJsonMessage = true
+                FlattenObjectProperties(dottedPropertyName, property.Value, sb, false, depth + 1);
             }
         }
 

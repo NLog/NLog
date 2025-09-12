@@ -1195,5 +1195,99 @@ namespace NLog.UnitTests.Layouts
                 return Value;
             }
         }
+
+        [Fact]
+        public void DottedRecursion_SimpleNestedObject_Flattens()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeEventProperties = true,
+                DottedRecursion = true,
+                MaxRecursionLimit = 10
+            };
+
+            var logEventInfo = new LogEventInfo();
+            logEventInfo.Properties["nestedObject"] = new
+            {
+                val = 1,
+                val2 = "value2",
+                nestedLevel = new
+                {
+                    val3 = 3,
+                    val4 = "value4"
+                }
+            };
+
+            var result = jsonLayout.Render(logEventInfo);
+
+            Assert.Contains("\"nestedObject.val\":1", result);
+            Assert.Contains("\"nestedObject.val2\":\"value2\"", result);
+            Assert.Contains("\"nestedObject.nestedLevel.val3\":3", result);
+            Assert.Contains("\"nestedObject.nestedLevel.val4\":\"value4\"", result);
+        }
+
+        [Fact]
+        public void DottedRecursion_WithMaxRecursionLimit()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeEventProperties = true,
+                DottedRecursion = true,
+                MaxRecursionLimit = 2
+            };
+
+            var logEventInfo = new LogEventInfo();
+            logEventInfo.Properties["level1"] = new
+            {
+                level2 = new
+                {
+                    level3 = new
+                    {
+                        val = "deepValue"
+                    }
+                }
+            };
+
+            var result = jsonLayout.Render(logEventInfo);
+
+            Assert.Contains("\"level1.level2.level3\":", result);
+            Assert.Contains("{\"val\":\"deepValue\"}", result);
+        }
+
+        [Fact]
+        public void DottedRecursion_WithMixedTypes()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeEventProperties = true,
+                DottedRecursion = true,
+                MaxRecursionLimit = 10
+            };
+
+            var logEventInfo = new LogEventInfo();
+            logEventInfo.Properties["mixed"] = new
+            {
+                val = "hello",
+                val2 = 42,
+                val3 = true,
+                nullVal = (object)null,
+                nested = new
+                {
+                    val4 = 3.14,
+                    val5 = new DateTime(2023, 1, 1),
+                    val6 = Guid.NewGuid()
+                }
+            };
+
+            var result = jsonLayout.Render(logEventInfo);
+
+            Assert.Contains("\"mixed.val\":\"hello\"", result);
+            Assert.Contains("\"mixed.val2\":42", result);
+            Assert.Contains("\"mixed.val3\":true", result);
+            Assert.Contains("\"mixed.nested.val4\":3.14", result);
+            Assert.Contains("\"mixed.nested.val5\":\"2023-01-01T00:00:00Z\"", result);
+            Assert.Contains("\"mixed.nested.val6\":", result);
+        }
+
     }
 }
