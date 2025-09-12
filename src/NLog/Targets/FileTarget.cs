@@ -1211,6 +1211,10 @@ namespace NLog.Targets
                 {
                     return CreateFileStreamWithDirectory(filePath, bufferSize, initialFileOpen);
                 }
+                catch (DirectoryNotFoundException)
+                {
+                    throw;  // Skip retry when directory does not exist
+                }
                 catch (IOException ex)
                 {
                     if (i >= retryCount)
