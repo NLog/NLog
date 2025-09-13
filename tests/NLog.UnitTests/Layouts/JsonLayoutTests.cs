@@ -1274,7 +1274,7 @@ namespace NLog.UnitTests.Layouts
                 nested = new
                 {
                     val4 = 3.14,
-                    val5 = new DateTime(2023, 1, 1),
+                    val5 = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                     val6 = Guid.NewGuid()
                 }
             };

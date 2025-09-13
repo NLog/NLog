@@ -160,11 +160,6 @@ namespace NLog.Layouts
         public bool DottedRecursion { get; set; }
 
         /// <summary>
-        /// Cached StringBuilder to avoid allocations in hot paths when constructing dotted property names
-        /// </summary>
-        private readonly StringBuilder _dottedNameBuilder = new StringBuilder();
-
-        /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
         /// </summary>
         /// <remarks>Default: <see langword="false"/></remarks>
@@ -525,13 +520,10 @@ namespace NLog.Layouts
 
             foreach (var property in objectPropertyList)
             {
-                if (!property.HasNameAndValue)
+                if (!property.HasNameAndValue)      
                     continue;
 
-                _dottedNameBuilder.Length = 0;
-                _dottedNameBuilder.Append(basePropertyName).Append('.').Append(property.Name);
-                string dottedPropertyName = _dottedNameBuilder.ToString();
-
+                string dottedPropertyName = string.Concat(basePropertyName, ".", property.Name);
                 // Nested properties should never have beginJsonMessage = true
                 FlattenObjectProperties(dottedPropertyName, property.Value, sb, false, depth + 1);
             }
