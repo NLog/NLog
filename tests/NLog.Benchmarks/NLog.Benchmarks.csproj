@@ -2,9 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
+    <Prefer32Bit>false</Prefer32Bit>
     <OutputType>Exe</OutputType>
     <SonarQubeTestProject>true</SonarQubeTestProject>
     <IsPackable>false</IsPackable>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -13,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.15.2" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.15.3" />
     <PackageReference Include="Microsoft.VisualStudio.DiagnosticsHub.BenchmarkDotNetDiagnosers" Version="18.0.36421.1" />
   </ItemGroup>
 
