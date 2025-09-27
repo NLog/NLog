@@ -256,7 +256,7 @@ namespace NLog.Config
 
                 if (logFactory is null || !AutoReload)
                 {
-                    if (fileWatcher != null)
+                    if (fileWatcher != null && !fileWatcher.IsDisposed)
                     {
                         InternalLogger.Info("AutoReload Config File Monitor stopping, since no active configuration");
                         fileWatcher.Dispose();
@@ -661,11 +661,8 @@ namespace NLog.Config
                     }
 
                     var currentTimer = _reloadTimer;
-                    if (currentTimer != null)
-                    {
-                        _reloadTimer = null;
-                        currentTimer.Dispose();
-                    }
+                    _reloadTimer = null;
+                    currentTimer?.Dispose();
                 }
 
                 LoggingConfiguration? newConfig = null;
@@ -708,7 +705,6 @@ namespace NLog.Config
                 {
                     InternalLogger.Warn(exception, "AutoReload Config File Monitor failed to activate new NLog LoggingConfiguration.");
                     _fileWatcher.Watch((oldConfig as XmlLoggingConfiguration)?.AutoReloadFileNames ?? ArrayHelper.Empty<string>());
-
                 }
             }
 
@@ -719,14 +715,19 @@ namespace NLog.Config
 
             public void Dispose()
             {
-                _isDisposing = true;
-                _fileWatcher.FileChanged -= FileWatcher_FileChanged;
+                var reloadTimer = _reloadTimer;
                 lock (_lockObject)
                 {
-                    var reloadTimer = _reloadTimer;
+                    if (_isDisposing)
+                        return;
+
+                    reloadTimer = _reloadTimer;
+                    _isDisposing = true;
                     _reloadTimer = null;
-                    reloadTimer?.Dispose();
                 }
+
+                _fileWatcher.FileChanged -= FileWatcher_FileChanged;
+                reloadTimer?.Dispose();
                 _fileWatcher.Dispose();
             }
 
