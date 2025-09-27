@@ -311,34 +311,6 @@ namespace NLog.Internal
             return newTarget;
         }
 
-        internal bool TryCallSiteClassNameOptimization(StackTraceUsage stackTraceUsage, LogEventInfo logEvent)
-        {
-            if ((stackTraceUsage & (StackTraceUsage.WithCallSiteClassName | StackTraceUsage.WithStackTrace)) != StackTraceUsage.WithCallSiteClassName)
-                return false;
-
-            if (string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerFilePath))
-                return false;
-
-            if (logEvent.HasStackTrace)
-                return false;
-
-            return true;
-        }
-
-        internal bool MustCaptureStackTrace(StackTraceUsage stackTraceUsage, LogEventInfo logEvent)
-        {
-            if (logEvent.HasStackTrace)
-                return false;
-
-            if ((stackTraceUsage & StackTraceUsage.WithStackTrace) != StackTraceUsage.None)
-                return true;
-
-            if ((stackTraceUsage & StackTraceUsage.WithCallSite) != StackTraceUsage.None && string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerMethodName) && string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerFilePath))
-                return true;    // We don't have enough CallSiteInformation
-
-            return false;
-        }
-
         internal bool TryRememberCallSiteClassName(LogEventInfo logEvent)
         {
             if (string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerFilePath))
