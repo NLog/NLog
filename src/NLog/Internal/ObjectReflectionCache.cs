@@ -680,7 +680,7 @@ namespace NLog.Internal
             }
 
             [UnconditionalSuppressMessage("Trimming - Allow reflection of message args", "IL2075")]
-            private Func<IEnumerable, IEnumerator<KeyValuePair<string, object?>>> BuildEnumerator(object firstItem)
+            private static Func<IEnumerable, IEnumerator<KeyValuePair<string, object?>>> BuildEnumerator(object firstItem)
             {
                 if (firstItem.GetType().IsGenericType && firstItem.GetType().GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
                 {

@@ -451,7 +451,7 @@ namespace NLog.Targets
                 }
 
                 _archiveSuffixFormat = value;
-                _archiveSuffixFormatLegacy = _archiveSuffixFormat?.IndexOf("{1") >= 0;
+                _archiveSuffixFormatLegacy = _archiveSuffixFormat?.IndexOf("{1", StringComparison.Ordinal) >= 0;
             }
         }
         private string? _archiveSuffixFormat;

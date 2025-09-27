@@ -125,7 +125,7 @@ namespace NLog.LayoutRenderers
                 Interlocked.CompareExchange(ref _firstSequence, globalSequence, null);
                 globalSequence = _firstSequence;
             }
-            if (globalSequence.Name.Equals(sequenceName))
+            if (globalSequence.Name.Equals(sequenceName, StringComparison.Ordinal))
                 return globalSequence.NextValue(Increment);
 
 #if NET35

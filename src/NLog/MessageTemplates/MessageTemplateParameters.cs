@@ -109,7 +109,7 @@ namespace NLog.MessageTemplates
         /// <summary>
         /// Create MessageTemplateParameter from <paramref name="parameters"/>
         /// </summary>
-        private static IList<MessageTemplateParameter> ParseMessageTemplate(string template, object?[] parameters, out bool isPositional, out bool isValidTemplate)
+        private static List<MessageTemplateParameter> ParseMessageTemplate(string template, object?[] parameters, out bool isPositional, out bool isValidTemplate)
         {
             isPositional = true;
             isValidTemplate = true;

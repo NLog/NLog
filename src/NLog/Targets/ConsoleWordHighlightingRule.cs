@@ -301,7 +301,7 @@ namespace NLog.Targets
             int index = prevIndex.HasValue ? prevIndex.Value + needle.Length : 0;
             while (index >= 0)
             {
-                index = IgnoreCase ? haystack.IndexOf(needle, index, System.StringComparison.CurrentCultureIgnoreCase) : haystack.IndexOf(needle, index);
+                index = IgnoreCase ? haystack.IndexOf(needle, index, System.StringComparison.CurrentCultureIgnoreCase) : haystack.IndexOf(needle, index, StringComparison.Ordinal);
                 if (index < 0 || !WholeWords)
                     return index;
 

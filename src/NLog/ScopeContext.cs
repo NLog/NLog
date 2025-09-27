@@ -786,7 +786,7 @@ namespace NLog
             return new Dictionary<string, object?>(initialCapacity, DefaultComparer);
         }
 
-        private static void SetPropertyCallContext<TValue>(string item, TValue? value, IDictionary<string, object?> mappedContext)
+        private static void SetPropertyCallContext<TValue>(string item, TValue? value, Dictionary<string, object?> mappedContext)
         {
             object? objectValue = value;
             if (objectValue is null || Convert.GetTypeCode(objectValue) != TypeCode.Object)

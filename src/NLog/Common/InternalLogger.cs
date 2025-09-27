@@ -127,7 +127,7 @@ namespace NLog.Common
 
             set
             {
-                if (!string.Equals(_logFile, value))
+                if (!string.Equals(_logFile, value, StringComparison.Ordinal))
                 {
                     InternalEventOccurred -= LogToFileSubscription;
                     if (!string.IsNullOrEmpty(value))

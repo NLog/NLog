@@ -304,7 +304,7 @@ namespace NLog.Targets
             return combinedProperties ?? CreateNewDictionary(0);
         }
 
-        private static IDictionary<string, object?> CreateNewDictionary(int initialCapacity)
+        private static Dictionary<string, object?> CreateNewDictionary(int initialCapacity)
         {
             return new Dictionary<string, object?>(initialCapacity < 3 ? 0 : initialCapacity, StringComparer.Ordinal);
         }
@@ -522,7 +522,7 @@ namespace NLog.Targets
             if (stack.Count == 0)
                 return stack;
 
-            IList<object>? filteredStack = null;
+            List<object>? filteredStack = null;
             for (int i = 0; i < stack.Count; ++i)
             {
                 var ndcValue = stack[i];

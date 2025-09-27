@@ -270,7 +270,7 @@ namespace NLog
                     return Off;
 
                 default:
-                    throw new ArgumentException($"Unknown loglevel: {ordinal.ToString()}.", nameof(ordinal));
+                    throw new ArgumentException($"Unknown loglevel: {ordinal}.", nameof(ordinal));
             }
         }
 
