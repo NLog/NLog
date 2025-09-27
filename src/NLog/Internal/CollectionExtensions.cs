@@ -45,7 +45,7 @@ namespace NLog.Internal
         public static IList<TItem> Filter<TItem, TState>(this IList<TItem> items, TState state, Func<TItem, TState, bool> filter)
         {
             var hasIgnoredLogEvents = false;
-            IList<TItem>? filterLogEvents = null;
+            List<TItem>? filterLogEvents = null;
             for (var i = 0; i < items.Count; ++i)
             {
                 var item = items[i];

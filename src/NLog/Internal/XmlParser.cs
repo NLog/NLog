@@ -591,7 +591,7 @@ namespace NLog.Internal
 
                 unicode *= 16;
                 if ("abcdef".Contains(char.ToLower(_xmlSource.Current)))
-                    unicode += int.Parse(_xmlSource.Current.ToString(), System.Globalization.NumberStyles.HexNumber);
+                    unicode += int.Parse(_xmlSource.Current.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture);
                 else if (_xmlSource.Current < '0' || _xmlSource.Current > '9')
                     throw new XmlParserException("Invalid XML document. Cannot parse unicode-char hex-value");
                 else

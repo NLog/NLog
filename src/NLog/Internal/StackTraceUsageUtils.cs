@@ -88,7 +88,7 @@ namespace NLog.Internal
                 {
                     methodName = callerClassType.Name.Substring(1, endIndex - 1);
                     if (methodName.IndexOf('<') == 0)
-                        methodName = methodName.Substring(1, methodName.Length - 1);    // Local functions, and anonymous-methods in Task.Run()
+                        methodName = methodName.Substring(1);    // Local functions, and anonymous-methods in Task.Run()
                 }
             }
 

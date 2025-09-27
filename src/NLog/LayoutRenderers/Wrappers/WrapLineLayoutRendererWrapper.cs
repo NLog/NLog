@@ -77,7 +77,11 @@ namespace NLog.LayoutRenderers.Wrappers
                     chunkLength = text.Length - pos;
                 }
 
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_0_OR_GREATER
+                result.Append(text.AsSpan(pos, chunkLength));
+#else
                 result.Append(text.Substring(pos, chunkLength));
+#endif
 
                 if (chunkLength + pos < text.Length)
                 {

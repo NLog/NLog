@@ -405,7 +405,7 @@ namespace NLog.Internal
                 builder.Append(_zeroPaddedDigits[number]);
             }
         }
-        private static readonly string[] _zeroPaddedDigits = Enumerable.Range(0, 60).Select(i => i.ToString("D2")).ToArray();
+        private static readonly string[] _zeroPaddedDigits = Enumerable.Range(0, 60).Select(i => i.ToString("D2", CultureInfo.InvariantCulture)).ToArray();
 
         /// <summary>
         /// Append a number and pad with 0 to 4 digits

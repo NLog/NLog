@@ -87,7 +87,7 @@ namespace NLog.LayoutRenderers
         private string _format;
 
         private const string _lowTimeResolutionChars = "YyMDdHh";
-        private CachedDateFormatted? _cachedDateFormatted = null;
+        private CachedDateFormatted? _cachedDateFormatted;
         private bool _utcRoundRoundTrip;
 
         /// <summary>
