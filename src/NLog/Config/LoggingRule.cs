@@ -80,7 +80,10 @@ namespace NLog.Config
             Guard.ThrowIfNull(target);
             LoggerNamePattern = loggerNamePattern;
             _targets.Add(target);
-            EnableLoggingForLevels(minLevel, maxLevel);
+            if (!LogLevel.Off.Equals(minLevel))
+            {
+                EnableLoggingForLevels(minLevel, maxLevel);
+            }
         }
 
         /// <summary>
@@ -94,7 +97,10 @@ namespace NLog.Config
             Guard.ThrowIfNull(target);
             LoggerNamePattern = loggerNamePattern;
             _targets.Add(target);
-            EnableLoggingForLevels(minLevel, LogLevel.MaxLevel);
+            if (!LogLevel.Off.Equals(minLevel))
+            {
+                EnableLoggingForLevels(minLevel, LogLevel.MaxLevel);
+            }
         }
 
         /// <summary>
@@ -239,6 +245,8 @@ namespace NLog.Config
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
         public void EnableLoggingForLevels(LogLevel minLevel, LogLevel maxLevel)
         {
+            Guard.ThrowIfNull(minLevel);
+            Guard.ThrowIfNull(maxLevel);
             _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetLoggingLevels(minLevel, maxLevel, true);
         }
 
