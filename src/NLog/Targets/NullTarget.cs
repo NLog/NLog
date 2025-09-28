@@ -33,6 +33,8 @@
 
 namespace NLog.Targets
 {
+    using System.Text;
+
     /// <summary>
     /// Discards log messages. Used mainly for debugging and benchmarking.
     /// </summary>
@@ -55,11 +57,34 @@ namespace NLog.Targets
     public sealed class NullTarget : TargetWithLayout
     {
         /// <summary>
-        /// Gets or sets a value indicating whether to perform layout calculation.
+        /// Gets the number of times this target has been called.
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        public int LogEventCounter => _logEventCounter;
+        private int _logEventCounter;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to render <see cref="TargetWithLayout.Layout" /> for LogEvent
         /// </summary>
         /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool FormatMessage { get; set; }
+
+        /// <summary>
+        /// Gets the last message rendered by this target.
+        /// </summary>
+        /// <remarks>Requires <see cref="FormatMessage"/> = <see langword="true"/></remarks>
+        /// <docgen category='Layout Options' order='10' />
+        public string LastMessage => _lastMesageBuilder?.ToString() ?? string.Empty;
+        private StringBuilder? _lastMesageBuilder;
+
+        /// <summary>
+        /// Gets the last LogEvent rendered by this target.
+        /// </summary>
+        /// <remarks>Requires <see cref="FormatMessage"/> = <see langword="true"/></remarks>
+        /// <docgen category='Layout Options' order='10' />
+        public LogEventInfo? LastLogEvent => _lastLogEvent;
+        private LogEventInfo? _lastLogEvent;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NullTarget" /> class.
@@ -77,16 +102,17 @@ namespace NLog.Targets
             Name = name;
         }
 
-        /// <summary>
-        /// Does nothing. Optionally it calculates the layout text but
-        /// discards the results.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
+        /// <inheritdoc />
         protected override void Write(LogEventInfo logEvent)
         {
+            _logEventCounter++;
+
             if (FormatMessage)
             {
-                RenderLogEvent(Layout, logEvent);
+                _lastLogEvent = logEvent;
+                var stringBuilder = _lastMesageBuilder ?? (_lastMesageBuilder = new StringBuilder(128));
+                stringBuilder.Length = 0;
+                Layout?.Render(logEvent, stringBuilder);
             }
         }
     }

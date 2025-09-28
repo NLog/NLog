@@ -120,7 +120,7 @@ namespace NLog.UnitTests.Layouts
 
             var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
             {
-                builder.ForLogger().WriteTo(new DebugTarget("debug") { Layout = testLayout }).WithAsync();
+                builder.ForLogger().WriteTo(new NullTarget("debug") { Layout = testLayout, FormatMessage = true }).WithAsync();
             }).LogFactory;
 
             var ev = new LogEventInfo(LogLevel.Info, null, null, "{pi:0}", new object[] { 3.14159265359 });
@@ -130,7 +130,7 @@ namespace NLog.UnitTests.Layouts
                 logger.Debug(ev);
             }
 
-            var target = logFactory.Configuration.AllTargets.OfType<DebugTarget>().First();
+            var target = logFactory.Configuration.AllTargets.OfType<NullTarget>().First();
             logFactory.Shutdown();  // Flush
 
             var result = target.LastMessage;
