@@ -451,7 +451,11 @@ namespace NLog.Layouts
 
                 int originalStart = sb.Length;
                 ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
-                PerformJsonEscapeIfNeeded(sb, originalStart);
+                
+                if (originalStart < sb.Length && sb[originalStart] == '"' && sb[sb.Length - 1] == '"')
+                {
+                    PerformJsonEscapeIfNeeded(sb, originalStart);
+                }
             }
             else
             {
