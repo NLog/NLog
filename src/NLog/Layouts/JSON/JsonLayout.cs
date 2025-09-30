@@ -284,9 +284,10 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void CloseLayout()
         {
-            _jsonConverter = null;
-            _valueFormatter = null;
-            _precalculateLayouts = null;
+			_jsonConverter = null;
+			_valueFormatter = null;
+			_objectReflectionCache = null;
+			_precalculateLayouts = null;
             base.CloseLayout();
         }
 
@@ -427,6 +428,41 @@ namespace NLog.Layouts
             _completeJsonPropertyName = SuppressSpaces ? "\":" : "\": ";
         }
 
+        private void AppendJsonPropertyValue(string propName, object? propertyValue, StringBuilder sb, bool beginJsonMessage)
+        {
+            if (ExcludeEmptyProperties && (propertyValue is null || ReferenceEquals(propertyValue, string.Empty)))
+                return;
+
+            var initialLength = sb.Length;
+            BeginJsonProperty(sb, propName, beginJsonMessage, true);
+            if (!JsonConverter.SerializeObject(propertyValue, sb))
+            {
+                sb.Length = initialLength;
+                return;
+            }
+
+            if (ExcludeEmptyProperties && sb[sb.Length - 1] == '"' && sb[sb.Length - 2] == '"' && sb[sb.Length - 3] != '\\')
+            {
+                sb.Length = initialLength;
+            }
+        }
+        private void AppendJsonPropertyValue(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
+        {
+            AppendPropertyValueInternal(propName, propertyValue, format, formatProvider, captureType, sb, beginJsonMessage);
+        }
+
+        private void AppendFlattenedPropertyValue(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
+        {
+            if (captureType == MessageTemplates.CaptureType.Serialize || captureType == MessageTemplates.CaptureType.Stringify)
+            {
+                AppendPropertyValueInternal(propName, propertyValue, format, formatProvider, captureType, sb, beginJsonMessage);
+            }
+            else
+            {
+                FlattenObjectProperties(propName, propertyValue, sb, beginJsonMessage, 0);
+            }
+        }
+
         private void AppendPropertyValueInternal(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
         {
             if (captureType == MessageTemplates.CaptureType.Serialize && MaxRecursionLimit <= 1)
@@ -460,41 +496,6 @@ namespace NLog.Layouts
             else
             {
                 AppendJsonPropertyValue(propName, propertyValue, sb, beginJsonMessage);
-            }
-        }
-
-        private void AppendJsonPropertyValue(string propName, object? propertyValue, StringBuilder sb, bool beginJsonMessage)
-        {
-            if (ExcludeEmptyProperties && (propertyValue is null || ReferenceEquals(propertyValue, string.Empty)))
-                return;
-
-            var initialLength = sb.Length;
-            BeginJsonProperty(sb, propName, beginJsonMessage, true);
-            if (!JsonConverter.SerializeObject(propertyValue, sb))
-            {
-                sb.Length = initialLength;
-                return;
-            }
-
-            if (ExcludeEmptyProperties && sb[sb.Length - 1] == '"' && sb[sb.Length - 2] == '"' && sb[sb.Length - 3] != '\\')
-            {
-                sb.Length = initialLength;
-            }
-        }
-        private void AppendJsonPropertyValue(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
-        {
-            AppendPropertyValueInternal(propName, propertyValue, format, formatProvider, captureType, sb, beginJsonMessage);
-        }
-
-        private void AppendFlattenedPropertyValue(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
-        {
-            if (captureType == MessageTemplates.CaptureType.Serialize || captureType == MessageTemplates.CaptureType.Stringify)
-            {
-                AppendPropertyValueInternal(propName, propertyValue, format, formatProvider, captureType, sb, beginJsonMessage);
-            }
-            else
-            {
-                FlattenObjectProperties(propName, propertyValue, sb, beginJsonMessage, 0);
             }
         }
 
