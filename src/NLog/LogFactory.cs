@@ -282,7 +282,7 @@ namespace NLog
             _config.OnConfigurationAssigned(this);
             _config.Dump();
             ReconfigExistingLoggers();
-            InternalLogger.Info("Configuration initialized.");
+            InternalLogger.Info("Configuration initialized: {0}", config);
         }
 
         private void ServiceRepository_TypeRegistered(object sender, ServiceRepositoryUpdateEventArgs e)
