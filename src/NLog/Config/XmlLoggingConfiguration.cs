@@ -258,7 +258,7 @@ namespace NLog.Config
                 {
                     if (fileWatcher != null && !fileWatcher.IsDisposed)
                     {
-                        InternalLogger.Info("AutoReload Config File Monitor stopping, since no active configuration");
+                        InternalLogger.Debug("AutoReload Config File Monitor stopping, since no active configuration");
                         fileWatcher.Dispose();
                     }
                 }
@@ -267,7 +267,7 @@ namespace NLog.Config
                     InternalLogger.Debug("AutoReload Config File Monitor refreshing after configuration changed");
                     if (fileWatcher is null || fileWatcher.IsDisposed)
                     {
-                        InternalLogger.Info("AutoReload Config File Monitor starting");
+                        InternalLogger.Debug("AutoReload Config File Monitor starting");
                         fileWatcher = new AutoReloadConfigFileWatcher(configFactory);
                         lock (_watchers)
                         {
@@ -600,7 +600,10 @@ namespace NLog.Config
         /// <inheritdoc/>
         public override string ToString()
         {
-            return $"{base.ToString()}, FilePath={_originalFileName}";
+            if (AutoReload)
+                return $"{base.ToString()}, AutoReload=true, FilePath={_originalFileName}";
+            else
+                return $"{base.ToString()}, FilePath={_originalFileName}";
         }
 
         private sealed class AutoReloadConfigFileWatcher : IDisposable
