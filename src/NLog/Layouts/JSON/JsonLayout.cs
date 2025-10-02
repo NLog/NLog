@@ -453,7 +453,13 @@ namespace NLog.Layouts
 
         private void AppendFlattenedPropertyValue(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
         {
-            if (captureType == MessageTemplates.CaptureType.Serialize || captureType == MessageTemplates.CaptureType.Stringify)
+            if (captureType == MessageTemplates.CaptureType.Serialize)
+            {
+                // Allow flattening also for Serialize, by starting at a negative depth to effectively loosen depth bound
+                int startDepth = Math.Min(0, MaxRecursionLimit - 10);
+                FlattenObjectProperties(propName, propertyValue, sb, beginJsonMessage, startDepth);
+            }
+            else if (captureType == MessageTemplates.CaptureType.Stringify)
             {
                 AppendPropertyValueInternal(propName, propertyValue, format, formatProvider, captureType, sb, beginJsonMessage);
             }
@@ -473,6 +479,7 @@ namespace NLog.Layouts
                 var initialLength = sb.Length;
                 BeginJsonProperty(sb, propName, beginJsonMessage, true);
 
+                // Overrides MaxRecursionLimit as message-template tells us it is safe
                 if (!JsonConverter.SerializeObjectNoLimit(propertyValue, sb))
                 {
                     sb.Length = initialLength;
@@ -485,6 +492,7 @@ namespace NLog.Layouts
 
                 BeginJsonProperty(sb, propName, beginJsonMessage, true);
 
+                // Overrides MaxRecursionLimit as message-template tells us it is unsafe
                 int originalStart = sb.Length;
                 ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
                 
@@ -523,14 +531,15 @@ namespace NLog.Layouts
                 return;
             }
 
+            bool isFirstChild = beginJsonMessage;
             foreach (var property in objectPropertyList)
             {
-                if (!property.HasNameAndValue)      
+                if (!property.HasNameAndValue)
                     continue;
 
                 string dottedPropertyName = string.Concat(basePropertyName, ".", property.Name);
-                // Nested properties should never have beginJsonMessage = true
-                FlattenObjectProperties(dottedPropertyName, property.Value, sb, false, depth + 1);
+                FlattenObjectProperties(dottedPropertyName, property.Value, sb, isFirstChild, depth + 1);
+                isFirstChild = false;
             }
         }
 
