@@ -800,15 +800,13 @@ namespace NLog.Layouts
         public override string ToString()
         {
             if (_elements.Count > 0)
-                return ToStringWithNestedItems(_elements, l => l.ToString());
+                return ToStringWithNestedItems(_elements, l => string.IsNullOrEmpty(l.ElementNameInternal) ? l.ToString() : ("TagName=" + l.ElementNameInternal));
+            else if (!string.IsNullOrEmpty(ElementNameInternal))
+                return ToStringWithNestedItems(new[] { this }, l => "TagName=" + l.ElementNameInternal);
             else if (_attributes.Count > 0)
                 return ToStringWithNestedItems(_attributes, a => "Attribute=" + a.Name);
             else if (ContextProperties != null && ContextProperties.Count > 0)
                 return ToStringWithNestedItems(ContextProperties, n => "Property=" + n.Name);
-            else if (!string.IsNullOrEmpty(ElementNameInternal))
-                return ToStringWithNestedItems(new[] { this }, n => "TagName=" + n.ElementNameInternal);
-            else if (IncludeEventProperties)
-                return $"{GetType().Name}: IncludeEventProperties=true";
             else
                 return GetType().Name;
         }
