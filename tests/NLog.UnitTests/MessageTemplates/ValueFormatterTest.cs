@@ -85,7 +85,7 @@ namespace NLog.UnitTests.MessageTemplates
             StringBuilder builder = new StringBuilder();
             var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
-            Assert.Equal("\"str\"", builder.ToString());
+            Assert.Equal("str", builder.ToString());
         }
 
         [Fact]
@@ -95,7 +95,7 @@ namespace NLog.UnitTests.MessageTemplates
             StringBuilder builder = new StringBuilder();
             var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
-            Assert.Equal("\"Test\"", builder.ToString());
+            Assert.Equal("Test", builder.ToString());
         }
 
         [Fact]
@@ -105,7 +105,7 @@ namespace NLog.UnitTests.MessageTemplates
             StringBuilder builder = new StringBuilder();
             var result = CreateValueFormatter().FormatValue(@class, null, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
-            var expectedValue = $"\"{typeof(Test1).FullName}\"";
+            var expectedValue = $"{typeof(Test1).FullName}";
             Assert.Equal(expectedValue, builder.ToString());
         }
 
@@ -152,7 +152,7 @@ namespace NLog.UnitTests.MessageTemplates
         [Theory]
         [InlineData(CaptureType.Normal, "NULL")]
         [InlineData(CaptureType.Serialize, "null")]
-        [InlineData(CaptureType.Stringify, "\"\"")]
+        [InlineData(CaptureType.Stringify, "")]
         public void TestSerializationWillBeSuccessfulForNull(CaptureType captureType, string expected)
         {
             StringBuilder builder = new StringBuilder();
