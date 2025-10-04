@@ -279,13 +279,13 @@ namespace NLog.Internal
 
         private void RenderHolePositional(StringBuilder sb, in Hole hole, IFormatProvider? formatProvider, object? value)
         {
-            if (hole.CaptureType == CaptureType.Serialize)
+            if (hole.CaptureType == CaptureType.Serialize || (value is null && hole.CaptureType != CaptureType.Stringify))
             {
-                RenderHole(sb, CaptureType.Serialize, hole.Format, formatProvider, value);
+                RenderHole(sb, hole.CaptureType, hole.Format, formatProvider, value);
             }
             else
             {
-                RenderHole(sb, CaptureType.Stringify, hole.Format ?? string.Empty, formatProvider, value);
+                ValueFormatter.FormatValue(value, hole.Format, CaptureType.Stringify, formatProvider, sb);
             }
         }
 
@@ -296,7 +296,13 @@ namespace NLog.Internal
 
         private void RenderHole(StringBuilder sb, CaptureType captureType, string? holeFormat, IFormatProvider? formatProvider, object? value)
         {
-            if (value is null)
+            if (captureType == CaptureType.Stringify)
+            {
+                sb.Append('"');
+                ValueFormatter.FormatValue(value, holeFormat, captureType, formatProvider, sb);
+                sb.Append('"');
+            }
+            else if (value is null)
             {
                 sb.Append("NULL");
             }

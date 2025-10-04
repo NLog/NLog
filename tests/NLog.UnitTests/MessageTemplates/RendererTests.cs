@@ -77,6 +77,9 @@ namespace NLog.UnitTests.MessageTemplates
         [InlineData("Always use the correct {enum:D}", new object[] { NLog.Config.ExceptionRenderingFormat.Method }, "Always use the correct 4")]
         [InlineData("hello {0,-10}", new object[] { null }, "hello NULL      ")]
         [InlineData("hello {0,10}", new object[] { null }, "hello       NULL")]
+        [InlineData("hello {$world}", new object[] { null }, @"hello """"")]    // stringify always adds quotes
+        [InlineData("hello {$world}", new object[] { 123 }, @"hello ""123""")]  // stringify always adds quotes
+        [InlineData("hello {$world}", new object[] { "World" }, @"hello ""World""")]  // stringify always adds quotes
         [InlineData("Status [0x{status:X8}]", new object[] { 16 }, "Status [0x00000010]")]
         public void RenderTest(string input, object[] args, string expected)
         {

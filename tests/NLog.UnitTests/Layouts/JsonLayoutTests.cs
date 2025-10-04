@@ -578,6 +578,27 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(@"{""Message"":{""data"":{}}}", jsonLayout.Render(logEventInfo));
         }
 
+        [Theory]
+        [InlineData("Hello World", @"{""stringifyMe"":""Hello World""}")]
+        [InlineData("Hello\nWorld", @"{""stringifyMe"":""Hello\nWorld""}")]
+        [InlineData(default(string), @"{""stringifyMe"":""""}")]
+        [InlineData(1234, @"{""stringifyMe"":""1234""}")]
+        [InlineData(false, @"{""stringifyMe"":""False""}")]
+        [InlineData(true, @"{""stringifyMe"":""True""}")]
+        [InlineData(1.1, @"{""stringifyMe"":""1.1""}")]
+        public void JsonEncodeStringifyValues(IConvertible propertyValue, string expectedOutput)
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeEventProperties = true,
+                MaxRecursionLimit = 1,
+            };
+
+            var logEventInfo = LogEventInfo.Create(LogLevel.Info, string.Empty, System.Globalization.CultureInfo.InvariantCulture, "{$stringifyMe}", new object[] { propertyValue });
+
+            Assert.Equal(expectedOutput, jsonLayout.Render(logEventInfo));
+        }
+
         [Fact]
         [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void IncludeMdcJsonProperties()
