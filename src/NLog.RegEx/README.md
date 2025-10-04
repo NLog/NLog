@@ -4,7 +4,7 @@ NLog RegEx Replace LayoutRenderer for complex search and replace operations
 
 If having trouble with output, then check [NLog InternalLogger](https://github.com/NLog/NLog/wiki/Internal-Logging) for clues. See also [Troubleshooting NLog](https://github.com/NLog/NLog/wiki/Logging-Troubleshooting)
 
-See the [NLog Wiki](https://github.com/NLog/NLog/wiki/Replace-Layout-Renderer) for available options and examples.
+See the [NLog Wiki](https://github.com/NLog/NLog/wiki/RegEx-Replace-Layout-Renderer) for available options and examples.
 
 ## Register Extension
 

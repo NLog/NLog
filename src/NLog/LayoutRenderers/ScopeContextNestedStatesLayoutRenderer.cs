@@ -162,7 +162,7 @@ namespace NLog.LayoutRenderers
                     if (formatAsJson)
                         AppendJsonFormattedValue(messages[i], Culture ?? CultureInfo.InvariantCulture, builder, separator, itemSeparator);
                     else if (messages[i] is IEnumerable<KeyValuePair<string, object>>)
-                        builder.Append(Convert.ToString(messages[i]));   // Special support for Microsoft Extension Logging ILogger.BeginScope
+                        builder.Append(Convert.ToString(messages[i], GetFormatProvider(logEvent, Culture)));   // Special support for Microsoft Extension Logging ILogger.BeginScope
                     else
                         AppendFormattedValue(builder, logEvent, messages[i], Format, Culture);
                     currentSeparator = itemSeparator;

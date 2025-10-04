@@ -590,12 +590,13 @@ namespace NLog.Internal
                     break;
 
                 unicode *= 16;
-                if ("abcdef".Contains(char.ToLower(_xmlSource.Current)))
-                    unicode += int.Parse(_xmlSource.Current.ToString(), System.Globalization.NumberStyles.HexNumber);
-                else if (_xmlSource.Current < '0' || _xmlSource.Current > '9')
-                    throw new XmlParserException("Invalid XML document. Cannot parse unicode-char hex-value");
+                var chrUpper = char.ToUpperInvariant(_xmlSource.Current);
+                if (chrUpper >= 'A' && chrUpper <= 'F')
+                    unicode += chrUpper - 'A' + 10;
+                else if (chrUpper >= '0' && chrUpper <= '9')
+                    unicode += chrUpper - '0';
                 else
-                    unicode += _xmlSource.Current - '0';
+                    throw new XmlParserException("Invalid XML document. Cannot parse unicode-char hex-value");
             }
 
             if (unicode >= '\uffff')

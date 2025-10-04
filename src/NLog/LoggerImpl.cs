@@ -52,23 +52,9 @@ namespace NLog
         {
             logEvent.SetMessageFormatter(logFactory.ActiveMessageFormatter, targetsForLevel.NextInChain is null ? logFactory.SingleTargetMessageFormatter : null);
 
-            StackTraceUsage stu = targetsForLevel.StackTraceUsage;
-            if (stu != StackTraceUsage.None)
+            if (targetsForLevel.StackTraceUsage != StackTraceUsage.None)
             {
-                bool attemptCallSiteOptimization = targetsForLevel.TryCallSiteClassNameOptimization(stu, logEvent);
-                if (attemptCallSiteOptimization && targetsForLevel.TryLookupCallSiteClassName(logEvent, out var callSiteClassName))
-                {
-                    logEvent.GetCallSiteInformationInternal().CallerClassName = callSiteClassName;
-                }
-                else if (attemptCallSiteOptimization || targetsForLevel.MustCaptureStackTrace(stu, logEvent))
-                {
-                    CaptureCallSiteInfo(logFactory, loggerType, logEvent, stu);
-
-                    if (attemptCallSiteOptimization)
-                    {
-                        targetsForLevel.TryRememberCallSiteClassName(logEvent);
-                    }
-                }
+                CaptureCallSiteInfo(loggerType, targetsForLevel, logEvent, logFactory);
             }
 
             AsyncContinuation exceptionHandler = SingleCallContinuation.Completed;
@@ -91,9 +77,18 @@ namespace NLog
                 var currentFilterChain = t.FilterChain;
                 FilterResult result = ReferenceEquals(prevFilterChain, currentFilterChain) ?
                     prevFilterResult : GetFilterResult(currentFilterChain, logEvent, t.FilterDefaultAction);
-                if (!WriteToTargetWithFilterChain(t.Target, result, logEvent, exceptionHandler))
+
+                if (result != FilterResult.Ignore && result != FilterResult.IgnoreFinal)
                 {
-                    break;
+                    t.Target.WriteAsyncLogEvent(logEvent.WithContinuation(exceptionHandler));
+                    if (result == FilterResult.LogFinal)
+                        break;
+                }
+                else
+                {
+                    InternalLogger.Debug("{0} [{1}] Rejecting message because of a filter.", logEvent.LoggerName, logEvent.Level);
+                    if (result == FilterResult.IgnoreFinal)
+                        break;
                 }
 
                 prevFilterResult = result;  // Cache the result, and reuse it for the next target, if it comes from the same logging-rule
@@ -101,52 +96,68 @@ namespace NLog
             }
         }
 
-        private static void CaptureCallSiteInfo(LogFactory logFactory, Type loggerType, LogEventInfo logEvent, StackTraceUsage stackTraceUsage)
+        private static void CaptureCallSiteInfo(Type loggerType, TargetWithFilterChain targetsForLevel, LogEventInfo logEvent, LogFactory logFactory)
         {
-            try
+            var stu = targetsForLevel.StackTraceUsage;
+            bool attemptCallSiteOptimization = TryCallSiteClassNameOptimization(stu, logEvent);
+            if (attemptCallSiteOptimization && targetsForLevel.TryLookupCallSiteClassName(logEvent, out var callSiteClassName))
             {
-                bool includeSource = (stackTraceUsage & StackTraceUsage.WithFileNameAndLineNumber) != 0;
-                var stackTrace = new StackTrace(StackTraceSkipMethods, includeSource);
-                logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, null, loggerType);
+                logEvent.GetCallSiteInformationInternal().CallerClassName = callSiteClassName;
             }
-            catch (Exception ex)
+            else if (attemptCallSiteOptimization || MustCaptureStackTrace(stu, logEvent))
             {
+                try
+                {
+                    bool includeSource = (stu & StackTraceUsage.WithFileNameAndLineNumber) != 0;
+                    var stackTrace = new StackTrace(StackTraceSkipMethods, includeSource);
+                    logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, null, loggerType);
+                }
+                catch (Exception ex)
+                {
 #if DEBUG
-                if (ex.MustBeRethrownImmediately())
-                    throw;
+                    if (ex.MustBeRethrownImmediately())
+                        throw;
 #endif
 
-                if (logFactory.ThrowExceptions || LogManager.ThrowExceptions)
-                    throw;
+                    if (logFactory.ThrowExceptions || LogManager.ThrowExceptions)
+                        throw;
 
-                InternalLogger.Error(ex, "{0} Failed to capture CallSite. Platform might not support ${{callsite}}", logEvent.LoggerName);
+                    InternalLogger.Warn(ex, "{0} Failed to capture CallSite. Platform might not support ${{callsite}}", logEvent.LoggerName);
+                }
+
+                if (attemptCallSiteOptimization)
+                {
+                    targetsForLevel.TryRememberCallSiteClassName(logEvent);
+                }
             }
         }
 
-        private static bool WriteToTargetWithFilterChain(Targets.Target target, FilterResult result, LogEventInfo logEvent, AsyncContinuation onException)
+        internal static bool TryCallSiteClassNameOptimization(StackTraceUsage stackTraceUsage, LogEventInfo logEvent)
         {
-            if ((result == FilterResult.Ignore) || (result == FilterResult.IgnoreFinal))
-            {
-                if (InternalLogger.IsDebugEnabled)
-                {
-                    InternalLogger.Debug("{0} [{1}] Rejecting message because of a filter.", logEvent.LoggerName, logEvent.Level);
-                }
-
-                if (result == FilterResult.IgnoreFinal)
-                {
-                    return false;
-                }
-
-                return true;
-            }
-
-            target.WriteAsyncLogEvent(logEvent.WithContinuation(onException));
-            if (result == FilterResult.LogFinal)
-            {
+            if ((stackTraceUsage & (StackTraceUsage.WithCallSiteClassName | StackTraceUsage.WithStackTrace)) != StackTraceUsage.WithCallSiteClassName)
                 return false;
-            }
+
+            if (string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerFilePath))
+                return false;
+
+            if (logEvent.HasStackTrace)
+                return false;
 
             return true;
+        }
+
+        internal static bool MustCaptureStackTrace(StackTraceUsage stackTraceUsage, LogEventInfo logEvent)
+        {
+            if (logEvent.HasStackTrace)
+                return false;
+
+            if ((stackTraceUsage & StackTraceUsage.WithStackTrace) != StackTraceUsage.None)
+                return true;
+
+            if ((stackTraceUsage & StackTraceUsage.WithCallSite) != StackTraceUsage.None && string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerMethodName) && string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerFilePath))
+                return true;    // We don't have enough CallSiteInformation
+
+            return false;
         }
 
         /// <summary>

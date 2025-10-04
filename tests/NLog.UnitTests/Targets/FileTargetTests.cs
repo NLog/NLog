@@ -994,7 +994,7 @@ namespace NLog.UnitTests.Targets
         public void ReplaceFileContentsOnEachWrite_CreateDirs(bool createDirs)
         {
             var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
-            var logfile = Path.Combine(tempDir, "log.log");
+            var logfile = Path.Combine(tempDir, "${guid}/log.log");
 
             try
             {
@@ -1016,15 +1016,16 @@ namespace NLog.UnitTests.Targets
 
                 var logger = LogManager.GetLogger("A");
                 logger.Info("a");
+                logger.Info("b");
 
                 Assert.Equal(createDirs, Directory.Exists(tempDir));
+                if (createDirs)
+                    Assert.Equal(2, Directory.GetDirectories(tempDir).Length);
             }
             finally
             {
                 LogManager.ThrowExceptions = true;
 
-                if (File.Exists(logfile))
-                    File.Delete(logfile);
                 if (Directory.Exists(tempDir))
                     Directory.Delete(tempDir, true);
             }
@@ -1102,7 +1103,14 @@ namespace NLog.UnitTests.Targets
                     AssertFileContents(logFile, string.Empty, Encoding.UTF8);
                     if (autoFlushTimeout > 0)
                     {
-                        Thread.Sleep(TimeSpan.FromSeconds(autoFlushTimeout * 1.5));
+                        for (int i = 0; i < 100; ++i)
+                        {
+                            var fileInfo = new FileInfo(logFile);
+                            if (fileInfo.Exists && fileInfo.Length > 0)
+                                break;
+                            Thread.Sleep(50);
+                        }
+                        Thread.Sleep(500);
                         AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
                     }
                 }

@@ -85,9 +85,13 @@ namespace NLog.Targets
 
         public void WriteSubString(TextWriter consoleWriter, string text, int index, int endIndex)
         {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_0_OR_GREATER
+            consoleWriter.Write(text.AsSpan(index, endIndex - index));
+#else
             // No need to allocate SubString, because we are already writing in-memory
             for (int i = index; i < endIndex; ++i)
                 consoleWriter.Write(text[i]);
+#endif
         }
 
         public void WriteChar(TextWriter consoleWriter, char text)

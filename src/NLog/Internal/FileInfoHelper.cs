@@ -38,20 +38,22 @@ namespace NLog.Internal
 
     internal static class FileInfoHelper
     {
-        public static DateTime? LookupValidFileCreationTimeUtc(this FileInfo fileInfo)
+        internal const int MinReliableBirthYear = 1980;
+
+        public static DateTime LookupValidFileCreationTimeUtc(this FileInfo fileInfo)
         {
             return LookupValidFileCreationTimeUtc(fileInfo, (f) => f.CreationTimeUtc, (f) => f.LastWriteTimeUtc);
         }
 
-        private static DateTime? LookupValidFileCreationTimeUtc<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?>? finalFallback = null)
+        private static DateTime LookupValidFileCreationTimeUtc<T>(T fileInfo, Func<T, DateTime> primary, Func<T, DateTime> fallback, Func<T, DateTime>? finalFallback = null)
         {
-            DateTime? fileCreationTime = primary(fileInfo);
+            DateTime fileCreationTime = primary(fileInfo);
 
-            if (fileCreationTime.HasValue && fileCreationTime.Value.Year < 1980 && !PlatformDetector.IsWin32)
+            if (fileCreationTime.Year < MinReliableBirthYear && !PlatformDetector.IsWin32)
             {
                 // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime
                 fileCreationTime = fallback(fileInfo);
-                if (finalFallback != null && (!fileCreationTime.HasValue || fileCreationTime.Value.Year < 1980))
+                if (finalFallback != null && fileCreationTime.Year < MinReliableBirthYear)
                 {
                     fileCreationTime = finalFallback(fileInfo);
                 }

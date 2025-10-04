@@ -83,10 +83,10 @@ namespace NLog.Targets.FileAppenders
                 if (_nextArchiveTime < NLog.Time.TimeSource.Current.Time.AddMinutes(1) || _lastFileBirthTimeUtc == DateTime.MinValue)
                 {
                     var fileInfo = new FileInfo(_filePath);
-                    var fileBirthTimeUtc = (fileInfo.Exists && fileInfo.Length != 0) ? (FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo) ?? DateTime.MinValue) : DateTime.MinValue;
+                    var fileBirthTimeUtc = (fileInfo.Exists && fileInfo.Length != 0) ? FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo) : DateTime.MinValue;
                     if (fileBirthTimeUtc == DateTime.MinValue || _lastFileBirthTimeUtc < fileBirthTimeUtc)
                     {
-                        var fileBirthTime = fileBirthTimeUtc != DateTime.MinValue ? NLog.Time.TimeSource.Current.FromSystemTime(fileBirthTimeUtc) : OpenStreamTime;
+                        var fileBirthTime = fileBirthTimeUtc.Year > FileInfoHelper.MinReliableBirthYear ? NLog.Time.TimeSource.Current.FromSystemTime(fileBirthTimeUtc) : OpenStreamTime;
                         _nextArchiveTime = FileTarget.CalculateNextArchiveEventTime(_fileTarget.ArchiveEvery, fileBirthTime);
                         _lastFileBirthTimeUtc = fileBirthTimeUtc;
                     }

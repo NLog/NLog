@@ -451,7 +451,7 @@ namespace NLog.Targets
                 }
 
                 _archiveSuffixFormat = value;
-                _archiveSuffixFormatLegacy = _archiveSuffixFormat?.IndexOf("{1") >= 0;
+                _archiveSuffixFormatLegacy = _archiveSuffixFormat?.IndexOf("{1", StringComparison.Ordinal) >= 0;
             }
         }
         private string? _archiveSuffixFormat;
@@ -1209,26 +1209,11 @@ namespace NLog.Targets
             {
                 try
                 {
-                    return OpenNewFileStream(filePath, bufferSize, initialFileOpen);
+                    return CreateFileStreamWithDirectory(filePath, bufferSize, initialFileOpen);
                 }
                 catch (DirectoryNotFoundException)
                 {
-                    if (!CreateDirs)
-                        throw;
-
-                    InternalLogger.Debug("{0}: DirectoryNotFoundException - Attempting to create directory for FileName: {1}", this, filePath);
-
-                    var directoryName = Path.GetDirectoryName(filePath);
-
-                    try
-                    {
-                        Directory.CreateDirectory(directoryName);
-                    }
-                    catch (Exception ex)
-                    {
-                        // If creating a directory failed, don't retry for this message
-                        throw new NLogRuntimeException($"Could not create directory {directoryName}", ex);
-                    }
+                    throw;  // Skip retry when directory does not exist
                 }
                 catch (IOException ex)
                 {
@@ -1245,6 +1230,35 @@ namespace NLog.Targets
             }
 
             throw new InvalidOperationException("Should not be reached.");
+        }
+
+        private Stream CreateFileStreamWithDirectory(string filePath, int bufferSize, bool initialFileOpen)
+        {
+            try
+            {
+                return OpenNewFileStream(filePath, bufferSize, initialFileOpen);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                if (!CreateDirs)
+                    throw;
+
+                InternalLogger.Debug("{0}: DirectoryNotFoundException - Attempting to create directory for file: {1}", this, filePath);
+
+                var directoryName = Path.GetDirectoryName(filePath);
+
+                try
+                {
+                    Directory.CreateDirectory(directoryName);
+                }
+                catch (Exception ex)
+                {
+                    // If creating a directory failed, don't retry for this message
+                    throw new NLogRuntimeException($"Could not create directory {directoryName}", ex);
+                }
+
+                return OpenNewFileStream(filePath, bufferSize, initialFileOpen);
+            }
         }
 
         private Stream OpenNewFileStream(string filePath, int bufferSize, bool initialFileOpen)

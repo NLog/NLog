@@ -492,14 +492,11 @@ namespace NLog.Layouts
 
                 BeginJsonProperty(sb, propName, beginJsonMessage, true);
 
-                // Overrides MaxRecursionLimit as message-template tells us it is unsafe
                 int originalStart = sb.Length;
+                sb.Append('"');
                 ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
-                
-                if (originalStart < sb.Length && sb[originalStart] == '"' && sb[sb.Length - 1] == '"')
-                {
-                    PerformJsonEscapeIfNeeded(sb, originalStart);
-                }
+                sb.Append('"');
+                PerformJsonEscapeIfNeeded(sb, originalStart);
             }
             else
             {

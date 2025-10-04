@@ -359,7 +359,7 @@ namespace NLog.Targets
         {
             if (Source is SimpleLayout simpleLayout && simpleLayout.IsFixedText && Log is SimpleLayout logNameLayout && logNameLayout.IsFixedText)
             {
-                if (MachineName is null || (MachineName is SimpleLayout machineLayout && machineLayout.IsFixedText && (".".Equals(machineLayout.FixedText) || string.IsNullOrEmpty(machineLayout.FixedText))))
+                if (MachineName is null || (MachineName is SimpleLayout machineLayout && machineLayout.IsFixedText && (".".Equals(machineLayout.FixedText, StringComparison.Ordinal) || string.IsNullOrEmpty(machineLayout.FixedText))))
                 {
                     return simpleLayout.FixedText ?? string.Empty;
                 }

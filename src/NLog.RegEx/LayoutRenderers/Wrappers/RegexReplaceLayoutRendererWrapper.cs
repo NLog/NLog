@@ -42,15 +42,15 @@ namespace NLog.LayoutRenderers.Wrappers
     using NLog.RegEx.Internal;
 
     /// <summary>
-    /// Replaces a string in the output of another layout with another string.
+    /// Replaces a string in the output of another layout with another string (with RegEx support)
     /// </summary>
     /// <example>
-    /// ${replace:searchFor=\\n+:replaceWith=-:inner=${message}}
+    /// ${regex-replace:searchFor=\\n+:replaceWith=-:inner=${message}}
     /// </example>
     /// <remarks>
-    /// <a href="https://github.com/NLog/NLog/wiki/Replace-Layout-Renderer">See NLog Wiki</a>
+    /// <a href="https://github.com/NLog/NLog/wiki/RegEx-Replace-Layout-Renderer">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/NLog/NLog/wiki/Replace-Layout-Renderer">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/RegEx-Replace-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("regex-replace")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]

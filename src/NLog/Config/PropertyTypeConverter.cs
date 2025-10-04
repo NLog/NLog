@@ -202,7 +202,7 @@ namespace NLog.Config
                 return null;
             if (nameof(CultureInfo.InvariantCulture).Equals(stringValue, StringComparison.OrdinalIgnoreCase))
                 return CultureInfo.InvariantCulture;
-            if (nameof(CultureInfo.CurrentCulture).Equals(stringValue, StringComparison.CurrentCulture))
+            if (nameof(CultureInfo.CurrentCulture).Equals(stringValue, StringComparison.OrdinalIgnoreCase))
                 return CultureInfo.CurrentCulture;
             return new CultureInfo(stringValue);
         }

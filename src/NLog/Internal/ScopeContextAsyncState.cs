@@ -125,7 +125,7 @@ namespace NLog.Internal
             }
         }
 
-        private static IReadOnlyCollection<KeyValuePair<string, object?>> MergeUniqueProperties(IReadOnlyCollection<KeyValuePair<string, object?>> currentProperties, IReadOnlyCollection<KeyValuePair<string, object?>> properties)
+        private static Dictionary<string, object?> MergeUniqueProperties(IReadOnlyCollection<KeyValuePair<string, object?>> currentProperties, IReadOnlyCollection<KeyValuePair<string, object?>> properties)
         {
             var scopeProperties = new Dictionary<string, object?>(currentProperties.Count + properties.Count, ScopeContext.DefaultComparer);
             ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(properties, scopeProperties);
