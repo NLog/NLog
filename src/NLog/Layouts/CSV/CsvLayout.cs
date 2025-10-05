@@ -76,7 +76,8 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(CsvColumn), "column")]
-        public IList<CsvColumn> Columns { get; } = new List<CsvColumn>();
+        public IList<CsvColumn> Columns => _columns;
+        private readonly List<CsvColumn> _columns = new List<CsvColumn>();
 
         /// <summary>
         /// Gets or sets a value indicating whether CSV should include header.
@@ -125,9 +126,9 @@ namespace NLog.Layouts
 
             ResolveQuoteChars(QuoteChar, out _actualColumnDelimiter, out _doubleQuoteChar, out _quotableCharacters);
 
-            _precalculateLayouts = ResolveLayoutPrecalculation(Columns.Select(cln => cln.Layout));
+            _precalculateLayouts = ResolveLayoutPrecalculation(_columns.Select(cln => cln.Layout));
 
-            foreach (var csvColumn in Columns)
+            foreach (var csvColumn in _columns)
             {
                 if (string.IsNullOrEmpty(csvColumn.Name))
                     throw new NLogConfigurationException("CsvLayout: Contains invalid CsvColumn with unassigned Name-property");
@@ -191,18 +192,17 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            //Memory profiling pointed out that using a foreach-loop was allocating
-            //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < Columns.Count; i++)
+            bool initialColumn = true;
+            foreach (var csvColumn in _columns)
             {
-                Layout columnLayout = Columns[i].Layout;
-                RenderColumnLayout(logEvent, columnLayout, Columns[i]._quoting ?? Quoting, target, i);
+                RenderColumnLayout(logEvent, csvColumn.Layout, csvColumn._quoting ?? Quoting, target, initialColumn);
+                initialColumn = false;
             }
         }
 
-        private void RenderColumnLayout(LogEventInfo logEvent, Layout columnLayout, CsvQuotingMode quoting, StringBuilder target, int i)
+        private void RenderColumnLayout(LogEventInfo logEvent, Layout columnLayout, CsvQuotingMode quoting, StringBuilder target, bool initialColumn)
         {
-            if (i != 0)
+            if (!initialColumn)
             {
                 target.Append(_actualColumnDelimiter);
             }
@@ -242,14 +242,13 @@ namespace NLog.Layouts
         {
             LogEventInfo logEvent = LogEventInfo.CreateNullEvent();
 
-            //Memory profiling pointed out that using a foreach-loop was allocating
-            //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < Columns.Count; i++)
+            bool initialColumn = true;
+            foreach (var csvColumn in _columns)
             {
-                CsvColumn col = Columns[i];
-                var columnLayout = Layout.FromLiteral(col.Name);
+                var columnLayout = Layout.FromLiteral(csvColumn.Name);
                 columnLayout.Initialize(LoggingConfiguration);
-                RenderColumnLayout(logEvent, columnLayout, col._quoting ?? Quoting, sb, i);
+                RenderColumnLayout(logEvent, columnLayout, csvColumn._quoting ?? Quoting, sb, initialColumn);
+                initialColumn = false;
             }
         }
 
@@ -331,7 +330,7 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         public override string ToString()
         {
-            return ToStringWithNestedItems(Columns, c => c.Name);
+            return ToStringWithNestedItems(_columns, c => c.Name);
         }
     }
 }
