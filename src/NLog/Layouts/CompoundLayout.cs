@@ -52,29 +52,22 @@ namespace NLog.Layouts
         private Layout[]? _precalculateLayouts;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CompoundLayout"/> class.
-        /// </summary>
-        public CompoundLayout()
-        {
-            Layouts = new List<Layout>();
-        }
-
-        /// <summary>
         /// Gets the inner layouts.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(Layout), "layout")]
-        public IList<Layout> Layouts { get; private set; }
+        public IList<Layout> Layouts => _layouts;
+        private readonly List<Layout> _layouts = new List<Layout>();
 
         /// <inheritdoc/>
         protected override void InitializeLayout()
         {
-            foreach (var layout in Layouts)
+            foreach (var layout in _layouts)
                 layout.Initialize(LoggingConfiguration);
 
             base.InitializeLayout();
 
-            _precalculateLayouts = ResolveLayoutPrecalculation(Layouts);
+            _precalculateLayouts = ResolveLayoutPrecalculation(_layouts);
         }
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
@@ -91,20 +84,15 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            //Memory profiling pointed out that using a foreach-loop was allocating
-            //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < Layouts.Count; i++)
-            {
-                Layout layout = Layouts[i];
+            foreach (var layout in _layouts)
                 layout.Render(logEvent, target);
-            }
         }
 
         /// <inheritdoc/>
         protected override void CloseLayout()
         {
             _precalculateLayouts = null;
-            foreach (var layout in Layouts)
+            foreach (var layout in _layouts)
                 layout.Close();
             base.CloseLayout();
         }
@@ -112,7 +100,7 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         public override string ToString()
         {
-            return ToStringWithNestedItems(Layouts, l => l.ToString());
+            return ToStringWithNestedItems(_layouts, l => l.ToString());
         }
     }
 }
