@@ -500,7 +500,12 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         public override string ToString()
         {
-            return ToStringWithNestedItems(Attributes, a => string.Concat(a.Name, "-", a.Layout?.ToString()));
+            if (_attributes.Count > 0)
+                return ToStringWithNestedItems(_attributes, a => string.Concat(a.Name, "=", a.Layout?.ToString()));
+            else if (IncludeEventProperties)
+                return $"{GetType().Name}: IncludeEventProperties=true";
+            else
+                return GetType().Name;
         }
     }
 }
