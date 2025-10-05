@@ -453,19 +453,18 @@ namespace NLog.Layouts
 
         private void AppendFlattenedPropertyValue(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
         {
-            if (captureType == MessageTemplates.CaptureType.Serialize)
-            {
-                // Allow flattening also for Serialize, by starting at a negative depth to effectively loosen depth bound
-                int startDepth = Math.Min(0, MaxRecursionLimit - 10);
-                FlattenObjectProperties(propName, propertyValue, sb, beginJsonMessage, startDepth);
-            }
-            else if (captureType == MessageTemplates.CaptureType.Stringify)
+            if (captureType == MessageTemplates.CaptureType.Stringify)
             {
                 AppendPropertyValueInternal(propName, propertyValue, format, formatProvider, captureType, sb, beginJsonMessage);
             }
             else
             {
-                FlattenObjectProperties(propName, propertyValue, sb, beginJsonMessage, 0);
+                // Allow flattening also for Serialize, by starting at a negative depth to effectively loosen depth bound
+                int startDepth = captureType == MessageTemplates.CaptureType.Serialize
+                    ? Math.Min(0, MaxRecursionLimit - 10)
+                    : 0;
+
+                FlattenObjectProperties(propName, propertyValue, sb, beginJsonMessage, startDepth);
             }
         }
 
