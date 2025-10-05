@@ -535,12 +535,16 @@ namespace NLog.Layouts
                     continue;
 
                 string dottedPropertyName = string.Concat(basePropertyName, ".", property.Name);
-                FlattenObjectProperties(dottedPropertyName, property.Value, sb, isFirstChild, depth + 1);
-                isFirstChild = false;
+				int beforeLength = sb.Length;
+				FlattenObjectProperties(dottedPropertyName, property.Value, sb, isFirstChild, depth + 1);
+				if (sb.Length != beforeLength)
+				{
+					isFirstChild = false;
+				}
             }
         }
 
-        private bool IsSimpleValue(object? value)
+        private static bool IsSimpleValue(object? value)
         {
             if (value is null) return true;
             if (value is string) return true;
