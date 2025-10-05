@@ -36,7 +36,7 @@ namespace NLog
     using System;
     using System.ComponentModel;
     using System.Diagnostics;
-#if !NET40 && !NET35
+#if !NET35 && !NET40
     using System.Threading.Tasks;
 #endif
     using JetBrains.Annotations;

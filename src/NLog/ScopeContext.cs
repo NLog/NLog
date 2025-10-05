@@ -560,7 +560,6 @@ namespace NLog
         }
 #endif
 
-
         [Obsolete("Replaced by ScopeContext.PushProperty. Marked obsolete on NLog 5.0")]
         internal static void SetMappedContextLegacy<TValue>(string key, TValue? value)
         {

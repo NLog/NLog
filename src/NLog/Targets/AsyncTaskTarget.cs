@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NET35
+#if !NET35 && !NET40
 
 namespace NLog.Targets
 {
@@ -266,10 +266,10 @@ namespace NLog.Targets
                         taskChain = taskChain.ContinueWith(t => WriteAsyncTask(logEvent, cancellationToken), cancellationToken, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler).Unwrap();
                 }
                 return taskChain ??
-#if NET45
-                    System.Threading.Tasks.Task.FromResult<object?>(null);
-#else
+#if !NET45
                     System.Threading.Tasks.Task.CompletedTask;
+#else
+                    System.Threading.Tasks.Task.FromResult<object?>(null);               
 #endif
             }
         }
@@ -659,10 +659,10 @@ namespace NLog.Targets
                 var newTask = WriteAsyncTask(logEvents, cancellationToken);
                 if (newTask is null)
                 {
-#if NET45
-                    return System.Threading.Tasks.Task.FromResult<object?>(null);
-#else
+#if !NET45
                     return System.Threading.Tasks.Task.CompletedTask;
+#else
+                    return System.Threading.Tasks.Task.FromResult<object?>(null);
 #endif
                 }
                 if (newTask.Status == TaskStatus.Created)
@@ -678,7 +678,7 @@ namespace NLog.Targets
 
                 InternalLogger.Error(ex, "{0}: WriteAsyncTask failed on creation", this);
 
-#if !NET35 && !NET45
+#if !NET45
                 return Task.FromException(ex);
 #else
                 return Task.Factory.StartNew(e => throw (Exception)e, new AggregateException(ex), _cancelTokenSource.Token, TaskCreationOptions.None, TaskScheduler);

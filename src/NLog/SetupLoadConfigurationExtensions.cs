@@ -625,7 +625,7 @@ namespace NLog
             {
                 if (t is AsyncTargetWrapper)
                     return null;
-#if !NET35
+#if !NET35 && !NET40
                 if (t is AsyncTaskTarget)
                     return null;
 #endif
