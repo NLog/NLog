@@ -695,10 +695,10 @@ namespace NLog
                 config = _config;
                 if (config is null || !_configLoaded)
                 {
-#if NET45
-                    return System.Threading.Tasks.Task.FromResult<object?>(null);
-#else
+#if !NET45
                     return System.Threading.Tasks.Task.CompletedTask;
+#else
+                    return System.Threading.Tasks.Task.FromResult<object?>(null);                  
 #endif
                 }
             }
@@ -707,10 +707,10 @@ namespace NLog
             var flushTimeoutHandler = config.FlushAllTargets((ex) => flushCompleted.SetResult(true));
             if (flushTimeoutHandler is null)
             {
-#if NET45
-                return System.Threading.Tasks.Task.FromResult<object?>(null);
-#else
+#if !NET45
                 return System.Threading.Tasks.Task.CompletedTask;
+#else
+                return System.Threading.Tasks.Task.FromResult<object?>(null);                
 #endif
             }
 

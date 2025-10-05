@@ -1424,7 +1424,7 @@ namespace NLog.Config
 
         private static Target WrapWithAsyncTargetWrapper(Target target)
         {
-#if !NET35
+#if !NET35 && !NET40
             if (target is AsyncTaskTarget)
             {
                 InternalLogger.Debug("Skip wrapping target '{0}' with AsyncTargetWrapper", target.Name);
@@ -1467,7 +1467,7 @@ namespace NLog.Config
                     throw new NLogConfigurationException($"Target type '{wrapperTypeName}' with nested {wtb.WrappedTarget.GetType()} cannot be used as default target wrapper.");
             }
 
-#if !NET35
+#if !NET35 && !NET40
             if (target is AsyncTaskTarget && wrapperTargetInstance is AsyncTargetWrapper && ReferenceEquals(wrapperTargetInstance, wtb))
             {
                 InternalLogger.Debug("Skip wrapping target '{0}' with AsyncTargetWrapper", target.Name);

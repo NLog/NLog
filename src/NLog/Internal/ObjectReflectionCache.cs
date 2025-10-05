@@ -594,7 +594,7 @@ namespace NLog.Internal
                 return new DictionaryEnumerator<string, object>();
             if (value is IDictionary<string, string>)
                 return new DictionaryEnumerator<string, string>();
-#if !NET35
+#if !NET35 && !NET40
             if (value is IReadOnlyDictionary<string, object>)
                 return new DictionaryEnumerator<string, object>();
             if (value is IReadOnlyDictionary<string, string>)
@@ -619,8 +619,8 @@ namespace NLog.Internal
             {
                 if (interfaceType.IsGenericType
                  && (interfaceType.GetGenericTypeDefinition() == typeof(IDictionary<,>)
-#if !NET35
-                 ||  interfaceType.GetGenericTypeDefinition() == typeof(IReadOnlyDictionary<,>)
+#if !NET35 && !NET40
+                  || interfaceType.GetGenericTypeDefinition() == typeof(IReadOnlyDictionary<,>)
 #endif
                     )
                  && interfaceType.GetGenericArguments()[0] == typeof(string))
@@ -717,7 +717,7 @@ namespace NLog.Internal
                     if (dictionary.Count > 0)
                         return YieldEnumerator(dictionary);
                 }
-#if !NET35
+#if !NET35 && !NET40
                 else if (value is IReadOnlyDictionary<TKey, TValue> readonlyDictionary)
                 {
                     if (readonlyDictionary.Count > 0)
@@ -733,7 +733,7 @@ namespace NLog.Internal
                     yield return new KeyValuePair<string, object?>(item.Key?.ToString() ?? string.Empty, item.Value);
             }
 
-#if !NET35
+#if !NET35 && !NET40
             private static IEnumerator<KeyValuePair<string, object?>> YieldEnumerator(IReadOnlyDictionary<TKey, TValue> dictionary)
             {
                 foreach (var item in dictionary)
