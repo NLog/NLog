@@ -515,7 +515,7 @@ namespace NLog.Layouts
             if (ExcludeEmptyProperties && (propertyValue is null || ReferenceEquals(propertyValue, string.Empty)))
                 return;
 
-            if (propertyValue is null || IsSimpleValue(propertyValue))
+			if (propertyValue is null || propertyValue is string || (propertyValue is IConvertible c && c.GetTypeCode() != TypeCode.Object))
             {
                 AppendJsonPropertyValue(basePropertyName, propertyValue, sb, beginJsonMessage);
                 return;
@@ -542,18 +542,6 @@ namespace NLog.Layouts
 					isFirstChild = false;
 				}
             }
-        }
-
-        private static bool IsSimpleValue(object? value)
-        {
-            if (value is null) return true;
-            if (value is string) return true;
-            if (value is IConvertible convertible)
-            {
-                var typeCode = convertible.GetTypeCode();
-                return typeCode != TypeCode.Object;
-            }
-            return false;
         }
 
         private static void PerformJsonEscapeIfNeeded(StringBuilder sb, int valueStart)
