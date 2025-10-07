@@ -1337,5 +1337,59 @@ namespace NLog.UnitTests.Layouts
 			Assert.Equal("{\"nestedObject.level2.level3.val\":\"deepValue\"}", json);
 		}
 
+        [Fact]
+        public void DottedRecursion_HandlesDictionaryProperties()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeEventProperties = true,
+                DottedRecursion = true,
+                MaxRecursionLimit = 10
+            };
+            var logEventInfo = new LogEventInfo();
+            logEventInfo.Properties["data"] = new
+            {
+                stringDict = new Dictionary<string, string>
+                {
+                    { "key1", "value1" },
+                    { "key2", "value2" }
+                },
+                
+                intDict = new Dictionary<string, int>
+                {
+                    { "count1", 10 },
+                    { "count2", 20 }
+                },
+                
+                objectDict = new Dictionary<string, object>
+                {
+                    { "obj1", new { name = "test1", value = 100 } },
+                    { "obj2", new { name = "test2", value = 200 } }
+                },
+                
+                // Dictionary<int, int> - wont work with dotted recursion (non-string keys)
+                numericKeyDict = new Dictionary<int, int>
+                {
+                    { 1, 100 },
+                    { 2, 200 },
+                    { 3, 300 }
+                }
+            };
+            var json = jsonLayout.Render(logEventInfo);
+            Assert.Contains("\"data.stringDict.key1\":\"value1\"", json);
+            Assert.Contains("\"data.stringDict.key2\":\"value2\"", json);
+            
+            Assert.Contains("\"data.intDict.count1\":10", json);
+            Assert.Contains("\"data.intDict.count2\":20", json);
+            
+            Assert.Contains("\"data.objectDict.obj1.name\":\"test1\"", json);
+            Assert.Contains("\"data.objectDict.obj1.value\":100", json);
+            Assert.Contains("\"data.objectDict.obj2.name\":\"test2\"", json);
+            Assert.Contains("\"data.objectDict.obj2.value\":200", json);
+
+            Assert.Contains("\"data.numericKeyDict.Count\":3", json);
+            Assert.Contains("\"data.numericKeyDict.Keys.Count\":3", json);
+            Assert.Contains("\"data.numericKeyDict.Values.Count\":3", json);
+        }
     }
 }

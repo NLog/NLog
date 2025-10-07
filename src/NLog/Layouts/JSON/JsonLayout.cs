@@ -284,10 +284,10 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void CloseLayout()
         {
-			_jsonConverter = null;
-			_valueFormatter = null;
-			_objectReflectionCache = null;
-			_precalculateLayouts = null;
+            _jsonConverter = null;
+            _valueFormatter = null;
+            _objectReflectionCache = null;
+            _precalculateLayouts = null;
             base.CloseLayout();
         }
 
@@ -514,7 +514,7 @@ namespace NLog.Layouts
             if (ExcludeEmptyProperties && (propertyValue is null || ReferenceEquals(propertyValue, string.Empty)))
                 return;
 
-			if (propertyValue is null || propertyValue is string || (propertyValue is IConvertible c && c.GetTypeCode() != TypeCode.Object))
+            if (propertyValue is null || propertyValue is string || (propertyValue is IConvertible c && c.GetTypeCode() != TypeCode.Object))
             {
                 AppendJsonPropertyValue(basePropertyName, propertyValue, sb, beginJsonMessage);
                 return;
@@ -534,12 +534,12 @@ namespace NLog.Layouts
                     continue;
 
                 string dottedPropertyName = string.Concat(basePropertyName, ".", property.Name);
-				int beforeLength = sb.Length;
-				FlattenObjectProperties(dottedPropertyName, property.Value, sb, isFirstChild, depth + 1);
-				if (sb.Length != beforeLength)
-				{
-					isFirstChild = false;
-				}
+                int beforeLength = sb.Length;
+                FlattenObjectProperties(dottedPropertyName, property.Value, sb, isFirstChild, depth + 1);
+                if (sb.Length != beforeLength)
+                {
+                    isFirstChild = false;
+                }
             }
         }
 
