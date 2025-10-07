@@ -1311,31 +1311,31 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-		public void DottedRecursion_Flattens_Serialize_Object()
-		{
-			var jsonLayout = new JsonLayout()
-			{
-				IncludeEventProperties = true,
-				DottedRecursion = true,
-				MaxRecursionLimit = 1
-			};
+        public void DottedRecursion_Flattens_Serialize_Object()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeEventProperties = true,
+                DottedRecursion = true,
+                MaxRecursionLimit = 1
+            };
 
-			var nested = new
-			{
-				level2 = new
-				{
-					level3 = new
-					{
-						val = "deepValue"
-					}
-				}
-			};
+            var nested = new
+            {
+                level2 = new
+                {
+                    level3 = new
+                    {
+                        val = "deepValue"
+                    }
+                }
+            };
 
-			var logEventInfo = LogEventInfo.Create(LogLevel.Info, string.Empty, null, "{@nestedObject}", new object[] { nested });
+            var logEventInfo = LogEventInfo.Create(LogLevel.Info, string.Empty, null, "{@nestedObject}", new object[] { nested });
 
-			var json = jsonLayout.Render(logEventInfo);
-			Assert.Equal("{\"nestedObject.level2.level3.val\":\"deepValue\"}", json);
-		}
+            var json = jsonLayout.Render(logEventInfo);
+            Assert.Equal("{\"nestedObject.level2.level3.val\":\"deepValue\"}", json);
+        }
 
         [Fact]
         public void DottedRecursion_HandlesDictionaryProperties()
