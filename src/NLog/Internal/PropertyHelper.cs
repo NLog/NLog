@@ -56,9 +56,6 @@ namespace NLog.Internal
         private static readonly Dictionary<Type, Func<string, ConfigurationItemFactory, object?>> _propertyConversionMapper = BuildPropertyConversionMapper();
 
 #pragma warning disable S1144 // Unused private types or members should be removed. BUT they help CoreRT to provide config through reflection
-#pragma warning disable CS0618 // Type or member is obsolete
-        private static readonly RequiredParameterAttribute _requiredParameterAttribute = new RequiredParameterAttribute();
-#pragma warning restore CS0618 // Type or member is obsolete
         private static readonly ArrayParameterAttribute _arrayParameterAttribute = new ArrayParameterAttribute(typeof(string), string.Empty);
         private static readonly DefaultParameterAttribute _defaultParameterAttribute = new DefaultParameterAttribute();
         private static readonly NLogConfigurationIgnorePropertyAttribute _ignorePropertyAttribute = new NLogConfigurationIgnorePropertyAttribute();
@@ -367,8 +364,8 @@ namespace NLog.Internal
                     var values = valueRaw.SplitQuoted(',', '\'', '\\');
                     foreach (var value in values)
                     {
-                        if (!(TryGetEnumValue(propertyType, value, out newValue)
-                              || TryNLogSpecificConversion(propertyType, value, configurationItemFactory, out newValue)
+                        if (!(TryNLogSpecificConversion(propertyType, value, configurationItemFactory, out newValue)
+                              || TryGetEnumValue(propertyType, value, out newValue)
                               || TryImplicitConversion(propertyType, value, out newValue)
                               || TryTypeConverterConversion(propertyType, value, out newValue)))
                         {

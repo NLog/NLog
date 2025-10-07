@@ -187,7 +187,7 @@ namespace NLog.Config
             return false;
         }
 
-        private static object ConvertGuid(string? format, string propertyString)
+        private static Guid ConvertGuid(string? format, string propertyString)
         {
 #if !NET35
             return string.IsNullOrEmpty(format) ? Guid.Parse(propertyString) : Guid.ParseExact(propertyString, format);
@@ -196,7 +196,7 @@ namespace NLog.Config
 #endif
         }
 
-        internal static object? ConvertToCultureInfo(string? stringValue)
+        internal static CultureInfo? ConvertToCultureInfo(string? stringValue)
         {
             if (StringHelpers.IsNullOrWhiteSpace(stringValue))
                 return null;
@@ -207,7 +207,7 @@ namespace NLog.Config
             return new CultureInfo(stringValue);
         }
 
-        internal static object ConvertToEncoding(string stringValue)
+        internal static System.Text.Encoding ConvertToEncoding(string stringValue)
         {
             stringValue = stringValue.Trim();
             if (string.Equals(stringValue, nameof(System.Text.Encoding.UTF8), StringComparison.OrdinalIgnoreCase))
@@ -215,7 +215,7 @@ namespace NLog.Config
             return System.Text.Encoding.GetEncoding(stringValue);
         }
 
-        private static object ConvertToTimeSpan(string? format, IFormatProvider? formatProvider, string propertyString)
+        private static TimeSpan ConvertToTimeSpan(string? format, IFormatProvider? formatProvider, string propertyString)
         {
 #if !NET35
             if (!string.IsNullOrEmpty(format))
@@ -226,14 +226,14 @@ namespace NLog.Config
 #endif
         }
 
-        private static object ConvertToDateTimeOffset(string? format, IFormatProvider? formatProvider, string propertyString)
+        private static DateTimeOffset ConvertToDateTimeOffset(string? format, IFormatProvider? formatProvider, string propertyString)
         {
             if (!string.IsNullOrEmpty(format))
                 return DateTimeOffset.ParseExact(propertyString, format, formatProvider);
             return DateTimeOffset.Parse(propertyString, formatProvider);
         }
 
-        private static object ConvertToDateTime(string? format, IFormatProvider? formatProvider, string propertyString)
+        private static DateTime ConvertToDateTime(string? format, IFormatProvider? formatProvider, string propertyString)
         {
             if (!string.IsNullOrEmpty(format))
                 return DateTime.ParseExact(propertyString, format, formatProvider);
