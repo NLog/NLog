@@ -163,9 +163,10 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
-                    if (maxListCount > 0 && _list.Count >= maxListCount)
+                    if (maxListCount > 0)
                     {
-                        _list.RemoveAt(0);
+                        while (_list.Count >= maxListCount)
+                            _list.RemoveAt(0);
                     }
                     _list.Add(item);
                 }
@@ -192,15 +193,6 @@ namespace NLog.Targets
                 lock (_list)
                 {
                     _list.CopyTo(array, arrayIndex);
-                }
-            }
-
-            public IEnumerator<T> GetEnumerator()
-            {
-                lock (_list)
-                {
-                    foreach (var item in _list)
-                        yield return item;
                 }
             }
 
@@ -233,6 +225,15 @@ namespace NLog.Targets
                 lock (_list)
                 {
                     _list.RemoveAt(index);
+                }
+            }
+
+            public IEnumerator<T> GetEnumerator()
+            {
+                lock (_list)
+                {
+                    foreach (var item in _list)
+                        yield return item;
                 }
             }
 
