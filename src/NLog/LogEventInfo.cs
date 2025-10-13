@@ -69,7 +69,7 @@ namespace NLog
         private object?[]? _parameters;
         private IFormatProvider? _formatProvider;
         private LogMessageFormatter? _messageFormatter;
-        private IDictionary<Layout, object?>? _layoutCache;
+        private LayoutCacheLinkedNode? _layoutCache;
         private PropertiesDictionary? _properties;
         private int _sequenceId;
 
@@ -622,35 +622,35 @@ namespace NLog
 
         internal void AddCachedLayoutValue(Layout layout, object? value)
         {
-            if (_layoutCache is null)
+            var newNode = new LayoutCacheLinkedNode(layout, value);
+            var nodeHead = _layoutCache;
+
+            do
             {
-                var dictionary = new Dictionary<Layout, object?>();
-                dictionary[layout] = value; // Faster than collection initializer
-                if (Interlocked.CompareExchange(ref _layoutCache, dictionary, null) is null)
-                {
-                    return; // No need to use lock
-                }
+                if (nodeHead != null && TryGetCachedLayoutValue(layout, out _))
+                    return; // Best effort to avoid adding duplicate
+
+                newNode.Next = nodeHead;
+                nodeHead = Interlocked.CompareExchange(ref _layoutCache, newNode, nodeHead);
             }
-            lock (_layoutCache)
-            {
-                _layoutCache[layout] = value;
-            }
+            while (!ReferenceEquals(nodeHead, newNode.Next));
         }
 
         internal bool TryGetCachedLayoutValue(Layout layout, out object? value)
         {
-            if (_layoutCache is null)
+            var nodeHead = _layoutCache;
+            while (nodeHead != null)
             {
-                // We don't need lock to see if dictionary has been created
-                value = null;
-                return false;
+                if (ReferenceEquals(nodeHead.Key, layout))
+                {
+                    value = nodeHead.Value;
+                    return true;
+                }
+                nodeHead = nodeHead.Next;
             }
 
-            lock (_layoutCache)
-            {
-                // dictionary is always non-empty when created
-                return _layoutCache.TryGetValue(layout, out value);
-            }
+            value = null;
+            return false;
         }
 
         private static bool NeedToPreformatMessage(object?[]? parameters)
@@ -840,6 +840,19 @@ namespace NLog
             }
 
             return _properties.MessageProperties.Count == 0;
+        }
+
+        private sealed class LayoutCacheLinkedNode
+        {
+            public readonly Layout Key;
+            public readonly object? Value;
+            public LayoutCacheLinkedNode? Next;
+
+            public LayoutCacheLinkedNode(Layout key, object? value)
+            {
+                Key = key;
+                Value = value;
+            }
         }
     }
 }
