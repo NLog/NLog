@@ -92,14 +92,16 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(XmlElement), "element")]
-        public IList<XmlElement> Elements { get; } = new List<XmlElement>();
+        public IList<XmlElement> Elements => _elements;
+        private readonly List<XmlElement> _elements = new List<XmlElement>();
 
         /// <summary>
         /// Gets the array of 'attributes' configurations for the element
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(XmlAttribute), "attribute")]
-        public IList<XmlAttribute> Attributes { get; } = new List<XmlAttribute>();
+        public IList<XmlAttribute> Attributes => _attributes;
+        private readonly List<XmlAttribute> _attributes = new List<XmlAttribute>();
 
         /// <summary>
         /// Gets the collection of context properties that should be included with the other properties.
@@ -250,10 +252,10 @@ namespace NLog.Layouts
             if (IncludeEventProperties)
                 ThreadAgnosticImmutable = true;
 
-            if (Attributes.Count > 0)
+            if (_attributes.Count > 0)
             {
                 HashSet<string> attributeValidator = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                foreach (var attribute in Attributes)
+                foreach (var attribute in _attributes)
                 {
                     if (string.IsNullOrEmpty(attribute.Name))
                         throw new NLogConfigurationException($"XmlElement(Name={ElementNameInternal}): Contains invalid XmlAttribute with unassigned Name-property");
@@ -269,7 +271,7 @@ namespace NLog.Layouts
                 }
             }
 
-            if (ContextProperties != null && ContextProperties.Count > 0)
+            if (ContextProperties != null)
             {
                 foreach (var contextProperty in ContextProperties)
                 {
@@ -279,7 +281,7 @@ namespace NLog.Layouts
             }
 
             var innerLayouts = LayoutWrapper.Inner is null ? ArrayHelper.Empty<Layout>() : new[] { LayoutWrapper.Inner };
-            _precalculateLayouts = (IncludeEventProperties || IncludeScopeProperties) ? null : ResolveLayoutPrecalculation(Attributes.Select(atr => atr.Layout).Concat(Elements.Where(elm => elm.Layout != null).Select(elm => elm.Layout)).Concat(ContextProperties?.Select(ctx => ctx.Layout) ?? Enumerable.Empty<Layout>()).Concat(innerLayouts));
+            _precalculateLayouts = (IncludeEventProperties || IncludeScopeProperties) ? null : ResolveLayoutPrecalculation(_attributes.Select(atr => atr.Layout).Concat(_elements.Where(elm => elm.Layout != null).Select(elm => elm.Layout)).Concat(ContextProperties?.Select(ctx => ctx.Layout) ?? Enumerable.Empty<Layout>()).Concat(innerLayouts));
         }
 
         /// <inheritdoc/>
@@ -318,9 +320,8 @@ namespace NLog.Layouts
             // Attributes without element-names should be added to the top XML element
             if (!string.IsNullOrEmpty(ElementNameInternal))
             {
-                for (int i = 0; i < Attributes.Count; i++)
+                foreach (var attribute in _attributes)
                 {
-                    var attribute = Attributes[i];
                     int beforeAttributeLength = sb.Length;
                     if (!RenderAppendXmlAttributeValue(attribute, logEvent, sb, sb.Length == orgLength))
                     {
@@ -361,11 +362,8 @@ namespace NLog.Layouts
                     sb.AppendLine();
             }
 
-            //Memory profiling pointed out that using a foreach-loop was allocating
-            //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < Elements.Count; i++)
+            foreach (var element in _elements)
             {
-                var element = Elements[i];
                 int beforeAttributeLength = sb.Length;
                 if (!RenderAppendXmlElementValue(element, logEvent, sb, sb.Length == orgLength))
                 {
@@ -387,7 +385,7 @@ namespace NLog.Layouts
             if (!ReferenceEquals(innerText, null) && !ReferenceEquals(innerText, Layout.Empty))
                 return true;
 
-            if (Elements.Count > 0)
+            if (_elements.Count > 0)
                 return true;
 
             if (ContextProperties?.Count > 0)
@@ -801,12 +799,14 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         public override string ToString()
         {
-            if (Elements.Count > 0)
-                return ToStringWithNestedItems(Elements, l => l.ToString());
-            else if (Attributes.Count > 0)
-                return ToStringWithNestedItems(Attributes, a => "Attributes:" + a.Name);
-            else if (ElementNameInternal != null)
-                return ToStringWithNestedItems(new[] { this }, n => "Element:" + n.ElementNameInternal);
+            if (_elements.Count > 0)
+                return ToStringWithNestedItems(_elements, l => string.IsNullOrEmpty(l.ElementNameInternal) ? l.ToString() : ("TagName=" + l.ElementNameInternal));
+            else if (!string.IsNullOrEmpty(ElementNameInternal))
+                return ToStringWithNestedItems(new[] { this }, l => "TagName=" + l.ElementNameInternal);
+            else if (_attributes.Count > 0)
+                return ToStringWithNestedItems(_attributes, a => "Attribute=" + a.Name);
+            else if (ContextProperties != null && ContextProperties.Count > 0)
+                return ToStringWithNestedItems(ContextProperties, n => "Property=" + n.Name);
             else
                 return GetType().Name;
         }

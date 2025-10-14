@@ -4,6 +4,23 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.0.5 (2025/10/09)
+
+**Improvements**
+- [#5998](https://github.com/NLog/NLog/pull/5998) FileTarget - Rolling to next directory should not fail. (@snakefoot)
+- [#6013](https://github.com/NLog/NLog/pull/6013) ValueFormatter - Skip quotes for CaptureType.Stringify unless legacy mode. (@snakefoot)
+- [#6007](https://github.com/NLog/NLog/pull/6007) ColoredConsoleTarget - Use Span to reduce string-allocation for word-highlighting. (@snakefoot)
+- [#6009](https://github.com/NLog/NLog/pull/6009) NullTarget - Avoid string-allocation upfront when FormatMessage = true. (@snakefoot)
+- [#6012](https://github.com/NLog/NLog/pull/6012) XmlLoggingConfiguration - Reduce output for InternalLogger Info-Level. (@snakefoot)
+- [#6006](https://github.com/NLog/NLog/pull/6006) XmlLoggingConfiguration - Protect against double dispose of AutoReloadConfigFileWatcher. (@snakefoot)
+- [#6008](https://github.com/NLog/NLog/pull/6008) LoggerImpl - Merge WriteToTargetWithFilterChain into Write. (@snakefoot)
+- [#6010](https://github.com/NLog/NLog/pull/6010) LoggingConfiguration - Redirect AddRuleForOneLevel and AddRuleForAllLevels to AddRule. (@snakefoot)
+- [#6011](https://github.com/NLog/NLog/pull/6011) LoggingRule - Align EnableLoggingForLevels to skip when minLevel is LogLevel.Off. (@snakefoot)
+- [#6015](https://github.com/NLog/NLog/pull/6015) CompoundLayout - Changed to foreach for better release optimizations. (@snakefoot)
+- [#6016](https://github.com/NLog/NLog/pull/6016) CsvLayout - Changed to foreach for better release optimizations. (@snakefoot)
+- [#6017](https://github.com/NLog/NLog/pull/6017) JsonArrayLayout - Changed to foreach for better release optimizations. (@snakefoot)
+- [#6018](https://github.com/NLog/NLog/pull/6018) XmlLayout - Changed to foreach for better release optimizations. (@snakefoot)
+
 ### Version 6.0.4 (2025/09/11)
 
 **Improvements**

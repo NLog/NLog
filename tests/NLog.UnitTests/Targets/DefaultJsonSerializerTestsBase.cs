@@ -518,7 +518,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("{\"Name\":\"test name\"}", actual);
         }
 
-#if !NET35 && !NET45
+#if !NET35 && !NET40 && !NET45
         [Fact]
         public void SerializeValueTuple_Test()
         {

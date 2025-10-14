@@ -670,15 +670,15 @@ namespace NLog.Targets
             {
                 if (RequiresJsonEscape(builder[i], escapeUnicode))
                 {
-                    var str = builder.ToString(startPos, builder.Length - startPos);
+                    var str = builder.ToString(startPos, builderLength - startPos);
                     builder.Length = startPos;
-                    Targets.DefaultJsonSerializer.AppendStringEscape(builder, str, escapeUnicode);
+                    AppendStringEscape(builder, str, escapeUnicode);
                     break;
                 }
             }
         }
 
-        internal static bool RequiresJsonEscape(char ch, bool escapeUnicode)
+        private static bool RequiresJsonEscape(char ch, bool escapeUnicode)
         {
             if (ch < 32)
                 return true;

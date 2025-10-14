@@ -241,7 +241,7 @@ namespace NLog.LayoutRenderers
             {
                 return true;
             }
-#if !NET35
+#if !NET35 && !NET40
             else if (propertyList is IReadOnlyDictionary<string, object>)
             {
                 return true;
