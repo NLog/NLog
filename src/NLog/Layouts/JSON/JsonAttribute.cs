@@ -162,39 +162,39 @@ namespace NLog.Layouts
 
         internal bool RenderAppendJsonValue(LogEventInfo logEvent, IJsonConverter jsonConverter, StringBuilder builder)
         {
-            if (ValueType is null)
+            if (!Encode)
             {
-                if (Encode)
-                {
-                    // "\"{0}\":{1}\"{2}\""
-                    builder.Append('"');
-                }
-
-                int orgLength = builder.Length;
-                Layout?.Render(logEvent, builder);
-                if (!IncludeEmptyValue && builder.Length <= orgLength)
-                {
+                var valueStart = builder.Length;
+                if (!RenderAppendJsonValue(logEvent, builder, valueStart))
                     return false;
-                }
-
-                if (Encode)
-                {
-                    Targets.DefaultJsonSerializer.PerformJsonEscapeWhenNeeded(builder, orgLength, EscapeUnicode);
-                    builder.Append('"');
-                }
             }
+            else if (ValueType is null)
+            {
+                builder.Append('"');
+
+                var valueStart = builder.Length;
+                if (!RenderAppendJsonValue(logEvent, builder, valueStart))
+                    return false;
+
+                Targets.DefaultJsonSerializer.PerformJsonEscapeWhenNeeded(builder, valueStart, EscapeUnicode);
+                builder.Append('"');
+}
             else
             {
                 var objectValue = _layoutInfo.RenderValue(logEvent);
                 if (!IncludeEmptyValue && Internal.StringHelpers.IsNullOrEmptyString(objectValue))
-                {
                     return false;
-                }
 
                 jsonConverter.SerializeObject(objectValue, builder);
             }
 
             return true;
+        }
+
+        private bool RenderAppendJsonValue(LogEventInfo logEvent, StringBuilder builder, int valueStart)
+        {
+            Layout.Render(logEvent, builder);
+            return IncludeEmptyValue || builder.Length > valueStart;
         }
     }
 }
