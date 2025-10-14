@@ -309,11 +309,7 @@ namespace NLog.Layouts
 
             foreach (var attribute in _attributes)
             {
-                int beforeAttribLength = sb.Length;
-                if (!RenderAppendJsonPropertyValue(attribute, logEvent, sb, beforeAttribLength == orgLength))
-                {
-                    sb.Length = beforeAttribLength;
-                }
+                RenderAppendJsonPropertyValue(attribute, logEvent, sb, sb.Length == orgLength);
             }
 
             if (IncludeGdc)
@@ -453,11 +449,11 @@ namespace NLog.Layouts
 
                 BeginJsonProperty(sb, propName, beginJsonMessage, true);
 
-                int originalStart = sb.Length;
                 sb.Append('"');
+                int valueStart = sb.Length;
                 ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
+                Targets.DefaultJsonSerializer.PerformJsonEscapeWhenNeeded(sb, valueStart, false);
                 sb.Append('"');
-                PerformJsonEscapeIfNeeded(sb, originalStart);
             }
             else
             {
@@ -465,36 +461,14 @@ namespace NLog.Layouts
             }
         }
 
-        private static void PerformJsonEscapeIfNeeded(StringBuilder sb, int valueStart)
+        private void RenderAppendJsonPropertyValue(JsonAttribute attrib, LogEventInfo logEvent, StringBuilder sb, bool beginJsonMessage)
         {
-            var builderLength = sb.Length;
-            if (builderLength - valueStart <= 2)
-                return;
-
-            for (int i = valueStart + 1; i < builderLength - 1; ++i)
-            {
-                if (Targets.DefaultJsonSerializer.RequiresJsonEscape(sb[i], false))
-                {
-                    var jsonEscape = sb.ToString(valueStart + 1, sb.Length - valueStart - 2);
-                    sb.Length = valueStart;
-                    sb.Append('"');
-                    Targets.DefaultJsonSerializer.AppendStringEscape(sb, jsonEscape, false);
-                    sb.Append('"');
-                    break;
-                }
-            }
-        }
-
-        private bool RenderAppendJsonPropertyValue(JsonAttribute attrib, LogEventInfo logEvent, StringBuilder sb, bool beginJsonMessage)
-        {
+            var initialLength = sb.Length;
             BeginJsonProperty(sb, attrib.Name, beginJsonMessage, false);
-
             if (!attrib.RenderAppendJsonValue(logEvent, JsonConverter, sb))
             {
-                return false;
+                sb.Length = initialLength;
             }
-
-            return true;
         }
 
         /// <inheritdoc/>
