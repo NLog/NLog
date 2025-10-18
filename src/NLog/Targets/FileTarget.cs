@@ -820,7 +820,7 @@ namespace NLog.Targets
             if (currentFileSize == 0 || currentFileSize + 1 < ArchiveAboveSize)
                 return false;
 
-            InternalLogger.Debug("{0}: Archive because of filesize={1} of file: {2}", this, currentFileSize, fileAppender.FilePath);
+            InternalLogger.Debug("{0}: Archive because of rolling filesize={1} for file: {2}", this, currentFileSize, fileAppender.FilePath);
             return true;
         }
 
@@ -830,7 +830,7 @@ namespace NLog.Targets
             if (nextArchiveTime >= firstLogEvent.TimeStamp)
                 return false;
 
-            InternalLogger.Debug("{0}: Archive because of filetime of file: {1}", this, fileAppender.FilePath);
+            InternalLogger.Debug("{0}: Archive because of rolling filetime={1} for file: {2}", this, nextArchiveTime, fileAppender.FilePath);
             return true;
         }
 

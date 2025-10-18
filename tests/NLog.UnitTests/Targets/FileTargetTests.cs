@@ -3605,8 +3605,14 @@ namespace NLog.UnitTests.Targets
         [InlineData("yyyy-MM-dd")]
         public void MaxArchiveFilesWithDateFormatTest(string archiveDateFormat)
         {
-            TestMaxArchiveFilesWithDate(2, 2, archiveDateFormat, true);
-            TestMaxArchiveFilesWithDate(2, 2, archiveDateFormat, false);
+            TestMaxArchiveFilesWithDate(30, 2, 2, archiveDateFormat, true);
+            TestMaxArchiveFilesWithDate(30, 2, 2, archiveDateFormat, false);
+        }
+
+        [Fact]
+        public void MaxArchiveFilesWithWeekday()
+        {
+            TestMaxArchiveFilesWithDate(7, 7, 7, "ddd", true);
         }
 
         /// <summary>
@@ -3616,7 +3622,7 @@ namespace NLog.UnitTests.Targets
         /// <param name="expectedArchiveFiles">expected count of archived files</param>
         /// <param name="dateFormat">date format</param>
         /// <param name="changeCreationAndWriteTime">change file creation/last write date</param>
-        private static void TestMaxArchiveFilesWithDate(int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
+        private static void TestMaxArchiveFilesWithDate(int generateFilesCount, int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
             string tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             string archivePath = Path.Combine(tempDir, "archive");
@@ -3631,29 +3637,32 @@ namespace NLog.UnitTests.Targets
                 string fileExt = ".log";
                 DateTime now = DateTime.Now;
                 int i = 0;
-                foreach (string filePath in ArchiveFileNamesGenerator(archivePath, "{0:" + dateFormat + "}" + fileExt).Take(30))
+                foreach (string filePath in ArchiveFileNamesGenerator(archivePath, "{0:" + dateFormat + "}" + fileExt).Skip(1).Take(generateFilesCount))
                 {
+                    var time = now.AddDays(i--);
+
                     File.WriteAllLines(filePath, new[] { "test archive ", "=====", filePath });
-                    var time = now.AddDays(i);
                     if (changeCreationAndWriteTime)
                     {
                         File.SetCreationTime(filePath, time);
                         File.SetLastWriteTime(filePath, time);
                     }
-                    i--;
                 }
+
+                File.WriteAllLines(Path.Combine(tempDir, "app" + fileExt), new[] { "test archive ", "=====", Path.Combine(archivePath, now.ToString(dateFormat) + fileExt) });
 
                 //create config with archiving
                 var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog throwExceptions='true' >
                     <targets>
                        <target name='fileAll' type='File'
-                            fileName='" + tempDir + @"/${date:format=yyyyMMdd-HHmm}" + fileExt + @"'
+                            fileName='" + tempDir + @"/app" + fileExt + @"'
                             layout='${message}'
-                            archiveEvery='minute'
+                            archiveEvery='Day'
+                            archiveOldFileOnStartup='true'
                             maxArchiveFiles='" + maxArchiveFilesConfig + @"'
-                            archiveFileName='" + archivePath + @"/{#}.log'
-                            archiveDateFormat='" + dateFormat + @"' />
+                            archiveFileName='" + Path.Combine(archivePath, fileExt) + @"'
+                            archiveSuffixFormat='{1:" + dateFormat + @"}' />
                     </targets>
                     <rules>
                       <logger name='*' writeTo='fileAll' />
@@ -3664,8 +3673,11 @@ namespace NLog.UnitTests.Targets
                 var logger = LogManager.GetCurrentClassLogger();
                 logger.Info("test");
 
-                var currentFilesCount = archiveDir.GetFiles().Length;
-                Assert.Equal(expectedArchiveFiles, currentFilesCount);
+                var currentFiles = archiveDir.GetFiles();
+                Assert.Equal(expectedArchiveFiles, currentFiles.Length);
+                var expectedFileSize = currentFiles.Min(f => f.Length);
+                foreach (var file in currentFiles)
+                    Assert.True(file.Length > 0 && file.Length <= expectedFileSize, $"{file.Length} > {expectedFileSize}");
 
                 LogManager.Configuration = null;    // Flush
             }
