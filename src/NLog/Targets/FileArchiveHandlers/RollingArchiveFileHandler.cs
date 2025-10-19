@@ -57,6 +57,7 @@ namespace NLog.Targets.FileArchiveHandlers
             {
                 var newFilePath = FileTarget.CleanFullFilePath(newFileName);
                 var parseArchiveSequenceNo = !Path.GetFileNameWithoutExtension(newFilePath).Any(c => char.IsDigit(c));
+                bool initialFileExists = initialFileOpen && File.Exists(newFilePath);
                 bool deletedOldFiles = DeleteOldFilesBeforeArchive(newFilePath, initialFileOpen, parseArchiveSequenceNo);
 
                 if (_fileTarget.MaxArchiveFiles == 0 || _fileTarget.MaxArchiveFiles == 1 || (initialFileOpen && _fileTarget.DeleteOldFileOnStartup))
@@ -66,6 +67,11 @@ namespace NLog.Targets.FileArchiveHandlers
                         FixWindowsFileSystemTunneling(newFilePath);
                     }
                     return 0;
+                }
+
+                if (initialFileExists && deletedOldFiles)
+                {
+                    FixWindowsFileSystemTunneling(newFilePath);
                 }
             }
 

@@ -2714,6 +2714,78 @@ namespace NLog.UnitTests.Targets
         [Theory]
         [InlineData(false)]
         [InlineData(true)]
+        public void FileTarget_MaxArchiveDays_NewStyle_RollWhenOld(bool reloadConfig)
+        {
+            if (IsLinux())
+            {
+                Console.WriteLine("[SKIP] FileTarget_MaxArchiveDays_NewStyle_RollWhenOld because SetCreationTime is not working on Travis");
+                return;
+            }
+
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+            var logFile = Path.Combine(tempDir, "Application");
+            var tempDirectory = new DirectoryInfo(tempDir);
+
+            try
+            {
+                tempDirectory.Create();
+
+                //same dateformat as in config
+                DateTime now = DateTime.Now;
+                int i = 0;
+                foreach (string filePath in ArchiveFileNamesGenerator(tempDir, "Application_{0:ddd}.log").Skip(1).Take(8))
+                {
+                    var time = now.AddDays(--i);
+                    File.WriteAllLines(filePath, new[] { "test archive ", "=====", filePath });
+                    File.SetCreationTime(filePath, time);
+                    File.SetLastWriteTime(filePath, time);
+                }
+
+                var fileTarget = new FileTarget
+                {
+                    FileName = logFile + "_${date:format=ddd}.log",
+                    Layout = "${message}",
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveAboveSize = 7,
+                    MaxArchiveDays = 6,
+                };
+
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+
+                logger.Debug("aaaa");
+                if (reloadConfig)
+                    LogManager.Setup().ReloadConfiguration();
+                logger.Debug("bbbb");    // Not roll (new style so all agree when rolling)
+                logger.Debug("cccc");    // Roll
+                logger.Debug("dddd");    // Not roll (new style so all agree when rolling)
+                logger.Debug("eeee");    // Roll
+                logger.Debug("ffff");    // Not roll (new style so all agree when rolling)
+                if (reloadConfig)
+                    LogManager.Setup().ReloadConfiguration();
+                logger.Debug("gggg");    // Roll
+
+                LogManager.Configuration = null;    // Flush
+
+                var weekDay = "_" + now.ToString("ddd");
+                AssertFileContents(logFile + weekDay + ".log", "aaaa\nbbbb\n", Encoding.UTF8);
+                AssertFileContents(logFile + weekDay + "_01.log", "cccc\ndddd\n", Encoding.UTF8);
+                AssertFileContents(logFile + weekDay + "_02.log", "eeee\nffff\n", Encoding.UTF8);
+                AssertFileContents(logFile + weekDay + "_03.log", "gggg\n", Encoding.UTF8);
+                Assert.Equal(10, tempDirectory.GetFiles().Length);
+            }
+            finally
+            {
+                if (tempDirectory.Exists)
+                {
+                    tempDirectory.Delete(true);
+                }
+            }
+        }
+
+
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
         public void FileTarget_ArchiveAboveSize_NewStyle_RollWhenFull(bool reloadConfig)
         {
             var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
@@ -4300,7 +4372,6 @@ namespace NLog.UnitTests.Targets
                 var oldTime = DateTime.Now.AddDays(-2);
                 File.SetCreationTime(logFile, oldTime);
                 File.SetLastWriteTime(logFile, oldTime);
-                File.SetLastAccessTime(logFile, oldTime);
 
                 //write to archive directly
                 var archiveDateFormat = "yyyy-MM-dd";
@@ -4361,7 +4432,6 @@ namespace NLog.UnitTests.Targets
                 var oldTime = DateTime.Now.AddDays(-2);
                 File.SetCreationTime(logFile, oldTime);
                 File.SetLastWriteTime(logFile, oldTime);
-                File.SetLastAccessTime(logFile, oldTime);
 
                 //write to archive directly
                 var archiveDateFormat = "yyyyMMdd";
