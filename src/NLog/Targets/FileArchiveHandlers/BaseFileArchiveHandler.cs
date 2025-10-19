@@ -72,12 +72,12 @@ namespace NLog.Targets.FileArchiveHandlers
                 var directoryInfo = new DirectoryInfo(fileDirectory);
                 if (!directoryInfo.Exists)
                 {
-                    InternalLogger.Debug("{0}: Archive Cleanup found no files matching wildcard {1} in directory: {2}", _fileTarget, fileWildcard, fileDirectory);
+                    InternalLogger.Debug("{0}: Archive cleanup found no files matching wildcard '{1}' in directory: {2}", _fileTarget, fileWildcard, fileDirectory);
                     return false;
                 }
 
                 var fileInfos = directoryInfo.GetFiles(fileWildcard);
-                InternalLogger.Debug("{0}: Archive Cleanup found {1} files matching wildcard {2} in directory: {3}", _fileTarget, fileInfos.Length, fileWildcard, fileDirectory);
+                InternalLogger.Debug("{0}: Archive cleanup found {1} files matching wildcard '{2}' in directory: {3}", _fileTarget, fileInfos.Length, fileWildcard, fileDirectory);
                 if (fileInfos.Length == 0)
                     return false;
 
@@ -166,7 +166,7 @@ namespace NLog.Targets.FileArchiveHandlers
                 {
                     var archiveFileName = fileInfo.Name;
 
-                    if (ExcludeFileName(archiveFileName, fileWildcardStartIndex, fileWildcardEndIndex, null))
+                    if (ExcludeFileName(archiveFileName, fileWildcardStartIndex, fileWildcardEndIndex, true, null))
                         continue;
 
                     if (TryParseStartSequenceNumber(archiveFileName, fileWildcardStartIndex, fileWildcardEndIndex, out var archiveSequenceNo))
@@ -189,7 +189,7 @@ namespace NLog.Targets.FileArchiveHandlers
             {
                 if (fileInfos.Length <= 1)
                 {
-                    if (maxArchiveFiles == 0 && fileInfos.Length == 1 && !ExcludeFileName(fileInfos[0].Name, fileWildcardStartIndex, fileWildcardEndIndex, excludeFileName))
+                    if (maxArchiveFiles == 0 && fileInfos.Length == 1 && !ExcludeFileName(fileInfos[0].Name, fileWildcardStartIndex, fileWildcardEndIndex, parseArchiveSequenceNo, excludeFileName))
                         yield return fileInfos[0];
                     yield break;
                 }
@@ -201,7 +201,7 @@ namespace NLog.Targets.FileArchiveHandlers
                 foreach (var fileInfo in fileInfos)
                 {
                     var archiveFileName = fileInfo.Name;
-                    if (ExcludeFileName(archiveFileName, fileWildcardStartIndex, fileWildcardEndIndex, excludeFileName))
+                    if (ExcludeFileName(archiveFileName, fileWildcardStartIndex, fileWildcardEndIndex, parseArchiveSequenceNo, excludeFileName))
                         continue;
 
                     var fileCreatedTimeUtc = FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo);
@@ -225,9 +225,9 @@ namespace NLog.Targets.FileArchiveHandlers
                 }
             }
 
-            private static bool ExcludeFileName(string archiveFileName, int fileWildcardStartIndex, int fileWildcardEndIndex, string? excludeFileName)
+            private static bool ExcludeFileName(string archiveFileName, int fileWildcardStartIndex, int fileWildcardEndIndex, bool parseArchiveSequenceNo, string? excludeFileName)
             {
-                if (fileWildcardStartIndex >= 0 && fileWildcardEndIndex > 0)
+                if (fileWildcardStartIndex >= 0 && fileWildcardEndIndex > 0 && parseArchiveSequenceNo)
                 {
                     for (int i = fileWildcardStartIndex; i <= archiveFileName.Length - fileWildcardEndIndex; ++i)
                     {
@@ -253,7 +253,7 @@ namespace NLog.Targets.FileArchiveHandlers
                     var fileAgeDays = (currentDateUtc - NLog.Time.TimeSource.Current.FromSystemTime(existingArchiveFile.FileCreatedTimeUtc).Date).TotalDays;
                     if (fileAgeDays > maxArchiveDays)
                     {
-                        InternalLogger.Debug("FileTarget: Detected old file in archive. FileName={0}, FileDateUtc={1:u}, CurrentDateUtc={2:u}, Age={3} days", existingArchiveFile.FileInfo.FullName, existingArchiveFile.FileCreatedTimeUtc, currentDateUtc, Math.Round(fileAgeDays, 1));
+                        InternalLogger.Debug("FileTarget: Archive contains old file: {0} , Age={1} days, FileDateUtc={2:u}, CurrentDateUtc={3:u}", existingArchiveFile.FileInfo.FullName, Math.Round(fileAgeDays, 1), existingArchiveFile.FileCreatedTimeUtc, currentDateUtc);
                         return true;
                     }
                 }
@@ -354,7 +354,7 @@ namespace NLog.Targets.FileArchiveHandlers
             {
                 try
                 {
-                    InternalLogger.Info("{0}: Cleanup file archive {1}. Delete file: '{2}'.", _fileTarget, archiveCleanupReason, filepath);
+                    InternalLogger.Info("{0}: Cleanup file archive {1}. Delete file: '{2}'", _fileTarget, archiveCleanupReason, filepath);
                     _fileTarget.CloseOpenFileBeforeArchiveCleanup(filepath);
                     File.Delete(filepath);
                     return true;
@@ -379,7 +379,7 @@ namespace NLog.Targets.FileArchiveHandlers
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Warn(ex, "{0}: Failed to delete old archive file: '{1}'.", _fileTarget, filepath);
+                    InternalLogger.Warn(ex, "{0}: Failed to delete old archive file: '{1}'", _fileTarget, filepath);
                     if (ex.MustBeRethrown(_fileTarget))
                         throw;
 
@@ -404,7 +404,7 @@ namespace NLog.Targets.FileArchiveHandlers
             }
             catch (Exception ex)
             {
-                InternalLogger.Debug(ex, "{0}: Failed to refresh CreationTimeUtc for FileName: {1}", _fileTarget, newFilePath);
+                InternalLogger.Debug(ex, "{0}: Failed to refresh CreationTimeUtc for file: {1}", _fileTarget, newFilePath);
             }
         }
     }

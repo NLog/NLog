@@ -172,7 +172,7 @@ namespace NLog.Targets.FileArchiveHandlers
             if (!File.Exists(archiveFullPath))
             {
                 // Move active file to archive
-                InternalLogger.Info("{0}: Move file from '{1}' to '{2}'", _fileTarget, newFileInfo.FullName, archiveFullPath);
+                InternalLogger.Info("{0}: Archive moving file from '{1}' to '{2}'", _fileTarget, newFileInfo.FullName, archiveFullPath);
                 File.Move(newFileInfo.FullName, archiveFullPath);
                 return true;
             }
@@ -201,7 +201,7 @@ namespace NLog.Targets.FileArchiveHandlers
         private void ArchiveFileAppendExisting(string newFilePath, string archiveFilePath)
         {
             // TODO Handle double footer
-            InternalLogger.Info("{0}: Already exists, append to {1}", _fileTarget, archiveFilePath);
+            InternalLogger.Info("{0}: Archive appending to already existing file: {1}", _fileTarget, archiveFilePath);
 
             var fileShare = FileShare.Read | FileShare.Delete;
             using (FileStream newFileStream = File.Open(newFilePath, FileMode.Open, FileAccess.ReadWrite, fileShare))
