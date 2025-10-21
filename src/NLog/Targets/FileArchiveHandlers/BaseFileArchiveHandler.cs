@@ -81,11 +81,9 @@ namespace NLog.Targets.FileArchiveHandlers
                 if (fileInfos.Length == 0)
                     return false;
 
-                var maxArchiveFiles = _fileTarget.MaxArchiveFiles;
-                if (initialFileOpen && (!_fileTarget.ArchiveOldFileOnStartup || _fileTarget.DeleteOldFileOnStartup))
-                    maxArchiveFiles = _fileTarget.DeleteOldFileOnStartup ? 0 : maxArchiveFiles;
-                else if (maxArchiveFiles > 0)
-                    maxArchiveFiles -= 1;
+                int maxArchiveFiles = ResolveMaxArchiveFiles(initialFileOpen);
+                if (maxArchiveFiles >= fileInfos.Length && _fileTarget.MaxArchiveDays <= 0)
+                    return false;
 
                 var archiveCleanupReason = (_fileTarget.MaxArchiveFiles < 0 && _fileTarget.MaxArchiveDays > 0) ? $"MaxArchiveDays={_fileTarget.MaxArchiveDays}" : $"MaxArchiveFiles={_fileTarget.MaxArchiveFiles}";
                 if (initialFileOpen && _fileTarget.DeleteOldFileOnStartup)
@@ -111,6 +109,16 @@ namespace NLog.Targets.FileArchiveHandlers
             }
 
             return false;
+        }
+
+        private int ResolveMaxArchiveFiles(bool initialFileOpen)
+        {
+            var maxArchiveFiles = _fileTarget.MaxArchiveFiles;
+            if (initialFileOpen && (!_fileTarget.ArchiveOldFileOnStartup || _fileTarget.DeleteOldFileOnStartup))
+                maxArchiveFiles = _fileTarget.DeleteOldFileOnStartup ? 0 : maxArchiveFiles;
+            else if (maxArchiveFiles > 0)
+                maxArchiveFiles -= 1;
+            return maxArchiveFiles;
         }
 
         protected static int? GetMaxArchiveSequenceNo(FileInfo[] fileInfos, int fileWildcardStartIndex, int fileWildcardEndIndex)
@@ -187,15 +195,19 @@ namespace NLog.Targets.FileArchiveHandlers
             /// </summary>
             public static IEnumerable<FileInfo> CleanupFiles(FileInfo[] fileInfos, int maxArchiveFiles, int maxArchiveDays, int fileWildcardStartIndex, int fileWildcardEndIndex, bool parseArchiveSequenceNo, string? excludeFileName = null)
             {
-                if (fileInfos.Length <= 1)
+                if (fileInfos.Length == 1)
                 {
-                    if (maxArchiveFiles == 0 && fileInfos.Length == 1 && !ExcludeFileName(fileInfos[0].Name, fileWildcardStartIndex, fileWildcardEndIndex, parseArchiveSequenceNo, excludeFileName))
+                    var archiveFileName = fileInfos[0].Name;
+                    if (ExcludeFileName(archiveFileName, fileWildcardStartIndex, fileWildcardEndIndex, parseArchiveSequenceNo, excludeFileName))
+                    {
+                        yield break;
+                    }
+                    else if (maxArchiveFiles == 0)
+                    {
                         yield return fileInfos[0];
-                    yield break;
+                        yield break;
+                    }
                 }
-
-                if (maxArchiveFiles >= fileInfos.Length && maxArchiveDays <= 0)
-                    yield break;
 
                 var fileInfoDates = new List<FileInfoDateTime>(fileInfos.Length);
                 foreach (var fileInfo in fileInfos)
@@ -249,11 +261,12 @@ namespace NLog.Targets.FileArchiveHandlers
 
                 if (maxArchiveDays > 0)
                 {
-                    var currentDateUtc = NLog.Time.TimeSource.Current.Time.Date;
-                    var fileAgeDays = (currentDateUtc - NLog.Time.TimeSource.Current.FromSystemTime(existingArchiveFile.FileCreatedTimeUtc).Date).TotalDays;
+                    var currentDate = NLog.Time.TimeSource.Current.Time.Date;
+                    var fileCreatedDate = NLog.Time.TimeSource.Current.FromSystemTime(existingArchiveFile.FileCreatedTimeUtc);
+                    var fileAgeDays = (currentDate - fileCreatedDate.Date).TotalDays;
                     if (fileAgeDays > maxArchiveDays)
                     {
-                        InternalLogger.Debug("FileTarget: Archive contains old file: {0} , Age={1} days, FileDateUtc={2:u}, CurrentDateUtc={3:u}", existingArchiveFile.FileInfo.FullName, Math.Round(fileAgeDays, 1), existingArchiveFile.FileCreatedTimeUtc, currentDateUtc);
+                        InternalLogger.Debug("FileTarget: Archive cleanup found old file: {0} , Age={1} days, FileCreated={2:u}, CurrentDate={3:u}", existingArchiveFile.FileInfo.FullName, Math.Round(fileAgeDays, 1), fileCreatedDate, currentDate);
                         return true;
                     }
                 }
