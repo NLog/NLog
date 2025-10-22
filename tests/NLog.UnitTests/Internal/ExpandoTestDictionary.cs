@@ -40,7 +40,8 @@ namespace NLog.UnitTests.Internal
     /// <summary>
     /// Special Expando-Object that has custom object-value (Similar to JObject)
     /// </summary>
-    internal sealed class ExpandoTestDictionary : IDictionary<string, IFormattable>
+    [Serializable]
+    internal sealed class ExpandoTestDictionary : IDictionary<string, IFormattable>, IEnumerable<DictionaryEntry>
     {
         private readonly Dictionary<string, IFormattable> _properties = new Dictionary<string, IFormattable>();
 
@@ -106,7 +107,14 @@ namespace NLog.UnitTests.Internal
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IDictionary<string, IFormattable>)_properties).GetEnumerator();
+            foreach (DictionaryEntry var in (IDictionary)_properties)
+                yield return var;
+        }
+
+        IEnumerator<DictionaryEntry> IEnumerable<DictionaryEntry>.GetEnumerator()
+        {
+            foreach (DictionaryEntry var in (IDictionary)_properties)
+                yield return var;
         }
     }
 }

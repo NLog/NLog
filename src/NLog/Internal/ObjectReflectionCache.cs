@@ -325,6 +325,8 @@ namespace NLog.Internal
                         Value = null;
                     }
                 }
+
+                public override string ToString() => $"{Name}={Value}";
             }
 
             public bool IsSimpleValue => _properties.Length == 0 && (_fastLookup is null || _fastLookup.Length == 0);
@@ -604,7 +606,7 @@ namespace NLog.Internal
             if (value is IDictionary && value.GetType().IsGenericType)
             {
                 if (value.GetType().GetGenericArguments()[0] == typeof(string))
-                    return new DictionaryEnumerator();
+                    return new DictionaryEnumerator(DictionaryEnumerator.BuildDictionaryEnumerator);
                 else
                     return null;
             }
@@ -629,7 +631,19 @@ namespace NLog.Internal
                     return (IDictionaryEnumerator)Activator.CreateInstance(typeof(DictionaryEnumerator<,>).MakeGenericType(interfaceType.GetGenericArguments()));
 #else
                     // AOT does not support creating new types at runtime
-                    return new DictionaryEnumerator();
+                    foreach (var subInterfaceType in value.GetType().GetInterfaces())
+                    {
+                        if (subInterfaceType.IsGenericType 
+                         && subInterfaceType.GetGenericTypeDefinition() == typeof(IEnumerable<>)
+                         && subInterfaceType.GetGenericArguments()[0].IsGenericType
+                         && subInterfaceType.GetGenericArguments()[0].GetGenericTypeDefinition() == typeof(KeyValuePair<,>)
+                         && subInterfaceType.GetGenericArguments()[0].GetGenericArguments()[0] == typeof(string))
+                        {
+                            var enumerator = DictionaryEnumerator.BuildEnumerator(subInterfaceType, subInterfaceType.GetGenericArguments()[0]);
+                            if (enumerator != null)
+                                return new DictionaryEnumerator(enumerator);
+                        }
+                    }
 #endif
                 }
             }
@@ -644,18 +658,25 @@ namespace NLog.Internal
 
         private sealed class DictionaryEnumerator : IDictionaryEnumerator
         {
-            private Func<IEnumerable, IEnumerator<KeyValuePair<string, object?>>>? _enumerateCollection;
+            private readonly Func<object, IEnumerator<KeyValuePair<string, object?>>> _enumerateCollection;
+
+            public DictionaryEnumerator(Func<object, IEnumerator<KeyValuePair<string, object?>>> enumerateCollection)
+            {
+                _enumerateCollection = enumerateCollection;
+            }
 
             IEnumerator<KeyValuePair<string, object?>> IDictionaryEnumerator.GetEnumerator(object value)
             {
-                if (value is IDictionary dictionary)
+                return _enumerateCollection(value);
+            }
+
+            public static IEnumerator<KeyValuePair<string, object?>> BuildDictionaryEnumerator(object collection)
+            {
+                if (collection is IDictionary dictionary)
                 {
-                    if (dictionary.Count > 0)
-                        return YieldEnumerator(dictionary);
-                }
-                else if (value is IEnumerable collection)
-                {
-                    return YieldEnumerator(collection);
+                    if (dictionary.Count == 0)
+                        return EmptyDictionaryEnumerator.Default;
+                    return YieldEnumerator(dictionary);
                 }
                 return EmptyDictionaryEnumerator.Default;
             }
@@ -666,46 +687,56 @@ namespace NLog.Internal
                     yield return new KeyValuePair<string, object?>(item.Key?.ToString() ?? string.Empty, item.Value);
             }
 
-            private IEnumerator<KeyValuePair<string, object?>> YieldEnumerator(IEnumerable collection)
-            {
-                if (_enumerateCollection is null)
-                {
-                    var enumerator = collection.GetEnumerator();
-                    if (!enumerator.MoveNext())
-                        return EmptyDictionaryEnumerator.Default;
-                    _enumerateCollection = BuildEnumerator(enumerator.Current);
-                }
-
-                return _enumerateCollection(collection);
-            }
-
+#if !NETFRAMEWORK
             [UnconditionalSuppressMessage("Trimming - Allow reflection of message args", "IL2075")]
-            private static Func<IEnumerable, IEnumerator<KeyValuePair<string, object?>>> BuildEnumerator(object firstItem)
+            [UnconditionalSuppressMessage("Trimming - Allow reflection of message args", "IL2070")]
+            public static Func<object, IEnumerator<KeyValuePair<string, object?>>>? BuildEnumerator(Type dictionaryType, Type dictionaryItemType)
             {
-                if (firstItem.GetType().IsGenericType && firstItem.GetType().GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
+                var enumeratorMethod = dictionaryType.GetMethod(nameof(IEnumerable.GetEnumerator));
+                var getKeyMethod = dictionaryItemType.GetProperty(nameof(KeyValuePair<string, object>.Key))?.GetGetMethod();
+                var getValueMethod = dictionaryItemType.GetProperty(nameof(KeyValuePair<string, object>.Value))?.GetGetMethod();
+                if (enumeratorMethod != null && getKeyMethod != null && getValueMethod != null)
                 {
-                    var getKeyProperty = firstItem.GetType().GetProperty(nameof(KeyValuePair<string, object>.Key));
-                    var getValueProperty = firstItem.GetType().GetProperty(nameof(KeyValuePair<string, object>.Value));
+                    var enumeratorGetter = ReflectionHelpers.CreateLateBoundMethod(enumeratorMethod);
+                    var keyGetter = ReflectionHelpers.CreateLateBoundMethod(getKeyMethod);
+                    var valueGetter = ReflectionHelpers.CreateLateBoundMethod(getValueMethod);
                     return (collection) =>
                     {
-                        return EnumerateItems(collection, getKeyProperty, getValueProperty);
+                        if (collection is IEnumerable && dictionaryType.IsInstanceOfType(collection))
+                        {
+                            var enumerator = (IEnumerator?)enumeratorGetter.Invoke(collection, ArrayHelper.Empty<object>());
+                            if (enumerator is null || !enumerator.MoveNext())
+                            {
+                                (enumerator as IDisposable)?.Dispose();
+                                return EmptyDictionaryEnumerator.Default;
+                            }
+                            return EnumerateItems(enumerator, keyGetter, valueGetter);
+                        }
+                        return EmptyDictionaryEnumerator.Default;
                     };
                 }
-                else
-                {
-                    return (collection) => EmptyDictionaryEnumerator.Default;
-                }
+
+                return null;
             }
 
-            private static IEnumerator<KeyValuePair<string, object?>> EnumerateItems(IEnumerable collection, PropertyInfo getKeyProperty, PropertyInfo getValueProperty)
+            private static IEnumerator<KeyValuePair<string, object?>> EnumerateItems(IEnumerator enumerator, ReflectionHelpers.LateBoundMethod getKeyProperty, ReflectionHelpers.LateBoundMethod getValueProperty)
             {
-                foreach (var item in collection)
+                try
                 {
-                    var keyString = getKeyProperty.GetValue(item, null);
-                    var valueObject = getValueProperty.GetValue(item, null);
-                    yield return new KeyValuePair<string, object?>(keyString?.ToString() ?? string.Empty, valueObject);
+                    do
+                    {
+                        var item = enumerator.Current;
+                        var keyString = getKeyProperty.Invoke(item, ArrayHelper.Empty<object>());
+                        var valueObject = getValueProperty.Invoke(item, ArrayHelper.Empty<object>());
+                        yield return new KeyValuePair<string, object?>(keyString?.ToString() ?? string.Empty, valueObject);
+                    } while (enumerator.MoveNext());
+                }
+                finally
+                {
+                    (enumerator as IDisposable)?.Dispose();
                 }
             }
+#endif
         }
 
         private sealed class DictionaryEnumerator<TKey, TValue> : IDictionaryEnumerator
