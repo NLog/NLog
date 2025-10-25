@@ -18,8 +18,9 @@ Supported platforms:
 - Xamarin Android + iOS (.NET Standard)
 - Mono 4
 
-For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
+For integrating NLog with Microsoft.Extensions.Logging, check: https://www.nuget.org/packages/NLog.Extensions.Logging
 
+For using NLog with ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     </Description>
     <Product>NLog v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
