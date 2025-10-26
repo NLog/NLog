@@ -47,8 +47,11 @@ namespace NLog
     /// <see cref="MappedDiagnosticsLogicalContext"/> (MDLC), <see cref="MappedDiagnosticsContext"/> (MDC), <see cref="NestedDiagnosticsLogicalContext"/> (NDLC)
     /// and <see cref="NestedDiagnosticsContext"/> (NDC) have been deprecated and replaced by <see cref="ScopeContext"/>.
     ///
-    /// .NetCore (and .Net46) uses AsyncLocal for handling the thread execution context. Older .NetFramework uses System.Runtime.Remoting.CallContext
+    /// .NetCore (and .Net46) uses AsyncLocal for handling the thread execution context. Older .NetFramework uses System.Runtime.Remoting.CallContext.
+    ///
+    /// <a href="https://github.com/NLog/NLog/wiki/ScopeProperty-Layout-Renderer">See NLog Wiki</a>
     /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/ScopeProperty-Layout-Renderer">Documentation on NLog Wiki</seealso>
     public static class ScopeContext
     {
         internal static readonly IEqualityComparer<string> DefaultComparer = StringComparer.OrdinalIgnoreCase;
