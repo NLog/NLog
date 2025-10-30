@@ -12,7 +12,7 @@ NLog supports traditional logging, structured logging and the combination of bot
 
 Supported platforms:
 
-- .NET 5, 6, 7, 8 and 9
+- .NET 6, 7, 8, 9 and 10
 - .NET Standard 2.0 and 2.1
 - .NET Framework 3.5 - 4.8
 - Xamarin Android + iOS (.NET Standard)
