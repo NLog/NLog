@@ -33,7 +33,10 @@
 
 namespace NLog.Targets
 {
+    using System.Collections.Generic;
     using System.Text;
+    using System.Threading;
+    using NLog.Common;
 
     /// <summary>
     /// Discards log messages. Used mainly for debugging and benchmarking.
@@ -100,6 +103,37 @@ namespace NLog.Targets
         public NullTarget(string name) : this()
         {
             Name = name;
+        }
+
+        /// <inheritdoc />
+        protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+        {
+            if (FormatMessage)
+            {
+                base.WriteAsyncThreadSafe(logEvent);
+            }
+            else
+            {
+                Interlocked.Increment(ref _logEventCounter);
+                logEvent.Continuation(null);
+            }
+        }
+
+        /// <inheritdoc />
+        protected override void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
+        {
+            if (FormatMessage)
+            {
+                base.WriteAsyncThreadSafe(logEvents);
+            }
+            else
+            {
+                Interlocked.Add(ref _logEventCounter, logEvents.Count);
+                for (int i = 0; i < logEvents.Count; i++)
+                {
+                    logEvents[i].Continuation(null);
+                }
+            }
         }
 
         /// <inheritdoc />
