@@ -1098,16 +1098,18 @@ namespace NLog.Targets
                     fileName = fileName.Substring(0, fileName.Length - fileExt.Length);
 
                 object fileLastModifiedObj = fileLastModified == default ? string.Empty : (object)fileLastModified;
+                var cultureInfo = LoggingConfiguration?.LogFactory?.DefaultCultureInfo ?? LogManager.LogFactory.DefaultCultureInfo;
+
                 try
                 {
-                    newFileName = newFileName + fileName + string.Format(ArchiveSuffixFormat, sequenceNumber, fileLastModifiedObj) + fileExt;
+                    newFileName = newFileName + fileName + string.Format(cultureInfo, ArchiveSuffixFormat, sequenceNumber, fileLastModifiedObj) + fileExt;
                 }
                 catch (Exception ex)
                 {
                     InternalLogger.Error(ex, "{0}: Failed to apply ArchiveSuffixFormat={1} using SequenceNumber={2} for file: '{3}'", this, ArchiveSuffixFormat, sequenceNumber, newFileName);
                     if (ExceptionMustBeRethrown(ex))
                         throw;
-                    newFileName = newFileName + fileName + string.Format(_legacySequenceArchiveSuffixFormat, sequenceNumber) + fileExt;
+                    newFileName = newFileName + fileName + string.Format(cultureInfo, _legacySequenceArchiveSuffixFormat, sequenceNumber) + fileExt;
                 }
             }
 
