@@ -37,7 +37,6 @@ namespace NLog.Internal
     using System.Collections;
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Text;
     using NLog.Config;
 
@@ -68,8 +67,7 @@ namespace NLog.Internal
                 if (!TryReadStartElement(out var rootName, out var rootAttributes))
                     throw new XmlParserException("Invalid XML document. Cannot parse root start-tag");
 
-                Stack<XmlParserElement> stack = new Stack<XmlParserElement>();
-
+                var stack = new Stack<XmlParserElement>();
                 var currentRoot = new XmlParserElement(rootName ?? string.Empty, rootAttributes);
                 stack.Push(currentRoot);
 
@@ -127,7 +125,7 @@ namespace NLog.Internal
             }
             catch (XmlParserException ex)
             {
-                throw new XmlParserException(ex.Message + $" - Line: {_xmlSource.LineNumber}");
+                throw new XmlParserException($"{ex.Message} - Line: {_xmlSource.LineNumber}");
             }
         }
 
@@ -156,7 +154,7 @@ namespace NLog.Internal
 
                 instructionName = instructionName.Substring(1);
 
-                TryReadAttributes(out var instructionAttributes, expectsProcessingInstruction: true);
+                _ = TryReadAttributes(out var instructionAttributes, expectsProcessingInstruction: true);
 
                 if (!SkipChar('?'))
                     throw new XmlParserException($"Invalid XML document. Cannot parse XML processing instruction: {instructionName}");
@@ -177,7 +175,6 @@ namespace NLog.Internal
         /// Reads a start element.
         /// </summary>
         /// <returns><see langword="true"/> if start element was found.</returns>
-        /// <exception cref="Exception">Something unexpected has failed.</exception>
         public bool TryReadStartElement(out string? name, out List<KeyValuePair<string, string>>? attributes)
         {
             SkipWhiteSpaces();
@@ -186,7 +183,7 @@ namespace NLog.Internal
             {
                 try
                 {
-                    TryReadAttributes(out attributes);
+                    _ = TryReadAttributes(out attributes);
                     SkipChar('>');
                 }
                 catch (XmlParserException ex)
@@ -196,8 +193,8 @@ namespace NLog.Internal
                 return true;
             }
 
-            name = default;
-            attributes = default;
+            name = null;
+            attributes = null;
             return false;
         }
 
@@ -206,7 +203,6 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="name">The name of the element to skip.</param>
         /// <returns><see langword="true"/> if an end element was skipped; otherwise, <see langword="false"/>.</returns>
-        /// <exception cref="Exception">Something unexpected has failed.</exception>
         public bool TryReadEndElement(string name)
         {
             _ = SkipWhiteSpaces();
@@ -223,13 +219,9 @@ namespace NLog.Internal
             if (!SkipChar('/'))
                 throw new XmlParserException($"Invalid XML document. Cannot parse end-tag: {name}");
 
-            for (var i = 0; i < name.Length; i++)
+            foreach (var chr in name)
             {
-                var chr = _xmlSource.Current;
-                if (chr != name[i])
-                    throw new XmlParserException($"Invalid XML document. Cannot parse end-tag: {name}");
-
-                if (!_xmlSource.MoveNext())
+                if (_xmlSource.Current != chr || !_xmlSource.MoveNext())
                     throw new XmlParserException($"Invalid XML document. Cannot parse end-tag: {name}");
             }
 
@@ -243,7 +235,6 @@ namespace NLog.Internal
         /// Reads content of an element.
         /// </summary>
         /// <returns>The content of the element.</returns>
-        /// <exception cref="Exception">Something unexpected has failed.</exception>
         public bool TryReadInnerText(out string innerText)
         {
             var currentChar = _xmlSource.Current;
@@ -283,7 +274,6 @@ namespace NLog.Internal
 
         private string ReadCDATA()
         {
-            string contentValue;
             if (!SkipCDATA())
                 throw new XmlParserException("Invalid XML document. Cannot parse XML CDATA");
 
@@ -307,9 +297,8 @@ namespace NLog.Internal
                 _stringBuilder.Append(_xmlSource.Current);
             } while (_xmlSource.MoveNext());
 
-            contentValue = _stringBuilder.ToString();
             SkipWhiteSpaces();
-            return contentValue;
+            return _stringBuilder.ToString();
         }
 
         private bool SkipCDATA()
@@ -350,7 +339,6 @@ namespace NLog.Internal
             SkipWhiteSpaces();
         }
 
-        /// <exception cref="Exception">Something unexpected has failed.</exception>
         private bool TryReadAttributes(out List<KeyValuePair<string, string>>? attributes, bool expectsProcessingInstruction = false)
         {
             SkipWhiteSpaces();
@@ -372,14 +360,10 @@ namespace NLog.Internal
 
                 if (!SkipChar('"'))
                 {
-                    if (SkipChar('\''))
-                    {
-                        isApostrophe = true;
-                    }
-                    else
-                    {
+                    if (!SkipChar('\''))
                         throw new XmlParserException($"Invalid XML document. Cannot parse XML attribute: {attName}");
-                    }
+
+                    isApostrophe = true;
                 }
 
                 try
@@ -401,15 +385,11 @@ namespace NLog.Internal
             return attributes != null;
         }
 
-        /// <summary>
-        /// Consumer of this method should handle safe position.
-        /// </summary>
-        /// <exception cref="Exception">Something unexpected has failed.</exception>
         private bool TryBeginReadStartElement(out string? name, bool processingInstruction = false)
         {
             if (_xmlSource.Current != '<' || _xmlSource.Peek() == '/' || _xmlSource.Peek() == '!')
             {
-                name = default;
+                name = null;
                 return false;
             }
 
@@ -423,9 +403,7 @@ namespace NLog.Internal
             {
                 var chr = _xmlSource.Current;
                 if (CharIsSpace(chr) || chr == '/' || chr == '>')
-                {
                     break;
-                }
 
                 if (processingInstruction && chr == '?')
                 {
@@ -442,7 +420,7 @@ namespace NLog.Internal
 
             name = _stringBuilder.ToString();
             if (string.IsNullOrEmpty(name))
-                throw new XmlParserException($"Invalid XML document. Cannot parse XML start-tag");
+                throw new XmlParserException("Invalid XML document. Cannot parse XML start-tag");
 
             return true;
         }
@@ -460,7 +438,7 @@ namespace NLog.Internal
 
         private bool SkipWhiteSpaces()
         {
-            var skipped = false;
+            bool skipped = false;
             while (!_xmlSource.EndOfFile && CharIsSpace(_xmlSource.Current) && _xmlSource.MoveNext())
             {
                 skipped = true;
@@ -468,7 +446,6 @@ namespace NLog.Internal
             return skipped;
         }
 
-        /// <exception cref="Exception">Something unexpected has failed.</exception>
         private string ReadUntilChar(char expectedChar, bool includeSpaces = false)
         {
             _stringBuilder.ClearBuilder();
@@ -479,21 +456,18 @@ namespace NLog.Internal
             {
                 var chr = _xmlSource.Current;
                 if (chr == expectedChar)
-                {
                     break;
-                }
 
                 if (!includeSpaces && CharIsSpace(chr))
                 {
                     SkipWhiteSpaces();
                     if (_xmlSource.Current == expectedChar)
                         break;
-                    throw new XmlParserException($"Invalid XML document. Cannot parse attribute-name with white-space");
+                    throw new XmlParserException("Invalid XML document. Cannot parse attribute-name with white-space");
                 }
-                else if (!includeSpaces && !IsValidXmlNameChar(chr))
-                {
+
+                if (!includeSpaces && !IsValidXmlNameChar(chr))
                     throw new XmlParserException($"Invalid XML document. Cannot parse attribute-name with character: {chr}");
-                }
 
                 if (chr == '<' && (!includeSpaces || expectedChar == '<'))
                     throw new XmlParserException($"Invalid XML document. Cannot parse value with '<', maybe encode to &lt;");
@@ -504,15 +478,13 @@ namespace NLog.Internal
                     if (_xmlSource.Current == '#' && char.IsDigit(_xmlSource.Peek()))
                     {
                         int unicode = TryParseUnicodeValue();
-                        if (unicode != 0)
-                            _stringBuilder.Append((char)unicode);
+                        _stringBuilder.Append((char)unicode);
                     }
                     else if (_xmlSource.Current == '#' && (_xmlSource.Peek() == 'x' || _xmlSource.Peek() == 'X'))
                     {
                         _xmlSource.MoveNext();
                         int unicode = TryParseUnicodeValueHex();
-                        if (unicode != 0)
-                            _stringBuilder.Append((char)unicode);
+                        _stringBuilder.Append((char)unicode);
                     }
                     else if (TryParseSpecialXmlToken(out var specialToken))
                     {
@@ -545,7 +517,7 @@ namespace NLog.Internal
 
         private static bool IsValidXmlNameChar(char chr)
         {
-            if (char.IsLetter(chr) || char.IsDigit(chr))
+            if (char.IsLetterOrDigit(chr))
                 return true;
 
             switch (chr)
@@ -562,17 +534,19 @@ namespace NLog.Internal
 
         private int TryParseUnicodeValue()
         {
-            int unicode = '\0';
+            int unicode = 0;
             while (_xmlSource.MoveNext())
             {
-                if (_xmlSource.Current == ';')
+                var chr = _xmlSource.Current;
+                if (chr == ';')
                     break;
 
-                if (_xmlSource.Current < '0' || _xmlSource.Current > '9')
-                    throw new XmlParserException("Invalid XML document. Cannot parse unicode-char digit-value");
-
                 unicode *= 10;
-                unicode += _xmlSource.Current - '0';
+
+                if (chr >= '0' && chr <= '9')
+                    unicode += chr - '0';
+                else
+                    throw new XmlParserException("Invalid XML document. Cannot parse unicode-char digit-value");
             }
 
             if (unicode >= '\uffff')
@@ -583,13 +557,14 @@ namespace NLog.Internal
 
         private int TryParseUnicodeValueHex()
         {
-            int unicode = '\0';
+            int unicode = 0;
             while (_xmlSource.MoveNext())
             {
                 if (_xmlSource.Current == ';')
                     break;
 
                 unicode *= 16;
+
                 var chrUpper = char.ToUpperInvariant(_xmlSource.Current);
                 if (chrUpper >= 'A' && chrUpper <= 'F')
                     unicode += chrUpper - 'A' + 10;
@@ -612,8 +587,10 @@ namespace NLog.Internal
                 if (_xmlSource.Current == token.Key[0] && _xmlSource.Peek() == token.Key[1])
                 {
                     foreach (var tokenChr in token.Key)
+                    {
                         if (!SkipChar(tokenChr))
                             throw new XmlParserException($"Invalid XML document. Cannot parse special token: {token.Key}");
+                    }
                     if (_xmlSource.Current != ';')
                         throw new XmlParserException($"Invalid XML document. Cannot parse special token: {token.Key}");
                     xmlToken = token.Value;
@@ -697,7 +674,7 @@ namespace NLog.Internal
                 get
                 {
                     if (_endOfFile)
-                        throw new XmlParserException($"Invalid XML document. Unexpected end of document.");
+                        throw new XmlParserException("Invalid XML document. Unexpected end of document.");
                     return _current;
                 }
             }
