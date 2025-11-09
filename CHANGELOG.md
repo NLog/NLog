@@ -4,6 +4,19 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.0.6 (2025/11/09)
+
+**Improvements**
+- [#6027](https://github.com/NLog/NLog/pull/6027) FileTarget - Improve archive cleanup when using ArchiveSuffixFormat with datetime. (@snakefoot)
+- [#6028](https://github.com/NLog/NLog/pull/6028) FileTarget - Fix archive cleanup when only single old file and using MaxArchiveDays. (@snakefoot)
+- [#6039](https://github.com/NLog/NLog/pull/6039) FileTarget - Render ArchiveFileName using NLog DefaultCultureInfo. (@snakefoot)
+- [#6030](https://github.com/NLog/NLog/pull/6030) ObjectReflectionCache - Improve handling of JObject serialization. (@snakefoot)
+- [#6026](https://github.com/NLog/NLog/pull/6026) JsonLayout - Reduce code complexity for rendering JsonAttribute. (@snakefoot)
+- [#6036](https://github.com/NLog/NLog/pull/6036) NullTarget - Improve thread concurrency when FormatMessage = false. (@snakefoot)
+- [#6023](https://github.com/NLog/NLog/pull/6023) MemoryTarget - Apply MaxLogsCount update on next LogEvent. (@snakefoot)
+- [#6040](https://github.com/NLog/NLog/pull/6040) XmlParser - Refactor to reduce code complexity. (@snakefoot)
+- [#6041](https://github.com/NLog/NLog/pull/6041) ScopeContextAsyncState - Refactor to reduce code complexity. (@snakefoot)
+
 ### Version 6.0.5 (2025/10/09)
 
 **Improvements**
@@ -1373,9 +1386,6 @@ List of important changes in NLog 4.5
 - FileTarget - Faster byte-encoding of log messsages, by using crude Encoding.GetMaxByteCount() instead of exact Encoding.GetByteCount() [#2208](https://github.com/nlog/nlog/pull/2208) (@snakefoot)
 - Target - Precalculate Layout should ignore sub-layouts for complex layout (Ex Json) [#2378](https://github.com/nlog/nlog/pull/2378)  (@snakefoot)
 - MessageLayoutRenderer - Skip `string.Format` allocation (for caching) when writing to a single target, instead format directly into output buffer. [#2507](https://github.com/nlog/nlog/pull/2507)  (@snakefoot)
-
-
-
 
 Changes since rc 07:
 - [#2621](https://github.com/nlog/nlog/pull/2621) Single Target optimization logic refactored to reuse optimization approval (@snakefoot)

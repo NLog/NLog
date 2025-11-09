@@ -31,19 +31,15 @@ For using NLog with ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web
     <PackageReleaseNotes>
 Changelog:
 
-- [#5998] FileTarget - Rolling to next directory should not fail. (@snakefoot)
-- [#6013] ValueFormatter - Skip quotes for CaptureType.Stringify unless legacy mode. (@snakefoot)
-- [#6007] ColoredConsoleTarget - Use Span to reduce string-allocation for word-highlighting. (@snakefoot)
-- [#6009] NullTarget - Avoid string-allocation upfront when FormatMessage = true. (@snakefoot)
-- [#6012] XmlLoggingConfiguration - Reduce output for InternalLogger Info-Level. (@snakefoot)
-- [#6006] XmlLoggingConfiguration - Protect against double dispose of AutoReloadConfigFileWatcher. (@snakefoot)
-- [#6008] LoggerImpl - Merge WriteToTargetWithFilterChain into Write. (@snakefoot)
-- [#6010] LoggingConfiguration - Redirect AddRuleForOneLevel and AddRuleForAllLevels to AddRule. (@snakefoot)
-- [#6011] LoggingRule - Align EnableLoggingForLevels to skip when minLevel is LogLevel.Off. (@snakefoot)
-- [#6015] CompoundLayout - Changed to foreach for better release optimizations. (@snakefoot)
-- [#6016] CsvLayout - Changed to foreach for better release optimizations. (@snakefoot)
-- [#6017] JsonArrayLayout - Changed to foreach for better release optimizations. (@snakefoot)
-- [#6018] XmlLayout - Changed to foreach for better release optimizations. (@snakefoot)
+- [#6027] FileTarget - Improve archive cleanup when using ArchiveSuffixFormat with datetime. (@snakefoot)
+- [#6028] FileTarget - Fix archive cleanup when only single old file and using MaxArchiveDays. (@snakefoot)
+- [#6039] FileTarget - Render ArchiveFileName using NLog DefaultCultureInfo. (@snakefoot)
+- [#6030] ObjectReflectionCache - Improve handling of JObject serialization. (@snakefoot)
+- [#6026] JsonLayout - Reduce code complexity for rendering JsonAttribute. (@snakefoot)
+- [#6036] NullTarget - Improve thread concurrency when FormatMessage = false. (@snakefoot)
+- [#6023] MemoryTarget - Apply MaxLogsCount update on next LogEvent. (@snakefoot)
+- [#6040] XmlParser - Refactor to reduce code complexity. (@snakefoot)
+- [#6041] ScopeContextAsyncState - Refactor to reduce code complexity. (@snakefoot)
 
 NLog v6.0 release notes: https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html
 
