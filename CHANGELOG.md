@@ -9,7 +9,7 @@ Date format: (year/month/day)
 **Improvements**
 - [#6027](https://github.com/NLog/NLog/pull/6027) FileTarget - Improve archive cleanup when using ArchiveSuffixFormat with datetime. (@snakefoot)
 - [#6028](https://github.com/NLog/NLog/pull/6028) FileTarget - Fix archive cleanup when only single old file and using MaxArchiveDays. (@snakefoot)
-- [#6039](https://github.com/NLog/NLog/pull/6039) FileTarget - Render ArchiveFileName using NLog DefaultCultureInfo. (@snakefoot)
+- [#6039](https://github.com/NLog/NLog/pull/6039) FileTarget - Render ArchiveSuffixFormat using NLog DefaultCultureInfo. (@snakefoot)
 - [#6030](https://github.com/NLog/NLog/pull/6030) ObjectReflectionCache - Improve handling of JObject serialization. (@snakefoot)
 - [#6026](https://github.com/NLog/NLog/pull/6026) JsonLayout - Reduce code complexity for rendering JsonAttribute. (@snakefoot)
 - [#6036](https://github.com/NLog/NLog/pull/6036) NullTarget - Improve thread concurrency when FormatMessage = false. (@snakefoot)
