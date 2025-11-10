@@ -34,8 +34,10 @@
 namespace NLog.Layouts
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
     using NLog.Config;
@@ -520,6 +522,16 @@ namespace NLog.Layouts
                 return;
             }
 
+            if (propertyValue is Dictionary<int, int> dict)
+            {
+                foreach (var kvp in dict)
+                {
+                    string keyString = kvp.Key.ToString(CultureInfo.InvariantCulture);
+                    string indexedPropertyName = $"{basePropertyName}[{keyString}]";
+                    FlattenObjectProperties(indexedPropertyName, kvp.Value, sb, beginJsonMessage, depth + 1);
+                }
+                return;
+            }
             var objectPropertyList = ObjectReflectionCache.LookupObjectProperties(propertyValue);
             if (objectPropertyList.IsSimpleValue)
             {

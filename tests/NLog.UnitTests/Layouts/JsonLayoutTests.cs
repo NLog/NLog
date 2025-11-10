@@ -1386,10 +1386,9 @@ namespace NLog.UnitTests.Layouts
             Assert.Contains("\"data.objectDict.obj1.value\":100", json);
             Assert.Contains("\"data.objectDict.obj2.name\":\"test2\"", json);
             Assert.Contains("\"data.objectDict.obj2.value\":200", json);
-
-            Assert.Contains("\"data.numericKeyDict.Count\":3", json);
-            Assert.Contains("\"data.numericKeyDict.Keys.Count\":3", json);
-            Assert.Contains("\"data.numericKeyDict.Values.Count\":3", json);
+            Assert.Contains("\"data.numericKeyDict[1]\":100", json);
+            Assert.Contains("\"data.numericKeyDict[2]\":200", json);
+            Assert.Contains("\"data.numericKeyDict[3]\":300", json);
         }
     }
 }
