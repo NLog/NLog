@@ -58,7 +58,8 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(Layout), "item")]
-        public IList<Layout> Items { get; } = new List<Layout>();
+        public IList<Layout> Items => _items;
+        private readonly List<Layout> _items = new List<Layout>();
 
         /// <summary>
         /// Gets or sets the option to suppress the extra spaces in the output json.
@@ -78,7 +79,7 @@ namespace NLog.Layouts
         protected override void InitializeLayout()
         {
             base.InitializeLayout();
-            _precalculateLayouts = ResolveLayoutPrecalculation(Items);
+            _precalculateLayouts = ResolveLayoutPrecalculation(_items);
         }
 
         /// <inheritdoc/>
@@ -115,12 +116,8 @@ namespace NLog.Layouts
         {
             int orgLength = sb.Length;
 
-            //Memory profiling pointed out that using a foreach-loop was allocating
-            //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < Items.Count; i++)
+            foreach (var layout in _items)
             {
-                var layout = Items[i];
-
                 int beforeDelimeterLength = sb.Length;
                 if (beforeDelimeterLength == orgLength)
                     sb.Append(SuppressSpaces ? "[" : "[ ");
@@ -171,7 +168,7 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         public override string ToString()
         {
-            return ToStringWithNestedItems(Items, l => l.ToString());
+            return ToStringWithNestedItems(_items, l => l.ToString());
         }
     }
 }
