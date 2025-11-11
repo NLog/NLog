@@ -16,7 +16,7 @@
 
     <PackageReleaseNotes>
       RegEx-Replace Docs:
-      https://github.com/NLog/NLog/wiki/Replace-Layout-Renderer
+      https://github.com/NLog/NLog/wiki/RegEx-Replace-Layout-Renderer
     </PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>NLog;RegEx:RegularExpressions;;logging;log</PackageTags>
