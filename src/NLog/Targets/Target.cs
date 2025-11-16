@@ -316,17 +316,18 @@ namespace NLog.Targets
                 return;
             }
 
+            var wrappedContinuation = AsyncHelpers.PreventMultipleCalls(logEvent.Continuation);
+            var wrappedLogEvent = logEvent.LogEvent.WithContinuation(wrappedContinuation);
+
             if (_initializeException != null)
             {
                 lock (SyncRoot)
                 {
-                    WriteFailedNotInitialized(logEvent, _initializeException);
+                    WriteFailedNotInitialized(wrappedLogEvent, _initializeException);
                 }
                 return;
             }
 
-            var wrappedContinuation = AsyncHelpers.PreventMultipleCalls(logEvent.Continuation);
-            var wrappedLogEvent = logEvent.LogEvent.WithContinuation(wrappedContinuation);
             try
             {
                 WriteAsyncThreadSafe(wrappedLogEvent);
