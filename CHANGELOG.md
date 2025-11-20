@@ -13,7 +13,7 @@ Date format: (year/month/day)
 - [#6030](https://github.com/NLog/NLog/pull/6030) ObjectReflectionCache - Improve handling of JObject serialization. (@snakefoot)
 - [#6026](https://github.com/NLog/NLog/pull/6026) JsonLayout - Reduce code complexity for rendering JsonAttribute. (@snakefoot)
 - [#6036](https://github.com/NLog/NLog/pull/6036) NullTarget - Improve thread concurrency when FormatMessage = false. (@snakefoot)
-- [#6023](https://github.com/NLog/NLog/pull/6023) MemoryTarget - Apply MaxLogsCount update on next LogEvent. (@snakefoot)
+- [#6023](https://github.com/NLog/NLog/pull/6023) MemoryTarget - Apply MaxLogsCount limit on next LogEvent. (@snakefoot)
 - [#6040](https://github.com/NLog/NLog/pull/6040) XmlParser - Refactor to reduce code complexity. (@snakefoot)
 - [#6041](https://github.com/NLog/NLog/pull/6041) ScopeContextAsyncState - Refactor to reduce code complexity. (@snakefoot)
 
