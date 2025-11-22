@@ -315,9 +315,9 @@ namespace NLog
             get => _message;
             set
             {
-                bool rebuildMessageTemplateParameters = ResetMessageTemplateParameters();
+                bool parseMessageTemplateParameters = ResetMessageTemplateParameters();
                 _message = value;
-                ResetFormattedMessage(rebuildMessageTemplateParameters);
+                ResetFormattedMessage(parseMessageTemplateParameters);
             }
         }
 
@@ -329,9 +329,9 @@ namespace NLog
             get => _parameters;
             set
             {
-                bool rebuildMessageTemplateParameters = ResetMessageTemplateParameters();
+                bool parseMessageTemplateParameters = ResetMessageTemplateParameters();
                 _parameters = value;
-                ResetFormattedMessage(rebuildMessageTemplateParameters);
+                ResetFormattedMessage(parseMessageTemplateParameters);
             }
         }
 
@@ -467,7 +467,7 @@ namespace NLog
             {
                 if (_properties?.MessageProperties.Count > 0)
                 {
-                    return new MessageTemplateParameters(_properties.MessageProperties, _message, _parameters);
+                    return new MessageTemplateParameters(_properties.MessageProperties);
                 }
                 else if (_parameters?.Length > 0)
                 {
@@ -719,12 +719,13 @@ namespace NLog
 
         private static bool HasImmutableProperties(PropertiesDictionary properties)
         {
-            if (properties.Count == properties.MessageProperties.Count)
+            var messageProperties = properties.MessageProperties;
+            if (properties.Count == messageProperties.Count)
             {
                 // Skip enumerator allocation when all properties comes from the message-template
-                for (int i = 0; i < properties.MessageProperties.Count; ++i)
+                for (int i = 0; i < messageProperties.Count; ++i)
                 {
-                    var property = properties.MessageProperties[i];
+                    var property = messageProperties[i];
                     if (!IsSafeToDeferFormatting(property.Value))
                         return false;
                 }
@@ -815,14 +816,14 @@ namespace NLog
             }
         }
 
-        private void ResetFormattedMessage(bool rebuildMessageTemplateParameters)
+        private void ResetFormattedMessage(bool parseMessageTemplateParameters)
         {
             if (_messageFormatter is null || _messageFormatter.Target is ILogMessageFormatter)
             {
                 _formattedMessage = null;
             }
 
-            if (rebuildMessageTemplateParameters && HasMessageTemplateParameters)
+            if (parseMessageTemplateParameters && HasMessageTemplateParameters)
             {
                 CalcFormattedMessage();
             }
@@ -839,6 +840,7 @@ namespace NLog
                 return true;
             }
 
+            // If message-template-properties have not been provided as contructor-input, then allow parsing of message-template.
             return _properties.MessageProperties.Count == 0;
         }
     }
