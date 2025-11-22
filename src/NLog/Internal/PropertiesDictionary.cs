@@ -106,16 +106,13 @@ namespace NLog.Internal
 
         private bool IsEmpty => (_eventProperties is null || _eventProperties.Count == 0) && (_messageProperties is null || _messageProperties.Count == 0);
 
-        private Dictionary<object, PropertyValue> EventProperties
+        private Dictionary<object, PropertyValue> GetEventProperties(bool prepareForInsert = false)
         {
-            get
+            if (_eventProperties is null)
             {
-                if (_eventProperties is null)
-                {
-                    System.Threading.Interlocked.CompareExchange(ref _eventProperties, BuildEventProperties(_messageProperties), null);
-                }
-                return _eventProperties;
+                System.Threading.Interlocked.CompareExchange(ref _eventProperties, InitializeEventPropertiesDictionary(_messageProperties, prepareForInsert), null);
             }
+            return _eventProperties;
         }
 
         public IList<MessageTemplateParameter> MessageProperties
@@ -167,11 +164,12 @@ namespace NLog.Internal
             }
         }
 
-        private static Dictionary<object, PropertyValue> BuildEventProperties(IList<MessageTemplateParameter>? messageProperties)
+        private static Dictionary<object, PropertyValue> InitializeEventPropertiesDictionary(IList<MessageTemplateParameter>? messageProperties, bool prepareForInsert)
         {
             if (messageProperties?.Count > 0)
             {
-                var eventProperties = new Dictionary<object, PropertyValue>(messageProperties.Count, PropertyKeyComparer.Default);
+                var dictionaryCapacity = prepareForInsert ? (messageProperties.Count + 2) : messageProperties.Count;
+                var eventProperties = new Dictionary<object, PropertyValue>(dictionaryCapacity, PropertyKeyComparer.Default);
                 InsertMessagePropertiesIntoEmptyDictionary(messageProperties, eventProperties);
                 return eventProperties;
             }
@@ -193,7 +191,7 @@ namespace NLog.Internal
 
                 throw new KeyNotFoundException();
             }
-            set => EventProperties[key] = new PropertyValue(value, false);
+            set => GetEventProperties(true)[key] = new PropertyValue(value, false);
         }
 
         /// <inheritDoc/>
@@ -215,7 +213,7 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public void Add(object key, object? value)
         {
-            EventProperties.Add(key, new PropertyValue(value, false));
+            GetEventProperties(true).Add(key, new PropertyValue(value, false));
         }
 
         /// <inheritDoc/>
@@ -238,10 +236,11 @@ namespace NLog.Internal
         {
             if (!IsEmpty && (_eventProperties != null || ContainsKey(item.Key)))
             {
-                if (((IDictionary<object, PropertyValue>)EventProperties).Contains(new KeyValuePair<object, PropertyValue>(item.Key, new PropertyValue(item.Value, false))))
+                IDictionary<object, PropertyValue> eventProperties = GetEventProperties();
+                if (eventProperties.Contains(new KeyValuePair<object, PropertyValue>(item.Key, new PropertyValue(item.Value, false))))
                     return true;
 
-                if (((IDictionary<object, PropertyValue>)EventProperties).Contains(new KeyValuePair<object, PropertyValue>(item.Key, new PropertyValue(item.Value, true))))
+                if (eventProperties.Contains(new KeyValuePair<object, PropertyValue>(item.Key, new PropertyValue(item.Value, true))))
                     return true;
             }
             return false;
@@ -291,7 +290,7 @@ namespace NLog.Internal
         {
             if (!IsEmpty && (_eventProperties != null || ContainsKey(key)))
             {
-                return EventProperties.Remove(key);
+                return GetEventProperties().Remove(key);
             }
             return false;
         }
@@ -301,10 +300,11 @@ namespace NLog.Internal
         {
             if (!IsEmpty && (_eventProperties != null || ContainsKey(item.Key)))
             {
-                if (((ICollection<KeyValuePair<object, PropertyValue>>)EventProperties).Remove(new KeyValuePair<object, PropertyValue>(item.Key, new PropertyValue(item.Value, false))))
+                ICollection<KeyValuePair<object, PropertyValue>> eventProperties = GetEventProperties();
+                if (eventProperties.Remove(new KeyValuePair<object, PropertyValue>(item.Key, new PropertyValue(item.Value, false))))
                     return true;
 
-                if (((ICollection<KeyValuePair<object, PropertyValue>>)EventProperties).Remove(new KeyValuePair<object, PropertyValue>(item.Key, new PropertyValue(item.Value, true))))
+                if (eventProperties.Remove(new KeyValuePair<object, PropertyValue>(item.Key, new PropertyValue(item.Value, true))))
                     return true;
             }
 
@@ -321,7 +321,7 @@ namespace NLog.Internal
                     return TryLookupMessagePropertyValue(key, out value);
                 }
 
-                if (EventProperties.TryGetValue(key, out var eventProperty))
+                if (_eventProperties.TryGetValue(key, out var eventProperty))
                 {
                     value = eventProperty.Value;
                     return true;
@@ -342,7 +342,7 @@ namespace NLog.Internal
 
             if (_messageProperties.Count > 10)
             {
-                if (EventProperties.TryGetValue(key, out var eventProperty))
+                if (GetEventProperties().TryGetValue(key, out var eventProperty))
                 {
                     propertyValue = eventProperty.Value;
                     return true;
@@ -605,10 +605,11 @@ namespace NLog.Internal
             {
                 if (!_dictionary.IsEmpty)
                 {
-                    if (_dictionary.EventProperties.ContainsValue(new PropertyValue(item, false)))
+                    var eventProperties = _dictionary.GetEventProperties();
+                    if (eventProperties.ContainsValue(new PropertyValue(item, false)))
                         return true;
 
-                    if (_dictionary.EventProperties.ContainsValue(new PropertyValue(item, true)))
+                    if (eventProperties.ContainsValue(new PropertyValue(item, true)))
                         return true;
                 }
                 return false;
