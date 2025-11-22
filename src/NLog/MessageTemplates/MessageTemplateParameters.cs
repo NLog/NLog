@@ -83,7 +83,6 @@ namespace NLog.MessageTemplates
             if (parameters is null || parameters.Length == 0)
             {
                 _parameters = ArrayHelper.Empty<MessageTemplateParameter>();
-                IsPositional = false;
                 IsValidTemplate = true;
             }
             else
@@ -97,13 +96,10 @@ namespace NLog.MessageTemplates
         /// <summary>
         /// Constructor for named parameters that already has been parsed
         /// </summary>
-        internal MessageTemplateParameters(IList<MessageTemplateParameter> templateParameters, string message, object?[]? parameters)
+        internal MessageTemplateParameters(IList<MessageTemplateParameter> templateParameters)
         {
             _parameters = templateParameters ?? ArrayHelper.Empty<MessageTemplateParameter>();
-            if (parameters != null && _parameters.Count != parameters.Length)
-            {
-                IsValidTemplate = false;
-            }
+            IsValidTemplate = true;
         }
 
         /// <summary>

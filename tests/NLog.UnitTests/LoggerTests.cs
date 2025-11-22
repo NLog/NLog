@@ -1360,12 +1360,11 @@ namespace NLog.UnitTests
                 logger.ConditionalTrace(NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|we've got error 500, 501, 502, 503 ...");
 
-
                 logger.ConditionalTrace(argException, NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|we\'ve got error 500, 501, 502, 503,5 ...arg1 is obvious wrong\r\nParameter name: arg1");
+                if (enabled == 1) AssertDebugLastMessage("debug", $"A|we\'ve got error 500, 501, 502, 503,5 ...{argException.Message}");
 
                 logger.ConditionalTrace(argException, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|we\'ve got error 500, 501, 502, 503.5 ...arg1 is obvious wrong\r\nParameter name: arg1");
+                if (enabled == 1) AssertDebugLastMessage("debug", $"A|we\'ve got error 500, 501, 502, 503.5 ...{argException.Message}");
 
                 logger.ConditionalTrace("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message1");
@@ -1534,12 +1533,11 @@ namespace NLog.UnitTests
                 logger.ConditionalTrace(NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|we've got error 500, 501, 502, 503 ...");
 
-
                 logger.ConditionalTrace(argException, NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|we\'ve got error 500, 501, 502, 503,5 ...arg1 is obvious wrong\r\nParameter name: arg1");
+                if (enabled == 1) AssertDebugLastMessage("debug", $"A|we\'ve got error 500, 501, 502, 503,5 ...{argException.Message}");
 
                 logger.ConditionalTrace(argException, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|we\'ve got error 500, 501, 502, 503.5 ...arg1 is obvious wrong\r\nParameter name: arg1");
+                if (enabled == 1) AssertDebugLastMessage("debug", $"A|we\'ve got error 500, 501, 502, 503.5 ...{argException.Message}");
 
                 logger.ConditionalTrace("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message1");
@@ -1707,12 +1705,11 @@ namespace NLog.UnitTests
                 logger.ConditionalDebug(NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|we've got error 500, 501, 502, 503 ...");
 
-
                 logger.ConditionalDebug(argException, NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|we\'ve got error 500, 501, 502, 503,5 ...arg1 is obvious wrong\r\nParameter name: arg1");
+                if (enabled == 1) AssertDebugLastMessage("debug", $"A|we\'ve got error 500, 501, 502, 503,5 ...{argException.Message}");
 
                 logger.ConditionalDebug(argException, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|we\'ve got error 500, 501, 502, 503.5 ...arg1 is obvious wrong\r\nParameter name: arg1");
+                if (enabled == 1) AssertDebugLastMessage("debug", $"A|we\'ve got error 500, 501, 502, 503.5 ...{argException.Message}");
 
                 logger.ConditionalDebug("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message1");
@@ -1882,10 +1879,10 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|we've got error 500, 501, 502, 503 ...");
 
                 logger.ConditionalDebug(argException, NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|we\'ve got error 500, 501, 502, 503,5 ...arg1 is obvious wrong\r\nParameter name: arg1");
+                if (enabled == 1) AssertDebugLastMessage("debug", $"A|we\'ve got error 500, 501, 502, 503,5 ...{argException.Message}");
 
                 logger.ConditionalDebug(argException, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|we\'ve got error 500, 501, 502, 503.5 ...arg1 is obvious wrong\r\nParameter name: arg1");
+                if (enabled == 1) AssertDebugLastMessage("debug", $"A|we\'ve got error 500, 501, 502, 503.5 ...{argException.Message}");
 
                 logger.ConditionalDebug("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message1");
