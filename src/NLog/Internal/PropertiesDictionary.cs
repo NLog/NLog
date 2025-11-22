@@ -47,8 +47,10 @@ namespace NLog.Internal
     /// in the collection, and in positional order.
     /// </summary>
     [DebuggerDisplay("Count = {Count}")]
-    internal sealed class PropertiesDictionary : IDictionary<object, object?>, IList<MessageTemplateParameter>
+    internal sealed class PropertiesDictionary : IDictionary<object, object?>
     {
+        const int SmallArraySize = 3;
+
         private
 #if !NETFRAMEWORK
         readonly
@@ -99,7 +101,7 @@ namespace NLog.Internal
         /// </summary>
         public PropertiesDictionary(int initialCapacity)
         {
-            if (initialCapacity > 3)
+            if (initialCapacity > SmallArraySize)
             {
                 _eventProperties = new Dictionary<object, PropertyValue>(initialCapacity, PropertyKeyComparer.Default);
             }
@@ -121,7 +123,7 @@ namespace NLog.Internal
             return _eventProperties;
         }
 
-        public IList<MessageTemplateParameter> MessageProperties => this;
+        public MessageTemplateParameter[] MessageProperties => (_messageProperties is null || (_messageProperties.Length == SmallArraySize && _messageProperties[0].CaptureType == CaptureType.Unknown)) ? ArrayHelper.Empty<MessageTemplateParameter>() : _messageProperties;
 
         public void ResetMessageProperties(MessageTemplateParameter[]? newMessageProperties = null, int newMessagePropertiesCount = 0)
         {
@@ -134,7 +136,7 @@ namespace NLog.Internal
                 {
                     eventProperties = _eventProperties = oldMessagePropertiesCount == 0 ?
                         new Dictionary<object, PropertyValue>(newMessagePropertiesCount, PropertyKeyComparer.Default) :
-                        InitializeEventPropertiesDictionary(false, oldMessageProperties, oldMessagePropertiesCount, out var _);
+                        InitializeEventPropertiesDictionary(newMessagePropertiesCount > oldMessagePropertiesCount, oldMessageProperties, oldMessagePropertiesCount, out var _);
                 }
 
                 if (oldMessageProperties != null && eventProperties.Count > 0)
@@ -146,13 +148,18 @@ namespace NLog.Internal
                 {
                     InsertMessagePropertiesIntoEmptyDictionary(eventProperties, newMessageProperties, newMessagePropertiesCount, out _);
                 }
-            }
 
-            _messageProperties = newMessageProperties;
-            _messagePropertiesCount = newMessagePropertiesCount;
+                _messageProperties = newMessageProperties;
+                _messagePropertiesCount = newMessagePropertiesCount;
+            }
+            else if (newMessagePropertiesCount > 0)
+            {
+                _messageProperties = newMessageProperties;
+                _messagePropertiesCount = newMessagePropertiesCount;
+            }
         }
 
-        private static void RemoveOldMessageProperties(Dictionary<object, PropertyValue> eventProperties, IList<MessageTemplateParameter> oldMessageProperties, int oldMessagePropertiesCount)
+        private static void RemoveOldMessageProperties(Dictionary<object, PropertyValue> eventProperties, MessageTemplateParameter[] oldMessageProperties, int oldMessagePropertiesCount)
         {
             for (int i = 0; i < oldMessagePropertiesCount; ++i)
             {
@@ -165,7 +172,7 @@ namespace NLog.Internal
 
         private static Dictionary<object, PropertyValue> InitializeEventPropertiesDictionary(bool prepareForInsert, MessageTemplateParameter[]? messageProperties, int messagePropertiesCount, out bool resetMessageProperties)
         {
-            if (messageProperties != null && messagePropertiesCount > 0)
+            if (messagePropertiesCount > 0 && messageProperties != null)
             {
                 var dictionaryCapacity = prepareForInsert ? (messagePropertiesCount + 2) : messagePropertiesCount;
                 var eventProperties = new Dictionary<object, PropertyValue>(dictionaryCapacity, PropertyKeyComparer.Default);
@@ -195,26 +202,6 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public bool IsReadOnly => false;
 
-        int ICollection<MessageTemplateParameter>.Count => _messagePropertiesCount;
-
-        bool ICollection<MessageTemplateParameter>.IsReadOnly => true;
-
-        MessageTemplateParameter IList<MessageTemplateParameter>.this[int index]
-        {
-            get
-            {
-                if (index >= _messagePropertiesCount || index < 0 || _messageProperties is null)
-                    throw new ArgumentOutOfRangeException(nameof(index));
-                return _messageProperties[index];
-            }
-            set
-            {
-                if (index >= _messagePropertiesCount || index < 0 || _messageProperties is null)
-                    throw new ArgumentOutOfRangeException(nameof(index));
-                _messageProperties[index] = value;
-            }
-        }
-
         /// <inheritDoc/>
         public object? this[object key]
         {
@@ -229,48 +216,14 @@ namespace NLog.Internal
             }
             set
             {
-                if (SkipDictionaryAllocation() && key is string propertyName && propertyName.Length > 0)
-                {
-                    var messageProperties = _messageProperties ?? (_messageProperties = new MessageTemplateParameter[3]);
-                    for (int i = 0; i < _messagePropertiesCount; ++i)
-                    {
-                        if (messageProperties[i].Name.Equals(propertyName))
-                        {
-                            messageProperties[i] = new MessageTemplateParameter(messageProperties[i].Name, value, messageProperties[i].Format, messageProperties[i].CaptureType);
-                            return;
-                        }
-                    }
-                    messageProperties[_messagePropertiesCount++] = new MessageTemplateParameter(propertyName, value, null, CaptureType.Unknown);
-                    return;
-                }
-
-                GetEventProperties(true)[key] = new PropertyValue(value, false);
+                AddOrUpdateMessageProperties(key, value, true);
             }
         }
 
         /// <inheritDoc/>
         public void Add(object key, object? value)
         {
-            if (SkipDictionaryAllocation() && key is string propertyName && propertyName.Length > 0)
-            {
-                var messageProperties = _messageProperties ?? (_messageProperties = new MessageTemplateParameter[3]);
-                for (int i = 0; i < _messagePropertiesCount; ++i)
-                {
-                    if (messageProperties[i].Name.Equals(propertyName))
-                    {
-                        throw new ArgumentException($"An item with the same key {propertyName} has already been added.", nameof(key));
-                    }
-                }
-                messageProperties[_messagePropertiesCount++] = new MessageTemplateParameter(propertyName, value, null, CaptureType.Unknown);
-                return;
-            }
-
-            GetEventProperties(true)[key] = new PropertyValue(value, false);
-        }
-
-        private bool SkipDictionaryAllocation()
-        {
-            return _eventProperties is null && (_messageProperties is null || _messagePropertiesCount < _messageProperties.Length);
+            AddOrUpdateMessageProperties(key, value, false);
         }
 
         /// <inheritDoc/>
@@ -428,6 +381,41 @@ namespace NLog.Internal
             return false;
         }
 
+        private void AddOrUpdateMessageProperties(object key, object? value, bool allowUpdate)
+        {
+            if (SkipDictionaryAllocation() && key is string propertyName && propertyName.Length > 0)
+            {
+                var messageProperties = _messageProperties ?? (_messageProperties = new MessageTemplateParameter[SmallArraySize]);
+                for (int i = 0; i < _messagePropertiesCount; ++i)
+                {
+                    if (propertyName.Equals(messageProperties[i].Name))
+                    {
+                        if (!allowUpdate)
+                        {
+                            throw new ArgumentException($"An item with the same key {propertyName} has already been added.", nameof(key));
+                        }
+                        messageProperties[i] = new MessageTemplateParameter(propertyName, value, null, CaptureType.Unknown);
+                        return;
+                    }
+                }
+
+                messageProperties[_messagePropertiesCount++] = new MessageTemplateParameter(propertyName, value, null, CaptureType.Unknown);
+            }
+            else if (allowUpdate)
+            {
+                GetEventProperties(true)[key] = new PropertyValue(value, false);
+            }
+            else
+            {
+                GetEventProperties(true).Add(key, new PropertyValue(value, false));
+            }
+        }
+
+        private bool SkipDictionaryAllocation()
+        {
+            return _eventProperties is null && (_messageProperties is null || _messagePropertiesCount < _messageProperties.Length);
+        }
+
         /// <summary>
         /// Check if the message-template-parameters can be used directly without allocating a dictionary
         /// </summary>
@@ -508,65 +496,6 @@ namespace NLog.Internal
             }
 
             return newItemName;
-        }
-
-        int IList<MessageTemplateParameter>.IndexOf(MessageTemplateParameter item)
-        {
-            if (_messageProperties != null && _messagePropertiesCount > 0)
-            {
-                for (int i = 0; i < _messagePropertiesCount; ++i)
-                {
-                    if (_messageProperties[i].Equals(item))
-                        return i;
-                }
-            }
-            return -1;
-        }
-
-        bool ICollection<MessageTemplateParameter>.Contains(MessageTemplateParameter item)
-        {
-            return ((IList<MessageTemplateParameter>)this).IndexOf(item) >= 0;
-        }
-
-        void ICollection<MessageTemplateParameter>.CopyTo(MessageTemplateParameter[] array, int arrayIndex)
-        {
-            if (_messageProperties != null && _messagePropertiesCount > 0)
-            {
-                Array.Copy(_messageProperties, 0, array, arrayIndex, _messagePropertiesCount);
-            }
-        }
-
-        void IList<MessageTemplateParameter>.Insert(int index, MessageTemplateParameter item)
-        {
-            throw new NotSupportedException("MessageTemplateParameters array is read-only");
-        }
-
-        void IList<MessageTemplateParameter>.RemoveAt(int index)
-        {
-            throw new NotSupportedException("MessageTemplateParameters array is read-only");
-        }
-
-        void ICollection<MessageTemplateParameter>.Add(MessageTemplateParameter item)
-        {
-            throw new NotSupportedException("MessageTemplateParameters array is read-only");
-        }
-
-        void ICollection<MessageTemplateParameter>.Clear()
-        {
-            throw new NotSupportedException("MessageTemplateParameters array is read-only");
-        }
-
-        bool ICollection<MessageTemplateParameter>.Remove(MessageTemplateParameter item)
-        {
-            throw new NotSupportedException("MessageTemplateParameters array is read-only");
-        }
-
-        IEnumerator<MessageTemplateParameter> IEnumerable<MessageTemplateParameter>.GetEnumerator()
-        {
-            if (_messageProperties is null)
-                return System.Linq.Enumerable.Empty<MessageTemplateParameter>().GetEnumerator();
-            else
-                return ((IList<MessageTemplateParameter>)_messageProperties).GetEnumerator();
         }
 
         public struct PropertyDictionaryEnumerator : IEnumerator<KeyValuePair<object, object?>>
@@ -696,7 +625,7 @@ namespace NLog.Internal
             public void Reset()
             {
                 _messagePropertiesIndex = _dictionary._messagePropertiesCount > 0 ? -1 : default(int?);
-                _eventEnumerator = default(Dictionary<object, PropertyValue>.Enumerator);
+                _eventEnumerator = _dictionary._eventProperties?.GetEnumerator() ?? default(Dictionary<object, PropertyValue>.Enumerator);
             }
         }
 

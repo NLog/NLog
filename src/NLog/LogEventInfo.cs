@@ -465,9 +465,10 @@ namespace NLog
         {
             get
             {
-                if (_properties?.MessageProperties.Count > 0)
+                var messageProperties = _properties?.MessageProperties;
+                if (messageProperties?.Length > 0)
                 {
-                    return new MessageTemplateParameters(_properties.MessageProperties);
+                    return new MessageTemplateParameters(messageProperties);
                 }
                 else if (_parameters?.Length > 0)
                 {
@@ -711,7 +712,7 @@ namespace NLog
             if (properties.Count > 5)
                 return false; // too many properties, too costly to check
 
-            if (properties.Count == _parameters?.Length && properties.Count == properties.MessageProperties.Count)
+            if (properties.Count == _parameters?.Length && properties.Count == properties.MessageProperties.Length)
                 return true; // Already checked formatted message, no need to do it twice
 
             return HasImmutableProperties(properties);
@@ -720,12 +721,11 @@ namespace NLog
         private static bool HasImmutableProperties(PropertiesDictionary properties)
         {
             var messageProperties = properties.MessageProperties;
-            if (properties.Count == messageProperties.Count)
+            if (properties.Count == messageProperties.Length)
             {
                 // Skip enumerator allocation when all properties comes from the message-template
-                for (int i = 0; i < messageProperties.Count; ++i)
+                foreach (var property in messageProperties)
                 {
-                    var property = messageProperties[i];
                     if (!IsSafeToDeferFormatting(property.Value))
                         return false;
                 }
@@ -841,7 +841,7 @@ namespace NLog
             }
 
             // If message-template-properties have not been provided as contructor-input, then allow parsing of message-template.
-            return _properties.MessageProperties.Count == 0 || _properties.MessageProperties[0].CaptureType == CaptureType.Unknown;
+            return _properties.MessageProperties.Length == 0;
         }
     }
 }
