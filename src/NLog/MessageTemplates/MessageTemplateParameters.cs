@@ -80,24 +80,26 @@ namespace NLog.MessageTemplates
         /// <param name="parameters">All <see cref="LogEventInfo.Parameters"/></param>
         internal MessageTemplateParameters(string message, object[] parameters)
         {
-            var hasParameters = parameters?.Length > 0;
-            bool isPositional = hasParameters;
-            bool isValidTemplate = !hasParameters;
-            _parameters = hasParameters ? ParseMessageTemplate(message, parameters, out isPositional, out isValidTemplate) : ArrayHelper.Empty<MessageTemplateParameter>();
-            IsPositional = isPositional;
-            IsValidTemplate = isValidTemplate;
+            if (parameters is null || parameters.Length == 0)
+            {
+                _parameters = ArrayHelper.Empty<MessageTemplateParameter>();
+                IsValidTemplate = true;
+            }
+            else
+            {
+                _parameters = ParseMessageTemplate(message, parameters, out var isPositional, out var isValidTemplate);
+                IsPositional = isPositional;
+                IsValidTemplate = isValidTemplate;
+            }
         }
 
         /// <summary>
         /// Constructor for named parameters that already has been parsed
         /// </summary>
-        internal MessageTemplateParameters(IList<MessageTemplateParameter> templateParameters, string message, object[] parameters)
+        internal MessageTemplateParameters(IList<MessageTemplateParameter> templateParameters)
         {
             _parameters = templateParameters ?? ArrayHelper.Empty<MessageTemplateParameter>();
-            if (parameters != null && _parameters.Count != parameters.Length)
-            {
-                IsValidTemplate = false;
-            }
+            IsValidTemplate = true;
         }
 
         /// <summary>
