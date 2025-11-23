@@ -54,11 +54,6 @@
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Title>NLog.OutputDebugString for .NET Framework 4.5</Title>
-    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-  </PropertyGroup>
-
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Title>NLog.OutputDebugString for .NET Framework 3.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>

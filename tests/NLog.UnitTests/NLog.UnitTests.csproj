@@ -24,10 +24,6 @@
     <DefineConstants>$(DefineConstants);NET35</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' != 'net8.0' AND '$(TestTargetFramework)' == 'net45' ">
-    <DefineConstants>$(DefineConstants);NET45</DefineConstants>
-  </PropertyGroup>
-
   <PropertyGroup Condition=" '$(monobuild)' != '' ">
     <DefineConstants>$(DefineConstants);MONO</DefineConstants>
   </PropertyGroup>
