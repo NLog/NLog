@@ -424,7 +424,7 @@ namespace NLog
             {
                 if (_properties != null && _properties.MessageProperties.Count > 0)
                 {
-                    return new MessageTemplateParameters(_properties.MessageProperties, _message, _parameters);
+                    return new MessageTemplateParameters(_properties.MessageProperties);
                 }
                 else if (_parameters?.Length > 0)
                 {
@@ -661,12 +661,13 @@ namespace NLog
 
         private static bool HasImmutableProperties(PropertiesDictionary properties)
         {
-            if (properties.Count == properties.MessageProperties.Count)
+            var messageProperties = properties.MessageProperties;
+            if (properties.Count == messageProperties.Count)
             {
                 // Skip enumerator allocation when all properties comes from the message-template
-                for (int i = 0; i < properties.MessageProperties.Count; ++i)
+                for (int i = 0; i < messageProperties.Count; ++i)
                 {
-                    var property = properties.MessageProperties[i];
+                    var property = messageProperties[i];
                     if (!IsSafeToDeferFormatting(property.Value))
                         return false;
                 }
