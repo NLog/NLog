@@ -518,14 +518,9 @@ namespace NLog.Layouts
                 return;
             }
 
-            if (propertyValue is Dictionary<int, int> dict)
+            if (propertyValue is IEnumerable && !ObjectReflectionCache.TryLookupExpandoObject(propertyValue, out _))
             {
-                foreach (var kvp in dict)
-                {
-                    string keyString = kvp.Key.ToString(CultureInfo.InvariantCulture);
-                    string indexedPropertyName = $"{basePropertyName}[{keyString}]";
-                    FlattenObjectProperties(indexedPropertyName, kvp.Value, sb, beginJsonMessage, depth + 1);
-                }
+                AppendJsonPropertyValue(basePropertyName, propertyValue, sb, beginJsonMessage);
                 return;
             }
             var objectPropertyList = ObjectReflectionCache.LookupObjectProperties(propertyValue);
