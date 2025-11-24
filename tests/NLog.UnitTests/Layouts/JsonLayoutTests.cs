@@ -1367,6 +1367,8 @@ namespace NLog.UnitTests.Layouts
                     { "obj2", new { name = "test2", value = 200 } }
                 },
                 
+                intList = new List<int> { 1, 2, 3 },
+                
                 // Dictionary<int, int> - serialized as JSON collection
                 numericKeyDict = new Dictionary<int, int>
                 {
@@ -1386,6 +1388,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Contains("\"data.objectDict.obj1.value\":100", json);
             Assert.Contains("\"data.objectDict.obj2.name\":\"test2\"", json);
             Assert.Contains("\"data.objectDict.obj2.value\":200", json);
+            Assert.Contains("\"data.intList\":[1,2,3]", json);
             Assert.Contains("\"data.numericKeyDict\"", json);
             Assert.Contains("\"1\":100", json);
             Assert.Contains("\"2\":200", json);
