@@ -302,6 +302,35 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void UnknownTargetTypeTest_ReportError()
+        {
+            StringWriter writer1 = new StringWriter()
+            {
+                NewLine = "\n"
+            };
+
+            using (new InternalLoggerScope())
+            using (new NoThrowNLogExceptions())
+            {
+                InternalLogger.LogWriter = writer1;
+
+                LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+                <nlog internalLogLevel='Error'>
+                    <targets>
+                        <target name='d1' xsi:type='UnknownTarget' />
+                    </targets>
+                    <rules>
+                        <logger name='*' minLevel='Info' writeTo='d1' />
+                    </rules>
+                </nlog>");
+            }
+            var internalOutput = writer1.ToString();
+            Assert.NotEmpty(internalOutput);
+            Assert.Contains("UnknownTarget", internalOutput);
+        }
+
+
+        [Fact]
         public void RulesBeforeTargetsTest()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"

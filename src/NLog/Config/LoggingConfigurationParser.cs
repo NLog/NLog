@@ -1396,6 +1396,7 @@ namespace NLog.Config
             }
             catch (NLogConfigurationException configException)
             {
+                InternalLogger.Error(configException, configException.Message);
                 if (MustThrowConfigException(configException))
                     throw;
             }
@@ -1405,6 +1406,7 @@ namespace NLog.Config
                     throw;
 
                 var configException = new NLogConfigurationException($"Failed to create {typeof(T).Name} of type: {typeName}", ex);
+                InternalLogger.Error(configException, $"Failed to create {typeof(T).Name} of type: {typeName}");
                 if (MustThrowConfigException(configException))
                     throw configException;
             }
