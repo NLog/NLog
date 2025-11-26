@@ -314,18 +314,15 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public bool TryGetValue(object key, out object? value)
         {
-            if (!IsEmpty)
+            if (_eventProperties is null)
             {
-                if (_eventProperties is null)
-                {
-                    return TryLookupMessagePropertyValue(key, out value);
-                }
+                return TryLookupMessagePropertyValue(key, out value);
+            }
 
-                if (_eventProperties.TryGetValue(key, out var eventProperty))
-                {
-                    value = eventProperty.Value;
-                    return true;
-                }
+            if (_eventProperties.TryGetValue(key, out var eventProperty))
+            {
+                value = eventProperty.Value;
+                return true;
             }
 
             value = null;
