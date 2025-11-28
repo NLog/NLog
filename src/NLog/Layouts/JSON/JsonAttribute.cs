@@ -165,10 +165,10 @@ namespace NLog.Layouts
             if (!Encode)
             {
                 var valueStart = builder.Length;
-                if (!RenderAppendJsonValue(logEvent, builder, valueStart))
-                    return false;
+                return RenderAppendJsonValue(logEvent, builder, valueStart);
             }
-            else if (ValueType is null)
+
+            if (ValueType is null)
             {
                 builder.Append('"');
 
@@ -178,7 +178,7 @@ namespace NLog.Layouts
 
                 Targets.DefaultJsonSerializer.PerformJsonEscapeWhenNeeded(builder, valueStart, EscapeUnicode);
                 builder.Append('"');
-}
+            }
             else
             {
                 var objectValue = _layoutInfo.RenderValue(logEvent);
@@ -187,7 +187,6 @@ namespace NLog.Layouts
 
                 jsonConverter.SerializeObject(objectValue, builder);
             }
-
             return true;
         }
 
