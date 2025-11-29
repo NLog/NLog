@@ -34,6 +34,7 @@
 namespace NLog.Layouts
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
@@ -58,6 +59,8 @@ namespace NLog.Layouts
         private LimitRecursionJsonConvert? _jsonConverter;
         private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = ResolveService<IValueFormatter>());
         private IValueFormatter? _valueFormatter;
+        private Internal.ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new Internal.ObjectReflectionCache(ResolveService<System.IServiceProvider>()));
+        private Internal.ObjectReflectionCache? _objectReflectionCache;
 
         private sealed class LimitRecursionJsonConvert : IJsonConverter
         {
@@ -149,6 +152,13 @@ namespace NLog.Layouts
             }
         }
         private bool _indentJson;
+
+        /// <summary>
+        /// Gets or sets whether to flatten nested object properties using dotted notation
+        /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
+        /// <docgen category='Layout Options' order='10' />
+        public bool DottedRecursion { get; set; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
@@ -277,6 +287,7 @@ namespace NLog.Layouts
         {
             _jsonConverter = null;
             _valueFormatter = null;
+            _objectReflectionCache = null;
             _precalculateLayouts = null;
             base.CloseLayout();
         }
@@ -361,7 +372,14 @@ namespace NLog.Layouts
                         if (checkExcludeProperties && ExcludeProperties.Contains(prop.Name))
                             continue;
 
-                        AppendJsonPropertyValue(prop.Name, prop.Value, prop.Format, logEvent.FormatProvider, prop.CaptureType, sb, sb.Length == orgLength);
+                        if (DottedRecursion)
+                        {
+                            AppendFlattenedPropertyValue(prop.Name, prop.Value, prop.Format, logEvent.FormatProvider, prop.CaptureType, sb, sb.Length == orgLength);
+                        }
+                        else
+                        {
+                            AppendJsonPropertyValue(prop.Name, prop.Value, prop.Format, logEvent.FormatProvider, prop.CaptureType, sb, sb.Length == orgLength);
+                        }
                     }
                 }
             }
@@ -425,8 +443,29 @@ namespace NLog.Layouts
                 sb.Length = initialLength;
             }
         }
-
         private void AppendJsonPropertyValue(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
+        {
+            AppendPropertyValueInternal(propName, propertyValue, format, formatProvider, captureType, sb, beginJsonMessage);
+        }
+
+        private void AppendFlattenedPropertyValue(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
+        {
+            if (captureType == MessageTemplates.CaptureType.Stringify)
+            {
+                AppendPropertyValueInternal(propName, propertyValue, format, formatProvider, captureType, sb, beginJsonMessage);
+            }
+            else
+            {
+                // Allow flattening also for Serialize, by starting at a negative depth to effectively loosen depth bound
+                int startDepth = captureType == MessageTemplates.CaptureType.Serialize
+                    ? Math.Min(0, MaxRecursionLimit - 10)
+                    : 0;
+
+                FlattenObjectProperties(propName, propertyValue, sb, beginJsonMessage, startDepth);
+            }
+        }
+
+        private void AppendPropertyValueInternal(string propName, object? propertyValue, string? format, IFormatProvider? formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
         {
             if (captureType == MessageTemplates.CaptureType.Serialize && MaxRecursionLimit <= 1)
             {
@@ -458,6 +497,51 @@ namespace NLog.Layouts
             else
             {
                 AppendJsonPropertyValue(propName, propertyValue, sb, beginJsonMessage);
+            }
+        }
+
+        private void FlattenObjectProperties(string basePropertyName, object? propertyValue, StringBuilder sb, bool beginJsonMessage, int depth = 0)
+        {
+            if (depth >= MaxRecursionLimit)
+            {
+                AppendJsonPropertyValue(basePropertyName, propertyValue, sb, beginJsonMessage);
+                return;
+            }
+
+            if (ExcludeEmptyProperties && (propertyValue is null || ReferenceEquals(propertyValue, string.Empty)))
+                return;
+
+            if (propertyValue is null || propertyValue is string || (propertyValue is IConvertible c && c.GetTypeCode() != TypeCode.Object))
+            {
+                AppendJsonPropertyValue(basePropertyName, propertyValue, sb, beginJsonMessage);
+                return;
+            }
+
+            if (propertyValue is IEnumerable && !ObjectReflectionCache.TryLookupExpandoObject(propertyValue, out _))
+            {
+                AppendJsonPropertyValue(basePropertyName, propertyValue, sb, beginJsonMessage);
+                return;
+            }
+            var objectPropertyList = ObjectReflectionCache.LookupObjectProperties(propertyValue);
+            if (objectPropertyList.IsSimpleValue)
+            {
+                AppendJsonPropertyValue(basePropertyName, objectPropertyList.ObjectValue, sb, beginJsonMessage);
+                return;
+            }
+
+            bool isFirstChild = beginJsonMessage;
+            foreach (var property in objectPropertyList)
+            {
+                if (!property.HasNameAndValue)
+                    continue;
+
+                string dottedPropertyName = string.Concat(basePropertyName, ".", property.Name);
+                int beforeLength = sb.Length;
+                FlattenObjectProperties(dottedPropertyName, property.Value, sb, isFirstChild, depth + 1);
+                if (sb.Length != beforeLength)
+                {
+                    isFirstChild = false;
+                }
             }
         }
 
