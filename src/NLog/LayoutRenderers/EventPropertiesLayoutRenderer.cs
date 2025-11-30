@@ -139,7 +139,7 @@ namespace NLog.LayoutRenderers
             {
                 if (TryGetValue(logEvent, out var value))
                 {
-                    string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, Culture));
+                    var stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, Culture));
                     return stringValue;
                 }
                 return string.Empty;

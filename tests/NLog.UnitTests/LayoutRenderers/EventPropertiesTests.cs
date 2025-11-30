@@ -34,6 +34,7 @@
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
+    using System.Collections.Generic;
     using NLog.Layouts;
     using Xunit;
 
@@ -80,6 +81,20 @@ namespace NLog.UnitTests.LayoutRenderers
 
             // empty
             Assert.Equal("", layout.Render(logEvent));
+        }
+
+        [Fact]
+        public void TestDictionaryProperty()
+        {
+            Layout layout = "${event-properties:prop1}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["prop1"] = new Dictionary<string, string>()
+            {
+                { "key1", "value1" }
+            };
+
+            // Dictionary should render as key-value pairs
+            Assert.Equal("key1=value1", layout.Render(logEvent));
         }
 
         [Fact]
