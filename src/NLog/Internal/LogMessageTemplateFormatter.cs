@@ -135,7 +135,7 @@ namespace NLog.Internal
         /// <param name="parameters">Parameters for the holes.</param>
         /// <param name="sb">The String Builder destination.</param>
         /// <param name="messageTemplateParameters">Parameters for the holes.</param>
-        private void Render(string template, IFormatProvider? formatProvider, object?[] parameters, StringBuilder sb, out IList<MessageTemplateParameter>? messageTemplateParameters)
+        private void Render(string template, IFormatProvider? formatProvider, object?[] parameters, StringBuilder sb, out MessageTemplateParameter[]? messageTemplateParameters)
         {
             messageTemplateParameters = null;
 
@@ -200,7 +200,7 @@ namespace NLog.Internal
         }
 
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-        internal string Render(ref TemplateEnumerator templateEnumerator, IFormatProvider? formatProvider, in ReadOnlySpan<object?> parameters, out IList<MessageTemplateParameter>? messageTemplateParameters)
+        internal string Render(ref TemplateEnumerator templateEnumerator, IFormatProvider? formatProvider, in ReadOnlySpan<object?> parameters, out MessageTemplateParameter[]? messageTemplateParameters)
         {
             // Handle message-template-format or string-format or mixed-format
             messageTemplateParameters = null;
@@ -264,9 +264,9 @@ namespace NLog.Internal
         }
 #endif
 
-        private static IList<MessageTemplateParameter>? VerifyMessageTemplateParameters(IList<MessageTemplateParameter>? messageTemplateParameters, int holeIndex)
+        private static MessageTemplateParameter[]? VerifyMessageTemplateParameters(MessageTemplateParameter[]? messageTemplateParameters, int holeIndex)
         {
-            if (messageTemplateParameters != null && holeIndex != messageTemplateParameters.Count)
+            if (messageTemplateParameters != null && holeIndex != messageTemplateParameters.Length)
             {
                 var truncateParameters = new MessageTemplateParameter[holeIndex];
                 for (int i = 0; i < truncateParameters.Length; ++i)

@@ -642,7 +642,7 @@ namespace NLog
         private LogEventInfo RenderPreformattedLogEvent(LogMessageTemplateFormatter messageTemplateFormatter, LogLevel level, Exception? exception, IFormatProvider? formatProvider, string messageTemplate, in ReadOnlySpan<object?> args, ref MessageTemplates.TemplateEnumerator templateEnumerator)
         {
             string formattedMessage = messageTemplate;
-            IList<MessageTemplates.MessageTemplateParameter>? messageTemplateParameters = null;
+            MessageTemplates.MessageTemplateParameter[]? messageTemplateParameters = null;
 
             try
             {

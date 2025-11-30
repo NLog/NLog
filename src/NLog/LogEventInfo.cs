@@ -411,24 +411,24 @@ namespace NLog
         /// Gets the dictionary of per-event context properties.
         /// </summary>
         /// <param name="templateParameters">Provided when having parsed the message template and capture template parameters (else null)</param>
-        internal PropertiesDictionary? TryCreatePropertiesInternal(IList<MessageTemplateParameter>? templateParameters = null)
+        internal PropertiesDictionary? TryCreatePropertiesInternal(MessageTemplateParameter[]? templateParameters = null)
         {
             var properties = _properties;
             if (properties is null)
             {
-                if (templateParameters?.Count > 0 || (templateParameters is null && HasMessageTemplateParameters))
+                if (templateParameters?.Length > 0 || (templateParameters is null && HasMessageTemplateParameters))
                 {
                     return CreatePropertiesInternal(templateParameters);
                 }
             }
             else if (templateParameters != null)
             {
-                properties.ResetMessageProperties(templateParameters);
+                properties.ResetMessageProperties(templateParameters, templateParameters.Length);
             }
             return properties;
         }
 
-        internal PropertiesDictionary CreatePropertiesInternal(IList<MessageTemplateParameter>? templateParameters = null, int initialCapacity = 0)
+        internal PropertiesDictionary CreatePropertiesInternal(MessageTemplateParameter[]? templateParameters = null, int initialCapacity = 0)
         {
             if (_properties is null)
             {
@@ -465,9 +465,10 @@ namespace NLog
         {
             get
             {
-                if (_properties?.MessageProperties.Count > 0)
+                var messageProperties = _properties?.MessageProperties;
+                if (messageProperties?.Length > 0)
                 {
-                    return new MessageTemplateParameters(_properties.MessageProperties);
+                    return new MessageTemplateParameters(messageProperties);
                 }
                 else if (_parameters?.Length > 0)
                 {
@@ -711,7 +712,7 @@ namespace NLog
             if (properties.Count > 5)
                 return false; // too many properties, too costly to check
 
-            if (properties.Count == _parameters?.Length && properties.Count == properties.MessageProperties.Count)
+            if (properties.Count == _parameters?.Length && properties.Count == properties.MessageProperties.Length)
                 return true; // Already checked formatted message, no need to do it twice
 
             return HasImmutableProperties(properties);
@@ -720,12 +721,11 @@ namespace NLog
         private static bool HasImmutableProperties(PropertiesDictionary properties)
         {
             var messageProperties = properties.MessageProperties;
-            if (properties.Count == messageProperties.Count)
+            if (properties.Count == messageProperties.Length)
             {
                 // Skip enumerator allocation when all properties comes from the message-template
-                for (int i = 0; i < messageProperties.Count; ++i)
+                foreach (var property in messageProperties)
                 {
-                    var property = messageProperties[i];
                     if (!IsSafeToDeferFormatting(property.Value))
                         return false;
                 }
@@ -841,7 +841,7 @@ namespace NLog
             }
 
             // If message-template-properties have not been provided as contructor-input, then allow parsing of message-template.
-            return _properties.MessageProperties.Count == 0;
+            return _properties.MessageProperties.Length == 0;
         }
     }
 }
