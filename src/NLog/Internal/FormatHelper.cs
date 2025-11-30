@@ -65,7 +65,7 @@ namespace NLog.Internal
             return Convert.ToString(value, formatProvider);
         }
 
-        internal static string TryFormatToString(object? value, string? format, IFormatProvider? formatProvider)
+        internal static string? TryFormatToString(object? value, string? format, IFormatProvider? formatProvider)
         {
             if (value is IFormattable formattable)
             {
@@ -75,13 +75,13 @@ namespace NLog.Internal
             {
                 return convertible.ToString(formatProvider);
             }
-            else if (value is System.Collections.IEnumerable)
+            else if (value is null)
             {
                 return string.Empty;
             }
             else
             {
-                return value?.ToString() ?? string.Empty;
+                return null;    // Complex formatting requires IValueFormatter
             }
         }
     }

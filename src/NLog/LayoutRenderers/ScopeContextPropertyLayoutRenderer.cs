@@ -93,7 +93,7 @@ namespace NLog.LayoutRenderers
             if (!MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format))
             {
                 var value = GetValue();
-                string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, Culture));
+                var stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, Culture));
                 return stringValue;
             }
             return null;
