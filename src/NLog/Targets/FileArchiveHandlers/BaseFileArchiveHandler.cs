@@ -151,12 +151,90 @@ namespace NLog.Targets.FileArchiveHandlers
                 }
                 else if (x.FileCreatedTimeUtc.Date == y.FileCreatedTimeUtc.Date)
                 {
-                    return StringComparer.OrdinalIgnoreCase.Compare(x.FileInfo.Name, y.FileInfo.Name);
+                    return NaturalStringComparer(x.FileInfo.Name, y.FileInfo.Name);
                 }
                 else
                 {
                     return x.FileCreatedTimeUtc.CompareTo(y.FileCreatedTimeUtc);
                 }
+            }
+
+            /// <summary>
+            /// With NET10 there is CompareOptions.NumericOrdering (But not supported on all operating systems)
+            /// </summary>
+            private static int NaturalStringComparer(string x, string y)
+            {
+                if (x is null || y is null || x.Length == y.Length)
+                    return string.Compare(x, y, StringComparison.OrdinalIgnoreCase);
+
+                int x_pos = 0;
+                int y_pos = 0;
+
+                // Skip common prefix
+                int digit_start = -1;
+                while (x_pos < x.Length && y_pos < y.Length)
+                {
+                    if (x[x_pos] != y[y_pos])
+                        break;
+
+                    if (!char.IsDigit(x[x_pos]))
+                        digit_start = -1;
+                    else if (digit_start < 0)
+                        digit_start = x_pos;
+                    y_pos++;
+                    x_pos++;
+                }
+                if (digit_start >= 0)
+                {
+                    x_pos = digit_start;
+                    y_pos = digit_start;
+                }
+
+                while (x_pos < x.Length && y_pos < y.Length)
+                {
+                    char x_chr = x[x_pos];
+                    char y_chr = y[y_pos];
+
+                    // Both chars are digits, compare numeric block
+                    if (char.IsDigit(x_chr) && char.IsDigit(y_chr))
+                    {
+                        // Skip leading zeros
+                        while (x_pos < x.Length && x[x_pos] == '0') x_pos++;
+                        while (y_pos < y.Length && y[y_pos] == '0') y_pos++;
+
+                        int x_digit_start = x_pos;
+                        int y_digit_start = y_pos;
+                        while (x_pos < x.Length && char.IsDigit(x[x_pos])) x_pos++;
+                        while (y_pos < y.Length && char.IsDigit(y[y_pos])) y_pos++;
+
+                        int x_digit_len = x_pos - x_digit_start;
+                        int y_digit_len = y_pos - y_digit_start;
+
+                        // If different length, longer wins
+                        if (x_digit_len != y_digit_len)
+                            return x_digit_len.CompareTo(y_digit_len);
+
+                        // Lengths equal, compare digit by digit
+                        for (int i = 0; i < x_digit_len; i++)
+                        {
+                            int cmp = x[x_digit_start + i].CompareTo(y[y_digit_start + i]);
+                            if (cmp != 0)
+                                return cmp;
+                        }
+                        // If all digits equal, continue comparing after number block
+                        continue;
+                    }
+
+                    // Non-digit comparison (case-insensitive, ordinal)
+                    int cmpChar = char.ToUpperInvariant(x_chr).CompareTo(char.ToUpperInvariant(y_chr));
+                    if (cmpChar != 0)
+                        return cmpChar;
+
+                    x_pos++;
+                    y_pos++;
+                }
+
+                return x.Length.CompareTo(y.Length);
             }
 
             public override string ToString()
