@@ -3436,20 +3436,21 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [InlineData("##", 0, "00")]
-        [InlineData("##", 1, "01")]
-        [InlineData("#", 20, "20")]
+        [InlineData(0, "00", 0)]
+        [InlineData(1, "01", 0)]
+        [InlineData(20, "20", 0)]
+        [InlineData(101, "101", 10)]
         public void FileTarget_WithDateAndSequenceArchiveNumbering_ShouldPadSequenceNumberInArchiveFileName(
-            string placeHolderSharps, int sequenceNumber, string expectedSequenceInArchiveFileName)
+            int sequenceNumber, string expectedSequenceInArchiveFileName, int maxArchiveFiles)
         {
             string tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             const string archiveDateFormat = "yyyy-MM-dd";
-            string archiveFileName = Path.Combine(tempDir, $"{{{placeHolderSharps}}}.log");
+            string archiveFileName = Path.Combine(tempDir, $"{{##}}.log");
             string expectedArchiveFullName =
                 $"{tempDir}/{DateTime.Now.ToString(archiveDateFormat)}_{expectedSequenceInArchiveFileName}.log";
 
             GenerateArchives(count: sequenceNumber + 2, archiveDateFormat: archiveDateFormat,
-                archiveFileName: archiveFileName);
+                archiveFileName: archiveFileName, maxArchiveFiles);
             bool resultArchiveWithExpectedNameExists = File.Exists(expectedArchiveFullName);
             Assert.True(resultArchiveWithExpectedNameExists);
         }
@@ -3473,7 +3474,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(resultArchiveWithExpectedNameExists);
         }
 
-        private void GenerateArchives(int count, string archiveDateFormat, string archiveFileName)
+        private void GenerateArchives(int count, string archiveDateFormat, string archiveFileName, int maxArchiveFiles = 0)
         {
             string logFileName = Path.GetTempFileName();
             const int logFileMaxSize = 1;
@@ -3486,6 +3487,10 @@ namespace NLog.UnitTests.Targets
 #pragma warning restore CS0618 // Type or member is obsolete
                 ArchiveAboveSize = logFileMaxSize
             };
+            if (maxArchiveFiles > 0)
+            {
+                fileTarget.MaxArchiveFiles = maxArchiveFiles;
+            }
             LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
             for (int currentSequenceNumber = 0; currentSequenceNumber < count; currentSequenceNumber++)
                 logger.Debug("Test {0}", currentSequenceNumber);
