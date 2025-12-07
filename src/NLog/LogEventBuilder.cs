@@ -120,14 +120,32 @@ namespace NLog
             return this;
         }
 
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+#if !NET35 && !NET40
+        /// <summary>
+        /// Sets multiple per-event context properties on the logging event.
+        /// </summary>
+        /// <param name="properties">The properties to set.</param>
+        public LogEventBuilder Properties(IReadOnlyCollection<KeyValuePair<string, object?>> properties)
+        {
+            Guard.ThrowIfNull(properties);
+            if (_logEvent != null && properties.Count > 0)
+            {
+                var dictionary = _logEvent.CreatePropertiesInternal(initialCapacity: properties.Count);
+                foreach (var property in properties)
+                    dictionary[property.Key] = property.Value;
+            }
+            return this;
+        }
+#endif
+
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_0_OR_GREATER
         /// <summary>
         /// Sets multiple per-event context properties on the logging event.
         /// </summary>
         /// <param name="properties">The properties to set.</param>
         public LogEventBuilder Properties(ReadOnlySpan<(string, object?)> properties)
         {
-            if (_logEvent != null)
+            if (_logEvent != null && !properties.IsEmpty)
             {
                 var dictionary = _logEvent.CreatePropertiesInternal(initialCapacity: properties.Length);
                 foreach (var property in properties)
