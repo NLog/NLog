@@ -45,7 +45,7 @@ namespace NLog.Benchmarks
         private static readonly string TestMessage = "The cat sat at the bar.";
         private readonly StreamWriter _streamWriter = new StreamWriter(new MemoryStream());
         private readonly LogFactory _logFactory = new LogFactory();
-        private Logger _logger;
+        private Logger _logger = LogManager.CreateNullLogger();
 
         [GlobalSetup]
         public void Setup()
