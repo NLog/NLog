@@ -4,6 +4,20 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.0.7 (2025/12/09)
+
+**Improvements**
+- [#6056](https://github.com/NLog/NLog/pull/6056) FileTarget - Archive Cleanup sort filenames using natural ordering. (@snakefoot)
+- [#6054](https://github.com/NLog/NLog/pull/6054) EventProperties - Format Dictionary Properties correctly. (@snakefoot)
+- [#6051](https://github.com/NLog/NLog/pull/6051) Failure to create config item should be reported as InternalLogger Error. (@snakefoot)
+- [#6052](https://github.com/NLog/NLog/pull/6052) PropertiesDictionary - Faster TryGetValue without IsEmpty. (@snakefoot)
+- [#6048](https://github.com/NLog/NLog/pull/6048) PropertiesDictionary - Increase initial capacity when insert. (@snakefoot)
+- [#6047](https://github.com/NLog/NLog/pull/6047) LogEventInfo - Minor optimization of HasImmutableProperties. (@snakefoot)
+- [#6057](https://github.com/NLog/NLog/pull/6057) WhenEmpty - Support AppDomainFixedOutput optimization. (@snakefoot)
+- [#6053](https://github.com/NLog/NLog/pull/6053) JsonAttribute - Reduce code complexity when Encode = false. (@snakefoot)
+- [#6044](https://github.com/NLog/NLog/pull/6044) Target also enforce PreventMultipleCalls when WriteFailedNotInitialized. (@snakefoot)
+- [#6042](https://github.com/NLog/NLog/pull/6042) NLog.RegEx - Fixed Wiki-link in nuget-package. (@snakefoot)
+
 ### Version 6.0.6 (2025/11/09)
 
 **Improvements**
