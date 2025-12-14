@@ -316,7 +316,7 @@ namespace NLog.Targets.Wrappers
         {
             if (WrappedTarget is null)
             {
-                InternalLogger.Error("{0}: WrappedTarget is NULL", this);
+                InternalLogger.Debug("{0}: No output because WrappedTarget is NULL", this);
                 return;
             }
 
