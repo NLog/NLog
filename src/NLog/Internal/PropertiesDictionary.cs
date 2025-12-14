@@ -446,29 +446,28 @@ namespace NLog.Internal
         {
             private readonly PropertiesDictionary _dictionary;
             private Dictionary<object, PropertyValue>.Enumerator _eventEnumerator;
-            private int? _messagePropertiesIndex;
+            private int _messagePropertiesIndex;
 
             public PropertyDictionaryEnumerator(PropertiesDictionary dictionary)
             {
                 _dictionary = dictionary;
+                _messagePropertiesIndex = (dictionary._messageProperties?.Count > 0 && dictionary._eventProperties is null) ? -1 : int.MinValue;
                 _eventEnumerator = dictionary._eventProperties?.GetEnumerator() ?? default(Dictionary<object, PropertyValue>.Enumerator);
-                _messagePropertiesIndex = dictionary._messageProperties?.Count > 0 ? -1 : default(int?);
             }
 
             public KeyValuePair<object, object?> Current
             {
                 get
                 {
-                    if (_messagePropertiesIndex.HasValue)
+                    if (_messagePropertiesIndex >= 0)
                     {
-                        var property = _dictionary.MessageProperties[_messagePropertiesIndex.Value];
+                        var property = _dictionary.MessageProperties[_messagePropertiesIndex];
                         return new KeyValuePair<object, object?>(property.Name, property.Value);
                     }
-                    if (_dictionary._eventProperties != null)
+                    else
                     {
                         return new KeyValuePair<object, object?>(_eventEnumerator.Current.Key, _eventEnumerator.Current.Value.Value);
                     }
-                    throw new InvalidOperationException();
                 }
             }
 
@@ -476,16 +475,15 @@ namespace NLog.Internal
             {
                 get
                 {
-                    if (_messagePropertiesIndex.HasValue)
+                    if (_messagePropertiesIndex >= 0)
                     {
-                        return _dictionary.MessageProperties[_messagePropertiesIndex.Value];
+                        return _dictionary.MessageProperties[_messagePropertiesIndex];
                     }
-                    if (_dictionary._eventProperties != null)
+                    else
                     {
                         string parameterName = XmlHelper.XmlConvertToString(_eventEnumerator.Current.Key ?? string.Empty) ?? string.Empty;
                         return new MessageTemplateParameter(parameterName, _eventEnumerator.Current.Value.Value, null, CaptureType.Unknown);
                     }
-                    throw new InvalidOperationException();
                 }
             }
 
@@ -493,17 +491,16 @@ namespace NLog.Internal
             {
                 get
                 {
-                    if (_messagePropertiesIndex.HasValue)
+                    if (_messagePropertiesIndex >= 0)
                     {
-                        var property = _dictionary.MessageProperties[_messagePropertiesIndex.Value];
+                        var property = _dictionary.MessageProperties[_messagePropertiesIndex];
                         return new KeyValuePair<string, object?>(property.Name, property.Value);
                     }
-                    if (_dictionary._eventProperties != null)
+                    else
                     {
                         string propertyName = XmlHelper.XmlConvertToString(_eventEnumerator.Current.Key ?? string.Empty) ?? string.Empty;
                         return new KeyValuePair<string, object?>(propertyName, _eventEnumerator.Current.Value.Value);
                     }
-                    throw new InvalidOperationException();
                 }
             }
 
@@ -511,53 +508,23 @@ namespace NLog.Internal
 
             public bool MoveNext()
             {
-                if (_messagePropertiesIndex.HasValue && MoveNextValidMessageParameter())
+                if (_messagePropertiesIndex >= -1)
                 {
-                    return true;
-                }
-
-                if (_dictionary._eventProperties != null)
-                {
-                    return MoveNextValidEventProperty();
-                }
-
-                return false;
-            }
-
-            private bool MoveNextValidEventProperty()
-            {
-                while (_eventEnumerator.MoveNext())
-                {
-                    if (!_eventEnumerator.Current.Value.IsMessageProperty)
-                        return true;
-                }
-                return false;
-            }
-
-            private bool MoveNextValidMessageParameter()
-            {
-                var messageProperties = _dictionary.MessageProperties;
-                if (_messagePropertiesIndex.HasValue && messageProperties != null && _messagePropertiesIndex.Value + 1 < messageProperties.Count)
-                {
-                    var eventProperties = _dictionary._eventProperties;
-                    if (eventProperties is null)
+                    if (_messagePropertiesIndex + 1 < _dictionary._messageProperties?.Count)
                     {
-                        _messagePropertiesIndex = _messagePropertiesIndex.Value + 1;
+                        _messagePropertiesIndex += 1;
                         return true;
                     }
-
-                    for (int i = _messagePropertiesIndex.Value + 1; i < messageProperties.Count; ++i)
-                    {
-                        if (eventProperties.TryGetValue(messageProperties[i].Name, out var valueItem) && valueItem.IsMessageProperty)
-                        {
-                            _messagePropertiesIndex = i;
-                            return true;
-                        }
-                    }
+                    return false;
                 }
-
-                _messagePropertiesIndex = null;
-                return false;
+                else if (_dictionary._eventProperties is null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return _eventEnumerator.MoveNext();
+                }
             }
 
             public void Dispose()
@@ -567,8 +534,8 @@ namespace NLog.Internal
 
             public void Reset()
             {
-                _messagePropertiesIndex = _dictionary._messageProperties?.Count > 0 ? -1 : default(int?);
-                _eventEnumerator = default(Dictionary<object, PropertyValue>.Enumerator);
+                _messagePropertiesIndex = (_dictionary._messageProperties?.Count > 0 && _dictionary._eventProperties is null ) ? -1 : int.MinValue;
+                _eventEnumerator = _dictionary._eventProperties?.GetEnumerator() ?? default(Dictionary<object, PropertyValue>.Enumerator);
             }
         }
 
