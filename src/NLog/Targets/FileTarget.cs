@@ -390,16 +390,14 @@ namespace NLog.Targets
             get => _archiveNumbering ?? "Sequence";
             set
             {
-                if (string.Equals(value, _archiveNumbering))
+                var archiveNumbering = value?.Trim() ?? string.Empty;
+                if (string.IsNullOrEmpty(archiveNumbering) || string.Equals(_archiveNumbering, archiveNumbering, StringComparison.OrdinalIgnoreCase))
                     return;
 
-                _archiveNumbering = string.IsNullOrEmpty(value) ? null : value.Trim();
-                if (_archiveNumbering is null || string.IsNullOrEmpty(_archiveNumbering))
-                    return;
-
+                _archiveNumbering = archiveNumbering;
                 if (_archiveSuffixFormat is null || ReferenceEquals(_archiveSuffixFormat, _legacyDateArchiveSuffixFormat) || ReferenceEquals(_archiveSuffixFormat, _legacySequenceArchiveSuffixFormat))
                 {
-                    ArchiveSuffixFormat = _archiveNumbering.IndexOf("date", StringComparison.OrdinalIgnoreCase) >= 0 ? _legacyDateArchiveSuffixFormat : _legacySequenceArchiveSuffixFormat;
+                    ArchiveSuffixFormat = archiveNumbering.IndexOf("date", StringComparison.OrdinalIgnoreCase) >= 0 ? _legacyDateArchiveSuffixFormat : _legacySequenceArchiveSuffixFormat;
                 }
             }
         }
