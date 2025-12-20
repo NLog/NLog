@@ -438,9 +438,10 @@ namespace NLog.Targets
             }
             set
             {
-                if (!string.IsNullOrEmpty(value) && ArchiveFileName is SimpleLayout simpleLayout)
+                if (!string.IsNullOrEmpty(value) && ArchiveFileName is SimpleLayout simpleLayout && !string.IsNullOrEmpty(simpleLayout.OriginalText))
                 {
                     // When legacy ArchiveFileName only contains file-extension, then strip away leading underscore from suffix
+                    // Handle legacy {#} removal, ArchiveFileName = '{#}.log'  +  ArchiveSuffixFormat = '_{0:00}'  -->  01.log
                     var fileName = Path.GetFileNameWithoutExtension(simpleLayout.OriginalText);
                     if (StringHelpers.IsNullOrWhiteSpace(fileName) && value.IndexOf('_') == 0)
                     {
@@ -450,6 +451,7 @@ namespace NLog.Targets
 
                 _archiveSuffixFormat = value;
                 _archiveSuffixFormatLegacy = _archiveSuffixFormat?.IndexOf("{1", StringComparison.Ordinal) >= 0;
+                _fileArchiveHandler = null;
             }
         }
         private string? _archiveSuffixFormat;
