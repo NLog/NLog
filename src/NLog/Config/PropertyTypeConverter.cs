@@ -198,7 +198,7 @@ namespace NLog.Config
 
         internal static CultureInfo? ConvertToCultureInfo(string? stringValue)
         {
-            if (StringHelpers.IsNullOrWhiteSpace(stringValue))
+            if (stringValue is null || StringHelpers.IsNullOrWhiteSpace(stringValue))
                 return null;
             if (nameof(CultureInfo.InvariantCulture).Equals(stringValue, StringComparison.OrdinalIgnoreCase))
                 return CultureInfo.InvariantCulture;

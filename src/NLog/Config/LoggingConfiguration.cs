@@ -115,7 +115,7 @@ namespace NLog.Config
         internal LoggingRule[] GetLoggingRulesThreadSafe() { lock (_loggingRules) return _loggingRules.ToArray(); }
         private void AddLoggingRulesThreadSafe(LoggingRule rule) { lock (_loggingRules) _loggingRules.Add(rule); }
 
-        private bool TryGetTargetThreadSafe(string name, out Target target) { lock (_targets) return _targets.TryGetValue(name, out target); }
+        private bool TryGetTargetThreadSafe(string name, out Target? target) { lock (_targets) return _targets.TryGetValue(name, out target); }
         private List<Target> GetAllTargetsThreadSafe() { lock (_targets) return _targets.Values.ToList(); }
 
         private Target? RemoveTargetThreadSafe(string name)

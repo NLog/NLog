@@ -43,7 +43,7 @@ namespace NLog.Internal
     internal static class AssemblyHelpers
     {
         [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Returns empty string for assemblies embedded in a single-file app", "IL3000")]
-        public static string GetAssemblyFileLocation(Assembly assembly)
+        public static string GetAssemblyFileLocation(Assembly? assembly)
         {
 #if !NETFRAMEWORK
             // Notice assembly can be loaded from nuget-cache using NTFS-hard-link, and return unexpected file-location.

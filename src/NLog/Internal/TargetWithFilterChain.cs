@@ -373,7 +373,7 @@ namespace NLog.Internal
                 return MethodName.GetHashCode() ^ FileSourceName.GetHashCode() ^ FileSourceLineNumber;
             }
 
-            public override bool Equals(object obj)
+            public override bool Equals(object? obj)
             {
                 return obj is CallSiteKey key && Equals(key);
             }

@@ -271,7 +271,7 @@ namespace NLog.Layouts
 
             public override string ToString()
             {
-                return _innerLayout.ToString();
+                return _innerLayout.ToString() ?? GetType().ToString();
             }
         }
     }

@@ -89,7 +89,7 @@ namespace NLog.Common
         public bool Equals(AsyncLogEventInfo other) => ReferenceEquals(Continuation, other.Continuation) && ReferenceEquals(LogEvent, other.LogEvent);
 
         /// <inheritdoc/>
-        public override bool Equals(object obj) => obj is AsyncLogEventInfo other && Equals(other);
+        public override bool Equals(object? obj) => obj is AsyncLogEventInfo other && Equals(other);
 
         /// <inheritdoc/>
         public override int GetHashCode()

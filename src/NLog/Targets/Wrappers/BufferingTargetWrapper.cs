@@ -271,7 +271,7 @@ namespace NLog.Targets.Wrappers
             }
         }
 
-        private void FlushCallback(object state)
+        private void FlushCallback(object? state)
         {
             bool lockTaken = false;
 

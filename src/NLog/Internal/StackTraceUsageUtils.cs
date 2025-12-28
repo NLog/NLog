@@ -104,7 +104,7 @@ namespace NLog.Internal
 
             if (includeMethodInfo && methodName == method.Name)
             {
-                methodName = method.ToString();
+                methodName = method.ToString() ?? methodName;
             }
 
             return methodName;
@@ -216,9 +216,9 @@ namespace NLog.Internal
         /// Returns the assembly from the provided StackFrame (If not internal assembly)
         /// </summary>
         /// <returns>Valid assembly, or null if assembly was internal</returns>
-        public static Assembly? LookupAssemblyFromMethod(MethodBase? method)
+        public static Assembly? LookupAssemblyFromMethod(MethodBase method)
         {
-            var assembly = method?.DeclaringType?.Assembly ?? method?.Module?.Assembly;
+            var assembly = method.DeclaringType?.Assembly ?? method.Module?.Assembly;
 
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
             if (assembly == nlogAssembly)

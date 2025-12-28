@@ -422,7 +422,7 @@ namespace NLog.Common
                     return;
                 }
 
-                string parentDirectory = Path.GetDirectoryName(filename);
+                var parentDirectory = Path.GetDirectoryName(filename);
                 if (!string.IsNullOrEmpty(parentDirectory))
                 {
                     Directory.CreateDirectory(parentDirectory);

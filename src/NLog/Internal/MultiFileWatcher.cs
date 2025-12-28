@@ -110,7 +110,7 @@ namespace NLog.Internal
         {
             try
             {
-                var directory = Path.GetDirectoryName(fileName);
+                var directory = Path.GetDirectoryName(fileName) ?? string.Empty;
                 var fileFilter = Path.GetFileName(fileName);
                 directory = Path.GetFullPath(directory);
                 if (!Directory.Exists(directory))

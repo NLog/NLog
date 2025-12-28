@@ -154,7 +154,7 @@ namespace NLog.LayoutRenderers
 
         private string GetProcessDir()
         {
-            return Path.GetDirectoryName(_appEnvironment.CurrentProcessFilePath);
+            return Path.GetDirectoryName(_appEnvironment.CurrentProcessFilePath) ?? string.Empty;
         }
     }
 }

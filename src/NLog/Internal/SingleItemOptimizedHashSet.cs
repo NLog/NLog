@@ -239,7 +239,7 @@ namespace NLog.Internal
         {
             public static readonly ReferenceEqualityComparer Default = new ReferenceEqualityComparer();
 
-            bool IEqualityComparer<T>.Equals(T x, T y)
+            bool IEqualityComparer<T>.Equals(T? x, T? y)
             {
                 return ReferenceEquals(x, y);
             }

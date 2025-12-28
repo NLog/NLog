@@ -185,7 +185,7 @@ namespace NLog.Targets
         }
 
         /// <inheritdoc/>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is LineEndingMode mode && Equals(mode);
         }
@@ -193,7 +193,7 @@ namespace NLog.Targets
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <returns><see langword="true"/> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(LineEndingMode other)
+        public bool Equals(LineEndingMode? other)
         {
             return ReferenceEquals(this, other) || string.Equals(_newLineCharacters, other?._newLineCharacters, StringComparison.Ordinal);
         }
@@ -210,7 +210,7 @@ namespace NLog.Targets
             }
 
             /// <inheritdoc/>
-            public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+            public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
             {
                 var name = value as string;
                 return name != null ? FromString(name) : base.ConvertFrom(context, culture, value);

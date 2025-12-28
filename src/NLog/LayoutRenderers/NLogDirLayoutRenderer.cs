@@ -90,7 +90,7 @@ namespace NLog.LayoutRenderers
             var nlogLocation = AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly);
             if (!string.IsNullOrEmpty(nlogLocation))
             {
-                return Path.GetDirectoryName(nlogLocation);
+                return Path.GetDirectoryName(nlogLocation) ?? string.Empty;
             }
             else
             {

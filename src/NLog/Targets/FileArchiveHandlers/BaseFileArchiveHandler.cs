@@ -53,7 +53,7 @@ namespace NLog.Targets.FileArchiveHandlers
         {
             // Get all files matching the filename, order by timestamp, and when same timestamp then order by filename
             //  - First start with removing the oldest files
-            string fileDirectory = Path.GetDirectoryName(filePath);
+            string fileDirectory = Path.GetDirectoryName(filePath) ?? string.Empty;
             // Replace all non-letter with '*' replace all '**' with single '*'
             string fileWildcard = GetDeleteOldFileNameWildcard(filePath);
             return DeleteOldFilesBeforeArchive(fileDirectory, fileWildcard, initialFileOpen, parseArchiveSequenceNo, excludeFileName);

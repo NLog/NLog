@@ -198,7 +198,9 @@ namespace NLog.Internal
                     {
                         for (int i = 0; i < list.Count; i++)
                         {
-                            elements.Add(list[i]);
+                            var item = list[i];
+                            if (item != null)
+                                elements.Add(item);
                         }
                     }
                     return elements;
@@ -209,7 +211,7 @@ namespace NLog.Internal
 
             //new list to prevent: Collection was modified after the enumerator was instantiated.
             //note .Cast is tread-unsafe! But at least it isn't a ICollection / IList
-            return enumerable.Cast<object>().ToList();
+            return enumerable.Cast<object>().Where(o => o != null).ToList();
         }
     }
 }

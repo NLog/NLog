@@ -71,7 +71,7 @@ namespace NLog.Internal
         /// <returns>Optimized delegate for invoking the MethodInfo</returns>
         public static LateBoundMethod CreateLateBoundMethod(MethodInfo methodInfo)
         {
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET
             if (!System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported)
             {
                 return (target, args) =>
@@ -180,12 +180,12 @@ namespace NLog.Internal
             return (TAttr[])type.GetCustomAttributes(typeof(TAttr), inherit);
         }
 
-        public static bool IsValidPublicProperty(this PropertyInfo p)
+        public static bool IsValidPublicProperty(this PropertyInfo? p)
         {
             return p != null && p.CanRead && p.GetIndexParameters().Length == 0 && p.GetGetMethod() != null;
         }
 
-        public static object GetPropertyValue(this PropertyInfo p, object instance)
+        public static object? GetPropertyValue(this PropertyInfo p, object instance)
         {
 #if !NET35 && !NET40
             return p.GetValue(instance);

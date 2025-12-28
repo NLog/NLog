@@ -170,7 +170,7 @@ namespace NLog.LayoutRenderers
 
             public int Count => _startingFrame - _endingFrame;
 
-            public StackFrame this[int index]
+            public StackFrame? this[int index]
             {
                 get
                 {
@@ -193,64 +193,48 @@ namespace NLog.LayoutRenderers
             string? separator = null;
             for (int i = 0; i < stackFrameList.Count; ++i)
             {
+                var f = stackFrameList[i]?.ToString();
+                if (string.IsNullOrEmpty(f))
+                    continue;   // Net Native can have StackFrames without managed methods
+
                 builder.Append(separator);
-                StackFrame f = stackFrameList[i];
-                builder.Append(f.ToString());
+                builder.Append(f);
                 separator = separator ?? _separator ?? string.Empty;
             }
         }
 
         private void AppendFlat(StringBuilder builder, StackFrameList stackFrameList)
         {
-            bool first = true;
+            string? separator = null;
             for (int i = 0; i < stackFrameList.Count; ++i)
             {
                 var method = StackTraceUsageUtils.GetStackMethod(stackFrameList[i]);
                 if (method is null)
-                {
                     continue;   // Net Native can have StackFrames without managed methods
-                }
 
-                if (!first)
-                {
-                    builder.Append(_separator);
-                }
-
+                builder.Append(separator);
                 var type = method.DeclaringType;
-                if (type is null)
-                {
-                    builder.Append("<no type>");
-                }
-                else
-                {
-                    builder.Append(type.Name);
-                }
-
+                builder.Append(type?.Name ?? "<no type>");
                 builder.Append('.');
                 builder.Append(method.Name);
-                first = false;
+                separator = separator ?? _separator ?? string.Empty;
             }
         }
 
         private void AppendDetailedFlat(StringBuilder builder, StackFrameList stackFrameList)
         {
-            bool first = true;
+            string? separator = null;
             for (int i = 0; i < stackFrameList.Count; ++i)
             {
                 var method = StackTraceUsageUtils.GetStackMethod(stackFrameList[i]);
                 if (method is null)
-                {
                     continue;   // Net Native can have StackFrames without managed methods
-                }
 
-                if (!first)
-                {
-                    builder.Append(_separator);
-                }
+                builder.Append(separator);
                 builder.Append('[');
                 builder.Append(method);
                 builder.Append(']');
-                first = false;
+                separator = separator ?? _separator ?? string.Empty;
             }
         }
     }
