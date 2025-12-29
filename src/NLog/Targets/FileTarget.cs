@@ -390,16 +390,14 @@ namespace NLog.Targets
             get => _archiveNumbering ?? "Sequence";
             set
             {
-                if (string.Equals(value, _archiveNumbering))
+                var archiveNumbering = value?.Trim() ?? string.Empty;
+                if (string.IsNullOrEmpty(archiveNumbering) || string.Equals(_archiveNumbering, archiveNumbering, StringComparison.OrdinalIgnoreCase))
                     return;
 
-                _archiveNumbering = string.IsNullOrEmpty(value) ? null : value.Trim();
-                if (_archiveNumbering is null || string.IsNullOrEmpty(_archiveNumbering))
-                    return;
-
+                _archiveNumbering = archiveNumbering;
                 if (_archiveSuffixFormat is null || ReferenceEquals(_archiveSuffixFormat, _legacyDateArchiveSuffixFormat) || ReferenceEquals(_archiveSuffixFormat, _legacySequenceArchiveSuffixFormat))
                 {
-                    ArchiveSuffixFormat = _archiveNumbering.IndexOf("date", StringComparison.OrdinalIgnoreCase) >= 0 ? _legacyDateArchiveSuffixFormat : _legacySequenceArchiveSuffixFormat;
+                    ArchiveSuffixFormat = archiveNumbering.IndexOf("date", StringComparison.OrdinalIgnoreCase) >= 0 ? _legacyDateArchiveSuffixFormat : _legacySequenceArchiveSuffixFormat;
                 }
             }
         }
@@ -440,9 +438,10 @@ namespace NLog.Targets
             }
             set
             {
-                if (!string.IsNullOrEmpty(value) && ArchiveFileName is SimpleLayout simpleLayout)
+                if (!string.IsNullOrEmpty(value) && ArchiveFileName is SimpleLayout simpleLayout && !string.IsNullOrEmpty(simpleLayout.OriginalText))
                 {
                     // When legacy ArchiveFileName only contains file-extension, then strip away leading underscore from suffix
+                    // Handle legacy {#} removal, ArchiveFileName = '{#}.log'  +  ArchiveSuffixFormat = '_{0:00}'  -->  01.log
                     var fileName = Path.GetFileNameWithoutExtension(simpleLayout.OriginalText);
                     if (StringHelpers.IsNullOrWhiteSpace(fileName) && value.IndexOf('_') == 0)
                     {
@@ -452,6 +451,7 @@ namespace NLog.Targets
 
                 _archiveSuffixFormat = value;
                 _archiveSuffixFormatLegacy = _archiveSuffixFormat?.IndexOf("{1", StringComparison.Ordinal) >= 0;
+                _fileArchiveHandler = null;
             }
         }
         private string? _archiveSuffixFormat;
@@ -1017,7 +1017,7 @@ namespace NLog.Targets
             }
         }
 
-        private void OpenFileMonitorTimer(object state)
+        private void OpenFileMonitorTimer(object? state)
         {
             bool startTimer = !(_openFileMonitorTimer is null);
 
@@ -1247,7 +1247,7 @@ namespace NLog.Targets
 
                 InternalLogger.Debug("{0}: DirectoryNotFoundException - Attempting to create directory for file: {1}", this, filePath);
 
-                var directoryName = Path.GetDirectoryName(filePath);
+                var directoryName = Path.GetDirectoryName(filePath) ?? string.Empty;
 
                 try
                 {

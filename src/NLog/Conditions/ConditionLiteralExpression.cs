@@ -78,7 +78,7 @@ namespace NLog.Conditions
                 return $"'{charValue}'";
             }
 
-            return Convert.ToString(LiteralValue, CultureInfo.InvariantCulture);
+            return Convert.ToString(LiteralValue, CultureInfo.InvariantCulture) ?? string.Empty;
         }
 
         /// <summary>

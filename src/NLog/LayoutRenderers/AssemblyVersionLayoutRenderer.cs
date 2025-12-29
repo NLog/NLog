@@ -175,7 +175,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets the assembly specified by <see cref="Name"/>, or entry assembly otherwise
         /// </summary>
-        protected virtual System.Reflection.Assembly GetAssembly()
+        protected virtual System.Reflection.Assembly? GetAssembly()
         {
             if (string.IsNullOrEmpty(Name))
             {

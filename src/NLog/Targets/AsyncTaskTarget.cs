@@ -80,7 +80,7 @@ namespace NLog.Targets
         private CancellationTokenSource _cancelTokenSource;
         AsyncRequestQueueBase _requestQueue;
         private readonly Action _taskCancelledTokenReInit;
-        private readonly Action<Task, object> _taskCompletion;
+        private readonly Action<Task, object?> _taskCompletion;
         private Task? _previousTask;
         private readonly Timer _lazyWriterTimer;
         private readonly LogEventInfo _flushEvent = LogEventInfo.Create(LogLevel.Off, null, "NLog Async Task Flush Event");
@@ -704,7 +704,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="completedTask">Task just completed</param>
         /// <param name="continuation">AsyncContinuation to notify of success or failure</param>
-        private void TaskCompletion(Task completedTask, object continuation)
+        private void TaskCompletion(Task completedTask, object? continuation)
         {
             bool success = true;
             bool fullBatchCompleted = true;
@@ -783,7 +783,7 @@ namespace NLog.Targets
         /// Timer method, that is fired when pending task fails to complete within timeout
         /// </summary>
         /// <param name="state"></param>
-        private void TaskTimeout(object state)
+        private void TaskTimeout(object? state)
         {
             try
             {

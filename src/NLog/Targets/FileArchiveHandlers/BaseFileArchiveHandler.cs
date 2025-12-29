@@ -53,7 +53,7 @@ namespace NLog.Targets.FileArchiveHandlers
         {
             // Get all files matching the filename, order by timestamp, and when same timestamp then order by filename
             //  - First start with removing the oldest files
-            string fileDirectory = Path.GetDirectoryName(filePath);
+            string fileDirectory = Path.GetDirectoryName(filePath) ?? string.Empty;
             // Replace all non-letter with '*' replace all '**' with single '*'
             string fileWildcard = GetDeleteOldFileNameWildcard(filePath);
             return DeleteOldFilesBeforeArchive(fileDirectory, fileWildcard, initialFileOpen, parseArchiveSequenceNo, excludeFileName);
@@ -170,26 +170,6 @@ namespace NLog.Targets.FileArchiveHandlers
                 int x_pos = 0;
                 int y_pos = 0;
 
-                // Skip common prefix
-                int digit_start = -1;
-                while (x_pos < x.Length && y_pos < y.Length)
-                {
-                    if (x[x_pos] != y[y_pos])
-                        break;
-
-                    if (!char.IsDigit(x[x_pos]))
-                        digit_start = -1;
-                    else if (digit_start < 0)
-                        digit_start = x_pos;
-                    y_pos++;
-                    x_pos++;
-                }
-                if (digit_start >= 0)
-                {
-                    x_pos = digit_start;
-                    y_pos = digit_start;
-                }
-
                 while (x_pos < x.Length && y_pos < y.Length)
                 {
                     char x_chr = x[x_pos];
@@ -226,9 +206,12 @@ namespace NLog.Targets.FileArchiveHandlers
                     }
 
                     // Non-digit comparison (case-insensitive, ordinal)
-                    int cmpChar = char.ToUpperInvariant(x_chr).CompareTo(char.ToUpperInvariant(y_chr));
-                    if (cmpChar != 0)
-                        return cmpChar;
+                    if (x_chr != y_chr)
+                    {
+                        int cmpChar = char.ToUpperInvariant(x_chr).CompareTo(char.ToUpperInvariant(y_chr));
+                        if (cmpChar != 0)
+                            return cmpChar;
+                    }
 
                     x_pos++;
                     y_pos++;

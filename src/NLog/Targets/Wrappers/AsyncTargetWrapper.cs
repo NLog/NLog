@@ -466,7 +466,7 @@ namespace NLog.Targets.Wrappers
             }
         }
 
-        private void ProcessPendingEvents(object state)
+        private void ProcessPendingEvents(object? state)
         {
             if (_lazyWriterTimer is null)
                 return;
@@ -520,7 +520,7 @@ namespace NLog.Targets.Wrappers
             }
         }
 
-        private void FlushEventsInQueue(object state)
+        private void FlushEventsInQueue(object? state)
         {
             var asyncContinuation = state as AsyncContinuation;
             if (Monitor.TryEnter(_writeLockObject, 1500))
@@ -560,7 +560,7 @@ namespace NLog.Targets.Wrappers
         {
             if (WrappedTarget is null)
             {
-                InternalLogger.Error("{0}: WrappedTarget is NULL", this);
+                InternalLogger.Debug("{0}: No output because WrappedTarget is NULL", this);
                 return 0;
             }
 
@@ -614,12 +614,12 @@ namespace NLog.Targets.Wrappers
             return batchSize;
         }
 
-        private void OnRequestQueueDropItem(object sender, LogEventDroppedEventArgs logEventDroppedEventArgs)
+        private void OnRequestQueueDropItem(object? sender, LogEventDroppedEventArgs logEventDroppedEventArgs)
         {
             _logEventDroppedEvent?.Invoke(this, logEventDroppedEventArgs);
         }
 
-        private void OnRequestQueueGrow(object sender, LogEventQueueGrowEventArgs logEventQueueGrowEventArgs)
+        private void OnRequestQueueGrow(object? sender, LogEventQueueGrowEventArgs logEventQueueGrowEventArgs)
         {
             _eventQueueGrowEvent?.Invoke(this, logEventQueueGrowEventArgs);
         }

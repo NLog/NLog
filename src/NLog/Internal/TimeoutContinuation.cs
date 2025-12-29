@@ -93,7 +93,7 @@ namespace NLog.Internal
             currentTimer?.WaitForDispose(TimeSpan.Zero);
         }
 
-        private void TimerElapsed(object state)
+        private void TimerElapsed(object? state)
         {
             Function(new TimeoutException("Timeout."));
         }

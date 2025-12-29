@@ -260,10 +260,18 @@ namespace NLog.Internal
             foreach (var prop in properties)
             {
                 var getterMethod = prop.GetGetMethod();
-                Type propertyType = getterMethod.ReturnType;
-                ReflectionHelpers.LateBoundMethod valueLookup = ReflectionHelpers.CreateLateBoundMethod(getterMethod);
-                TypeCode typeCode = Type.GetTypeCode(propertyType); // Skip cyclic-reference checks when not TypeCode.Object
-                fastLookup[fastAccessIndex++] = new FastPropertyLookup(prop.Name, typeCode, valueLookup);
+                var propertyType = getterMethod?.ReturnType;
+                if (getterMethod is null || propertyType is null)
+                {
+                    // Should never happen due to IsValidPublicProperty check
+                    fastLookup[fastAccessIndex++] = new FastPropertyLookup(prop.Name, TypeCode.String, (o, p) => null);
+                }
+                else
+                {
+                    ReflectionHelpers.LateBoundMethod valueLookup = ReflectionHelpers.CreateLateBoundMethod(getterMethod);
+                    TypeCode typeCode = Type.GetTypeCode(propertyType); // Skip cyclic-reference checks when not TypeCode.Object
+                    fastLookup[fastAccessIndex++] = new FastPropertyLookup(prop.Name, typeCode, valueLookup);
+                }
             }
             return fastLookup;
         }

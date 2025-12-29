@@ -133,7 +133,7 @@ namespace NLog
             _messageFormatter = (l) => l._formattedMessage ?? l.Message ?? string.Empty;
         }
 
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
         /// </summary>
@@ -158,7 +158,7 @@ namespace NLog
         }
 #endif
 
-#if !NET35
+#if !NET35 && !NET40
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
         /// </summary>
@@ -672,7 +672,7 @@ namespace NLog
             return false;
         }
 
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET
         internal static bool NeedToPreformatMessage(in ReadOnlySpan<object?> parameters)
         {
             if (parameters.IsEmpty)

@@ -307,13 +307,18 @@ namespace NLog.Internal
         /// </summary>
         private static bool SkipStackFrameWhenHidden(MethodBase? stackMethod)
         {
+            if (stackMethod is null)
+                return true;
+
             var assembly = StackTraceUsageUtils.LookupAssemblyFromMethod(stackMethod);
             if (assembly is null || IsHiddenAssembly(assembly))
-            {
                 return true;
-            }
 
-            return stackMethod is null || IsHiddenClassType(stackMethod.DeclaringType);
+            var declaringType = stackMethod.DeclaringType;
+            if (declaringType != null && IsHiddenClassType(declaringType))
+                return true;
+
+            return false;
         }
 
         /// <summary>
@@ -321,7 +326,7 @@ namespace NLog.Internal
         /// </summary>
         private static bool SkipStackFrameWhenLoggerType(MethodBase? stackMethod, Type loggerType)
         {
-            Type? declaringType = stackMethod?.DeclaringType;
+            var declaringType = stackMethod?.DeclaringType;
             var isLoggerType = declaringType != null && (loggerType == declaringType || declaringType.IsSubclassOf(loggerType) || loggerType.IsAssignableFrom(declaringType));
             return isLoggerType;
         }

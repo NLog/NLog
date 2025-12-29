@@ -42,7 +42,7 @@ namespace NLog.Internal
     {
         internal static readonly ExceptionMessageFormatProvider Instance = new ExceptionMessageFormatProvider();
 
-        string ICustomFormatter.Format(string format, object arg, IFormatProvider formatProvider)
+        string ICustomFormatter.Format(string? format, object? arg, IFormatProvider? formatProvider)
         {
             if (arg is Exception exception)
             {
@@ -77,7 +77,7 @@ namespace NLog.Internal
             return exception;
         }
 
-        object? IFormatProvider.GetFormat(Type formatType)
+        object? IFormatProvider.GetFormat(Type? formatType)
         {
             return (formatType == typeof(ICustomFormatter)) ? this : null;
         }

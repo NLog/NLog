@@ -357,7 +357,9 @@ namespace NLog.Internal
         {
             try
             {
-                string valueString = Convert.ToString(value, CultureInfo.InvariantCulture);
+                var valueString = Convert.ToString(value, CultureInfo.InvariantCulture);
+                if (valueString is null)
+                    return string.Empty;
                 return safeConversion ? RemoveInvalidXmlChars(valueString) : valueString;
             }
             catch

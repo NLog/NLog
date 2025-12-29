@@ -441,8 +441,8 @@ namespace NLog
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-                WriteToTargetsWithSpan(targetsForLevel, level, null, formatProvider, message, argument);
+#if NETSTANDARD2_1_OR_GREATER || NET
+                WriteToTargetsWithSpan(targetsForLevel, level, null, formatProvider, message, [argument]);
 #else
                 WriteToTargets(targetsForLevel, level, null, formatProvider, message, new object?[] { argument });
 #endif         
@@ -462,8 +462,8 @@ namespace NLog
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-                WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, argument);
+#if NETSTANDARD2_1_OR_GREATER || NET
+                WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, [argument]);
 #else
                 WriteToTargets(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, new object?[] { argument });
 #endif
@@ -486,8 +486,8 @@ namespace NLog
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-                WriteToTargetsWithSpan(targetsForLevel, level, null, formatProvider, message, argument1, argument2);
+#if NETSTANDARD2_1_OR_GREATER || NET
+                WriteToTargetsWithSpan(targetsForLevel, level, null, formatProvider, message, [argument1, argument2]);
 #else
                 WriteToTargets(targetsForLevel, level, null, formatProvider, message, new object?[] { argument1, argument2 });
 #endif
@@ -509,8 +509,8 @@ namespace NLog
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-                WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, argument1, argument2);
+#if NETSTANDARD2_1_OR_GREATER || NET
+                WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, [argument1, argument2]);
 #else
                 WriteToTargets(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, new object?[] { argument1, argument2 });
 #endif
@@ -535,8 +535,8 @@ namespace NLog
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-                WriteToTargetsWithSpan(targetsForLevel, level, null, formatProvider, message, argument1, argument2, argument3);
+#if NETSTANDARD2_1_OR_GREATER || NET
+                WriteToTargetsWithSpan(targetsForLevel, level, null, formatProvider, message, [argument1, argument2, argument3]);
 #else
                 WriteToTargets(targetsForLevel, level, null, formatProvider, message, new object?[] { argument1, argument2, argument3 });
 #endif
@@ -560,8 +560,8 @@ namespace NLog
             var targetsForLevel = GetTargetsForLevelSafe(level);
             if (targetsForLevel != null)
             {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-                WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, argument1, argument2, argument3);
+#if NETSTANDARD2_1_OR_GREATER || NET
+                WriteToTargetsWithSpan(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, [argument1, argument2, argument3]);
 #else
                 WriteToTargets(targetsForLevel, level, null, Factory.DefaultCultureInfo, message, new object?[] { argument1, argument2, argument3 });
 #endif
@@ -601,8 +601,10 @@ namespace NLog
                 WriteToTargetsWithSpan(targetsForLevel, level, exception, Factory.DefaultCultureInfo, message, args);
             }
         }
+#endif
 
-        private void WriteToTargetsWithSpan(LogLevel level, Exception? exception, IFormatProvider? formatProvider, string message, params ReadOnlySpan<object?> args)
+#if NETSTANDARD2_1_OR_GREATER || NET
+        private void WriteToTargetsWithSpan(LogLevel level, Exception? exception, IFormatProvider? formatProvider, string message, in ReadOnlySpan<object?> args)
         {
             var targetsForLevel = GetTargetsForLevel(level);
             if (targetsForLevel != null)
@@ -611,7 +613,7 @@ namespace NLog
             }
         }
 
-        private void WriteToTargetsWithSpan(ITargetWithFilterChain targetsForLevel, LogLevel level, Exception? exception, IFormatProvider? formatProvider, string message, params ReadOnlySpan<object?> args)
+        private void WriteToTargetsWithSpan(ITargetWithFilterChain targetsForLevel, LogLevel level, Exception? exception, IFormatProvider? formatProvider, string message, in ReadOnlySpan<object?> args)
         {
             if (Factory.AutoMessageTemplateFormatter is null || !LogEventInfo.NeedToPreformatMessage(args))
             {

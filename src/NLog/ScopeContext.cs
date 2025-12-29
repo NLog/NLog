@@ -524,7 +524,7 @@ namespace NLog
 
             public override string ToString()
             {
-                return _collapsed.ToString();
+                return _collapsed.ToString() ?? GetType().ToString();
             }
         }
 

@@ -267,7 +267,9 @@ namespace NLog.Targets
                 catch (TargetInvocationException ex)
                 {
                     InternalLogger.Warn("{0}: Failed to invoke method - {1}", this, ex.Message);
-                    throw ex.InnerException;
+                    if (ex.InnerException != null)
+                        throw ex.InnerException;
+                    throw;
                 }
             }
         }

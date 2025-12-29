@@ -361,7 +361,7 @@ namespace NLog.Layouts
 
             public override string ToString()
             {
-                return _layoutMethod.ToString();
+                return _layoutMethod.ToString() ?? GetType().ToString();
             }
         }
 
@@ -373,11 +373,11 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         public override string ToString()
         {
-            return IsFixed ? (FixedObjectValue?.ToString() ?? "null") : _layoutValue.ToString();
+            return IsFixed ? (FixedObjectValue?.ToString() ?? "null") : (_layoutValue.ToString() ?? "null");
         }
 
         /// <inheritdoc/>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (IsFixed)
             {
@@ -398,7 +398,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Implements Equals using <see cref="FixedValue"/>
         /// </summary>
-        public bool Equals(T other)
+        public bool Equals(T? other)
         {
             // Support property-compare
             return IsFixed && object.Equals(FixedObjectValue, other);
@@ -623,7 +623,7 @@ namespace NLog.Layouts
 
         public override string ToString()
         {
-            return _innerLayout.ToString();
+            return _innerLayout.ToString() ?? GetType().ToString();
         }
 
         object? IPropertyTypeConverter.Convert(object? propertyValue, Type propertyType, string? format, IFormatProvider? formatProvider)

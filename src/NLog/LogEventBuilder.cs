@@ -138,7 +138,7 @@ namespace NLog
         }
 #endif
 
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_0_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET
         /// <summary>
         /// Sets multiple per-event context properties on the logging event.
         /// </summary>

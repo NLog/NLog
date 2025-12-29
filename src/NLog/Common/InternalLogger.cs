@@ -422,7 +422,7 @@ namespace NLog.Common
                     return;
                 }
 
-                string parentDirectory = Path.GetDirectoryName(filename);
+                var parentDirectory = Path.GetDirectoryName(filename);
                 if (!string.IsNullOrEmpty(parentDirectory))
                 {
                     Directory.CreateDirectory(parentDirectory);
@@ -492,6 +492,9 @@ namespace NLog.Common
 
         private static void LogToFileSubscription(object? sender, InternalLogEventArgs eventArgs)
         {
+            if (string.IsNullOrEmpty(_logFile))
+                return;
+
             var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
             lock (LockObject)
             {

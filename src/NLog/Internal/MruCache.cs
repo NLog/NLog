@@ -39,6 +39,9 @@ namespace NLog.Internal
     /// Most-Recently-Used-Cache, that discards less frequently used items on overflow
     /// </summary>
     internal sealed class MruCache<TKey, TValue>
+#if NETSTANDARD2_1_OR_GREATER || NET
+        where TKey : notnull
+#endif
     {
         private readonly Dictionary<TKey, MruCacheItem> _dictionary;
         private readonly int _maxCapacity;
