@@ -373,7 +373,7 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         public override string ToString()
         {
-            return IsFixed ? (FixedObjectValue?.ToString() ?? "null") : _layoutValue.ToString();
+            return IsFixed ? (FixedObjectValue?.ToString() ?? "null") : (_layoutValue.ToString() ?? "null");
         }
 
         /// <inheritdoc/>

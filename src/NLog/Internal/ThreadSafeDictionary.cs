@@ -40,6 +40,9 @@ namespace NLog.Internal
 
     [DebuggerDisplay("Count = {Count}")]
     internal class ThreadSafeDictionary<TKey, TValue> : IDictionary<TKey, TValue>
+#if NETSTANDARD2_1_OR_GREATER || NET
+        where TKey : notnull
+#endif
     {
         private readonly object _lockObject = new object();
         private Dictionary<TKey, TValue> _dict;

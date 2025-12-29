@@ -2040,7 +2040,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
-#if NETSTANDARD2_1_OR_GREATER || NETNET9_0_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
         public void Info(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string? argument)
@@ -2746,7 +2746,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [MessageTemplateFormatMethod("message")]
-#if NETSTANDARD2_1_OR_GREATER || NET
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         [OverloadResolutionPriority(-1)]
 #endif
         public void Warn(IFormatProvider? formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)

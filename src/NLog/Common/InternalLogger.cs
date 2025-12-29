@@ -492,6 +492,9 @@ namespace NLog.Common
 
         private static void LogToFileSubscription(object? sender, InternalLogEventArgs eventArgs)
         {
+            if (string.IsNullOrEmpty(_logFile))
+                return;
+
             var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
             lock (LockObject)
             {
