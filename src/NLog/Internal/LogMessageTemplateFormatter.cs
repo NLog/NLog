@@ -199,7 +199,7 @@ namespace NLog.Internal
             messageTemplateParameters = VerifyMessageTemplateParameters(messageTemplateParameters, holeIndex);
         }
 
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET
         internal string Render(ref TemplateEnumerator templateEnumerator, IFormatProvider? formatProvider, in ReadOnlySpan<object?> parameters, out MessageTemplateParameter[]? messageTemplateParameters)
         {
             // Handle message-template-format or string-format or mixed-format

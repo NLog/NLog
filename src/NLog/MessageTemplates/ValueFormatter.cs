@@ -263,7 +263,7 @@ namespace NLog.MessageTemplates
                 builder.Append(Convert.ToString(value, formatProvider));
         }
 
-        private void SerializeStringObject(string stringValue, string? format, StringBuilder builder)
+        private void SerializeStringObject(string? stringValue, string? format, StringBuilder builder)
         {
             bool includeQuotes = _legacyStringQuotes && format != LiteralFormatSymbol;
             if (includeQuotes) builder.Append('"');
@@ -352,7 +352,7 @@ namespace NLog.MessageTemplates
             return true;
         }
 
-        private void SerializeCollectionItem(object item, string? format, IFormatProvider? formatProvider, StringBuilder builder, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth)
+        private void SerializeCollectionItem(object? item, string? format, IFormatProvider? formatProvider, StringBuilder builder, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             if (item is IConvertible convertible)
                 SerializeConvertibleObject(convertible, format, formatProvider, builder);

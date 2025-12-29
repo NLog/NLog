@@ -248,7 +248,7 @@ namespace NLog.Internal.Fakeables
             var entryAssembly = System.Reflection.Assembly.GetEntryAssembly();
             var entryLocation = AssemblyHelpers.GetAssemblyFileLocation(entryAssembly);
             if (!string.IsNullOrEmpty(entryLocation))
-                return Path.GetDirectoryName(entryLocation);
+                return Path.GetDirectoryName(entryLocation) ?? string.Empty;
             else
                 return string.Empty;
         }

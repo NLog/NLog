@@ -78,7 +78,10 @@ namespace NLog.Conditions
         [ConditionMethod("contains")]
         public static bool Contains(string? haystack, string? needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
         {
-            return haystack?.IndexOf(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0;
+            if (haystack is null || needle is null)
+                return false;
+
+            return haystack.IndexOf(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0;
         }
 
         /// <summary>
@@ -91,7 +94,10 @@ namespace NLog.Conditions
         [ConditionMethod("starts-with")]
         public static bool StartsWith(string? haystack, string? needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
         {
-            return haystack?.StartsWith(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) == true;
+            if (haystack is null || needle is null)
+                return false;
+
+            return haystack.StartsWith(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
         }
 
         /// <summary>
@@ -104,7 +110,10 @@ namespace NLog.Conditions
         [ConditionMethod("ends-with")]
         public static bool EndsWith(string? haystack, string? needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
         {
-            return haystack?.EndsWith(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) == true;
+            if (haystack is null || needle is null)
+                return false;
+
+            return haystack.EndsWith(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
         }
 
         /// <summary>

@@ -726,7 +726,7 @@ namespace NLog.Targets
 
             public override string ToString()
             {
-                return TargetLayout?.ToString() ?? base.ToString();
+                return TargetLayout?.ToString() ?? base.ToString() ?? GetType().ToString();
             }
 
             public override void Precalculate(LogEventInfo logEvent)

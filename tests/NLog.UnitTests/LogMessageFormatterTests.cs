@@ -100,7 +100,7 @@ namespace NLog.UnitTests
                 new MessageTemplateParameter("Application", new StringBuilder("BestApplicationEver", 32), null, CaptureType.Normal)
             });
 
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET
             LogEventInfo logEventInfo3 = new LogEventInfo(LogLevel.Info, "MyLogger", "Login request from John for BestApplicationEver", "Login request from {Username} for {Application}", new Span<MessageTemplateParameter>(new[]
             {
                 new MessageTemplateParameter("Username", "John", null, CaptureType.Normal),
@@ -132,7 +132,7 @@ namespace NLog.UnitTests
             var result2 = debugTarget.Layout.Render(logEventInfo2);
             Assert.Same(result2, debugTarget.LastMessage);
 
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET
             logger.Log(logEventInfo3);
             logFactory.Flush();
             var result3 = debugTarget.Layout.Render(logEventInfo3);

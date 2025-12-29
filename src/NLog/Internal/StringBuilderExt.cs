@@ -421,7 +421,7 @@ namespace NLog.Internal
             }
             else
 #endif
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_0_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
             {
                 builder.Append([
                     (char)(((number / 1000) % 10) + '0'),

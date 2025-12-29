@@ -120,7 +120,7 @@ namespace NLog
             return this;
         }
 
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET
         /// <summary>
         /// Sets multiple per-event context properties on the logging event.
         /// </summary>

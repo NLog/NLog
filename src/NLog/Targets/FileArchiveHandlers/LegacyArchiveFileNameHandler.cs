@@ -86,7 +86,7 @@ namespace NLog.Targets.FileArchiveHandlers
                 {
                     string archiveFilePath = BuildArchiveFilePath(archiveFileName, int.MaxValue, DateTime.MinValue);
                     string archiveFileWildcard = archiveFilePath.Replace(int.MaxValue.ToString(), "*");
-                    string archiveDirectory = Path.GetDirectoryName(archiveFilePath);
+                    string archiveDirectory = Path.GetDirectoryName(archiveFilePath) ?? string.Empty;
                     oldFilesDeleted = DeleteOldFilesBeforeArchive(archiveDirectory, Path.GetFileName(archiveFileWildcard), initialFileOpen, parseArchiveSequenceNo: true, excludeFileName: excludeFileName);
                 }
                 else

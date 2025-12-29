@@ -164,7 +164,7 @@ namespace NLog.RegEx.Tests
                 Values.Add(value);
             }
 
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_0_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET
             public override void Write(ReadOnlySpan<char> buffer)
             {
                 Values.Add(buffer.ToString());

@@ -588,7 +588,7 @@ namespace NLog.Internal
             if (NestedContext?.Length > 0)
                 return NestedContext[NestedContext.Length - 1]?.ToString() ?? "null";
             else
-                return base.ToString();
+                return base.ToString() ?? GetType().ToString();
         }
     }
 }

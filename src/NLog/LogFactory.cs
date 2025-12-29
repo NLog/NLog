@@ -51,7 +51,7 @@ namespace NLog
     /// Creates and manages instances of <see cref="NLog.Logger" /> objects.
     /// </summary>
     public class LogFactory : IDisposable
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET
 , IAsyncDisposable
 #endif
     {
@@ -285,7 +285,7 @@ namespace NLog
             InternalLogger.Info("Configuration initialized: {0}", config);
         }
 
-        private void ServiceRepository_TypeRegistered(object sender, ServiceRepositoryUpdateEventArgs e)
+        private void ServiceRepository_TypeRegistered(object? sender, ServiceRepositoryUpdateEventArgs e)
         {
             _config?.CheckForMissingServiceTypes(e.ServiceType);
 
@@ -373,7 +373,7 @@ namespace NLog
             GC.SuppressFinalize(this);
         }
 
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET
         /// <summary>
         /// Flush any pending log messages, and shutdown logging
         /// </summary>
@@ -652,7 +652,7 @@ namespace NLog
                     return true;
                 }
 
-                asyncContinuation = asyncContinuation is null ? null : AsyncHelpers.PreventMultipleCalls(asyncContinuation);
+                asyncContinuation = asyncContinuation is null ? null : NLog.Common.AsyncHelpers.PreventMultipleCalls(asyncContinuation);
 
                 using (var waitForFlush = new ManualResetEvent(false))
                 {
@@ -1110,7 +1110,7 @@ namespace NLog
                 return ConcreteType.GetHashCode() ^ Name.GetHashCode();
             }
 
-            public override bool Equals(object obj)
+            public override bool Equals(object? obj)
             {
                 return obj is LoggerCacheKey key && Equals(key);
             }
@@ -1224,7 +1224,7 @@ namespace NLog
             }
         }
 
-        private static void OnLoggerShutdown(object sender, EventArgs args)
+        private static void OnLoggerShutdown(object? sender, EventArgs args)
         {
             try
             {
@@ -1246,7 +1246,7 @@ namespace NLog
             }
         }
 
-        private void OnStopLogging(object sender, EventArgs args)
+        private void OnStopLogging(object? sender, EventArgs args)
         {
             try
             {

@@ -86,7 +86,13 @@ namespace NLog.LayoutRenderers
                 throw new ArgumentException($"Property '{Property}' not found in System.Diagnostics.Process");
             }
 
-            _lateBoundPropertyGet = ReflectionHelpers.CreateLateBoundMethod(propertyInfo.GetGetMethod());
+            var getGetMethodInfo = propertyInfo.GetGetMethod();
+            if (getGetMethodInfo is null)
+            {
+                throw new ArgumentException($"Property '{Property}' not found in System.Diagnostics.Process with valid getter-method");
+            }
+
+            _lateBoundPropertyGet = ReflectionHelpers.CreateLateBoundMethod(getGetMethodInfo);
 
             _process = Process.GetCurrentProcess();
         }

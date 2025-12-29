@@ -143,6 +143,9 @@ namespace NLog.Internal
         }
 
         private static Dictionary<TKey, IList<TValue>> CreateBucketDictionaryWithValue<TValue, TKey>(IList<TValue> inputs, IEqualityComparer<TKey> keyComparer, int currentIndex, TKey firstBucketKey, TKey nextBucketKey)
+#if NETSTANDARD2_1_OR_GREATER || NET
+            where TKey : notnull
+#endif
         {
             var buckets = new Dictionary<TKey, IList<TValue>>(keyComparer);
             var firstBucket = new List<TValue>(currentIndex);

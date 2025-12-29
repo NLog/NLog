@@ -804,7 +804,7 @@ namespace NLog.Internal
 
             public bool Equals(string propertyName) => Equals(_propertyName, propertyName);
 
-            public override bool Equals(object obj)
+            public override bool Equals(object? obj)
             {
                 if (obj is string stringObj)
                     return Equals(_propertyName, stringObj);

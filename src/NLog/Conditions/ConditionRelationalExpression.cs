@@ -216,14 +216,14 @@ namespace NLog.Conditions
 
                 if (type1 == typeof(LogLevel))
                 {
-                    string strval = Convert.ToString(val, CultureInfo.InvariantCulture);
+                    string strval = Convert.ToString(val, CultureInfo.InvariantCulture) ?? string.Empty;
                     val = LogLevel.FromString(strval);
                     return true;
                 }
 
                 if (type1 == typeof(string))
                 {
-                    val = Convert.ToString(val, CultureInfo.InvariantCulture);
+                    val = Convert.ToString(val, CultureInfo.InvariantCulture) ?? string.Empty;
                     return true;
                 }
             }

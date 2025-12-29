@@ -52,11 +52,11 @@ namespace NLog.LayoutRenderers
             builder.Append(GetStringValue());
         }
 
-        private static string GetStringValue()
+        private static string? GetStringValue()
         {
             return System.Threading.Thread.CurrentThread.Name;
         }
 
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue();
+        string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue();
     }
 }

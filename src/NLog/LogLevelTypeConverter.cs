@@ -43,13 +43,13 @@ namespace NLog.Attributes
     public class LogLevelTypeConverter : TypeConverter
     {
         /// <inheritdoc/>
-        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+        public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
         {
             return sourceType == typeof(string) || IsNumericType(sourceType) || base.CanConvertFrom(context, sourceType);
         }
 
         /// <inheritdoc/>
-        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
             var valueType = value?.GetType();
             if (typeof(string).Equals(valueType))
@@ -61,13 +61,13 @@ namespace NLog.Attributes
         }
 
         /// <inheritdoc/>
-        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+        public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType)
         {
             return destinationType == typeof(string) || IsNumericType(destinationType) || base.CanConvertTo(context, destinationType);
         }
 
         /// <inheritdoc/>
-        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        public override object? ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (value is LogLevel logLevel)
             {
