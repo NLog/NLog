@@ -568,7 +568,7 @@ namespace NLog
             }
         }
 
-#if NETSTANDARD2_1_OR_GREATER || NET
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
         /// <summary>
         /// Writes the diagnostic message at the specified level using the specified parameters.
         /// </summary>
