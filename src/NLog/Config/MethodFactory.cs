@@ -170,7 +170,7 @@ namespace NLog.Config
 
         internal void RegisterDefinition(string methodName, MethodInfo methodInfo)
         {
-            object[] defaultMethodParameters = ResolveDefaultMethodParameters(methodInfo, out var manyParameterMinCount, out var manyParameterMaxCount, out var includeLogEvent);
+            var defaultMethodParameters = ResolveDefaultMethodParameters(methodInfo, out var manyParameterMinCount, out var manyParameterMaxCount, out var includeLogEvent);
 
             if (manyParameterMaxCount > 0)
                 RegisterManyParameters(methodName, (inputArgs) => InvokeMethodInfo(methodInfo, ResolveMethodParameters(defaultMethodParameters, inputArgs)), manyParameterMinCount, manyParameterMaxCount, includeLogEvent, methodInfo);
@@ -205,7 +205,7 @@ namespace NLog.Config
             }
         }
 
-        private static object InvokeMethodInfo(MethodInfo methodInfo, object?[] methodArgs)
+        private static object? InvokeMethodInfo(MethodInfo methodInfo, object?[] methodArgs)
         {
             try
             {
@@ -220,13 +220,13 @@ namespace NLog.Config
             }
         }
 
-        private static object[] ResolveDefaultMethodParameters(MethodInfo methodInfo, out int manyParameterMinCount, out int manyParameterMaxCount, out bool includeLogEvent)
+        private static object?[] ResolveDefaultMethodParameters(MethodInfo methodInfo, out int manyParameterMinCount, out int manyParameterMaxCount, out bool includeLogEvent)
         {
             var methodParameters = methodInfo.GetParameters();
 
             manyParameterMinCount = 0;
             manyParameterMaxCount = methodParameters.Length;
-            var defaultMethodParameters = new object[methodParameters.Length];
+            var defaultMethodParameters = new object?[methodParameters.Length];
             for (int i = 0; i < defaultMethodParameters.Length; ++i)
             {
                 if (methodParameters[i].IsOptional)

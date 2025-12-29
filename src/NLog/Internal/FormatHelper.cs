@@ -62,7 +62,7 @@ namespace NLog.Internal
                 }
             }
 
-            return Convert.ToString(value, formatProvider);
+            return Convert.ToString(value, formatProvider) ?? string.Empty;
         }
 
         internal static string? TryFormatToString(object? value, string? format, IFormatProvider? formatProvider)

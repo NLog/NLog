@@ -1017,7 +1017,7 @@ namespace NLog.Targets
             }
         }
 
-        private void OpenFileMonitorTimer(object state)
+        private void OpenFileMonitorTimer(object? state)
         {
             bool startTimer = !(_openFileMonitorTimer is null);
 
@@ -1247,7 +1247,7 @@ namespace NLog.Targets
 
                 InternalLogger.Debug("{0}: DirectoryNotFoundException - Attempting to create directory for file: {1}", this, filePath);
 
-                var directoryName = Path.GetDirectoryName(filePath);
+                var directoryName = Path.GetDirectoryName(filePath) ?? string.Empty;
 
                 try
                 {

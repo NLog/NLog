@@ -148,8 +148,7 @@ namespace NLog.Filters
 
                     FilterInfoKey filterInfoKey = RenderFilterInfoKey(logEvent, targetBuilder.Result);
 
-                    FilterInfo filterInfo;
-                    if (!_repeatFilter.TryGetValue(filterInfoKey, out filterInfo))
+                    if (!_repeatFilter.TryGetValue(filterInfoKey, out var filterInfo))
                     {
                         filterInfo = CreateFilterInfo(logEvent);
                         if (filterInfo.StringBuffer != null)
@@ -379,7 +378,7 @@ namespace NLog.Filters
                 }
                 else
                 {
-                    StringHashCode = StringComparer.Ordinal.GetHashCode(StringValue);
+                    StringHashCode = stringValue is null ? 0 : StringComparer.Ordinal.GetHashCode(stringValue);
                 }
             }
 
@@ -406,7 +405,7 @@ namespace NLog.Filters
                 return ReferenceEquals(_stringBuffer, other._stringBuffer) && ReferenceEquals(StringValue, other.StringValue);
             }
 
-            public override bool Equals(object obj)
+            public override bool Equals(object? obj)
             {
                 return obj is FilterInfoKey key && Equals(key);
             }

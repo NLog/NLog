@@ -247,8 +247,8 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-                WriteToTargetsWithSpan(LogLevel.<#=level#>, null, formatProvider, message, argument);
+#if NETSTANDARD2_1_OR_GREATER || NET
+                WriteToTargetsWithSpan(LogLevel.<#=level#>, null, formatProvider, message, [argument]);
 #else
                 WriteToTargets(LogLevel.<#=level#>, formatProvider, message, new object?[] { argument });
 #endif
@@ -266,8 +266,8 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-                WriteToTargetsWithSpan(LogLevel.<#=level#>, null, Factory.DefaultCultureInfo, message, argument);
+#if NETSTANDARD2_1_OR_GREATER || NET
+                WriteToTargetsWithSpan(LogLevel.<#=level#>, null, Factory.DefaultCultureInfo, message, [argument]);
 #else
                 WriteToTargets(LogLevel.<#=level#>, Factory.DefaultCultureInfo, message, new object?[] { argument });
 #endif
@@ -288,8 +288,8 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-                WriteToTargetsWithSpan(LogLevel.<#=level#>, null, formatProvider, message, argument1, argument2);
+#if NETSTANDARD2_1_OR_GREATER || NET
+                WriteToTargetsWithSpan(LogLevel.<#=level#>, null, formatProvider, message, [argument1, argument2]);
 #else
                 WriteToTargets(LogLevel.<#=level#>, formatProvider, message, new object?[] { argument1, argument2 });
 #endif
@@ -309,8 +309,8 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-                WriteToTargetsWithSpan(LogLevel.<#=level#>, null, Factory.DefaultCultureInfo, message, argument1, argument2);
+#if NETSTANDARD2_1_OR_GREATER || NET
+                WriteToTargetsWithSpan(LogLevel.<#=level#>, null, Factory.DefaultCultureInfo, message, [argument1, argument2]);
 #else
                 WriteToTargets(LogLevel.<#=level#>, Factory.DefaultCultureInfo, message, new object?[] { argument1, argument2 });
 #endif
@@ -333,8 +333,8 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-                WriteToTargetsWithSpan(LogLevel.<#=level#>, null, formatProvider, message, argument1, argument2, argument3);
+#if NETSTANDARD2_1_OR_GREATER || NET
+                WriteToTargetsWithSpan(LogLevel.<#=level#>, null, formatProvider, message, [argument1, argument2, argument3]);
 #else
                 WriteToTargets(LogLevel.<#=level#>, formatProvider, message, new object?[] { argument1, argument2, argument3 });
 #endif
@@ -356,8 +356,8 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-                WriteToTargetsWithSpan(LogLevel.<#=level#>, null, Factory.DefaultCultureInfo, message, argument1, argument2, argument3);
+#if NETSTANDARD2_1_OR_GREATER || NET
+                WriteToTargetsWithSpan(LogLevel.<#=level#>, null, Factory.DefaultCultureInfo, message, [argument1, argument2, argument3]);
 #else
                 WriteToTargets(LogLevel.<#=level#>, Factory.DefaultCultureInfo, message, new object?[] { argument1, argument2, argument3 });
 #endif

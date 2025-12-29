@@ -314,7 +314,7 @@ namespace NLog.Config
         {
             HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
                 {
-                    nlogAssembly.FullName
+                    nlogAssembly.FullName ?? string.Empty
                 };
 
             foreach (var extensionDll in extensionDlls)
@@ -325,7 +325,7 @@ namespace NLog.Config
                     if (extensionAssembly != null)
                     {
                         LoadAssembly(factory, extensionAssembly, string.Empty);
-                        alreadyRegistered.Add(extensionAssembly.FullName);
+                        alreadyRegistered.Add(extensionAssembly.FullName ?? string.Empty);
                     }
                 }
                 catch (Exception ex)
@@ -349,7 +349,7 @@ namespace NLog.Config
         [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         private void RegisterAppDomainAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, HashSet<string> alreadyRegistered)
         {
-            alreadyRegistered.Add(nlogAssembly.FullName);
+            alreadyRegistered.Add(nlogAssembly.FullName ?? string.Empty);
 
             var allAssemblies = LogFactory.DefaultAppEnvironment.GetAppDomainRuntimeAssemblies();
             foreach (var assembly in allAssemblies)
@@ -395,7 +395,7 @@ namespace NLog.Config
         internal static IEnumerable<KeyValuePair<string, string>> GetAutoLoadingFileLocations()
         {
             var nlogAssemblyLocation = AssemblyHelpers.GetAssemblyFileLocation(typeof(LogFactory).Assembly);
-            var nlogAssemblyDirectory = string.IsNullOrEmpty(nlogAssemblyLocation) ? nlogAssemblyLocation : PathHelpers.TrimDirectorySeparators(System.IO.Path.GetDirectoryName(nlogAssemblyLocation));
+            var nlogAssemblyDirectory = string.IsNullOrEmpty(nlogAssemblyLocation) ? nlogAssemblyLocation : PathHelpers.TrimDirectorySeparators(System.IO.Path.GetDirectoryName(nlogAssemblyLocation) ?? string.Empty);
             InternalLogger.Debug("Auto loading based on NLog-Assembly found location: {0}", nlogAssemblyDirectory);
             if (!string.IsNullOrEmpty(nlogAssemblyDirectory))
                 yield return new KeyValuePair<string, string>(nlogAssemblyDirectory, nameof(nlogAssemblyLocation));

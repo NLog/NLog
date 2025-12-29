@@ -441,7 +441,7 @@ namespace NLog.Targets
             else if (objTypeCode == TypeCode.String || objTypeCode == TypeCode.Char)
             {
                 destination.Append('"');
-                AppendStringEscape(destination, value.ToString(), options);
+                AppendStringEscape(destination, value.ToString() ?? string.Empty, options);
                 destination.Append('"');
             }
             else
@@ -512,7 +512,7 @@ namespace NLog.Targets
         {
             if (!_enumCache.TryGetValue(value, out var textValue))
             {
-                textValue = Convert.ToString(value, CultureInfo.InvariantCulture);
+                textValue = Convert.ToString(value, CultureInfo.InvariantCulture) ?? string.Empty;
                 _enumCache.TryAddValue(value, textValue);
             }
             return textValue ?? string.Empty;
@@ -747,7 +747,7 @@ namespace NLog.Targets
                     return true;
                 }
 
-                var str = Convert.ToString(value, CultureInfo.InvariantCulture);
+                var str = Convert.ToString(value, CultureInfo.InvariantCulture) ?? string.Empty;
                 destination.Append('"');
                 AppendStringEscape(destination, str, options);
                 destination.Append('"');

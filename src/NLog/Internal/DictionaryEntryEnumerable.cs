@@ -106,7 +106,7 @@ namespace NLog.Internal
         {
             public static readonly IDictionaryEnumerator Default = new EmptyDictionaryEnumerator();
             public DictionaryEntry Entry => default;
-            public object? Key => default;
+            public object Key => string.Empty;
             public object? Value => default;
             object? IEnumerator.Current => Entry;
             public bool MoveNext() => false;

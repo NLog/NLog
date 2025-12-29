@@ -172,15 +172,15 @@ namespace NLog.Internal
         {
             InternalLogger.Debug("Object reflection needed to configure instance of type: {0} (Lookup property={1})", obj.GetType(), propertyName);
 
-            PropertyInfo propInfo = obj.GetType().GetProperty(propertyName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.IgnoreCase);
-            if (propInfo != null)
+            var propInfo = obj.GetType().GetProperty(propertyName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.IgnoreCase);
+            if (propInfo is null)
             {
-                result = propInfo;
-                return true;
+                result = null;
+                return false;
             }
 
-            result = null;
-            return false;
+            result = propInfo;
+            return true;
         }
 
         internal static Type? GetArrayItemType(PropertyInfo propInfo)
@@ -259,7 +259,7 @@ namespace NLog.Internal
                     return false;
                 }
 
-                MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { value.GetType() }, null);
+                var operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { value.GetType() }, null);
                 if (operatorImplicitMethod is null || !resultType.IsAssignableFrom(operatorImplicitMethod.ReturnType))
                 {
                     result = null;
@@ -436,7 +436,7 @@ namespace NLog.Internal
                     object? hashSetComparer = null;
                     var existingType = existingValue.GetType();
                     var comparerPropInfo = existingType.GetProperty("Comparer", BindingFlags.Public | BindingFlags.Instance);
-                    if (comparerPropInfo.IsValidPublicProperty())
+                    if (comparerPropInfo != null && comparerPropInfo.IsValidPublicProperty())
                     {
                         hashSetComparer = comparerPropInfo.GetPropertyValue(existingValue);
                     }

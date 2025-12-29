@@ -86,7 +86,7 @@ namespace NLog.Targets
 
         public void WriteSubString(TextWriter consoleWriter, string text, int index, int endIndex)
         {
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_0_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET
             consoleWriter.Write(text.AsSpan(index, endIndex - index));
 #else
             consoleWriter.Write(text.Substring(index, endIndex - index));
