@@ -175,42 +175,21 @@ namespace NLog.Targets.FileArchiveHandlers
                     char x_chr = x[x_pos];
                     char y_chr = y[y_pos];
 
-                    // Both chars are digits, compare numeric block
                     if (char.IsDigit(x_chr) && char.IsDigit(y_chr))
                     {
-                        // Skip leading zeros
-                        while (x_pos < x.Length && x[x_pos] == '0') x_pos++;
-                        while (y_pos < y.Length && y[y_pos] == '0') y_pos++;
+                        int cmp = NaturalStringCompareNumericBlocks(x, ref x_pos, y, ref y_pos);
+                        if (cmp != 0)
+                            return cmp;
 
-                        int x_digit_start = x_pos;
-                        int y_digit_start = y_pos;
-                        while (x_pos < x.Length && char.IsDigit(x[x_pos])) x_pos++;
-                        while (y_pos < y.Length && char.IsDigit(y[y_pos])) y_pos++;
-
-                        int x_digit_len = x_pos - x_digit_start;
-                        int y_digit_len = y_pos - y_digit_start;
-
-                        // If different length, longer wins
-                        if (x_digit_len != y_digit_len)
-                            return x_digit_len.CompareTo(y_digit_len);
-
-                        // Lengths equal, compare digit by digit
-                        for (int i = 0; i < x_digit_len; i++)
-                        {
-                            int cmp = x[x_digit_start + i].CompareTo(y[y_digit_start + i]);
-                            if (cmp != 0)
-                                return cmp;
-                        }
-                        // If all digits equal, continue comparing after number block
-                        continue;
+                        continue;   // If all digits equal, continue comparing after numeric blocks
                     }
 
                     // Non-digit comparison (case-insensitive, ordinal)
                     if (x_chr != y_chr)
                     {
-                        int cmpChar = char.ToUpperInvariant(x_chr).CompareTo(char.ToUpperInvariant(y_chr));
-                        if (cmpChar != 0)
-                            return cmpChar;
+                        int cmp = char.ToUpperInvariant(x_chr).CompareTo(char.ToUpperInvariant(y_chr));
+                        if (cmp != 0)
+                            return cmp;
                     }
 
                     x_pos++;
@@ -218,6 +197,35 @@ namespace NLog.Targets.FileArchiveHandlers
                 }
 
                 return x.Length.CompareTo(y.Length);
+            }
+
+            private static int NaturalStringCompareNumericBlocks(string x, ref int x_pos, string y, ref int y_pos)
+            {
+                // Skip leading zeros
+                while (x_pos < x.Length && x[x_pos] == '0') x_pos++;
+                while (y_pos < y.Length && y[y_pos] == '0') y_pos++;
+
+                int x_digit_start = x_pos;
+                int y_digit_start = y_pos;
+                while (x_pos < x.Length && char.IsDigit(x[x_pos])) x_pos++;
+                while (y_pos < y.Length && char.IsDigit(y[y_pos])) y_pos++;
+
+                int x_digit_len = x_pos - x_digit_start;
+                int y_digit_len = y_pos - y_digit_start;
+
+                // If different length, longer wins
+                if (x_digit_len != y_digit_len)
+                    return x_digit_len.CompareTo(y_digit_len);
+
+                // Same length, compare digit by digit (Handle very large numbers)
+                for (int i = 0; i < x_digit_len; i++)
+                {
+                    int cmp = x[x_digit_start + i].CompareTo(y[y_digit_start + i]);
+                    if (cmp != 0)
+                        return cmp;
+                }
+
+                return 0;
             }
 
             public override string ToString()
