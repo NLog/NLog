@@ -48,6 +48,8 @@ namespace NLog.UnitTests.Config
         {
             using (new InternalLoggerScope())
             {
+                InternalLogger.Reset();
+
                 var xml = "<nlog></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
 
@@ -57,7 +59,7 @@ namespace NLog.UnitTests.Config
                 Assert.False(InternalLogger.LogToConsoleError);
                 Assert.True(InternalLogger.IncludeTimestamp);
                 Assert.Null(InternalLogger.LogWriter);
-                Assert.Equal(LogLevel.Off, InternalLogger.LogLevel);
+                Assert.Equal(LogLevel.Off, InternalLogger.LogLevel);    // Not auto-enabled
             }
         }
 
@@ -66,6 +68,8 @@ namespace NLog.UnitTests.Config
         {
             using (new InternalLoggerScope())
             {
+                InternalLogger.Reset();
+
                 using (new NoThrowNLogExceptions())
                 {
                     var xml = "<nlog logfile='test.txt' internalLogIncludeTimestamp='false' internalLogToConsole='true' internalLogToConsoleError='true'></nlog>";
@@ -77,7 +81,7 @@ namespace NLog.UnitTests.Config
                     Assert.True(InternalLogger.LogToConsoleError);
                     Assert.False(InternalLogger.IncludeTimestamp);
                     Assert.Null(InternalLogger.LogWriter);
-                    Assert.Equal(LogLevel.Info, InternalLogger.LogLevel);
+                    Assert.Equal(LogLevel.Info, InternalLogger.LogLevel);   // Auto-enabled
                 }
             }
         }

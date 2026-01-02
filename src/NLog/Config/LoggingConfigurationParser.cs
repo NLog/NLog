@@ -129,7 +129,6 @@ namespace NLog.Config
 
             CultureInfo? defaultCultureInfo = DefaultCultureInfo ?? LogFactory._defaultCultureInfo;
             bool? parseMessageTemplates = LogFactory.ServiceRepository.ResolveParseMessageTemplates();
-            bool internalLoggerEnabled = false;
             bool autoLoadExtensions = false;
             foreach (var configItem in sortedList)
             {
@@ -143,7 +142,6 @@ namespace NLog.Config
                         break;
                     case "INTERNALLOGLEVEL":
                         InternalLogger.LogLevel = ParseLogLevelSafe(configItem.Key, configItem.Value ?? string.Empty, InternalLogger.LogLevel);
-                        internalLoggerEnabled = InternalLogger.LogLevel != LogLevel.Off;
                         break;
                     case "USEINVARIANTCULTURE":
                         if (ParseBooleanValue(configItem.Key, configItem.Value ?? string.Empty, false))
@@ -189,11 +187,6 @@ namespace NLog.Config
             if (defaultCultureInfo != null && !ReferenceEquals(DefaultCultureInfo, defaultCultureInfo))
             {
                 DefaultCultureInfo = defaultCultureInfo;
-            }
-
-            if (!internalLoggerEnabled && !InternalLogger.HasActiveLoggers())
-            {
-                InternalLogger.LogLevel = LogLevel.Off; // Reduce overhead of the InternalLogger when not configured
             }
 
             if (autoLoadExtensions)

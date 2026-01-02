@@ -57,7 +57,7 @@ namespace NLog.Config
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing
         /// the application configuration file (<c>app.exe.config</c>).
         /// </summary>
-        internal static LoggingConfiguration? AppConfig
+        public static LoggingConfiguration? AppConfig
         {
             get
             {

@@ -61,6 +61,16 @@ namespace NLog.UnitTests.Common
             Assert.True(InternalLogger.IsErrorEnabled);
             Assert.True(InternalLogger.IsFatalEnabled);
 
+            // Switch off the internal logging.
+            InternalLogger.Reset();
+
+            Assert.False(InternalLogger.IsTraceEnabled);
+            Assert.False(InternalLogger.IsDebugEnabled);
+            Assert.False(InternalLogger.IsInfoEnabled);
+            Assert.False(InternalLogger.IsWarnEnabled);
+            Assert.False(InternalLogger.IsErrorEnabled);
+            Assert.False(InternalLogger.IsFatalEnabled);
+
             // Setup LogLevel to maximum named level.
             InternalLogger.LogLevel = LogLevel.Fatal;
 
