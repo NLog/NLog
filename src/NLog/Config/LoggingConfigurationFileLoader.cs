@@ -58,9 +58,23 @@ namespace NLog.Config
 #if NETFRAMEWORK
             if (string.IsNullOrEmpty(filename))
             {
-                var appConfig = ConfigSectionHandler.AppConfig;
-                if (appConfig != null)
-                    return appConfig;
+                try
+                {
+                    var appConfig = TryLoadFromAppConfig(logFactory);
+                    if (appConfig != null)
+                        return appConfig;
+                }
+                catch (NLogConfigurationException)
+                {
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    if (ex.MustBeRethrownImmediately() || logFactory.ThrowExceptions || LogManager.ThrowExceptions)
+                        throw;
+
+                    InternalLogger.Error(ex, FailedToLoadFromAppConfigMessage); // NetStandard does not support .NET Framework types
+                }
             }
 #endif
 
@@ -75,6 +89,34 @@ namespace NLog.Config
 
             return null;
         }
+
+#if NETFRAMEWORK
+        private static LoggingConfiguration? TryLoadFromAppConfig(LogFactory logFactory)
+        {
+            try
+            {
+                return ConfigSectionHandler.AppConfig;
+            }
+            catch (NLogConfigurationException exception)
+            {
+                InternalLogger.Error(exception, FailedToLoadFromAppConfigMessage);
+                if ((logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions) || (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions))
+                    throw;
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Error(exception, FailedToLoadFromAppConfigMessage);
+                if (exception.MustBeRethrownImmediately() || logFactory.ThrowExceptions || LogManager.ThrowExceptions)
+                    throw;
+
+                if ((logFactory.ThrowConfigExceptions ?? LogManager.ThrowConfigExceptions ?? logFactory.ThrowExceptions))
+                    throw new NLogConfigurationException(FailedToLoadFromAppConfigMessage, exception);
+            }
+            return null;
+        }
+
+        private const string FailedToLoadFromAppConfigMessage = "Failed loading XML configuration from NLog ConfigSection in application configuration file (app.config / web.config)";
+#endif
 
         private LoggingConfiguration? TryLoadFromFilePaths(LogFactory logFactory, string? filename)
         {
