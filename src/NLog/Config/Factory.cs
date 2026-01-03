@@ -50,7 +50,7 @@ namespace NLog.Config
         where TBaseType : class
         where TAttributeType : NameBaseAttribute
     {
-        private readonly Dictionary<string, Func<TBaseType?>> _items;
+        private readonly Dictionary<string, Func<TBaseType?>> _items = new Dictionary<string, Func<TBaseType?>>(16, StringComparer.OrdinalIgnoreCase);
         private readonly ConfigurationItemFactory _parentFactory;
 
         public bool Initialized { get; private set; }
@@ -58,7 +58,6 @@ namespace NLog.Config
         internal Factory(ConfigurationItemFactory parentFactory)
         {
             _parentFactory = parentFactory;
-            _items = new Dictionary<string, Func<TBaseType?>>(16, StringComparer.OrdinalIgnoreCase);
         }
 
         private delegate Type GetTypeDelegate();
@@ -72,8 +71,8 @@ namespace NLog.Config
 
                 try
                 {
-                    var skipCheckExists = _items.Count == 0;
-                    itemRegistration.Invoke(skipCheckExists);
+                    var checkTypeExists = _items.Count != 0;
+                    itemRegistration.Invoke(checkTypeExists);
                 }
                 finally
                 {
@@ -82,11 +81,11 @@ namespace NLog.Config
             }
         }
 
-        public bool CheckTypeAliasExists(string typeAlias) => _items.ContainsKey(FactoryExtensions.NormalizeName(typeAlias));
-
-        public void RegisterType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(string typeAlias) where TType : TBaseType, new()
+        public void RegisterType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(string typeAlias, bool checkTypeExists = false) where TType : TBaseType, new()
         {
             typeAlias = FactoryExtensions.NormalizeName(typeAlias);
+            if (checkTypeExists && _items.ContainsKey(typeAlias))
+                return;
 
             lock (ConfigurationItemFactory.SyncRoot)
             {
@@ -129,13 +128,13 @@ namespace NLog.Config
         /// <summary>
         /// Registers the item based on a type name.
         /// </summary>
-        /// <param name="itemName">Name of the item.</param>
-        /// <param name="typeName">Name of the type.</param>
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2072")]
-        public void RegisterNamedType(string itemName, string typeName)
+        public void RegisterNamedType(string itemName, string typeName, bool checkTypeExists = false)
         {
             itemName = FactoryExtensions.NormalizeName(itemName);
+            if (checkTypeExists && _items.ContainsKey(itemName))
+                return;
 
             Type? itemType = null;
 
@@ -247,7 +246,7 @@ namespace NLog.Config
 #if NETFRAMEWORK
                 message += " - Extension NLog.Web not included?";
 #else
-                message += " - Extension NLog.Web.AspNetCore not included?";                
+                message += " - Extension NLog.Web.AspNetCore not included?";
 #endif
             }
             else if (normalName.StartsWith("HostAppName", StringComparison.OrdinalIgnoreCase))

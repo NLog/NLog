@@ -323,6 +323,8 @@ namespace NLog.UnitTests
                     var configAttribs = type.GetCustomAttributes<NLog.Targets.TargetAttribute>(false);
                     Assert.NotEmpty(configAttribs);
 
+                    var noDuplicates = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
                     foreach (var configName in configAttribs)
                     {
                         if (!ConfigurationItemFactory.Default.TargetFactory.TryCreateInstance(configName.Name, out var target))
@@ -334,6 +336,10 @@ namespace NLog.UnitTests
                         {
                             Console.WriteLine(type.Name);
                             missingTypes.Add(type.Name);
+                        }
+                        else if (!noDuplicates.Add(configName.Name.Replace("-", "")))
+                        {
+                            Assert.Fail($"Duplicate alias '{configName.Name}' in {type.FullName}");
                         }
                     }
                 }
@@ -348,6 +354,8 @@ namespace NLog.UnitTests
                     var configAttribs = type.GetCustomAttributes<NLog.Layouts.LayoutAttribute>(false);
                     Assert.NotEmpty(configAttribs);
 
+                    var noDuplicates = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
                     foreach (var configName in configAttribs)
                     {
                         if (!ConfigurationItemFactory.Default.LayoutFactory.TryCreateInstance(configName.Name, out var layout))
@@ -360,6 +368,10 @@ namespace NLog.UnitTests
                             Console.WriteLine(type.Name);
                             missingTypes.Add(type.Name);
                         }
+                        else if (!noDuplicates.Add(configName.Name.Replace("-", "")))
+                        {
+                            Assert.Fail($"Duplicate alias '{configName.Name}' in {type.FullName}");
+                        }
                     }
                 }
                 else if (typeof(NLog.LayoutRenderers.LayoutRenderer).IsAssignableFrom(type))
@@ -369,6 +381,8 @@ namespace NLog.UnitTests
 
                     var configAttribs = type.GetCustomAttributes<NLog.LayoutRenderers.LayoutRendererAttribute>(false);
                     Assert.NotEmpty(configAttribs);
+
+                    var noDuplicates = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
                     foreach (var configName in configAttribs)
                     {
@@ -382,12 +396,18 @@ namespace NLog.UnitTests
                             Console.WriteLine(type.Name);
                             missingTypes.Add(type.Name);
                         }
+                        else if (!noDuplicates.Add(configName.Name.Replace("-", "")))
+                        {
+                            Assert.Fail($"Duplicate alias '{configName.Name}' in {type.FullName}");
+                        }
                     }
 
                     if (typeof(NLog.LayoutRenderers.Wrappers.WrapperLayoutRendererBase).IsAssignableFrom(type))
                     {
+                        var noPropertyDuplicates = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
                         var wrapperAttribs = type.GetCustomAttributes<NLog.LayoutRenderers.AmbientPropertyAttribute>(false);
-                        if (wrapperAttribs?.Any() == true)
+                        if (wrapperAttribs != null)
                         {
                             foreach (var ambientName in wrapperAttribs)
                             {
@@ -401,6 +421,10 @@ namespace NLog.UnitTests
                                     Console.WriteLine(type.Name);
                                     missingTypes.Add(type.Name);
                                 }
+                                else if (!noPropertyDuplicates.Add(ambientName.Name.Replace("-", "")))
+                                {
+                                    Assert.Fail($"Duplicate alias '{ambientName.Name}' in {type.FullName}");
+                                }
                             }
                         }
                     }
@@ -412,6 +436,8 @@ namespace NLog.UnitTests
 
                     var configAttribs = type.GetCustomAttributes<NLog.Filters.FilterAttribute>(false);
                     Assert.NotEmpty(configAttribs);
+
+                    var noDuplicates = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
                     foreach (var configName in configAttribs)
                     {
@@ -425,12 +451,18 @@ namespace NLog.UnitTests
                             Console.WriteLine(type.Name);
                             missingTypes.Add(type.Name);
                         }
+                        else if (!noDuplicates.Add(type.Name.Replace("-", "")))
+                        {
+                            Assert.Fail($"Duplicate alias '{type.Name}' in {type.FullName}");
+                        }
                     }
                 }
                 else if (typeof(NLog.Time.TimeSource).IsAssignableFrom(type))
                 {
                     var configAttribs = type.GetCustomAttributes<NLog.Time.TimeSourceAttribute>(false);
                     Assert.NotEmpty(configAttribs);
+
+                    var noDuplicates = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
                     foreach (var configName in configAttribs)
                     {
@@ -443,6 +475,10 @@ namespace NLog.UnitTests
                         {
                             Console.WriteLine(type.Name);
                             missingTypes.Add(type.Name);
+                        }
+                        else if (!noDuplicates.Add(type.Name.Replace("-", "")))
+                        {
+                            Assert.Fail($"Duplicate alias '{type.Name}' in {type.FullName}");
                         }
                     }
                 }
