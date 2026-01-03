@@ -57,24 +57,12 @@ namespace NLog.Config
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing
         /// the application configuration file (<c>app.exe.config</c>).
         /// </summary>
-        public static LoggingConfiguration? AppConfig
+        internal static LoggingConfiguration? AppConfig
         {
             get
             {
-                try
-                {
-                    object o = System.Configuration.ConfigurationManager.GetSection("nlog");
-                    return o as LoggingConfiguration;
-                }
-                catch (Exception exception)
-                {
-                    // Load can fail due to an invalid XML file (app.config) etc.
-                    InternalLogger.Error(exception, "Failed loading XML configuration from NLog ConfigSection in application configuration file (app.config / web.config)");
-                    if (exception.MustBeRethrown())
-                        throw;
-                }
-
-                return null;
+                object o = System.Configuration.ConfigurationManager.GetSection("nlog");
+                return o as LoggingConfiguration;
             }
         }
 

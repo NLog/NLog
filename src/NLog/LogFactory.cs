@@ -1035,7 +1035,6 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LogFactory LoadConfiguration(string configFile)
         {
-            // TODO Remove explicit File-loading logic from LogFactory (Should handle environment without files)
             return LoadConfiguration(configFile, optional: false);
         }
 
