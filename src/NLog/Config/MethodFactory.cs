@@ -97,8 +97,8 @@ namespace NLog.Config
 
                 try
                 {
-                    var skipCheckExists = _nameToMethodDetails.Count == 0;
-                    itemRegistration.Invoke(skipCheckExists);
+                    var checkTypeExists = _nameToMethodDetails.Count != 0;
+                    itemRegistration.Invoke(checkTypeExists);
                 }
                 finally
                 {

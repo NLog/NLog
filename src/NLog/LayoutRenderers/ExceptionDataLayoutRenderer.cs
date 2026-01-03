@@ -47,7 +47,6 @@ namespace NLog.LayoutRenderers
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/ExceptionData-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("exceptiondata")]
-    [LayoutRenderer("exception-data")]
     [ThreadAgnostic]
     [ThreadAgnosticImmutable]
     public class ExceptionDataLayoutRenderer : LayoutRenderer

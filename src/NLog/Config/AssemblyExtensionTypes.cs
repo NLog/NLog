@@ -39,341 +39,203 @@ namespace NLog.Config
     internal static class AssemblyExtensionTypes
     {
 #pragma warning disable CS0618 // Type or member is obsolete
-        public static void RegisterTargetTypes(ConfigurationItemFactory factory, bool skipCheckExists)
+        public static void RegisterTargetTypes(ConfigurationItemFactory factory, bool checkTypeExists)
         {
+            var targetFactory = factory.GetTargetFactory();
+
             factory.RegisterTypeProperties<NLog.Targets.TargetWithContext.TargetWithContextLayout>(() => null);
 #if NETFRAMEWORK
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("EventLog"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.EventLogTarget>("EventLog");
+            targetFactory.RegisterType<NLog.Targets.EventLogTarget>("EventLog", checkTypeExists);
 #endif
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("ColoredConsole"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.ColoredConsoleTarget>("ColoredConsole");
+            targetFactory.RegisterType<NLog.Targets.ColoredConsoleTarget>("ColoredConsole", checkTypeExists);
             factory.RegisterType<NLog.Targets.ConsoleRowHighlightingRule>();
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("Console"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.ConsoleTarget>("Console");
+            targetFactory.RegisterType<NLog.Targets.ConsoleTarget>("Console", checkTypeExists);
             factory.RegisterType<NLog.Targets.ConsoleWordHighlightingRule>();
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("Debugger"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.DebuggerTarget>("Debugger");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("DebugSystem"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.DebugSystemTarget>("DebugSystem");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("Debug"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.DebugTarget>("Debug");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("File"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.FileTarget>("File");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("Memory"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.MemoryTarget>("Memory");
+            targetFactory.RegisterType<NLog.Targets.DebuggerTarget>("Debugger", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.DebugSystemTarget>("DebugSystem", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.DebugTarget>("Debug", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.FileTarget>("File", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.MemoryTarget>("Memory", checkTypeExists);
             factory.RegisterType<NLog.Targets.MethodCallParameter>();
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("MethodCall"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.MethodCallTarget>("MethodCall");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("Null"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.NullTarget>("Null");
+            targetFactory.RegisterType<NLog.Targets.MethodCallTarget>("MethodCall", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.NullTarget>("Null", checkTypeExists);
             factory.RegisterType<NLog.Targets.TargetPropertyWithContext>();
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("AsyncWrapper"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.AsyncTargetWrapper>("AsyncWrapper");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("AutoFlushWrapper"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.AutoFlushTargetWrapper>("AutoFlushWrapper");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("BufferingWrapper"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.BufferingTargetWrapper>("BufferingWrapper");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("FallbackGroup"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.FallbackGroupTarget>("FallbackGroup");
+            targetFactory.RegisterType<NLog.Targets.Wrappers.AsyncTargetWrapper>("AsyncWrapper", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.Wrappers.AutoFlushTargetWrapper>("AutoFlushWrapper", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.Wrappers.BufferingTargetWrapper>("BufferingWrapper", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.Wrappers.FallbackGroupTarget>("FallbackGroup", checkTypeExists);
             factory.RegisterType<NLog.Targets.Wrappers.FilteringRule>();
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("FilteringWrapper"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.FilteringTargetWrapper>("FilteringWrapper");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("GroupByWrapper"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.GroupByTargetWrapper>("GroupByWrapper");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("LimitingWrapper"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.LimitingTargetWrapper>("LimitingWrapper");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("PostFilteringWrapper"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.PostFilteringTargetWrapper>("PostFilteringWrapper");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("RandomizeGroup"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.RandomizeGroupTarget>("RandomizeGroup");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("RepeatingWrapper"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.RepeatingTargetWrapper>("RepeatingWrapper");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("RetryingWrapper"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.RetryingTargetWrapper>("RetryingWrapper");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("RoundRobinGroup"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.RoundRobinGroupTarget>("RoundRobinGroup");
-            if (skipCheckExists || !factory.GetTargetFactory().CheckTypeAliasExists("SplitGroup"))
-                factory.GetTargetFactory().RegisterType<NLog.Targets.Wrappers.SplitGroupTarget>("SplitGroup");
+            targetFactory.RegisterType<NLog.Targets.Wrappers.FilteringTargetWrapper>("FilteringWrapper", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.Wrappers.GroupByTargetWrapper>("GroupByWrapper", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.Wrappers.LimitingTargetWrapper>("LimitingWrapper", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.Wrappers.PostFilteringTargetWrapper>("PostFilteringWrapper", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.Wrappers.RandomizeGroupTarget>("RandomizeGroup", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.Wrappers.RepeatingTargetWrapper>("RepeatingWrapper", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.Wrappers.RetryingTargetWrapper>("RetryingWrapper", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.Wrappers.RoundRobinGroupTarget>("RoundRobinGroup", checkTypeExists);
+            targetFactory.RegisterType<NLog.Targets.Wrappers.SplitGroupTarget>("SplitGroup", checkTypeExists);
         }
 
-        public static void RegisterLayoutTypes(ConfigurationItemFactory factory, bool skipCheckExists)
+        public static void RegisterLayoutTypes(ConfigurationItemFactory factory, bool checkTypeExists)
         {
+            var layoutFactory = factory.GetLayoutFactory();
+
             factory.RegisterTypeProperties<NLog.Layouts.CsvLayout.CsvHeaderLayout>(() => null);
-            if (skipCheckExists || !factory.GetLayoutFactory().CheckTypeAliasExists("CompoundLayout"))
-                factory.GetLayoutFactory().RegisterType<NLog.Layouts.CompoundLayout>("CompoundLayout");
+            layoutFactory.RegisterType<NLog.Layouts.CompoundLayout>("CompoundLayout", checkTypeExists);
             factory.RegisterType<NLog.Layouts.CsvColumn>();
-            if (skipCheckExists || !factory.GetLayoutFactory().CheckTypeAliasExists("CsvLayout"))
-                factory.GetLayoutFactory().RegisterType<NLog.Layouts.CsvLayout>("CsvLayout");
-            if (skipCheckExists || !factory.GetLayoutFactory().CheckTypeAliasExists("JsonArrayLayout"))
-                factory.GetLayoutFactory().RegisterType<NLog.Layouts.JsonArrayLayout>("JsonArrayLayout");
+            layoutFactory.RegisterType<NLog.Layouts.CsvLayout>("CsvLayout", checkTypeExists);
+            layoutFactory.RegisterType<NLog.Layouts.JsonArrayLayout>("JsonArrayLayout", checkTypeExists);
             factory.RegisterType<NLog.Layouts.JsonAttribute>();
-            if (skipCheckExists || !factory.GetLayoutFactory().CheckTypeAliasExists("JsonLayout"))
-                factory.GetLayoutFactory().RegisterType<NLog.Layouts.JsonLayout>("JsonLayout");
-            if (skipCheckExists || !factory.GetLayoutFactory().CheckTypeAliasExists("LayoutWithHeaderAndFooter"))
-                factory.GetLayoutFactory().RegisterType<NLog.Layouts.LayoutWithHeaderAndFooter>("LayoutWithHeaderAndFooter");
-            if (skipCheckExists || !factory.GetLayoutFactory().CheckTypeAliasExists("SimpleLayout"))
-                factory.GetLayoutFactory().RegisterType<NLog.Layouts.SimpleLayout>("SimpleLayout");
+            layoutFactory.RegisterType<NLog.Layouts.JsonLayout>("JsonLayout", checkTypeExists);
+            layoutFactory.RegisterType<NLog.Layouts.LayoutWithHeaderAndFooter>("LayoutWithHeaderAndFooter", checkTypeExists);
+            layoutFactory.RegisterType<NLog.Layouts.SimpleLayout>("SimpleLayout", checkTypeExists);
             factory.RegisterType<NLog.Layouts.ValueTypeLayoutInfo>();
             factory.RegisterType<NLog.Layouts.XmlAttribute>();
-            if (skipCheckExists || !factory.GetLayoutFactory().CheckTypeAliasExists("XmlLayout"))
-                factory.GetLayoutFactory().RegisterType<NLog.Layouts.XmlLayout>("XmlLayout");
+            layoutFactory.RegisterType<NLog.Layouts.XmlLayout>("XmlLayout", checkTypeExists);
         }
 
-        public static void RegisterLayoutRendererTypes(ConfigurationItemFactory factory, bool skipCheckExists)
+        public static void RegisterLayoutRendererTypes(ConfigurationItemFactory factory, bool checkTypeExists)
         {
+            var layoutRendererFactory = factory.GetLayoutRendererFactory();
+            var ambientPropertyFactory = factory.GetAmbientPropertyFactory();
+
 #if NETFRAMEWORK
-            factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.AppSettingLayoutRenderer>("appsetting");
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.AppSettingLayoutRenderer>("appsetting", checkTypeExists);
 #endif
             factory.RegisterTypeProperties<NLog.LayoutRenderers.LiteralWithRawValueLayoutRenderer>(() => null);
             factory.RegisterTypeProperties<NLog.LayoutRenderers.FuncLayoutRenderer>(() => null);
             factory.RegisterTypeProperties<NLog.LayoutRenderers.FuncThreadAgnosticLayoutRenderer>(() => null);
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("all-event-properties"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.AllEventPropertiesLayoutRenderer>("all-event-properties");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("appdomain"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.AppDomainLayoutRenderer>("appdomain");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("assembly-version"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.AssemblyVersionLayoutRenderer>("assembly-version");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("basedir"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.BaseDirLayoutRenderer>("basedir");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("callsite-filename"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.CallSiteFileNameLayoutRenderer>("callsite-filename");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("callsite"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.CallSiteLayoutRenderer>("callsite");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("callsite-linenumber"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.CallSiteLineNumberLayoutRenderer>("callsite-linenumber");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("counter"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.CounterLayoutRenderer>("counter");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("currentdir"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.CurrentDirLayoutRenderer>("currentdir");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("date"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.DateLayoutRenderer>("date");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("db-null"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.DbNullLayoutRenderer>("db-null");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("dir-separator"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.DirectorySeparatorLayoutRenderer>("dir-separator");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("environment"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.EnvironmentLayoutRenderer>("environment");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("environment-user"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.EnvironmentUserLayoutRenderer>("environment-user");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("event-properties"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("event-properties");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("event-property"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("event-property");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("event-context"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("event-context");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("exceptiondata"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ExceptionDataLayoutRenderer>("exceptiondata");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("exception-data"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ExceptionDataLayoutRenderer>("exception-data");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("exception"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ExceptionLayoutRenderer>("exception");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("gc"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.GarbageCollectorInfoLayoutRenderer>("gc");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("gdc"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.GdcLayoutRenderer>("gdc");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("guid"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.GuidLayoutRenderer>("guid");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("hostname"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.HostNameLayoutRenderer>("hostname");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("identity"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.IdentityLayoutRenderer>("identity");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("install-context"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.InstallContextLayoutRenderer>("install-context");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("level"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.LevelLayoutRenderer>("level");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("loglevel"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.LevelLayoutRenderer>("loglevel");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("literal"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.LiteralLayoutRenderer>("literal");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("loggername"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("loggername");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("logger"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("logger");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("longdate"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.LongDateLayoutRenderer>("longdate");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("machinename"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.MachineNameLayoutRenderer>("machinename");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("message"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.MessageLayoutRenderer>("message");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("newline"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.NewLineLayoutRenderer>("newline");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("nlogdir"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.NLogDirLayoutRenderer>("nlogdir");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("processdir"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ProcessDirLayoutRenderer>("processdir");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("processid"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ProcessIdLayoutRenderer>("processid");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("processinfo"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ProcessInfoLayoutRenderer>("processinfo");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("processname"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ProcessNameLayoutRenderer>("processname");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("processtime"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ProcessTimeLayoutRenderer>("processtime");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("scopeindent"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextIndentLayoutRenderer>("scopeindent");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("scopenested"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("scopenested");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("ndc"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("ndc");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("ndlc"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("ndlc");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("scopeproperty"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("scopeproperty");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("mdc"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("mdc");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("mdlc"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("mdlc");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("scopetiming"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextTimingLayoutRenderer>("scopetiming");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("ndlctiming"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ScopeContextTimingLayoutRenderer>("ndlctiming");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("sequenceid"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.SequenceIdLayoutRenderer>("sequenceid");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("shortdate"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ShortDateLayoutRenderer>("shortdate");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("userApplicationDataDir"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.SpecialFolderApplicationDataLayoutRenderer>("userApplicationDataDir");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("commonApplicationDataDir"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.SpecialFolderCommonApplicationDataLayoutRenderer>("commonApplicationDataDir");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("specialfolder"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.SpecialFolderLayoutRenderer>("specialfolder");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("userLocalApplicationDataDir"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.SpecialFolderLocalApplicationDataLayoutRenderer>("userLocalApplicationDataDir");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("stacktrace"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.StackTraceLayoutRenderer>("stacktrace");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("tempdir"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.TempDirLayoutRenderer>("tempdir");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("threadid"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ThreadIdLayoutRenderer>("threadid");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("threadname"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.ThreadNameLayoutRenderer>("threadname");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("ticks"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.TicksLayoutRenderer>("ticks");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("time"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.TimeLayoutRenderer>("time");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("var"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.VariableLayoutRenderer>("var");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("cached"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("cached");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("Cached"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("Cached");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("ClearCache"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("ClearCache");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("CachedSeconds"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("CachedSeconds");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("filesystem-normalize"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.FileSystemNormalizeLayoutRendererWrapper>("filesystem-normalize");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("FSNormalize"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.FileSystemNormalizeLayoutRendererWrapper>("FSNormalize");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("json-encode"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper>("json-encode");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("JsonEncode"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper>("JsonEncode");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("left"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.LeftLayoutRendererWrapper>("left");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("Truncate"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.LeftLayoutRendererWrapper>("Truncate");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("lowercase"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("lowercase");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("Lowercase"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("Lowercase");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("ToLower"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("ToLower");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("norawvalue"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.NoRawValueLayoutRendererWrapper>("norawvalue");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("NoRawValue"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.NoRawValueLayoutRendererWrapper>("NoRawValue");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("Object-Path"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.ObjectPathRendererWrapper>("Object-Path");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("ObjectPath"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.ObjectPathRendererWrapper>("ObjectPath");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("onexception"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.OnExceptionLayoutRendererWrapper>("onexception");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("onhasproperties"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.OnHasPropertiesLayoutRendererWrapper>("onhasproperties");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("pad"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("pad");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("Padding"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("Padding");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("PadCharacter"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("PadCharacter");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("FixedLength"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("FixedLength");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("AlignmentOnTruncation"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("AlignmentOnTruncation");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("replace"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.ReplaceLayoutRendererWrapper>("replace");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("replace-newlines"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.ReplaceNewLinesLayoutRendererWrapper>("replace-newlines");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("ReplaceNewLines"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.ReplaceNewLinesLayoutRendererWrapper>("ReplaceNewLines");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("right"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.RightLayoutRendererWrapper>("right");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("rot13"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.Rot13LayoutRendererWrapper>("rot13");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("substring"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.SubstringLayoutRendererWrapper>("substring");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("trim-whitespace"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.TrimWhiteSpaceLayoutRendererWrapper>("trim-whitespace");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("TrimWhiteSpace"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.TrimWhiteSpaceLayoutRendererWrapper>("TrimWhiteSpace");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("uppercase"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("uppercase");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("Uppercase"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("Uppercase");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("ToUpper"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("ToUpper");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("url-encode"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.UrlEncodeLayoutRendererWrapper>("url-encode");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("whenEmpty"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WhenEmptyLayoutRendererWrapper>("whenEmpty");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("WhenEmpty"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WhenEmptyLayoutRendererWrapper>("WhenEmpty");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("when"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WhenLayoutRendererWrapper>("when");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("When"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WhenLayoutRendererWrapper>("When");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("wrapline"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WrapLineLayoutRendererWrapper>("wrapline");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("WrapLine"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.WrapLineLayoutRendererWrapper>("WrapLine");
-            if (skipCheckExists || !factory.GetLayoutRendererFactory().CheckTypeAliasExists("xml-encode"))
-                factory.GetLayoutRendererFactory().RegisterType<NLog.LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper>("xml-encode");
-            if (skipCheckExists || !factory.GetAmbientPropertyFactory().CheckTypeAliasExists("XmlEncode"))
-                factory.GetAmbientPropertyFactory().RegisterType<NLog.LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper>("XmlEncode");
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.AllEventPropertiesLayoutRenderer>("alleventproperties", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.AppDomainLayoutRenderer>("appdomain", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.AssemblyVersionLayoutRenderer>("assemblyversion", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.BaseDirLayoutRenderer>("basedir", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.CallSiteFileNameLayoutRenderer>("callsitefilename", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.CallSiteLayoutRenderer>("callsite", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.CallSiteLineNumberLayoutRenderer>("callsitelinenumber", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.CounterLayoutRenderer>("counter", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.CurrentDirLayoutRenderer>("currentdir", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.DateLayoutRenderer>("date", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.DbNullLayoutRenderer>("dbnull", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.DirectorySeparatorLayoutRenderer>("dirseparator", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.EnvironmentLayoutRenderer>("environment", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.EnvironmentUserLayoutRenderer>("environmentuser", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("eventproperties", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("eventproperty", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("eventcontext", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ExceptionDataLayoutRenderer>("exceptiondata", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ExceptionLayoutRenderer>("exception", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.GarbageCollectorInfoLayoutRenderer>("gc", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.GdcLayoutRenderer>("gdc", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.GuidLayoutRenderer>("guid", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.HostNameLayoutRenderer>("hostname", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.IdentityLayoutRenderer>("identity", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.InstallContextLayoutRenderer>("installcontext", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.LevelLayoutRenderer>("level", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.LevelLayoutRenderer>("loglevel", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.LiteralLayoutRenderer>("literal", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("loggername", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("logger", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.LongDateLayoutRenderer>("longdate", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.MachineNameLayoutRenderer>("machinename", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.MessageLayoutRenderer>("message", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.NewLineLayoutRenderer>("newline", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.NLogDirLayoutRenderer>("nlogdir", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessDirLayoutRenderer>("processdir", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessIdLayoutRenderer>("processid", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessInfoLayoutRenderer>("processinfo", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessNameLayoutRenderer>("processname", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessTimeLayoutRenderer>("processtime", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextIndentLayoutRenderer>("scopeindent", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("scopenested", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("ndc", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("ndlc", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("scopeproperty", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("mdc", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("mdlc", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextTimingLayoutRenderer>("scopetiming", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextTimingLayoutRenderer>("ndlctiming", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.SequenceIdLayoutRenderer>("sequenceid", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ShortDateLayoutRenderer>("shortdate", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.SpecialFolderApplicationDataLayoutRenderer>("userApplicationDataDir", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.SpecialFolderCommonApplicationDataLayoutRenderer>("commonApplicationDataDir", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.SpecialFolderLayoutRenderer>("specialfolder", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.SpecialFolderLocalApplicationDataLayoutRenderer>("userLocalApplicationDataDir", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.StackTraceLayoutRenderer>("stacktrace", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.TempDirLayoutRenderer>("tempdir", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ThreadIdLayoutRenderer>("threadid", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ThreadNameLayoutRenderer>("threadname", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.TicksLayoutRenderer>("ticks", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.TimeLayoutRenderer>("time", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.VariableLayoutRenderer>("var", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("cached", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("Cached", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("ClearCache", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("CachedSeconds", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.FileSystemNormalizeLayoutRendererWrapper>("filesystemnormalize", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.FileSystemNormalizeLayoutRendererWrapper>("FSNormalize", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper>("jsonencode", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper>("JsonEncode", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.LeftLayoutRendererWrapper>("left", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.LeftLayoutRendererWrapper>("Truncate", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("lowercase", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("Lowercase", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("ToLower", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.NoRawValueLayoutRendererWrapper>("norawvalue", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.NoRawValueLayoutRendererWrapper>("NoRawValue", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.ObjectPathRendererWrapper>("ObjectPath", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.ObjectPathRendererWrapper>("ObjectPath", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.OnExceptionLayoutRendererWrapper>("onexception", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.OnHasPropertiesLayoutRendererWrapper>("onhasproperties", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("pad", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("Padding", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("PadCharacter", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("FixedLength", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.PaddingLayoutRendererWrapper>("AlignmentOnTruncation", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.ReplaceLayoutRendererWrapper>("replace", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.ReplaceNewLinesLayoutRendererWrapper>("replacenewlines", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.ReplaceNewLinesLayoutRendererWrapper>("ReplaceNewLines", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.RightLayoutRendererWrapper>("right", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.Rot13LayoutRendererWrapper>("rot13", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.SubstringLayoutRendererWrapper>("substring", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.TrimWhiteSpaceLayoutRendererWrapper>("trimwhitespace", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.TrimWhiteSpaceLayoutRendererWrapper>("TrimWhiteSpace", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("uppercase", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("Uppercase", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("ToUpper", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.UrlEncodeLayoutRendererWrapper>("urlencode", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.WhenEmptyLayoutRendererWrapper>("whenEmpty", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.WhenEmptyLayoutRendererWrapper>("WhenEmpty", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.WhenLayoutRendererWrapper>("when", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.WhenLayoutRendererWrapper>("When", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.WrapLineLayoutRendererWrapper>("wrapline", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.WrapLineLayoutRendererWrapper>("WrapLine", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper>("xmlencode", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper>("XmlEncode", checkTypeExists);
         }
 
-        public static void RegisterFilterTypes(ConfigurationItemFactory factory, bool skipCheckExists)
+        public static void RegisterFilterTypes(ConfigurationItemFactory factory, bool checkTypeExists)
         {
-            if (skipCheckExists || !factory.GetFilterFactory().CheckTypeAliasExists("when"))
-                factory.GetFilterFactory().RegisterType<NLog.Filters.ConditionBasedFilter>("when");
-            if (skipCheckExists || !factory.GetFilterFactory().CheckTypeAliasExists("whenContains"))
-                factory.GetFilterFactory().RegisterType<NLog.Filters.WhenContainsFilter>("whenContains");
-            if (skipCheckExists || !factory.GetFilterFactory().CheckTypeAliasExists("whenEqual"))
-                factory.GetFilterFactory().RegisterType<NLog.Filters.WhenEqualFilter>("whenEqual");
-            if (skipCheckExists || !factory.GetFilterFactory().CheckTypeAliasExists("whenNotContains"))
-                factory.GetFilterFactory().RegisterType<NLog.Filters.WhenNotContainsFilter>("whenNotContains");
-            if (skipCheckExists || !factory.GetFilterFactory().CheckTypeAliasExists("whenNotEqual"))
-                factory.GetFilterFactory().RegisterType<NLog.Filters.WhenNotEqualFilter>("whenNotEqual");
-            if (skipCheckExists || !factory.GetFilterFactory().CheckTypeAliasExists("whenRepeated"))
-                factory.GetFilterFactory().RegisterType<NLog.Filters.WhenRepeatedFilter>("whenRepeated");
+            var filterFactory = factory.GetFilterFactory();
+            filterFactory.RegisterType<NLog.Filters.ConditionBasedFilter>("when", checkTypeExists);
+            filterFactory.RegisterType<NLog.Filters.WhenContainsFilter>("whenContains", checkTypeExists);
+            filterFactory.RegisterType<NLog.Filters.WhenEqualFilter>("whenEqual", checkTypeExists);
+            filterFactory.RegisterType<NLog.Filters.WhenNotContainsFilter>("whenNotContains", checkTypeExists);
+            filterFactory.RegisterType<NLog.Filters.WhenNotEqualFilter>("whenNotEqual", checkTypeExists);
+            filterFactory.RegisterType<NLog.Filters.WhenRepeatedFilter>("whenRepeated", checkTypeExists);
         }
 
-        public static void RegisterTimeSourceTypes(ConfigurationItemFactory factory, bool skipCheckExists)
+        public static void RegisterTimeSourceTypes(ConfigurationItemFactory factory, bool checkTypeExists)
         {
-            if (skipCheckExists || !factory.GetTimeSourceFactory().CheckTypeAliasExists("AccurateLocal"))
-                factory.GetTimeSourceFactory().RegisterType<NLog.Time.AccurateLocalTimeSource>("AccurateLocal");
-            if (skipCheckExists || !factory.GetTimeSourceFactory().CheckTypeAliasExists("AccurateUTC"))
-                factory.GetTimeSourceFactory().RegisterType<NLog.Time.AccurateUtcTimeSource>("AccurateUTC");
-            if (skipCheckExists || !factory.GetTimeSourceFactory().CheckTypeAliasExists("FastLocal"))
-                factory.GetTimeSourceFactory().RegisterType<NLog.Time.FastLocalTimeSource>("FastLocal");
-            if (skipCheckExists || !factory.GetTimeSourceFactory().CheckTypeAliasExists("FastUTC"))
-                factory.GetTimeSourceFactory().RegisterType<NLog.Time.FastUtcTimeSource>("FastUTC");
+            var timeSourceFactory = factory.GetTimeSourceFactory();
+            timeSourceFactory.RegisterType<NLog.Time.AccurateLocalTimeSource>("AccurateLocal", checkTypeExists);
+            timeSourceFactory.RegisterType<NLog.Time.AccurateUtcTimeSource>("AccurateUTC", checkTypeExists);
+            timeSourceFactory.RegisterType<NLog.Time.FastLocalTimeSource>("FastLocal", checkTypeExists);
+            timeSourceFactory.RegisterType<NLog.Time.FastUtcTimeSource>("FastUTC", checkTypeExists);
         }
 
-        public static void RegisterConditionTypes(ConfigurationItemFactory factory, bool skipCheckExists)
+        public static void RegisterConditionTypes(ConfigurationItemFactory factory, bool checkTypeExists)
         {
+            var conditionMethodFactory = factory.GetConditionMethodFactory();
             factory.RegisterTypeProperties<NLog.Conditions.ConditionAndExpression>(() => null);
             factory.RegisterTypeProperties<NLog.Conditions.ConditionExceptionExpression>(() => null);
             factory.RegisterTypeProperties<NLog.Conditions.ConditionLayoutExpression>(() => null);
@@ -385,30 +247,29 @@ namespace NLog.Config
             factory.RegisterTypeProperties<NLog.Conditions.ConditionNotExpression>(() => null);
             factory.RegisterTypeProperties<NLog.Conditions.ConditionOrExpression>(() => null);
             factory.RegisterTypeProperties<NLog.Conditions.ConditionRelationalExpression>(() => null);
-
-            if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("length"))
-                factory.GetConditionMethodFactory().RegisterOneParameter("length", (logEvent, arg1) => NLog.Conditions.ConditionMethods.Length(arg1?.ToString()));
-            if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("equals"))
-                factory.GetConditionMethodFactory().RegisterTwoParameters("equals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
-            if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("strequals"))
+            if (!checkTypeExists || !conditionMethodFactory.CheckTypeAliasExists("length"))
+                conditionMethodFactory.RegisterOneParameter("length", (logEvent, arg1) => NLog.Conditions.ConditionMethods.Length(arg1?.ToString()));
+            if (!checkTypeExists || !conditionMethodFactory.CheckTypeAliasExists("equals"))
+                conditionMethodFactory.RegisterTwoParameters("equals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
+            if (!checkTypeExists || !conditionMethodFactory.CheckTypeAliasExists("strequals"))
             {
-                factory.GetConditionMethodFactory().RegisterTwoParameters("strequals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
-                factory.GetConditionMethodFactory().RegisterThreeParameters("strequals", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
+                conditionMethodFactory.RegisterTwoParameters("strequals", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString()) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
+                conditionMethodFactory.RegisterThreeParameters("strequals", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Equals2(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
             }
-            if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("contains"))
+            if (!checkTypeExists || !conditionMethodFactory.CheckTypeAliasExists("contains"))
             {
-                factory.GetConditionMethodFactory().RegisterTwoParameters("contains", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString()) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
-                factory.GetConditionMethodFactory().RegisterThreeParameters("contains", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
+                conditionMethodFactory.RegisterTwoParameters("contains", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString()) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
+                conditionMethodFactory.RegisterThreeParameters("contains", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.Contains(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
             }
-            if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("starts-with"))
+            if (!checkTypeExists || !conditionMethodFactory.CheckTypeAliasExists("starts-with"))
             {
-                factory.GetConditionMethodFactory().RegisterTwoParameters("starts-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString()) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
-                factory.GetConditionMethodFactory().RegisterThreeParameters("starts-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
+                conditionMethodFactory.RegisterTwoParameters("starts-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString()) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
+                conditionMethodFactory.RegisterThreeParameters("starts-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
             }
-            if (skipCheckExists || !factory.GetConditionMethodFactory().CheckTypeAliasExists("ends-with"))
+            if (!checkTypeExists || !conditionMethodFactory.CheckTypeAliasExists("ends-with"))
             {
-                factory.GetConditionMethodFactory().RegisterTwoParameters("ends-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString()) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
-                factory.GetConditionMethodFactory().RegisterThreeParameters("ends-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
+                conditionMethodFactory.RegisterTwoParameters("ends-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString()) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
+                conditionMethodFactory.RegisterThreeParameters("ends-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
             }
         }
 #pragma warning restore CS0618 // Type or member is obsolete
