@@ -70,7 +70,11 @@ namespace NLog.LayoutRenderers.Wrappers
 
             if (Inner is SimpleLayout innerLayout && WhenEmpty is SimpleLayout whenEmptyLayout)
             {
-                if ((innerLayout.IsFixedText || innerLayout.IsSimpleStringText) && (whenEmptyLayout.IsFixedText || whenEmptyLayout.IsSimpleStringText))
+                if (innerLayout.IsFixedText)
+                {
+                    _stringValueRenderer = ResolveFixedWhenEmpty(innerLayout, whenEmptyLayout);
+                }
+                else if (innerLayout.IsSimpleStringText && (whenEmptyLayout.IsFixedText || whenEmptyLayout.IsSimpleStringText))
                 {
                     _stringValueRenderer = (logEvent) =>
                     {
@@ -79,6 +83,24 @@ namespace NLog.LayoutRenderers.Wrappers
                     };
                 }
             }
+        }
+
+        private static Func<LogEventInfo, string>? ResolveFixedWhenEmpty(SimpleLayout innerLayout, SimpleLayout whenEmptyLayout)
+        {
+            if (!string.IsNullOrEmpty(innerLayout.FixedText))
+            {
+                return (logEvent) => innerLayout.FixedText ?? string.Empty;
+            }
+            else if (whenEmptyLayout.IsFixedText)
+            {
+                return (logEvent) => whenEmptyLayout.FixedText ?? string.Empty;
+            }
+            else if (whenEmptyLayout.IsSimpleStringText)
+            {
+                return (logEvent) => whenEmptyLayout.Render(logEvent);
+            }
+
+            return null;
         }
 
         /// <inheritdoc/>
