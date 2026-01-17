@@ -34,6 +34,7 @@
 namespace NLog.Common
 {
     using System;
+    using System.ComponentModel;
     using NLog.Internal;
 
     /// <summary>
@@ -48,6 +49,8 @@ namespace NLog.Common
         /// <param name="resultValue">Output value</param>
         /// <param name="defaultValue">Default value</param>
         /// <returns>Returns <see langword="false"/> if the input value could not be parsed</returns>
+        [Obsolete("Instead use .NET method Enum.TryParse<TEnum>(). Marked obsolete with NLog v6.1")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool TryParseEnum<TEnum>(string inputValue, out TEnum resultValue, TEnum defaultValue = default(TEnum)) where TEnum : struct
         {
             if (!TryParseEnum(inputValue, true, out resultValue))
@@ -71,7 +74,10 @@ namespace NLog.Common
                 resultValue = null;
                 return false;
             }
-            // Note: .NET Standard 2.1 added a public Enum.TryParse(Type)
+
+#if NETSTANDARD2_1_OR_GREATER || NET
+            return Enum.TryParse(enumType, inputValue, true, out resultValue);
+#else
             try
             {
                 resultValue = Enum.Parse(enumType, inputValue, true);
@@ -82,6 +88,7 @@ namespace NLog.Common
                 resultValue = null;
                 return false;
             }
+#endif
         }
 
         /// <summary>
@@ -104,37 +111,21 @@ namespace NLog.Common
 #if !NET35
             return Enum.TryParse(inputValue, ignoreCase, out resultValue);
 #else
-            return TryParseEnum_net3(inputValue, ignoreCase, out resultValue);
-#endif
-        }
-
-        /// <summary>
-        /// Enum.TryParse implementation for .net 3.5
-        /// </summary>
-        /// <returns></returns>
-        /// <remarks>Don't uses reflection</remarks>
-        private static bool TryParseEnum_net3<TEnum>(string value, bool ignoreCase, out TEnum result) where TEnum : struct
-        {
             var enumType = typeof(TEnum);
             if (!enumType.IsEnum)
                 throw new ArgumentException($"Type '{enumType.FullName}' is not an enum");
 
-            if (StringHelpers.IsNullOrWhiteSpace(value))
-            {
-                result = default(TEnum);
-                return false;
-            }
-
             try
             {
-                result = (TEnum)Enum.Parse(enumType, value, ignoreCase);
+                resultValue = (TEnum)Enum.Parse(enumType, inputValue, ignoreCase);
                 return true;
             }
             catch (Exception)
             {
-                result = default(TEnum);
+                resultValue = default(TEnum);
                 return false;
             }
+#endif
         }
     }
 }

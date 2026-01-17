@@ -798,9 +798,9 @@ namespace NLog.Config
             filterDefaultAction = filtersElement.GetOptionalValue("defaultAction", null) ?? filtersElement.GetOptionalValue(nameof(rule.FilterDefaultAction), null) ?? filterDefaultAction;
             if (filterDefaultAction != null)
             {
-                if (ConversionHelpers.TryParseEnum(filterDefaultAction, typeof(FilterResult), out var enumValue) && enumValue != null)
+                if (ConversionHelpers.TryParseEnum<FilterResult>(filterDefaultAction, ignoreCase: true, out var enumValue))
                 {
-                    rule.FilterDefaultAction = (FilterResult)enumValue;
+                    rule.FilterDefaultAction = enumValue;
                 }
                 else
                 {
