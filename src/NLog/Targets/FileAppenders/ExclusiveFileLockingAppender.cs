@@ -46,7 +46,7 @@ namespace NLog.Targets.FileAppenders
         private readonly FileTarget _fileTarget;
         private readonly string _filePath;
         private Stream _fileStream;
-        private int _lastFileDeletedCheck;
+        private DateTime _lastFileDeletedCheck;
         private long? _countedFileSize;
 
         public string FilePath => _filePath;
@@ -87,7 +87,7 @@ namespace NLog.Targets.FileAppenders
             _fileTarget = fileTarget;
             _filePath = filePath;
             OpenStreamTime = Time.TimeSource.Current.Time;
-            _lastFileDeletedCheck = Environment.TickCount;
+            _lastFileDeletedCheck = OpenStreamTime;
 
             var fileInfoSize = RefreshFileBirthTimeUtc(true);
 
@@ -125,19 +125,31 @@ namespace NLog.Targets.FileAppenders
             }
         }
 
-        public void Write(byte[] buffer, int offset, int count)
+        public void Write(DateTime timestamp, byte[] buffer, int offset, int count)
         {
-            var lastFileSizeCheck = Environment.TickCount - _lastFileDeletedCheck;
-            if (lastFileSizeCheck > 1000 || lastFileSizeCheck < -1000)
-            {
+            if (HasFileBeenDeletedTime(timestamp))
                 MonitorFileHasBeenDeleted();
-                _lastFileDeletedCheck = Environment.TickCount;
-                FileLastModified = NLog.Time.TimeSource.Current.Time;
-            }
 
             _fileStream.Write(buffer, offset, count);
             if (_countedFileSize.HasValue)
                 _countedFileSize += count;
+        }
+
+        private bool HasFileBeenDeletedTime(DateTime timestamp)
+        {
+            var lastFileSizeCheck = timestamp.Ticks - _lastFileDeletedCheck.Ticks;
+            if (lastFileSizeCheck > TimeSpan.TicksPerSecond || lastFileSizeCheck < -TimeSpan.TicksPerSecond)
+            {
+                var currentFileDeletedCheck = NLog.Time.TimeSource.Current.Time;
+                FileLastModified = currentFileDeletedCheck;
+                var currentFileSizeCheck = currentFileDeletedCheck.Ticks - _lastFileDeletedCheck.Ticks;
+                if (currentFileSizeCheck > TimeSpan.TicksPerSecond || currentFileSizeCheck < -TimeSpan.TicksPerSecond)
+                {
+                    _lastFileDeletedCheck = currentFileDeletedCheck;
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void Flush()
