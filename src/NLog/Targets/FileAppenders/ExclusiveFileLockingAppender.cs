@@ -127,29 +127,15 @@ namespace NLog.Targets.FileAppenders
 
         public void Write(DateTime timestamp, byte[] buffer, int offset, int count)
         {
-            if (HasFileBeenDeletedTime(timestamp))
+            var durationSinceLastCheckTicks = timestamp.Ticks - _lastFileDeletedCheck.Ticks;
+            if (durationSinceLastCheckTicks > TimeSpan.TicksPerSecond || durationSinceLastCheckTicks < -TimeSpan.TicksPerSecond)
+            {
                 MonitorFileHasBeenDeleted();
+            }
 
             _fileStream.Write(buffer, offset, count);
             if (_countedFileSize.HasValue)
                 _countedFileSize += count;
-        }
-
-        private bool HasFileBeenDeletedTime(DateTime timestamp)
-        {
-            var lastFileSizeCheck = timestamp.Ticks - _lastFileDeletedCheck.Ticks;
-            if (lastFileSizeCheck > TimeSpan.TicksPerSecond || lastFileSizeCheck < -TimeSpan.TicksPerSecond)
-            {
-                var currentFileDeletedCheck = NLog.Time.TimeSource.Current.Time;
-                FileLastModified = currentFileDeletedCheck;
-                var currentFileSizeCheck = currentFileDeletedCheck.Ticks - _lastFileDeletedCheck.Ticks;
-                if (currentFileSizeCheck > TimeSpan.TicksPerSecond || currentFileSizeCheck < -TimeSpan.TicksPerSecond)
-                {
-                    _lastFileDeletedCheck = currentFileDeletedCheck;
-                    return true;
-                }
-            }
-            return false;
         }
 
         public void Flush()
@@ -169,13 +155,21 @@ namespace NLog.Targets.FileAppenders
 
         private void MonitorFileHasBeenDeleted()
         {
-            if (!SafeFileExists(_filePath))
+            var currentFileDeletedCheck = NLog.Time.TimeSource.Current.Time;
+            FileLastModified = currentFileDeletedCheck;
+            var currentFileSizeCheck = currentFileDeletedCheck.Ticks - _lastFileDeletedCheck.Ticks;
+            if (currentFileSizeCheck > TimeSpan.TicksPerSecond || currentFileSizeCheck < -TimeSpan.TicksPerSecond)
             {
-                InternalLogger.Debug("{0}: Recreating FileStream because no longer File.Exists: '{1}'", _fileTarget, _filePath);
-                SafeCloseFile(_filePath, _fileStream);
-                _fileStream = _fileTarget.CreateFileStreamWithRetry(this, _fileTarget.BufferSize, initialFileOpen: false);
-                var fileInfoSize = RefreshFileBirthTimeUtc(false);
-                _countedFileSize = RefreshCountedFileSize(_fileStream, fileInfoSize);
+                _lastFileDeletedCheck = currentFileDeletedCheck;
+
+                if (!SafeFileExists(_filePath))
+                {
+                    InternalLogger.Debug("{0}: Recreating FileStream because no longer File.Exists: '{1}'", _fileTarget, _filePath);
+                    SafeCloseFile(_filePath, _fileStream);
+                    _fileStream = _fileTarget.CreateFileStreamWithRetry(this, _fileTarget.BufferSize, initialFileOpen: false);
+                    var fileInfoSize = RefreshFileBirthTimeUtc(false);
+                    _countedFileSize = RefreshCountedFileSize(_fileStream, fileInfoSize);
+                }
             }
         }
 
