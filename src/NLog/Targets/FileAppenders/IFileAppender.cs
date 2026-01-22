@@ -51,10 +51,11 @@ namespace NLog.Targets.FileAppenders
         /// <summary>
         /// Writes the specified bytes to a file.
         /// </summary>
+        /// <param name="timestamp">LogEvent Timestamp.</param>
         /// <param name="buffer">The bytes array.</param>
         /// <param name="offset">The bytes array offset.</param>
         /// <param name="count">The number of bytes.</param>
-        void Write(byte[] buffer, int offset, int count);
+        void Write(DateTime timestamp, byte[] buffer, int offset, int count);
 
         void Flush();
 

@@ -55,7 +55,7 @@ namespace NLog.Targets.FileAppenders
             OpenStreamTime = Time.TimeSource.Current.Time;
         }
 
-        public void Write(byte[] buffer, int offset, int count)
+        public void Write(DateTime timestamp, byte[] buffer, int offset, int count)
         {
             // SONAR: Nothing to write
         }

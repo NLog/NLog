@@ -760,7 +760,7 @@ namespace NLog.Targets
                     openFile = RollArchiveFile(filename, openFile, firstLogEvent, hasWritten);
                 }
 
-                openFile.FileAppender.Write(ms.GetBuffer(), 0, (int)ms.Length);
+                openFile.FileAppender.Write(firstLogEvent.TimeStamp, ms.GetBuffer(), 0, (int)ms.Length);
 
                 if (AutoFlush)
                 {
@@ -1001,7 +1001,7 @@ namespace NLog.Targets
                     var footerBytes = GetFooterLayoutBytes();
                     if (footerBytes?.Length > 0)
                     {
-                        openFile.FileAppender.Write(footerBytes, 0, footerBytes.Length);
+                        openFile.FileAppender.Write(openFile.FileAppender.FileLastModified, footerBytes, 0, footerBytes.Length);
                     }
                 }
             }

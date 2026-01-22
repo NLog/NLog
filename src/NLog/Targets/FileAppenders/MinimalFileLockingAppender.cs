@@ -126,7 +126,7 @@ namespace NLog.Targets.FileAppenders
             OpenStreamTime = LastWriteTime = Time.TimeSource.Current.Time;
         }
 
-        public void Write(byte[] buffer, int offset, int count)
+        public void Write(DateTime timestamp, byte[] buffer, int offset, int count)
         {
             int overrideBufferSize = Math.Min((count / 4096 + 1) * 4096, _fileTarget.BufferSize);
 
