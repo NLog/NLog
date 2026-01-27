@@ -157,7 +157,7 @@ namespace NLog.Layouts
                 layout.Render(logEvent, sb);
                 if (beforeValueLength != sb.Length)
                 {
-                    NLog.Targets.DefaultJsonSerializer.PerformJsonEscapeWhenNeeded(sb, beforeValueLength, true);
+                    NLog.Targets.DefaultJsonSerializer.PerformJsonEscapeWhenNeeded(sb, beforeValueLength, false);
                     sb.Append('"');
                 }
             }

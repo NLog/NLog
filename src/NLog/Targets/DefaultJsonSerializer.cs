@@ -670,9 +670,9 @@ namespace NLog.Targets
             {
                 if (RequiresJsonEscape(builder[i], escapeUnicode))
                 {
-                    var str = builder.ToString(startPos, builderLength - startPos);
-                    builder.Length = startPos;
-                    AppendStringEscape(builder, str, escapeUnicode);
+                    var str = builder.ToString(i, builderLength - i);
+                    builder.Length = i;
+                    AppendStringEscape(builder, str, escapeUnicode, 0);
                     break;
                 }
             }
