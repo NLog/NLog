@@ -50,7 +50,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("event-context")]
     [ThreadAgnostic]
     [ThreadAgnosticImmutable]
-    public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
+    public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue, INoAllocationStringValueRenderer
     {
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));
         private ObjectReflectionCache? _objectReflectionCache;
@@ -145,6 +145,14 @@ namespace NLog.LayoutRenderers
                 return string.Empty;
             }
             return null;
+        }
+
+        string? INoAllocationStringValueRenderer.GetFormattedStringNoAllocation(LogEventInfo logEvent)
+        {
+            if (Format is null)
+                return (!TryGetValue(logEvent, out var value) || value is null) ? string.Empty : value as string;
+            else
+                return null;
         }
 
         private bool TryGetValue(LogEventInfo logEvent, out object? value)

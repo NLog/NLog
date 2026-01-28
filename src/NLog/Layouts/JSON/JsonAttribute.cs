@@ -171,7 +171,7 @@ namespace NLog.Layouts
             var simpleStringValue = _layoutInfo.SimpleStringValue;
             if (simpleStringValue != null)
             {
-                var stringValue = simpleStringValue.Invoke(logEvent);
+                var stringValue = simpleStringValue.GetFormattedStringNoAllocation(logEvent);
                 if (stringValue != null)
                 {
                     // Optimize for simple LogEvents that contains basic string-value, for faster Json-encoding

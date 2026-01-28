@@ -1,4 +1,4 @@
-//
+﻿//
 // Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 //
 // All rights reserved.
@@ -31,59 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.LayoutRenderers
+namespace NLog.Internal
 {
-    using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
-
     /// <summary>
-    /// A string literal.
+    /// Supports rendering as string value with no allocations
     /// </summary>
     /// <remarks>
-    /// This is used to escape '${' sequence
-    /// as ;${literal:text=${}'
-    ///
-    /// <a href="https://github.com/NLog/NLog/wiki/Literal-Layout-Renderer">See NLog Wiki</a>
+    /// Implementors should not have the [AppDomainFixedOutput] attribute
     /// </remarks>
-    /// <seealso href="https://github.com/NLog/NLog/wiki/Literal-Layout-Renderer">Documentation on NLog Wiki</seealso>
-    [LayoutRenderer("literal")]
-    [ThreadAgnostic]
-    [AppDomainFixedOutput]
-    public class LiteralLayoutRenderer : LayoutRenderer, INoAllocationStringValueRenderer
+    internal interface INoAllocationStringValueRenderer : IStringValueRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LiteralLayoutRenderer" /> class.
+        /// Renders the value of layout renderer in the context of the specified log event
         /// </summary>
-        public LiteralLayoutRenderer()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LiteralLayoutRenderer" /> class.
-        /// </summary>
-        /// <param name="text">The literal text value.</param>
-        /// <remarks>This is used by the layout compiler.</remarks>
-        public LiteralLayoutRenderer(string text)
-        {
-            Text = text;
-        }
-
-        /// <summary>
-        /// Gets or sets the literal text.
-        /// </summary>
-        /// <docgen category='Layout Options' order='10' />
-        [DefaultParameter]
-        public string Text { get; set; } = string.Empty;
-
-        /// <inheritdoc/>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            builder.Append(Text);
-        }
-
-        string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => Text;
-
-        string? INoAllocationStringValueRenderer.GetFormattedStringNoAllocation(LogEventInfo logEvent) => Text;
+        /// <param name="logEvent"></param>
+        /// <returns>null if not possible or unknown</returns>
+        string? GetFormattedStringNoAllocation(LogEventInfo logEvent);
     }
 }

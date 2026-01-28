@@ -39,8 +39,6 @@ namespace NLog.Layouts
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
-    using NLog.LayoutRenderers;
-    using NLog.LayoutRenderers.Wrappers;
 
     /// <summary>
     /// Typed Value that is easily configured from NLog.config file
@@ -77,30 +75,17 @@ namespace NLog.Layouts
         }
         private Layout _layout = Layout.Empty;
 
-        internal Func<LogEventInfo, string?>? SimpleStringValue { get; private set; }
+        internal INoAllocationStringValueRenderer? SimpleStringValue { get; private set; }
 
-        private static Func<LogEventInfo, string?>? ResolveStringValueMethod(Layout layout)
+        private static INoAllocationStringValueRenderer? ResolveStringValueMethod(Layout layout)
         {
-            var stringValueRenderer = (layout is SimpleLayout simpleLayout && simpleLayout.LayoutRenderers.Count() == 1) ? simpleLayout.LayoutRenderers.First() as IStringValueRenderer : null;
-            if (stringValueRenderer is null)
-                return null;
-
-            if (stringValueRenderer is MessageLayoutRenderer messageLayoutRenderer && !messageLayoutRenderer.WithException)
+            var stringValueRenderer = (layout is SimpleLayout simpleLayout && simpleLayout.LayoutRenderers.Count() == 1) ? simpleLayout.LayoutRenderers.First() as INoAllocationStringValueRenderer : null;
+            if (stringValueRenderer != null)
             {
-                return messageLayoutRenderer.Raw ?
-                    (logEvent => stringValueRenderer.GetFormattedString(logEvent)) :
-                    (logEvent => (logEvent.Parameters is null || logEvent.Parameters.Length == 0) ? stringValueRenderer.GetFormattedString(logEvent) : null);
+                var stringValue = stringValueRenderer.GetFormattedStringNoAllocation(LogEventInfo.CreateNullEvent());
+                return stringValue is null ? null : stringValueRenderer;
             }
-            if (stringValueRenderer is LiteralLayoutRenderer || stringValueRenderer is LevelLayoutRenderer || stringValueRenderer is CachedLayoutRendererWrapper)
-            {
-                return logEvent => stringValueRenderer.GetFormattedString(logEvent);
-            }
-            if (stringValueRenderer is LoggerNameLayoutRenderer loggerNameLayoutRenderer && !loggerNameLayoutRenderer.ShortName && !loggerNameLayoutRenderer.PrefixName)
-            {
-                return logEvent => stringValueRenderer.GetFormattedString(logEvent);
-            }
-
-            return null;
+            return stringValueRenderer;
         }
 
         /// <summary>
@@ -114,7 +99,7 @@ namespace NLog.Layouts
             set
             {
                 _valueType = value;
-                SimpleStringValue = null;
+                SimpleStringValue = (_valueType is null || typeof(string).Equals(_valueType)) ? ResolveStringValueMethod(_layout) : null;
                 if (value?.IsValueType == true)
                     _createDefaultValue = () => Activator.CreateInstance(value);
                 else

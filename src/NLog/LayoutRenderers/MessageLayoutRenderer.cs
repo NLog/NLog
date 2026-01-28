@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers
     /// <seealso href="https://github.com/NLog/NLog/wiki/Message-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("message")]
     [ThreadAgnostic]
-    public class MessageLayoutRenderer : LayoutRenderer, IStringValueRenderer
+    public class MessageLayoutRenderer : LayoutRenderer, INoAllocationStringValueRenderer
     {
         /// <summary>
         /// Gets or sets a value indicating whether to log exception along with message.
@@ -155,6 +155,14 @@ namespace NLog.LayoutRenderers
                 return null;
             else
                 return (Raw ? logEvent.Message : logEvent.FormattedMessage) ?? string.Empty;
+        }
+
+        string? INoAllocationStringValueRenderer.GetFormattedStringNoAllocation(LogEventInfo logEvent)
+        {
+            if (Raw)
+                return WithException ? null : (logEvent.Message ?? string.Empty);
+            else
+                return (WithException || logEvent.Parameters?.Length > 0) ? null : (logEvent.FormattedMessage ?? logEvent.Message ?? string.Empty);
         }
     }
 }
