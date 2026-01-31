@@ -195,12 +195,12 @@ namespace NLog.Layouts
             bool initialColumn = true;
             foreach (var csvColumn in _columns)
             {
-                RenderColumnLayout(logEvent, csvColumn.Layout, csvColumn._quoting ?? Quoting, target, initialColumn);
+                RenderColumnLayout(logEvent, csvColumn.Layout, csvColumn.SimpleStringValue, csvColumn._quoting ?? Quoting, target, initialColumn);
                 initialColumn = false;
             }
         }
 
-        private void RenderColumnLayout(LogEventInfo logEvent, Layout columnLayout, CsvQuotingMode quoting, StringBuilder target, bool initialColumn)
+        private void RenderColumnLayout(LogEventInfo logEvent, Layout columnLayout, INoAllocationStringValueRenderer? stringValueRenderer, CsvQuotingMode quoting, StringBuilder target, bool initialColumn)
         {
             if (!initialColumn)
             {
@@ -212,26 +212,54 @@ namespace NLog.Layouts
                 target.Append(QuoteChar);
             }
 
+            if (stringValueRenderer != null && quoting != CsvQuotingMode.Nothing)
+            {
+                string? columnValue = stringValueRenderer.GetFormattedStringNoAllocation(logEvent);
+                if (columnValue != null)
+                {
+                    AppendStringValue(columnValue, quoting, target);
+                    return;
+                }
+            }
+
             int orgLength = target.Length;
             columnLayout.Render(logEvent, target);
             if (orgLength != target.Length && ColumnValueRequiresQuotes(quoting, target, orgLength))
             {
                 string columnValue = target.ToString(orgLength, target.Length - orgLength);
                 target.Length = orgLength;
-                if (quoting != CsvQuotingMode.All)
-                {
-                    target.Append(QuoteChar);
-                }
-                target.Append(columnValue.Replace(QuoteChar, _doubleQuoteChar));
-                target.Append(QuoteChar);
+                AppendQuotedStringValue(columnValue, quoting, target);
             }
             else
             {
                 if (quoting == CsvQuotingMode.All)
-                {
                     target.Append(QuoteChar);
-                }
             }
+        }
+
+        private void AppendStringValue(string columnValue, CsvQuotingMode quoting, StringBuilder target)
+        {
+            var quoteCharIndex = quoting == CsvQuotingMode.All ? columnValue.IndexOf(QuoteChar) : columnValue.IndexOfAny(_quotableCharacters);
+            if (quoteCharIndex >= 0)
+            {
+                AppendQuotedStringValue(columnValue, quoting, target);
+            }
+            else
+            {
+                target.Append(columnValue);
+                if (quoting == CsvQuotingMode.All)
+                    target.Append(QuoteChar);
+            }
+        }
+
+        private void AppendQuotedStringValue(string columnValue, CsvQuotingMode quoting, StringBuilder target)
+        {
+            if (quoting != CsvQuotingMode.All)
+            {
+                target.Append(QuoteChar);
+            }
+            target.Append(columnValue.Replace(QuoteChar, _doubleQuoteChar));
+            target.Append(QuoteChar);
         }
 
         /// <summary>
@@ -247,7 +275,7 @@ namespace NLog.Layouts
             {
                 var columnLayout = Layout.FromLiteral(csvColumn.Name);
                 columnLayout.Initialize(LoggingConfiguration);
-                RenderColumnLayout(logEvent, columnLayout, csvColumn._quoting ?? Quoting, sb, initialColumn);
+                RenderColumnLayout(logEvent, columnLayout, null, csvColumn._quoting ?? Quoting, sb, initialColumn);
                 initialColumn = false;
             }
         }
