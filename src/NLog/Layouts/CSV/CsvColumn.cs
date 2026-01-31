@@ -33,7 +33,9 @@
 
 namespace NLog.Layouts
 {
+    using System.Linq;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// A column in the CSV.
@@ -61,7 +63,7 @@ namespace NLog.Layouts
         public CsvColumn(string name, Layout layout)
         {
             Name = name;
-            Layout = layout;
+            _layout = Layout = layout;
         }
 
         /// <summary>
@@ -76,7 +78,29 @@ namespace NLog.Layouts
         /// </summary>
         /// <remarks><b>[Required]</b> Default: <see cref="Layout.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
-        public Layout Layout { get; set; }
+        public Layout Layout
+        {
+            get => _layout;
+            set
+            {
+                _layout = value;
+                SimpleStringValue = Quoting != CsvQuotingMode.Nothing ? ResolveStringValueMethod(_layout) : null;
+            }
+        }
+        private Layout _layout;
+
+        internal INoAllocationStringValueRenderer? SimpleStringValue { get; private set; }
+
+        private static INoAllocationStringValueRenderer? ResolveStringValueMethod(Layout layout)
+        {
+            var stringValueRenderer = (layout is SimpleLayout simpleLayout && simpleLayout.LayoutRenderers.Count() == 1) ? simpleLayout.LayoutRenderers.First() as INoAllocationStringValueRenderer : null;
+            if (stringValueRenderer != null)
+            {
+                var stringValue = stringValueRenderer.GetFormattedStringNoAllocation(LogEventInfo.CreateNullEvent());
+                return stringValue is null ? null : stringValueRenderer;
+            }
+            return stringValueRenderer;
+        }
 
         /// <summary>
         /// Gets or sets the override of Quoting mode
@@ -87,7 +111,18 @@ namespace NLog.Layouts
         /// For faster performance then consider <see cref="CsvQuotingMode.All"/> and <see cref="CsvQuotingMode.Nothing"/>
         /// </remarks>
         /// <docgen category='Layout Options' order='50' />
-        public CsvQuotingMode Quoting { get => _quoting ?? CsvQuotingMode.Auto; set => _quoting = value; }
+        public CsvQuotingMode Quoting
+        {
+            get => _quoting ?? CsvQuotingMode.Auto;
+            set
+            {
+                if (_quoting != value)
+                {
+                    _quoting = value;
+                    SimpleStringValue = value != CsvQuotingMode.Nothing ? ResolveStringValueMethod(_layout) : null;
+                }
+            }
+        }
         internal CsvQuotingMode? _quoting;
     }
 }
