@@ -35,6 +35,7 @@ namespace NLog.Targets
 {
     using System.Diagnostics;
     using NLog.Common;
+    using NLog.Layouts;
 
     /// <summary>
     /// Writes log messages to the attached managed debugger.
@@ -79,6 +80,27 @@ namespace NLog.Targets
             Name = name;
         }
 
+        /// <summary>
+        /// The category of the message.
+        /// </summary>
+        /// <remarks>
+        /// The category parameter is limited to 256 characters. Strings longer than 256 characters are truncated.
+        /// </remarks>
+        public Layout Category { get; set; } = Layout.FromMethod(l => l.LoggerName, LayoutRenderOptions.ThreadAgnostic);
+
+        /// <summary>
+        /// Gets or sets the maximum message size in number of characters. On limit breach then <see cref="OnOverflow"/> action is activated.
+        /// </summary>
+        /// <remarks>
+        /// Messages that are too large can cause issues for various debuggers, some have max-limit of 4091. Default: <c>0</c> (no limit).
+        /// </remarks>
+        public int MaxMessageSize { get; set; }
+
+        /// <summary>
+        /// Gets or sets the action that should be taken if the message is larger than <see cref="MaxMessageSize" />
+        /// </summary>
+        public DebuggerTargetOverflowAction OnOverflow { get; set; } = DebuggerTargetOverflowAction.Split;
+
         /// <inheritdoc/>
         protected override void InitializeTarget()
         {
@@ -90,7 +112,7 @@ namespace NLog.Targets
 
             if (Header != null)
             {
-                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, RenderLogEvent(Header, LogEventInfo.CreateNullEvent()) + "\n");
+                DebuggerLogMessageLayout(Header);
             }
         }
 
@@ -99,7 +121,7 @@ namespace NLog.Targets
         {
             if (Footer != null)
             {
-                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, RenderLogEvent(Footer, LogEventInfo.CreateNullEvent()) + "\n");
+                DebuggerLogMessageLayout(Footer);
             }
 
             base.CloseTarget();
@@ -108,18 +130,55 @@ namespace NLog.Targets
         /// <inheritdoc/>
         protected override void Write(LogEventInfo logEvent)
         {
-            if (Debugger.IsLogging())
+            if (!Debugger.IsLogging())
+                return;
+
+            var category = RenderLogEvent(Category, logEvent);
+
+            string logMessage;
+            using (var localTarget = ReusableLayoutBuilder.Allocate())
             {
-                string logMessage;
-                using (var localTarget = ReusableLayoutBuilder.Allocate())
+                Layout.Render(logEvent, localTarget.Result);
+
+                if (MaxMessageSize > 0 && localTarget.Result.Length > MaxMessageSize)
                 {
-                    Layout.Render(logEvent, localTarget.Result);
-                    localTarget.Result.Append('\n');
-                    logMessage = localTarget.Result.ToString();
+                    switch (OnOverflow)
+                    {
+                        case DebuggerTargetOverflowAction.None:
+                            InternalLogger.Debug("{0}: Notice log message has length {1} > MaxMessageSize={2}", this, localTarget.Result.Length, MaxMessageSize);
+                            break;
+                        case DebuggerTargetOverflowAction.Truncate:
+                            InternalLogger.Debug("{0}: Truncates log message because length {1} > MaxMessageSize={2}", this, localTarget.Result.Length, MaxMessageSize);
+                            localTarget.Result.Length = MaxMessageSize;
+                            break;
+                        case DebuggerTargetOverflowAction.Split:
+                            InternalLogger.Debug("{0}: Splits log message because length {1} > MaxMessageSize={2}", this, localTarget.Result.Length, MaxMessageSize);
+                            for (int offset = 0; offset < localTarget.Result.Length; offset += MaxMessageSize)
+                            {
+                                int length = System.Math.Min(MaxMessageSize, localTarget.Result.Length - offset);
+                                var partMessage = localTarget.Result.ToString(offset, length);
+                                Debugger.Log(logEvent.Level.Ordinal, category, partMessage + "\n");
+                            }
+                            return;
+                        case DebuggerTargetOverflowAction.Discard:
+                            InternalLogger.Debug("{0}: Discards log message because length {1} > MaxMessageSize={2}", this, localTarget.Result.Length, MaxMessageSize);
+                            return;
+                    }
                 }
 
-                Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, logMessage);
+                localTarget.Result.Append('\n');
+                logMessage = localTarget.Result.ToString();
             }
+
+            Debugger.Log(logEvent.Level.Ordinal, category, logMessage);
+        }
+
+        private void DebuggerLogMessageLayout(Layout layout)
+        {
+            var nullEvent = LogEventInfo.CreateNullEvent();
+            var category = Category?.Render(nullEvent) ?? string.Empty;
+            var message = layout?.Render(nullEvent) ?? string.Empty;
+            Debugger.Log(LogLevel.Info.Ordinal, category, message + "\n");
         }
     }
 }
