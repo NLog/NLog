@@ -261,7 +261,7 @@ namespace NLog.Targets
 
                 destination.Append('"');
 #if NETFRAMEWORK
-                var str = formattable.ToString(null, CultureInfo.InvariantCulture);
+                var str = formattable.ToString(null, CultureInfo.InvariantCulture) ?? string.Empty;
                 AppendStringEscape(destination, str, options);
 #else
                 int startPos = destination.Length;
@@ -593,9 +593,6 @@ namespace NLog.Targets
         /// <returns>JSON escaped string</returns>
         internal static void AppendStringEscape(StringBuilder destination, string text, bool escapeUnicode)
         {
-            if (string.IsNullOrEmpty(text))
-                return;
-
             int i = 0;
             foreach (var chr in text)
             {

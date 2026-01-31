@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers
     /// <seealso href="https://github.com/NLog/NLog/wiki/Gdc-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("gdc")]
     [ThreadAgnostic]
-    public class GdcLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
+    public class GdcLayoutRenderer : LayoutRenderer, IRawValue, INoAllocationStringValueRenderer
     {
         private CachedLookup _cachedLookup = new CachedLookup(string.Empty, null);
 
@@ -107,6 +107,11 @@ namespace NLog.LayoutRenderers
                 return stringValue;
             }
             return null;
+        }
+
+        string? INoAllocationStringValueRenderer.GetFormattedStringNoAllocation(LogEventInfo logEvent)
+        {
+            return Format is null ? GetValue() as string : null;
         }
 
         private object? GetValue()

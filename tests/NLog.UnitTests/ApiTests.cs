@@ -40,6 +40,7 @@ namespace NLog.UnitTests
     using System.Runtime.CompilerServices;
     using System.Text;
     using NLog.Config;
+    using NLog.LayoutRenderers;
     using Xunit;
 
     /// <summary>
@@ -190,7 +191,7 @@ namespace NLog.UnitTests
         {
             foreach (Type type in allTypes)
             {
-                if (typeof(NLog.Internal.IStringValueRenderer).IsAssignableFrom(type) && !type.IsInterface && !typeof(NLog.Layouts.SimpleLayout).Equals(type) && !typeof(NLog.LayoutRenderers.Wrappers.WrapperLayoutRendererBase).IsAssignableFrom(type))
+                if (typeof(NLog.Internal.IStringValueRenderer).IsAssignableFrom(type) && !type.IsInterface && !typeof(NLog.Layouts.SimpleLayout).Equals(type) && !typeof(NLog.LayoutRenderers.Wrappers.WrapperLayoutRendererBase).IsAssignableFrom(type) && !typeof(NLog.LayoutRenderers.LiteralLayoutRenderer).IsAssignableFrom(type))
                 {
                     var appDomainFixedOutputAttribute = type.GetCustomAttribute<AppDomainFixedOutputAttribute>();
                     Assert.True(appDomainFixedOutputAttribute is null, $"{type.ToString()} should not implement IStringValueRenderer");

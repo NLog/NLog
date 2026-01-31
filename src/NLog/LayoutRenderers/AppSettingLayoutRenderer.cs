@@ -107,7 +107,7 @@ namespace NLog.LayoutRenderers
         private string GetStringValue()
         {
             if (string.IsNullOrEmpty(Item))
-                return Default;
+                return Default ?? string.Empty;
 
             var value = _connectionStringName is null ?
                 ConfigurationManager.AppSettings[Item] :

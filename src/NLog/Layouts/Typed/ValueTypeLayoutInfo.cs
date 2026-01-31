@@ -35,6 +35,7 @@ namespace NLog.Layouts
 {
     using System;
     using System.Globalization;
+    using System.Linq;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -68,10 +69,24 @@ namespace NLog.Layouts
                 {
                     ValueType = layoutTyped.InnerType;
                 }
+                SimpleStringValue = ValueType is null ? ResolveStringValueMethod(_layout) : null;
                 _layoutValue = null;
             }
         }
         private Layout _layout = Layout.Empty;
+
+        internal INoAllocationStringValueRenderer? SimpleStringValue { get; private set; }
+
+        private static INoAllocationStringValueRenderer? ResolveStringValueMethod(Layout layout)
+        {
+            var stringValueRenderer = (layout is SimpleLayout simpleLayout && simpleLayout.LayoutRenderers.Count() == 1) ? simpleLayout.LayoutRenderers.First() as INoAllocationStringValueRenderer : null;
+            if (stringValueRenderer != null)
+            {
+                var stringValue = stringValueRenderer.GetFormattedStringNoAllocation(LogEventInfo.CreateNullEvent());
+                return stringValue is null ? null : stringValueRenderer;
+            }
+            return stringValueRenderer;
+        }
 
         /// <summary>
         /// Gets or sets the result value type, for conversion of layout rendering output
@@ -84,6 +99,7 @@ namespace NLog.Layouts
             set
             {
                 _valueType = value;
+                SimpleStringValue = (_valueType is null || typeof(string).Equals(_valueType)) ? ResolveStringValueMethod(_layout) : null;
                 if (value?.IsValueType == true)
                     _createDefaultValue = () => Activator.CreateInstance(value);
                 else

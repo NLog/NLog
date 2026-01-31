@@ -168,6 +168,17 @@ namespace NLog.Layouts
                 return RenderAppendJsonValue(logEvent, builder, valueStart);
             }
 
+            var simpleStringValue = _layoutInfo.SimpleStringValue;
+            if (simpleStringValue != null)
+            {
+                var stringValue = simpleStringValue.GetFormattedStringNoAllocation(logEvent);
+                if (stringValue != null)
+                {
+                    // Optimize for simple LogEvents that contains basic string-value, for faster Json-encoding
+                    return RenderAppendJsonStringValue(builder, stringValue);
+                }
+            }
+
             if (ValueType is null)
             {
                 builder.Append('"');
@@ -187,6 +198,17 @@ namespace NLog.Layouts
 
                 jsonConverter.SerializeObject(objectValue, builder);
             }
+            return true;
+        }
+
+        private bool RenderAppendJsonStringValue(StringBuilder builder, string stringValue)
+        {
+            if (!IncludeEmptyValue && string.IsNullOrEmpty(stringValue))
+                return false;
+
+            builder.Append('"');
+            Targets.DefaultJsonSerializer.AppendStringEscape(builder, stringValue, EscapeUnicode);
+            builder.Append('"');
             return true;
         }
 

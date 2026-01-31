@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("loggername")]
     [LayoutRenderer("logger")]
     [ThreadAgnostic]
-    public class LoggerNameLayoutRenderer : LayoutRenderer, IStringValueRenderer
+    public class LoggerNameLayoutRenderer : LayoutRenderer, INoAllocationStringValueRenderer
     {
         /// <summary>
         /// Gets or sets a value indicating whether to render short logger name (the part after the trailing dot character).
@@ -113,6 +113,11 @@ namespace NLog.LayoutRenderers
         private static int TryGetLastDotForShortName(string loggerName)
         {
             return loggerName?.LastIndexOf('.') ?? -1;
+        }
+
+        string? INoAllocationStringValueRenderer.GetFormattedStringNoAllocation(LogEventInfo logEvent)
+        {
+            return (!ShortName && !PrefixName) ? (logEvent.LoggerName ?? string.Empty) : null;
         }
     }
 }
