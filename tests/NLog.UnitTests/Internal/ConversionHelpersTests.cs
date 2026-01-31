@@ -202,9 +202,11 @@ namespace NLog.UnitTests.Internal
             if (ignoreCase)
             {
                 {
+#pragma warning disable CS0618 // Type or member is obsolete
                     var returnResult = ConversionHelpers.TryParseEnum<TestEnum>(value, out var result);
                     Assert.Equal(expected, result);
                     Assert.Equal(expectedReturn, returnResult);
+#pragma warning restore CS0618 // Type or member is obsolete
                 }
                 {
                     var returnResult = ConversionHelpers.TryParseEnum(value, typeof(TestEnum), out var result);
