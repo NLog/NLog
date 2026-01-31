@@ -369,67 +369,62 @@ namespace NLog.UnitTests.Internal
             Assert.True(dictionary.Values.Contains(666));
             Assert.False(dictionary.Values.Contains(42));
 
-            int i = 0;
+            HashSet<string> keys = new HashSet<string>();
             foreach (var item in dictionary)
             {
-                switch (i++)
+                if (item.Key.Equals("Hello World"))
                 {
-                    case 1:
-                        Assert.Equal("Hello World", item.Key);
-                        Assert.Equal(999, item.Value);
-                        break;
-                    case 0:
-                        Assert.Equal("Goodbye World", item.Key);
-                        Assert.Equal(666, item.Value);
-                        break;
+                    Assert.Equal(999, item.Value);
+                    Assert.True(keys.Add((string)item.Key));
+                }
+                else if (item.Key.Equals("Goodbye World"))
+                {
+                    Assert.Equal(666, item.Value);
+                    Assert.True(keys.Add((string)item.Key));
+                }
+                else
+                {
+                    Assert.Null(item.Key);
                 }
             }
-            Assert.Equal(2, i);
+            Assert.Equal(2, keys.Count);
 
-            i = 0;
+            keys.Clear();
             foreach (var item in dictionary.Keys)
             {
-                switch (i++)
-                {
-                    case 1:
-                        Assert.Equal("Hello World", item);
-                        break;
-                    case 0:
-                        Assert.Equal("Goodbye World", item);
-                        break;
-                }
+                if (item.Equals("Hello World"))
+                    Assert.True(keys.Add((string)item));
+                else if (item.Equals("Goodbye World"))
+                    Assert.True(keys.Add((string)item));
+                else
+                    Assert.Null(item);
             }
-            Assert.Equal(2, i);
+            Assert.Equal(2, keys.Count);
 
-            i = 0;
+            keys.Clear();
             foreach (var item in dictionary.Values)
             {
-                switch (i++)
-                {
-                    case 1:
-                        Assert.Equal(999, item);
-                        break;
-                    case 0:
-                        Assert.Equal(666, item);
-                        break;
-                }
+                if (item.Equals(999))
+                    Assert.True(keys.Add(item.ToString()));
+                else if (item.Equals(666))
+                    Assert.True(keys.Add(item.ToString()));
+                else
+                    Assert.Null(item);
             }
+            Assert.Equal(2, keys.Count);
 
+            keys.Clear();
             dictionary["Goodbye World"] = 42;
-            i = 0;
             foreach (var item in dictionary.Keys)
             {
-                switch (i++)
-                {
-                    case 0:
-                        Assert.Equal("Hello World", item);
-                        break;
-                    case 1:
-                        Assert.Equal("Goodbye World", item);
-                        break;
-                }
+                if (item.Equals("Hello World"))
+                    Assert.True(keys.Add(item.ToString()));
+                else if (item.Equals("Goodbye World"))
+                    Assert.True(keys.Add(item.ToString()));
+                else
+                    Assert.Null(item);
             }
-            Assert.Equal(2, i);
+            Assert.Equal(2, keys.Count);
 
             dictionary.Remove("Hello World");
             Assert.Single(dictionary);
