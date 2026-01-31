@@ -224,5 +224,25 @@ namespace NLog.UnitTests
             Assert.Contains(new MessageTemplateParameter("Username", "John", null, CaptureType.Serialize), logEventInfo.MessageTemplateParameters);
             Assert.Contains(new MessageTemplateParameter("Application", "BestApplicationEver", "l", CaptureType.Normal), logEventInfo.MessageTemplateParameters);
         }
+
+        [Fact]
+        public void MessageTemplatePositional()
+        {
+            var logEventInfo = new LogEventInfo(LogLevel.Info, "MyLogger", null, "{0} {1} {2}", new object[] { "Foo", 123, Guid.NewGuid() });
+            logEventInfo.Properties["0"] = "HelloWorld1";
+            logEventInfo.Properties["1"] = "HelloWorld2";
+            logEventInfo.Properties["2"] = "HelloWorld3";
+            var messageTemplateParameters = logEventInfo.MessageTemplateParameters;
+            Assert.True(messageTemplateParameters.IsValidTemplate);
+            Assert.True(messageTemplateParameters.IsPositional);
+            Assert.Equal(3, messageTemplateParameters.Count);
+            Assert.Contains(new MessageTemplateParameter("0", logEventInfo.Parameters[0], null, CaptureType.Normal), messageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("1", logEventInfo.Parameters[1], null, CaptureType.Normal), messageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("2", logEventInfo.Parameters[2], null, CaptureType.Normal), messageTemplateParameters);
+            Assert.Equal(3, logEventInfo.Properties.Count);
+            Assert.Equal("HelloWorld1", logEventInfo.Properties["0"]);
+            Assert.Equal("HelloWorld2", logEventInfo.Properties["1"]);
+            Assert.Equal("HelloWorld3", logEventInfo.Properties["2"]);
+        }
     }
 }
