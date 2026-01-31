@@ -75,7 +75,7 @@ namespace NLog.Internal
                 var result = ObjectTypeTransformation.TryTransformObject(value);
                 if (result != null)
                 {
-                    if (result is IConvertible)
+                    if (ConvertSimpleToString(result))
                     {
                         return new ObjectPropertyList(result, ObjectPropertyInfos.SimpleToString.Properties, ObjectPropertyInfos.SimpleToString.FastLookup);
                     }
@@ -90,7 +90,7 @@ namespace NLog.Internal
             }
 
             var objectType = value.GetType();
-            var propertyInfos = ConvertSimpleToString(objectType) ? ObjectPropertyInfos.SimpleToString : BuildObjectPropertyInfos(value);
+            var propertyInfos = CheckForObjectProperties(value) ? BuildObjectPropertyInfos(value) : ObjectPropertyInfos.SimpleToString;
             ObjectTypeCache.TryAddValue(objectType, propertyInfos);
             return new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
         }
@@ -193,28 +193,39 @@ namespace NLog.Internal
             }
         }
 
-        private static bool ConvertSimpleToString(Type objectType)
+        private static bool CheckForObjectProperties(object objectValue)
         {
-            if (typeof(IFormattable).IsAssignableFrom(objectType))
+            if (ConvertSimpleToString(objectValue))
+                return false;
+
+            if (objectValue is Uri)
+                return false;
+
+            if (objectValue is Delegate)
+                return false;   // Skip serializing all types in the application
+
+            if (objectValue is MemberInfo)
+                return false;   // Skip serializing all types in the application
+
+            if (objectValue is Assembly)
+                return false;   // Skip serializing all types in the application
+
+            if (objectValue is Module)
+                return false;   // Skip serializing all types in the application
+
+            if (objectValue is System.IO.Stream)
+                return false;   // Skip serializing properties that often throws exceptions
+
+            return true;
+        }
+
+        private static bool ConvertSimpleToString(object objectValue)
+        {
+            if (objectValue is IFormattable)
                 return true;
 
-            if (typeof(Uri).IsAssignableFrom(objectType))
-                return true;
-
-            if (typeof(Delegate).IsAssignableFrom(objectType))
-                return true;    // Skip serializing all types in the application
-
-            if (typeof(MemberInfo).IsAssignableFrom(objectType))
-                return true;    // Skip serializing all types in the application
-
-            if (typeof(Assembly).IsAssignableFrom(objectType))
-                return true;    // Skip serializing all types in the application
-
-            if (typeof(Module).IsAssignableFrom(objectType))
-                return true;    // Skip serializing all types in the application
-
-            if (typeof(System.IO.Stream).IsAssignableFrom(objectType))
-                return true;    // Skip serializing properties that often throws exceptions
+            if (objectValue is IConvertible convertible)
+                return convertible.GetTypeCode() != TypeCode.Object;
 
             return false;
         }
