@@ -4,6 +4,35 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.1 (2026/01/31)
+
+**Improvements**
+- [#5999](https://github.com/NLog/NLog/pull/5999) JsonLayout - Added support for DottedRecursion. (@thatrajeevkr)
+- [#6084](https://github.com/NLog/NLog/pull/6084) JsonLayout - Protect against cyclic object graphs when DottedRecursion. (@snakefoot)
+- [#6075](https://github.com/NLog/NLog/pull/6075) DebuggerTarget - Add support for MaxMessageSize and OnOverflow-action. (@snakefoot)
+- [#6070](https://github.com/NLog/NLog/pull/6070) InternalLogger - Auto enable LogLevel.Info when activated. (@snakefoot)
+- [#6045](https://github.com/NLog/NLog/pull/6045) LoggingConfigurationParser - Report unrecognized options in targets and rules section. (@snakefoot)
+- [#6059](https://github.com/NLog/NLog/pull/6059) LogEventBuilder - Properties with IReadOnlyCollection for initialCapacity. (@snakefoot)
+- [#6065](https://github.com/NLog/NLog/pull/6065) FileTarget - Adjust ArchiveSuffixFormat to better handle legacy ArchiveFileName. (@snakefoot)
+- [#6079](https://github.com/NLog/NLog/pull/6079) FileTarget - Replace Environment.TickCount with LogEventInfo.TimeStamp. (@snakefoot)
+- [#6066](https://github.com/NLog/NLog/pull/6066) FileTarget - Simplify FileName natural ordering logic. (@snakefoot)
+- [#6069](https://github.com/NLog/NLog/pull/6069) FileTarget - Reduce code complexity for NaturalStringComparer. (@snakefoot)
+- [#6064](https://github.com/NLog/NLog/pull/6064) FileTarget - Reduce code complexity for ArchiveNumbering property. (@snakefoot)
+- [#6082](https://github.com/NLog/NLog/pull/6082) JsonLayout - Faster Json encoding with INoAllocationStringValueRenderer. (@snakefoot)
+- [#6083](https://github.com/NLog/NLog/pull/6083) CsvLayout - Faster CSV encoding with INoAllocationStringValueRenderer. (@snakefoot)
+- [#6081](https://github.com/NLog/NLog/pull/6081) DefaultJsonSerializer - Reduce overhead of PerformJsonEscapeWhenNeeded. (@snakefoot)
+- [#6025](https://github.com/NLog/NLog/pull/6025) LogEventInfo - Changed LayoutCache from dictionary to linked list. (@snakefoot)
+- [#6049](https://github.com/NLog/NLog/pull/6049) PropertiesDictionary - Increase initial capacity when insert. (@snakefoot)
+- [#6061](https://github.com/NLog/NLog/pull/6061) PropertiesDictionary - Simplify enumerator when mixing property types. (@snakefoot)
+- [#6074](https://github.com/NLog/NLog/pull/6074) WhenEmpty - Optimize when IsFixedText. (@snakefoot)
+- [#6062](https://github.com/NLog/NLog/pull/6062) BufferingTargetWrapper - Improve InternalLogger output when WrappedTarget is NULL. (@snakefoot)
+- [#6067](https://github.com/NLog/NLog/pull/6067) Fix nullable warnings from NET10 annotations. (@snakefoot)
+- [#6068](https://github.com/NLog/NLog/pull/6068) Support nullable where TKey : notnull for dictionary. (@snakefoot)
+- [#6071](https://github.com/NLog/NLog/pull/6071) AssemblyExtensionTypes - Reduce code complexity. (@snakefoot)
+- [#6072](https://github.com/NLog/NLog/pull/6072) LoggingConfigurationFileLoader - Handle unknown type loading for App.config. (@snakefoot)
+- [#6076](https://github.com/NLog/NLog/pull/6076) Marked ConversionHelpers.TryParseEnum as obsolete. (@snakefoot)
+- [#5949](https://github.com/NLog/NLog/pull/5949) CallSiteLayoutRenderer - Obsoleted CleanNamesOfAnonymousDelegates + CleanNamesOfAsyncContinuation. (@snakefoot)
+
 ### Version 6.0.7 (2025/12/09)
 
 **Improvements**
