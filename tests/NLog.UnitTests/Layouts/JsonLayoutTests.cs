@@ -1216,5 +1216,183 @@ namespace NLog.UnitTests.Layouts
                 return Value;
             }
         }
+
+        [Fact]
+        public void DottedRecursion_SimpleNestedObject_Flattens()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeEventProperties = true,
+                DottedRecursion = true,
+                MaxRecursionLimit = 10
+            };
+
+            var logEventInfo = new LogEventInfo();
+            logEventInfo.Properties["nestedObject"] = new
+            {
+                val = 1,
+                val2 = "value2",
+                nestedLevel = new
+                {
+                    val3 = 3,
+                    val4 = "value4"
+                }
+            };
+
+            var result = jsonLayout.Render(logEventInfo);
+
+            Assert.Contains("\"nestedObject.val\":1", result);
+            Assert.Contains("\"nestedObject.val2\":\"value2\"", result);
+            Assert.Contains("\"nestedObject.nestedLevel.val3\":3", result);
+            Assert.Contains("\"nestedObject.nestedLevel.val4\":\"value4\"", result);
+        }
+
+        [Fact]
+        public void DottedRecursion_WithMaxRecursionLimit()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeEventProperties = true,
+                DottedRecursion = true,
+                MaxRecursionLimit = 2
+            };
+
+            var logEventInfo = new LogEventInfo();
+            logEventInfo.Properties["level1"] = new
+            {
+                level2 = new
+                {
+                    level3 = new
+                    {
+                        val = "deepValue"
+                    }
+                }
+            };
+
+            var result = jsonLayout.Render(logEventInfo);
+
+            Assert.Contains("\"level1.level2.level3\":", result);
+            Assert.Contains("{\"val\":\"deepValue\"}", result);
+        }
+
+        [Fact]
+        public void DottedRecursion_WithMixedTypes()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeEventProperties = true,
+                DottedRecursion = true,
+                MaxRecursionLimit = 10
+            };
+
+            var logEventInfo = new LogEventInfo();
+            logEventInfo.Properties["mixed"] = new
+            {
+                val = "hello",
+                val2 = 42,
+                val3 = true,
+                nullVal = (object)null,
+                nested = new
+                {
+                    val4 = 3.14,
+                    val5 = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
+                    val6 = Guid.NewGuid()
+                }
+            };
+
+            var result = jsonLayout.Render(logEventInfo);
+
+            Assert.Contains("\"mixed.val\":\"hello\"", result);
+            Assert.Contains("\"mixed.val2\":42", result);
+            Assert.Contains("\"mixed.val3\":true", result);
+            Assert.Contains("\"mixed.nested.val4\":3.14", result);
+            Assert.Contains("\"mixed.nested.val5\":\"2023-01-01T00:00:00Z\"", result);
+            Assert.Contains("\"mixed.nested.val6\":", result);
+        }
+
+        [Fact]
+        public void DottedRecursion_Flattens_Serialize_Object()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeEventProperties = true,
+                DottedRecursion = true,
+                MaxRecursionLimit = 1
+            };
+
+            var nested = new
+            {
+                level2 = new
+                {
+                    level3 = new
+                    {
+                        val = "deepValue"
+                    }
+                }
+            };
+
+            var logEventInfo = LogEventInfo.Create(LogLevel.Info, string.Empty, null, "{@nestedObject}", new object[] { nested });
+
+            var json = jsonLayout.Render(logEventInfo);
+            Assert.Equal("{\"nestedObject.level2.level3.val\":\"deepValue\"}", json);
+        }
+
+        [Fact]
+        public void DottedRecursion_HandlesDictionaryProperties()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeEventProperties = true,
+                DottedRecursion = true,
+                MaxRecursionLimit = 10
+            };
+            var logEventInfo = new LogEventInfo();
+            logEventInfo.Properties["data"] = new
+            {
+                stringDict = new Dictionary<string, string>
+                {
+                    { "key1", "value1" },
+                    { "key2", "value2" }
+                },
+                
+                intDict = new Dictionary<string, int>
+                {
+                    { "count1", 10 },
+                    { "count2", 20 }
+                },
+                
+                objectDict = new Dictionary<string, object>
+                {
+                    { "obj1", new { name = "test1", value = 100 } },
+                    { "obj2", new { name = "test2", value = 200 } }
+                },
+                
+                intList = new List<int> { 1, 2, 3 },
+                
+                // Dictionary<int, int> - serialized as JSON collection
+                numericKeyDict = new Dictionary<int, int>
+                {
+                    { 1, 100 },
+                    { 2, 200 },
+                    { 3, 300 }
+                }
+            };
+            var json = jsonLayout.Render(logEventInfo);
+            Assert.Contains("\"data.stringDict.key1\":\"value1\"", json);
+            Assert.Contains("\"data.stringDict.key2\":\"value2\"", json);
+            
+            Assert.Contains("\"data.intDict.count1\":10", json);
+            Assert.Contains("\"data.intDict.count2\":20", json);
+            
+            Assert.Contains("\"data.objectDict.obj1.name\":\"test1\"", json);
+            Assert.Contains("\"data.objectDict.obj1.value\":100", json);
+            Assert.Contains("\"data.objectDict.obj2.name\":\"test2\"", json);
+            Assert.Contains("\"data.objectDict.obj2.value\":200", json);
+            Assert.Contains("\"data.intList\":[1,2,3]", json);
+            Assert.Contains("\"data.numericKeyDict\"", json);
+            Assert.Contains("\"1\":100", json);
+            Assert.Contains("\"2\":200", json);
+            Assert.Contains("\"3\":300", json);
+        }
     }
 }
