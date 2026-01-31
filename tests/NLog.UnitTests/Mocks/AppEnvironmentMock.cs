@@ -34,7 +34,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml;
 using NLog.Internal.Fakeables;
 
 namespace NLog.UnitTests.Mocks

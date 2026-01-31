@@ -58,21 +58,25 @@ namespace NLog.Common
         public static void Reset()
         {
             ExceptionThrowWhenWriting = false;
-            LogWriter = null;
-            InternalEventOccurred = null;
-            LogLevel = LogLevel.Off;
             IncludeTimestamp = true;
+            LogWriter = null;
             LogToConsole = false;
             LogToConsoleError = false;
             LogFile = null;
+            InternalEventOccurred = null;
+            _logLevel = null;
         }
 
         /// <summary>
         /// Gets or sets the minimal internal log level.
         /// </summary>
         /// <example>If set to <see cref="NLog.LogLevel.Info"/>, then messages of the levels <see cref="NLog.LogLevel.Info"/>, <see cref="NLog.LogLevel.Error"/> and <see cref="NLog.LogLevel.Fatal"/> will be written.</example>
-        public static LogLevel LogLevel { get => _logLevel; set => _logLevel = value ?? LogLevel.Off; }
-        private static LogLevel _logLevel = LogLevel.Off;
+        public static LogLevel LogLevel
+        {
+            get => _logLevel ?? LogLevel.Off;
+            set => _logLevel = value;
+        }
+        private static LogLevel? _logLevel;
 
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the console output stream.
@@ -87,7 +91,11 @@ namespace NLog.Common
                 {
                     InternalEventOccurred -= LogToConsoleSubscription;
                     if (value)
+                    {
                         InternalEventOccurred += LogToConsoleSubscription;
+                        if (_logLevel is null)
+                            _logLevel = LogLevel.Info;
+                    }
                     _logToConsole = value;
                 }
             }
@@ -107,7 +115,11 @@ namespace NLog.Common
                 {
                     InternalEventOccurred -= LogToConsoleErrorSubscription;
                     if (value)
+                    {
                         InternalEventOccurred += LogToConsoleErrorSubscription;
+                        if (_logLevel is null)
+                            _logLevel = LogLevel.Info;
+                    }
                     _logToConsoleError = value;
                 }
             }
@@ -131,7 +143,11 @@ namespace NLog.Common
                 {
                     InternalEventOccurred -= LogToFileSubscription;
                     if (!string.IsNullOrEmpty(value))
+                    {
                         InternalEventOccurred += LogToFileSubscription;
+                        if (_logLevel is null)
+                            _logLevel = LogLevel.Info;
+                    }
                     _logFile = value;
                 }
 
@@ -148,7 +164,20 @@ namespace NLog.Common
         /// <summary>
         /// Gets or sets the text writer that will receive internal logs.
         /// </summary>
-        public static TextWriter? LogWriter { get; set; }
+        public static TextWriter? LogWriter
+        {
+            get => _logWriter;
+            set
+            {
+                if (value != null)
+                {
+                    if (_logLevel is null)
+                        _logLevel = LogLevel.Info;
+                }
+                _logWriter = value;
+            }
+        }
+        private static TextWriter? _logWriter;
 
         /// <summary>
         /// Internal LogEvent written to the InternalLogger
@@ -288,14 +317,14 @@ namespace NLog.Common
                 return;
             }
 
-            if (IsSeriousException(ex))
+            if (InternalEventOccurred is null && _logWriter is null)
             {
-                //no logging!
                 return;
             }
 
-            if (InternalEventOccurred is null && LogWriter is null)
+            if (IsSeriousException(ex))
             {
+                //no logging!
                 return;
             }
 
@@ -335,12 +364,12 @@ namespace NLog.Common
 
         private static void WriteToLog(LogLevel level, Exception? ex, string fullMessage, IInternalLoggerContext? loggerContext)
         {
-            if (LogWriter != null)
+            if (_logWriter != null)
             {
                 var logLine = CreateLogLine(ex, level, fullMessage);
                 lock (LockObject)
                 {
-                    LogWriter?.WriteLine(logLine);
+                    _logWriter?.WriteLine(logLine);
                 }
             }
 
@@ -398,19 +427,7 @@ namespace NLog.Common
         /// <returns><see langword="true"/> if logging is enabled; otherwise, <see langword="false"/>.</returns>
         private static bool IsLogLevelEnabled(LogLevel logLevel)
         {
-            return !ReferenceEquals(_logLevel, LogLevel.Off) && _logLevel.CompareTo(logLevel) <= 0;
-        }
-
-        /// <summary>
-        /// Determine if logging is enabled.
-        /// </summary>
-        /// <returns><see langword="true"/> if logging is enabled; otherwise, <see langword="false"/>.</returns>
-        internal static bool HasActiveLoggers()
-        {
-            if (InternalEventOccurred is null && LogWriter is null)
-                return false;
-            else
-                return true;
+            return _logLevel is not null && logLevel is not null && _logLevel.Ordinal <= logLevel.Ordinal;
         }
 
         private static void CreateDirectoriesIfNeeded(string filename)

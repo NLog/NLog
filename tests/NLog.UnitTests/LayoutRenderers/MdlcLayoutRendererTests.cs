@@ -34,16 +34,12 @@
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
-    using System.Xml.Linq;
     using NLog.Config;
-    using NLog.Targets;
     using Xunit;
 
     [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
     public class MdlcLayoutRendererTests : NLogTestBase
     {
-        private DebugTarget _target;
-
         public MdlcLayoutRendererTests()
         {
             const string configXml = @"
@@ -56,9 +52,6 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var config = XmlLoggingConfiguration.CreateFromXmlString(configXml);
             LogManager.Configuration = config;
-
-            _target = LogManager.Configuration.FindTargetByName("debug") as DebugTarget;
-
             MappedDiagnosticsLogicalContext.Clear();
         }
 
@@ -85,7 +78,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             const string message = "message";
             LogManager.GetLogger("A").Debug(message);
-            Assert.Equal(message, _target.LastMessage);
+            AssertDebugLastMessage("debug", message);
         }
 
         [Fact]
@@ -97,8 +90,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             MappedDiagnosticsLogicalContext.Set(key, item);
             LogManager.GetLogger("A").Debug(message);
-
-            Assert.Equal(item + message, _target.LastMessage);
+            AssertDebugLastMessage("debug", item + message);
         }
     }
 }
