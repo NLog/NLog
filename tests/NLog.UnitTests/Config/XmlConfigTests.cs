@@ -201,10 +201,10 @@ namespace NLog.UnitTests.Config
             {
                 // Arrange
                 var xml = @"<nlog internalLogLevel='oops' globalThreshold='noooos'>
-                        <targets>
+                        <targets option='unknown'>
                             <target name='debug' type='Debug' layout='${message}' />
                         </targets>
-                        <rules>
+                        <rules bingo='tada'>
                             <logger name='*' minlevel='debug' appendto='debug' />
                          </rules>
                     </nlog>";
@@ -212,7 +212,7 @@ namespace NLog.UnitTests.Config
                 var logFactory = new LogFactory();
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml, logFactory);
                 logFactory.Configuration = config;
-                var logger = logFactory.GetLogger("InvalidInternalLogLevel_shouldNotBreakLogging");
+                var logger = logFactory.GetLogger("InvalidNLogAttributeValues_shouldNotBreakLogging");
 
                 // Act
                 logger.Debug("message 1");

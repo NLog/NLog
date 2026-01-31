@@ -547,6 +547,16 @@ namespace NLog.Config
                 rulesInsertPosition = rulesCollection.Count;
             }
 
+            if (rulesElement.Values.Count > 0)
+            {
+                foreach (var rulesOption in rulesElement.Values)
+                {
+                    var configException = new NLogConfigurationException($"Unrecognized value '{rulesOption.Key}'='{rulesOption.Value}' in section '{rulesElement.Name}'");
+                    if (MustThrowConfigException(configException))
+                        throw configException;
+                }
+            }
+
             foreach (var childItem in rulesElement.ValidChildren)
             {
                 var loggingRule = ParseRuleElement(childItem);
@@ -843,6 +853,18 @@ namespace NLog.Config
             targetsElement.AssertName("targets", "appenders");
 
             bool asyncWrap = ParseBooleanValue("async", targetsElement.GetOptionalValue("async", "false") ?? string.Empty, false);
+            if (targetsElement.Values.Count > (asyncWrap ? 1 : 0))
+            {
+                foreach (var targetsOption in targetsElement.Values)
+                {
+                    if (string.Equals(targetsOption.Key?.Trim(), "async", StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    var configException = new NLogConfigurationException($"Unrecognized value '{targetsOption.Key}'='{targetsOption.Value}' in section '{targetsElement.Name}'");
+                    if (MustThrowConfigException(configException))
+                        throw configException;
+                }
+            }
 
             ValidatedConfigurationElement? defaultWrapperElement = null;
             Dictionary<string, ValidatedConfigurationElement>? typeNameToDefaultTargetParameters = null;
