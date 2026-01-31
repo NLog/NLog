@@ -1161,12 +1161,14 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties["RequestId"] = expectedValue;
 
             var actualValue = jsonLayout.Render(logEventInfo);
-            Assert.Equal($"{{\"BadObject\":{{\"Recursive\":[\"Hello\"],\"WeirdProperty\":\"System.Action\"}},\"RequestId\":\"{expectedValue}\"}}", actualValue);
+            Assert.Equal($"{{\"BadObject\":{{\"RecursiveCollection\":[\"Hello\"],\"WeirdProperty\":\"System.Action\"}},\"RequestId\":\"{expectedValue}\"}}", actualValue);
         }
 
         class BadObject
         {
-            public IEnumerable<object> Recursive => new List<object>(new[] { "Hello", (object)this });
+            public IEnumerable<object> RecursiveCollection => new List<object>(new[] { "Hello", (object)this });
+
+            public object RecursiveProperty => this;
 
             public IEnumerable<string> EvilProperty => throw new NotSupportedException();
 
@@ -1245,6 +1247,28 @@ namespace NLog.UnitTests.Layouts
             Assert.Contains("\"nestedObject.val2\":\"value2\"", result);
             Assert.Contains("\"nestedObject.nestedLevel.val3\":3", result);
             Assert.Contains("\"nestedObject.nestedLevel.val4\":\"value4\"", result);
+        }
+
+        [Fact]
+        public void DottedRecursion_BadObject_Flattens()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeEventProperties = true,
+                DottedRecursion = true,
+                MaxRecursionLimit = 10
+            };
+
+            var expectedValue = Guid.NewGuid();
+            var logEventInfo = new LogEventInfo();
+            logEventInfo.Properties["BadObject"] = new BadObject();
+            logEventInfo.Properties["EvilObject"] = new EvilObject();
+            logEventInfo.Properties["RequestId"] = expectedValue;
+
+            var result = jsonLayout.Render(logEventInfo);
+            Assert.Contains("RequestId", result);
+            Assert.Contains("BadObject", result);
+            Assert.DoesNotContain("RecursiveProperty", result);
         }
 
         [Fact]

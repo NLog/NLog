@@ -60,8 +60,7 @@ namespace NLog.Internal
             /// <param name="singleItem">Item to insert in scope</param>
             /// <param name="existing">Existing hashset to update</param>
             /// <param name="forceHashSet">Force allocation of real hashset-container</param>
-            /// <param name="comparer">HashSet EqualityComparer</param>
-            public SingleItemScopedInsert(T singleItem, ref SingleItemOptimizedHashSet<T> existing, bool forceHashSet, IEqualityComparer<T> comparer)
+            public SingleItemScopedInsert(T singleItem, ref SingleItemOptimizedHashSet<T> existing, bool forceHashSet)
             {
                 _singleItem = singleItem;
                 if (existing._hashset != null)
@@ -71,13 +70,13 @@ namespace NLog.Internal
                 }
                 else if (forceHashSet)
                 {
-                    existing = new SingleItemOptimizedHashSet<T>(singleItem, existing, comparer);
+                    existing = new SingleItemOptimizedHashSet<T>(singleItem, existing, ReferenceEqualityComparer.Default);
                     existing.Add(singleItem);
                     _hashset = existing._hashset;
                 }
                 else
                 {
-                    existing = new SingleItemOptimizedHashSet<T>(singleItem, existing, comparer);
+                    existing = new SingleItemOptimizedHashSet<T>(singleItem, existing, ReferenceEqualityComparer.Default);
                     _hashset = null;
                 }
             }

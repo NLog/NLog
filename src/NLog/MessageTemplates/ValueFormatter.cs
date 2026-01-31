@@ -46,7 +46,6 @@ namespace NLog.MessageTemplates
     /// </summary>
     internal sealed class ValueFormatter : IValueFormatter
     {
-        private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(2000);
         private readonly IServiceProvider _serviceProvider;
         private readonly bool _legacyStringQuotes;
@@ -292,13 +291,13 @@ namespace NLog.MessageTemplates
 
             if (collection is IDictionary dictionary)
             {
-                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(dictionary, ref objectsInPath, true, _referenceEqualsComparer))
+                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(dictionary, ref objectsInPath, true))
                 {
                     return SerializeDictionaryObject(dictionary, format, formatProvider, builder, objectsInPath, depth);
                 }
             }
 
-            using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(collection, ref objectsInPath, true, _referenceEqualsComparer))
+            using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(collection, ref objectsInPath, true))
             {
                 return SerializeCollectionObject(collection, format, formatProvider, builder, objectsInPath, depth);
             }

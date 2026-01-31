@@ -51,8 +51,6 @@ namespace NLog.Targets
 
         private const int MaxJsonLength = 512 * 1024;
 
-        private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
-
         private static JsonSerializeOptions DefaultSerializerOptions = new JsonSerializeOptions();
         private static JsonSerializeOptions DefaultExceptionSerializerOptions = new JsonSerializeOptions() { SanitizeDictionaryKeys = true };
 
@@ -285,7 +283,7 @@ namespace NLog.Targets
 
         private static SingleItemOptimizedHashSet<object>.SingleItemScopedInsert StartCollectionScope(ref SingleItemOptimizedHashSet<object> objectsInPath, object value)
         {
-            return new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true, _referenceEqualsComparer);
+            return new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true);
         }
 
         private void SerializeDictionaryObject(IDictionary dictionary, StringBuilder destination, JsonSerializeOptions options, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
@@ -423,7 +421,7 @@ namespace NLog.Targets
                     options = DefaultExceptionSerializerOptions;
                 }
 
-                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false, _referenceEqualsComparer))
+                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false))
                 {
                     return SerializeObjectProperties(objectPropertyList, destination, options, objectsInPath, depth);
                 }
