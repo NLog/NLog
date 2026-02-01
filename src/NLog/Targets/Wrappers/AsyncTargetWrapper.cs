@@ -284,7 +284,7 @@ namespace NLog.Targets.Wrappers
 
             _layoutWithLock = _layoutWithLock ?? WrappedTarget?._layoutWithLock;
 
-            if (WrappedTarget != null && WrappedTarget.InitializeException is Config.NLogDependencyResolveException && OverflowAction == AsyncTargetWrapperOverflowAction.Discard)
+            if (WrappedTarget != null && OverflowAction == AsyncTargetWrapperOverflowAction.Discard && WrappedTarget.InitializeMissingDependencyException != null)
             {
                 _missingServiceTypes = true;
                 InternalLogger.Debug("{0} WrappedTarget has unresolved missing dependencies.", this);
@@ -566,7 +566,7 @@ namespace NLog.Targets.Wrappers
 
             if (_missingServiceTypes)
             {
-                if (WrappedTarget.InitializeException is Config.NLogDependencyResolveException)
+                if (WrappedTarget.InitializeMissingDependencyException != null)
                 {
                     return 0;
                 }

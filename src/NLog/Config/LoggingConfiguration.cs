@@ -773,7 +773,7 @@ namespace NLog.Config
                     }
                 }
 
-                if (initialize is Target target && target.InitializeException is NLogDependencyResolveException)
+                if (initialize is Target target && target.InitializeMissingDependencyException != null)
                 {
                     _missingServiceTypes = true;
                 }
@@ -789,11 +789,12 @@ namespace NLog.Config
                 var allTargets = AllTargets;
                 foreach (var target in allTargets)
                 {
-                    if (target.InitializeException is NLogDependencyResolveException resolveException)
+                    var dependencyResolveException = target.InitializeMissingDependencyException;
+                    if (dependencyResolveException != null)
                     {
                         missingServiceTypes = true;
 
-                        if (typeof(IServiceProvider).IsAssignableFrom(serviceType) || IsMissingServiceType(resolveException, serviceType))
+                        if (typeof(IServiceProvider).IsAssignableFrom(serviceType) || IsMissingServiceType(dependencyResolveException, serviceType))
                         {
                             target.Close(); // Close Target to allow re-initialize
                         }

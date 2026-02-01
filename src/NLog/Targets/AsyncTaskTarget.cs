@@ -379,9 +379,10 @@ namespace NLog.Targets
         ///
         /// Enqueue logevent for later processing when target failed to initialize because of unresolved service dependency.
         /// </summary>
-        protected override void WriteFailedNotInitialized(AsyncLogEventInfo logEvent, Exception initializeException)
+        protected override void WriteFailedNotInitialized(AsyncLogEventInfo logEvent, Exception? initializeException)
         {
-            if (initializeException is Config.NLogDependencyResolveException && OverflowAction == AsyncTargetWrapperOverflowAction.Discard)
+            var dependencyResolveException = initializeException as Config.NLogDependencyResolveException ?? initializeException?.InnerException as Config.NLogDependencyResolveException;
+            if (dependencyResolveException != null && OverflowAction == AsyncTargetWrapperOverflowAction.Discard)
             {
                 _missingServiceTypes = true;
                 Write(logEvent);

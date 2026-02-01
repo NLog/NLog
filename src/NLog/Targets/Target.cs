@@ -64,7 +64,7 @@ namespace NLog.Targets
         /// </summary>
         internal StackTraceUsage StackTraceUsage { get; private set; }
 
-        internal Exception? InitializeException => _initializeException;
+        internal NLogDependencyResolveException? InitializeMissingDependencyException => _initializeException as NLogDependencyResolveException ?? _initializeException?.InnerException as NLogDependencyResolveException;
 
         /// <summary>
         /// Gets or sets the name of the target.
@@ -307,26 +307,17 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event to write.</param>
         public void WriteAsyncLogEvent(AsyncLogEventInfo logEvent)
         {
-            if (!IsInitialized)
+            if (!IsInitialized || _initializeException != null)
             {
                 lock (SyncRoot)
                 {
-                    logEvent.Continuation(null);
+                    WriteFailedNotInitialized(logEvent, _initializeException);
                 }
                 return;
             }
 
             var wrappedContinuation = AsyncHelpers.PreventMultipleCalls(logEvent.Continuation);
             var wrappedLogEvent = logEvent.LogEvent.WithContinuation(wrappedContinuation);
-
-            if (_initializeException != null)
-            {
-                lock (SyncRoot)
-                {
-                    WriteFailedNotInitialized(wrappedLogEvent, _initializeException);
-                }
-                return;
-            }
 
             try
             {
@@ -359,28 +350,11 @@ namespace NLog.Targets
         /// <param name="logEvents">The log events.</param>
         public void WriteAsyncLogEvents(IList<AsyncLogEventInfo> logEvents)
         {
-            if (logEvents is null || logEvents.Count == 0)
-            {
-                return;
-            }
-
-            if (!IsInitialized)
+            if (!IsInitialized || _initializeException != null || logEvents is null)
             {
                 lock (SyncRoot)
                 {
-                    for (int i = 0; i < logEvents.Count; ++i)
-                    {
-                        logEvents[i].Continuation(null);
-                    }
-                }
-                return;
-            }
-
-            if (_initializeException != null)
-            {
-                lock (SyncRoot)
-                {
-                    for (int i = 0; i < logEvents.Count; ++i)
+                    for (int i = 0; i < logEvents?.Count; ++i)
                     {
                         WriteFailedNotInitialized(logEvents[i], _initializeException);
                     }
@@ -413,19 +387,19 @@ namespace NLog.Targets
         /// <summary>
         /// LogEvent is written to target, but target failed to successfully initialize
         /// </summary>
-        protected virtual void WriteFailedNotInitialized(AsyncLogEventInfo logEvent, Exception initializeException)
+        protected virtual void WriteFailedNotInitialized(AsyncLogEventInfo logEvent, Exception? initializeException)
         {
+            var innerException = initializeException?.InnerException ?? initializeException;
             if (!_scannedForLayouts)
             {
                 _scannedForLayouts = true;
-                InternalLogger.Error(_initializeException, "{0}: No output because target failed initialize.", this);
+                InternalLogger.Error(innerException, "{0}: No output because target failed initialize.", this);
             }
             else
             {
-                InternalLogger.Debug("{0}: No output because target failed initialize. {1} {2}", this, _initializeException?.GetType(), _initializeException?.Message);
+                InternalLogger.Debug("{0}: No output because target failed initialize. {1} {2}", this, innerException?.GetType(), innerException?.Message);
             }
-            var initializeFailedException = new NLogRuntimeException($"Target {this} failed to initialize.", initializeException);
-            logEvent.Continuation(initializeFailedException);
+            logEvent.Continuation(initializeException);
         }
 
         /// <summary>
@@ -456,7 +430,7 @@ namespace NLog.Targets
                     catch (NLogDependencyResolveException exception)
                     {
                         // Target is now in disabled state, and cannot be used for writing LogEvents
-                        _initializeException = exception;
+                        _initializeException = new NLogRuntimeException($"Target {this} failed to initialize.", exception);
                         _scannedForLayouts = false;
                         if (ExceptionMustBeRethrown(exception))
                             throw;
@@ -464,7 +438,7 @@ namespace NLog.Targets
                     catch (Exception exception)
                     {
                         // Target is now in disabled state, and cannot be used for writing LogEvents
-                        _initializeException = exception;
+                        _initializeException = new NLogRuntimeException($"Target {this} failed to initialize.", exception);
                         _scannedForLayouts = false;
                         if (ExceptionMustBeRethrown(exception))
                             throw;
