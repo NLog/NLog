@@ -665,14 +665,20 @@ namespace NLog.Layouts
 
         private static bool CanBeConvertedToLiteral(ConfigurationItemFactory configurationItemFactory, LayoutRenderer lr)
         {
+            if (lr is LiteralLayoutRenderer)
+                return false;   // Already a literal, no need to convert again
+
+            if (!lr.GetType().IsDefined(typeof(AppDomainFixedOutputAttribute), false))
+                return false;   // Skip scanning object graph when not supporting fixed literal
+
             foreach (IRenderable renderable in ObjectGraphScanner.FindReachableObjects<IRenderable>(configurationItemFactory, true, lr))
             {
-                var renderType = renderable.GetType();
-                if (renderType == typeof(SimpleLayout))
+                if (ReferenceEquals(renderable, lr) || renderable is SimpleLayout || renderable is LiteralLayoutRenderer)
                 {
-                    continue;
+                    continue;   // Known class-types with AppDomainFixedOutputAttribute
                 }
 
+                var renderType = renderable.GetType();
                 if (!renderType.IsDefined(typeof(AppDomainFixedOutputAttribute), false))
                 {
                     return false;
@@ -684,22 +690,17 @@ namespace NLog.Layouts
 
         private static void MergeLiterals(List<LayoutRenderer> list)
         {
-            for (int i = 0; i + 1 < list.Count;)
+            for (int i = list.Count - 1; i >= 1; --i)
             {
-                if (list[i] is LiteralLayoutRenderer lr1 && list[i + 1] is LiteralLayoutRenderer lr2)
+                if (list[i - 1] is LiteralLayoutRenderer lr1 && list[i] is LiteralLayoutRenderer lr2)
                 {
-                    lr1.Text += lr2.Text;
-
                     // Combined literals don't support rawValue
-                    if (lr1 is LiteralWithRawValueLayoutRenderer lr1WithRaw)
+                    if (lr1 is LiteralWithRawValueLayoutRenderer)
                     {
-                        list[i] = new LiteralLayoutRenderer(lr1WithRaw.Text);
+                        list[i - 1] = new LiteralLayoutRenderer(lr1.Text);
                     }
-                    list.RemoveAt(i + 1);
-                }
-                else
-                {
-                    i++;
+                    lr1.Text += lr2.Text;
+                    list.RemoveAt(i);
                 }
             }
         }
@@ -711,7 +712,8 @@ namespace NLog.Layouts
             if (renderer is IRawValue rawValueRender)
             {
                 var success = rawValueRender.TryGetRawValue(logEventInfo, out var rawValue);
-                return new LiteralWithRawValueLayoutRenderer(text, success, rawValue);
+                if (success)
+                    return new LiteralWithRawValueLayoutRenderer(text, rawValue);
             }
 
             return new LiteralLayoutRenderer(text);

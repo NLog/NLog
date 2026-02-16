@@ -109,11 +109,6 @@ namespace NLog.Layouts
             OriginalText = txt ?? string.Empty;
 
             _layoutRenderers = layoutRenderers ?? ArrayHelper.Empty<LayoutRenderer>();
-            _renderers = null;
-
-            FixedText = null;
-            _rawValueRenderer = null;
-            _stringValueRenderer = null;
 
             if (_layoutRenderers.Length == 0)
             {
