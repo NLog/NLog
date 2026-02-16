@@ -40,29 +40,27 @@ namespace NLog.LayoutRenderers
     /// A string literal with a fixed raw value
     /// </summary>
     [ThreadAgnostic]
+    [AppDomainFixedOutput]
     internal sealed class LiteralWithRawValueLayoutRenderer : LiteralLayoutRenderer, IRawValue
     {
-        private readonly bool _rawValueSuccess;
         private readonly object? _rawValue;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LiteralLayoutRenderer" /> class.
+        /// Initializes a new instance of the <see cref="LiteralWithRawValueLayoutRenderer" /> class.
         /// </summary>
         /// <param name="text">The literal text value.</param>
-        /// <param name="rawValueSuccess"></param>
         /// <param name="rawValue">Fixed raw value</param>
         /// <remarks>This is used by the layout compiler.</remarks>
-        public LiteralWithRawValueLayoutRenderer(string text, bool rawValueSuccess, object? rawValue)
+        public LiteralWithRawValueLayoutRenderer(string text, object? rawValue)
+            :base(text)
         {
-            _rawValueSuccess = rawValueSuccess;
             _rawValue = rawValue;
-            Text = text;
         }
 
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object? value)
         {
             value = _rawValue;
-            return _rawValueSuccess;
+            return true;
         }
     }
 }
