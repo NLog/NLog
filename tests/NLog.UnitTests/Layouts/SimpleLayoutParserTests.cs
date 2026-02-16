@@ -893,7 +893,8 @@ namespace NLog.UnitTests.Layouts
 
             // Assert
             var single = Assert.Single(layout.Renderers);
-            Assert.IsType<LiteralLayoutRenderer>(single);
+            var literal = Assert.IsType<LiteralLayoutRenderer>(single);
+            Assert.NotEqual(CurrentProcessId.ToString(), literal.Text);
         }
 
         private sealed class LayoutRendererWithListParam : LayoutRenderer
