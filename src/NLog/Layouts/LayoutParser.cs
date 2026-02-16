@@ -697,7 +697,7 @@ namespace NLog.Layouts
                     // Combined literals don't support rawValue
                     if (lr1 is LiteralWithRawValueLayoutRenderer)
                     {
-                        list[i - 1] = new LiteralLayoutRenderer(lr1.Text);
+                        list[i - 1] = lr1 = new LiteralLayoutRenderer(lr1.Text);
                     }
                     lr1.Text += lr2.Text;
                     list.RemoveAt(i);
