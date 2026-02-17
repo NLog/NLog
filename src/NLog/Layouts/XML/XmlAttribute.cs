@@ -130,6 +130,30 @@ namespace NLog.Layouts
 
         internal bool RenderAppendXmlValue(LogEventInfo logEvent, StringBuilder builder)
         {
+            if (!Encode)
+            {
+                int orgLength = builder.Length;
+                Layout?.Render(logEvent, builder);
+                return IncludeEmptyValue || builder.Length > orgLength;
+            }
+
+            var simpleStringValue = _layoutInfo.SimpleStringValue;
+            if (simpleStringValue != null)
+            {
+                var stringValue = simpleStringValue.GetFormattedStringNoAllocation(logEvent);
+                if (stringValue != null)
+                {
+                    if (!IncludeEmptyValue && string.IsNullOrEmpty(stringValue))
+                    {
+                        return false;
+                    }
+
+                    XmlHelper.EscapeXmlWhenNeeded(stringValue, true, builder);
+                    return true;
+                }
+            }
+
+
             if (ValueType is null)
             {
                 int orgLength = builder.Length;
@@ -139,10 +163,7 @@ namespace NLog.Layouts
                     return false;
                 }
 
-                if (Encode)
-                {
-                    XmlHelper.PerformXmlEscapeWhenNeeded(builder, orgLength, true);
-                }
+                XmlHelper.EscapeXmlWhenNeeded(builder, orgLength, true);
             }
             else
             {
@@ -152,21 +173,29 @@ namespace NLog.Layouts
                     return false;
                 }
 
-                var convertibleValue = objectValue as IConvertible;
-                var objTypeCode = convertibleValue?.GetTypeCode() ?? (objectValue is null ? TypeCode.Empty : TypeCode.Object);
-                if (objTypeCode != TypeCode.Object)
-                {
-                    string xmlValueString = XmlHelper.XmlConvertToString(convertibleValue, objTypeCode, true);
-                    builder.Append(xmlValueString);
-                }
-                else
-                {
-                    string xmlValueString = XmlHelper.XmlConvertToStringSafe(objectValue);
-                    builder.Append(xmlValueString);
-                }
+                EscapeXmlWhenNeeded(objectValue, builder);
             }
 
             return true;
+        }
+
+        private static void EscapeXmlWhenNeeded(object? objectValue, StringBuilder builder)
+        {
+            var convertibleValue = objectValue as IConvertible;
+            var objTypeCode = convertibleValue?.GetTypeCode() ?? (objectValue is null ? TypeCode.Empty : TypeCode.Object);
+            if (objTypeCode != TypeCode.Object)
+            {
+                string xmlValueString = XmlHelper.XmlConvertToString(convertibleValue, objTypeCode, true);
+                if (objTypeCode == TypeCode.String || objTypeCode == TypeCode.Char)
+                    XmlHelper.EscapeXmlWhenNeeded(xmlValueString, true, builder);
+                else
+                    builder.Append(xmlValueString);
+            }
+            else
+            {
+                string xmlValueString = XmlHelper.XmlConvertToStringSafe(objectValue);
+                XmlHelper.EscapeXmlWhenNeeded(xmlValueString, true, builder);
+            }
         }
     }
 }

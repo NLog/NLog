@@ -33,6 +33,8 @@
 
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
+    using System;
+    using System.Collections.Generic;
     using NLog;
     using NLog.Layouts;
     using Xunit;
@@ -42,10 +44,105 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void XmlEncodeTest1()
         {
-            ScopeContext.PushProperty("foo", " abc<>&'\"def ");
-            SimpleLayout l = "${xml-encode:${scopeproperty:foo}}";
+            var propertyValue = " abc<>&'\"def ";
+            using (ScopeContext.PushProperty("foo", propertyValue))
+            {
+                SimpleLayout l = "${xml-encode:${scopeproperty:foo}}";
 
-            Assert.Equal(" abc&lt;&gt;&amp;&apos;&quot;def ", l.Render(LogEventInfo.CreateNullEvent()));
+                Assert.Equal(" abc&lt;&gt;&amp;&apos;&quot;def ", l.Render(LogEventInfo.CreateNullEvent()));
+            }
+
+            SimpleLayout l2 = "${xml-encode:${event-properties:foo}}";
+            Assert.Equal(" abc&lt;&gt;&amp;&apos;&quot;def ", l2.Render(new LogEventInfo(LogLevel.Off, null, string.Empty, new[] { new NLog.MessageTemplates.MessageTemplateParameter("foo", propertyValue, null) })));
+        }
+
+        [Fact]
+        public void XmlEncodeBadStringTest1()
+        {
+            var sb = new System.Text.StringBuilder();
+
+            var forbidden = new HashSet<int>();
+            int start = 64976; int end = 65007;
+
+            for (int i = start; i <= end; i++)
+            {
+                forbidden.Add(i);
+            }
+
+            forbidden.Add(0xFFFE);
+            forbidden.Add(0xFFFF);
+
+            for (int i = char.MinValue; i <= char.MaxValue; i++)
+            {
+                char c = Convert.ToChar(i);
+                if (char.IsSurrogate(c))
+                {
+                    continue; // skip surrogates
+                }
+
+                if (forbidden.Contains(c))
+                {
+                    continue;
+                }
+
+                sb.Append(c);
+            }
+
+            var badString = sb.ToString();
+
+            using (ScopeContext.PushProperty("foo", badString))
+            {
+                SimpleLayout l = "${xml-encode:${scopeproperty:foo}}";
+
+                var goodString = l.Render(LogEventInfo.CreateNullEvent());
+                Assert.NotEmpty(goodString);
+                foreach (char c in goodString)
+                {
+                    Assert.True(System.Xml.XmlConvert.IsXmlChar(c), $"Invalid char {Convert.ToInt32(c)} was not removed");
+                }   
+            }
+
+            using (ScopeContext.PushProperty("foo", badString))
+            {
+                SimpleLayout l = "${xml-encode:${scopeproperty:foo}:CDataEncode=true}";
+
+                var goodString = l.Render(LogEventInfo.CreateNullEvent());
+                Assert.NotEmpty(goodString);
+                foreach (char c in goodString)
+                {
+                    Assert.True(System.Xml.XmlConvert.IsXmlChar(c), $"Invalid char {Convert.ToInt32(c)} was not removed");
+                }
+            }
+        }
+
+        [Fact]
+        public void XmlEncodeCDataTest1()
+        {
+            var propertyValue = " abc<>&'\"def ";
+            using (ScopeContext.PushProperty("foo", propertyValue))
+            {
+                SimpleLayout l = "${xml-encode:${scopeproperty:foo}:CDataEncode=true}";
+
+                Assert.Equal("<![CDATA[ abc<>&'\"def ]]>", l.Render(LogEventInfo.CreateNullEvent()));
+            }
+
+            SimpleLayout l2 = "${xml-encode:${event-properties:foo}:CDataEncode=true}";
+            Assert.Equal("<![CDATA[ abc<>&'\"def ]]>", l2.Render(new LogEventInfo(LogLevel.Off, null, string.Empty, new[] { new NLog.MessageTemplates.MessageTemplateParameter("foo", propertyValue, null) })));
+        }
+
+        [Fact]
+        public void XmlEncodeCDataTest2()
+        {
+            var propertyValue = " abc<]]>>&'\"def ";
+            using (ScopeContext.PushProperty("foo", propertyValue))
+            {
+                SimpleLayout l = "${xml-encode:${scopeproperty:foo}:CDataEncode=true}";
+
+                Assert.Equal("<![CDATA[ abc<]]]]><![CDATA[>>&'\"def ]]>", l.Render(LogEventInfo.CreateNullEvent()));
+            }
+
+            SimpleLayout l2 = "${xml-encode:${event-properties:foo}:CDataEncode=true}";
+            Assert.Equal("<![CDATA[ abc<]]]]><![CDATA[>>&'\"def ]]>", l2.Render(new LogEventInfo(LogLevel.Off, null, string.Empty, new[] { new NLog.MessageTemplates.MessageTemplateParameter("foo", propertyValue, null) })));
         }
     }
 }

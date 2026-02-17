@@ -85,7 +85,7 @@ namespace NLog.Internal
         /// <summary>
         /// removes any unusual unicode characters that can't be encoded into XML
         /// </summary>
-        private static string RemoveInvalidXmlChars(string text)
+        private static string RemoveInvalidXmlChars(string text, StringBuilder? builder = null)
         {
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
@@ -102,132 +102,141 @@ namespace NLog.Internal
                     }
                     else
                     {
-                        return CreateValidXmlString(text);   // rare expensive case
+                        return CreateValidXmlString(text, i, builder);   // rare expensive case
                     }
                 }
             }
 
+            builder?.Append(text);
             return text;
         }
 
         /// <summary>
         /// Cleans string of any invalid XML chars found
         /// </summary>
-        /// <param name="text">unclean string</param>
         /// <returns>string with only valid XML chars</returns>
-        private static string CreateValidXmlString(string text)
+        private static string CreateValidXmlString(string text, int startIndex = 0, StringBuilder? builder = null)
         {
-            var sb = new StringBuilder(text.Length);
-            for (int i = 0; i < text.Length; ++i)
+            var sb = builder ?? new StringBuilder(text.Length);
+            sb.Append(text, 0, startIndex);
+            for (int i = startIndex; i < text.Length; ++i)
             {
                 char ch = text[i];
                 if (XmlConvertIsXmlChar(ch))
                 {
                     sb.Append(ch);
                 }
-            }
-            return sb.ToString();
-        }
-
-        internal static void PerformXmlEscapeWhenNeeded(StringBuilder builder, int startPos, bool xmlEncodeNewlines)
-        {
-            if (RequiresXmlEscape(builder, startPos, xmlEncodeNewlines))
-            {
-                var str = builder.ToString(startPos, builder.Length - startPos);
-                builder.Length = startPos;
-                EscapeXmlString(str, xmlEncodeNewlines, builder);
-            }
-        }
-
-        private static bool RequiresXmlEscape(StringBuilder target, int startPos, bool xmlEncodeNewlines)
-        {
-            for (int i = startPos; i < target.Length; ++i)
-            {
-                switch (target[i])
+                else if (i + 1 < text.Length && XmlConvertIsXmlSurrogatePair(text[i + 1], ch))
                 {
-                    case '<':
-                    case '>':
-                    case '&':
-                    case '\'':
-                    case '"':
-                        return true;
-                    case '\r':
-                    case '\n':
-                        if (xmlEncodeNewlines)
-                            return true;
-                        break;
+                    sb.Append(ch);
+                    sb.Append(text[++i]);
                 }
             }
+            return builder is null ? sb.ToString() : string.Empty;
+        }
+
+        internal static void EscapeXmlWhenNeeded(StringBuilder builder, int startPos, bool xmlEncodeNewlines)
+        {
+            var builderLength = builder.Length;
+            for (int i = startPos; i < builderLength; ++i)
+            {
+                var chr = builder[i];
+                if (!XmlConvertIsXmlChar(chr) || RequiresXmlEscape(chr, xmlEncodeNewlines))
+                {
+                    var text = builder.ToString(i, builderLength - i);
+                    text = RemoveInvalidXmlChars(text);
+                    builder.Length = i;
+                    EscapeXmlString(text, xmlEncodeNewlines, 0, builder);
+                    break;
+                }
+            }
+        }
+
+        internal static string EscapeXmlWhenNeeded(string text, bool xmlEncodeNewlines, StringBuilder? builder = null)
+        {
+            var startIndex = text.IndexOfAny(xmlEncodeNewlines ? XmlEscapeNewlineChars : XmlEscapeChars);
+            if (startIndex >= 0)
+            {
+                var sb = builder ?? new StringBuilder(text.Length + 16);
+                var validText = RemoveInvalidXmlChars(text);
+                EscapeXmlString(validText, xmlEncodeNewlines, startIndex, sb);
+                return builder is null ? sb.ToString() : string.Empty;
+            }
+            else
+            {
+                return RemoveInvalidXmlChars(text, builder);
+            }
+        }
+
+        private static bool RequiresXmlEscape(char chr, bool xmlEncodeNewlines)
+        {
+            switch (chr)
+            {
+                case '<':
+                case '>':
+                case '&':
+                case '\'':
+                case '"':
+                    return true;
+                case '\r':
+                case '\n':
+                    return xmlEncodeNewlines;
+            }
+
             return false;
         }
 
         private static readonly char[] XmlEscapeChars = new char[] { '<', '>', '&', '\'', '"' };
         private static readonly char[] XmlEscapeNewlineChars = new char[] { '<', '>', '&', '\'', '"', '\r', '\n' };
 
-        internal static string EscapeXmlString(string text, bool xmlEncodeNewlines, StringBuilder? result = null)
+        private static void EscapeXmlString(string text, bool xmlEncodeNewlines, int startIndex, StringBuilder destination)
         {
-            if (result is null && SmallAndNoEscapeNeeded(text, xmlEncodeNewlines))
+            destination.Append(text, 0, startIndex);
+            for (int i = startIndex; i < text.Length; ++i)
             {
-                return text;
-            }
-
-            var sb = result ?? new StringBuilder(text.Length);
-            for (int i = 0; i < text.Length; ++i)
-            {
-                switch (text[i])
+                char chr = text[i];
+                switch (chr)
                 {
                     case '<':
-                        sb.Append("&lt;");
+                        destination.Append("&lt;");
                         break;
 
                     case '>':
-                        sb.Append("&gt;");
+                        destination.Append("&gt;");
                         break;
 
                     case '&':
-                        sb.Append("&amp;");
+                        destination.Append("&amp;");
                         break;
 
                     case '\'':
-                        sb.Append("&apos;");
+                        destination.Append("&apos;");
                         break;
 
                     case '"':
-                        sb.Append("&quot;");
+                        destination.Append("&quot;");
                         break;
 
                     case '\r':
                         if (xmlEncodeNewlines)
-                            sb.Append("&#13;");
+                            destination.Append("&#13;");
                         else
-                            sb.Append(text[i]);
+                            destination.Append(chr);
                         break;
 
                     case '\n':
                         if (xmlEncodeNewlines)
-                            sb.Append("&#10;");
+                            destination.Append("&#10;");
                         else
-                            sb.Append(text[i]);
+                            destination.Append(chr);
                         break;
 
                     default:
-                        sb.Append(text[i]);
+                        destination.Append(chr);
                         break;
                 }
+
             }
-
-            return result is null ? sb.ToString() : string.Empty;
-        }
-
-        /// <summary>
-        /// Pretest, small text and not escape needed
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="xmlEncodeNewlines"></param>
-        /// <returns></returns>
-        private static bool SmallAndNoEscapeNeeded(string text, bool xmlEncodeNewlines)
-        {
-            return text.Length < 4096 && text.IndexOfAny(xmlEncodeNewlines ? XmlEscapeNewlineChars : XmlEscapeChars) < 0;
         }
 
         /// <summary>
@@ -480,29 +489,25 @@ namespace NLog.Internal
 
         private static readonly char[] DecimalScientificExponent = new[] { 'e', 'E' };
 
-        public static void RemoveInvalidXmlIfNeeded(StringBuilder builder, int orgLength)
-        {
-            for (int i = orgLength; i < builder.Length; ++i)
-            {
-                if (!XmlConvertIsXmlChar(builder[i]))
-                {
-                    var text = builder.ToString(i, builder.Length - i);
-                    builder.Length = i;
-                    text = RemoveInvalidXmlChars(text);
-                    builder.Append(text);
-                    break;
-                }
-            }
-        }
 
-        public static void EscapeCDataIfNeeded(StringBuilder builder, int orgLength)
+        public static void EscapeCDataWhenNeeded(StringBuilder builder, int orgLength)
         {
-            for (int i = orgLength; i < builder.Length; ++i)
+            var builderLength = builder.Length;
+            char chr0 = '\0';
+            char chr1 = chr0;
+            char chr2 = chr0;
+
+            for (int i = orgLength; i < builderLength; ++i)
             {
-                if (builder[i] == ']' && i + 2 < builder.Length && builder[i + 1] == ']' && builder[i + 2] == '>')
+                chr0 = chr1;
+                chr1 = chr2;
+                chr2 = builder[i];
+
+                if (!XmlConvertIsXmlChar(chr2) || (chr0 == ']' && chr1 == ']' && chr2 == '>'))
                 {
-                    var text = builder.ToString(i, builder.Length - i);
-                    builder.Length = i;
+                    var text = builder.ToString(i - 2, builderLength - i + 2);
+                    builder.Length = i - 2;
+                    text = RemoveInvalidXmlChars(text);
                     text = text.Replace("]]>", "]]]]><![CDATA[>");
                     builder.Append(text);
                     break;
@@ -510,15 +515,37 @@ namespace NLog.Internal
             }
         }
 
-        public static string EscapeCData(string text)
+        public static string EscapeCData(string text, StringBuilder? builder = null)
         {
             if (string.IsNullOrEmpty(text))
-                return "<![CDATA[]]>";
+            {
+                var emptyCData = "<![CDATA[]]>";
+                builder?.Append(emptyCData);
+                return emptyCData;
+            }
 
-            if (text.Contains("]]>"))
-                text = text.Replace("]]>", "]]]]><![CDATA[>");
+            builder?.Append("<![CDATA[");
+            int orgLength = builder?.Length ?? 0;
+            var validText = RemoveInvalidXmlChars(text, builder);
+            if (ReferenceEquals(validText, text) || builder is null)
+            {
+                if (validText.IndexOf("]]>", StringComparison.Ordinal) >= 0)
+                {
+                    validText = validText.Replace("]]>", "]]]]><![CDATA[>");
+                    if (builder != null)
+                    {
+                        builder.Length = orgLength;
+                        builder.Append(validText);
+                    }
+                }
+            }
+            else
+            {
+                EscapeCDataWhenNeeded(builder, orgLength);
+            }
+            builder?.Append("]]>");
 
-            return $"<![CDATA[{text}]]>";
+            return builder is null ? $"<![CDATA[{validText}]]>" : string.Empty;
         }
     }
 }
