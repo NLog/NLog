@@ -36,6 +36,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Converts the result of another layout output to be XML-compliant.
@@ -70,9 +71,39 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category="Layout Options" order="10"/>
         public bool XmlEncodeNewlines { get; set; }
 
+        private INoAllocationStringValueRenderer? _stringValueRenderer;
+
+        /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+            _stringValueRenderer = ValueTypeLayoutInfo.ResolveStringValueMethod(Inner);
+        }
+
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
+            if (_stringValueRenderer != null)
+            {
+                var stringValue = _stringValueRenderer.GetFormattedStringNoAllocation(logEvent);
+                if (stringValue != null)
+                {
+                    if (CDataEncode)
+                    {
+                        XmlHelper.EscapeCData(stringValue, builder);
+                    }
+                    else if (XmlEncode)
+                    {
+                        XmlHelper.EscapeXmlWhenNeeded(stringValue, XmlEncodeNewlines, builder);
+                    }
+                    else
+                    {
+                        builder.Append(stringValue);
+                    }
+                    return;
+                }
+            }
+
             if (CDataEncode)
             {
                 builder.Append("<![CDATA[");
@@ -81,16 +112,14 @@ namespace NLog.LayoutRenderers.Wrappers
 
             Inner?.Render(logEvent, builder);
 
-            XmlHelper.RemoveInvalidXmlIfNeeded(builder, orgLength);
-
             if (CDataEncode)
             {
-                XmlHelper.EscapeCDataIfNeeded(builder, orgLength);
+                XmlHelper.EscapeCDataWhenNeeded(builder, orgLength);
                 builder.Append("]]>");
             }
             else if (XmlEncode)
             {
-                XmlHelper.PerformXmlEscapeWhenNeeded(builder, orgLength, XmlEncodeNewlines);
+                XmlHelper.EscapeXmlWhenNeeded(builder, orgLength, XmlEncodeNewlines);
             }
         }
 
@@ -104,8 +133,9 @@ namespace NLog.LayoutRenderers.Wrappers
 
             if (XmlEncode)
             {
-                return XmlHelper.EscapeXmlString(text, XmlEncodeNewlines);
+                return XmlHelper.EscapeXmlWhenNeeded(text, XmlEncodeNewlines);
             }
+
             return text;
         }
     }

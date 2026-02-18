@@ -695,7 +695,7 @@ namespace NLog.Layouts
             else
             {
                 sb.Append('>');
-                XmlHelper.EscapeXmlString(xmlValueString, false, sb);
+                XmlHelper.EscapeXmlWhenNeeded(xmlValueString, false, sb);
                 AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesElementName);
             }
 
@@ -728,7 +728,7 @@ namespace NLog.Layouts
                 sb.Append(' ');
                 sb.Append(attributeName);
                 sb.Append("=\"");
-                XmlHelper.EscapeXmlString(value, true, sb);
+                XmlHelper.EscapeXmlWhenNeeded(value, true, sb);
                 sb.Append('\"');
                 return true;
             }

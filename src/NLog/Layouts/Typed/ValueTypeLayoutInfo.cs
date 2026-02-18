@@ -77,7 +77,7 @@ namespace NLog.Layouts
 
         internal INoAllocationStringValueRenderer? SimpleStringValue { get; private set; }
 
-        private static INoAllocationStringValueRenderer? ResolveStringValueMethod(Layout layout)
+        internal static INoAllocationStringValueRenderer? ResolveStringValueMethod(Layout layout)
         {
             var stringValueRenderer = (layout is SimpleLayout simpleLayout && simpleLayout.LayoutRenderers.Count() == 1) ? simpleLayout.LayoutRenderers.First() as INoAllocationStringValueRenderer : null;
             if (stringValueRenderer != null)

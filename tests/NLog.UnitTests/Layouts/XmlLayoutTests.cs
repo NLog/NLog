@@ -201,7 +201,7 @@ namespace NLog.UnitTests.Layouts
             };
 
             logEventInfo.Properties["prop1"] = "a";
-            logEventInfo.Properties["prop2"] = "b";
+            logEventInfo.Properties["prop2"] = "<b>";
             logEventInfo.Properties["prop3"] = "c";
 
             // Act
@@ -209,7 +209,7 @@ namespace NLog.UnitTests.Layouts
 
             // Assert
             const string expected =
-                @"<logevent><level>Debug</level><message>message 1</message><property key=""prop1"">a</property><property key=""prop2"">b</property><property key=""prop3"">c</property></logevent>";
+                @"<logevent><level>Debug</level><message>message 1</message><property key=""prop1"">a</property><property key=""prop2"">&lt;b&gt;</property><property key=""prop3"">c</property></logevent>";
 
             Assert.Equal(expected, result);
         }
@@ -233,7 +233,7 @@ namespace NLog.UnitTests.Layouts
                 Message = "message 1"
             };
             logEventInfo.Properties["prop1"] = "a";
-            logEventInfo.Properties["prop2"] = "b";
+            logEventInfo.Properties["prop2"] = "<b>";
             logEventInfo.Properties["prop3"] = "c";
 
             // Act
@@ -258,14 +258,14 @@ namespace NLog.UnitTests.Layouts
                 Message = "message 1"
             };
             logEventInfo.Properties["prop1"] = "a";
-            logEventInfo.Properties["prop2"] = "b";
+            logEventInfo.Properties["prop2"] = "<b>";
             logEventInfo.Properties["prop3"] = "c";
 
             // Act
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><property key=""prop1"">a</property><property key=""prop2"">b</property><property key=""prop3"">c</property></logevent>";
+            const string expected = @"<logevent><property key=""prop1"">a</property><property key=""prop2"">&lt;b&gt;</property><property key=""prop3"">c</property></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -311,7 +311,7 @@ namespace NLog.UnitTests.Layouts
                 Message = "message 1"
             };
             logEventInfo.Properties["1prop"] = "a";
-            logEventInfo.Properties["_2prop"] = "b";
+            logEventInfo.Properties["_2prop"] = "<b>";
             logEventInfo.Properties[" 3prop"] = "c";
             logEventInfo.Properties["_4 prop"] = "d";
 
@@ -319,7 +319,7 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><_1prop>a</_1prop><_2prop>b</_2prop><_3prop>c</_3prop><_4_prop>d</_4_prop></logevent>";
+            const string expected = @"<logevent><_1prop>a</_1prop><_2prop>&lt;b&gt;</_2prop><_3prop>c</_3prop><_4_prop>d</_4_prop></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -340,13 +340,13 @@ namespace NLog.UnitTests.Layouts
                 Message = "message 1"
             };
             logEventInfo.Properties["prop1"] = "a";
-            logEventInfo.Properties["prop2"] = "b";
+            logEventInfo.Properties["prop2"] = "<b>";
 
             // Act
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><p k=""prop1"" v=""a""/><p k=""prop2"" v=""b""/></logevent>";
+            const string expected = @"<logevent><p k=""prop1"" v=""a""/><p k=""prop2"" v=""&lt;b&gt;""/></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -367,13 +367,13 @@ namespace NLog.UnitTests.Layouts
                 Message = "message 1"
             };
             logEventInfo.Properties["prop1"] = "a";
-            logEventInfo.Properties["prop2"] = "b";
+            logEventInfo.Properties["prop2"] = "<b>";
 
             // Act
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><prop1 v=""a""/><prop2 v=""b""/></logevent>";
+            const string expected = @"<logevent><prop1 v=""a""/><prop2 v=""&lt;b&gt;""/></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -403,13 +403,13 @@ namespace NLog.UnitTests.Layouts
                 Message = "message 1"
             };
             logEventInfo.Properties["prop1"] = "a";
-            logEventInfo.Properties["prop2"] = "b";
+            logEventInfo.Properties["prop2"] = "<b>";
 
             // Act
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            string expected = @"<logevent><message>message 1<level>Debug</level><property key=""prop1"">a</property><property key=""prop2"">b</property></message></logevent>";
+            string expected = @"<logevent><message>message 1<level>Debug</level><property key=""prop1"">a</property><property key=""prop2"">&lt;b&gt;</property></message></logevent>";
             Assert.Equal(expected, result);
         }
 
