@@ -144,9 +144,8 @@ namespace NLog.Internal
                 if (!XmlConvertIsXmlChar(chr) || RequiresXmlEscape(chr, xmlEncodeNewlines))
                 {
                     var text = builder.ToString(i, builderLength - i);
-                    text = RemoveInvalidXmlChars(text);
                     builder.Length = i;
-                    EscapeXmlString(text, xmlEncodeNewlines, 0, builder);
+                    EscapeXmlString(text, xmlEncodeNewlines, builder);
                     break;
                 }
             }
@@ -158,8 +157,7 @@ namespace NLog.Internal
             if (startIndex >= 0)
             {
                 var sb = builder ?? new StringBuilder(text.Length + 16);
-                var validText = RemoveInvalidXmlChars(text);
-                EscapeXmlString(validText, xmlEncodeNewlines, startIndex, sb);
+                EscapeXmlString(text, xmlEncodeNewlines, sb);
                 return builder is null ? sb.ToString() : string.Empty;
             }
             else
@@ -189,10 +187,9 @@ namespace NLog.Internal
         private static readonly char[] XmlEscapeChars = new char[] { '<', '>', '&', '\'', '"' };
         private static readonly char[] XmlEscapeNewlineChars = new char[] { '<', '>', '&', '\'', '"', '\r', '\n' };
 
-        private static void EscapeXmlString(string text, bool xmlEncodeNewlines, int startIndex, StringBuilder destination)
+        private static void EscapeXmlString(string text, bool xmlEncodeNewlines, StringBuilder destination)
         {
-            destination.Append(text, 0, startIndex);
-            for (int i = startIndex; i < text.Length; ++i)
+            for (int i = 0; i < text.Length; ++i)
             {
                 char chr = text[i];
                 switch (chr)
@@ -232,7 +229,15 @@ namespace NLog.Internal
                         break;
 
                     default:
-                        destination.Append(chr);
+                        if (XmlConvertIsXmlChar(chr))
+                        {
+                            destination.Append(chr);
+                        }
+                        else if (i + 1 < text.Length && XmlConvertIsXmlSurrogatePair(text[i + 1], chr))
+                        {
+                            destination.Append(chr);
+                            destination.Append(text[++i]);
+                        }                        
                         break;
                 }
 
