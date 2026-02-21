@@ -202,7 +202,7 @@ namespace NLog.UnitTests.Layouts
 
             logEventInfo.Properties["prop1"] = "a";
             logEventInfo.Properties["prop2"] = "<b>";
-            logEventInfo.Properties["prop3"] = "c";
+            logEventInfo.Properties["prop3"] = "c\u0001";
 
             // Act
             var result = xmlLayout.Render(logEventInfo);
@@ -234,7 +234,7 @@ namespace NLog.UnitTests.Layouts
             };
             logEventInfo.Properties["prop1"] = "a";
             logEventInfo.Properties["prop2"] = "<b>";
-            logEventInfo.Properties["prop3"] = "c";
+            logEventInfo.Properties["prop3"] = "c\u0001";
 
             // Act
             var result = xmlLayout.Render(logEventInfo);
@@ -259,7 +259,7 @@ namespace NLog.UnitTests.Layouts
             };
             logEventInfo.Properties["prop1"] = "a";
             logEventInfo.Properties["prop2"] = "<b>";
-            logEventInfo.Properties["prop3"] = "c";
+            logEventInfo.Properties["prop3"] = "c\u0001";
 
             // Act
             var result = xmlLayout.Render(logEventInfo);
@@ -285,7 +285,7 @@ namespace NLog.UnitTests.Layouts
             };
             logEventInfo.Properties["prop1"] = "a";
             logEventInfo.Properties["prop2"] = new KeyValuePair<string, string>("path", "test");
-            logEventInfo.Properties["prop3"] = "c";
+            logEventInfo.Properties["prop3"] = "c\u0001";
 
             // Act
             var result = xmlLayout.Render(logEventInfo);
@@ -312,7 +312,7 @@ namespace NLog.UnitTests.Layouts
             };
             logEventInfo.Properties["1prop"] = "a";
             logEventInfo.Properties["_2prop"] = "<b>";
-            logEventInfo.Properties[" 3prop"] = "c";
+            logEventInfo.Properties[" 3prop"] = "c\u0001";
             logEventInfo.Properties["_4 prop"] = "d";
 
             // Act

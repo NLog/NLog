@@ -44,7 +44,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void XmlEncodeTest1()
         {
-            var propertyValue = " abc<>&'\"def ";
+            var propertyValue = " abc<>&'\"def \u0001";
             using (ScopeContext.PushProperty("foo", propertyValue))
             {
                 SimpleLayout l = "${xml-encode:${scopeproperty:foo}}";
@@ -118,7 +118,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void XmlEncodeCDataTest1()
         {
-            var propertyValue = " abc<>&'\"def ";
+            var propertyValue = " abc<>&'\"def \u0001";
             using (ScopeContext.PushProperty("foo", propertyValue))
             {
                 SimpleLayout l = "${xml-encode:${scopeproperty:foo}:CDataEncode=true}";
@@ -133,7 +133,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void XmlEncodeCDataTest2()
         {
-            var propertyValue = " abc<]]>>&'\"def ";
+            var propertyValue = " abc<]]>>&'\"def \u0001";
             using (ScopeContext.PushProperty("foo", propertyValue))
             {
                 SimpleLayout l = "${xml-encode:${scopeproperty:foo}:CDataEncode=true}";
