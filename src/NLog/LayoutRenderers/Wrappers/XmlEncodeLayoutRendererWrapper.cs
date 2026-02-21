@@ -72,18 +72,20 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool XmlEncodeNewlines { get; set; }
 
         private INoAllocationStringValueRenderer? _stringValueRenderer;
+        private Layout? _orgInner;
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
             _stringValueRenderer = ValueTypeLayoutInfo.ResolveStringValueMethod(Inner);
+            _orgInner = _stringValueRenderer is null ? null : Inner;
         }
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            if (_stringValueRenderer != null)
+            if (_stringValueRenderer != null && ReferenceEquals(Inner, _orgInner))
             {
                 var stringValue = _stringValueRenderer.GetFormattedStringNoAllocation(logEvent);
                 if (stringValue != null)
