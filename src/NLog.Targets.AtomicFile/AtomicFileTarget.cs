@@ -36,6 +36,7 @@ namespace NLog.Targets
     using System;
     using System.IO;
     using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Extended standard FileTarget with atomic file append for multi-process logging to the same file
@@ -115,6 +116,9 @@ namespace NLog.Targets
             }
 #endif
 
+#if NETSTANDARD
+            return CreateWindowsStream(filePath, fileShare);
+#else
             var systemRights = System.Security.AccessControl.FileSystemRights.AppendData | System.Security.AccessControl.FileSystemRights.Synchronize;
             return FileSystemAclExtensions.Create(
                 new FileInfo(filePath),
@@ -124,8 +128,44 @@ namespace NLog.Targets
                 bufferSize: 1,    // No internal buffer, write directly from user-buffer
                 FileOptions.None,
                 fileSecurity: null);
-#endif
+#endif // NETSTANDARD
+
+#endif // NETFRAMEWORK
         }
+
+#if NETSTANDARD
+        private FileStream CreateWindowsStream(string filePath, FileShare fileShare)
+        {
+            Microsoft.Win32.SafeHandles.SafeFileHandle? handle = null;
+            try
+            {
+                handle = NativeMethods.CreateFile(
+                    filePath,
+                    NativeMethods.Win32FileAccess.AppendData | NativeMethods.Win32FileAccess.Synchronize,
+                    (uint) fileShare,
+                    IntPtr.Zero,
+                    NativeMethods.Win32FileMode.OpenAlways,
+                    // For mitigating local elevation of privilege attack through named pipes make sure we always call CreateFile with SecurityAnonymous so that the
+                    // named pipe server can't impersonate a high privileged client security context
+                    // SecuritySqosPresent flags that SecurityAnonymous flag is present.
+                    (uint) NativeMethods.Win32SecurityFlags.SecuritySqosPresent | (uint) NativeMethods.Win32SecurityFlags.SecurityAnonymous |
+                    (uint) NativeMethods.Win32FileAttributes.Normal,
+                    IntPtr.Zero);
+
+                if (handle.IsInvalid) {
+                    System.Runtime.InteropServices.Marshal.ThrowExceptionForHR(System.Runtime.InteropServices.Marshal.GetHRForLastWin32Error());
+                }
+
+                return new FileStream(handle, FileAccess.Write, bufferSize: 1);
+            }
+            catch
+            {
+                if ((handle != null) && (!handle.IsClosed))
+                    handle.Close();
+                throw;
+            }
+        }
+#endif
 
 #if !NETFRAMEWORK && !WINDOWS
         private Stream CreateUnixStream(string filePath)
