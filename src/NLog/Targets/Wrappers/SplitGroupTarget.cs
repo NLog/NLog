@@ -165,13 +165,17 @@ namespace NLog.Targets.Wrappers
 
         private static AsyncContinuation CreateCountedContinuation(AsyncContinuation originalContinuation, int targetCounter)
         {
-            var exceptions = new List<Exception>();
+            IList<Exception>? exceptions = null;
 
             AsyncContinuation wrapper =
                 ex =>
                 {
                     if (ex != null)
                     {
+                        if (exceptions is null)
+                        {
+                            Interlocked.CompareExchange(ref exceptions, new List<Exception>(), null);
+                        }
                         lock (exceptions)
                         {
                             exceptions.Add(ex);
@@ -179,10 +183,9 @@ namespace NLog.Targets.Wrappers
                     }
 
                     int pendingTargets = Interlocked.Decrement(ref targetCounter);
-
                     if (pendingTargets == 0)
                     {
-                        var combinedException = AsyncHelpers.GetCombinedException(exceptions);
+                        var combinedException = AsyncHelpers.GetCombinedException(exceptions ?? Internal.ArrayHelper.Empty<Exception>());
                         InternalLogger.Trace("SplitGroup: Combined exception: {0}", combinedException);
                         originalContinuation(combinedException);
                     }
