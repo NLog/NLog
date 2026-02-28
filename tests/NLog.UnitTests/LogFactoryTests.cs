@@ -72,6 +72,34 @@ namespace NLog.UnitTests
             Assert.NotNull(timeoutException);
         }
 
+        [Fact]
+        public void Flush_NestedFlushInsideCallback_NoDeadlock()
+        {
+            // Arrange
+            // Before the fix, the Flush completion callback was invoked while the target SyncRoot
+            // was held. A nested synchronous Flush in the callback dispatches a new thread that
+            // blocks trying to acquire the same SyncRoot, causing a deadlock (up to 15s timeout).
+            var logFactory = new LogFactory();
+            logFactory.Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteToMethodCall((evt, parms) => { }));
+            logFactory.GetCurrentClassLogger().Info("Test message");
+
+            Exception nestedFlushError = null;
+            bool callbackFired = false;
+
+            // Act
+            logFactory.Flush(ex =>
+            {
+                callbackFired = true;
+                // Nested synchronous Flush: with old code this deadlocks because the current
+                // thread holds the target SyncRoot and the dispatched thread waits for it.
+                logFactory.Flush(ex2 => nestedFlushError = ex2, TimeSpan.FromSeconds(5));
+            }, TimeSpan.FromSeconds(10));
+
+            // Assert
+            Assert.True(callbackFired, "Flush callback was not invoked");
+            Assert.Null(nestedFlushError); // Would be a timeout NLogRuntimeException with old code
+        }
+
 #if !NET35 && !NET40
         [Fact]
         public void FlushAsync_NoConfig_IsCompleted()
@@ -111,6 +139,40 @@ namespace NLog.UnitTests
             System.Threading.Tasks.Task.Run(() => logFactory.GetCurrentClassLogger().Info("Sleep")).Wait(50);
             var task = logFactory.FlushAsync(new CancellationTokenSource(100).Token);
             Assert.Throws<System.Threading.Tasks.TaskCanceledException>(() => task.GetAwaiter().GetResult());
+        }
+
+        [Fact]
+        public void FlushAsync_NestedFlushInSynchronousContinuation_NoDeadlock()
+        {
+            // Arrange
+            // Before the fix, FlushAsync signaled the TaskCompletionSource while holding the
+            // target SyncRoot. A synchronous continuation on the FlushAsync task that performs
+            // a blocking Flush would deadlock: it dispatches a new thread that blocks waiting
+            // for the same SyncRoot that the continuation's thread holds.
+            var logFactory = new LogFactory();
+            logFactory.Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteToMethodCall((evt, parms) => { }));
+            logFactory.GetCurrentClassLogger().Info("Test message");
+
+            Exception nestedFlushError = null;
+            bool continuationFired = false;
+            var continuationCompleted = new ManualResetEvent(false);
+
+            // Act
+            // ExecuteSynchronously forces the continuation to run on the thread that calls
+            // TaskCompletionSource.SetResult (i.e., the flush-completion thread).
+            // Before the fix that thread held the target SyncRoot, causing a deadlock.
+            logFactory.FlushAsync(CancellationToken.None)
+                .ContinueWith(t =>
+                {
+                    continuationFired = true;
+                    logFactory.Flush(ex2 => nestedFlushError = ex2, TimeSpan.FromSeconds(5));
+                    continuationCompleted.Set();
+                }, System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously);
+
+            // Assert
+            Assert.True(continuationCompleted.WaitOne(TimeSpan.FromSeconds(10)), "FlushAsync continuation did not complete");
+            Assert.True(continuationFired);
+            Assert.Null(nestedFlushError); // Would be a timeout NLogRuntimeException with old code
         }
 #endif
 

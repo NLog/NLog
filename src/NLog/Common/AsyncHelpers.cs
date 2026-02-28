@@ -183,12 +183,8 @@ namespace NLog.Common
         /// <param name="action">The action to invoke for each item.</param>
         public static void ForEachItemInParallel<T>(IEnumerable<T> values, AsyncContinuation asyncContinuation, AsynchronousAction<T> action)
         {
-            action = ExceptionGuard(action);
-
             var items = new List<T>(values);
             int remaining = items.Count;
-            var exceptions = new List<Exception>();
-
             InternalLogger.Trace("ForEachItemInParallel() {0} items", items.Count);
 
             if (remaining == 0)
@@ -197,6 +193,10 @@ namespace NLog.Common
                 return;
             }
 
+            action = ExceptionGuard(action);
+
+            IList<Exception>? exceptions = null;
+
             AsyncContinuation continuation =
                 ex =>
                 {
@@ -204,6 +204,10 @@ namespace NLog.Common
 
                     if (ex != null)
                     {
+                        if (exceptions is null)
+                        {
+                            Interlocked.CompareExchange(ref exceptions, new List<Exception>(), null);
+                        }
                         lock (exceptions)
                         {
                             exceptions.Add(ex);
@@ -214,7 +218,23 @@ namespace NLog.Common
                     InternalLogger.Trace("Parallel task completed. {0} items remaining", r);
                     if (r == 0)
                     {
-                        asyncContinuation(GetCombinedException(exceptions));
+                        var combinedException = GetCombinedException(exceptions ?? ArrayHelper.Empty<Exception>());
+
+                        // The flush callback happens while holding target lock, so execute the flush completion asynchronously to avoid potential deadlocks.
+                        if (combinedException is null)
+                        {
+                            AsyncHelpers.StartAsyncTask(s =>
+                            {
+                                ((AsyncContinuation)s).Invoke(null);
+                            }, asyncContinuation);
+                        }
+                        else
+                        {
+                            AsyncHelpers.StartAsyncTask(s =>
+                            {
+                                ((AsyncContinuation)s).Invoke(combinedException);
+                            }, asyncContinuation);
+                        }
                     }
                 };
 

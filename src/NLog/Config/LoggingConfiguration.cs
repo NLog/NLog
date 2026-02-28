@@ -976,11 +976,23 @@ namespace NLog.Config
                 }
                 if (completed)
                 {
+                    // The flush callback happens while holding target lock, so execute the flush completion asynchronously to avoid potential deadlocks.
                     if (lastException != null)
+                    {
                         InternalLogger.Warn("Flush completed with errors");
+                        AsyncHelpers.StartAsyncTask(s =>
+                        {
+                            ((AsyncContinuation)s).Invoke(lastException);
+                        }, flushCompletion);
+                    }
                     else
+                    {
                         InternalLogger.Debug("Flush completed");
-                    flushCompletion.Invoke(lastException);
+                        AsyncHelpers.StartAsyncTask(s =>
+                        {
+                            ((AsyncContinuation)s).Invoke(null);
+                        }, flushCompletion);
+                    }
                 }
             };
 
