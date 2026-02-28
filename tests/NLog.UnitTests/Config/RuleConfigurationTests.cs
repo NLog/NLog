@@ -87,6 +87,7 @@ namespace NLog.UnitTests.Config
             Assert.Same(c.FindTargetByName("d1"), rule.Targets[0]);
             Assert.False(rule.Final);
             Assert.Empty(rule.Filters);
+            Assert.Same(LogLevel.Info, rule.MinLevel);
         }
 
         [Fact]

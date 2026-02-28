@@ -145,6 +145,27 @@ namespace NLog.Config
         public bool Final { get; set; }
 
         /// <summary>
+        /// Gets or sets the minimum <see cref="NLog.LogLevel"/> needed to trigger this rule.
+        /// </summary>
+        public LogLevel MinLevel
+        {
+            get
+            {
+                var logLevels = _logLevelFilter.LogLevels;
+                for (int i = LogLevel.MinLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
+                {
+                    if (logLevels[i])
+                        return LogLevel.FromOrdinal(i);
+                }
+                return LogLevel.Off;
+            }
+            set
+            {
+                SetLoggingLevels(value, LogLevel.MaxLevel);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the <see cref="NLog.LogLevel"/> whether to quit processing any following rules when lower severity and this one matches.
         /// </summary>
         /// <remarks>
