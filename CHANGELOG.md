@@ -4,6 +4,15 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.1.1 (2026/03/01)
+
+**Improvements**
+- [#6101](https://github.com/NLog/NLog/pull/6101) LogFactory - Flush / FlushAsync asynchronous completion outside Target lock. (@snakefoot)
+- [#6100](https://github.com/NLog/NLog/pull/6100) NLog.Targets.AtomicFile supporting NetStandard2 with Win32 API. (@michailf)
+- [#6094](https://github.com/NLog/NLog/pull/6094) XmlLayout - Faster XML encoding with INoAllocationStringValueRenderer. (@snakefoot)
+- [#6091](https://github.com/NLog/NLog/pull/6091) LiteralWithRawValueLayoutRenderer - Only support RawValue when possible. (@snakefoot)
+- [#6088](https://github.com/NLog/NLog/pull/6088) CachedLayoutRendererWrapper - Allow literal optimization when caching not needed. (@snakefoot)
+
 ### Version 6.1 (2026/01/31)
 
 **Improvements**
