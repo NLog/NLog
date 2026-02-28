@@ -136,47 +136,44 @@ namespace NLog.Targets
 #if NETSTANDARD
         private static FileStream CreateWindowsStream(string filePath, FileMode fileMode, FileShare fileShare, FileOptions fileOptions)
         {
-            Microsoft.Win32.SafeHandles.SafeFileHandle? handle = null;
+            NativeMethods.Win32FileAccess dwDesiredAccess = NativeMethods.Win32FileAccess.SYNCHRONIZE;
+            if (fileMode == FileMode.Append)
+            {
+                dwDesiredAccess |= NativeMethods.Win32FileAccess.FILE_APPEND_DATA;
+            }
+            if ((fileOptions & FileOptions.DeleteOnClose) != 0)
+            {
+                dwDesiredAccess |= NativeMethods.Win32FileAccess.DELETE; // required by FILE_DELETE_ON_CLOSE
+            }
+
+            // Must use a valid Win32 constant here...
+            if (fileMode == FileMode.Append)
+            {
+                fileMode = FileMode.OpenOrCreate;
+            }
+
+            // For mitigating local elevation of privilege attack through named pipes
+            // make sure we always call CreateFile with SECURITY_ANONYMOUS so that the
+            // named pipe server can't impersonate a high privileged client security context
+            // (note that this is the effective default on CreateFile2)
+            uint dwFlagsAndAttributes = (uint)fileOptions;
+            dwFlagsAndAttributes |= (uint)(NativeMethods.Win32SecurityOptions.SECURITY_SQOS_PRESENT | NativeMethods.Win32SecurityOptions.SECURITY_ANONYMOUS);
+
+            var handle = NativeMethods.CreateFile(
+                filePath,
+                dwDesiredAccess,
+                fileShare,
+                IntPtr.Zero,
+                fileMode,
+                dwFlagsAndAttributes,
+                IntPtr.Zero);
+            if (handle.IsInvalid)
+            {
+                System.Runtime.InteropServices.Marshal.ThrowExceptionForHR(System.Runtime.InteropServices.Marshal.GetHRForLastWin32Error());
+            }
+
             try
             {
-
-                NativeMethods.Win32FileAccess dwDesiredAccess = NativeMethods.Win32FileAccess.SYNCHRONIZE;
-                if (fileMode == FileMode.Append)
-                {
-                    dwDesiredAccess |= NativeMethods.Win32FileAccess.FILE_APPEND_DATA;
-                }
-                if ((fileOptions & FileOptions.DeleteOnClose) != 0)
-                {
-                    dwDesiredAccess |= NativeMethods.Win32FileAccess.DELETE; // required by FILE_DELETE_ON_CLOSE
-                }
-
-                // Must use a valid Win32 constant here...
-                if (fileMode == FileMode.Append)
-                {
-                    fileMode = FileMode.OpenOrCreate;
-                }
-
-                // For mitigating local elevation of privilege attack through named pipes
-                // make sure we always call CreateFile with SECURITY_ANONYMOUS so that the
-                // named pipe server can't impersonate a high privileged client security context
-                // (note that this is the effective default on CreateFile2)
-                uint dwFlagsAndAttributes = (uint)fileOptions;
-                dwFlagsAndAttributes |= (uint)(NativeMethods.Win32SecurityOptions.SECURITY_SQOS_PRESENT | NativeMethods.Win32SecurityOptions.SECURITY_ANONYMOUS);
-
-                handle = NativeMethods.CreateFile(
-                    filePath,
-                    dwDesiredAccess,
-                    fileShare,
-                    IntPtr.Zero,
-                    fileMode,
-                    dwFlagsAndAttributes,
-                    IntPtr.Zero);
-
-                if (handle.IsInvalid)
-                {
-                    System.Runtime.InteropServices.Marshal.ThrowExceptionForHR(System.Runtime.InteropServices.Marshal.GetHRForLastWin32Error());
-                }
-
                 return new FileStream(
                     handle,
                     FileAccess.Write,
@@ -184,7 +181,7 @@ namespace NLog.Targets
             }
             catch
             {
-                handle?.Dispose();
+                handle.Dispose();
                 throw;
             }
         }

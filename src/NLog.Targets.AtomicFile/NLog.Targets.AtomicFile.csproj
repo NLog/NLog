@@ -76,17 +76,21 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0' Or '$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\NLog\NLog.csproj" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <AssemblyTitle>$(Title)</AssemblyTitle>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="" />
     <None Include="N.png" Pack="true" PackagePath="" visible="false" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0' Or '$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
   </ItemGroup>
 
   <Target Name="DownloadMissingContent" BeforeTargets="GenerateNuspec">
