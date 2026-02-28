@@ -386,16 +386,6 @@ namespace NLog.Targets.AtomicFile.Tests
             DoConcurrentTest(5, 1000, mode);
         }
 
-        private static void ChildLoggerProcess(string[] args)
-        {
-            string processIndex = args[0];
-            string fileName = args[1];
-            string numLogsString = args[2];
-            string mode = args[3];
-
-            MultiProcessExecutor(processIndex, fileName, numLogsString, mode);
-        }
-
         protected static bool IsLinux()
         {
             var val = Environment.GetEnvironmentVariable("WINDIR");
