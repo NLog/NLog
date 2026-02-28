@@ -117,7 +117,7 @@ namespace NLog.Targets
 #endif
 
 #if NETSTANDARD
-            return CreateWindowsStream(filePath, fileShare);
+            return CreateWindowsStream(filePath, FileMode.Append, fileShare, FileOptions.None);
 #else
             var systemRights = System.Security.AccessControl.FileSystemRights.AppendData | System.Security.AccessControl.FileSystemRights.Synchronize;
             return FileSystemAclExtensions.Create(
@@ -134,29 +134,52 @@ namespace NLog.Targets
         }
 
 #if NETSTANDARD
-        private FileStream CreateWindowsStream(string filePath, FileShare fileShare)
+        private static FileStream CreateWindowsStream(string filePath, FileMode fileMode, FileShare fileShare, FileOptions fileOptions)
         {
             Microsoft.Win32.SafeHandles.SafeFileHandle? handle = null;
             try
             {
+
+                NativeMethods.Win32FileAccess dwDesiredAccess = NativeMethods.Win32FileAccess.SYNCHRONIZE;
+                if ((fileMode & FileMode.Append) != 0)
+                {
+                    dwDesiredAccess |= NativeMethods.Win32FileAccess.FILE_APPEND_DATA;
+                }
+                if ((fileOptions & FileOptions.DeleteOnClose) != 0)
+                {
+                    dwDesiredAccess |= NativeMethods.Win32FileAccess.DELETE; // required by FILE_DELETE_ON_CLOSE
+                }
+
+                // Must use a valid Win32 constant here...
+                if (fileMode == FileMode.Append)
+                {
+                    fileMode = FileMode.OpenOrCreate;
+                }
+
+                // For mitigating local elevation of privilege attack through named pipes
+                // make sure we always call CreateFile with SECURITY_ANONYMOUS so that the
+                // named pipe server can't impersonate a high privileged client security context
+                // (note that this is the effective default on CreateFile2)
+                uint dwFlagsAndAttributes = (uint)fileOptions;
+                dwFlagsAndAttributes |= (uint)(NativeMethods.Win32SecurityOptions.SECURITY_SQOS_PRESENT | NativeMethods.Win32SecurityOptions.SECURITY_ANONYMOUS);
+
                 handle = NativeMethods.CreateFile(
                     filePath,
-                    NativeMethods.Win32FileAccess.AppendData | NativeMethods.Win32FileAccess.Synchronize,
-                    (uint) fileShare,
+                    dwDesiredAccess,
+                    fileShare,
                     IntPtr.Zero,
-                    NativeMethods.Win32FileMode.OpenAlways,
-                    // For mitigating local elevation of privilege attack through named pipes make sure we always call CreateFile with SecurityAnonymous so that the
-                    // named pipe server can't impersonate a high privileged client security context
-                    // SecuritySqosPresent flags that SecurityAnonymous flag is present.
-                    (uint) NativeMethods.Win32SecurityFlags.SecuritySqosPresent | (uint) NativeMethods.Win32SecurityFlags.SecurityAnonymous |
-                    (uint) NativeMethods.Win32FileAttributes.Normal,
+                    fileMode,
+                    dwFlagsAndAttributes,
                     IntPtr.Zero);
 
                 if (handle.IsInvalid) {
                     System.Runtime.InteropServices.Marshal.ThrowExceptionForHR(System.Runtime.InteropServices.Marshal.GetHRForLastWin32Error());
                 }
 
-                return new FileStream(handle, FileAccess.Write, bufferSize: 1);
+                return new FileStream(
+                    handle,
+                    FileAccess.Write,
+                    bufferSize: 1); // No internal buffer, write directly from user-buffer
             }
             catch
             {
