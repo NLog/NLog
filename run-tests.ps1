@@ -24,6 +24,10 @@ if ($isWindows -or $Env:WinDir)
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
+	dotnet test ./tests/NLog.Targets.AtomicFile.Tests/ --configuration release /p:TestTargetFramework=netstandard2.0
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+
 	dotnet test ./tests/NLog.RegEx.Tests/ --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }

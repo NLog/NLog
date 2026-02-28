@@ -18,6 +18,11 @@
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(TestTargetFramework)' != '' ">
+    <OutputPath>.\bin\$(Configuration)\$(TestTargetFramework)\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
@@ -27,6 +32,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Basic.Reference.Assemblies " Version="1.8.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net8.0' AND '$(TestTargetFramework)' != '' ">
+    <Reference Include="NLog.Targets.AtomicFile">
+      <HintPath>../../src/NLog.Targets.AtomicFile/bin/$(Configuration)/$(TestTargetFramework)/NLog.Targets.AtomicFile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
