@@ -18,7 +18,7 @@
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TestTargetFramework)' != '' ">
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net8.0' AND '$(TestTargetFramework)' != '' ">
     <OutputPath>.\bin\$(Configuration)\$(TestTargetFramework)\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
