@@ -71,7 +71,6 @@ namespace NLog.Internal
         {
             /// <summary>
             /// For a file, the right to append data to a file.
-            /// to overwrite existing data.
             /// </summary>
             FILE_APPEND_DATA = 0x00000004,
             /// <summary>
@@ -79,9 +78,6 @@ namespace NLog.Internal
             /// is in the signaled state. This is required if opening a synchronous handle.
             /// </summary>
             SYNCHRONIZE = 0x00100000,
-            FILE_GENERIC_READ = 0x80000000,
-            FILE_GENERIC_WRITE = 0x40000000,
-            FILE_GENERIC_EXECUTE = 0x20000000,
             /// <summary>
             /// The right to delete the object.
             /// </summary>

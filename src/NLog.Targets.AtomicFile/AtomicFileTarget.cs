@@ -141,7 +141,7 @@ namespace NLog.Targets
             {
 
                 NativeMethods.Win32FileAccess dwDesiredAccess = NativeMethods.Win32FileAccess.SYNCHRONIZE;
-                if ((fileMode & FileMode.Append) != 0)
+                if (fileMode == FileMode.Append)
                 {
                     dwDesiredAccess |= NativeMethods.Win32FileAccess.FILE_APPEND_DATA;
                 }
@@ -172,7 +172,8 @@ namespace NLog.Targets
                     dwFlagsAndAttributes,
                     IntPtr.Zero);
 
-                if (handle.IsInvalid) {
+                if (handle.IsInvalid)
+                {
                     System.Runtime.InteropServices.Marshal.ThrowExceptionForHR(System.Runtime.InteropServices.Marshal.GetHRForLastWin32Error());
                 }
 
@@ -183,8 +184,7 @@ namespace NLog.Targets
             }
             catch
             {
-                if ((handle != null) && (!handle.IsClosed))
-                    handle.Close();
+                handle?.Dispose();
                 throw;
             }
         }
