@@ -135,7 +135,13 @@ namespace NLog.Internal
         [Flags]
         public enum Win32SecurityFlags : uint
         {
+            /// <summary>
+            /// Security Quality of Service (SQOS) requested.
+            /// </summary>
             SecuritySqosPresent = 0x00100000,
+            /// <summary>
+            /// Impersonates a client at the Anonymous impersonation level.
+            /// </summary>
             SecurityAnonymous = 0x00000000,
         }
 
