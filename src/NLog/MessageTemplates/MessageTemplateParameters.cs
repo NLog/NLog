@@ -118,34 +118,32 @@ namespace NLog.MessageTemplates
                 TemplateEnumerator templateEnumerator = new TemplateEnumerator(template);
                 while (templateEnumerator.MoveNext())
                 {
-                    if (templateEnumerator.Current.Literal.Skip != 0)
-                    {
-                        var hole = templateEnumerator.Current.Hole;
-                        if (hole.Index != -1 && isPositional)
-                        {
-                            holeIndex = GetMaxHoleIndex(holeIndex, hole.Index);
-                            var value = GetHoleValueSafe(parameters, hole.Index, ref isValidTemplate);
-                            templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
-                        }
-                        else
-                        {
-                            if (isPositional)
-                            {
-                                isPositional = false;
-                                if (holeIndex != 0)
-                                {
-                                    // rewind and try again
-                                    templateEnumerator = new TemplateEnumerator(template);
-                                    holeIndex = 0;
-                                    templateParameters.Clear();
-                                    continue;
-                                }
-                            }
+                    if (templateEnumerator.Current.Literal.Skip == 0)
+                        continue;
 
-                            var value = GetHoleValueSafe(parameters, holeIndex, ref isValidTemplate);
-                            templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
-                            holeIndex++;
+                    var hole = templateEnumerator.Current.Hole;
+                    if (hole.Index != -1 && isPositional)
+                    {
+                        holeIndex = GetMaxHoleIndex(holeIndex, hole.Index);
+                        var value = GetHoleValueSafe(parameters, hole.Index, ref isValidTemplate);
+                        templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
+                    }
+                    else
+                    {
+                        if (holeIndex != 0 && isPositional)
+                        {
+                            // rewind and try again
+                            isPositional = false;
+                            templateEnumerator = new TemplateEnumerator(template);
+                            holeIndex = 0;
+                            templateParameters.Clear();
+                            continue;
                         }
+
+                        isPositional = false;
+                        var value = GetHoleValueSafe(parameters, holeIndex, ref isValidTemplate);
+                        templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
+                        holeIndex++;
                     }
                 }
 

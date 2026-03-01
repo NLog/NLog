@@ -178,7 +178,7 @@ namespace NLog.UnitTests
             if (!fi.Exists)
                 Assert.Fail("File '" + fileName + "' doesn't exist.");
 
-            using (TextReader fs = new StreamReader(fileName, encoding))
+            using (var fs = new StreamReader(fileName, encoding))
             {
                 string line;
                 while ((line = fs.ReadLine()) != null)
@@ -200,7 +200,7 @@ namespace NLog.UnitTests
             if (!fi.Exists)
                 Assert.Fail("File '" + fileName + "' doesn't exist.");
 
-            using (TextReader fs = new StreamReader(fileName, encoding))
+            using (var fs = new StreamReader(fileName, encoding))
             {
                 string line;
                 while ((line = fs.ReadLine()) != null)
