@@ -310,8 +310,20 @@ namespace NLog.UnitTests.Config
         public void LogRuleSetLoggingLevels_enables()
         {
             var rule = new LoggingRule();
+            Assert.Equal(ArrayHelper.Empty<LogLevel>(), rule.Levels);
             rule.SetLoggingLevels(LogLevel.Warn, LogLevel.Fatal);
-            Assert.Equal(rule.Levels, new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal });
+            Assert.Equal(new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal }, rule.Levels);
+        }
+
+        [Fact]
+        public void LogRuleMinLevel_enables()
+        {
+            var rule = new LoggingRule();
+            Assert.Equal(ArrayHelper.Empty<LogLevel>(), rule.Levels);
+            Assert.Equal(LogLevel.Off, rule.MinLevel);
+            rule.MinLevel = LogLevel.Warn;
+            Assert.Equal(new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal }, rule.Levels);
+            Assert.Equal(LogLevel.Warn, rule.MinLevel);
         }
 
         [Fact]
@@ -319,9 +331,8 @@ namespace NLog.UnitTests.Config
         {
             var rule = new LoggingRule();
             rule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
-
             rule.SetLoggingLevels(LogLevel.Warn, LogLevel.Fatal);
-            Assert.Equal(rule.Levels, new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal });
+            Assert.Equal(new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal }, rule.Levels);
         }
 
 
@@ -332,7 +343,7 @@ namespace NLog.UnitTests.Config
             rule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
 
             rule.SetLoggingLevels(LogLevel.Off, LogLevel.Off);
-            Assert.Equal(rule.Levels, ArrayHelper.Empty<LogLevel>());
+            Assert.Equal(ArrayHelper.Empty<LogLevel>(), rule.Levels);
         }
 
         [Fact]
@@ -342,7 +353,7 @@ namespace NLog.UnitTests.Config
             rule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
 
             rule.DisableLoggingForLevels(LogLevel.Warn, LogLevel.Fatal);
-            Assert.Equal(rule.Levels, new[] { LogLevel.Trace, LogLevel.Debug, LogLevel.Info });
+            Assert.Equal(new[] { LogLevel.Trace, LogLevel.Debug, LogLevel.Info }, rule.Levels);
         }
 
         [Fact]
