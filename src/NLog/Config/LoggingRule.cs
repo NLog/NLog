@@ -239,6 +239,32 @@ namespace NLog.Config
         /// </remarks>
         public FilterResult FilterDefaultAction { get; set; } = FilterResult.Ignore;
 
+
+        /// <summary>
+        /// Updates <see cref="Targets"/> for output by replacing with the input <paramref name="targets"/> collection.
+        /// </summary>
+        public void WriteTo(params Target[] targets)
+        {
+            IEnumerable<Target> targetsEnumerable = targets;
+            WriteTo(targetsEnumerable);
+        }
+
+        /// <summary>
+        /// Updates <see cref="Targets"/> for output by replacing with the input <paramref name="targets"/> collection
+        /// </summary>
+        public void WriteTo(IEnumerable<Target> targets)
+        {
+            Guard.ThrowIfNull(targets);
+            lock (_targets)
+            {
+                if (!ReferenceEquals(targets, _targets))
+                {
+                    _targets.Clear();
+                    _targets.AddRange(targets);
+                }
+            }
+        }
+
         /// <summary>
         /// Enables logging for a particular level.
         /// </summary>

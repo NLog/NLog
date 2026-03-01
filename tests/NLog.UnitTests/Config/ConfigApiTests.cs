@@ -307,6 +307,20 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void LogRuleToStringTest_WriteToMultiple_targets()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var target2 = new FileTarget { Name = "file2" };
+            var loggingRule = new LoggingRule("namespace.comp1", target);
+            Assert.Single(loggingRule.Targets);
+            Assert.Same(target, loggingRule.Targets[0]);
+            loggingRule.WriteTo(target, target2);
+            Assert.Equal(2, loggingRule.Targets.Count);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (namespace.comp1:Equals) levels: [ ] writeTo: [ file1 file2 ]", s);
+        }
+
+        [Fact]
         public void LogRuleSetLoggingLevels_enables()
         {
             var rule = new LoggingRule();
