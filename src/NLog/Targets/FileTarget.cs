@@ -328,7 +328,7 @@ namespace NLog.Targets
                     if (simpleLayout.OriginalText.Contains('#'))
                     {
                         var repairLegacyLayout = simpleLayout.OriginalText.Replace(".{#}", string.Empty).Replace("_{#}", "").Replace("-{#}", "").Replace("{#}", "").Replace(".{#", "").Replace("_{#", "").Replace("-{#", "").Replace("{#", "").Replace("#}", "").Replace("#", "");
-                        archiveSuffixFormat = _archiveSuffixFormat ?? _legacySequenceArchiveSuffixFormat;
+                        archiveSuffixFormat = archiveSuffixFormat ?? _legacySequenceArchiveSuffixFormat;
                         value = new SimpleLayout(repairLegacyLayout);
                     }
                 }
@@ -430,7 +430,7 @@ namespace NLog.Targets
                         case FileArchivePeriod.Minute:
                             return "_{1:yyyyMMddHHmm}_{0:00}";
                         default:
-                            return _legacyDateArchiveSuffixFormat;   // Also for weekdays
+                            return _archiveSuffixFormat ?? _legacyDateArchiveSuffixFormat;   // Also for weekdays
                     }
                 }
 
