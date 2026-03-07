@@ -35,12 +35,12 @@ for:
     deploy:
     - provider: NuGet
       api_key:
-        secure: FStb6Kr5sjHdPq4EzjHeXkW4DQDlS92kM9ZWDhApT68+j4WN7J7cnvvk3fj/hMxi
+        secure: mRvJYZWVnHgtsNn4w2elMG1PdpotS8F6K0MuRV4BKZkrYuW5W6d5N9W5fz5VZUkR
       on:
         branch: master
     - provider: NuGet
       api_key:
-        secure: FStb6Kr5sjHdPq4EzjHeXkW4DQDlS92kM9ZWDhApT68+j4WN7J7cnvvk3fj/hMxi
+        secure: mRvJYZWVnHgtsNn4w2elMG1PdpotS8F6K0MuRV4BKZkrYuW5W6d5N9W5fz5VZUkR
       on:
         branch: dev
     artifacts:
