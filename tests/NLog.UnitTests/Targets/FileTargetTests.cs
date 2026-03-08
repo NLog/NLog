@@ -717,7 +717,6 @@ namespace NLog.UnitTests.Targets
                 var fileTarget = new FileTarget
                 {
                     ArchiveOldFileOnStartup = false,
-                    ArchiveSuffixFormat = "",
                     FileName = Layout.FromLiteral(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}"
