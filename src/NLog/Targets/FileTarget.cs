@@ -565,6 +565,11 @@ namespace NLog.Targets
             if (FileName is null || ReferenceEquals(FileName, Layout.Empty))
                 throw new NLogConfigurationException("FileTarget FileName-property must be assigned. FileName is needed for file writing.");
 
+            if (_archiveSuffixFormat != null)
+            {
+                FormatArchiveSuffixFormat(int.MaxValue, DateTime.MaxValue, true);
+            }
+
             if (OpenFileMonitorTimerInterval > 0)
             {
                 // Prepare Timer for periodic checking of flushing/closing open files (inactive until first file is opened)
@@ -1001,7 +1006,7 @@ namespace NLog.Targets
                     var footerBytes = GetFooterLayoutBytes();
                     if (footerBytes?.Length > 0)
                     {
-                        openFile.FileAppender.Write(openFile.FileAppender.FileLastModified, footerBytes, 0, footerBytes.Length);
+                        openFile.FileAppender.Write(openFile.FileAppender.LastWriteTime, footerBytes, 0, footerBytes.Length);
                     }
                 }
             }
@@ -1093,28 +1098,34 @@ namespace NLog.Targets
             {
                 var fileName = Path.GetFileName(newFileName) ?? string.Empty;
                 var fileExt = Path.GetExtension(fileName) ?? string.Empty;
-                newFileName = newFileName.Substring(0, newFileName.Length - fileName.Length);
+                var filePath = newFileName.Substring(0, newFileName.Length - fileName.Length);
                 if (!string.IsNullOrEmpty(fileExt))
                     fileName = fileName.Substring(0, fileName.Length - fileExt.Length);
 
-                object fileLastModifiedObj = fileLastModified == default ? string.Empty : (object)fileLastModified;
-                var cultureInfo = LoggingConfiguration?.LogFactory?.DefaultCultureInfo ?? LogManager.LogFactory.DefaultCultureInfo;
-
-                try
-                {
-                    newFileName = newFileName + fileName + string.Format(cultureInfo, ArchiveSuffixFormat, sequenceNumber, fileLastModifiedObj) + fileExt;
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error(ex, "{0}: Failed to apply ArchiveSuffixFormat={1} using SequenceNumber={2} for file: '{3}'", this, ArchiveSuffixFormat, sequenceNumber, newFileName);
-                    if (ExceptionMustBeRethrown(ex))
-                        throw;
-                    newFileName = newFileName + fileName + string.Format(cultureInfo, _legacySequenceArchiveSuffixFormat, sequenceNumber) + fileExt;
-                }
+                newFileName = filePath + fileName + FormatArchiveSuffixFormat(sequenceNumber, fileLastModified, false) + fileExt;
             }
 
             var filepath = CleanFullFilePath(newFileName);
             return filepath;
+        }
+
+        private string FormatArchiveSuffixFormat(int sequenceNumber, DateTime fileLastModified, bool allowThrow)
+        {
+            var cultureInfo = LoggingConfiguration?.LogFactory?.DefaultCultureInfo ?? LogManager.LogFactory.DefaultCultureInfo;
+            object fileLastModifiedObj = fileLastModified == default ? string.Empty : (object)fileLastModified;
+
+            try
+            {
+                return string.Format(cultureInfo, ArchiveSuffixFormat, sequenceNumber, fileLastModifiedObj);
+            }
+            catch (Exception ex)
+            {
+                var configException = new NLogConfigurationException($"FileTarget ArchiveSuffixFormat-property has invalid format: '{ArchiveSuffixFormat}'", ex);
+                if (ExceptionMustBeRethrown(configException) && allowThrow)
+                    throw configException;
+
+                return string.Format(cultureInfo, _legacySequenceArchiveSuffixFormat, sequenceNumber);
+            }
         }
 
         internal static string CleanFullFilePath(string filename)
