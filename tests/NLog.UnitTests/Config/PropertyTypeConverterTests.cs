@@ -224,6 +224,30 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void Convert_DateTimeToDateTimeOffset()
+        {
+            // Act
+            var dateTime = new DateTime(1970, 1, 1, 1, 1, 1, DateTimeKind.Unspecified);
+            var result = _sut.Convert(dateTime, typeof(DateTimeOffset), "yyyy-MM-dd", null);
+
+            // Assert
+            var resultTyped = Assert.IsType<DateTimeOffset>(result);
+            Assert.Equal(dateTime.Date, resultTyped.DateTime);
+        }
+
+        [Fact]
+        public void Convert_DateTimeToDateTimeOffset_NoFormat()
+        {
+            // Act
+            var dateTime = new DateTime(1970, 1, 1, 1, 1, 1, DateTimeKind.Utc);
+            var result = _sut.Convert(dateTime, typeof(DateTimeOffset), null, null);
+
+            // Assert
+            var resultTyped = Assert.IsType<DateTimeOffset>(result);
+            Assert.Equal(dateTime, resultTyped.DateTime);
+        }
+
+        [Fact]
         public void Convert_NullableFormattableToStringTest()
         {
             // Arrange
