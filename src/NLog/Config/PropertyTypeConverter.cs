@@ -139,27 +139,32 @@ namespace NLog.Config
 
         private static object? ChangeObjectType(object propertyValue, Type propertyType, string? format, IFormatProvider? formatProvider)
         {
-            if (propertyValue is string propertyString && TryConvertFromString(propertyString, propertyType, format, formatProvider, out var fromStringValue))
+            if (propertyValue is string propertyString)
             {
-                return fromStringValue;
+                if (TryConvertFromString(propertyString, propertyType, format, formatProvider, out var fromStringValue))
+                    return fromStringValue;
             }
+            else if ((!string.IsNullOrEmpty(format) || typeof(string) == propertyType) && propertyValue is IFormattable formattableValue)
+            {
+                var stringValue = formattableValue.ToString(format, formatProvider);
+                if (TryConvertFromString(stringValue, propertyType, format, formatProvider, out var fromStringValue))
+                    return fromStringValue;
 
-            if (propertyValue is IConvertible convertibleValue)
+                propertyValue = stringValue;
+            }
+            else if (propertyValue is IConvertible convertibleValue)
             {
                 var typeCode = convertibleValue.GetTypeCode();
                 if (typeCode == TypeCode.DBNull)
                     return convertibleValue;
                 if (typeCode == TypeCode.Empty)
                     return null;
+                if (typeCode == TypeCode.DateTime && typeof(DateTimeOffset) == propertyType)
+                    return new DateTimeOffset(convertibleValue.ToDateTime(formatProvider));
             }
             else if (TryConvertToType(propertyValue, propertyType, out var convertedValue))
             {
                 return convertedValue;
-            }
-
-            if (!string.IsNullOrEmpty(format) && propertyValue is IFormattable formattableValue)
-            {
-                propertyValue = formattableValue.ToString(format, formatProvider);
             }
 
             return System.Convert.ChangeType(propertyValue, propertyType, formatProvider);
