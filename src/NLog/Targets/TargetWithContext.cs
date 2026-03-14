@@ -90,7 +90,7 @@ namespace NLog.Targets
         private TargetWithContextLayout _contextLayout;
 
         /// <summary>
-        /// Gets or sets the option to include all properties from the log events
+        /// Gets or sets whether to include the contents of the <see cref="LogEventInfo.Properties"/> dictionary.
         /// </summary>
         /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />

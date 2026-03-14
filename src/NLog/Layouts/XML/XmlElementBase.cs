@@ -118,14 +118,14 @@ namespace NLog.Layouts
         public bool IncludeEmptyValue { get; set; }
 
         /// <summary>
-        /// Gets or sets the option to include all properties from the log event (as XML)
+        /// Gets or sets whether to include the contents of the <see cref="LogEventInfo.Properties"/> dictionary.
         /// </summary>
         /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Output' order='10' />
         public bool IncludeEventProperties { get; set; }
 
         /// <summary>
-        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> dictionary.
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
         /// </summary>
         /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />

@@ -155,28 +155,28 @@ namespace NLog.Layouts
         private bool _indentJson;
 
         /// <summary>
-        /// Gets or sets whether to flatten nested object properties using dotted notation
+        /// Gets or sets whether to flatten nested object properties using dotted notation (avoid nested JSON output)
         /// </summary>
         /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool DottedRecursion { get; set; }
 
         /// <summary>
-        /// Gets or sets the option to include all properties from the log event (as JSON)
+        /// Gets or sets whether to include the contents of the <see cref="LogEventInfo.Properties"/> dictionary.
         /// </summary>
         /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeEventProperties { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="GlobalDiagnosticsContext"/> dictionary.
+        /// Gets or sets whether to include the contents of the <see cref="GlobalDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeGdc { get; set; }
 
         /// <summary>
-        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> dictionary.
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
         /// </summary>
         /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='10' />
