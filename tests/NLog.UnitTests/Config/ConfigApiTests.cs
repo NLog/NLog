@@ -341,6 +341,20 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void LogRuleFinalMinLevel_enables()
+        {
+            var rule = new LoggingRule();
+            Assert.Equal(ArrayHelper.Empty<LogLevel>(), rule.Levels);
+            Assert.Equal(LogLevel.Off, rule.MinLevel);
+            rule.FinalMinLevel = LogLevel.Warn; // FinalMinLevel should implicitly assign MinLevel when unassigned
+            Assert.Equal(new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal }, rule.Levels);
+            Assert.Equal(LogLevel.Warn, rule.MinLevel);
+            rule.FinalMinLevel = LogLevel.Error;// FinalMinLevel should only assign MinLevel when unassigned
+            Assert.Equal(new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal }, rule.Levels);
+            Assert.Equal(LogLevel.Warn, rule.MinLevel);
+        }
+
+        [Fact]
         public void LogRuleSetLoggingLevels_disables()
         {
             var rule = new LoggingRule();
