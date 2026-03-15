@@ -34,6 +34,7 @@
 namespace NLog.Targets
 {
     using System;
+    using System.ComponentModel;
     using NLog.Config;
     using NLog.Layouts;
 
@@ -69,11 +70,23 @@ namespace NLog.Targets
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets or sets the name of the property. Alias for <see cref="Name"/>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Key { get => Name; set => Name = value; }
+
+        /// <summary>
         /// Gets or sets the layout used for rendering the property value.
         /// </summary>
         /// <remarks><b>[Required]</b> Default: <see cref="Layout.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
+
+        /// <summary>
+        /// Gets or sets the layout used for rendering the property value. Alias for <see cref="Layout"/>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Layout Value { get => Layout; set => Layout = value; }
 
         /// <summary>
         /// Gets or sets the type of the property.
