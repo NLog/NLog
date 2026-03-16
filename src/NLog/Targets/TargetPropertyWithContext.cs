@@ -70,12 +70,6 @@ namespace NLog.Targets
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the property. Alias for <see cref="Name"/>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Key { get => Name; set => Name = value; }
-
-        /// <summary>
         /// Gets or sets the layout used for rendering the property value.
         /// </summary>
         /// <remarks><b>[Required]</b> Default: <see cref="Layout.Empty"/></remarks>
