@@ -63,6 +63,17 @@ namespace NLog.UnitTests.Layouts
             Assert.Single(l.Renderers);
         }
 
+
+        [Fact]
+        public void IsNullOrEmpty()
+        {
+            Layout l = "";
+            Assert.True(Layout.IsNullOrEmpty(l));
+            Assert.True(Layout.IsNullOrEmpty(null));
+            Assert.True(Layout.IsNullOrEmpty(Layout.Empty));
+            Assert.False(Layout.IsNullOrEmpty(new SimpleLayout("${message}")));
+        }
+
         [Fact]
         public void UnknownLayoutRenderer()
         {

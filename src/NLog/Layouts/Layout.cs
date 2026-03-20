@@ -98,6 +98,16 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Indicates whether the specified <paramref name="layout"/> is null or <see cref="Layout.Empty"/>.
+        /// </summary>
+        /// <param name="layout">The layout instance to test.</param>
+        /// <returns>true if the value parameter is null or <see cref="Layout.Empty"/>; otherwise, false.</returns>
+        public static bool IsNullOrEmpty(Layout? layout)
+        {
+            return layout is null || ReferenceEquals(layout, Layout.Empty);
+        }
+
+        /// <summary>
         /// Parses the specified string as LayoutRenderer-expression into a <see cref="SimpleLayout"/>.
         /// </summary>
         /// <param name="layoutText">The layout string.</param>

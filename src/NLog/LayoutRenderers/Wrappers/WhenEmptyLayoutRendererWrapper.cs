@@ -62,7 +62,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             _stringValueRenderer = null;
 
-            if (WhenEmpty is null || ReferenceEquals(WhenEmpty, Layout.Empty))
+            if (Layout.IsNullOrEmpty(WhenEmpty))
                 throw new NLogConfigurationException("WhenEmpty-LayoutRenderer WhenEmpty-property must be assigned.");
 
             base.InitializeLayoutRenderer();
