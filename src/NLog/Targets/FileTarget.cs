@@ -469,7 +469,7 @@ namespace NLog.Targets
             get
             {
                 if (OpenFileFlushTimeout <= 0 || AutoFlush || !KeepFileOpen)
-                    return (OpenFileCacheTimeout > 500 && OpenFileCacheTimeout < 3600) ? 300 : OpenFileCacheTimeout;
+                    return (OpenFileCacheTimeout > 600 && OpenFileCacheTimeout < 3600) ? 300 : OpenFileCacheTimeout;
                 else if (OpenFileCacheTimeout <= 0)
                     return OpenFileFlushTimeout;
                 else
@@ -1066,7 +1066,7 @@ namespace NLog.Targets
 
         private void PruneOpenFileCacheUsingTimeout()
         {
-            DateTime closeTime = Time.TimeSource.Current.Time.AddSeconds(-OpenFileCacheTimeout);
+            DateTime closeTime = Time.TimeSource.Current.Time.AddSeconds(-OpenFileCacheTimeout).AddSeconds(OpenFileCacheTimeout > OpenFileMonitorTimerInterval ? -OpenFileMonitorTimerInterval : 0);
             bool unusedFileMustBeClosed = false;
 
             foreach (var openFile in _openFileCache)
