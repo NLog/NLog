@@ -219,7 +219,7 @@ namespace NLog.Targets
         {
             base.InitializeTarget();
 
-            if (Source is null || ReferenceEquals(Source, Layout.Empty))
+            if (Layout.IsNullOrEmpty(Source))
                 throw new NLogConfigurationException("EventLogTarget Source-property must be assigned. Source is needed for EventLog writing.");
 
             var maxKilobytes = MaxKilobytes?.IsFixed == true ? MaxKilobytes.FixedValue : 0;

@@ -562,7 +562,7 @@ namespace NLog.Targets
         /// <inheritdoc />
         protected override void InitializeTarget()
         {
-            if (FileName is null || ReferenceEquals(FileName, Layout.Empty))
+            if (Layout.IsNullOrEmpty(FileName))
                 throw new NLogConfigurationException("FileTarget FileName-property must be assigned. FileName is needed for file writing.");
 
             if (_archiveSuffixFormat != null)
