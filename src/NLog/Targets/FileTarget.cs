@@ -1152,6 +1152,7 @@ namespace NLog.Targets
                 //keep the / in the dirname, because dirname could be c:/ and combine of c: and file name won't work well.
                 var dirName = lastDirSeparator > 0 ? filename.Substring(0, lastDirSeparator + 1) : string.Empty;
                 filename = Path.Combine(dirName, new string(fileNameChars));
+                InternalLogger.Warn("FileTarget FileName contains invalid file characters, that have been removed: {0}", filename);
             }
 
             var filepath = FileInfoHelper.IsRelativeFilePath(filename) ? Path.Combine(AppEnvironmentWrapper.FixFilePathWithLongUNC(LogManager.LogFactory.CurrentAppEnvironment.AppDomainBaseDirectory), filename) : filename;
