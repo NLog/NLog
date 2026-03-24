@@ -512,7 +512,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void DontThrowExceptionWhenArchiveEverySetByDefaultParameters()
         {
-            var fileName = Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + ".log";
+            var tempFileName = Path.GetTempFileName();
+            var fileName = Path.GetFileNameWithoutExtension(tempFileName) + ".log";
 
             try
             {
@@ -545,6 +546,8 @@ namespace NLog.UnitTests.Config
             {
                 if (File.Exists(fileName))
                     File.Delete(fileName);
+                if (File.Exists(tempFileName))
+                    File.Delete(tempFileName);
             }
         }
 

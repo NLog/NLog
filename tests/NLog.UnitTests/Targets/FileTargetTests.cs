@@ -707,7 +707,8 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void ArchiveFileOnStartTests()
         {
-            var logFile = Path.GetTempFileName() + ".txt";
+            var tmpFile = Path.GetTempFileName();
+            var logFile = tmpFile + ".txt";
             var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString(), "Archive");
             var archiveExtension = "txt";
 
@@ -794,6 +795,8 @@ namespace NLog.UnitTests.Targets
             {
                 if (File.Exists(logFile))
                     File.Delete(logFile);
+                if (File.Exists(tmpFile))
+                    File.Delete(tmpFile);
                 if (Directory.Exists(tempArchiveFolder))
                     Directory.Delete(tempArchiveFolder, true);
             }
@@ -2106,7 +2109,8 @@ namespace NLog.UnitTests.Targets
         [InlineData(true, true, false)]
         public void WriteHeaderOnStartupTest(bool writeHeaderWhenInitialFileNotEmpty, bool writeBom, bool keepFileOpen)
         {
-            var logFile = Path.GetTempFileName() + ".txt";
+            var tmpFile = Path.GetTempFileName();
+            var logFile = tmpFile + ".txt";
             try
             {
                 const string header = "Headerline";
@@ -2165,6 +2169,8 @@ namespace NLog.UnitTests.Targets
                 LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
+                if (File.Exists(tmpFile))
+                    File.Delete(tmpFile);
             }
         }
 
@@ -2635,9 +2641,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void FileTarget_InvalidFileNameCorrection()
         {
-            var tempFile = Path.GetTempFileName();
-            var invalidLogFileName = tempFile + Path.GetInvalidFileNameChars()[0];
-            var expectedCorrectedTempFile = tempFile + "_";
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+            var invalidLogFileName = tempDir + "/" + "\n" + "/" + "invalid" + Path.GetInvalidFileNameChars()[0].ToString();
+            var expectedCorrectedTempFile = Path.Combine(tempDir, "_", "invalid_");
 
             try
             {
@@ -2661,8 +2667,8 @@ namespace NLog.UnitTests.Targets
             {
                 if (File.Exists(expectedCorrectedTempFile))
                     File.Delete(expectedCorrectedTempFile);
-                if (File.Exists(invalidLogFileName))
-                    File.Delete(invalidLogFileName);
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
             }
         }
 
@@ -3476,25 +3482,33 @@ namespace NLog.UnitTests.Targets
         private void GenerateArchives(int count, string archiveDateFormat, string archiveFileName, int maxArchiveFiles = 0)
         {
             string logFileName = Path.GetTempFileName();
-            const int logFileMaxSize = 1;
-            var fileTarget = new FileTarget
+            try
             {
-                FileName = logFileName,
-                ArchiveFileName = archiveFileName,
+                const int logFileMaxSize = 1;
+                var fileTarget = new FileTarget
+                {
+                    FileName = logFileName,
+                    ArchiveFileName = archiveFileName,
 #pragma warning disable CS0618 // Type or member is obsolete
-                ArchiveDateFormat = archiveDateFormat,
+                    ArchiveDateFormat = archiveDateFormat,
 #pragma warning restore CS0618 // Type or member is obsolete
-                ArchiveAboveSize = logFileMaxSize
-            };
-            if (maxArchiveFiles > 0)
-            {
-                fileTarget.MaxArchiveFiles = maxArchiveFiles;
-            }
-            LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
-            for (int currentSequenceNumber = 0; currentSequenceNumber < count; currentSequenceNumber++)
-                logger.Debug("Test {0}", currentSequenceNumber);
+                    ArchiveAboveSize = logFileMaxSize
+                };
+                if (maxArchiveFiles > 0)
+                {
+                    fileTarget.MaxArchiveFiles = maxArchiveFiles;
+                }
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+                for (int currentSequenceNumber = 0; currentSequenceNumber < count; currentSequenceNumber++)
+                    logger.Debug("Test {0}", currentSequenceNumber);
 
-            LogManager.Configuration = null;
+                LogManager.Configuration = null;
+            }
+            finally
+            {
+                if (File.Exists(logFileName))
+                    File.Delete(logFileName);
+            }
         }
 
         [Fact]
