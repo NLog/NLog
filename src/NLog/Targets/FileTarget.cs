@@ -1146,6 +1146,16 @@ namespace NLog.Targets
                 }
             }
 
+            if (filename.IndexOfAny(UnexpectedEscapeChars) >= 0)
+            {
+                foreach (var unexpectedEscapeChar in UnexpectedEscapeChars)
+                {
+                    filename = filename.Replace(unexpectedEscapeChar, '_');
+                }
+                if (fileNameChars is null)
+                    InternalLogger.Warn("FileTarget FileName contains unexpected escape characters: {0}", filename);
+            }
+
             //only if an invalid char was replaced do we create a new string.
             if (fileNameChars != null)
             {
@@ -1159,6 +1169,7 @@ namespace NLog.Targets
             filepath = Path.GetFullPath(filepath);
             return filepath;
         }
+        private static readonly char[] UnexpectedEscapeChars = new[] { '\0', '\a', '\b', '\f', '\n', '\r', '\t', '\v', '\"', '|', '<', '>' };
         private static readonly char[] DirectorySeparatorChars = new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
         private static readonly HashSet<char> InvalidFileNameChars = new HashSet<char>(Path.GetInvalidFileNameChars());
 
