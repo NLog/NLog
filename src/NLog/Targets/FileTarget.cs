@@ -567,7 +567,7 @@ namespace NLog.Targets
 
             if (_archiveSuffixFormat != null)
             {
-                FormatArchiveSuffixFormat(int.MaxValue, DateTime.MaxValue, true);
+                StringFormat_ArchiveSuffixFormat(int.MaxValue, DateTime.MaxValue, true);
             }
 
             if (OpenFileMonitorTimerInterval > 0)
@@ -1102,14 +1102,14 @@ namespace NLog.Targets
                 if (!string.IsNullOrEmpty(fileExt))
                     fileName = fileName.Substring(0, fileName.Length - fileExt.Length);
 
-                newFileName = filePath + fileName + FormatArchiveSuffixFormat(sequenceNumber, fileLastModified, false) + fileExt;
+                newFileName = filePath + fileName + StringFormat_ArchiveSuffixFormat(sequenceNumber, fileLastModified, false) + fileExt;
             }
 
             var filepath = CleanFullFilePath(newFileName);
             return filepath;
         }
 
-        private string FormatArchiveSuffixFormat(int sequenceNumber, DateTime fileLastModified, bool allowThrow)
+        private string StringFormat_ArchiveSuffixFormat(int sequenceNumber, DateTime fileLastModified, bool allowThrow)
         {
             var cultureInfo = LoggingConfiguration?.LogFactory?.DefaultCultureInfo ?? LogManager.LogFactory.DefaultCultureInfo;
             object fileLastModifiedObj = fileLastModified == default ? string.Empty : (object)fileLastModified;
@@ -1120,7 +1120,7 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                var configException = new NLogConfigurationException($"FileTarget ArchiveSuffixFormat-property has invalid format: '{ArchiveSuffixFormat}'", ex);
+                var configException = new NLogConfigurationException($"FileTarget ArchiveSuffixFormat-property failed with String.Format: '{ArchiveSuffixFormat}'", ex);
                 if (ExceptionMustBeRethrown(configException) && allowThrow)
                     throw configException;
 
