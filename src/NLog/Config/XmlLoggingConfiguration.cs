@@ -645,33 +645,34 @@ namespace NLog.Config
                 }
             }
 
-            private void ReloadTimer(object state)
+            private void ReloadTimer(object? state)
             {
                 if (_isDisposing)
                 {
                     return; //timer was disposed already.
                 }
 
-                LoggingConfiguration oldConfig = (LoggingConfiguration)state;
-
-                InternalLogger.Info("AutoReload Config File Monitor reloading configuration...");
-
-                lock (_lockObject)
-                {
-                    if (_isDisposing)
-                    {
-                        return; //timer was disposed already.
-                    }
-
-                    var currentTimer = _reloadTimer;
-                    _reloadTimer = null;
-                    currentTimer?.Dispose();
-                }
-
+                LoggingConfiguration? oldConfig = null;
                 LoggingConfiguration? newConfig = null;
 
                 try
                 {
+                    oldConfig = (LoggingConfiguration?)state;
+
+                    InternalLogger.Info("AutoReload Config File Monitor reloading configuration...");
+
+                    lock (_lockObject)
+                    {
+                        if (_isDisposing)
+                        {
+                            return; //timer was disposed already.
+                        }
+
+                        var currentTimer = _reloadTimer;
+                        _reloadTimer = null;
+                        currentTimer?.Dispose();
+                    }
+
                     var currentConfig = _logFactory.Configuration;
                     if (!ReferenceEquals(currentConfig, oldConfig))
                     {
@@ -679,7 +680,7 @@ namespace NLog.Config
                         return;
                     }
 
-                    newConfig = oldConfig.Reload();
+                    newConfig = oldConfig?.Reload();
                     if (newConfig is null || ReferenceEquals(newConfig, oldConfig))
                     {
                         InternalLogger.Debug("AutoReload Config File Monitor skipping reload, since new configuration has not changed.");
