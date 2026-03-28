@@ -40,6 +40,11 @@ namespace NLog.Targets.GZipFile.Tests
 {
     public class GZipFileTests
     {
+        public GZipFileTests()
+        {
+            LogManager.ThrowExceptions = true;
+        }
+
         [Fact]
         public void SimpleFileGZipStream()
         {
@@ -92,6 +97,45 @@ namespace NLog.Targets.GZipFile.Tests
                 {
                     Assert.Equal("Hello", logFile.ReadLine());
                     Assert.Equal("World", logFile.ReadLine());
+                    Assert.Null(logFile.ReadLine());
+                }
+            }
+            finally
+            {
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
+            }
+        }
+
+        [Fact]
+        public void SimpleFileGZipStream_HeaderFooterBom()
+        {
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+            var logFileName = Path.Combine(tempDir, "log.gzip");
+
+            try
+            {
+                var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+                {
+                    cfg.ForLogger().WriteTo(new GZipFileTarget()
+                    {
+                        FileName = logFileName,
+                        Layout = "${message}",
+                        LineEnding = LineEndingMode.LF,
+                        Header = "Hello World",
+                        Footer = "Goodbye World",
+                        WriteBom = true,
+                    });
+                }).LogFactory;
+
+                logFactory.GetCurrentClassLogger().Info("There was light");
+                logFactory.Shutdown();
+
+                using (var logFile = new StreamReader(new GZipStream(new FileStream(logFileName, FileMode.Open), CompressionMode.Decompress)))
+                {
+                    Assert.Equal("Hello World", logFile.ReadLine());
+                    Assert.Equal("There was light", logFile.ReadLine());
+                    Assert.Equal("Goodbye World", logFile.ReadLine());
                     Assert.Null(logFile.ReadLine());
                 }
             }
