@@ -982,7 +982,7 @@ namespace NLog.Config
                         InternalLogger.Warn("Flush completed with errors");
                         AsyncHelpers.StartAsyncTask(s =>
                         {
-                            ((AsyncContinuation)s).Invoke(lastException);
+                            ((AsyncContinuation?)s)?.Invoke(lastException);
                         }, flushCompletion);
                     }
                     else
@@ -990,7 +990,7 @@ namespace NLog.Config
                         InternalLogger.Debug("Flush completed");
                         AsyncHelpers.StartAsyncTask(s =>
                         {
-                            ((AsyncContinuation)s).Invoke(null);
+                            ((AsyncContinuation?)s)?.Invoke(null);
                         }, flushCompletion);
                     }
                 }

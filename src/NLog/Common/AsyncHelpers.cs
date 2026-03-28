@@ -225,14 +225,14 @@ namespace NLog.Common
                         {
                             AsyncHelpers.StartAsyncTask(s =>
                             {
-                                ((AsyncContinuation)s).Invoke(null);
+                                ((AsyncContinuation?)s)?.Invoke(null);
                             }, asyncContinuation);
                         }
                         else
                         {
                             AsyncHelpers.StartAsyncTask(s =>
                             {
-                                ((AsyncContinuation)s).Invoke(combinedException);
+                                ((AsyncContinuation?)s)?.Invoke(combinedException);
                             }, asyncContinuation);
                         }
                     }

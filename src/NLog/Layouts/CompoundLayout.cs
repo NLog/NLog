@@ -100,7 +100,7 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         public override string ToString()
         {
-            return ToStringWithNestedItems(_layouts, l => l.ToString());
+            return ToStringWithNestedItems(_layouts, l => l?.ToString() ?? string.Empty);
         }
     }
 }

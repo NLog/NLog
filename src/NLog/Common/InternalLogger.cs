@@ -487,8 +487,13 @@ namespace NLog.Common
                 return internalLogFile;
             }
         }
-
-        private static bool ContainsSubStringIgnoreCase(string haystack, string needle, out string? result)
+           
+        private static bool ContainsSubStringIgnoreCase(string haystack, string needle,
+#if NETSTANDARD2_1_OR_GREATER || NET
+            [System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out string? result
+            )
         {
             int needlePos = haystack.IndexOf(needle, StringComparison.OrdinalIgnoreCase);
             result = needlePos >= 0 ? haystack.Substring(needlePos, needle.Length) : null;
