@@ -1296,7 +1296,7 @@ namespace NLog.Targets
 
                 if (WriteBom)
                 {
-                    fileWasEmpty = ReplaceFileContentsOnEachWrite || fileStream.Length == 0;
+                    fileWasEmpty = IsNewFileEmpty(initialFileOpen, fileStream);
                     if (fileWasEmpty == true)
                     {
                         InternalLogger.Trace("{0}: Write byte order mark from encoding={1}", this, Encoding);
@@ -1310,7 +1310,7 @@ namespace NLog.Targets
 
                 if (Header != null)
                 {
-                    bool writeHeader = (initialFileOpen && WriteHeaderWhenInitialFileNotEmpty) || ReplaceFileContentsOnEachWrite || (fileWasEmpty ?? fileStream.Length == 0);
+                    bool writeHeader = (initialFileOpen && WriteHeaderWhenInitialFileNotEmpty) || (fileWasEmpty ?? IsNewFileEmpty(initialFileOpen, fileStream));
                     if (writeHeader)
                     {
                         InternalLogger.Trace("{0}: Write header", this);
@@ -1326,6 +1326,15 @@ namespace NLog.Targets
                 fileStream?.Dispose();
                 throw;
             }
+        }
+
+        private bool IsNewFileEmpty(bool initialFileOpen, Stream fileStream)
+        {
+            if (ReplaceFileContentsOnEachWrite)
+                return true;
+            if (ArchiveOldFileOnStartup && !fileStream.CanSeek)
+                return initialFileOpen;    // NLog.Targets.GZipFile expects newly opened files to be empty
+            return fileStream.Length == 0;
         }
 
         /// <summary>
