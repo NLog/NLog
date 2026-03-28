@@ -102,7 +102,11 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="layout">The layout instance to test.</param>
         /// <returns>true if the value parameter is null or <see cref="Layout.Empty"/>; otherwise, false.</returns>
-        public static bool IsNullOrEmpty(Layout? layout)
+        public static bool IsNullOrEmpty(
+#if NETSTANDARD2_1_OR_GREATER || NET
+            [NotNullWhen(false)]
+#endif
+            Layout? layout)
         {
             return layout is null || ReferenceEquals(layout, Layout.Empty);
         }
