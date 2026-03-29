@@ -197,5 +197,14 @@ namespace NLog.Layouts
                 XmlHelper.EscapeXmlWhenNeeded(xmlValueString, true, builder);
             }
         }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            if (Encode || Layout is SimpleLayout)
+                return $"{Name}={Layout}";
+            else
+                return $"{Name} (Encode=false)";
+        }
     }
 }

@@ -118,5 +118,11 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event for rendering</param>
         /// <returns>Result value when available, else fallback to defaultValue</returns>
         public object? RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return $"{Name}={Layout}";
+        }
     }
 }

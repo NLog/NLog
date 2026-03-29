@@ -124,5 +124,11 @@ namespace NLog.Layouts
             }
         }
         internal CsvQuotingMode? _quoting;
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return $"{Name}={Layout}";
+        }
     }
 }
