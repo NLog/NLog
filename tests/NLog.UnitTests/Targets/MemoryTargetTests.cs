@@ -281,7 +281,7 @@ namespace NLog.UnitTests.Targets
 
             logger.Factory.Configuration = null;
 
-            // First 3 are simple Add, the 4th triggers a Reset (because old items were removed)
+            Assert.Equal(4, actions.Count);
             Assert.Equal(System.Collections.Specialized.NotifyCollectionChangedAction.Add, actions[0]);
             Assert.Equal(System.Collections.Specialized.NotifyCollectionChangedAction.Add, actions[1]);
             Assert.Equal(System.Collections.Specialized.NotifyCollectionChangedAction.Add, actions[2]);

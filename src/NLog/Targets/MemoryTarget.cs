@@ -91,8 +91,14 @@ namespace NLog.Targets
 #if !NET35
         /// <summary>
         /// Gets <see cref="Logs"/> as <see cref="System.Collections.Specialized.INotifyCollectionChanged"/>
-        /// to support GUI data binding (e.g. WPF, MAUI).
+        /// to support GUI data binding.
         /// </summary>
+        /// <remarks>
+        /// cref="System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged"
+        /// When binding to a UI framework such as WPF or MAUI, the consumer is responsible for
+        /// marshaling to the UI thread. For WPF, use <c>BindingOperations.EnableCollectionSynchronization</c>.
+        /// For MAUI/other, dispatch via <c>SynchronizationContext</c> or <c>MainThread.BeginInvokeOnMainThread</c>.
+        /// </remarks>
         public System.Collections.Specialized.INotifyCollectionChanged ObservableLogs => _logs;
 #endif
 
@@ -145,7 +151,7 @@ namespace NLog.Targets
             public event System.Collections.Specialized.NotifyCollectionChangedEventHandler? CollectionChanged;
             private void OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
             {
-            CollectionChanged?.Invoke(this, e);
+                CollectionChanged?.Invoke(this, e);
             }
 
 #endif
@@ -160,35 +166,28 @@ namespace NLog.Targets
                 }
                 set
                 {
+                    T oldItem;
                     lock (_list)
                     {
+                        oldItem = _list[index];
                         _list[index] = value;
                     }
+#if !NET35
+                OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                         System.Collections.Specialized.NotifyCollectionChangedAction.Replace, value, oldItem, index));
+#endif
                 }
             }
 
             public int Count => _list.Count;
             bool ICollection<T>.IsReadOnly => ((ICollection<T>)_list).IsReadOnly;
 
-            public void Add(T item)
-            {
-                lock (_list)
-                {
-                    _list.Add(item);
-                }
-#if !NET35
-                OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
-                    System.Collections.Specialized.NotifyCollectionChangedAction.Add, item));
-#endif
-
-
-            }
-
             public void Add(T item, int maxListCount)
             {
 #if !NET35
                 bool itemsRemoved = false;
 #endif
+                int newIndex;
                 lock (_list)
                 {
                     if (maxListCount > 0)
@@ -197,33 +196,52 @@ namespace NLog.Targets
                         {
                             _list.RemoveAt(0);
 #if !NET35
-                 itemsRemoved = true;
+                            itemsRemoved = true;
 #endif
                         }
                     }
                     _list.Add(item);
+                    newIndex = _list.Count - 1;
                 }
 #if !NET35
-               if (itemsRemoved)
-               {
-                   OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
-                       System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
-               }
-               else
-               {
-                   OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
-                       System.Collections.Specialized.NotifyCollectionChangedAction.Add, item));
-               }
+                if (itemsRemoved)
+                {
+                    OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                        System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
+                }
+                else
+                {
+                    OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                        System.Collections.Specialized.NotifyCollectionChangedAction.Add, item, newIndex));
+                }
 #endif
             }
 
+            public void Add(T item)
+            {
+                int newIndex;
+                lock (_list)
+                {
+                    _list.Add(item);
+                    newIndex = _list.Count - 1;
+                }
+#if !NET35
+             OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                        System.Collections.Specialized.NotifyCollectionChangedAction.Add, item, newIndex));
+#endif
+            }
             void ICollection<T>.Clear()
             {
                 lock (_list)
                 {
                     _list.Clear();
                 }
+#if !NET35
+                OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                          System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
+#endif
             }
+
 
             bool ICollection<T>.Contains(T item)
             {
@@ -255,22 +273,40 @@ namespace NLog.Targets
                 {
                     _list.Insert(index, item);
                 }
+#if !NET35
+            OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                     System.Collections.Specialized.NotifyCollectionChangedAction.Add, item, index));
+#endif
             }
 
             bool ICollection<T>.Remove(T item)
             {
+                int index;
                 lock (_list)
                 {
-                    return _list.Remove(item);
+                    index = _list.IndexOf(item);
+                    if (index < 0) return false;
+                    _list.RemoveAt(index);
                 }
+#if !NET35
+             OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                   System.Collections.Specialized.NotifyCollectionChangedAction.Remove, item, index));
+#endif
+                return true;
             }
 
             public void RemoveAt(int index)
             {
+                T item;
                 lock (_list)
                 {
+                    item = _list[index];
                     _list.RemoveAt(index);
                 }
+#if !NET35
+            OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                  System.Collections.Specialized.NotifyCollectionChangedAction.Remove, item, index));
+#endif
             }
 
             public IEnumerator<T> GetEnumerator()
