@@ -142,19 +142,19 @@ namespace NLog.Targets
 
         private sealed class ThreadSafeList<T> : IList<T>
 #if !NET35
-            , System.Collections.Specialized.INotifyCollectionChanged
+         , System.Collections.Specialized.INotifyCollectionChanged
 #endif
         {
             private readonly List<T> _list = new List<T>();
+
 #if !NET35
-
-            public event System.Collections.Specialized.NotifyCollectionChangedEventHandler? CollectionChanged;
-            private void OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-            {
-                CollectionChanged?.Invoke(this, e);
-            }
-
+        public event System.Collections.Specialized.NotifyCollectionChangedEventHandler? CollectionChanged;   
+        private void OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            CollectionChanged?.Invoke(this, e);
+        }
 #endif
+
             public T this[int index]
             {
                 get
@@ -173,8 +173,9 @@ namespace NLog.Targets
                         _list[index] = value;
                     }
 #if !NET35
+            if (CollectionChanged != null)
                 OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
-                         System.Collections.Specialized.NotifyCollectionChangedAction.Replace, value, oldItem, index));
+                    System.Collections.Specialized.NotifyCollectionChangedAction.Replace, value, oldItem, index));
 #endif
                 }
             }
@@ -204,16 +205,19 @@ namespace NLog.Targets
                     newIndex = _list.Count - 1;
                 }
 #if !NET35
-                if (itemsRemoved)
-                {
-                    OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
-                        System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
-                }
-                else
-                {
-                    OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
-                        System.Collections.Specialized.NotifyCollectionChangedAction.Add, item, newIndex));
-                }
+             if (CollectionChanged != null)
+             {
+                 if (itemsRemoved)
+                 {
+                     OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                         System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
+                 }
+                 else
+                 {
+                     OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                         System.Collections.Specialized.NotifyCollectionChangedAction.Add, item, newIndex));
+                 }
+              }
 #endif
             }
 
@@ -226,22 +230,21 @@ namespace NLog.Targets
                     newIndex = _list.Count - 1;
                 }
 #if !NET35
-             OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
-                        System.Collections.Specialized.NotifyCollectionChangedAction.Add, item, newIndex));
-#endif
-            }
-            void ICollection<T>.Clear()
-            {
-                lock (_list)
-                {
-                    _list.Clear();
-                }
-#if !NET35
+            if (CollectionChanged != null)
                 OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
-                          System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
+                   System.Collections.Specialized.NotifyCollectionChangedAction.Add, item, newIndex));
 #endif
             }
 
+            void ICollection<T>.Clear()
+            {
+                lock (_list) _list.Clear();
+#if !NET35
+            if (CollectionChanged != null)
+                OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                    System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
+#endif
+            }
 
             bool ICollection<T>.Contains(T item)
             {
@@ -274,8 +277,9 @@ namespace NLog.Targets
                     _list.Insert(index, item);
                 }
 #if !NET35
-            OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
-                     System.Collections.Specialized.NotifyCollectionChangedAction.Add, item, index));
+            if (CollectionChanged != null)
+                 OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                       System.Collections.Specialized.NotifyCollectionChangedAction.Add, item, index));
 #endif
             }
 
@@ -289,8 +293,9 @@ namespace NLog.Targets
                     _list.RemoveAt(index);
                 }
 #if !NET35
-             OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
-                   System.Collections.Specialized.NotifyCollectionChangedAction.Remove, item, index));
+            if (CollectionChanged != null)
+                 OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                    System.Collections.Specialized.NotifyCollectionChangedAction.Remove, item, index));
 #endif
                 return true;
             }
@@ -304,8 +309,9 @@ namespace NLog.Targets
                     _list.RemoveAt(index);
                 }
 #if !NET35
-            OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
-                  System.Collections.Specialized.NotifyCollectionChangedAction.Remove, item, index));
+            if (CollectionChanged != null)
+                OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                    System.Collections.Specialized.NotifyCollectionChangedAction.Remove, item, index));
 #endif
             }
 
