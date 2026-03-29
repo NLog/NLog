@@ -51,10 +51,9 @@ namespace NLog.Attributes
         /// <inheritdoc/>
         public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            var valueType = value?.GetType();
-            if (typeof(string).Equals(valueType))
-                return LogLevel.FromString(value?.ToString() ?? string.Empty);
-            else if (IsNumericType(valueType))
+            if (value is string stringValue)
+                return LogLevel.FromString(stringValue);
+            else if (value is IConvertible && IsNumericType(value.GetType()))
                 return LogLevel.FromOrdinal(Convert.ToInt32(value, CultureInfo.InvariantCulture));
             else
                 return base.ConvertFrom(context, culture, value);
