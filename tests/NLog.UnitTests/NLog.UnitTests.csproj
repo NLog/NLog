@@ -51,7 +51,6 @@
     <Reference Include="Microsoft.CSharp" />
 
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-    <PackageReference Include="DotNetZip.Reduced" Version="1.9.1.8" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net8.0' AND '$(TestTargetFramework)' != '' ">
