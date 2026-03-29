@@ -223,5 +223,70 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("Warn ", memoryTarget.Logs[3]);
             Assert.Equal("Error EEE", memoryTarget.Logs[4]);
         }
+
+        [Fact]
+        public void MemoryTarget_ObservableLogs_FiresEventOnWrite()
+        {
+            var memoryTarget = new MemoryTarget
+            {
+                Layout = "${level} ${message}"
+            };
+
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(memoryTarget);
+            }).GetCurrentClassLogger();
+
+            int eventCount = 0;
+            memoryTarget.ObservableLogs.CollectionChanged += (s, e) =>
+            {
+                eventCount++;
+            };
+
+            logger.Info("AAA");
+            logger.Warn("BBB");
+            logger.Error("CCC");
+
+            logger.Factory.Configuration = null;
+
+            Assert.Equal(3, eventCount);
+            Assert.Equal(3, memoryTarget.Logs.Count);
+        }
+
+
+        [Fact]
+        public void MemoryTarget_ObservableLogs_FiresResetEventWhenMaxLogsCountReached()
+        {
+            var memoryTarget = new MemoryTarget
+            {
+                Layout = "${level} ${message}",
+                MaxLogsCount = 3
+            };
+
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(memoryTarget);
+            }).GetCurrentClassLogger();
+
+            var actions = new System.Collections.Generic.List<System.Collections.Specialized.NotifyCollectionChangedAction>();
+            memoryTarget.ObservableLogs.CollectionChanged += (s, e) =>
+            {
+                actions.Add(e.Action);
+            };
+
+            logger.Info("AAA");
+            logger.Info("BBB");
+            logger.Info("CCC");
+            logger.Info("DDD"); // this one pushes over the limit
+
+            logger.Factory.Configuration = null;
+
+            // First 3 are simple Add, the 4th triggers a Reset (because old items were removed)
+            Assert.Equal(System.Collections.Specialized.NotifyCollectionChangedAction.Add, actions[0]);
+            Assert.Equal(System.Collections.Specialized.NotifyCollectionChangedAction.Add, actions[1]);
+            Assert.Equal(System.Collections.Specialized.NotifyCollectionChangedAction.Add, actions[2]);
+            Assert.Equal(System.Collections.Specialized.NotifyCollectionChangedAction.Reset, actions[3]);
+            Assert.Equal(3, memoryTarget.Logs.Count); // still capped at 3
+        }
     }
 }

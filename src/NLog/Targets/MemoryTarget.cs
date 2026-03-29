@@ -88,6 +88,14 @@ namespace NLog.Targets
         /// </remarks>
         public IList<string> Logs => _logs;
 
+#if !NET35
+        /// <summary>
+        /// Gets <see cref="Logs"/> as <see cref="System.Collections.Specialized.INotifyCollectionChanged"/>
+        /// to support GUI data binding (e.g. WPF, MAUI).
+        /// </summary>
+        public System.Collections.Specialized.INotifyCollectionChanged ObservableLogs => _logs;
+#endif
+
         /// <summary>
         /// Gets or sets the max number of items to have in memory. Zero or Negative means no limit.
         /// </summary>
@@ -127,9 +135,20 @@ namespace NLog.Targets
         }
 
         private sealed class ThreadSafeList<T> : IList<T>
+#if !NET35
+            , System.Collections.Specialized.INotifyCollectionChanged
+#endif
         {
             private readonly List<T> _list = new List<T>();
+#if !NET35
 
+            public event System.Collections.Specialized.NotifyCollectionChangedEventHandler? CollectionChanged;
+            private void OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+            {
+            CollectionChanged?.Invoke(this, e);
+            }
+
+#endif
             public T this[int index]
             {
                 get
@@ -157,19 +176,45 @@ namespace NLog.Targets
                 {
                     _list.Add(item);
                 }
+#if !NET35
+                OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                    System.Collections.Specialized.NotifyCollectionChangedAction.Add, item));
+#endif
+
+
             }
 
             public void Add(T item, int maxListCount)
             {
+#if !NET35
+                bool itemsRemoved = false;
+#endif
                 lock (_list)
                 {
                     if (maxListCount > 0)
                     {
                         while (_list.Count >= maxListCount)
+                        {
                             _list.RemoveAt(0);
+#if !NET35
+                 itemsRemoved = true;
+#endif
+                        }
                     }
                     _list.Add(item);
                 }
+#if !NET35
+               if (itemsRemoved)
+               {
+                   OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                       System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
+               }
+               else
+               {
+                   OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(
+                       System.Collections.Specialized.NotifyCollectionChangedAction.Add, item));
+               }
+#endif
             }
 
             void ICollection<T>.Clear()
