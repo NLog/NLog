@@ -1332,7 +1332,7 @@ namespace NLog.Targets
         {
             if (ReplaceFileContentsOnEachWrite)
                 return true;
-            if (ArchiveOldFileOnStartup && !fileStream.CanSeek)
+            if (ArchiveOldFileOnStartup && KeepFileOpen && !fileStream.GetType().Equals(typeof(FileStream)) && !fileStream.CanSeek)
                 return initialFileOpen;    // NLog.Targets.GZipFile expects newly opened files to be empty
             return fileStream.Length == 0;
         }
