@@ -288,5 +288,103 @@ namespace NLog.UnitTests.Layouts
                 return "foo";
             }
         }
+
+        [Fact]
+        public void SimpleLayout_WithNoAllocationRenderer_SkipsPrecalculate()
+        {
+            // Arrange - two renderers so IsSimpleStringText is false,
+            // forcing the code to reach AllRenderersAreNoAllocation
+            var renderer1 = new NoAllocTestRenderer(returnNull: false);
+            var renderer2 = new NoAllocTestRenderer(returnNull: false);
+            var layout = new SimpleLayout(new LayoutRenderer[] { renderer1, renderer2 }, "${noalloc}${noalloc}");
+            layout.Initialize(null);
+            var logEvent = LogEventInfo.CreateNullEvent();
+
+            // Act
+            layout.Precalculate(logEvent);
+
+            // Assert - no cached value should be stored because all renderers are no-alloc capable
+            Assert.False(logEvent.TryGetCachedLayoutValue(layout, out _));
+            Assert.Equal("testtest", layout.Render(logEvent));
+        }
+
+        [Fact]
+        public void SimpleLayout_WithNoAllocationRenderer_WhenReturnsNull_DoesPrecalculate()
+        {
+            // Arrange - use threadid (non-ThreadAgnostic) alongside our renderer
+            // so the layout itself is not ThreadAgnostic and reaches our check
+            var noAllocRenderer = new NoAllocTestRenderer(returnNull: true);
+            var threadIdRenderer = new NLog.LayoutRenderers.ThreadIdLayoutRenderer();
+            var layout = new SimpleLayout(new LayoutRenderer[] { noAllocRenderer, threadIdRenderer }, "${noalloc}${threadid}");
+            layout.Initialize(null);
+            var logEvent = LogEventInfo.CreateNullEvent();
+
+            // Act
+            layout.Precalculate(logEvent);
+
+            // Assert - value should be cached because renderer signaled it needs precalculation
+            Assert.True(logEvent.TryGetCachedLayoutValue(layout, out _));
+        }
+
+        [Fact]
+        public void SimpleLayout_WithNoAllocationRenderer_RendersCorrectly()
+        {
+            // Arrange
+            var renderer = new NoAllocTestRenderer(returnNull: false);
+            var layout = new SimpleLayout(new LayoutRenderer[] { renderer }, "${noalloc}");
+            layout.Initialize(null);
+            var logEvent = LogEventInfo.CreateNullEvent();
+
+            // Act
+            var result = layout.Render(logEvent);
+
+            // Assert
+            Assert.Equal("test", result);
+        }
+
+        [Fact]
+        public void SimpleLayout_IsNoAllocationLayout_TrueWhenAllRenderersAreNoAlloc()
+        {
+            // Arrange
+            var renderer = new NoAllocTestRenderer(returnNull: false);
+            var layout = new SimpleLayout(new LayoutRenderer[] { renderer }, "${noalloc}");
+
+            // Assert
+            Assert.True(layout.IsNoAllocationLayout);
+        }
+
+        [Fact]
+        public void SimpleLayout_IsNoAllocationLayout_FalseWhenRegularRenderer()
+        {
+            // Arrange - threadid does not implement INoAllocationStringValueRenderer
+            var layout = new SimpleLayout("${threadid}");
+            layout.Initialize(null);
+
+            // Assert
+            Assert.False(layout.IsNoAllocationLayout);
+        }
+
+        [LayoutRenderer("noalloc")]
+        private sealed class NoAllocTestRenderer : LayoutRenderer, INoAllocationStringValueRenderer
+        {
+            private readonly bool _returnNull;
+
+            public NoAllocTestRenderer(bool returnNull = false)
+            {
+                _returnNull = returnNull;
+            }
+
+            protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+            {
+                builder.Append("test");
+            }
+
+            public string GetFormattedString(LogEventInfo logEvent) => "test";
+
+            public string GetFormattedStringNoAllocation(LogEventInfo logEvent)
+            {
+                return _returnNull ? null : "test";
+            }
+        }
     }
 }

@@ -93,7 +93,7 @@ namespace NLog.Layouts
         {
             if (text is null)
                 return new Layout<string>(null);
-            else 
+            else
                 return FromString(text, ConfigurationItemFactory.Default);
         }
 
@@ -407,10 +407,17 @@ namespace NLog.Layouts
                 ++layoutCount;
                 if (layout?.ThreadAgnostic == false || layout?.ThreadAgnosticImmutable == true)
                 {
-                    precalculateLayoutCount++;
-                    if (layout is SimpleLayout)
+                    if (layout is SimpleLayout simpleLayout && simpleLayout.IsNoAllocationLayout)
                     {
-                        precalculateSimpleLayoutCount++;
+                        // No-alloc layout can skip precalculation entirely — no need to count it
+                    }
+                    else
+                    {
+                        precalculateLayoutCount++;
+                        if (layout is SimpleLayout)
+                        {
+                            precalculateSimpleLayoutCount++;
+                        }
                     }
                 }
             }
@@ -421,7 +428,8 @@ namespace NLog.Layouts
             }
             else
             {
-                return allLayouts.Where(layout => layout?.ThreadAgnostic == false || layout?.ThreadAgnosticImmutable == true).ToArray();
+                return allLayouts.Where(layout => (layout?.ThreadAgnostic == false || layout?.ThreadAgnosticImmutable == true) &&
+                                      !(layout is SimpleLayout sl && sl.IsNoAllocationLayout)).ToArray();
             }
         }
 

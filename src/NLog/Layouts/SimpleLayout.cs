@@ -324,7 +324,6 @@ namespace NLog.Layouts
                 logEvent.AddCachedLayoutValue(this, target.ToString());
             }
         }
-
         private bool PrecalculateMustRenderLayoutValue(LogEventInfo logEvent)
         {
             if (!IsInitialized)
@@ -336,7 +335,7 @@ namespace NLog.Layouts
                 return false;
 
             if (_rawValueRenderer != null && TryGetRawValue(logEvent, out var rawValue) && IsRawValueImmutable(rawValue))
-                return false;   // If raw value is immutable, then we can skip precalculate-caching
+                return false; // If raw value is immutable, then we can skip precalculate-caching
 
             if (logEvent.TryGetCachedLayoutValue(this, out var _))
                 return false;
@@ -348,9 +347,49 @@ namespace NLog.Layouts
                 return false;
             }
 
+            //  if every renderer can serve this event without allocation,
+            // there is no thread-context to capture — skip precalculation
+            if (AllRenderersAreNoAllocation(logEvent))
+                return false;
+
             return true;
         }
 
+        private bool AllRenderersAreNoAllocation(LogEventInfo logEvent)
+        {
+            if (_layoutRenderers.Length == 0)
+                return true;
+
+            foreach (var renderer in _layoutRenderers)
+            {
+                if (renderer is INoAllocationStringValueRenderer noAllocRenderer)
+                {
+                    if (noAllocRenderer.GetFormattedStringNoAllocation(logEvent) is null)
+                        return false;  // renderer signals it cannot skip precalculation for this event
+                }
+                else if (renderer is not LiteralLayoutRenderer)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        /// <summary>
+        /// Gets whether all renderers in this layout support no-allocation rendering.
+        /// </summary>
+        internal bool IsNoAllocationLayout
+        {
+            get
+            {
+                foreach (var renderer in _layoutRenderers)
+                {
+                    if (renderer is not INoAllocationStringValueRenderer && renderer is not LiteralLayoutRenderer)
+                        return false;
+                }
+                return true;
+            }
+        }
         private static bool IsRawValueImmutable(object? value)
         {
             return value != null && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType);
