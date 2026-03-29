@@ -290,6 +290,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(System.Collections.Specialized.NotifyCollectionChangedAction.Reset, actions[3]);
             Assert.Equal(3, memoryTarget.Logs.Count); // still capped at 3
         }
-    }
 #endif
+
+    }
 }
