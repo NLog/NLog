@@ -217,5 +217,14 @@ namespace NLog.Layouts
             Layout.Render(logEvent, builder);
             return IncludeEmptyValue || builder.Length > valueStart;
         }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            if (Encode || Layout is SimpleLayout)
+                return $"{Name}={Layout}";
+            else
+                return $"{Name} (Encode=false)";
+        }
     }
 }
