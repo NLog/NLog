@@ -354,12 +354,13 @@ namespace NLog.Config
             var allAssemblies = LogFactory.DefaultAppEnvironment.GetAppDomainRuntimeAssemblies();
             foreach (var assembly in allAssemblies)
             {
-                if (assembly.FullName.StartsWith("NLog.", StringComparison.OrdinalIgnoreCase) && !alreadyRegistered.Contains(assembly.FullName))
+                var assemblyFullName = assembly.FullName ?? string.Empty;
+                if (assemblyFullName.StartsWith("NLog.", StringComparison.OrdinalIgnoreCase) && !alreadyRegistered.Contains(assemblyFullName))
                 {
                     LoadAssembly(factory, assembly, string.Empty);
                 }
 
-                if (IncludeAsHiddenAssembly(assembly.FullName))
+                if (IncludeAsHiddenAssembly(assemblyFullName))
                 {
                     LogManager.AddHiddenAssembly(assembly);
                 }
@@ -422,7 +423,7 @@ namespace NLog.Config
                 }
 
                 var extensionDlls = System.IO.Directory.GetFiles(assemblyLocation, "NLog*.dll")
-                .Select(System.IO.Path.GetFileName)
+                .Select(x => System.IO.Path.GetFileName(x) ?? string.Empty)
                 .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
                 .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
                 .Select(x => System.IO.Path.Combine(assemblyLocation, x));
@@ -510,11 +511,11 @@ namespace NLog.Config
                 return false;
             if (expected.Version != null && expected.Version != actual.Version)
                 return false;
-            if (expected.CultureInfo != null && expected.CultureInfo.Name != actual.CultureInfo.Name)
+            if (expected.CultureInfo != null && !string.Equals(expected.CultureInfo.Name, actual.CultureInfo?.Name, StringComparison.Ordinal))
                 return false;
 
             var expectedKeyToken = expected.GetPublicKeyToken();
-            var correctToken = expectedKeyToken is null || expectedKeyToken.SequenceEqual(actual.GetPublicKeyToken());
+            var correctToken = expectedKeyToken is null || expectedKeyToken.SequenceEqual(actual.GetPublicKeyToken() ?? ArrayHelper.Empty<byte>());
             return correctToken;
         }
     }

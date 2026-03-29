@@ -413,7 +413,8 @@ namespace NLog.Targets
                     {
                         _flushEventsInQueueDelegate = (cont) =>
                         {
-                            _requestQueue.Enqueue(new AsyncLogEventInfo(_flushEvent, (AsyncContinuation)cont));
+                            if (cont != null)
+                                _requestQueue.Enqueue(new AsyncLogEventInfo(_flushEvent, (AsyncContinuation)cont));
                             lock (SyncRoot)
                                 _lazyWriterTimer.Change(0, Timeout.Infinite);    // Schedule timer to empty queue, and execute asyncContinuation
                         };

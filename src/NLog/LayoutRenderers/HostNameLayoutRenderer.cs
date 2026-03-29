@@ -95,7 +95,7 @@ namespace NLog.LayoutRenderers
         /// <param name="lookupFunc">The lookup function.</param>
         /// <param name="lookupType">Type of the lookup.</param>
         /// <returns></returns>
-        private static string? TryLookupValue(Func<string> lookupFunc, string lookupType)
+        private static string? TryLookupValue(Func<string?> lookupFunc, string lookupType)
         {
             try
             {
