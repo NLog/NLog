@@ -224,6 +224,8 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("Error EEE", memoryTarget.Logs[4]);
         }
 
+
+#if !NET35
         [Fact]
         public void MemoryTarget_ObservableLogs_FiresEventOnWrite()
         {
@@ -289,4 +291,5 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(3, memoryTarget.Logs.Count); // still capped at 3
         }
     }
+#endif
 }
