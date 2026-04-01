@@ -9,6 +9,7 @@ Date format: (year/month/day)
 **Improvements**
 - [#6116](https://github.com/NLog/NLog/pull/6116) PropertyTypeConverter - Prioritize IFormattable ToString when Format specified. (@snakefoot)
 - [#6129](https://github.com/NLog/NLog/pull/6129) GZipFile - Support Header / Footer / WriteBom. (@snakefoot)
+- [#6126](https://github.com/NLog/NLog/pull/6126) FileTarget - Alert when FileName needs to be repaired. (@snakefoot)
 - [#6113](https://github.com/NLog/NLog/pull/6113) FileTarget - Upfront validation of ArchiveSuffixFormat property. (@snakefoot)
 - [#6110](https://github.com/NLog/NLog/pull/6110) FileTarget - Improve repair of legacy ArchiveFileName. (@snakefoot)
 - [#6107](https://github.com/NLog/NLog/pull/6107) LoggingRule - Added WriteTo method to match NLog.config. (@snakefoot)
