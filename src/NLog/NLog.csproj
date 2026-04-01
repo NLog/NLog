@@ -31,11 +31,18 @@ For using NLog with ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web
     <PackageReleaseNotes>
 Changelog:
 
-- [#6101] LogFactory - Flush / FlushAsync asynchronous completion outside Target lock. (@snakefoot)
-- [#6100] NLog.Targets.AtomicFile supporting NetStandard2 with Win32 API. (@michailf)
-- [#6094] XmlLayout - Faster XML encoding with INoAllocationStringValueRenderer. (@snakefoot)
-- [#6091] LiteralWithRawValueLayoutRenderer - Only support RawValue when possible. (@snakefoot)
-- [#6088] CachedLayoutRendererWrapper - Allow literal optimization when caching not needed. (@snakefoot)
+- [#6116] PropertyTypeConverter - Prioritize IFormattable ToString when Format specified. (@snakefoot)
+- [#6129] GZipFile - Support Header / Footer / WriteBom. (@snakefoot)
+- [#6113] FileTarget - Upfront validation of ArchiveSuffixFormat property. (@snakefoot)
+- [#6110] FileTarget - Improve repair of legacy ArchiveFileName. (@snakefoot)
+- [#6107] LoggingRule - Added WriteTo method to match NLog.config. (@snakefoot)
+- [#6106] LoggingRule - Added MinLevel property to match NLog.config. (@snakefoot)
+- [#6118] LoggingRule - Update FinalMinLevel to match NLog.config. (@snakefoot)
+- [#6123] Layout.IsNullOrEmpty similar to string.IsNullOrEmpty. (@snakefoot)
+- [#6119] TargetPropertyWithContext - Added alias Value for Layout. (@snakefoot)
+- [#6119] TargetPropertyWithContext - ToString returns Name and Value. (@snakefoot)
+- [#6105] MessageTemplateParameters - Reduce code complexity. (@snakefoot)
+- [#6131] + [#6133] Refactor NLog source code to fix nullable warnings. (@snakefoot)
 
 NLog v6.0 release notes: https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html
 

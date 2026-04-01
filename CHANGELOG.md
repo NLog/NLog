@@ -4,6 +4,22 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.1.2 (2026/04/01)
+
+**Improvements**
+- [#6116](https://github.com/NLog/NLog/pull/6116) PropertyTypeConverter - Prioritize IFormattable ToString when Format specified. (@snakefoot)
+- [#6129](https://github.com/NLog/NLog/pull/6129) GZipFile - Support Header / Footer / WriteBom. (@snakefoot)
+- [#6113](https://github.com/NLog/NLog/pull/6113) FileTarget - Upfront validation of ArchiveSuffixFormat property. (@snakefoot)
+- [#6110](https://github.com/NLog/NLog/pull/6110) FileTarget - Improve repair of legacy ArchiveFileName. (@snakefoot)
+- [#6107](https://github.com/NLog/NLog/pull/6107) LoggingRule - Added WriteTo method to match NLog.config. (@snakefoot)
+- [#6106](https://github.com/NLog/NLog/pull/6106) LoggingRule - Added MinLevel property to match NLog.config. (@snakefoot)
+- [#6118](https://github.com/NLog/NLog/pull/6118) LoggingRule - Update FinalMinLevel to match NLog.config. (@snakefoot)
+- [#6123](https://github.com/NLog/NLog/pull/6123) Layout.IsNullOrEmpty similar to string.IsNullOrEmpty. (@snakefoot)
+- [#6119](https://github.com/NLog/NLog/pull/6119) TargetPropertyWithContext - Added alias Value for Layout. (@snakefoot)
+- [#6119](https://github.com/NLog/NLog/pull/6119) TargetPropertyWithContext - ToString returns Name and Value. (@snakefoot)
+- [#6105](https://github.com/NLog/NLog/pull/6105) MessageTemplateParameters - Reduce code complexity. (@snakefoot)
+- [#6131](https://github.com/NLog/NLog/pull/6131) + [#6133](https://github.com/NLog/NLog/pull/6133) Refactor NLog source code to fix nullable warnings. (@snakefoot)
+
 ### Version 6.1.1 (2026/03/01)
 
 **Improvements**
