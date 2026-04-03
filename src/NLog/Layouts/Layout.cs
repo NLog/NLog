@@ -407,17 +407,10 @@ namespace NLog.Layouts
                 ++layoutCount;
                 if (layout?.ThreadAgnostic == false || layout?.ThreadAgnosticImmutable == true)
                 {
-                    if (layout is SimpleLayout simpleLayout && simpleLayout.IsNoAllocationLayout)
+                    precalculateLayoutCount++;
+                    if (layout is SimpleLayout)
                     {
-                        // No-alloc layout can skip precalculation entirely — no need to count it
-                    }
-                    else
-                    {
-                        precalculateLayoutCount++;
-                        if (layout is SimpleLayout)
-                        {
-                            precalculateSimpleLayoutCount++;
-                        }
+                        precalculateSimpleLayoutCount++;
                     }
                 }
             }
@@ -428,8 +421,7 @@ namespace NLog.Layouts
             }
             else
             {
-                return allLayouts.Where(layout => (layout?.ThreadAgnostic == false || layout?.ThreadAgnosticImmutable == true) &&
-                                      !(layout is SimpleLayout sl && sl.IsNoAllocationLayout)).ToArray();
+                return allLayouts.Where(layout => layout?.ThreadAgnostic == false || layout?.ThreadAgnosticImmutable == true).ToArray();
             }
         }
 

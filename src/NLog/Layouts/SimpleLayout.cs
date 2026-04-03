@@ -60,6 +60,7 @@ namespace NLog.Layouts
     public sealed class SimpleLayout : Layout, IUsesStackTrace, IStringValueRenderer
     {
         private readonly IRawValue? _rawValueRenderer;
+        private readonly INoAllocationStringValueRenderer? _noAllocRenderer;
         private IStringValueRenderer? _stringValueRenderer;
 
         internal static SimpleLayout Default => (SimpleLayout)Layout.Empty;
@@ -126,10 +127,13 @@ namespace NLog.Layouts
                 {
                     _stringValueRenderer = stringValueRenderer;
                 }
-
                 if (_layoutRenderers[0] is IRawValue rawValueRenderer)
                 {
                     _rawValueRenderer = rawValueRenderer;
+                }
+                if (_layoutRenderers[0] is INoAllocationStringValueRenderer noAllocRenderer)
+                {
+                    _noAllocRenderer = noAllocRenderer;
                 }
             }
         }
@@ -340,6 +344,11 @@ namespace NLog.Layouts
             if (logEvent.TryGetCachedLayoutValue(this, out var _))
                 return false;
 
+            // No-allocation optimization takes priority over IStringValueRenderer fast-path
+            // since it avoids both StringBuilder AND string allocation during preca
+            if (_noAllocRenderer?.GetFormattedStringNoAllocation(logEvent) is not null)
+                return false;  
+
             if (IsSimpleStringText)
             {
                 var cachedLayout = GetFormattedMessage(logEvent);
@@ -347,48 +356,7 @@ namespace NLog.Layouts
                 return false;
             }
 
-            //  if every renderer can serve this event without allocation,
-            // there is no thread-context to capture — skip precalculation
-            if (AllRenderersAreNoAllocation(logEvent))
-                return false;
-
             return true;
-        }
-
-        private bool AllRenderersAreNoAllocation(LogEventInfo logEvent)
-        {
-            if (_layoutRenderers.Length == 0)
-                return true;
-
-            foreach (var renderer in _layoutRenderers)
-            {
-                if (renderer is INoAllocationStringValueRenderer noAllocRenderer)
-                {
-                    if (noAllocRenderer.GetFormattedStringNoAllocation(logEvent) is null)
-                        return false;  // renderer signals it cannot skip precalculation for this event
-                }
-                else if (renderer is not LiteralLayoutRenderer)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-        /// <summary>
-        /// Gets whether all renderers in this layout support no-allocation rendering.
-        /// </summary>
-        internal bool IsNoAllocationLayout
-        {
-            get
-            {
-                foreach (var renderer in _layoutRenderers)
-                {
-                    if (renderer is not INoAllocationStringValueRenderer && renderer is not LiteralLayoutRenderer)
-                        return false;
-                }
-                return true;
-            }
         }
         private static bool IsRawValueImmutable(object? value)
         {
