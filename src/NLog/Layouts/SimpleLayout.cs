@@ -126,14 +126,11 @@ namespace NLog.Layouts
                 else if (_layoutRenderers[0] is IStringValueRenderer stringValueRenderer)
                 {
                     _stringValueRenderer = stringValueRenderer;
+                    _noAllocRenderer = stringValueRenderer as INoAllocationStringValueRenderer;
                 }
                 if (_layoutRenderers[0] is IRawValue rawValueRenderer)
                 {
                     _rawValueRenderer = rawValueRenderer;
-                }
-                if (_layoutRenderers[0] is INoAllocationStringValueRenderer noAllocRenderer)
-                {
-                    _noAllocRenderer = noAllocRenderer;
                 }
             }
         }
@@ -344,13 +341,12 @@ namespace NLog.Layouts
             if (logEvent.TryGetCachedLayoutValue(this, out var _))
                 return false;
 
-            // No-allocation optimization takes priority over IStringValueRenderer fast-path
-            // since it can avoid both StringBuilder and AddCachedLayoutValue
-            if (_noAllocRenderer?.GetFormattedStringNoAllocation(logEvent) is not null)
-                return false;  
-
             if (IsSimpleStringText)
             {
+                // No-allocation optimization means it can skip both StringBuilder and precalculate-caching
+                if (_noAllocRenderer?.GetFormattedStringNoAllocation(logEvent) is not null)
+                    return false;
+            
                 var cachedLayout = GetFormattedMessage(logEvent);
                 logEvent.AddCachedLayoutValue(this, cachedLayout);
                 return false;
