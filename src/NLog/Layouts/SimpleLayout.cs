@@ -128,6 +128,7 @@ namespace NLog.Layouts
                     _stringValueRenderer = stringValueRenderer;
                     _noAllocRenderer = stringValueRenderer as INoAllocationStringValueRenderer;
                 }
+
                 if (_layoutRenderers[0] is IRawValue rawValueRenderer)
                 {
                     _rawValueRenderer = rawValueRenderer;
