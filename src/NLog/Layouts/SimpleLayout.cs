@@ -337,7 +337,7 @@ namespace NLog.Layouts
                 return false;
 
             if (_rawValueRenderer != null && TryGetRawValue(logEvent, out var rawValue) && IsRawValueImmutable(rawValue))
-                return false; // If raw value is immutable, then we can skip precalculate-caching
+                return false;   // If raw value is immutable, then we can skip precalculate-caching
 
             if (logEvent.TryGetCachedLayoutValue(this, out var _))
                 return false;
