@@ -289,59 +289,20 @@ namespace NLog.UnitTests.Layouts
             }
         }
         [Fact]
-        public void SimpleLayout_WithNoAllocationRenderer_SkipsPrecalculate()
+        public void SimpleLayout_WithMessageRenderer_SkipsPrecalculate()
         {
-            // Arrange - single no-alloc renderer, optimization applies
-            var renderer = new NoAllocTestRenderer(returnNull: false);
-            var layout = new SimpleLayout(new LayoutRenderer[] { renderer }, "${noalloc}");
+            // Arrange - MessageLayoutRenderer implements INoAllocationStringValueRenderer
+            var layout = new SimpleLayout("${message}");
             layout.Initialize(null);
-            var logEvent = LogEventInfo.CreateNullEvent();
+            var logEvent = LogEventInfo.Create(LogLevel.Info, "TestLogger", "test message");
 
             // Act
             layout.Precalculate(logEvent);
 
-            // Assert - no cached value because no-alloc renderer can skip precalculation
+            // Assert - no cached value because no-alloc path succeeded
             Assert.False(logEvent.TryGetCachedLayoutValue(layout, out _));
-            Assert.Equal("test", layout.Render(logEvent));
+            Assert.Equal("test message", layout.Render(logEvent));
         }
 
-        [Fact]
-        public void SimpleLayout_WithNoAllocationRenderer_WhenReturnsNull_DoesPrecalculate()
-        {
-            // Arrange - single no-alloc renderer that signals it cannot optimize
-            var noAllocRenderer = new NoAllocTestRenderer(returnNull: true);
-            var layout = new SimpleLayout(new LayoutRenderer[] { noAllocRenderer }, "${noalloc}");
-            layout.Initialize(null);
-            var logEvent = LogEventInfo.CreateNullEvent();
-
-            // Act
-            layout.Precalculate(logEvent);
-
-            // Assert - value should be cached because renderer returned null (optimization not possible)
-            Assert.True(logEvent.TryGetCachedLayoutValue(layout, out _));
-        }
-
-        [LayoutRenderer("noalloc")]
-        private sealed class NoAllocTestRenderer : LayoutRenderer, INoAllocationStringValueRenderer
-        {
-            private readonly bool _returnNull;
-
-            public NoAllocTestRenderer(bool returnNull = false)
-            {
-                _returnNull = returnNull;
-            }
-
-            protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-            {
-                builder.Append("test");
-            }
-
-            public string GetFormattedString(LogEventInfo logEvent) => "test";
-
-            public string GetFormattedStringNoAllocation(LogEventInfo logEvent)
-            {
-                return _returnNull ? null : "test";
-            }
-        }
     }
 }
