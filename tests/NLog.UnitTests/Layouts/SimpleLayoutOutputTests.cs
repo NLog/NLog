@@ -288,6 +288,7 @@ namespace NLog.UnitTests.Layouts
                 return "foo";
             }
         }
+
         [Fact]
         public void SimpleLayout_WithMessageRenderer_SkipsPrecalculate()
         {
@@ -303,6 +304,5 @@ namespace NLog.UnitTests.Layouts
             Assert.False(logEvent.TryGetCachedLayoutValue(layout, out _));
             Assert.Equal("test message", layout.Render(logEvent));
         }
-
     }
 }
