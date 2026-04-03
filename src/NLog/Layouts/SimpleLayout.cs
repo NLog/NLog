@@ -345,7 +345,7 @@ namespace NLog.Layouts
                 return false;
 
             // No-allocation optimization takes priority over IStringValueRenderer fast-path
-            // since it avoids both StringBuilder AND string allocation during preca
+            // since it can avoid both StringBuilder and AddCachedLayoutValue
             if (_noAllocRenderer?.GetFormattedStringNoAllocation(logEvent) is not null)
                 return false;  
 
