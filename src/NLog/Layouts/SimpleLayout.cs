@@ -325,6 +325,7 @@ namespace NLog.Layouts
                 logEvent.AddCachedLayoutValue(this, target.ToString());
             }
         }
+
         private bool PrecalculateMustRenderLayoutValue(LogEventInfo logEvent)
         {
             if (!IsInitialized)
