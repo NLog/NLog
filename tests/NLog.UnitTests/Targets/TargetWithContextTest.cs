@@ -371,6 +371,7 @@ namespace NLog.UnitTests.Targets
                             <contextproperty name='threadid' layout='${threadid}' propertyType='System.Int32' />
                             <contextproperty name='processid' layout='${processid}' propertyType='System.Int32' />
                             <contextproperty name='timestamp' layout='${date}' propertyType='System.DateTime' />
+                            <contextproperty name='datetimeoffset' layout='${date:universalTime=true}' propertyType='System.DateTimeOffset' />
                             <contextproperty name='int-non-existing' layout='${event-properties:non-existing}' propertyType='System.Int32' includeEmptyValue='true' />
                             <contextproperty name='int-non-existing-empty' layout='${event-properties:non-existing}' propertyType='System.Int32' includeEmptyValue='false' />
                             <contextproperty name='string-non-existing' layout='${event-properties:non-existing}' propertyType='System.String' includeEmptyValue='true' />
@@ -395,6 +396,7 @@ namespace NLog.UnitTests.Targets
             Assert.NotEmpty(lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("threadid", CurrentManagedThreadId), lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("processid", CurrentProcessId), lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("datetimeoffset", new DateTimeOffset(logEvent.TimeStamp.ToUniversalTime())), lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("int-non-existing", 0), lastCombinedProperties);
             Assert.DoesNotContain("int-non-existing-empty", lastCombinedProperties.Keys);
             Assert.Contains(new KeyValuePair<string, object>("string-non-existing", ""), lastCombinedProperties);
@@ -447,10 +449,14 @@ namespace NLog.UnitTests.Targets
             yield return new object[] { "${event-properties:userid}", typeof(int), 0, true };
             yield return new object[] { "${event-properties:userid}", typeof(int), (int?)null, false };
             yield return new object[] { "${date:universalTime=true:format=yyyy-MM:norawvalue=true}", typeof(DateTime), DateTime.SpecifyKind(DateTime.UtcNow.Date.AddDays(-DateTime.UtcNow.Day + 1), DateTimeKind.Unspecified) };
+            yield return new object[] { "${date:universalTime=true:format=yyyy-MM:norawvalue=true}", typeof(DateTimeOffset), new DateTimeOffset(DateTime.SpecifyKind(DateTime.UtcNow.Date.AddDays(-DateTime.UtcNow.Day + 1), DateTimeKind.Unspecified)), true };
+            yield return new object[] { "${date:universalTime=true:format=yyyy-MM:norawvalue=true}", typeof(DateTimeOffset), new DateTimeOffset(DateTime.SpecifyKind(DateTime.UtcNow.Date.AddDays(-DateTime.UtcNow.Day + 1), DateTimeKind.Unspecified)), false };
             yield return new object[] { "${shortdate:universalTime=true}", typeof(DateTime), DateTime.UtcNow.Date, true };
             yield return new object[] { "${shortdate:universalTime=true}", typeof(DateTime), DateTime.UtcNow.Date, false };
             yield return new object[] { "${shortdate:universalTime=true}", typeof(string), DateTime.UtcNow.Date.ToString("yyyy-MM-dd"), true };
             yield return new object[] { "${shortdate:universalTime=true}", typeof(string), DateTime.UtcNow.Date.ToString("yyyy-MM-dd"), false };
+            yield return new object[] { "${shortdate:universalTime=true}", typeof(DateTimeOffset), new DateTimeOffset(DateTime.UtcNow.Date), true };
+            yield return new object[] { "${shortdate:universalTime=true}", typeof(DateTimeOffset), new DateTimeOffset(DateTime.UtcNow.Date), false };
         }
     }
 }
