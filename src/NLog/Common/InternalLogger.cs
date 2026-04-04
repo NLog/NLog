@@ -387,28 +387,48 @@ namespace NLog.Common
         /// </summary>
         private static string CreateLogLine(Exception? ex, LogLevel level, string fullMessage)
         {
-            const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
+            const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff ";
             const string fieldSeparator = " ";
 
             if (IncludeTimestamp)
             {
-                return string.Concat(
-                    TimeSource.Current.Time.ToString(timeStampFormat, CultureInfo.InvariantCulture),
-                    fieldSeparator,
-                    level.ToString(),
-                    fieldSeparator,
-                    fullMessage,
-                    ex != null ? " Exception: " : string.Empty,
-                    ex?.ToString() ?? "");
+                if (ex is null)
+                {
+                    return string.Concat(
+                        TimeSource.Current.Time.ToString(timeStampFormat, CultureInfo.InvariantCulture),
+                        level.ToString(),
+                        fieldSeparator,
+                        fullMessage);
+                }
+                else
+                {
+                    return string.Concat(
+                        TimeSource.Current.Time.ToString(timeStampFormat, CultureInfo.InvariantCulture),
+                        level.ToString(),
+                        fieldSeparator,
+                        fullMessage,
+                        " Exception: ",
+                        ex.ToString());
+                }
             }
             else
             {
-                return string.Concat(
-                    level.ToString(),
-                    fieldSeparator,
-                    fullMessage,
-                    ex != null ? " Exception: " : string.Empty,
-                    ex?.ToString() ?? string.Empty);
+                if (ex is null)
+                {
+                    return string.Concat(
+                        level.ToString(),
+                        fieldSeparator,
+                        fullMessage);
+                }
+                else
+                {
+                    return string.Concat(
+                        level.ToString(),
+                        fieldSeparator,
+                        fullMessage,
+                        " Exception: ",
+                        ex.ToString());
+                }
             }
         }
 

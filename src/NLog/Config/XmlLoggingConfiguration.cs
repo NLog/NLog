@@ -384,7 +384,7 @@ namespace NLog.Config
             }
             catch (Exception exception)
             {
-                var filePathValue = string.IsNullOrEmpty(filePath) ? "" : $" FilePath: {filePath}";
+                var filePathValue = string.IsNullOrEmpty(filePath) ? string.Empty : $" FilePath: {filePath}";
                 var configurationException = new NLogConfigurationException($"Failed loading NLog configuration. {exception.Message} {filePathValue}", exception);
                 InternalLogger.Error(configurationException, configurationException.Message);
                 throw configurationException;
