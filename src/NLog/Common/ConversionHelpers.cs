@@ -78,6 +78,9 @@ namespace NLog.Common
 #if NETSTANDARD2_1_OR_GREATER || NET
             return Enum.TryParse(enumType, inputValue, true, out resultValue);
 #else
+            if (!enumType.IsEnum)
+                throw new ArgumentException($"Type '{enumType.FullName}' is not an enum");
+
             try
             {
                 resultValue = Enum.Parse(enumType, inputValue, true);
@@ -109,7 +112,7 @@ namespace NLog.Common
             }
 
 #if !NET35
-            return Enum.TryParse(inputValue, ignoreCase, out resultValue);
+            return Enum.TryParse<TEnum>(inputValue, ignoreCase, out resultValue);
 #else
             var enumType = typeof(TEnum);
             if (!enumType.IsEnum)

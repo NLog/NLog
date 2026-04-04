@@ -183,6 +183,8 @@ namespace NLog.UnitTests.Internal
         {
             double result;
             Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParseEnum("not enum", true, out result));
+
+            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParseEnum("not enum", typeof(double), out _));
         }
 
         #endregion
