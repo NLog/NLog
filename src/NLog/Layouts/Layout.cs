@@ -93,7 +93,7 @@ namespace NLog.Layouts
         {
             if (text is null)
                 return new Layout<string>(null);
-            else 
+            else
                 return FromString(text, ConfigurationItemFactory.Default);
         }
 

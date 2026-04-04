@@ -60,6 +60,7 @@ namespace NLog.Layouts
     public sealed class SimpleLayout : Layout, IUsesStackTrace, IStringValueRenderer
     {
         private readonly IRawValue? _rawValueRenderer;
+        private readonly INoAllocationStringValueRenderer? _noAllocRenderer;
         private IStringValueRenderer? _stringValueRenderer;
 
         internal static SimpleLayout Default => (SimpleLayout)Layout.Empty;
@@ -125,6 +126,7 @@ namespace NLog.Layouts
                 else if (_layoutRenderers[0] is IStringValueRenderer stringValueRenderer)
                 {
                     _stringValueRenderer = stringValueRenderer;
+                    _noAllocRenderer = stringValueRenderer as INoAllocationStringValueRenderer;
                 }
 
                 if (_layoutRenderers[0] is IRawValue rawValueRenderer)
@@ -343,6 +345,10 @@ namespace NLog.Layouts
 
             if (IsSimpleStringText)
             {
+                // No-allocation optimization means it can skip both StringBuilder and precalculate-caching
+                if (_noAllocRenderer?.GetFormattedStringNoAllocation(logEvent) is not null)
+                    return false;
+            
                 var cachedLayout = GetFormattedMessage(logEvent);
                 logEvent.AddCachedLayoutValue(this, cachedLayout);
                 return false;

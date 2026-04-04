@@ -288,5 +288,21 @@ namespace NLog.UnitTests.Layouts
                 return "foo";
             }
         }
+
+        [Fact]
+        public void SimpleLayout_WithMessageRenderer_SkipsPrecalculate()
+        {
+            // Arrange - MessageLayoutRenderer implements INoAllocationStringValueRenderer
+            var layout = new SimpleLayout("${message}");
+            layout.Initialize(null);
+            var logEvent = LogEventInfo.Create(LogLevel.Info, "TestLogger", "test message");
+
+            // Act
+            layout.Precalculate(logEvent);
+
+            // Assert - no cached value because no-alloc path succeeded
+            Assert.False(logEvent.TryGetCachedLayoutValue(layout, out _));
+            Assert.Equal("test message", layout.Render(logEvent));
+        }
     }
 }
