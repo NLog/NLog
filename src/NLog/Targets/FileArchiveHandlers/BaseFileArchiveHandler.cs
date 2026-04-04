@@ -103,7 +103,7 @@ namespace NLog.Targets.FileArchiveHandlers
             }
             catch (Exception exception)
             {
-                InternalLogger.Warn(exception, "{0}: Failed to cleanup archive folder: {1}  {2}", _fileTarget, fileDirectory, fileWildcard ?? "");
+                InternalLogger.Warn(exception, "{0}: Failed to cleanup archive folder: {1}  {2}", _fileTarget, fileDirectory, fileWildcard);
                 if (exception.MustBeRethrown(_fileTarget))
                     throw;
             }

@@ -52,7 +52,7 @@ namespace NLog.Config
                 return;
             }
 
-            InternalLogger.Info("Loading assembly name: {0}{1}", assemblyName, string.IsNullOrEmpty(itemNamePrefix) ? "" : $" (Prefix={itemNamePrefix})");
+            InternalLogger.Info("Loading assembly name: {0}{1}", assemblyName, string.IsNullOrEmpty(itemNamePrefix) ? string.Empty : $" (Prefix={itemNamePrefix})");
             Assembly extensionAssembly = LoadAssemblyFromName(assemblyName);
             LoadAssembly(factory, extensionAssembly, itemNamePrefix);
         }
