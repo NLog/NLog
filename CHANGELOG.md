@@ -17,7 +17,7 @@ Date format: (year/month/day)
 - [#6118](https://github.com/NLog/NLog/pull/6118) LoggingRule - Update FinalMinLevel to match NLog.config. (@snakefoot)
 - [#6123](https://github.com/NLog/NLog/pull/6123) Layout.IsNullOrEmpty similar to string.IsNullOrEmpty. (@snakefoot)
 - [#6119](https://github.com/NLog/NLog/pull/6119) TargetPropertyWithContext - Added alias Value for Layout. (@snakefoot)
-- [#6119](https://github.com/NLog/NLog/pull/6119) TargetPropertyWithContext - ToString returns Name and Value. (@snakefoot)
+- [#6132](https://github.com/NLog/NLog/pull/6132) TargetPropertyWithContext - ToString returns Name and Value. (@snakefoot)
 - [#6105](https://github.com/NLog/NLog/pull/6105) MessageTemplateParameters - Reduce code complexity. (@snakefoot)
 - [#6131](https://github.com/NLog/NLog/pull/6131) + [#6133](https://github.com/NLog/NLog/pull/6133) Refactor NLog source code to fix nullable warnings. (@snakefoot)
 
