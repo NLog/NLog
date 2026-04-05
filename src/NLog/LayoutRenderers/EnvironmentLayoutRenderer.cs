@@ -102,7 +102,7 @@ namespace NLog.LayoutRenderers
                 if (!string.IsNullOrEmpty(environmentVariable))
                 {
                     var cachedValue = _cachedValue;
-                    if (string.CompareOrdinal(cachedValue.Key, environmentVariable) != 0)
+                    if (!string.Equals(cachedValue.Key, environmentVariable, System.StringComparison.Ordinal))
                     {
                         cachedValue = new System.Collections.Generic.KeyValuePair<string, SimpleLayout>(environmentVariable,
                             new SimpleLayout(environmentVariable));

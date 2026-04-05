@@ -133,7 +133,7 @@ namespace NLog.Layouts
         {
             if (valueType is null || typeof(string).Equals(valueType) || typeof(object).Equals(valueType))
             {
-                if (defaultValue is null || (defaultValue is SimpleLayout simpleLayout && string.Empty.Equals(simpleLayout.Text)) || (ReferenceEquals(defaultValue, _fixedNullValue) && !typeof(object).Equals(valueType)))
+                if (defaultValue is null || (defaultValue is SimpleLayout simpleLayout && string.Empty.Equals(simpleLayout.Text, StringComparison.Ordinal)) || (ReferenceEquals(defaultValue, _fixedNullValue) && !typeof(object).Equals(valueType)))
                 {
                     return false;
                 }

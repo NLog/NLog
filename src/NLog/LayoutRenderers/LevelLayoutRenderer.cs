@@ -127,7 +127,7 @@ namespace NLog.LayoutRenderers
                 case LevelFormat.FirstCharacter:
                     return logLevel.ToString()[0].ToString();
                 case LevelFormat.Ordinal:
-                    return logLevel.Ordinal.ToString();
+                    return logLevel.Ordinal.ToString(System.Globalization.CultureInfo.InvariantCulture);
                 case LevelFormat.FullName:
                     return upperCase ? GetFullNameString(logLevel).ToUpperInvariant() : GetFullNameString(logLevel);
                 case LevelFormat.TriLetter:

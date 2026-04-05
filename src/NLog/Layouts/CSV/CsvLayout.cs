@@ -239,7 +239,7 @@ namespace NLog.Layouts
 
         private void AppendStringValue(string columnValue, CsvQuotingMode quoting, StringBuilder target)
         {
-            var quoteCharIndex = quoting == CsvQuotingMode.All ? columnValue.IndexOf(QuoteChar) : columnValue.IndexOfAny(_quotableCharacters);
+            var quoteCharIndex = quoting == CsvQuotingMode.All ? columnValue.IndexOf(QuoteChar, System.StringComparison.Ordinal) : columnValue.IndexOfAny(_quotableCharacters);
             if (quoteCharIndex >= 0)
             {
                 AppendQuotedStringValue(columnValue, quoting, target);

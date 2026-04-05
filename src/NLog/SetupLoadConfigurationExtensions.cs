@@ -756,7 +756,7 @@ namespace NLog
                 if (ReferenceEquals(target, otherTarget))
                     return true;
 
-                if (string.CompareOrdinal(otherTarget.Name, targetName) == 0)
+                if (string.Equals(otherTarget.Name, targetName, StringComparison.Ordinal))
                     return false;
             }
 

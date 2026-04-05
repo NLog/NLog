@@ -236,7 +236,7 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>Default: <c>NO_COLOR=1</c></remarks>
         /// <docgen category='Console Options' order='10' />
-        public Layout<bool> NoColor { get; set; } = Layout<bool>.FromMethod((evt) => new string[] { "1", "TRUE" }.Contains(NLog.Internal.EnvironmentHelper.GetSafeEnvironmentVariable("NO_COLOR")?.Trim().ToUpper()));
+        public Layout<bool> NoColor { get; set; } = Layout<bool>.FromMethod((evt) => new string[] { "1", "TRUE" }.Contains(NLog.Internal.EnvironmentHelper.GetSafeEnvironmentVariable("NO_COLOR")?.Trim().ToUpper(System.Globalization.CultureInfo.InvariantCulture)));
 
         /// <summary>
         /// Gets the row highlighting rules.
