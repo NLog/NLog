@@ -135,7 +135,7 @@ namespace NLog.Targets.FileArchiveHandlers
                     return 0;
                 }
 
-                var archivePathWildCard = _fileTarget.BuildFullFilePath(newFilePath, int.MaxValue, DateTime.MinValue).Replace(int.MaxValue.ToString(), "*");
+                var archivePathWildCard = _fileTarget.BuildFullFilePath(newFilePath, int.MaxValue, DateTime.MinValue).Replace(int.MaxValue.ToString(System.Globalization.CultureInfo.InvariantCulture), "*");
                 var archiveFileName = Path.GetFileName(archivePathWildCard);
                 var fileWildcardStartIndex = archiveFileName.IndexOf('*');
                 var fileWildcardEndIndex = fileWildcardStartIndex >= 0 ? archiveFileName.Length - fileWildcardStartIndex : -1;

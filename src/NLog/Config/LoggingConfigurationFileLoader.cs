@@ -265,7 +265,7 @@ namespace NLog.Config
             if (!string.IsNullOrEmpty(baseDirectory))
                 yield return Path.Combine(baseDirectory, nlogConfigFile);
 
-            string nLogConfigFileLowerCase = nlogConfigFile.ToLower();
+            string nLogConfigFileLowerCase = nlogConfigFile.ToLower(System.Globalization.CultureInfo.InvariantCulture);
             bool platformFileSystemCaseInsensitive = nlogConfigFile == nLogConfigFileLowerCase || PlatformDetector.IsWin32;
             if (!platformFileSystemCaseInsensitive && !string.IsNullOrEmpty(baseDirectory))
                 yield return Path.Combine(baseDirectory, nLogConfigFileLowerCase);

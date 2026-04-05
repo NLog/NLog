@@ -85,7 +85,7 @@ namespace NLog.Targets.FileArchiveHandlers
                 if (wildCardStrictSeqNo)
                 {
                     string archiveFilePath = BuildArchiveFilePath(archiveFileName, int.MaxValue, DateTime.MinValue);
-                    string archiveFileWildcard = archiveFilePath.Replace(int.MaxValue.ToString(), "*");
+                    string archiveFileWildcard = archiveFilePath.Replace(int.MaxValue.ToString(System.Globalization.CultureInfo.InvariantCulture), "*");
                     string archiveDirectory = Path.GetDirectoryName(archiveFilePath) ?? string.Empty;
                     oldFilesDeleted = DeleteOldFilesBeforeArchive(archiveDirectory, Path.GetFileName(archiveFileWildcard), initialFileOpen, parseArchiveSequenceNo: true, excludeFileName: excludeFileName);
                 }
@@ -258,7 +258,7 @@ namespace NLog.Targets.FileArchiveHandlers
                 }
             }
 
-            var archiveWildCardFileName = Path.GetFileName(archiveFilePath).Replace(int.MaxValue.ToString(), "*");
+            var archiveWildCardFileName = Path.GetFileName(archiveFilePath).Replace(int.MaxValue.ToString(System.Globalization.CultureInfo.InvariantCulture), "*");
             int fileWildcardStartIndex = archiveWildCardFileName.IndexOf('*');
             if (fileWildcardStartIndex < 0)
                 return 0;

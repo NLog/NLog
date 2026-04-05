@@ -248,7 +248,7 @@ namespace NLog.Targets
             get => _archiveDateFormat;
             set
             {
-                if (string.Equals(value, _archiveDateFormat))
+                if (string.Equals(value, _archiveDateFormat, StringComparison.Ordinal))
                     return;
 
                 if (!string.IsNullOrEmpty(value))

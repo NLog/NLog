@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public sealed class AppSettingLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
-        private string? _connectionStringName = null;
+        private string? _connectionStringName;
 
         ///<summary>
         /// The AppSetting item-name
