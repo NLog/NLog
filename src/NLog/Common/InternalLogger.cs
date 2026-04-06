@@ -408,7 +408,7 @@ namespace NLog.Common
                         fieldSeparator,
                         fullMessage,
                         " Exception: ",
-                        ex.ToString());
+                        ExceptionToString(ex));
                 }
             }
             else
@@ -427,8 +427,28 @@ namespace NLog.Common
                         fieldSeparator,
                         fullMessage,
                         " Exception: ",
-                        ex.ToString());
+                        ExceptionToString(ex));
                 }
+            }
+        }
+
+        private static string ExceptionToString(Exception exception)
+        {
+            string exceptionMessage = string.Empty;
+            Exception? innerException = null;
+
+            try
+            {
+                innerException = exception.InnerException;
+                exceptionMessage = exception.Message;
+                return exception.ToString();    // Exception ToString() can throw with AOT
+            }
+            catch
+            {
+                if (innerException is null)
+                    return $"{exception.GetType()}: {exceptionMessage}";
+                else
+                    return $"{exception.GetType()}: {exceptionMessage} " + ExceptionToString(innerException);
             }
         }
 
