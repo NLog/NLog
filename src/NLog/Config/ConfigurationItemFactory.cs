@@ -259,13 +259,10 @@ namespace NLog.Config
         internal Factory<TimeSource, TimeSourceAttribute> GetTimeSourceFactory() => _timeSources;
         internal MethodFactory GetConditionMethodFactory() => _conditionMethods;
 
-        internal ICollection<Type> ItemTypes
+        internal ICollection<Type> GetRegisteredItemTypes()
         {
-            get
-            {
-                lock (SyncRoot)
-                    return new List<Type>(_itemFactories.Keys);
-            }
+            lock (SyncRoot)
+                return new List<Type>(_itemFactories.Keys);
         }
 
         /// <summary>
