@@ -43,8 +43,6 @@ namespace NLog.Internal.Fakeables
     {
         const string LongUNCPrefix = @"\\?\UNC\";
 
-        private const string UnknownProcessName = "[unknown]";
-
         private string? _entryAssemblyLocation;
         private string? _entryAssemblyFileName;
         private string? _currentProcessFilePath;
@@ -63,7 +61,7 @@ namespace NLog.Internal.Fakeables
         /// <inheritdoc/>
         public string CurrentProcessFilePath => _currentProcessFilePath ?? (_currentProcessFilePath = LookupCurrentProcessFilePathWithFallback());
         /// <inheritdoc/>
-        public string CurrentProcessBaseName => _currentProcessBaseName ?? (_currentProcessBaseName = LookupCurrentProcessNameWithFallback());
+        public string CurrentProcessBaseName => _currentProcessBaseName ?? (_currentProcessBaseName = LookupCurrentProcessNameWithFallback() ?? $"Unknown_ProcessId_{CurrentProcessId}");
         /// <inheritdoc/>
         public int CurrentProcessId => _currentProcessId ?? (_currentProcessId = LookupCurrentProcessIdWithFallback()).Value;
         /// <inheritdoc/>
@@ -213,12 +211,14 @@ namespace NLog.Internal.Fakeables
             }
         }
 
-        private static string LookupAppDomainFriendlyName()
+        private static string? LookupAppDomainFriendlyName()
         {
             try
             {
                 var friendlyName = AppDomain.CurrentDomain.FriendlyName;
-                return !string.IsNullOrEmpty(friendlyName) ? friendlyName : LookupEntryAssemblyFriendlyName();
+                if (string.IsNullOrEmpty(friendlyName))
+                    friendlyName = LookupEntryAssemblyFriendlyName();
+                return string.IsNullOrEmpty(friendlyName) ? null : friendlyName;
             }
             catch (Exception ex)
             {
@@ -230,16 +230,15 @@ namespace NLog.Internal.Fakeables
             }
         }
 
-        private static string LookupEntryAssemblyFriendlyName()
+        private static string? LookupEntryAssemblyFriendlyName()
         {
             try
             {
-                var assemblyName = System.Reflection.Assembly.GetEntryAssembly()?.GetName()?.Name;
-                return assemblyName ?? UnknownProcessName;
+                return System.Reflection.Assembly.GetEntryAssembly()?.GetName()?.Name;
             }
             catch
             {
-                return UnknownProcessName;
+                return null;
             }
         }
 
@@ -351,7 +350,7 @@ namespace NLog.Internal.Fakeables
             }
         }
 
-        private static string LookupCurrentProcessNameWithFallback()
+        private static string? LookupCurrentProcessNameWithFallback()
         {
             try
             {
@@ -389,7 +388,7 @@ namespace NLog.Internal.Fakeables
             return null;
         }
 
-        private static string LookupCurrentProcessNameNative()
+        private static string? LookupCurrentProcessNameNative()
         {
             var currentProcessFilePath = LookupCurrentProcessFilePath();
             if (!string.IsNullOrEmpty(currentProcessFilePath))
@@ -407,7 +406,7 @@ namespace NLog.Internal.Fakeables
                     return entryAssemblyFileName;
             }
 
-            return UnknownProcessName;
+            return null;
         }
 
 #if NETFRAMEWORK
