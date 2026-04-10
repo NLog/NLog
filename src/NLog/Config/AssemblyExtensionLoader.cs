@@ -162,7 +162,7 @@ namespace NLog.Config
         private static Dictionary<Assembly, Type?> ResolveLoadedAssemblyTypes(ConfigurationItemFactory factory)
         {
             var loadedAssemblies = new Dictionary<Assembly, Type?>();
-            foreach (var itemType in factory.ItemTypes)
+            foreach (var itemType in factory.GetRegisteredItemTypes())
             {
                 var assembly = itemType.Assembly;
                 if (assembly is null)
