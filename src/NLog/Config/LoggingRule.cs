@@ -176,7 +176,7 @@ namespace NLog.Config
             get => _logLevelFilter.FinalMinLevel;
             set
             {
-                if (ReferenceEquals(_logLevelFilter, LoggingRuleLevelFilter.Off) && !ReferenceEquals(value, null))
+                if (!ReferenceEquals(value, null) && (ReferenceEquals(_logLevelFilter, LoggingRuleLevelFilter.Off) || (ReferenceEquals(_logLevelFilter.FinalMinLevel, MinLevel) && Targets.Count == 0)))
                     MinLevel = value;
                 _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetFinalMinLevel(value);
             }

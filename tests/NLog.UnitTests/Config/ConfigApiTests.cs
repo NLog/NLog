@@ -346,12 +346,23 @@ namespace NLog.UnitTests.Config
             var rule = new LoggingRule();
             Assert.Equal(ArrayHelper.Empty<LogLevel>(), rule.Levels);
             Assert.Equal(LogLevel.Off, rule.MinLevel);
+            Assert.Null(rule.FinalMinLevel);
             rule.FinalMinLevel = LogLevel.Warn; // FinalMinLevel should implicitly assign MinLevel when unassigned
             Assert.Equal(new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal }, rule.Levels);
             Assert.Equal(LogLevel.Warn, rule.MinLevel);
-            rule.FinalMinLevel = LogLevel.Error;// FinalMinLevel should only assign MinLevel when unassigned
+            Assert.Equal(LogLevel.Warn, rule.FinalMinLevel);
+            rule.FinalMinLevel = LogLevel.Error;// FinalMinLevel should implicitly update MinLevel when the same
+            Assert.Equal(new[] { LogLevel.Error, LogLevel.Fatal }, rule.Levels);
+            Assert.Equal(LogLevel.Error, rule.MinLevel);
+            Assert.Equal(LogLevel.Error, rule.FinalMinLevel);
+            rule.MinLevel = LogLevel.Warn; // MinLevel should update independently of FinalMinLevel
             Assert.Equal(new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal }, rule.Levels);
             Assert.Equal(LogLevel.Warn, rule.MinLevel);
+            Assert.Equal(LogLevel.Error, rule.FinalMinLevel);
+            rule.FinalMinLevel = LogLevel.Fatal;// FinalMinLevel does not update MinLevel when different
+            Assert.Equal(new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal }, rule.Levels);
+            Assert.Equal(LogLevel.Warn, rule.MinLevel);
+            Assert.Equal(LogLevel.Fatal, rule.FinalMinLevel);
         }
 
         [Fact]
