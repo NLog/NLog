@@ -83,7 +83,12 @@ namespace NLog.LayoutRenderers
         /// </summary>
         internal ProcessDirLayoutRenderer(IAppEnvironment appEnvironment)
         {
-            _processDir = Path.GetDirectoryName(appEnvironment.CurrentProcessFilePath) ?? string.Empty;
+            var processFilePath = appEnvironment.CurrentProcessFilePath;
+            if (!string.IsNullOrEmpty(processFilePath))
+                processFilePath = Path.GetDirectoryName(appEnvironment.CurrentProcessFilePath) ?? string.Empty;
+            if (string.IsNullOrEmpty(processFilePath))
+                processFilePath = appEnvironment.AppDomainBaseDirectory;
+            _processDir = processFilePath;
         }
 
         /// <inheritdoc/>

@@ -491,7 +491,12 @@ namespace NLog.Common
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${tempdir}", out var tempDirToken) && tempDirToken != null)
                     internalLogFile = internalLogFile.Replace(tempDirToken, LogManager.LogFactory.CurrentAppEnvironment.UserTempFilePath + System.IO.Path.DirectorySeparatorChar.ToString());
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${processdir}", out var processDirToken) && processDirToken != null)
-                    internalLogFile = internalLogFile.Replace(processDirToken, System.IO.Path.GetDirectoryName(LogManager.LogFactory.CurrentAppEnvironment.CurrentProcessFilePath) + System.IO.Path.DirectorySeparatorChar.ToString());
+                {
+                    var processDir = System.IO.Path.GetDirectoryName(LogManager.LogFactory.CurrentAppEnvironment.CurrentProcessFilePath);
+                    if (string.IsNullOrEmpty(processDir))
+                        processDir = LogManager.LogFactory.CurrentAppEnvironment.AppDomainBaseDirectory;
+                    internalLogFile = internalLogFile.Replace(processDirToken, processDir + System.IO.Path.DirectorySeparatorChar.ToString());
+                }
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${commonApplicationDataDir}", out var commonAppDataDirToken) && commonAppDataDirToken != null)
                     internalLogFile = internalLogFile.Replace(commonAppDataDirToken, NLog.LayoutRenderers.SpecialFolderLayoutRenderer.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${userApplicationDataDir}", out var appDataDirToken) && appDataDirToken != null)
