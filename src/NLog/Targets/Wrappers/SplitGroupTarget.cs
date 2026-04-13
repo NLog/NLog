@@ -39,7 +39,7 @@ namespace NLog.Targets.Wrappers
     using NLog.Common;
 
     /// <summary>
-    /// Writes log events to all targets.
+    /// Writes log events to all wrapped targets. For better performance, specify targets directly on the logging rule, optionally using NLog variables.
     /// </summary>
     /// <remarks>
     /// <a href="https://github.com/nlog/nlog/wiki/SplitGroup-target">See NLog Wiki</a>
