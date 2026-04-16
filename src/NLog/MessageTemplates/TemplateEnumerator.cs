@@ -66,9 +66,18 @@ namespace NLog.MessageTemplates
         {
             _template = Guard.ThrowIfNull(template);
             _length = _template.Length;
-            _position = 0;
-            _literalLength = 0;
             _current = default(LiteralHole);
+            var firstDelimiter = _template.IndexOfAny(TextDelimiters);
+            if (firstDelimiter >= 0)
+            {
+                _position = firstDelimiter;
+                _literalLength = firstDelimiter;
+            }
+            else
+            {
+                _position = _length;
+                _literalLength = _length;
+            }
         }
 
         /// <summary>
@@ -182,23 +191,11 @@ namespace NLog.MessageTemplates
 
         private void ParseHole(CaptureType type)
         {
-            int start = _position;
-            string name = ParseName(out var parameterIndex);
-            int alignment = 0;
-            string? format = null;
-            if (Peek() != '}')
-            {
-                alignment = Peek() == ',' ? ParseAlignment() : 0;
-                format = Peek() == ':' ? ParseFormat() : null;
-                Skip('}');
-            }
-            else
-            {
-                _position++;
-            }
+            int literalOffset = -_position + (type == CaptureType.Normal ? 1 : 2); // Account for skipped '{', '{$' or '{@'
+            string name = ParseName(out var parameterIndex, out var alignment, out var format);
+            Skip('}');
 
-            int literalSkip = _position - start + (type == CaptureType.Normal ? 1 : 2);     // Account for skipped '{', '{$' or '{@'
-            _current = new LiteralHole(new Literal(_literalLength, literalSkip), new Hole(
+            _current = new LiteralHole(new Literal(_literalLength, _position + literalOffset), new Hole(
                 name,
                 format,
                 type,
@@ -208,7 +205,7 @@ namespace NLog.MessageTemplates
             _literalLength = 0;
         }
 
-        private string ParseName(out int parameterIndex)
+        private string ParseName(out int parameterIndex, out int alignment, out string? format)
         {
             parameterIndex = -1;
 
@@ -217,13 +214,13 @@ namespace NLog.MessageTemplates
             if (c >= '0' && c <= '9')
             {
                 int start = _position;
-                int parsedIndex = ReadInt();
+                int parsedIndex = ReadUnsignedInt(c);
                 c = Peek();
-
                 if (c == '}' || c == ':' || c == ',')
                 {
                     // Non-allocating positional hole-name-parsing
                     parameterIndex = parsedIndex;
+                    ParseAlignmentAndFormat(c, out alignment, out format);
                     return ParameterIndexToString(parameterIndex);
                 }
 
@@ -238,7 +235,23 @@ namespace NLog.MessageTemplates
                 _position = start;
             }
 
-            return ReadUntil(HoleDelimiters);
+            string holeName = ReadUntil(HoleDelimiters);
+            ParseAlignmentAndFormat(Peek(), out alignment, out format);
+            return holeName;
+        }
+
+        private void ParseAlignmentAndFormat(char c, out int alignment, out string? format)
+        {
+            if (c == ',')
+            {
+                alignment = ParseAlignment();
+                c = Peek();
+            }
+            else
+            {
+                alignment = 0;
+            }
+            format = c == ':' ? ParseFormat() : null;
         }
 
         private static string ParameterIndexToString(int parameterIndex)
@@ -320,7 +333,7 @@ namespace NLog.MessageTemplates
         {
             Skip(',');
             SkipSpaces();
-            int i = ReadInt();
+            int i = ReadSignedInt();
             SkipSpaces();
             char next = Peek();
             if (next != ':' && next != '}')
@@ -359,36 +372,42 @@ namespace NLog.MessageTemplates
             return _position - start;
         }
 
-        private int ReadInt()
+        private int ReadSignedInt()
         {
-            bool negative = false;
-            int i = 0;
-            for (int x = 0; x < 12; ++x)
+            char c = Peek();
+
+            bool negative = c == '-';
+            if (negative)
             {
-                char c = Peek();
-
-                if (c < '0' || c > '9')
-                {
-                    if (x > 0 && !negative)
-                        return i;
-
-                    if (x > 1 && negative)
-                        return -i;
-
-                    if (x == 0 && c == '-')
-                    {
-                        negative = true;
-                        _position++;
-                        continue;
-                    }
-                    break;
-                }
-
                 _position++;
-                i = i * 10 + (c - '0');
+                c = Peek();
             }
 
-            throw new TemplateParserException("An integer is expected", _position, _template);
+            if (c < '0' || c > '9')
+                throw new TemplateParserException("Integer value expected", _position, _template);
+
+            int i = ReadUnsignedInt(c);
+            return negative ? -i : i;
+        }
+
+        private int ReadUnsignedInt(char c)
+        {
+            int i = c - '0';
+            _position++;
+            c = Peek();
+            if (c < '0' || c > '9')
+                return i;
+
+            for (int x = 1; x < 10; x++)
+            {
+                i = i * 10 + (c - '0');
+                _position++;
+                c = Peek();
+                if (c < '0' || c > '9')
+                    return i;
+            }
+
+            throw new TemplateParserException("Integer value has too many digits", _position, _template);
         }
 
         private string ReadUntil(char[] search, bool required = true)
