@@ -647,8 +647,9 @@ namespace NLog.Targets
                     continue;
                 }
 
-                var currentForegroundColor = colorStack.Peek().Key;
-                var currentBackgroundColor = colorStack.Peek().Value;
+                var orgColorConfig = colorStack.Peek();
+                var currentForegroundColor = orgColorConfig.Key;
+                var currentBackgroundColor = orgColorConfig.Value;
 
                 var foreground = (ConsoleOutputColor)(c2 - 'A');
                 var background = (ConsoleOutputColor)(message[p1 + 2] - 'A');
@@ -656,13 +657,13 @@ namespace NLog.Targets
                 if (foreground != ConsoleOutputColor.NoChange)
                 {
                     currentForegroundColor = (ConsoleColor)foreground;
-                    consolePrinter.ChangeForegroundColor(consoleWriter, currentForegroundColor);
+                    consolePrinter.ChangeForegroundColor(consoleWriter, currentForegroundColor, orgColorConfig.Key);
                 }
 
                 if (background != ConsoleOutputColor.NoChange)
                 {
                     currentBackgroundColor = (ConsoleColor)background;
-                    consolePrinter.ChangeBackgroundColor(consoleWriter, currentBackgroundColor);
+                    consolePrinter.ChangeBackgroundColor(consoleWriter, currentBackgroundColor, orgColorConfig.Value);
                 }
 
                 colorStack.Push(new KeyValuePair<ConsoleColor?, ConsoleColor?>(currentForegroundColor, currentBackgroundColor));
