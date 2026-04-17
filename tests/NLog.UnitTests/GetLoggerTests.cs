@@ -64,15 +64,18 @@ namespace NLog.UnitTests
             Logger l3 = lf.GetLogger("AAA", typeof(Logger));
             Logger l5 = lf.GetLogger("AAA");
             Logger l6 = lf.GetLogger("AAA");
+            Logger otherLogger = lf.GetLogger("BBB");
 
             Assert.Same(l1, l2);
             Assert.Same(l5, l6);
             Assert.Same(l3, l5);
 
             Assert.NotSame(l1, l3);
+            Assert.NotSame(l5, otherLogger);
 
             Assert.Equal("AAA", l1.Name);
             Assert.Equal("AAA", l3.Name);
+            Assert.Equal("BBB", otherLogger.Name);
         }
 
         [Fact]
