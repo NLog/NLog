@@ -441,12 +441,14 @@ namespace NLog.Targets
                 {
                     if (wordHighlighting)
                     {
-                        oldForegroundColor = _consolePrinter.ChangeForegroundColor(consoleWriter, newForegroundColor);
-                        oldBackgroundColor = _consolePrinter.ChangeBackgroundColor(consoleWriter, newBackgroundColor);
-                        var rowForegroundColor = newForegroundColor ?? oldForegroundColor;
-                        var rowBackgroundColor = newBackgroundColor ?? oldBackgroundColor;
-                        ColorizeEscapeSequences(_consolePrinter, consoleWriter, colorMessage, oldForegroundColor, oldBackgroundColor, rowForegroundColor, rowBackgroundColor);
+                        var capturedForegroundColor = _consolePrinter.ChangeForegroundColor(consoleWriter, newForegroundColor);
+                        var capturedBackgroundColor = _consolePrinter.ChangeBackgroundColor(consoleWriter, newBackgroundColor);
+                        var rowForegroundColor = newForegroundColor ?? capturedForegroundColor;
+                        var rowBackgroundColor = newBackgroundColor ?? capturedBackgroundColor;
+                        ColorizeEscapeSequences(_consolePrinter, consoleWriter, colorMessage, capturedForegroundColor, capturedBackgroundColor, rowForegroundColor, rowBackgroundColor);
                         _consolePrinter.WriteLine(consoleWriter, string.Empty);
+                        oldForegroundColor = (capturedForegroundColor != rowForegroundColor) ? capturedForegroundColor : null;  // No color restore is needed
+                        oldBackgroundColor = (capturedBackgroundColor != rowBackgroundColor) ? capturedBackgroundColor : null;  // No color restore is needed
                     }
                     else
                     {
