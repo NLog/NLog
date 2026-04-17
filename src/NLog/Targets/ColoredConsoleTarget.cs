@@ -441,12 +441,14 @@ namespace NLog.Targets
                 {
                     if (wordHighlighting)
                     {
-                        oldForegroundColor = _consolePrinter.ChangeForegroundColor(consoleWriter, newForegroundColor);
-                        oldBackgroundColor = _consolePrinter.ChangeBackgroundColor(consoleWriter, newBackgroundColor);
-                        var rowForegroundColor = newForegroundColor ?? oldForegroundColor;
-                        var rowBackgroundColor = newBackgroundColor ?? oldBackgroundColor;
-                        ColorizeEscapeSequences(_consolePrinter, consoleWriter, colorMessage, oldForegroundColor, oldBackgroundColor, rowForegroundColor, rowBackgroundColor);
+                        var capturedForegroundColor = _consolePrinter.ChangeForegroundColor(consoleWriter, newForegroundColor);
+                        var capturedBackgroundColor = _consolePrinter.ChangeBackgroundColor(consoleWriter, newBackgroundColor);
+                        var rowForegroundColor = newForegroundColor ?? capturedForegroundColor;
+                        var rowBackgroundColor = newBackgroundColor ?? capturedBackgroundColor;
+                        ColorizeEscapeSequences(_consolePrinter, consoleWriter, colorMessage, capturedForegroundColor, capturedBackgroundColor, rowForegroundColor, rowBackgroundColor);
                         _consolePrinter.WriteLine(consoleWriter, string.Empty);
+                        oldForegroundColor = (capturedForegroundColor != rowForegroundColor) ? capturedForegroundColor : null;  // No color restore is needed
+                        oldBackgroundColor = (capturedBackgroundColor != rowBackgroundColor) ? capturedBackgroundColor : null;  // No color restore is needed
                     }
                     else
                     {
@@ -647,8 +649,9 @@ namespace NLog.Targets
                     continue;
                 }
 
-                var currentForegroundColor = colorStack.Peek().Key;
-                var currentBackgroundColor = colorStack.Peek().Value;
+                var orgColorConfig = colorStack.Peek();
+                var currentForegroundColor = orgColorConfig.Key;
+                var currentBackgroundColor = orgColorConfig.Value;
 
                 var foreground = (ConsoleOutputColor)(c2 - 'A');
                 var background = (ConsoleOutputColor)(message[p1 + 2] - 'A');
@@ -656,13 +659,13 @@ namespace NLog.Targets
                 if (foreground != ConsoleOutputColor.NoChange)
                 {
                     currentForegroundColor = (ConsoleColor)foreground;
-                    consolePrinter.ChangeForegroundColor(consoleWriter, currentForegroundColor);
+                    consolePrinter.ChangeForegroundColor(consoleWriter, currentForegroundColor, orgColorConfig.Key);
                 }
 
                 if (background != ConsoleOutputColor.NoChange)
                 {
                     currentBackgroundColor = (ConsoleColor)background;
-                    consolePrinter.ChangeBackgroundColor(consoleWriter, currentBackgroundColor);
+                    consolePrinter.ChangeBackgroundColor(consoleWriter, currentBackgroundColor, orgColorConfig.Value);
                 }
 
                 colorStack.Push(new KeyValuePair<ConsoleColor?, ConsoleColor?>(currentForegroundColor, currentBackgroundColor));
