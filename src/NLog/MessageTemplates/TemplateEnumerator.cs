@@ -67,17 +67,8 @@ namespace NLog.MessageTemplates
             _template = Guard.ThrowIfNull(template);
             _length = _template.Length;
             _current = default(LiteralHole);
-            var firstDelimiter = _template.IndexOfAny(TextDelimiters);
-            if (firstDelimiter >= 0)
-            {
-                _position = firstDelimiter;
-                _literalLength = firstDelimiter;
-            }
-            else
-            {
-                _position = _length;
-                _literalLength = _length;
-            }
+            _position = 0;
+            _literalLength = 0;
         }
 
         /// <summary>
