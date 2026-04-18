@@ -143,7 +143,17 @@ namespace NLog.MessageTemplates
 
         private void ParseTextPart()
         {
-            _literalLength = SkipUntil(TextDelimiters, required: false);
+            var i = _template.IndexOfAny(TextDelimiters, _position);
+            if (i < 0)
+            {
+                _literalLength = _length - _position;
+                _position = _length;
+            }
+            else
+            {
+                _literalLength = i - _position;
+                _position = i;
+            }
         }
 
         private void ParseOpenBracketPart()
@@ -350,19 +360,6 @@ namespace NLog.MessageTemplates
             while (_template[_position] == ' ') _position++;
         }
 
-        private int SkipUntil(char[] search, bool required = true)
-        {
-            int start = _position;
-            int i = _template.IndexOfAny(search, _position);
-            if (i == -1 && required)
-            {
-                var formattedChars = string.Join(", ", search.Select(c => string.Concat("'", c.ToString(), "'")).ToArray());
-                throw new TemplateParserException($"Reached end of template while expecting one of {formattedChars}.", _position, _template);
-            }
-            _position = i == -1 ? _length : i;
-            return _position - start;
-        }
-
         private int ReadSignedInt()
         {
             char c = Peek();
@@ -401,10 +398,18 @@ namespace NLog.MessageTemplates
             throw new TemplateParserException("Integer value has too many digits", _position, _template);
         }
 
-        private string ReadUntil(char[] search, bool required = true)
+        private string ReadUntil(char[] search)
         {
+            int i = _template.IndexOfAny(search, _position);
+            if (i < 0)
+            {
+                var formattedChars = string.Join(", ", search.Select(c => string.Concat("'", c.ToString(), "'")).ToArray());
+                throw new TemplateParserException($"Reached end of template while expecting one of {formattedChars}.", _position, _template);
+            }
             int start = _position;
-            return _template.Substring(start, SkipUntil(search, required));
+            var length = i - _position;
+            _position = i;
+            return _template.Substring(start, length);
         }
     }
 }
