@@ -441,14 +441,14 @@ namespace NLog.Targets
                 {
                     if (wordHighlighting)
                     {
-                        var capturedForegroundColor = _consolePrinter.ChangeForegroundColor(consoleWriter, newForegroundColor);
-                        var capturedBackgroundColor = _consolePrinter.ChangeBackgroundColor(consoleWriter, newBackgroundColor);
-                        var rowForegroundColor = newForegroundColor ?? capturedForegroundColor;
-                        var rowBackgroundColor = newBackgroundColor ?? capturedBackgroundColor;
-                        ColorizeEscapeSequences(_consolePrinter, consoleWriter, colorMessage, capturedForegroundColor, capturedBackgroundColor, rowForegroundColor, rowBackgroundColor);
+                        var prevForegroundColor = _consolePrinter.ChangeForegroundColor(consoleWriter, newForegroundColor);
+                        var prevBackgroundColor = _consolePrinter.ChangeBackgroundColor(consoleWriter, newBackgroundColor);
+                        var rowForegroundColor = newForegroundColor ?? prevForegroundColor;
+                        var rowBackgroundColor = newBackgroundColor ?? prevBackgroundColor;
+                        ColorizeEscapeSequences(_consolePrinter, consoleWriter, colorMessage, prevForegroundColor, prevBackgroundColor, rowForegroundColor, rowBackgroundColor);
                         _consolePrinter.WriteLine(consoleWriter, string.Empty);
-                        oldForegroundColor = (capturedForegroundColor != rowForegroundColor) ? capturedForegroundColor : null;  // No color restore is needed
-                        oldBackgroundColor = (capturedBackgroundColor != rowBackgroundColor) ? capturedBackgroundColor : null;  // No color restore is needed
+                        oldForegroundColor = (prevForegroundColor != rowForegroundColor) ? prevForegroundColor : null;  // No color restore is needed
+                        oldBackgroundColor = (prevBackgroundColor != rowBackgroundColor) ? prevBackgroundColor : null;  // No color restore is needed
                     }
                     else
                     {
@@ -641,6 +641,7 @@ namespace NLog.Targets
                         if ((oldColorConfig.Key.HasValue && !newColorConfig.Key.HasValue) || (oldColorConfig.Value.HasValue && !newColorConfig.Value.HasValue))
                         {
                             consolePrinter.ResetDefaultColors(consoleWriter, defaultForegroundColor, defaultBackgroundColor);
+                            oldColorConfig = default;
                         }
                         consolePrinter.ChangeForegroundColor(consoleWriter, newColorConfig.Key, oldColorConfig.Key);
                         consolePrinter.ChangeBackgroundColor(consoleWriter, newColorConfig.Value, oldColorConfig.Value);
