@@ -42,9 +42,9 @@ namespace NLog.Targets.Wrappers
     /// Writes log events to all wrapped targets. For better performance, specify targets directly on the logging rule, optionally using NLog variables.
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/SplitGroup-target">See NLog Wiki</a>
+    /// <a href="https://github.com/NLog/NLog/wiki/SplitGroup-target">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/SplitGroup-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/SplitGroup-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>This example causes the messages to be written to both file1.txt or file2.txt
     /// </p>

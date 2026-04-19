@@ -39,9 +39,9 @@ namespace NLog.Targets
     /// Outputs log messages through the <c>OutputDebugString()</c> Win32 API.
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/OutputDebugString-target">See NLog Wiki</a>
+    /// <a href="https://github.com/NLog/NLog/wiki/OutputDebugString-target">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/OutputDebugString-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/OutputDebugString-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>,

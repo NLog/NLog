@@ -52,9 +52,9 @@ namespace NLog.Targets
     /// FileTarget for writing formatted messages to one or more log-files.
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/File-target">See NLog Wiki</a>
+    /// <a href="https://github.com/NLog/NLog/wiki/File-target">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/File-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/File-target">Documentation on NLog Wiki</seealso>
     [Target("File")]
     public class FileTarget : TargetWithLayoutHeaderAndFooter
     {
