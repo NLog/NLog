@@ -16,7 +16,7 @@
 
     <PackageReleaseNotes>
       Docs:
-      https://github.com/nlog/NLog/wiki/EventLog-target
+      https://github.com/NLog/NLog/wiki/EventLog-target
     </PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>NLog;EventLog;logging;log</PackageTags>

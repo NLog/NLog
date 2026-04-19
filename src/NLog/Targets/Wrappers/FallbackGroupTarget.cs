@@ -41,9 +41,9 @@ namespace NLog.Targets.Wrappers
     /// Provides fallback-on-error.
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/FallbackGroup-target">See NLog Wiki</a>
+    /// <a href="https://github.com/NLog/NLog/wiki/FallbackGroup-target">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/FallbackGroup-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/FallbackGroup-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>This example causes the messages to be written to server1,
     /// and if it fails, messages go to server2.</p>

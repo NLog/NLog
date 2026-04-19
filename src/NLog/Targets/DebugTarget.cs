@@ -37,9 +37,9 @@ namespace NLog.Targets
     /// Mock target - useful for testing.
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/Debug-target">See NLog Wiki</a>
+    /// <a href="https://github.com/NLog/NLog/wiki/Debug-target">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/Debug-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Debug-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>,

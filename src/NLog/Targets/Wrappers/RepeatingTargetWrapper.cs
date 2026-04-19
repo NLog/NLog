@@ -39,9 +39,9 @@ namespace NLog.Targets.Wrappers
     /// Repeats each log event the specified number of times.
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/RepeatingWrapper-target">See NLog Wiki</a>
+    /// <a href="https://github.com/NLog/NLog/wiki/RepeatingWrapper-target">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/RepeatingWrapper-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/RepeatingWrapper-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>This example causes each log message to be repeated 3 times.</p>
     /// <p>

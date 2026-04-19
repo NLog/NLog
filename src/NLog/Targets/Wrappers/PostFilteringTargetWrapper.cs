@@ -43,9 +43,9 @@ namespace NLog.Targets.Wrappers
     /// Filters buffered log entries based on a set of conditions that are evaluated on a group of events.
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/PostFilteringWrapper-target">See NLog Wiki</a>
+    /// <a href="https://github.com/NLog/NLog/wiki/PostFilteringWrapper-target">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/PostFilteringWrapper-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/PostFilteringWrapper-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// This example works like this. If there are no Warn,Error or Fatal messages in the buffer

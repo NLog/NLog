@@ -39,9 +39,9 @@ namespace NLog.Targets
     /// Writes log messages to <see cref="Logs"/> in memory for programmatic retrieval.
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/Memory-target">See NLog Wiki</a>
+    /// <a href="https://github.com/NLog/NLog/wiki/Memory-target">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/Memory-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Memory-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>,

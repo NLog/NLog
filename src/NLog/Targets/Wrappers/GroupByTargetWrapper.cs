@@ -42,7 +42,7 @@ namespace NLog.Targets.Wrappers
     /// A target that buffers log events and sends them in batches to the wrapped target.
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/GroupByWrapper-target">See NLog Wiki</a>
+    /// <a href="https://github.com/NLog/NLog/wiki/GroupByWrapper-target">See NLog Wiki</a>
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/GroupByWrapper-target">Documentation on NLog Wiki</seealso>
     [Target("GroupByWrapper", IsWrapper = true)]

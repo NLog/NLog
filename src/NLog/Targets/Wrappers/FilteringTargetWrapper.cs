@@ -43,9 +43,9 @@ namespace NLog.Targets.Wrappers
     /// Filters log entries based on a condition.
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/FilteringWrapper-target">See NLog Wiki</a>
+    /// <a href="https://github.com/NLog/NLog/wiki/FilteringWrapper-target">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/FilteringWrapper-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/FilteringWrapper-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>This example causes the messages not contains the string '1' to be ignored.</p>
     /// <p>

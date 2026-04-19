@@ -42,9 +42,9 @@ namespace NLog.Targets
     /// Extended standard FileTarget with atomic file append for multi-process logging to the same file
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/Atomic-File-target">See NLog Wiki</a>
+    /// <a href="https://github.com/NLog/NLog/wiki/Atomic-File-target">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/Atomic-File-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Atomic-File-target">Documentation on NLog Wiki</seealso>
     [Target("AtomFile")]
     [Target("AtomicFile")]
     public class AtomicFileTarget : FileTarget
