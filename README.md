@@ -16,9 +16,8 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=coverage&branch=dev)](https://sonarcloud.io/dashboard?id=nlog2&branch=dev)
 
 
-[![](https://img.shields.io/badge/Docs-GitHub%20wiki-brightgreen)](https://github.com/NLog/NLog/wiki)
-[![](https://img.shields.io/badge/Troubleshoot-Guide-orange)](https://github.com/NLog/NLog/wiki/Logging-troubleshooting)
-
+[![Wiki](https://img.shields.io/badge/Docs-GitHub%20wiki-brightgreen)](https://github.com/NLog/NLog/wiki)
+[![Troubleshoot Guide](https://img.shields.io/badge/Troubleshoot-Guide-orange)](https://github.com/NLog/NLog/wiki/Logging-troubleshooting)
 
 NLog is a free logging platform for .NET with rich log routing and management
 capabilities. It makes it easy to produce and manage high-quality logs for
