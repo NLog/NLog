@@ -211,5 +211,103 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal(5, date.Length);
             Assert.Equal('.', date[0]);
         }
+
+        /// <summary>
+        /// Documents the current behavior referenced in the enhancement request:
+        /// without <c>asDateTimeOffset</c>, the raw value exposed by <c>${longdate}</c> is a
+        /// <see cref="DateTime"/>. SQL <c>DATETIMEOFFSET</c> users currently have to push
+        /// timestamps through <c>LogEventInfo.Properties</c> as a workaround.
+        /// </summary>
+        [Fact]
+        public void LongDateTryGetRawValue_DefaultReturnsDateTime()
+        {
+            // Arrange
+            SimpleLayout l = "${longdate}";
+            var timestamp = DateTime.SpecifyKind(new DateTime(2025, 6, 1, 12, 34, 56, 789), DateTimeKind.Local);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.TimeStamp = timestamp;
+
+            // Act
+            var success = l.TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.True(success, "success");
+            Assert.IsType<DateTime>(value);
+            Assert.Equal(timestamp, (DateTime)value);
+        }
+
+        /// <summary>
+        /// Verifies that <c>${datetimeoffset}</c> with the longdate format exposes a typed
+        /// <see cref="DateTimeOffset"/> raw value for a <see cref="DateTimeKind.Local"/> timestamp.
+        /// </summary>
+        [Fact]
+        public void DateTimeOffsetLayoutRenderer_TryGetRawValue_LongDateFormat_LocalKind()
+        {
+            // Arrange
+            var renderer = new DateTimeOffsetLayoutRenderer();
+            renderer.Format = "yyyy-MM-dd HH:mm:ss.ffff";
+            var timestamp = DateTime.SpecifyKind(new DateTime(2025, 6, 1, 12, 34, 56, 789), DateTimeKind.Local);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.TimeStamp = timestamp;
+
+            // Act
+            var success = ((NLog.Internal.IRawValue)renderer).TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.True(success, "success");
+            Assert.IsType<DateTimeOffset>(value);
+            var expected = new DateTimeOffset(timestamp, TimeZoneInfo.Local.GetUtcOffset(timestamp));
+            Assert.Equal(expected, (DateTimeOffset)value);
+        }
+
+        /// <summary>
+        /// Verifies that <c>${datetimeoffset}</c> with the longdate format produces a
+        /// <see cref="DateTimeOffset"/> with <see cref="TimeSpan.Zero"/> offset for UTC timestamps.
+        /// </summary>
+        [Fact]
+        public void DateTimeOffsetLayoutRenderer_TryGetRawValue_LongDateFormat_UtcKind()
+        {
+            // Arrange
+            var renderer = new DateTimeOffsetLayoutRenderer();
+            renderer.Format = "yyyy-MM-dd HH:mm:ss.ffff";
+            var timestamp = DateTime.SpecifyKind(new DateTime(2025, 6, 1, 12, 34, 56, 789), DateTimeKind.Utc);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.TimeStamp = timestamp;
+
+            // Act
+            var success = ((NLog.Internal.IRawValue)renderer).TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.True(success, "success");
+            Assert.IsType<DateTimeOffset>(value);
+            var actual = (DateTimeOffset)value;
+            Assert.Equal(TimeSpan.Zero, actual.Offset);
+            Assert.Equal(timestamp, actual.UtcDateTime);
+        }
+
+        /// <summary>
+        /// Verifies that <c>${datetimeoffset}</c> with the longdate format produces the same
+        /// rendered string as <c>${longdate}</c>, so file/console targets keep working without changes.
+        /// </summary>
+        [Fact]
+        public void DateTimeOffsetLayoutRenderer_LongDateFormat_MatchesLongDateRenderer()
+        {
+            // Arrange
+            var timestamp = DateTime.SpecifyKind(new DateTime(2025, 6, 1, 12, 34, 56, 789), DateTimeKind.Local);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.TimeStamp = timestamp;
+
+            var longDate = new LongDateLayoutRenderer();
+            var dtOffset = new DateTimeOffsetLayoutRenderer();
+            dtOffset.Format = "yyyy-MM-dd HH:mm:ss.ffff";
+
+            // Act
+            var plainText = longDate.Render(logEventInfo);
+            var typedText = dtOffset.Render(logEventInfo);
+
+            // Assert
+            Assert.Equal(plainText, typedText);
+            Assert.Equal(timestamp.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture), typedText);
+        }
     }
 }

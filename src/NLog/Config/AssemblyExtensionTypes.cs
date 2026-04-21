@@ -115,6 +115,7 @@ namespace NLog.Config
             layoutRendererFactory.RegisterType<NLog.LayoutRenderers.CounterLayoutRenderer>("counter", checkTypeExists);
             layoutRendererFactory.RegisterType<NLog.LayoutRenderers.CurrentDirLayoutRenderer>("currentdir", checkTypeExists);
             layoutRendererFactory.RegisterType<NLog.LayoutRenderers.DateLayoutRenderer>("date", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.DateTimeOffsetLayoutRenderer>("datetimeoffset", checkTypeExists);
             layoutRendererFactory.RegisterType<NLog.LayoutRenderers.DbNullLayoutRenderer>("dbnull", checkTypeExists);
             layoutRendererFactory.RegisterType<NLog.LayoutRenderers.DirectorySeparatorLayoutRenderer>("dirseparator", checkTypeExists);
             layoutRendererFactory.RegisterType<NLog.LayoutRenderers.EnvironmentLayoutRenderer>("environment", checkTypeExists);

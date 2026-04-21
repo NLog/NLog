@@ -36,6 +36,7 @@ namespace NLog.UnitTests.LayoutRenderers
     using System;
     using System.Globalization;
     using NLog.LayoutRenderers;
+    using NLog.Layouts;
     using Xunit;
 
     public class DateTests : NLogTestBase
@@ -197,6 +198,102 @@ namespace NLog.UnitTests.LayoutRenderers
                         <variable name='logDate' value='${date:format=hh:mm}' />
                     </nlog>");
             });
+        }
+
+        /// <summary>
+        /// Documents the current behavior referenced in the enhancement request:
+        /// without <c>asDateTimeOffset</c>, the raw value exposed by <c>${date}</c> is a
+        /// <see cref="DateTime"/>. This is what forces SQL <c>DATETIMEOFFSET</c> users to
+        /// populate <c>LogEventInfo.Properties["Timestamp"] = new DateTimeOffset(e.TimeStamp)</c>
+        /// in every log call (or via a wrapper) instead of using the built-in renderer.
+        /// </summary>
+        [Fact]
+        public void DateTryGetRawValue_DefaultReturnsDateTime()
+        {
+            // Arrange
+            SimpleLayout l = "${date}";
+            var timestamp = DateTime.SpecifyKind(new DateTime(2025, 6, 1, 12, 34, 56, 789), DateTimeKind.Local);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.TimeStamp = timestamp;
+
+            // Act
+            var success = l.TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.True(success, "success");
+            Assert.IsType<DateTime>(value);
+            Assert.Equal(timestamp, (DateTime)value);
+        }
+
+        /// <summary>
+        /// Verifies that <c>${datetimeoffset}</c> exposes a typed <see cref="DateTimeOffset"/> raw value
+        /// for a <see cref="DateTimeKind.Local"/> timestamp, with the correct local UTC offset.
+        /// </summary>
+        [Fact]
+        public void DateTimeOffsetLayoutRenderer_TryGetRawValue_ReturnsDateTimeOffset_LocalKind()
+        {
+            // Arrange
+            SimpleLayout l = "${datetimeoffset}";
+            var timestamp = DateTime.SpecifyKind(new DateTime(2025, 6, 1, 12, 34, 56, 789), DateTimeKind.Local);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.TimeStamp = timestamp;
+
+            // Act
+            var success = l.TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.True(success, "success");
+            Assert.IsType<DateTimeOffset>(value);
+            var expected = new DateTimeOffset(timestamp, TimeZoneInfo.Local.GetUtcOffset(timestamp));
+            Assert.Equal(expected, (DateTimeOffset)value);
+        }
+
+        /// <summary>
+        /// Verifies that <c>${datetimeoffset}</c> exposes a typed <see cref="DateTimeOffset"/> raw value
+        /// for a <see cref="DateTimeKind.Utc"/> timestamp, with an offset of <see cref="TimeSpan.Zero"/>.
+        /// </summary>
+        [Fact]
+        public void DateTimeOffsetLayoutRenderer_TryGetRawValue_ReturnsDateTimeOffset_UtcKind()
+        {
+            // Arrange
+            SimpleLayout l = "${datetimeoffset}";
+            var timestamp = DateTime.SpecifyKind(new DateTime(2025, 6, 1, 12, 34, 56, 789), DateTimeKind.Utc);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.TimeStamp = timestamp;
+
+            // Act
+            var success = l.TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.True(success, "success");
+            Assert.IsType<DateTimeOffset>(value);
+            var actual = (DateTimeOffset)value;
+            Assert.Equal(TimeSpan.Zero, actual.Offset);
+            Assert.Equal(timestamp, actual.UtcDateTime);
+        }
+
+        /// <summary>
+        /// Verifies that <c>${datetimeoffset}</c> produces the same rendered string as <c>${date}</c>
+        /// with the default format, so file/console targets keep working without changes.
+        /// </summary>
+        [Fact]
+        public void DateTimeOffsetLayoutRenderer_DefaultFormat_MatchesDateRenderer()
+        {
+            // Arrange
+            var timestamp = DateTime.SpecifyKind(new DateTime(2025, 6, 1, 12, 34, 56, 789), DateTimeKind.Local);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.TimeStamp = timestamp;
+
+            SimpleLayout plain = "${date}";
+            SimpleLayout typed = "${datetimeoffset}";
+
+            // Act
+            var plainText = plain.Render(logEventInfo);
+            var typedText = typed.Render(logEventInfo);
+
+            // Assert
+            Assert.Equal(plainText, typedText);
+            Assert.Equal(timestamp.ToString("yyyy/MM/dd HH:mm:ss.fff", CultureInfo.InvariantCulture), typedText);
         }
     }
 }
