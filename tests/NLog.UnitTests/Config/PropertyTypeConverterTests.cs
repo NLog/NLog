@@ -243,8 +243,39 @@ namespace NLog.UnitTests.Config
             var result = _sut.Convert(dateTime, typeof(DateTimeOffset), null, null);
 
             // Assert
+            var expected = new DateTimeOffset(dateTime, TimeSpan.Zero);
             var resultTyped = Assert.IsType<DateTimeOffset>(result);
+            Assert.Equal(expected, resultTyped);
             Assert.Equal(dateTime, resultTyped.DateTime);
+            Assert.Equal(dateTime, resultTyped.UtcDateTime);
+        }
+
+        [Fact]
+        public void Convert_DateTimeToDateTimeOffset_Local()
+        {
+            // Act
+            var dateTime = new DateTime(1970, 1, 1, 1, 1, 1, DateTimeKind.Local);
+            var result = _sut.Convert(dateTime, typeof(DateTimeOffset), null, null);
+
+            // Assert
+            var expected = new DateTimeOffset(dateTime, TimeZoneInfo.Local.GetUtcOffset(dateTime));
+            var resultTyped = Assert.IsType<DateTimeOffset>(result);
+            Assert.Equal(expected, resultTyped);
+            Assert.Equal(dateTime, resultTyped.LocalDateTime);
+        }
+
+        [Fact]
+        public void Convert_DateTimeToDateTimeOffset_Unspecified()
+        {
+            // Act
+            var dateTime = new DateTime(1970, 1, 1, 1, 1, 1, DateTimeKind.Unspecified); // Treated as Local
+            var result = _sut.Convert(dateTime, typeof(DateTimeOffset), null, null);
+
+            // Assert
+            var expected = new DateTimeOffset(dateTime, TimeZoneInfo.Local.GetUtcOffset(dateTime));
+            var resultTyped = Assert.IsType<DateTimeOffset>(result);
+            Assert.Equal(expected, resultTyped);
+            Assert.Equal(DateTime.SpecifyKind(dateTime, DateTimeKind.Local), resultTyped.LocalDateTime);
         }
 
         [Fact]
