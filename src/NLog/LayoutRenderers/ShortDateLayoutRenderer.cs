@@ -88,7 +88,7 @@ namespace NLog.LayoutRenderers
             {
                 if (_universalTime.Value)
                     timestamp = timestamp.ToUniversalTime();
-                else
+                else if (timestamp.Kind == DateTimeKind.Utc)
                     timestamp = timestamp.ToLocalTime();
             }
             return timestamp;
