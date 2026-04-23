@@ -33,6 +33,7 @@
 
 
 using System;
+using System.Collections.Generic;
 using NLog.Internal;
 using Xunit;
 
@@ -102,6 +103,36 @@ namespace NLog.UnitTests.Internal
         public void ReplaceTestThrowsNullException(string input, string search, string replace, StringComparison comparer)
         {
             Assert.Throws<ArgumentNullException>(() => StringHelpers.Replace(input, search, replace, comparer));
+        }
+
+        [Fact]
+        public void Join_ShouldConcatenateValuesWithSeparator()
+        {
+            var input = new List<string> { "a", "b", "c" };
+
+            var result = StringHelpers.Join(",", input);
+
+            Assert.Equal("a,b,c", result);
+        }
+
+        [Fact]
+        public void Join_EmptyCollection_ReturnsEmptyString()
+        {
+            var input = new List<string>();
+
+            var result = StringHelpers.Join(",", input);
+
+            Assert.Equal(string.Empty, result);
+        }
+
+        [Fact]
+        public void Join_SingleElement_ReturnsSameValue()
+        {
+            var input = new List<string> { "a" };
+
+            var result = StringHelpers.Join(",", input);
+
+            Assert.Equal("a", result);
         }
     }
 }
