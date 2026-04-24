@@ -213,10 +213,9 @@ namespace NLog.Config
             }
             catch (TargetInvocationException ex)
             {
-                if (ex.InnerException is null)
-                    throw;
-
-                throw ex.InnerException;
+                if (ex.InnerException != null)
+                    throw ex.InnerException;
+                throw;
             }
         }
 

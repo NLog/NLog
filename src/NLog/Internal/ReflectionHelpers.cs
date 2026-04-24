@@ -80,9 +80,11 @@ namespace NLog.Internal
                     {
                         return methodInfo.Invoke(target, args);
                     }
-                    catch (TargetInvocationException exception)
+                    catch (TargetInvocationException ex)
                     {
-                        throw exception.InnerException ?? exception;
+                        if (ex.InnerException != null)
+                            throw ex.InnerException;
+                        throw;
                     }
                 };
             }

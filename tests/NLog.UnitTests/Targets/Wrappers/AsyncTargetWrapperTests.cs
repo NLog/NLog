@@ -993,7 +993,9 @@ namespace NLog.UnitTests.Targets.Wrappers
                     }
                     catch (System.Reflection.TargetInvocationException ex)
                     {
-                        throw ex.InnerException;
+                        if (ex.InnerException != null)
+                            throw ex.InnerException;
+                        throw;
                     }
                 }
             }
