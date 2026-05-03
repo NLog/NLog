@@ -214,26 +214,21 @@ namespace NLog.MessageTemplates
                 int start = _position;
                 int parsedIndex = ReadUnsignedInt(c);
                 c = Peek();
+                if (c == ' ')
+                {
+                    SkipSpaces();
+                    c = Peek();
+                }
                 if (c == '}' || c == ':' || c == ',')
                 {
-                    // Non-allocating positional hole-name-parsing
                     parameterIndex = parsedIndex;
                     ParseAlignmentAndFormat(c, out alignment, out format);
                     return;
                 }
 
-                if (c == ' ')
-                {
-                    SkipSpaces();
-                    c = Peek();
-                    if (c == '}' || c == ':' || c == ',')
-                        parameterIndex = parsedIndex;
-                }
-
                 _position = start;
             }
 
-            // Record slice instead of allocating a string now
             int i = _template.IndexOfAny(HoleDelimiters, _position);
             if (i < 0)
                 throw new TemplateParserException("Reached end of template while expecting one of '}', ':', ','.", _position, _template);
