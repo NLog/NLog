@@ -45,19 +45,42 @@ namespace NLog.MessageTemplates
         /// <summary>
         /// Constructor
         /// </summary>
-        public Hole(string name, string? format, CaptureType captureType, short parameterIndex, short alignment)
+        public Hole(int nameStart, int nameLength, string? format, CaptureType captureType, short parameterIndex, short alignment)
         {
-            Name = name;
+            _nameStart = nameStart;
+            _nameLength = nameLength;
             Format = format;
             CaptureType = captureType;
             Index = parameterIndex;
             Alignment = alignment;
         }
 
-        /// <summary>Parameter name sent to structured loggers.</summary>
-        /// <remarks>This is everything between "{" and the first of ",:}".
-        /// Including surrounding spaces and names that are numbers.</remarks>
-        public readonly string Name;
+        private readonly int _nameStart;
+        private readonly int _nameLength;
+
+        /// <summary>Returns the parameter name.</summary>
+        /// <remarks>For positional holes the name is derived from <see cref="Index"/>.
+        /// For named holes it is sliced from <paramref name="template"/> on demand.</remarks>
+        public string GetName(string template) => (_nameLength == 0 && Index >= 0) ? ParameterIndexToString(Index) : template.Substring(_nameStart, _nameLength);
+
+        private static string ParameterIndexToString(int index)
+        {
+            switch (index)
+            {
+                case 0: return "0";
+                case 1: return "1";
+                case 2: return "2";
+                case 3: return "3";
+                case 4: return "4";
+                case 5: return "5";
+                case 6: return "6";
+                case 7: return "7";
+                case 8: return "8";
+                case 9: return "9";
+            }
+            return index.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        }
+
         /// <summary>Format to render the parameter.</summary>
         /// <remarks>This is everything between ":" and the first unescaped "}"</remarks>
         public readonly string? Format;
@@ -66,7 +89,7 @@ namespace NLog.MessageTemplates
         /// </summary>
         public readonly CaptureType CaptureType;
         /// <summary>When the template is positional, this is the parsed name of this parameter.</summary>
-        /// <remarks>For named templates, the value of Index is undefined.</remarks>
+        /// <remarks>For named templates, the value of Index is -1.</remarks>
         public readonly short Index;
         /// <summary>Alignment to render the parameter, by default 0.</summary>
         /// <remarks>This is the parsed value between "," and the first of ":}"</remarks>

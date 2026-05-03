@@ -189,7 +189,7 @@ namespace NLog.Internal
                             continue;
                         }
                     }
-                    messageTemplateParameters[holeIndex++] = new MessageTemplateParameter(hole.Name, holeParameter, hole.Format, hole.CaptureType);
+                    messageTemplateParameters[holeIndex++] = new MessageTemplateParameter(hole.GetName(template), holeParameter, hole.Format, hole.CaptureType);
                     RenderHole(sb, hole, formatProvider, holeParameter);
                 }
                 if (hole.Alignment != 0)
@@ -251,7 +251,7 @@ namespace NLog.Internal
                                 continue;
                             }
                         }
-                        messageTemplateParameters[holeIndex++] = new MessageTemplateParameter(hole.Name, holeParameter, hole.Format, hole.CaptureType);
+                        messageTemplateParameters[holeIndex++] = new MessageTemplateParameter(hole.GetName(template), holeParameter, hole.Format, hole.CaptureType);
                         RenderHole(sb, hole, formatProvider, holeParameter);
                     }
                     if (hole.Alignment != 0)

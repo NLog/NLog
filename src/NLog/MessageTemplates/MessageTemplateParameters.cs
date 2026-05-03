@@ -126,7 +126,7 @@ namespace NLog.MessageTemplates
                     {
                         holeIndex = GetMaxHoleIndex(holeIndex, hole.Index);
                         var value = GetHoleValueSafe(parameters, hole.Index, ref isValidTemplate);
-                        templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
+                        templateParameters.Add(new MessageTemplateParameter(hole.GetName(template), value, hole.Format, hole.CaptureType));
                     }
                     else
                     {
@@ -142,7 +142,7 @@ namespace NLog.MessageTemplates
 
                         isPositional = false;
                         var value = GetHoleValueSafe(parameters, holeIndex, ref isValidTemplate);
-                        templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
+                        templateParameters.Add(new MessageTemplateParameter(hole.GetName(template), value, hole.Format, hole.CaptureType));
                         holeIndex++;
                     }
                 }

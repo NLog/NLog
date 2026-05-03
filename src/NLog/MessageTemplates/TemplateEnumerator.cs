@@ -193,22 +193,19 @@ namespace NLog.MessageTemplates
         private void ParseHole(CaptureType type)
         {
             int literalOffset = -_position + (type == CaptureType.Normal ? 1 : 2); // Account for skipped '{', '{$' or '{@'
-            string name = ParseName(out var parameterIndex, out var alignment, out var format);
+            ParseName(out var parameterIndex, out var alignment, out var format, out var nameStart, out var nameLength);
             Skip('}');
 
-            _current = new LiteralHole(new Literal(_literalLength, _position + literalOffset), new Hole(
-                name,
-                format,
-                type,
-                (short)parameterIndex,
-                (short)alignment
-            ));
+            _current = new LiteralHole(new Literal(_literalLength, _position + literalOffset),
+                new Hole(nameStart, nameLength, format, type, (short)parameterIndex, (short)alignment));
             _literalLength = 0;
         }
 
-        private string ParseName(out int parameterIndex, out int alignment, out string? format)
+        private void ParseName(out int parameterIndex, out int alignment, out string? format, out int nameStart, out int nameLength)
         {
             parameterIndex = -1;
+            nameStart = 0;
+            nameLength = 0;
 
             char c = Peek();
             // If the name matches /^\d+ *$/ we consider it positional
@@ -222,7 +219,7 @@ namespace NLog.MessageTemplates
                     // Non-allocating positional hole-name-parsing
                     parameterIndex = parsedIndex;
                     ParseAlignmentAndFormat(c, out alignment, out format);
-                    return ParameterIndexToString(parameterIndex);
+                    return;
                 }
 
                 if (c == ' ')
@@ -236,9 +233,14 @@ namespace NLog.MessageTemplates
                 _position = start;
             }
 
-            string holeName = ReadUntil(HoleDelimiters);
+            // Record slice instead of allocating a string now
+            int i = _template.IndexOfAny(HoleDelimiters, _position);
+            if (i < 0)
+                throw new TemplateParserException("Reached end of template while expecting one of '}', ':', ','.", _position, _template);
+            nameStart = _position;
+            nameLength = i - _position;
+            _position = i;
             ParseAlignmentAndFormat(Peek(), out alignment, out format);
-            return holeName;
         }
 
         private void ParseAlignmentAndFormat(char c, out int alignment, out string? format)
@@ -253,25 +255,6 @@ namespace NLog.MessageTemplates
                 alignment = 0;
             }
             format = c == ':' ? ParseFormat() : null;
-        }
-
-        private static string ParameterIndexToString(int parameterIndex)
-        {
-            switch (parameterIndex)
-            {
-                case 0: return "0";
-                case 1: return "1";
-                case 2: return "2";
-                case 3: return "3";
-                case 4: return "4";
-                case 5: return "5";
-                case 6: return "6";
-                case 7: return "7";
-                case 8: return "8";
-                case 9: return "9";
-            }
-
-            return parameterIndex.ToString(System.Globalization.CultureInfo.InvariantCulture);
         }
 
         /// <summary>
