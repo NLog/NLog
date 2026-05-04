@@ -4,6 +4,23 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.1.3 (2026/05/04)
+**Improvements**
+- [#6168](https://github.com/NLog/NLog/pull/6168) PropertiesDictionary - Preserve MessageTemplate property details when adding extra properties. (@snakefoot)
+- [#6149](https://github.com/NLog/NLog/pull/6149) LoggingRule - Updating FinalMinLevel should also update MinLevel when same LogLevel. (@snakefoot)
+- [#6165](https://github.com/NLog/NLog/pull/6165) AsyncTaskTarget - Retry with help from Task.Delay. (@snakefoot)
+- [#6164](https://github.com/NLog/NLog/pull/6164) DateLayoutRenderer - UniversalTime = false should only convert to local when UTC. (@snakefoot)
+- [#6138](https://github.com/NLog/NLog/pull/6138) SimpleLayout skip Precalculate when INoAllocationStringValueRenderer available. (@reabr)
+- [#6158](https://github.com/NLog/NLog/pull/6158) TemplateEnumerator - Optimize ParseTextPart by direct calling IndexOfAny. (@snakefoot)
+- [#6152](https://github.com/NLog/NLog/pull/6152) TemplateEnumerator - Optimize parsing of single digit holename. (@snakefoot)
+- [#6142](https://github.com/NLog/NLog/pull/6142) InternalLogger - Skip allocating params array when no exception. (@snakefoot)
+- [#6145](https://github.com/NLog/NLog/pull/6145) InternalLogger - Handle Exception ToString can throw with AOT. (@snakefoot)
+- [#6154](https://github.com/NLog/NLog/pull/6154) ColoredConsoleTarget - Optimize Console Coloring for Word Highlight. (@snakefoot)
+- [#6159](https://github.com/NLog/NLog/pull/6159) ColoredConsoleTarget - Reset capture of previous colors after ResetDefaultColors. (@snakefoot)
+- [#6140](https://github.com/NLog/NLog/pull/6140) TryParseEnum - Apply Enum.TryParse since better for AOT. (@snakefoot)
+- [#6143](https://github.com/NLog/NLog/pull/6143) Fixed various issues reported by EnableNETAnalyzers. (@snakefoot)
+
+
 ### Version 6.1.2 (2026/04/01)
 
 **Improvements**
