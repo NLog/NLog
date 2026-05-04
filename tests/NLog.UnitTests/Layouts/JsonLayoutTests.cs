@@ -556,28 +556,6 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(ExpectedExcludeEmptyPropertiesWithExcludes, jsonLayout.Render(structuredLogEvent));
         }
 
-        [Fact]
-        public void IncludeAllJsonPropertiesMaxRecursionLimit()
-        {
-            var jsonLayout = new JsonLayout()
-            {
-                IncludeEventProperties = true,
-                MaxRecursionLimit = 1,
-            };
-
-            LogEventInfo logEventInfo = new LogEventInfo()
-            {
-                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
-                Level = LogLevel.Info,
-            };
-            logEventInfo.Properties["Message"] = new
-            {
-                data = new Dictionary<int, string>() { { 42, "Hello" } }
-            };
-
-            Assert.Equal(@"{""Message"":{""data"":{}}}", jsonLayout.Render(logEventInfo));
-        }
-
         [Theory]
         [InlineData("Hello World", @"{""stringifyMe"":""Hello World""}")]
         [InlineData("Hello\nWorld", @"{""stringifyMe"":""Hello\nWorld""}")]
@@ -1011,6 +989,20 @@ namespace NLog.UnitTests.Layouts
             logger.Debug(logEventInfo3);
 
             logFactory.AssertDebugLastMessage("{\"nestedObject\":[[\"{ val = 1, val2 = value2 }\"]]}");  // Allows nested collection, but then only ToString
+
+            var logEventInfo4 = new LogEventInfo();
+            logEventInfo4.Properties.Add("nestedObject", new
+            {
+                data = new Dictionary<int, string>() { { 42, "Hello" } }
+            });
+            logger.Debug(logEventInfo4);
+            logFactory.AssertDebugLastMessage(@"{""nestedObject"":{""data"":{}}}");  // Allows nested collection, but then only ToString
+
+            logger.WithProperty("Hello", "World").Debug("{@nestedObject}", new
+            {
+                data = new Dictionary<int, string>() { { 42, "Hello" } }
+            });
+            logFactory.AssertDebugLastMessage(@"{""nestedObject"":{""data"":{""42"":""Hello""}},""Hello"":""World""}");
         }
 
         [Fact]
@@ -1055,6 +1047,20 @@ namespace NLog.UnitTests.Layouts
             logger.Debug(logEventInfo3);
 
             logFactory.AssertDebugLastMessage("{\"nestedObject\":[[]]}");  // No support for nested collections
+
+            var logEventInfo4 = new LogEventInfo();
+            logEventInfo4.Properties.Add("nestedObject", new
+            {
+                data = new Dictionary<int, string>() { { 42, "Hello" } }
+            });
+            logger.Debug(logEventInfo4);
+            logFactory.AssertDebugLastMessage(@"{""nestedObject"":""{ data = System.Collections.Generic.Dictionary`2[System.Int32,System.String] }""}");  // Allows nested collection, but then only ToString
+
+            logger.WithProperty("Hello", "World").Debug("{@nestedObject}", new
+            {
+                data = new Dictionary<int, string>() { { 42, "Hello" } }
+            });
+            logFactory.AssertDebugLastMessage(@"{""nestedObject"":{""data"":{""42"":""Hello""}},""Hello"":""World""}");
         }
 
         [Fact]
