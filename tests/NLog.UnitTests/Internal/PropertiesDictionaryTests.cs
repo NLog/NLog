@@ -438,7 +438,7 @@ namespace NLog.UnitTests.Internal
             LogEventInfo logEvent = new LogEventInfo(LogLevel.Info, "MyLogger", string.Empty, new[]
             {
                 new MessageTemplateParameter("Hello World", 42, null, CaptureType.Normal),
-                new MessageTemplateParameter("Hello World", 666, null, CaptureType.Normal)
+                new MessageTemplateParameter("Hello World", 666, null, CaptureType.Serialize)
             });
             IDictionary<object, object> dictionary = logEvent.Properties;
 
@@ -455,6 +455,34 @@ namespace NLog.UnitTests.Internal
                 else
                     Assert.Null(property.Key);
             }
+
+            var enumerator = ((PropertiesDictionary)dictionary).GetPropertyEnumerator();
+            Assert.True(enumerator.MoveNext());
+            Assert.Equal("Hello World", enumerator.CurrentParameter.Name);
+            Assert.Equal(CaptureType.Normal, enumerator.CurrentParameter.CaptureType);
+            Assert.Equal(42, enumerator.CurrentParameter.Value);
+            Assert.True(enumerator.MoveNext());
+            Assert.Equal("Hello World_1", enumerator.CurrentParameter.Name);
+            Assert.Equal(CaptureType.Serialize, enumerator.CurrentParameter.CaptureType);
+            Assert.Equal(666, enumerator.CurrentParameter.Value);
+            Assert.False(enumerator.MoveNext());
+
+            dictionary["Hello World"] = 123;    // Mixed message template properties and event properties
+            enumerator.Reset();
+            Assert.True(enumerator.MoveNext());
+            Assert.Equal("Hello World_1", enumerator.CurrentParameter.Name);
+            Assert.Equal(CaptureType.Serialize, enumerator.CurrentParameter.CaptureType);
+            Assert.Equal(666, enumerator.CurrentParameter.Value);
+            Assert.True(enumerator.MoveNext());
+            Assert.Equal("Hello World", enumerator.CurrentParameter.Name);
+            Assert.Equal(CaptureType.Unknown, enumerator.CurrentParameter.CaptureType);
+            Assert.Equal(123, enumerator.CurrentParameter.Value);
+            Assert.False(enumerator.MoveNext());
+
+            ICollection<KeyValuePair<object, object>> collection = dictionary;
+            Assert.True(collection.Remove(new KeyValuePair<object, object>("Hello World", 123)));
+            Assert.True(collection.Remove(new KeyValuePair<object, object>("Hello World_1", 666)));
+            Assert.Empty(dictionary);
         }
 
 #if !NET35
