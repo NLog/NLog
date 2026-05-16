@@ -34,7 +34,6 @@
 namespace NLog.Config
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using NLog.Internal;
@@ -49,25 +48,6 @@ namespace NLog.Config
         /// </summary>
         public static PropertyTypeConverter Instance { get; } = new PropertyTypeConverter();
 
-        private static Dictionary<Type, Func<string, string?, IFormatProvider?, object?>> StringConverterLookup => _stringConverters ?? (_stringConverters = BuildStringConverterLookup());
-        private static Dictionary<Type, Func<string, string?, IFormatProvider?, object?>>? _stringConverters;
-
-        private static Dictionary<Type, Func<string, string?, IFormatProvider?, object?>> BuildStringConverterLookup()
-        {
-            return new Dictionary<Type, Func<string, string?, IFormatProvider?, object?>>()
-            {
-                { typeof(System.Text.Encoding), (stringvalue, format, formatProvider) => ConvertToEncoding(stringvalue) },
-                { typeof(System.Globalization.CultureInfo), (stringvalue, format, formatProvider) => ConvertToCultureInfo(stringvalue) },
-                { typeof(Type), (stringvalue, format, formatProvider) => ConvertToType(stringvalue, true) },
-                { typeof(NLog.Targets.LineEndingMode), (stringvalue, format, formatProvider) => NLog.Targets.LineEndingMode.FromString(stringvalue) },
-                { typeof(LogLevel), (stringvalue, format, formatProvider) => LogLevel.FromString(stringvalue) },
-                { typeof(Uri), (stringvalue, format, formatProvider) => new Uri(stringvalue) },
-                { typeof(DateTime), (stringvalue, format, formatProvider) => ConvertToDateTime(format, formatProvider, stringvalue) },
-                { typeof(DateTimeOffset), (stringvalue, format, formatProvider) => ConvertToDateTimeOffset(format, formatProvider, stringvalue) },
-                { typeof(TimeSpan), (stringvalue, format, formatProvider) => ConvertToTimeSpan(format, formatProvider, stringvalue) },
-                { typeof(Guid), (stringvalue, format, formatProvider) => ConvertGuid(format, stringvalue) },
-            };
-        }
 
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2057")]
         internal static Type ConvertToType(string stringvalue, bool throwOnError)
@@ -77,7 +57,7 @@ namespace NLog.Config
 
         internal static bool IsComplexType(Type type)
         {
-            return !type.IsValueType && !typeof(IConvertible).IsAssignableFrom(type) && !StringConverterLookup.ContainsKey(type) && type.GetFirstCustomAttribute<System.ComponentModel.TypeConverterAttribute>() is null;
+            return !type.IsValueType && !typeof(IConvertible).IsAssignableFrom(type) && !HasConvertFromStringSupport(type) && type.GetFirstCustomAttribute<System.ComponentModel.TypeConverterAttribute>() is null;
         }
 
         /// <inheritdoc/>
@@ -113,25 +93,110 @@ namespace NLog.Config
             return ChangeObjectType(propertyValue, propertyType, format, formatProvider);
         }
 
-        private static bool TryConvertFromString(string propertyString, Type propertyType, string? format, IFormatProvider? formatProvider, out object? propertyValue)
+        /// <summary>
+        /// Remember to align with <see cref="TryConvertFromString"/>
+        /// </summary>
+        private static bool HasConvertFromStringSupport(Type type)
+        {
+            if (type == typeof(System.Text.Encoding))
+                return true;
+            if (type == typeof(System.Globalization.CultureInfo))
+                return true;
+            if (type == typeof(Type))
+                return true;
+            if (type == typeof(NLog.Targets.LineEndingMode))
+                return true;
+            if (type == typeof(LogLevel))
+                return true;
+            if (type == typeof(Uri))
+                return true;
+            if (type == typeof(DateTime))
+                return true;
+            if (type == typeof(DateTimeOffset))
+                return true;
+            if (type == typeof(TimeSpan))
+                return true;
+            if (type == typeof(Guid))
+                return true;
+            if (type.IsEnum)
+                return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Remember to align with <see cref="HasConvertFromStringSupport"/>
+        /// </summary>
+        internal static bool TryConvertFromString(string propertyString, Type propertyType, string? format, IFormatProvider? formatProvider, out object? propertyValue)
         {
             propertyValue = propertyString = propertyString.Trim();
 
-            if (StringConverterLookup.TryGetValue(propertyType, out var converter))
+            if (propertyType == typeof(System.Text.Encoding))
             {
-                propertyValue = converter.Invoke(propertyString, format, formatProvider);
+                propertyValue = ConvertToEncoding(propertyString);
+                return true;
+            }
+            if (propertyType == typeof(CultureInfo))
+            {
+                propertyValue = ConvertToCultureInfo(propertyString);
+                return true;
+            }
+            if (propertyType == typeof(Type))
+            {
+                propertyValue = ConvertToType(propertyString, true);
+                return true;
+            }
+            if (propertyType == typeof(NLog.Targets.LineEndingMode))
+            {
+                propertyValue = NLog.Targets.LineEndingMode.FromString(propertyString);
+                return true;
+            }
+            if (propertyType == typeof(LogLevel))
+            {
+                propertyValue = LogLevel.FromString(propertyString);
+                return true;
+            }
+            if (propertyType == typeof(Uri))
+            {
+                propertyValue = new Uri(propertyString);
+                return true;
+            }
+            if (propertyType == typeof(DateTime))
+            {
+                propertyValue = ConvertToDateTime(format, formatProvider, propertyString);
+                return true;
+            }
+            if (propertyType == typeof(DateTimeOffset))
+            {
+                propertyValue = ConvertToDateTimeOffset(format, formatProvider, propertyString);
+                return true;
+            }
+            if (propertyType == typeof(TimeSpan))
+            {
+                propertyValue = ConvertToTimeSpan(format, formatProvider, propertyString);
+                return true;
+            }
+            if (propertyType == typeof(Guid))
+            {
+                propertyValue = ConvertGuid(format, propertyString);
                 return true;
             }
 
             if (propertyType.IsEnum)
             {
-                return NLog.Common.ConversionHelpers.TryParseEnum(propertyString, propertyType, out propertyValue);
+                if (!NLog.Common.ConversionHelpers.TryParseEnum(propertyString, propertyType, out propertyValue))
+                {
+                    throw new ArgumentException($"Failed parsing Enum {propertyType.Name} from value: {propertyString}");
+                }
+                return true;
             }
 
-            if (PropertyHelper.TryTypeConverterConversion(propertyType, propertyString, out var convertedValue))
+            if (!typeof(IConvertible).IsAssignableFrom(propertyType) && !propertyType.IsAssignableFrom(typeof(string)))
             {
-                propertyValue = convertedValue;
-                return true;
+                if (PropertyHelper.TryTypeConverterConversion(propertyType, propertyString, out var convertedValue))
+                {
+                    propertyValue = convertedValue;
+                    return true;
+                }
             }
 
             return false;

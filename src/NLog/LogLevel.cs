@@ -106,9 +106,9 @@ namespace NLog
         /// </summary>
         public static readonly LogLevel Off = new LogLevel("Off", 6);
 
-        private static readonly IList<LogLevel> allLevels = new List<LogLevel> { Trace, Debug, Info, Warn, Error, Fatal, Off }.AsReadOnly();
+        private static readonly LogLevel[] allLevels = { Trace, Debug, Info, Warn, Error, Fatal, Off };
 
-        private static readonly IList<LogLevel> allLoggingLevels = new List<LogLevel> { Trace, Debug, Info, Warn, Error, Fatal }.AsReadOnly();
+        private static readonly LogLevel[] allLoggingLevels = { Trace, Debug, Info, Warn, Error, Fatal };
 
         /// <summary>
         /// Gets all the available log levels (Trace, Debug, Info, Warn, Error, Fatal, Off).
