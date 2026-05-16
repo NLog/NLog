@@ -36,7 +36,6 @@ namespace NLog.Internal
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Reflection;
@@ -45,7 +44,6 @@ namespace NLog.Internal
     using NLog.Conditions;
     using NLog.Config;
     using NLog.Layouts;
-    using NLog.Targets;
 
     /// <summary>
     /// Reflection helpers for accessing properties.
@@ -53,7 +51,6 @@ namespace NLog.Internal
     internal static class PropertyHelper
     {
         private static readonly Dictionary<Type, Dictionary<string, PropertyInfo>?> _parameterInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>?>();
-        private static readonly Dictionary<Type, Func<string, ConfigurationItemFactory, object?>> _propertyConversionMapper = BuildPropertyConversionMapper();
 
 #pragma warning disable S1144 // Unused private types or members should be removed. BUT they help CoreRT to provide config through reflection
         private static readonly ArrayParameterAttribute _arrayParameterAttribute = new ArrayParameterAttribute(typeof(string), string.Empty);
@@ -63,23 +60,6 @@ namespace NLog.Internal
         private static readonly FlagsAttribute _flagsAttribute = new FlagsAttribute();
 #pragma warning restore S1144 // Unused private types or members should be removed
 
-        private static Dictionary<Type, Func<string, ConfigurationItemFactory, object?>> BuildPropertyConversionMapper()
-        {
-            return new Dictionary<Type, Func<string, ConfigurationItemFactory, object?>>()
-            {
-                { typeof(Layout), TryParseLayoutValue },
-                { typeof(SimpleLayout), TryParseLayoutValue },
-                { typeof(ConditionExpression), TryParseConditionValue },
-                { typeof(Encoding), (stringvalue, factory) => PropertyTypeConverter.ConvertToEncoding(stringvalue) },
-                { typeof(string), (stringvalue, factory) => stringvalue },
-                { typeof(int), (stringvalue, factory) => Convert.ChangeType(stringvalue.Trim(), TypeCode.Int32, CultureInfo.InvariantCulture) },
-                { typeof(bool), (stringvalue, factory) => Convert.ChangeType(stringvalue.Trim(), TypeCode.Boolean, CultureInfo.InvariantCulture) },
-                { typeof(CultureInfo), (stringvalue, factory) =>  PropertyTypeConverter.ConvertToCultureInfo(stringvalue) },
-                { typeof(Type),  (stringvalue, factory) => PropertyTypeConverter.ConvertToType(stringvalue.Trim(), true) },
-                { typeof(LineEndingMode), (stringvalue, factory) => LineEndingMode.FromString(stringvalue.Trim()) },
-                { typeof(Uri), (stringvalue, factory) => new Uri(stringvalue.Trim()) }
-            };
-        }
 
         internal static void SetPropertyFromString(object targetObject, PropertyInfo propInfo, string stringValue, ConfigurationItemFactory configurationItemFactory)
         {
@@ -97,10 +77,8 @@ namespace NLog.Internal
                             throw new NotSupportedException($"'{targetObject?.GetType()?.Name}' cannot assign property '{propInfo.Name}', because property of type array and not scalar value: '{stringValue}'.");
                         }
 
-                        if (!(TryGetEnumValue(propertyType, stringValue, out propertyValue)
-                            || TryImplicitConversion(propertyType, stringValue, out propertyValue)
-                            || TryFlatListConversion(targetObject, propInfo, stringValue, configurationItemFactory, out propertyValue)
-                            || TryTypeConverterConversion(propertyType, stringValue, out propertyValue)))
+                        if (!(TryImplicitConversion(propertyType, stringValue, out propertyValue)
+                            || TryFlatListConversion(targetObject, propInfo, stringValue, configurationItemFactory, out propertyValue)))
                             propertyValue = Convert.ChangeType(stringValue, propertyType, CultureInfo.InvariantCulture);
                     }
                 }
@@ -253,21 +231,18 @@ namespace NLog.Internal
         {
             try
             {
-                if (IsSimplePropertyType(resultType))
+                if (Type.GetTypeCode(resultType) == TypeCode.Object && !typeof(IEnumerable).IsAssignableFrom(resultType))
                 {
-                    result = null;
-                    return false;
-                }
+                    var operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { value.GetType() }, null);
+                    if (operatorImplicitMethod is null || !resultType.IsAssignableFrom(operatorImplicitMethod.ReturnType))
+                    {
+                        result = null;
+                        return false;
+                    }
 
-                var operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { value.GetType() }, null);
-                if (operatorImplicitMethod is null || !resultType.IsAssignableFrom(operatorImplicitMethod.ReturnType))
-                {
-                    result = null;
-                    return false;
+                    result = operatorImplicitMethod.Invoke(null, new object[] { value });
+                    return true;
                 }
-
-                result = operatorImplicitMethod.Invoke(null, new object[] { value });
-                return true;
             }
             catch (Exception ex)
             {
@@ -280,12 +255,31 @@ namespace NLog.Internal
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2067")]
         private static bool TryNLogSpecificConversion(Type propertyType, string value, ConfigurationItemFactory configurationItemFactory, out object? newValue)
         {
-            if (_propertyConversionMapper.TryGetValue(propertyType, out var objectConverter))
+            if (propertyType == typeof(Layout) || propertyType == typeof(SimpleLayout))
             {
-                newValue = objectConverter.Invoke(value, configurationItemFactory);
+                newValue = TryParseLayoutValue(value, configurationItemFactory);
                 return true;
             }
-
+            if (propertyType == typeof(string))
+            {
+                newValue = value;
+                return true;
+            }
+            if (propertyType == typeof(int))
+            {
+                newValue = Convert.ChangeType(value.Trim(), TypeCode.Int32, CultureInfo.InvariantCulture);
+                return true;
+            }
+            if (propertyType == typeof(bool))
+            {
+                newValue = Convert.ChangeType(value.Trim(), TypeCode.Boolean, CultureInfo.InvariantCulture);
+                return true;
+            }
+            if (propertyType == typeof(ConditionExpression))
+            {
+                newValue = TryParseConditionValue(value, configurationItemFactory);
+                return true;
+            }
             if (propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(Layout<>))
             {
                 var simpleLayout = string.IsNullOrEmpty(value) ? SimpleLayout.Default : new SimpleLayout(value, configurationItemFactory);
@@ -293,36 +287,7 @@ namespace NLog.Internal
                 return true;
             }
 
-            newValue = null;
-            return false;
-        }
-
-        private static bool TryGetEnumValue(Type resultType, string value, out object? result)
-        {
-            if (!resultType.IsEnum)
-            {
-                result = null;
-                return false;
-            }
-
-            if (!StringHelpers.IsNullOrWhiteSpace(value))
-            {
-                // Note: .NET Standard 2.1 added a public Enum.TryParse(Type)
-                try
-                {
-                    result = (Enum)Enum.Parse(resultType, value, true);
-                    return true;
-                }
-                catch (ArgumentException ex)
-                {
-                    throw new ArgumentException($"Failed parsing Enum {resultType.Name} from value: {value}", ex);
-                }
-            }
-            else
-            {
-                result = null;
-                return false;
-            }
+            return PropertyTypeConverter.TryConvertFromString(value, propertyType, null, CultureInfo.InvariantCulture, out newValue);
         }
 
         private static object TryParseLayoutValue(string stringValue, ConfigurationItemFactory configurationItemFactory)
@@ -365,9 +330,7 @@ namespace NLog.Internal
                     foreach (var value in values)
                     {
                         if (!(TryNLogSpecificConversion(propertyType, value, configurationItemFactory, out newValue)
-                              || TryGetEnumValue(propertyType, value, out newValue)
-                              || TryImplicitConversion(propertyType, value, out newValue)
-                              || TryTypeConverterConversion(propertyType, value, out newValue)))
+                              || TryImplicitConversion(propertyType, value, out newValue)))
                         {
                             newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
                         }
@@ -535,17 +498,11 @@ namespace NLog.Internal
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
         internal static bool TryTypeConverterConversion(Type type, string value, out object? newValue)
         {
-            if (typeof(IConvertible).IsAssignableFrom(type) || type.IsAssignableFrom(typeof(string)))
-            {
-                newValue = null;
-                return false;
-            }
-
             try
             {
                 InternalLogger.Debug("Object reflection needed for creating external type: {0} from string-value: {1}", type, value);
 
-                var converter = TypeDescriptor.GetConverter(type);
+                var converter = System.ComponentModel.TypeDescriptor.GetConverter(type);
                 if (converter.CanConvertFrom(typeof(string)))
                 {
                     newValue = converter.ConvertFromInvariantString(value);

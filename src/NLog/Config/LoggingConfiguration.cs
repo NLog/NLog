@@ -851,45 +851,45 @@ namespace NLog.Config
 
         internal string ExpandSimpleVariables(string? input, out string? matchingVariableName)
         {
-            var output = input;
+            var output = input ?? string.Empty;
             matchingVariableName = null;
 
-            if (output != null && !StringHelpers.IsNullOrWhiteSpace(output) && Variables.Count > 0 && output.IndexOf('$') >= 0)
+            if (StringHelpers.IsNullOrWhiteSpace(output) || Variables.Count == 0 || output.IndexOf('$') < 0)
+                return output;
+
+            var culture = StringComparison.OrdinalIgnoreCase;
+
+            foreach (var kvp in _variables)
             {
-                var culture = StringComparison.OrdinalIgnoreCase;
+                var layout = kvp.Value;
 
-                foreach (var kvp in _variables)
+                if (layout is null)
                 {
-                    var layout = kvp.Value;
+                    continue;
+                }
 
-                    if (layout is null)
-                    {
-                        continue;
-                    }
+                var layoutText = string.Concat("${", kvp.Key, "}");
+                if (output.IndexOf(layoutText, culture) < 0)
+                {
+                    continue;
+                }
 
-                    var layoutText = string.Concat("${", kvp.Key, "}");
-                    if (output.IndexOf(layoutText, culture) < 0)
+                //this value is set from xml and that's a string. Because of that, we can use SimpleLayout here.
+                if (layout is SimpleLayout simpleLayout)
+                {
+                    output = StringHelpers.Replace(output, layoutText, simpleLayout.OriginalText, culture);
+                    matchingVariableName = null;
+                }
+                else
+                {
+                    if (string.Equals(layoutText, input?.Trim() ?? string.Empty, culture))
                     {
-                        continue;
-                    }
-
-                    //this value is set from xml and that's a string. Because of that, we can use SimpleLayout here.
-                    if (layout is SimpleLayout simpleLayout)
-                    {
-                        output = StringHelpers.Replace(output, layoutText, simpleLayout.OriginalText, culture);
-                        matchingVariableName = null;
-                    }
-                    else
-                    {
-                        if (string.Equals(layoutText, input?.Trim() ?? string.Empty, culture))
-                        {
-                            matchingVariableName = kvp.Key;
-                        }
+                        matchingVariableName = kvp.Key;
                     }
                 }
             }
 
-            return output ?? string.Empty;
+            return output;
         }
 
         /// <summary>
