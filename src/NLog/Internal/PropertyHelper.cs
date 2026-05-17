@@ -257,7 +257,7 @@ namespace NLog.Internal
         {
             if (propertyType == typeof(Layout) || propertyType == typeof(SimpleLayout))
             {
-                newValue = TryParseLayoutValue(value, configurationItemFactory);
+                newValue = ParseSimpleLayout(value, configurationItemFactory);
                 return true;
             }
             if (propertyType == typeof(string))
@@ -282,7 +282,7 @@ namespace NLog.Internal
             }
             if (propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(Layout<>))
             {
-                var simpleLayout = string.IsNullOrEmpty(value) ? SimpleLayout.Default : new SimpleLayout(value, configurationItemFactory);
+                var simpleLayout = ParseSimpleLayout(value, configurationItemFactory);
                 newValue = Activator.CreateInstance(propertyType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { simpleLayout }, null);
                 return true;
             }
@@ -290,9 +290,9 @@ namespace NLog.Internal
             return PropertyTypeConverter.TryConvertFromString(value, propertyType, null, CultureInfo.InvariantCulture, out newValue);
         }
 
-        private static object TryParseLayoutValue(string stringValue, ConfigurationItemFactory configurationItemFactory)
+        private static SimpleLayout ParseSimpleLayout(string stringValue, ConfigurationItemFactory configurationItemFactory)
         {
-            return string.IsNullOrEmpty(stringValue) ? Layout.Empty : new SimpleLayout(stringValue, configurationItemFactory);
+            return string.IsNullOrEmpty(stringValue) ? SimpleLayout.Default : new SimpleLayout(stringValue, configurationItemFactory);
         }
 
         private static object TryParseConditionValue(string stringValue, ConfigurationItemFactory configurationItemFactory)
