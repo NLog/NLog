@@ -103,16 +103,24 @@ namespace MakeNLogXSD
                     continue;
                 }
 
-                var typeElement = new XElement(xsd + "complexType",
-                    new XAttribute("name", (string)type.Attribute("name")),
-                    new XElement(xsd + "complexContent",
-                        new XElement(xsd + "extension",
-                            new XAttribute("base", baseType),
-                            new XElement(xsd + "choice",
-                                new XAttribute("minOccurs", "0"),
-                                new XAttribute("maxOccurs", "unbounded"),
-                                GetPropertyElements(type)),
-                            GetAttributeElements(type))));
+                XElement typeElement;
+                if (baseType == "WrapperTargetBase" && UsesWrapperTargetSequenceContent(type))
+                {
+                    typeElement = CreateFilterCapableWrapperTargetType(type, typeName);
+                }
+                else
+                {
+                    typeElement = new XElement(xsd + "complexType",
+                        new XAttribute("name", typeName),
+                        new XElement(xsd + "complexContent",
+                            new XElement(xsd + "extension",
+                                new XAttribute("base", baseType),
+                                new XElement(xsd + "choice",
+                                    new XAttribute("minOccurs", "0"),
+                                    new XAttribute("maxOccurs", "unbounded"),
+                                    GetPropertyElements(type)),
+                                GetAttributeElements(type))));
+                }
 
                 typesGoHere.AddBeforeSelf(typeElement);
 
@@ -428,6 +436,110 @@ namespace MakeNLogXSD
         private static string GetLayoutType(bool attribute)
         {
             return attribute ? "SimpleLayoutAttribute" : "Layout";
+        }
+
+        private static bool UsesWrapperTargetSequenceContent(XElement type)
+        {
+            if ((string)type.Attribute("iswrapper") != "1")
+            {
+                return false;
+            }
+
+            foreach (var propertyElement in type.Elements("property"))
+            {
+                string propertyType = (string)propertyElement.Attribute("type");
+                if (propertyType == "NLog.Filters.Filter")
+                {
+                    return true;
+                }
+
+                if (propertyType == "Collection")
+                {
+                    string? elementTag = propertyElement.Element("elementType")?.Attribute("elementTag")?.Value;
+                    if (elementTag == "filter" || elementTag == "when")
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private static XElement CreateFilterCapableWrapperTargetType(XElement type, string typeName)
+        {
+            return new XElement(xsd + "complexType",
+                new XAttribute("name", typeName),
+                new XElement(xsd + "complexContent",
+                    new XElement(xsd + "extension",
+                        new XAttribute("base", "Target"),
+                        new XElement(xsd + "sequence",
+                            new XElement(xsd + "choice",
+                                new XAttribute("minOccurs", "0"),
+                                new XAttribute("maxOccurs", "unbounded"),
+                                GetWrapperConfigurationElements(type)),
+                            GetWrapperTargetReferenceChoice("1", "1")),
+                        GetAttributeElements(type))));
+        }
+
+        private static XElement GetWrapperTargetReferenceChoice(string minOccurs, string maxOccurs)
+        {
+            return new XElement(xsd + "choice",
+                new XAttribute("minOccurs", minOccurs),
+                new XAttribute("maxOccurs", maxOccurs),
+                new XElement(xsd + "element",
+                    new XAttribute("name", "target"),
+                    new XAttribute("type", "Target"),
+                    new XAttribute("minOccurs", "1"),
+                    new XAttribute("maxOccurs", "1")),
+                new XElement(xsd + "element",
+                    new XAttribute("name", "wrapper-target"),
+                    new XAttribute("type", "WrapperTargetBase"),
+                    new XAttribute("minOccurs", "1"),
+                    new XAttribute("maxOccurs", "1")),
+                new XElement(xsd + "element",
+                    new XAttribute("name", "compound-target"),
+                    new XAttribute("type", "CompoundTargetBase"),
+                    new XAttribute("minOccurs", "1"),
+                    new XAttribute("maxOccurs", "1")),
+                new XElement(xsd + "element",
+                    new XAttribute("name", "target-ref"),
+                    new XAttribute("type", "TargetRef"),
+                    new XAttribute("minOccurs", "1"),
+                    new XAttribute("maxOccurs", "1")),
+                new XElement(xsd + "element",
+                    new XAttribute("name", "wrapper-target-ref"),
+                    new XAttribute("type", "TargetRef"),
+                    new XAttribute("minOccurs", "1"),
+                    new XAttribute("maxOccurs", "1")),
+                new XElement(xsd + "element",
+                    new XAttribute("name", "compound-target-ref"),
+                    new XAttribute("type", "TargetRef"),
+                    new XAttribute("minOccurs", "1"),
+                    new XAttribute("maxOccurs", "1")));
+        }
+
+        private static IEnumerable<XElement> GetWrapperConfigurationElements(XElement type)
+        {
+            var results = new List<XElement>();
+            foreach (var propertyElement in type.Elements("property"))
+            {
+                var element = GetPropertyElement(propertyElement);
+                if (element == null)
+                {
+                    continue;
+                }
+
+                var name = (string)propertyElement.Attribute("camelName");
+                if (name == "filter" || name == "when")
+                {
+                    element.SetAttributeValue("maxOccurs", "unbounded");
+                }
+
+                results.Add(element);
+            }
+
+            return results;
         }
     }
 }
