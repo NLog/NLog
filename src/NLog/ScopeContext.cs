@@ -320,7 +320,7 @@ namespace NLog
                 if (nestedStates is object[] nestedArray)
                     return nestedArray;
                 else
-                    return Enumerable.ToArray(nestedStates);
+                    return nestedStates.ToArray();
             }
             return ArrayHelper.Empty<object>();
 #else

@@ -39,6 +39,20 @@ namespace NLog.Internal
     internal static class CollectionExtensions
     {
         /// <summary>
+        /// Optimized version of <see cref="System.Linq.Enumerable.ToArray{TSource}(IEnumerable{TSource})"/> for reducing AOT filesize.
+        /// </summary>
+        public static TItem[] ToArray<TItem>(this ICollection<TItem> items)
+        {
+            var itemCount = items.Count;
+            if (itemCount == 0)
+                return ArrayHelper.Empty<TItem>();
+
+            var array = new TItem[itemCount];
+            items.CopyTo(array, 0);
+            return array;
+        }
+
+        /// <summary>
         /// Memory optimized filtering
         /// </summary>
         /// <remarks>Passing state too avoid delegate capture and memory-allocations.</remarks>

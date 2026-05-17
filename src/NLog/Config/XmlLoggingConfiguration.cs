@@ -193,7 +193,7 @@ namespace NLog.Config
             get => AutoReloadFileNames.Any();
             set
             {
-                var autoReloadFiles = _fileMustAutoReloadLookup.Keys.ToList();
+                var autoReloadFiles = _fileMustAutoReloadLookup.Keys.ToArray();
                 foreach (string nextFile in autoReloadFiles)
                     _fileMustAutoReloadLookup[nextFile] = value;
             }

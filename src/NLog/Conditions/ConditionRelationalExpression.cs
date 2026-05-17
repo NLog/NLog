@@ -272,7 +272,7 @@ namespace NLog.Conditions
         /// <returns></returns>
         private static Dictionary<Type, int> BuildTypeOrderDictionary()
         {
-            var list = new List<Type>
+            var list = new []
             {
                 typeof(DateTime),
                 typeof(double),
@@ -285,8 +285,8 @@ namespace NLog.Conditions
                 typeof(string),
             };
 
-            var dict = new Dictionary<Type, int>(list.Count);
-            for (int i = 0; i < list.Count; i++)
+            var dict = new Dictionary<Type, int>(list.Length);
+            for (int i = 0; i < list.Length; i++)
             {
                 dict.Add(list[i], i);
             }

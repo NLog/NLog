@@ -1177,12 +1177,16 @@ namespace NLog
             /// </summary>
             public void PurgeObsoleteLoggers()
             {
-                foreach (var key in _loggerCache.Keys.ToList())
+                var aotFriendlyRemoval = new Dictionary<LoggerCacheKey, WeakReference>();
+                foreach (var item in _loggerCache)
                 {
-                    var logger = Retrieve(key);
-                    if (logger != null)
-                        continue;
-                    _loggerCache.Remove(key);
+                    if (item.Value.Target is null)
+                        aotFriendlyRemoval[item.Key] = item.Value;
+                }
+
+                foreach (var removeLogger in aotFriendlyRemoval)
+                {
+                    _loggerCache.Remove(removeLogger.Key);
                 }
             }
         }

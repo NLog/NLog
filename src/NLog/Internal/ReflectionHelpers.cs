@@ -124,15 +124,14 @@ namespace NLog.Internal
 
         private static IEnumerable<Expression> BuildParameterList(MethodBase methodInfo, ParameterExpression parametersParameter)
         {
-            var parameterExpressions = new List<Expression>();
             var paramInfos = methodInfo.GetParameters();
+            var parameterExpressions = new Expression[paramInfos.Length];
             for (int i = 0; i < paramInfos.Length; i++)
             {
                 // (Ti)parameters[i]
                 var valueObj = Expression.ArrayIndex(parametersParameter, Expression.Constant(i));
-
                 var valueCast = CreateParameterExpression(paramInfos[i], valueObj);
-                parameterExpressions.Add(valueCast);
+                parameterExpressions[i] = valueCast;
             }
 
             return parameterExpressions;

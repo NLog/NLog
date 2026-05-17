@@ -589,7 +589,8 @@ namespace NLog.Targets
 
             if (_openFileCache.Count > 0)
             {
-                foreach (var openFile in _openFileCache.ToList())
+                var aotFriendlyClone = new Dictionary<string, OpenFileAppender>(_openFileCache, _openFileCache.Comparer);
+                foreach (var openFile in aotFriendlyClone)
                 {
                     CloseFileWithFooter(openFile.Key, openFile.Value, false);
                 }
@@ -1082,7 +1083,8 @@ namespace NLog.Targets
 
             if (unusedFileMustBeClosed)
             {
-                foreach (var openFile in _openFileCache.ToList())
+                var aotFriendlyClone = new Dictionary<string, OpenFileAppender>(_openFileCache, _openFileCache.Comparer);
+                foreach (var openFile in aotFriendlyClone)
                 {
                     if (openFile.Value.FileAppender.LastWriteTime < closeTime)
                     {

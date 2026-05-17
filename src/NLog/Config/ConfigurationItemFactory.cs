@@ -262,7 +262,7 @@ namespace NLog.Config
         internal ICollection<Type> GetRegisteredItemTypes()
         {
             lock (SyncRoot)
-                return new List<Type>(_itemFactories.Keys);
+                return _itemFactories.Keys.ToArray();
         }
 
         /// <summary>
