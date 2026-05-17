@@ -49,7 +49,6 @@ namespace NLog.Config
     /// <summary>
     /// Keeps logging configuration and provides simple API to modify it.
     /// </summary>
-    ///<remarks>This class is thread-safe.<c>.ToList()</c> is used for that purpose.</remarks>
     public class LoggingConfiguration
     {
         private readonly IDictionary<string, Target> _targets = new Dictionary<string, Target>(StringComparer.OrdinalIgnoreCase);
@@ -97,7 +96,7 @@ namespace NLog.Config
         /// <remarks>
         /// Unnamed targets (such as those wrapped by other targets) are not returned.
         /// </remarks>
-        public ReadOnlyCollection<Target> ConfiguredNamedTargets => GetAllTargetsThreadSafe().AsReadOnly();
+        public ReadOnlyCollection<Target> ConfiguredNamedTargets => new ReadOnlyCollection<Target>(GetAllTargetsThreadSafe());
 
         /// <summary>
         /// Gets the collection of file names which should be watched for changes by NLog.
@@ -109,6 +108,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets the collection of logging rules.
         /// </summary>
+        /// <remarks>Enumeration and modifying the collection is not thread-safe. Consider using <see cref="AddRule(LoggingRule)"/> and <see cref="RemoveRuleByName(string)"/> methods.</remarks>
         public IList<LoggingRule> LoggingRules => _loggingRules;
         private readonly List<LoggingRule> _loggingRules = new List<LoggingRule>();
 
@@ -116,7 +116,7 @@ namespace NLog.Config
         private void AddLoggingRulesThreadSafe(LoggingRule rule) { lock (_loggingRules) _loggingRules.Add(rule); }
 
         private bool TryGetTargetThreadSafe(string name, out Target? target) { lock (_targets) return _targets.TryGetValue(name, out target); }
-        private List<Target> GetAllTargetsThreadSafe() { lock (_targets) return _targets.Values.ToList(); }
+        private IList<Target> GetAllTargetsThreadSafe() { lock (_targets) return _targets.Values.ToArray(); }
 
         private Target? RemoveTargetThreadSafe(string name)
         {
@@ -179,8 +179,13 @@ namespace NLog.Config
         {
             get
             {
-                var configTargets = new HashSet<Target>(_configItems.OfType<Target>().Concat(GetAllTargetsThreadSafe()), SingleItemOptimizedHashSet<Target>.ReferenceEqualityComparer.Default);
-                return configTargets.ToList().AsReadOnly();
+                var configTargets = new HashSet<Target>(GetAllTargetsThreadSafe(), SingleItemOptimizedHashSet<Target>.ReferenceEqualityComparer.Default);
+                foreach (var item in _configItems)
+                {
+                    if (item is Target target)
+                        configTargets.Add(target);
+                }
+                return new ReadOnlyCollection<Target>(configTargets.ToArray());
             }
         }
 

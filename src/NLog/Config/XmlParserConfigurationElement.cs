@@ -148,12 +148,12 @@ namespace NLog.Config
             if (childElements is null || childElements.Count == 0)
                 return ArrayHelper.Empty<XmlParserConfigurationElement>();
 
-            var children = new List<XmlParserConfigurationElement>();
+            var children = new XmlParserConfigurationElement[childElements.Count];
             for (int i = 0; i < childElements.Count; ++i)
             {
                 var child = childElements[i];
                 var nestedChild = nestedElement || !string.Equals(child.Name, "nlog", StringComparison.OrdinalIgnoreCase);
-                children.Add(new XmlParserConfigurationElement(child, nestedChild));
+                children[i] = new XmlParserConfigurationElement(child, nestedChild);
             }
             return children;
         }
