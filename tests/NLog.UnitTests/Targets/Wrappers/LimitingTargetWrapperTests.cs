@@ -151,8 +151,28 @@ namespace NLog.UnitTests.Targets.Wrappers
             }, LogLevel.Trace);
 
             Assert.Equal(5, wrappedTarget.WriteCount);
+            Assert.Equal(1, wrapper.MessagesDroppedCount);
             Assert.Contains("MessageLimit", internalLog);
             Assert.Null(lastException);
+        }
+
+        [Fact]
+        public void MessagesDroppedCountResetsWhenIntervalExpires()
+        {
+            MyTarget wrappedTarget = new MyTarget();
+            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget, 1, TimeSpan.FromMilliseconds(100));
+            InitializeTargets(wrappedTarget, wrapper);
+
+            WriteNumberAsyncLogEventsStartingAt(0, 1, wrapper);
+            wrapper.WriteAsyncLogEvent(
+                new LogEventInfo(LogLevel.Debug, "test", "dropped").WithContinuation(_ => { }));
+
+            Assert.Equal(1, wrapper.MessagesDroppedCount);
+
+            Thread.Sleep(100);
+
+            WriteNumberAsyncLogEventsStartingAt(0, 1, wrapper);
+            Assert.Equal(0, wrapper.MessagesDroppedCount);
         }
 
         [Fact]
