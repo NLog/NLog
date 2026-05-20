@@ -12,7 +12,7 @@ nuget:
   disable_publish_on_pr: true
 
 matrix:
-  fast_finish: true
+  fast_finish: false
 
 for:
   -
