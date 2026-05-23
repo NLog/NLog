@@ -151,7 +151,7 @@ namespace NLog.Internal
         {
             Type parameterType = parameterInfo.ParameterType;
             if (parameterType.IsByRef)
-                parameterType = parameterType.GetElementType();
+                parameterType = parameterType.GetElementType() ?? parameterType;
 
             var valueCast = Expression.Convert(expression, parameterType);
             return valueCast;

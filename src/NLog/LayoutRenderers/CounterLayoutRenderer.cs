@@ -122,8 +122,7 @@ namespace NLog.LayoutRenderers
             if (globalSequence is null)
             {
                 globalSequence = new GlobalSequence(sequenceName, Value);
-                Interlocked.CompareExchange(ref _firstSequence, globalSequence, null);
-                globalSequence = _firstSequence;
+                globalSequence = Interlocked.CompareExchange(ref _firstSequence, globalSequence, null) ?? globalSequence;
             }
             if (globalSequence.Name.Equals(sequenceName, StringComparison.Ordinal))
                 return globalSequence.NextValue(Increment);
@@ -143,7 +142,8 @@ namespace NLog.LayoutRenderers
                 globalSequence = new GlobalSequence(sequenceName, Value);
                 if (!Sequences.TryAdd(sequenceName, globalSequence))
                 {
-                    Sequences.TryGetValue(sequenceName, out globalSequence);
+                    Sequences.TryGetValue(sequenceName, out var existingSequence);
+                    globalSequence = existingSequence ?? globalSequence;
                 }
             }
 #endif
