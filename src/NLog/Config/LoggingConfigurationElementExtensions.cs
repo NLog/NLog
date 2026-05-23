@@ -36,7 +36,6 @@ namespace NLog.Config
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Linq;
     using NLog.Common;
     using NLog.Internal;
 
@@ -78,9 +77,12 @@ namespace NLog.Config
 
         public static string? GetOptionalValue(this ILoggingConfigurationElement element, string attributeName, string? defaultValue)
         {
-            return element.Values
-                .Where(configItem => string.Equals(configItem.Key, attributeName, StringComparison.OrdinalIgnoreCase))
-                .Select(configItem => configItem.Value).FirstOrDefault() ?? defaultValue;
+            foreach (var configItem in element.Values)
+            {
+                if (string.Equals(configItem.Key, attributeName, StringComparison.OrdinalIgnoreCase))
+                    return configItem.Value ?? defaultValue;
+            }
+            return defaultValue;
         }
 
         /// <summary>

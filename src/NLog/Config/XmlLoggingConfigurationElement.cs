@@ -37,7 +37,6 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Xml;
     using NLog.Internal;
 
@@ -92,11 +91,10 @@ namespace NLog.Config
             {
                 for (int i = 0; i < Children.Count; ++i)
                 {
-                    var child = Children[i];
-                    if (SingleValueElement(child))
+                    if (SingleValueElement(Children[i]))
                     {
                         // Values assigned using nested node-elements. Maybe in combination with attributes
-                        return AttributeValues.Concat(Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string?>(item.Name, item.Value ?? string.Empty)));
+                        return GetValues();
                     }
                 }
                 return AttributeValues;
@@ -117,28 +115,33 @@ namespace NLog.Config
                 {
                     var child = Children[i];
                     if (!SingleValueElement(child))
-                        return Children.Where(item => !SingleValueElement(item)).Cast<ILoggingConfigurationElement>();
+                        return GetChildElements();
                 }
 
                 return ArrayHelper.Empty<ILoggingConfigurationElement>();
             }
         }
 
-        /// <summary>
-        /// Asserts that the name of the element is among specified element names.
-        /// </summary>
-        /// <param name="allowedNames">The allowed names.</param>
-        public void AssertName(params string[] allowedNames)
+        private IEnumerable<KeyValuePair<string, string?>> GetValues()
         {
-            foreach (var elementName in allowedNames)
+            for (int i = 0; i < AttributeValues.Count; ++i)
+                yield return AttributeValues[i];
+            for (int i = 0; i < Children.Count; ++i)
             {
-                if (LocalName.Equals(elementName, StringComparison.OrdinalIgnoreCase))
-                {
-                    return;
-                }
+                var child = Children[i];
+                if (SingleValueElement(child))
+                    yield return new KeyValuePair<string, string?>(child.Name, child.Value ?? string.Empty);
             }
+        }
 
-            throw new InvalidOperationException($"Assertion failed. Expected element name '{string.Join("|", allowedNames)}', actual: '{LocalName}'.");
+        private IEnumerable<ILoggingConfigurationElement> GetChildElements()
+        {
+            for (int i = 0; i < Children.Count; ++i)
+            {
+                var child = Children[i];
+                if (!SingleValueElement(child))
+                    yield return child;
+            }
         }
 
         private static IList<XmlLoggingConfigurationElement> ParseChildren(XmlReader reader, bool nestedElement, out string? innerText)

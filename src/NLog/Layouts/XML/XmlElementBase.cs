@@ -36,7 +36,6 @@ namespace NLog.Layouts
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Linq;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -280,7 +279,29 @@ namespace NLog.Layouts
             }
 
             var innerLayouts = LayoutWrapper.Inner is null ? ArrayHelper.Empty<Layout>() : new[] { LayoutWrapper.Inner };
-            _precalculateLayouts = (IncludeEventProperties || IncludeScopeProperties) ? null : ResolveLayoutPrecalculation(_attributes.Select(atr => atr.Layout).Concat(_elements.Where(elm => elm.Layout != null).Select(elm => elm.Layout)).Concat(ContextProperties?.Select(ctx => ctx.Layout) ?? Enumerable.Empty<Layout>()).Concat(innerLayouts));
+            _precalculateLayouts = (IncludeEventProperties || IncludeScopeProperties) ? null : ResolveLayoutPrecalculation(GetAllLayouts(innerLayouts));
+        }
+
+        private IEnumerable<Layout> GetAllLayouts(Layout[] innerLayouts)
+        {
+            for (int i = 0; i < _attributes.Count; ++i)
+                yield return _attributes[i].Layout;
+
+            for (int i = 0; i < _elements.Count; ++i)
+            {
+                var layout = _elements[i].Layout;
+                if (layout != null)
+                    yield return layout;
+            }
+
+            if (ContextProperties != null)
+            {
+                for (int i = 0; i < ContextProperties.Count; ++i)
+                    yield return ContextProperties[i].Layout;
+            }
+
+            for (int i = 0; i < innerLayouts.Length; ++i)
+                yield return innerLayouts[i];
         }
 
         /// <inheritdoc/>
