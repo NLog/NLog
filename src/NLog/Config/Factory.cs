@@ -151,7 +151,7 @@ namespace NLog.Config
             Func<TBaseType?> typeCreator = () =>
             {
                 var type = typeLookup();
-                return type != null ? (TBaseType)Activator.CreateInstance(type) : null;
+                return type != null ? (TBaseType?)Activator.CreateInstance(type) : null;
             };
 
             lock (ConfigurationItemFactory.SyncRoot)
@@ -187,7 +187,7 @@ namespace NLog.Config
         {
             typeAlias = FactoryExtensions.NormalizeName(typeAlias);
 
-            Func<TBaseType> itemCreator = () => (TBaseType)Activator.CreateInstance(itemType);
+            Func<TBaseType?> itemCreator = () => (TBaseType?)Activator.CreateInstance(itemType);
             lock (ConfigurationItemFactory.SyncRoot)
             {
                 _parentFactory.RegisterTypeProperties(itemType, () => itemCreator.Invoke());

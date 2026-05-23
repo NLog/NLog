@@ -110,7 +110,7 @@ namespace NLog.Layouts
             }
         }
         private Type? _valueType;
-        private Func<object>? _createDefaultValue;
+        private Func<object?>? _createDefaultValue;
 
         /// <summary>
         /// Gets or sets the fallback value when result value is not available
@@ -253,7 +253,7 @@ namespace NLog.Layouts
             public ILayoutTypeValue InnerLayout => this;
             public Type? InnerType => _fixedValue?.GetType();
 
-            public FixedLayoutTypeValue(object fixedValue)
+            public FixedLayoutTypeValue(object? fixedValue)
             {
                 _fixedValue = fixedValue;
             }

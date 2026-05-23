@@ -498,10 +498,17 @@ namespace NLog.Internal
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
         internal static bool TryTypeConverterConversion(Type type, string value, out object? newValue)
         {
+            InternalLogger.Debug("Object reflection needed for creating external type: {0} from string-value: {1}", type, value);
+#if NETSTANDARD2_1_OR_GREATER || NET
+            if (!System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported)
+            {
+                newValue = null;
+                return false;
+            }
+#endif
+
             try
             {
-                InternalLogger.Debug("Object reflection needed for creating external type: {0} from string-value: {1}", type, value);
-
                 var converter = System.ComponentModel.TypeDescriptor.GetConverter(type);
                 if (converter.CanConvertFrom(typeof(string)))
                 {
@@ -512,7 +519,7 @@ namespace NLog.Internal
                 newValue = null;
                 return false;
             }
-            catch (MissingMethodException ex)
+            catch (Exception ex)
             {
                 InternalLogger.Error(ex, "Error in lookup of TypeDescriptor for type={0} to convert value '{1}'", type, value);
                 newValue = null;

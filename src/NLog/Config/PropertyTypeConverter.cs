@@ -36,6 +36,7 @@ namespace NLog.Config
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
+    using NLog.Common;
     using NLog.Internal;
 
     /// <summary>
@@ -57,7 +58,7 @@ namespace NLog.Config
 
         internal static bool IsComplexType(Type type)
         {
-            return !type.IsValueType && !typeof(IConvertible).IsAssignableFrom(type) && !HasConvertFromStringSupport(type) && type.GetFirstCustomAttribute<System.ComponentModel.TypeConverterAttribute>() is null;
+            return !type.IsValueType && !typeof(IConvertible).IsAssignableFrom(type) && !HasConvertFromStringSupport(type);
         }
 
         /// <inheritdoc/>
@@ -227,30 +228,45 @@ namespace NLog.Config
                 if (typeCode == TypeCode.DateTime && typeof(DateTimeOffset) == propertyType)
                     return new DateTimeOffset(convertibleValue.ToDateTime(formatProvider));
             }
-            else if (TryConvertToType(propertyValue, propertyType, out var convertedValue))
+            else
             {
-                return convertedValue;
+                if (TryConvertToType(propertyValue, propertyType, out var convertedValue))
+                    return convertedValue;
             }
 
             return System.Convert.ChangeType(propertyValue, propertyType, formatProvider);
         }
 
+        //[RequiresDynamicCode("TypeDescriptor requires dynamic code")]
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2026")]
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2067")]
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
         private static bool TryConvertToType(object propertyValue, Type propertyType, out object? convertedValue)
         {
+#if NETSTANDARD2_1_OR_GREATER || NET
+            if (!System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported)
+#else
             if (propertyValue is null || propertyType.IsAssignableFrom(propertyValue.GetType()))
+#endif
             {
                 convertedValue = null;
                 return false;
             }
 
-            var typeConverter = System.ComponentModel.TypeDescriptor.GetConverter(propertyValue.GetType());
-            if (typeConverter != null && typeConverter.CanConvertTo(propertyType))
+            try
             {
-                convertedValue = typeConverter.ConvertTo(propertyValue, propertyType);
-                return true;
+                var typeConverter = System.ComponentModel.TypeDescriptor.GetConverter(propertyValue.GetType());
+                if (typeConverter != null && typeConverter.CanConvertTo(propertyType))
+                {
+                    convertedValue = typeConverter.ConvertTo(propertyValue, propertyType);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "Error in lookup of TypeDescriptor for type={0} to convert value '{1}'", propertyValue.GetType(), propertyValue);
+                convertedValue = null;
+                return false;
             }
 
             convertedValue = null;

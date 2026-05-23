@@ -68,7 +68,7 @@ namespace NLog.LayoutRenderers
 
         private object? GetValue(LogEventInfo logEvent)
         {
-            return !logEvent.Properties.TryGetValue(Parameter, out var value) ? null : value;
+            return logEvent.Properties.TryGetValue(Parameter, out var value) ? value : null;
         }
     }
 }
