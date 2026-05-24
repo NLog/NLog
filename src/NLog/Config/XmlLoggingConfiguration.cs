@@ -211,7 +211,16 @@ namespace NLog.Config
                 if (_fileMustAutoReloadLookup.Count == 0)
                     return ArrayHelper.Empty<string>();
                 else
-                    return _fileMustAutoReloadLookup.Where(entry => entry.Value).Select(entry => entry.Key);
+                    return GetAutoReloadFileNames();
+            }
+        }
+
+        private IEnumerable<string> GetAutoReloadFileNames()
+        {
+            foreach (var entry in _fileMustAutoReloadLookup)
+            {
+                if (entry.Value)
+                    yield return entry.Key;
             }
         }
 
