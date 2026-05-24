@@ -41,7 +41,7 @@ namespace NLog.Internal
 
     internal sealed class SetupConfigurationTargetBuilder : ISetupConfigurationTargetBuilder, IList<Target>
     {
-        private readonly IList<Target> _targets = new List<Target>();
+        private readonly IList<Target> _targetList = new List<Target>();
         private string? _targetName;
 
         public SetupConfigurationTargetBuilder(LogFactory logFactory, LoggingConfiguration configuration, string? targetName = null)
@@ -70,62 +70,62 @@ namespace NLog.Internal
             }
         }
 
-        Target IList<Target>.this[int index] { get => _targets[index]; set => _targets[index] = value; }
+        Target IList<Target>.this[int index] { get => _targetList[index]; set => _targetList[index] = value; }
 
-        int ICollection<Target>.Count => _targets.Count;
+        int ICollection<Target>.Count => _targetList.Count;
 
-        bool ICollection<Target>.IsReadOnly => _targets.IsReadOnly;
+        bool ICollection<Target>.IsReadOnly => _targetList.IsReadOnly;
 
         void ICollection<Target>.Add(Target item)
         {
             UpdateTargetName(item);
-            _targets.Add(item);
+            _targetList.Add(item);
         }
 
         void ICollection<Target>.Clear()
         {
-            _targets.Clear();
+            _targetList.Clear();
         }
 
         bool ICollection<Target>.Contains(Target item)
         {
-            return _targets.Contains(item);
+            return _targetList.Contains(item);
         }
 
         void ICollection<Target>.CopyTo(Target[] array, int arrayIndex)
         {
-            _targets.CopyTo(array, arrayIndex);
+            _targetList.CopyTo(array, arrayIndex);
         }
 
         IEnumerator<Target> IEnumerable<Target>.GetEnumerator()
         {
-            return _targets.GetEnumerator();
+            return _targetList.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _targets.GetEnumerator();
+            return _targetList.GetEnumerator();
         }
 
         int IList<Target>.IndexOf(Target item)
         {
-            return _targets.IndexOf(item);
+            return _targetList.IndexOf(item);
         }
 
         void IList<Target>.Insert(int index, Target item)
         {
             UpdateTargetName(item);
-            _targets.Insert(index, item);
+            _targetList.Insert(index, item);
         }
 
         bool ICollection<Target>.Remove(Target item)
         {
-            return _targets.Remove(item);
+            return _targetList.Remove(item);
         }
 
         void IList<Target>.RemoveAt(int index)
         {
-            _targets.RemoveAt(index);
+            _targetList.RemoveAt(index);
         }
     }
 }
