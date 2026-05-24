@@ -9,7 +9,7 @@ function Test-XmlFile
         PS> dir *.xml | Test-XmlFile schema.xsd
     #>
     [CmdletBinding()]
-    param (     
+    param (
         [Parameter(Mandatory=$true)]
         [string] $SchemaFile,
 
@@ -51,15 +51,15 @@ function Test-XmlFile
 }
 
 # Needs absolute paths. Will throw a error if one of the files is not found
-$pwd = get-location;
-$testFilesDir = "$pwd\examples\targets\Configuration File"
-$xsdFilePath = "$pwd\src\NLog\bin\Release\NLog.xsd"
+$currentDir = Get-Location;
+$testFilesDir = "$currentDir\examples\targets\Configuration File"
+$xsdFilePath = "$currentDir\src\NLog\bin\Release\NLog.xsd"
 $excludedTests = ("Database","Chainsaw","NLogViewer")
 # Returns true if all selected tests in examples directory are valid
 $ret = $true
-Get-ChildItem -Path $testFilesDir -Directory -Exclude $excludedTests | Get-ChildItem -Recurse -File -Filter NLog.config | % {
+Get-ChildItem -Path $testFilesDir -Directory -Exclude $excludedTests | Get-ChildItem -Recurse -File -Filter NLog.config | ForEach-Object {
     $testOutcome = Test-XmlFile $xsdFilePath $_.FullName
-    if (-Not $testOutcome) { 
+    if (-not $testOutcome) {
         $ret = $false
     }
 }
