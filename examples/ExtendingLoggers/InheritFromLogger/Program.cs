@@ -35,7 +35,7 @@ using System;
 using System.Text;
 using NLog;
 
-namespace InheritFromLogger
+namespace NLog
 {
     /// <summary>
     /// Provides methods to write messages with event IDs - useful for the Event Log target

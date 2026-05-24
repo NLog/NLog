@@ -3,22 +3,25 @@ using NLog.Config;
 using NLog.Targets;
 using NLog.Targets.Wrappers;
 
-class Example
+namespace NLog
 {
-    static void Main(string[] args)
+    class Example
     {
-        FileTarget wrappedTarget = new FileTarget();
-        wrappedTarget.FileName = "${basedir}/file.txt";
+        static void Main(string[] args)
+        {
+            FileTarget wrappedTarget = new FileTarget();
+            wrappedTarget.FileName = "${basedir}/file.txt";
 
-        RepeatingTargetWrapper target = new RepeatingTargetWrapper();
-        target.WrappedTarget = wrappedTarget;
-        target.RepeatCount = 3;
+            RepeatingTargetWrapper target = new RepeatingTargetWrapper();
+            target.WrappedTarget = wrappedTarget;
+            target.RepeatCount = 3;
 
-        LoggingConfiguration nlogConfig = new LoggingConfiguration();
-        nlogConfig.AddRuleForAllLevels(target);
-        LogManager.Configuration = nlogConfig;
+            LoggingConfiguration nlogConfig = new LoggingConfiguration();
+            nlogConfig.AddRuleForAllLevels(target);
+            LogManager.Configuration = nlogConfig;
 
-        Logger logger = LogManager.GetLogger("Example");
-        logger.Debug("log message");
+            Logger logger = LogManager.GetLogger("Example");
+            logger.Debug("log message");
+        }
     }
 }

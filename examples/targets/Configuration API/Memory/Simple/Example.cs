@@ -2,23 +2,26 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 
-class Example
+namespace NLog
 {
-    static void Main(string[] args)
+    class Example
     {
-        MemoryTarget target = new MemoryTarget();
-        target.Layout = "${message}";
-
-        LoggingConfiguration nlogConfig = new LoggingConfiguration();
-        nlogConfig.AddRuleForAllLevels(target);
-        LogManager.Configuration = nlogConfig;
-
-        Logger logger = LogManager.GetLogger("Example");
-        logger.Debug("log message");
-
-        foreach (string s in target.Logs)
+        static void Main(string[] args)
         {
-            Console.Write("logged: {0}", s);
+            MemoryTarget target = new MemoryTarget();
+            target.Layout = "${message}";
+
+            LoggingConfiguration nlogConfig = new LoggingConfiguration();
+            nlogConfig.AddRuleForAllLevels(target);
+            LogManager.Configuration = nlogConfig;
+
+            Logger logger = LogManager.GetLogger("Example");
+            logger.Debug("log message");
+
+            foreach (string s in target.Logs)
+            {
+                Console.Write("logged: {0}", s);
+            }
         }
     }
 }

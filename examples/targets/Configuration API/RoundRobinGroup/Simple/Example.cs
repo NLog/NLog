@@ -3,27 +3,30 @@ using NLog.Config;
 using NLog.Targets;
 using NLog.Targets.Wrapper;
 
-class Example
+namespace NLog
 {
-    static void Main(string[] args)
+    class Example
     {
-        FileTarget file1 = new FileTarget();
-        file1.FileName = "${basedir}/file1.txt";
+        static void Main(string[] args)
+        {
+            FileTarget file1 = new FileTarget();
+            file1.FileName = "${basedir}/file1.txt";
 
-        FileTarget file2 = new FileTarget();
-        file2.FileName = "${basedir}/file2.txt";
+            FileTarget file2 = new FileTarget();
+            file2.FileName = "${basedir}/file2.txt";
 
-        RoundRobinTarget target = new RoundRobinTarget();
-        target.Targets.Add(file1);
-        target.Targets.Add(file2);
+            RoundRobinTarget target = new RoundRobinTarget();
+            target.Targets.Add(file1);
+            target.Targets.Add(file2);
 
-        LoggingConfiguration nlogConfig = new LoggingConfiguration();
-        nlogConfig.AddRuleForAllLevels(target);
-        LogManager.Configuration = nlogConfig;
+            LoggingConfiguration nlogConfig = new LoggingConfiguration();
+            nlogConfig.AddRuleForAllLevels(target);
+            LogManager.Configuration = nlogConfig;
 
-        Logger logger = LogManager.GetLogger("Example");
-        logger.Debug("log message 1");
-        logger.Debug("log message 2");
-        logger.Debug("log message 3");
+            Logger logger = LogManager.GetLogger("Example");
+            logger.Debug("log message 1");
+            logger.Debug("log message 2");
+            logger.Debug("log message 3");
+        }
     }
 }

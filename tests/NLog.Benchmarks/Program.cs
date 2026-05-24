@@ -37,7 +37,7 @@ namespace NLog.Benchmarks
     using BenchmarkDotNet.Diagnosers;
     using BenchmarkDotNet.Running;
 
-    internal class Program
+    internal static class Program
     {
         static void Main(string[] args)
         {
