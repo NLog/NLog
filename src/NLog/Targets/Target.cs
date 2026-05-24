@@ -549,7 +549,7 @@ namespace NLog.Targets
 
             var result = allLayouts.Aggregate(StackTraceUsage.None, (agg, layout) => agg | layout.StackTraceUsage);
             StackTraceUsage = result | ((this as IUsesStackTrace)?.StackTraceUsage ?? StackTraceUsage.None);
-            _allLayouts = allLayouts.Where(l => !l.ThreadAgnostic || l.ThreadAgnosticImmutable || !(l is SimpleLayout)).Distinct(SingleItemOptimizedHashSet<Layout>.ReferenceEqualityComparer.Default).ToArray();
+            _allLayouts = new HashSet<Layout>(allLayouts.Where(l => !l.ThreadAgnostic || l.ThreadAgnosticImmutable || !(l is SimpleLayout)), SingleItemOptimizedHashSet<Layout>.ReferenceEqualityComparer.Default).ToArray();
             _scannedForLayouts = true;
         }
 
