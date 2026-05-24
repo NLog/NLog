@@ -35,7 +35,6 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using NLog.Internal;
 
     internal sealed class XmlParserConfigurationElement : ILoggingConfigurationElement
@@ -66,14 +65,25 @@ namespace NLog.Config
             {
                 for (int i = 0; i < Children.Count; ++i)
                 {
-                    var child = Children[i];
-                    if (SingleValueElement(child))
+                    if (SingleValueElement(Children[i]))
                     {
                         // Values assigned using nested node-elements. Maybe in combination with attributes
-                        return AttributeValues.Concat(Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string?>(item.Name, item.Value ?? string.Empty)));
+                        return GetValues();
                     }
                 }
                 return AttributeValues;
+            }
+        }
+
+        private IEnumerable<KeyValuePair<string, string?>> GetValues()
+        {
+            for (int i = 0; i < AttributeValues.Count; ++i)
+                yield return AttributeValues[i];
+            for (int i = 0; i < Children.Count; ++i)
+            {
+                var child = Children[i];
+                if (SingleValueElement(child))
+                    yield return new KeyValuePair<string, string?>(child.Name, child.Value ?? string.Empty);
             }
         }
 
@@ -85,10 +95,20 @@ namespace NLog.Config
                 {
                     var child = Children[i];
                     if (!SingleValueElement(child))
-                        return Children.Where(item => !SingleValueElement(item)).Cast<ILoggingConfigurationElement>();
+                        return GetChildElements();
                 }
 
                 return ArrayHelper.Empty<ILoggingConfigurationElement>();
+            }
+        }
+
+        private IEnumerable<ILoggingConfigurationElement> GetChildElements()
+        {
+            for (int i = 0; i < Children.Count; ++i)
+            {
+                var child = Children[i];
+                if (!SingleValueElement(child))
+                    yield return child;
             }
         }
 
