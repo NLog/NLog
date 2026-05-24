@@ -58,6 +58,7 @@ namespace NLog.Config
 
         internal static readonly object SyncRoot = new object();
 
+        [Obsolete("ServiceRepository is only here for backward compatibility. Marked obsolete with NLog 6.2")]
         private readonly ServiceRepository _serviceRepository;
 #pragma warning disable CS0618 // Type or member is obsolete
         internal IAssemblyExtensionLoader AssemblyLoader { get; } = new AssemblyExtensionLoader();
@@ -98,7 +99,9 @@ namespace NLog.Config
 
         internal ConfigurationItemFactory(ServiceRepository serviceRepository)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             _serviceRepository = Guard.ThrowIfNull(serviceRepository);
+#pragma warning restore CS0618 // Type or member is obsolete
             _targets = new Factory<Target, TargetAttribute>(this);
             _filters = new Factory<Filter, FilterAttribute>(this);
             _layoutRenderers = new LayoutRendererFactory(this);
@@ -278,6 +281,8 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NLog.SetupSerializationBuilderExtensions.ParseMessageTemplates"/> with NLog v6.2.
+        /// 
         /// Perform message template parsing and formatting of LogEvent messages (True = Always, False = Never, Null = Auto Detect)
         /// </summary>
         /// <remarks>
@@ -285,6 +290,7 @@ namespace NLog.Config
         /// - <see langword="true"/>: Always performs the parsing of <see cref="LogEventInfo.Message"/> and rendering of <see cref="LogEventInfo.FormattedMessage"/> using the NLog-parser (Allows custom formatting with <see cref="IValueFormatter"/>)
         /// - <see langword="false"/>: Always performs parsing and rendering using string.Format (Fastest if not using structured logging)
         /// </remarks>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupSerialization(s => s.ParseMessageTemplates()). Marked obsolete with NLog 6.2")]
         public bool? ParseMessageTemplates
         {
             get => _serviceRepository.ResolveParseMessageTemplates();
