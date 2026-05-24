@@ -2,28 +2,31 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 
-class Example
+namespace NLog
 {
-    static void Main(string[] args)
+    class Example
     {
-        DatabaseTarget target = new DatabaseTarget();
-        DatabaseParameterInfo param;
+        static void Main(string[] args)
+        {
+            DatabaseTarget target = new DatabaseTarget();
+            DatabaseParameterInfo param;
 
-        target.DBProvider = "oledb";
-        target.ConnectionString = "Provider=msdaora;Data Source=MYORACLEDB;User Id=DBO;Password=MYPASSWORD;";
-        target.CommandText = "insert into LOGTABLE( TIME_STAMP,LOGLEVEL,LOGGER,CALLSITE,MESSAGE) values(?,?,?,?,?)";
+            target.DBProvider = "oledb";
+            target.ConnectionString = "Provider=msdaora;Data Source=MYORACLEDB;User Id=DBO;Password=MYPASSWORD;";
+            target.CommandText = "insert into LOGTABLE( TIME_STAMP,LOGLEVEL,LOGGER,CALLSITE,MESSAGE) values(?,?,?,?,?)";
 
-        target.Parameters.Add(new DatabaseParameterInfo("TIME_STAMP", "${longdate}"));
-        target.Parameters.Add(new DatabaseParameterInfo("LOGLEVEL", "${level:uppercase=true}"));
-        target.Parameters.Add(new DatabaseParameterInfo("LOGGER", "${logger}"));
-        target.Parameters.Add(new DatabaseParameterInfo("CALLSITE", "${callsite:filename=true}"));
-        target.Parameters.Add(new DatabaseParameterInfo("MESSAGE", "${message}"));
-        
-        LoggingConfiguration nlogConfig = new LoggingConfiguration();
-        nlogConfig.AddRuleForAllLevels(target);
-        LogManager.Configuration = nlogConfig;
+            target.Parameters.Add(new DatabaseParameterInfo("TIME_STAMP", "${longdate}"));
+            target.Parameters.Add(new DatabaseParameterInfo("LOGLEVEL", "${level:uppercase=true}"));
+            target.Parameters.Add(new DatabaseParameterInfo("LOGGER", "${logger}"));
+            target.Parameters.Add(new DatabaseParameterInfo("CALLSITE", "${callsite:filename=true}"));
+            target.Parameters.Add(new DatabaseParameterInfo("MESSAGE", "${message}"));
 
-        Logger logger = LogManager.GetLogger("Example");
-        logger.Debug("log message");
+            LoggingConfiguration nlogConfig = new LoggingConfiguration();
+            nlogConfig.AddRuleForAllLevels(target);
+            LogManager.Configuration = nlogConfig;
+
+            Logger logger = LogManager.GetLogger("Example");
+            logger.Debug("log message");
+        }
     }
 }

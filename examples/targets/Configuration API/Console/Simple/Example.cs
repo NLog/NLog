@@ -2,18 +2,21 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 
-class Example
+namespace NLog
 {
-    static void Main(string[] args)
+    class Example
     {
-        ConsoleTarget target = new ConsoleTarget();
-        target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${message}";
+        static void Main(string[] args)
+        {
+            ConsoleTarget target = new ConsoleTarget();
+            target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${message}";
 
-        LoggingConfiguration nlogConfig = new LoggingConfiguration();
-        nlogConfig.AddRuleForAllLevels(target);
-        LogManager.Configuration = nlogConfig;
+            LoggingConfiguration nlogConfig = new LoggingConfiguration();
+            nlogConfig.AddRuleForAllLevels(target);
+            LogManager.Configuration = nlogConfig;
 
-        Logger logger = LogManager.GetLogger("Example");
-        logger.Debug("log message");
+            Logger logger = LogManager.GetLogger("Example");
+            logger.Debug("log message");
+        }
     }
 }

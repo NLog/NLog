@@ -2,20 +2,23 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 
-class Example
+namespace NLog
 {
-    static void Main(string[] args)
+    class Example
     {
-        EventLogTarget target = new EventLogTarget();
-        target.Source = "My Source";
-        target.Log = "Application";
-        target.Layout = "${logger}: ${message} ${exception}";
+        static void Main(string[] args)
+        {
+            EventLogTarget target = new EventLogTarget();
+            target.Source = "My Source";
+            target.Log = "Application";
+            target.Layout = "${logger}: ${message} ${exception}";
 
-        LoggingConfiguration nlogConfig = new LoggingConfiguration();
-        nlogConfig.AddRuleForAllLevels(target);
-        LogManager.Configuration = nlogConfig;
+            LoggingConfiguration nlogConfig = new LoggingConfiguration();
+            nlogConfig.AddRuleForAllLevels(target);
+            LogManager.Configuration = nlogConfig;
 
-        Logger logger = LogManager.GetLogger("Example");
-        logger.Debug("log message");
+            Logger logger = LogManager.GetLogger("Example");
+            logger.Debug("log message");
+        }
     }
 }
