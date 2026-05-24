@@ -78,10 +78,10 @@ namespace NLog.Config
 #endif
         struct ItemFactory
         {
-            public readonly Func<Dictionary<string, PropertyInfo>> ItemProperties;
+            public readonly Func<PropertyInfo[]> ItemProperties;
             public readonly Func<object?> ItemCreator;
 
-            public ItemFactory(Func<Dictionary<string, PropertyInfo>> itemProperties, Func<object?> itemCreator)
+            public ItemFactory(Func<PropertyInfo[]> itemProperties, Func<object?> itemCreator)
             {
                 ItemProperties = itemProperties;
                 ItemCreator = itemCreator;
@@ -368,8 +368,8 @@ namespace NLog.Config
             {
                 if (!_itemFactories.ContainsKey(typeof(TType)))
                 {
-                    Dictionary<string, PropertyInfo>? properties = null;
-                    var itemProperties = new Func<Dictionary<string, PropertyInfo>>(() => properties ?? (properties = typeof(TType).GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase)));
+                    PropertyInfo[]? properties = null;
+                    var itemProperties = new Func<PropertyInfo[]>(() => properties ?? (properties = typeof(TType).GetProperties(BindingFlags.Public | BindingFlags.Instance)));
                     var itemFactory = new ItemFactory(itemProperties, itemCreator);
                     _itemFactories[typeof(TType)] = itemFactory;
                 }
@@ -382,15 +382,15 @@ namespace NLog.Config
             {
                 if (!_itemFactories.ContainsKey(itemType))
                 {
-                    Dictionary<string, PropertyInfo>? properties = null;
-                    var itemProperties = new Func<Dictionary<string, PropertyInfo>>(() => properties ?? (properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase)));
+                    PropertyInfo[]? properties = null;
+                    var itemProperties = new Func<PropertyInfo[]>(() => properties ?? (properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance)));
                     var itemFactory = new ItemFactory(itemProperties, itemCreator);
                     _itemFactories[itemType] = itemFactory;
                 }
             }
         }
 
-        internal Dictionary<string, PropertyInfo> TryGetTypeProperties(Type itemType)
+        internal PropertyInfo[] TryGetTypeProperties(Type itemType)
         {
             lock (SyncRoot)
             {
@@ -401,10 +401,10 @@ namespace NLog.Config
             }
 
             if (itemType.IsAbstract)
-                return new Dictionary<string, PropertyInfo>();
+                return ArrayHelper.Empty<PropertyInfo>();
 
             if (itemType.IsGenericType && itemType.GetGenericTypeDefinition() == typeof(Layout<>))
-                return new Dictionary<string, PropertyInfo>();
+                return ArrayHelper.Empty<PropertyInfo>();
 
 #pragma warning disable CS0618 // Type or member is obsolete
             InternalLogger.Debug("Object reflection needed to configure instance of type: {0}", itemType);
@@ -416,9 +416,9 @@ namespace NLog.Config
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2070")]
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2072")]
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-        private Dictionary<string, PropertyInfo> ResolveTypePropertiesLegacy(Type itemType)
+        private PropertyInfo[] ResolveTypePropertiesLegacy(Type itemType)
         {
-            Dictionary<string, PropertyInfo> properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase);
+            PropertyInfo[] properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
             lock (SyncRoot)
             {
                 _itemFactories[itemType] = new ItemFactory(() => properties, () => Activator.CreateInstance(itemType));
@@ -457,8 +457,8 @@ namespace NLog.Config
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         private object? ResolveCreateInstanceLegacy(Type itemType)
         {
-            Dictionary<string, PropertyInfo>? properties = null;
-            var itemProperties = new Func<Dictionary<string, PropertyInfo>>(() => properties ?? (properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase)));
+            PropertyInfo[]? properties = null;
+            var itemProperties = new Func<PropertyInfo[]>(() => properties ?? (properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance)));
             var itemFactory = new ItemFactory(itemProperties, () => Activator.CreateInstance(itemType));
             lock (SyncRoot)
             {

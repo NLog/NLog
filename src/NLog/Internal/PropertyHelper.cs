@@ -544,25 +544,18 @@ namespace NLog.Internal
                     return false;
                 }
 
-                if (properties.Count == 0)
+                if (properties.Length == 0)
                 {
-                    result = properties;
-                    return true;
-                }
-
-                if (!HasCustomConfigurationProperties(objectType, properties))
-                {
-                    result = properties;
+                    result = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
                     return true;
                 }
 
                 bool checkDefaultValue = typeof(LayoutRenderers.LayoutRenderer).IsAssignableFrom(objectType);
 
-                result = new Dictionary<string, PropertyInfo>(properties.Count + 4, StringComparer.OrdinalIgnoreCase);
-                foreach (var property in properties)
-                {
-                    var propInfo = property.Value;
 
+                result = new Dictionary<string, PropertyInfo>(properties.Length + 4, StringComparer.OrdinalIgnoreCase);
+                foreach (var propInfo in properties)
+                {
                     if (!IncludeConfigurationPropertyInfo(objectType, propInfo, checkDefaultValue, out var overridePropertyName))
                         continue;
 
@@ -579,21 +572,6 @@ namespace NLog.Internal
             }
 
             return result != null;
-        }
-
-        private static bool HasCustomConfigurationProperties(Type objectType, Dictionary<string, PropertyInfo> objectProperties)
-        {
-            bool checkDefaultValue = typeof(LayoutRenderers.LayoutRenderer).IsAssignableFrom(objectType);
-
-            foreach (var property in objectProperties)
-            {
-                if (IncludeConfigurationPropertyInfo(objectType, property.Value, checkDefaultValue, out var overridePropertyName) && overridePropertyName is null)
-                    continue;
-
-                return true;
-            }
-
-            return false;
         }
 
         private static bool IncludeConfigurationPropertyInfo(Type objectType, PropertyInfo propInfo, bool checkDefaultValue, out string? overridePropertyName)
