@@ -53,6 +53,26 @@ namespace NLog.Internal
         }
 
         /// <summary>
+        /// AOT Optimized version of <see cref="System.Linq.Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/> for reducing AOT filesize.
+        /// </summary>
+        public static IEnumerable<TResult> Select<TSource, TResult>(this ICollection<TSource> source, Func<TSource, TResult> selector)
+        {
+            var itemCount = source.Count;
+            if (itemCount == 0)
+                return ArrayHelper.Empty<TResult>();
+
+            return SelectYieldEnumerable(source, selector);
+        }
+
+        private static IEnumerable<TResult> SelectYieldEnumerable<TSource, TResult>(ICollection<TSource> source, Func<TSource, TResult> selector)
+        {
+            foreach (var item in source)
+            {
+                yield return selector(item);
+            }
+        }
+
+        /// <summary>
         /// Memory optimized filtering
         /// </summary>
         /// <remarks>Passing state too avoid delegate capture and memory-allocations.</remarks>
