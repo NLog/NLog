@@ -116,7 +116,7 @@ namespace NLog.Config
         private void AddLoggingRulesThreadSafe(LoggingRule rule) { lock (_loggingRules) _loggingRules.Add(rule); }
 
         private bool TryGetTargetThreadSafe(string name, out Target? target) { lock (_targets) return _targets.TryGetValue(name, out target); }
-        private IList<Target> GetAllTargetsThreadSafe() { lock (_targets) return _targets.Values.ToArray(); }
+        private Target[] GetAllTargetsThreadSafe() { lock (_targets) return _targets.Values.ToArray(); }
 
         private Target? RemoveTargetThreadSafe(string name)
         {
@@ -907,26 +907,22 @@ namespace NLog.Config
                 return;
 
             var configuredNamedTargets = GetAllTargetsThreadSafe(); //assign to variable because `GetAllTargetsThreadSafe` computes a new list every time.
-            InternalLogger.Debug("Unused target checking is started... Rule Count: {0}, Target Count: {1}", LoggingRules.Count, configuredNamedTargets.Count);
+            InternalLogger.Debug("Unused target checking is started... Rule Count: {0}, Target Count: {1}", LoggingRules.Count, configuredNamedTargets.Length);
 
             var targetNamesAtRules = new HashSet<string>(GetLoggingRulesThreadSafe().SelectMany(r => r.Targets).Select(t => t.Name));
-            var allTargets = AllTargets;
-            ILookup<Target?, Target> wrappedTargets = allTargets.OfType<WrapperTargetBase>().ToLookup(wt => wt.WrappedTarget, wt => (Target)wt);
-            ILookup<Target?, Target> compoundTargets = allTargets.OfType<CompoundTargetBase>().SelectMany(wt => wt.Targets.Select(t => new KeyValuePair<Target?, Target>(t, wt))).ToLookup(p => p.Key, p => p.Value);
 
-            bool IsUnusedInList(Target target1, ILookup<Target?, Target> targets)
+            Dictionary<Target, List<Target>> wrappingTargets = BuildWrappingTargetsLookup(AllTargets);
+
+            bool IsUnusedInList(Target target1, Dictionary<Target, List<Target>> targets)
             {
-                if (targets.Contains(target1))
+                if (targets.TryGetValue(target1, out var wrappers))
                 {
-                    foreach (var wrapperTarget in targets[target1])
+                    foreach (var wrapperTarget in wrappers)
                     {
                         if (targetNamesAtRules.Contains(wrapperTarget.Name))
                             return false;
 
-                        if (wrappedTargets.Contains(wrapperTarget))
-                            return false;
-
-                        if (compoundTargets.Contains(wrapperTarget))
+                        if (targets.ContainsKey(wrapperTarget))
                             return false;
                     }
                 }
@@ -934,22 +930,46 @@ namespace NLog.Config
                 return true;
             }
 
-            int unusedCount = configuredNamedTargets.Count((target) =>
+            int unusedCount = 0;
+            foreach (var target in configuredNamedTargets)
             {
                 if (targetNamesAtRules.Contains(target.Name))
-                    return false;
+                    continue;
 
-                if (!IsUnusedInList(target, wrappedTargets))
-                    return false;
-
-                if (!IsUnusedInList(target, compoundTargets))
-                    return false;
+                if (!IsUnusedInList(target, wrappingTargets))
+                    continue;
 
                 InternalLogger.Warn("Unused target detected. Add a rule for this target to the configuration. TargetName: {0}", target.Name);
-                return true;
-            });
+                unusedCount++;
+            }
 
-            InternalLogger.Debug("Unused target checking is completed. Total Rule Count: {0}, Total Target Count: {1}, Unused Target Count: {2}", LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
+            InternalLogger.Debug("Unused target checking is completed. Total Rule Count: {0}, Total Target Count: {1}, Unused Target Count: {2}", LoggingRules.Count, configuredNamedTargets.Length, unusedCount);
+        }
+
+        private static Dictionary<Target, List<Target>> BuildWrappingTargetsLookup(IEnumerable<Target> targets)
+        {
+            var wrappingTargets = new Dictionary<Target, List<Target>>();
+
+            foreach (var target in targets)
+            {
+                if (target is WrapperTargetBase wt && wt.WrappedTarget != null)
+                {
+                    if (!wrappingTargets.TryGetValue(wt.WrappedTarget, out var list))
+                        wrappingTargets[wt.WrappedTarget] = list = new List<Target>();
+                    list.Add(wt);
+                }
+                else if (target is CompoundTargetBase ct)
+                {
+                    foreach (var inner in ct.Targets)
+                    {
+                        if (!wrappingTargets.TryGetValue(inner, out var list))
+                            wrappingTargets[inner] = list = new List<Target>();
+                        list.Add(ct);
+                    }
+                }
+            }
+
+            return wrappingTargets;
         }
 
         internal AsyncContinuation? FlushAllTargets(AsyncContinuation flushCompletion)
