@@ -54,7 +54,7 @@ namespace NLog.UnitTests.LayoutRenderers
                     <logger minlevel='Info' writeTo='debug' />
                 </rules>
             </nlog>").LogFactory;
-            Exception ex = new ArgumentException(exceptionMessage);
+            var ex = new ArgumentException(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
 
             logFactory.GetCurrentClassLogger().Error(ex, "msg");
@@ -78,7 +78,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>").LogFactory;
 
-            Exception ex = new ArgumentException(exceptionMessage);
+            var ex = new ArgumentException(exceptionMessage);
             logFactory.GetCurrentClassLogger().Error(ex, "msg");
 
             logFactory.AssertDebugLastMessage("");
@@ -101,7 +101,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>").LogFactory;
 
-            Exception ex = new ArgumentException(exceptionMessage);
+            var ex = new ArgumentException(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
             logFactory.GetCurrentClassLogger().Error(ex);
             logFactory.AssertDebugLastMessage(exceptionDataValue);
@@ -124,7 +124,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>").LogFactory;
 
-            Exception ex = new ArgumentException(exceptionMessage);
+            var ex = new ArgumentException(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
             logFactory.GetCurrentClassLogger().Error(ex);
             logFactory.AssertDebugLastMessage("");

@@ -285,7 +285,7 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                TextWriter textWriter = new StringWriter();
+                var textWriter = new StringWriter();
                 InternalLogger.LogWriter = textWriter;
                 InternalLogger.IncludeTimestamp = false;
 
