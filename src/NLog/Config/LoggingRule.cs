@@ -142,6 +142,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets a value indicating whether to quit processing any following rules when this one matches.
         /// </summary>
+        /// <remarks>Alternative use <see cref="FinalMinLevel"/> to simplify filtering based on log levels.</remarks>
         public bool Final { get; set; }
 
         /// <summary>
