@@ -366,9 +366,7 @@ namespace NLog.UnitTests.Layouts
                             new JsonAttribute("message", "${exception:format=:innerFormat=Message:MaxInnerExceptionLevel=1:InnerExceptionSeparator=}"),
                         },
                         RenderEmptyObject = false
-                    },
-                    //don't escape layout
-                    false)
+                    })
                 }
             };
 
