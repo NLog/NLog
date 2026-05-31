@@ -55,6 +55,7 @@ namespace NLog
         /// Disabled by default as it can give a huge performance hit during startup. Recommended to keep it disabled especially when running in the cloud.
         /// </remarks>
         [Obsolete("AutoLoadAssemblies(true) has been replaced by AutoLoadExtensions(), that matches the name of nlog-attribute in NLog.config. Marked obsolete on NLog 5.0")]
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static ISetupExtensionsBuilder AutoLoadAssemblies(this ISetupExtensionsBuilder setupBuilder, bool enable)
         {
@@ -69,6 +70,7 @@ namespace NLog
         /// <remarks>
         /// Disabled by default as it can give a huge performance hit during startup. Recommended to keep it disabled especially when running in the cloud.
         /// </remarks>
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         public static ISetupExtensionsBuilder AutoLoadExtensions(this ISetupExtensionsBuilder setupBuilder)
         {
             ConfigurationItemFactory.Default.AssemblyLoader.ScanForAutoLoadExtensions(ConfigurationItemFactory.Default);
@@ -78,6 +80,7 @@ namespace NLog
         /// <summary>
         /// Registers NLog extensions from the assembly.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         public static ISetupExtensionsBuilder RegisterAssembly(this ISetupExtensionsBuilder setupBuilder, Assembly assembly)
         {
             ConfigurationItemFactory.Default.AssemblyLoader.LoadAssembly(ConfigurationItemFactory.Default, assembly, string.Empty);
@@ -87,6 +90,7 @@ namespace NLog
         /// <summary>
         /// Registers NLog extensions from the assembly type name
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         public static ISetupExtensionsBuilder RegisterAssembly(this ISetupExtensionsBuilder setupBuilder, string assemblyName)
         {
             ConfigurationItemFactory.Default.AssemblyLoader.LoadAssemblyFromName(ConfigurationItemFactory.Default, assemblyName, string.Empty);
@@ -153,7 +157,7 @@ namespace NLog
             if (!typeof(Target).IsAssignableFrom(targetType))
                 throw new ArgumentException("Not of type NLog Target", nameof(targetType));
 
-            ConfigurationItemFactory.Default.GetTargetFactory().RegisterType(name, () => (Target)Activator.CreateInstance(targetType));
+            ConfigurationItemFactory.Default.GetTargetFactory().RegisterType(name, () => (Target)Activator.CreateInstance(targetType)!);
             return setupBuilder;
         }
 
@@ -197,7 +201,7 @@ namespace NLog
             if (!typeof(Layout).IsAssignableFrom(layoutType))
                 throw new ArgumentException("Not of type NLog Layout", nameof(layoutType));
 
-            ConfigurationItemFactory.Default.GetLayoutFactory().RegisterType(typeAlias, () => (Layout)Activator.CreateInstance(layoutType));
+            ConfigurationItemFactory.Default.GetLayoutFactory().RegisterType(typeAlias, () => (Layout)Activator.CreateInstance(layoutType)!);
             return setupBuilder;
         }
 
@@ -266,7 +270,7 @@ namespace NLog
             if (!typeof(LayoutRenderer).IsAssignableFrom(layoutRendererType))
                 throw new ArgumentException("Not of type NLog LayoutRenderer", nameof(layoutRendererType));
 
-            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterType(name, () => (LayoutRenderer)Activator.CreateInstance(layoutRendererType));
+            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterType(name, () => (LayoutRenderer)Activator.CreateInstance(layoutRendererType)!);
             return setupBuilder;
         }
 

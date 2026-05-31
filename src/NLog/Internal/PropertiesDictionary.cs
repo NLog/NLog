@@ -781,7 +781,7 @@ namespace NLog.Internal
         {
             public static readonly PropertyKeyComparer Default = new PropertyKeyComparer();
 
-            public new bool Equals(object x, object y)
+            public new bool Equals(object? x, object? y)
             {
                 if (y is IgnoreCasePropertyKey ynocase && x is string xstring)
                 {
@@ -793,7 +793,7 @@ namespace NLog.Internal
                 }
                 else
                 {
-                    return EqualityComparer<object>.Default.Equals(x, y);
+                    return EqualityComparer<object?>.Default.Equals(x, y);
                 }
             }
 

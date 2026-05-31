@@ -515,7 +515,7 @@ namespace NLog.Layouts
 
                 if (propertyInfo.PropertyType.IsGenericType && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(Layout<>))
                 {
-                    nestedLayout = (Layout)Activator.CreateInstance(propertyInfo.PropertyType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { nestedLayout }, null);
+                    nestedLayout = (Layout)Activator.CreateInstance(propertyInfo.PropertyType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { nestedLayout }, null)!;
                 }
 
                 return nestedLayout;

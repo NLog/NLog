@@ -297,6 +297,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="assembly">The assembly.</param>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterItemsFromAssembly(Assembly assembly)
         {
@@ -310,6 +311,7 @@ namespace NLog.Config
         /// <param name="assembly">The assembly.</param>
         /// <param name="itemNamePrefix">Item name prefix.</param>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Assembly.GetTypes() Incompatible with trimming.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterItemsFromAssembly(Assembly assembly, string itemNamePrefix)
         {
