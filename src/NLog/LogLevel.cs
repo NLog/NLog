@@ -35,6 +35,7 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using NLog.Internal;
 
@@ -106,20 +107,16 @@ namespace NLog
         /// </summary>
         public static readonly LogLevel Off = new LogLevel("Off", 6);
 
-        private static readonly LogLevel[] allLevels = { Trace, Debug, Info, Warn, Error, Fatal, Off };
-
-        private static readonly LogLevel[] allLoggingLevels = { Trace, Debug, Info, Warn, Error, Fatal };
-
         /// <summary>
         /// Gets all the available log levels (Trace, Debug, Info, Warn, Error, Fatal, Off).
         /// </summary>
-        public static IEnumerable<LogLevel> AllLevels => allLevels;
+        public static IEnumerable<LogLevel> AllLevels { get; } = new ReadOnlyCollection<LogLevel>(new[] { Trace, Debug, Info, Warn, Error, Fatal, Off });
 
         /// <summary>
         ///  Gets all the log levels that can be used to log events (Trace, Debug, Info, Warn, Error, Fatal)
         ///  i.e <c>LogLevel.Off</c> is excluded.
         /// </summary>
-        public static IEnumerable<LogLevel> AllLoggingLevels => allLoggingLevels;
+        public static IEnumerable<LogLevel> AllLoggingLevels { get; } = new ReadOnlyCollection<LogLevel>(new[] { Trace, Debug, Info, Warn, Error, Fatal });
 
         internal static LogLevel MaxLevel => Fatal;
 
