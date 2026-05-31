@@ -61,10 +61,10 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(d1);
             var layout = d1.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Equal(3, layout.Renderers.Count);
-            var lr1 = layout.Renderers[0] as LiteralLayoutRenderer;
-            var lr2 = layout.Renderers[1] as MessageLayoutRenderer;
-            var lr3 = layout.Renderers[2] as LiteralLayoutRenderer;
+            Assert.Equal(3, layout.LayoutRenderers.Count());
+            var lr1 = layout.LayoutRenderers.ElementAt(0) as LiteralLayoutRenderer;
+            var lr2 = layout.LayoutRenderers.ElementAt(1) as MessageLayoutRenderer;
+            var lr3 = layout.LayoutRenderers.ElementAt(2) as LiteralLayoutRenderer;
             Assert.NotNull(lr1);
             Assert.NotNull(lr2);
             Assert.NotNull(lr3);

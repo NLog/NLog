@@ -35,6 +35,7 @@ using NLog.Config;
 
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
+    using System.Linq;
     using NLog;
     using NLog.Layouts;
     using Xunit;
@@ -60,14 +61,14 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             Assert.Equal(s1, s2);
 
             // calling Close() on Layout Renderer will reset the cached value
-            l.Renderers[0].Close();
+            l.LayoutRenderers.First().Close();
             s3 = l.Render(LogEventInfo.CreateNullEvent());
             Assert.NotEqual(s2, s3);
 
             // unless we use clearcache=none
             l = "${cached:${guid}:cached=true:clearcache=none}";
             s1 = l.Render(LogEventInfo.CreateNullEvent());
-            l.Renderers[0].Close();
+            l.LayoutRenderers.First().Close();
             s2 = l.Render(LogEventInfo.CreateNullEvent());
             Assert.Equal(s1, s2);
 

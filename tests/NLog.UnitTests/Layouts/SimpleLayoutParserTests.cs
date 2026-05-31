@@ -52,15 +52,15 @@ namespace NLog.UnitTests.Layouts
         public void SimpleTest()
         {
             SimpleLayout l = "${message}";
-            Assert.Single(l.Renderers);
-            Assert.IsType<MessageLayoutRenderer>(l.Renderers[0]);
+            var layoutRenderer = Assert.Single(l.LayoutRenderers);
+            Assert.IsType<MessageLayoutRenderer>(layoutRenderer);
         }
 
         [Fact]
         public void UnclosedTest()
         {
             var l = new SimpleLayout("${message");
-            Assert.Single(l.Renderers);
+            Assert.Single(l.LayoutRenderers);
         }
 
 
@@ -102,8 +102,7 @@ namespace NLog.UnitTests.Layouts
         public void SingleParamTest()
         {
             SimpleLayout l = "${event-property:item=AAA}";
-            Assert.Single(l.Renderers);
-            var eventPropertyLayout = l.Renderers[0] as EventPropertiesLayoutRenderer;
+            var eventPropertyLayout = Assert.Single(l.LayoutRenderers) as EventPropertiesLayoutRenderer;
             Assert.NotNull(eventPropertyLayout);
             Assert.Equal("AAA", eventPropertyLayout.Item);
         }
@@ -112,8 +111,7 @@ namespace NLog.UnitTests.Layouts
         public void ValueWithColonTest()
         {
             SimpleLayout l = "${event-property:item=AAA\\:}";
-            Assert.Single(l.Renderers);
-            var eventPropertyLayout = l.Renderers[0] as EventPropertiesLayoutRenderer;
+            var eventPropertyLayout = Assert.Single(l.LayoutRenderers) as EventPropertiesLayoutRenderer;
             Assert.NotNull(eventPropertyLayout);
             Assert.Equal("AAA:", eventPropertyLayout.Item);
         }
@@ -123,8 +121,7 @@ namespace NLog.UnitTests.Layouts
         {
             SimpleLayout l = "${event-property:item=AAA\\}\\:}";
             Assert.Equal("${event-property:item=AAA\\}\\:}", l.Text);
-            Assert.Single(l.Renderers);
-            var eventPropertyLayout = l.Renderers[0] as EventPropertiesLayoutRenderer;
+            var eventPropertyLayout = Assert.Single(l.LayoutRenderers) as EventPropertiesLayoutRenderer;
             Assert.NotNull(eventPropertyLayout);
             Assert.Equal("AAA}:", eventPropertyLayout.Item);
         }
@@ -133,8 +130,7 @@ namespace NLog.UnitTests.Layouts
         public void DefaultValueTest()
         {
             SimpleLayout l = "${event-property:BBB}";
-            Assert.Single(l.Renderers);
-            var eventPropertyLayout = l.Renderers[0] as EventPropertiesLayoutRenderer;
+            var eventPropertyLayout = Assert.Single(l.LayoutRenderers) as EventPropertiesLayoutRenderer;
             Assert.NotNull(eventPropertyLayout);
             Assert.Equal("BBB", eventPropertyLayout.Item);
         }
@@ -144,8 +140,7 @@ namespace NLog.UnitTests.Layouts
         {
             SimpleLayout l = "${event-property:AAA\\}\\:}";
             Assert.Equal("${event-property:AAA\\}\\:}", l.Text);
-            Assert.Single(l.Renderers);
-            var eventPropertyLayout = l.Renderers[0] as EventPropertiesLayoutRenderer;
+            var eventPropertyLayout = Assert.Single(l.LayoutRenderers) as EventPropertiesLayoutRenderer;
             Assert.NotNull(eventPropertyLayout);
             Assert.Equal("AAA}:", eventPropertyLayout.Item);
         }
@@ -154,8 +149,7 @@ namespace NLog.UnitTests.Layouts
         public void DefaultValueWithOtherParametersTest()
         {
             SimpleLayout l = "${exception:message,type:separator=x}";
-            Assert.Single(l.Renderers);
-            ExceptionLayoutRenderer elr = l.Renderers[0] as ExceptionLayoutRenderer;
+            var elr = Assert.Single(l.LayoutRenderers) as ExceptionLayoutRenderer;
             Assert.NotNull(elr);
             Assert.Equal("message,type", elr.Format);
             Assert.Equal("x", elr.Separator);
@@ -165,8 +159,7 @@ namespace NLog.UnitTests.Layouts
         public void EmptyValueTest()
         {
             SimpleLayout l = "${event-property:item=}";
-            Assert.Single(l.Renderers);
-            var eventPropertyLayout = l.Renderers[0] as EventPropertiesLayoutRenderer;
+            var eventPropertyLayout = Assert.Single(l.LayoutRenderers) as EventPropertiesLayoutRenderer;
             Assert.NotNull(eventPropertyLayout);
             Assert.Equal("", eventPropertyLayout.Item);
         }
@@ -175,14 +168,12 @@ namespace NLog.UnitTests.Layouts
         public void NestedLayoutTest()
         {
             SimpleLayout l = "${rot13:inner=${scopenested:topFrames=3:separator=x}}";
-            Assert.Single(l.Renderers);
-            var lr = l.Renderers[0] as Rot13LayoutRendererWrapper;
+            var lr = Assert.Single(l.LayoutRenderers) as Rot13LayoutRendererWrapper;
             Assert.NotNull(lr);
             var nestedLayout = lr.Inner as SimpleLayout;
             Assert.NotNull(nestedLayout);
             Assert.Equal("${scopenested:topFrames=3:separator=x}", nestedLayout.Text);
-            Assert.Single(nestedLayout.Renderers);
-            var nestedLayoutRenderer = nestedLayout.Renderers[0] as ScopeContextNestedStatesLayoutRenderer;
+            var nestedLayoutRenderer = Assert.Single(nestedLayout.LayoutRenderers) as ScopeContextNestedStatesLayoutRenderer;
             Assert.NotNull(nestedLayoutRenderer);
             Assert.Equal(3, nestedLayoutRenderer.TopFrames);
             Assert.Equal("x", nestedLayoutRenderer.Separator.ToString());
@@ -192,18 +183,16 @@ namespace NLog.UnitTests.Layouts
         public void DoubleNestedLayoutTest()
         {
             SimpleLayout l = "${rot13:inner=${rot13:inner=${scopenested:topFrames=3:separator=x}}}";
-            Assert.Single(l.Renderers);
-            var lr = l.Renderers[0] as Rot13LayoutRendererWrapper;
+            var lr = Assert.Single(l.LayoutRenderers) as Rot13LayoutRendererWrapper;
             Assert.NotNull(lr);
             var nestedLayout0 = lr.Inner as SimpleLayout;
             Assert.NotNull(nestedLayout0);
             Assert.Equal("${rot13:inner=${scopenested:topFrames=3:separator=x}}", nestedLayout0.Text);
-            var innerRot13 = nestedLayout0.Renderers[0] as Rot13LayoutRendererWrapper;
+            var innerRot13 = nestedLayout0.LayoutRenderers.First() as Rot13LayoutRendererWrapper;
             var nestedLayout = innerRot13.Inner as SimpleLayout;
             Assert.NotNull(nestedLayout);
             Assert.Equal("${scopenested:topFrames=3:separator=x}", nestedLayout.Text);
-            Assert.Single(nestedLayout.Renderers);
-            var nestedLayoutRenderer = nestedLayout.Renderers[0] as ScopeContextNestedStatesLayoutRenderer;
+            var nestedLayoutRenderer = Assert.Single(nestedLayout.LayoutRenderers) as ScopeContextNestedStatesLayoutRenderer;
             Assert.NotNull(nestedLayoutRenderer);
             Assert.Equal(3, nestedLayoutRenderer.TopFrames);
             Assert.Equal("x", nestedLayoutRenderer.Separator.ToString());
@@ -213,18 +202,16 @@ namespace NLog.UnitTests.Layouts
         public void DoubleNestedLayoutWithDefaultLayoutParametersTest()
         {
             SimpleLayout l = "${rot13:${rot13:${scopenested:topFrames=3:separator=x}}}";
-            Assert.Single(l.Renderers);
-            var lr = l.Renderers[0] as Rot13LayoutRendererWrapper;
+            var lr = Assert.Single(l.LayoutRenderers) as Rot13LayoutRendererWrapper;
             Assert.NotNull(lr);
             var nestedLayout0 = lr.Inner as SimpleLayout;
             Assert.NotNull(nestedLayout0);
             Assert.Equal("${rot13:${scopenested:topFrames=3:separator=x}}", nestedLayout0.Text);
-            var innerRot13 = nestedLayout0.Renderers[0] as Rot13LayoutRendererWrapper;
+            var innerRot13 = nestedLayout0.LayoutRenderers.First() as Rot13LayoutRendererWrapper;
             var nestedLayout = innerRot13.Inner as SimpleLayout;
             Assert.NotNull(nestedLayout);
             Assert.Equal("${scopenested:topFrames=3:separator=x}", nestedLayout.Text);
-            Assert.Single(nestedLayout.Renderers);
-            var nestedLayoutRenderer = nestedLayout.Renderers[0] as ScopeContextNestedStatesLayoutRenderer;
+            var nestedLayoutRenderer = Assert.Single(nestedLayout.LayoutRenderers) as ScopeContextNestedStatesLayoutRenderer;
             Assert.NotNull(nestedLayoutRenderer);
             Assert.Equal(3, nestedLayoutRenderer.TopFrames);
             Assert.Equal("x", nestedLayoutRenderer.Separator.ToString());
@@ -234,10 +221,9 @@ namespace NLog.UnitTests.Layouts
         public void AmbientPropertyTest()
         {
             SimpleLayout l = "${message:padding=10}";
-            Assert.Single(l.Renderers);
-            var pad = l.Renderers[0] as PaddingLayoutRendererWrapper;
+            var pad = Assert.Single(l.LayoutRenderers) as PaddingLayoutRendererWrapper;
             Assert.NotNull(pad);
-            var message = ((SimpleLayout)pad.Inner).Renderers[0] as MessageLayoutRenderer;
+            var message = ((SimpleLayout)pad.Inner).LayoutRenderers.First() as MessageLayoutRenderer;
             Assert.NotNull(message);
         }
 
@@ -255,12 +241,11 @@ namespace NLog.UnitTests.Layouts
         public void DoubleAmbientPropertyTest()
         {
             SimpleLayout l = "${message:uppercase=true:padding=10}";
-            Assert.Single(l.Renderers);
-            var upperCase = l.Renderers[0] as UppercaseLayoutRendererWrapper;
+            var upperCase = Assert.Single(l.LayoutRenderers) as UppercaseLayoutRendererWrapper;
             Assert.NotNull(upperCase);
-            var pad = ((SimpleLayout)upperCase.Inner).Renderers[0] as PaddingLayoutRendererWrapper;
+            var pad = ((SimpleLayout)upperCase.Inner).LayoutRenderers.First() as PaddingLayoutRendererWrapper;
             Assert.NotNull(pad);
-            var message = ((SimpleLayout)pad.Inner).Renderers[0] as MessageLayoutRenderer;
+            var message = ((SimpleLayout)pad.Inner).LayoutRenderers.First() as MessageLayoutRenderer;
             Assert.NotNull(message);
         }
 
@@ -268,12 +253,11 @@ namespace NLog.UnitTests.Layouts
         public void ReverseDoubleAmbientPropertyTest()
         {
             SimpleLayout l = "${message:padding=10:uppercase=true}";
-            Assert.Single(l.Renderers);
-            var pad = ((SimpleLayout)l).Renderers[0] as PaddingLayoutRendererWrapper;
+            var pad = Assert.Single(l.LayoutRenderers) as PaddingLayoutRendererWrapper;
             Assert.NotNull(pad);
-            var upperCase = ((SimpleLayout)pad.Inner).Renderers[0] as UppercaseLayoutRendererWrapper;
+            var upperCase = ((SimpleLayout)pad.Inner).LayoutRenderers.First() as UppercaseLayoutRendererWrapper;
             Assert.NotNull(upperCase);
-            var message = ((SimpleLayout)upperCase.Inner).Renderers[0] as MessageLayoutRenderer;
+            var message = ((SimpleLayout)upperCase.Inner).LayoutRenderers.First() as MessageLayoutRenderer;
             Assert.NotNull(message);
         }
 
@@ -347,11 +331,8 @@ namespace NLog.UnitTests.Layouts
             var layout = d1.Layout as SimpleLayout;
             Assert.NotNull(layout);
 
-            var c = layout.Renderers.Count;
-            Assert.Equal(1, c);
 
-            var l1 = layout.Renderers[0] as ReplaceLayoutRendererWrapper;
-
+            var l1 = Assert.Single(layout.LayoutRenderers) as ReplaceLayoutRendererWrapper;
             Assert.NotNull(l1);
             Assert.True(l1.IgnoreCase);
             Assert.Equal(@"::", l1.ReplaceWith);
@@ -385,10 +366,7 @@ namespace NLog.UnitTests.Layouts
             var layout = d1.Layout as SimpleLayout;
             Assert.NotNull(layout);
 
-            var c = layout.Renderers.Count;
-            Assert.Equal(1, c);
-
-            var l1 = layout.Renderers[0] as ReplaceLayoutRendererWrapper;
+            var l1 = Assert.Single(layout.LayoutRenderers) as ReplaceLayoutRendererWrapper;
 
             Assert.NotNull(l1);
             Assert.True(l1.IgnoreCase);
@@ -851,7 +829,7 @@ namespace NLog.UnitTests.Layouts
             var layout = (SimpleLayout)Layout.FromString(input);
 
             // Assert
-            var single = Assert.Single(layout.Renderers);
+            var single = Assert.Single(layout.LayoutRenderers);
             Assert.IsType<LiteralLayoutRenderer>(single);
         }
 
@@ -865,7 +843,7 @@ namespace NLog.UnitTests.Layouts
             var layout = (SimpleLayout)Layout.FromString(input);
 
             // Assert
-            var single = Assert.Single(layout.Renderers);
+            var single = Assert.Single(layout.LayoutRenderers);
             Assert.IsType<LiteralLayoutRenderer>(single);
         }
 
@@ -880,7 +858,7 @@ namespace NLog.UnitTests.Layouts
 
             // Assert
             Assert.True(layout.IsFixedText);
-            var single = Assert.Single(layout.Renderers);
+            var single = Assert.Single(layout.LayoutRenderers);
             Assert.IsType<LiteralWithRawValueLayoutRenderer>(single);
             var succeeded = layout.TryGetRawValue(LogEventInfo.CreateNullEvent(), out var rawValue);
             var rawValueInt = Assert.IsType<int>(rawValue);
@@ -903,7 +881,7 @@ namespace NLog.UnitTests.Layouts
             var layout = (SimpleLayout)Layout.FromString(input);
 
             // Assert
-            var single = Assert.Single(layout.Renderers);
+            var single = Assert.Single(layout.LayoutRenderers);
             var literal = Assert.IsType<LiteralLayoutRenderer>(single);
             Assert.NotEqual(CurrentProcessId.ToString(), literal.Text);
         }

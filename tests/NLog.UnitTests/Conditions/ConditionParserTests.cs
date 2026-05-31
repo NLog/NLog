@@ -34,6 +34,7 @@
 namespace NLog.UnitTests.Conditions
 {
     using System;
+    using System.Linq;
     using NLog.Conditions;
     using NLog.Config;
     using NLog.Internal;
@@ -120,11 +121,10 @@ namespace NLog.UnitTests.Conditions
             Assert.NotNull(cle);
             SimpleLayout sl = cle.Layout as SimpleLayout;
             Assert.NotNull(sl);
-            Assert.Equal(3, sl.Renderers.Count);
-            Assert.IsType<MessageLayoutRenderer>(sl.Renderers[0]);
-            Assert.IsType<LiteralLayoutRenderer>(sl.Renderers[1]);
-            Assert.IsType<LevelLayoutRenderer>(sl.Renderers[2]);
-
+            Assert.Equal(3, sl.LayoutRenderers.Count());
+            Assert.IsType<MessageLayoutRenderer>(sl.LayoutRenderers.ElementAt(0));
+            Assert.IsType<LiteralLayoutRenderer>(sl.LayoutRenderers.ElementAt(1));
+            Assert.IsType<LevelLayoutRenderer>(sl.LayoutRenderers.ElementAt(2));
         }
 
         [Fact]
