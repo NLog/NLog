@@ -329,13 +329,11 @@ namespace NLog.LayoutRenderers
 
         private int AppendInnerExceptionTree(Exception currentException, int currentLevel, StringBuilder sb)
         {
-            currentException = currentException.InnerException;
-            while (currentException != null && currentLevel < MaxInnerExceptionLevel)
+            while (currentException.InnerException != null && currentLevel < MaxInnerExceptionLevel)
             {
+                currentException = currentException.InnerException;
                 AppendInnerException(currentException, sb);
                 currentLevel++;
-
-                currentException = currentException.InnerException;
             }
             return currentLevel;
         }

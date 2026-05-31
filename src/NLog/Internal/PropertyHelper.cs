@@ -479,17 +479,17 @@ namespace NLog.Internal
             if (typeDefinition == typeof(ISet<>))
             {
                 var setType = typeof(HashSet<>).MakeGenericType(propertyType.GetGenericArguments());
-                collectionAddMethod = setType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                collectionAddMethod = setType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public)!;
                 collectionItemType = propertyType.GetGenericArguments()[0];
-                collectionObject = Activator.CreateInstance(setType);
+                collectionObject = Activator.CreateInstance(setType)!;
                 return true;
             }
 #endif
 
             var listType = typeof(List<>).MakeGenericType(propertyType.GetGenericArguments());
-            collectionAddMethod = listType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+            collectionAddMethod = listType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public)!;
             collectionItemType = propertyType.GetGenericArguments()[0];
-            collectionObject = Activator.CreateInstance(listType);
+            collectionObject = Activator.CreateInstance(listType)!;
             return true;
         }
 
