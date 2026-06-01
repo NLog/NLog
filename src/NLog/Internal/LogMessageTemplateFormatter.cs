@@ -85,7 +85,7 @@ namespace NLog.Internal
             {
                 // Perform quick check for valid message template parameter names (No support for rewind if mixed message-template)
                 TemplateEnumerator holeEnumerator = new TemplateEnumerator(logEvent.Message);
-                if (!holeEnumerator.MoveNext() || holeEnumerator.Current.MaybePositionalTemplate)
+                if (!holeEnumerator.MoveNext() || holeEnumerator.MaybePositionalTemplate)
                 {
                     return false;   // Skip allocation of PropertiesDictionary
                 }
@@ -140,7 +140,7 @@ namespace NLog.Internal
             messageTemplateParameters = null;
 
             TemplateEnumerator templateEnumerator = new TemplateEnumerator(template);
-            if (!templateEnumerator.MoveNext() || (templateEnumerator.Current.MaybePositionalTemplate && !_forceMessageTemplateRenderer))
+            if (!templateEnumerator.MoveNext() || (templateEnumerator.MaybePositionalTemplate && !_forceMessageTemplateRenderer))
             {
                 // string.Format when not message-template for structured logging
                 sb.AppendFormat(formatProvider, template, parameters);
@@ -155,7 +155,7 @@ namespace NLog.Internal
 
             do
             {
-                var literal = templateEnumerator.Current.Literal;
+                var literal = templateEnumerator.CurrentLiteral;
                 sb.Append(template, pos, literal.Print);
                 pos += literal.Print;
                 if (literal.Skip == 0)
@@ -165,7 +165,7 @@ namespace NLog.Internal
                 }
 
                 pos += literal.Skip;
-                var hole = templateEnumerator.Current.Hole;
+                var hole = templateEnumerator.CurrentHole;
                 if (hole.Alignment != 0)
                     holeStartPosition = sb.Length;
                 if (hole.Index != -1 && messageTemplateParameters is null)
@@ -216,7 +216,7 @@ namespace NLog.Internal
 
                 do
                 {
-                    var literal = templateEnumerator.Current.Literal;
+                    var literal = templateEnumerator.CurrentLiteral;
                     sb.Append(template, pos, literal.Print);
                     pos += literal.Print;
                     if (literal.Skip == 0)
@@ -226,7 +226,7 @@ namespace NLog.Internal
                     }
 
                     pos += literal.Skip;
-                    var hole = templateEnumerator.Current.Hole;
+                    var hole = templateEnumerator.CurrentHole;
 
                     if (hole.Alignment != 0)
                         holeStartPosition = sb.Length;

@@ -118,10 +118,10 @@ namespace NLog.MessageTemplates
                 TemplateEnumerator templateEnumerator = new TemplateEnumerator(template);
                 while (templateEnumerator.MoveNext())
                 {
-                    if (templateEnumerator.Current.Literal.Skip == 0)
+                    if (!templateEnumerator.HasCurrentHole)
                         continue;
 
-                    var hole = templateEnumerator.Current.Hole;
+                    var hole = templateEnumerator.CurrentHole;
                     if (hole.Index != -1 && isPositional)
                     {
                         holeIndex = GetMaxHoleIndex(holeIndex, hole.Index);
