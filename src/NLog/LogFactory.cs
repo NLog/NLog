@@ -219,7 +219,6 @@ namespace NLog
         /// <remarks>
         /// Setter will re-configure all <see cref="Logger"/>-objects, so no need to also call <see cref="ReconfigExistingLoggers()" />
         /// </remarks>
-        [CanBeNull]
         public LoggingConfiguration? Configuration
         {
             get

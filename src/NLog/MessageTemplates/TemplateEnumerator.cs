@@ -34,7 +34,6 @@
 namespace NLog.MessageTemplates
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
     using NLog.Internal;
@@ -42,19 +41,18 @@ namespace NLog.MessageTemplates
     /// <summary>
     /// Parse templates.
     /// </summary>
-    internal struct TemplateEnumerator : IEnumerator<LiteralHole>
+    internal struct TemplateEnumerator
     {
         private static readonly char[] HoleDelimiters = { '}', ':', ',' };
         private static readonly char[] TextDelimiters = { '{', '}' };
 
-        private string _template;
-        private int _length;
+        private readonly string _template;
+        private readonly int _length;
         private int _position;
         private int _literalLength;
-        private LiteralHole _current;
+        private Literal _currentLiteral;
+        private Hole _currentHole;
         private const short Zero = 0;
-
-        public string Template => _template;
 
         /// <summary>
         /// Parse a template.
@@ -66,27 +64,25 @@ namespace NLog.MessageTemplates
         {
             _template = Guard.ThrowIfNull(template);
             _length = _template.Length;
-            _current = default(LiteralHole);
+            _currentLiteral = default(Literal);
+            _currentHole = default(Hole);
             _position = 0;
             _literalLength = 0;
         }
 
-        /// <summary>
-        /// Gets the current literal/hole in the template
-        /// </summary>
-        public LiteralHole Current => _current;
+        public readonly string Template => _template;
 
-        object System.Collections.IEnumerator.Current => _current;
+        /// <summary>Gets the Literal part of the current element.</summary>
+        public readonly Literal CurrentLiteral => _currentLiteral;
 
-        /// <summary>
-        /// Clears the enumerator
-        /// </summary>
-        public void Dispose()
-        {
-            _template = string.Empty;
-            _length = 0;
-            Reset();
-        }
+        /// <summary>Returns true when the current element contains a hole (i.e. Literal.Skip != 0).</summary>
+        public readonly bool HasCurrentHole => _currentLiteral.Skip != Zero;
+
+        /// <summary>Gets the Hole part of the current element. Only valid when <see cref="HasCurrentHole"/> is true.</summary>
+        public readonly Hole CurrentHole => _currentHole;
+
+        /// <summary>Returns true when the current element looks like part of a positional template (e.g. "{0}").</summary>
+        public readonly bool MaybePositionalTemplate => _currentLiteral.Skip != Zero && _currentHole.Index != -1 && _currentHole.CaptureType == CaptureType.Normal;
 
         /// <summary>
         /// Restarts the enumerator of the template
@@ -95,7 +91,8 @@ namespace NLog.MessageTemplates
         {
             _position = 0;
             _literalLength = 0;
-            _current = default(LiteralHole);
+            _currentLiteral = default(Literal);
+            _currentHole = default(Hole);
         }
 
         /// <summary>
@@ -137,7 +134,8 @@ namespace NLog.MessageTemplates
 
         private void AddLiteral()
         {
-            _current = new LiteralHole(new Literal(_literalLength, Zero), default(Hole));
+            _currentLiteral = new Literal(_literalLength, Zero);
+            _currentHole = default(Hole);
             _literalLength = 0;
         }
 
@@ -196,13 +194,8 @@ namespace NLog.MessageTemplates
             string name = ParseName(out var parameterIndex, out var alignment, out var format);
             Skip('}');
 
-            _current = new LiteralHole(new Literal(_literalLength, _position + literalOffset), new Hole(
-                name,
-                format,
-                type,
-                (short)parameterIndex,
-                (short)alignment
-            ));
+            _currentLiteral = new Literal(_literalLength, _position + literalOffset);
+            _currentHole = new Hole(name, format, type, (short)parameterIndex, (short)alignment);
             _literalLength = 0;
         }
 

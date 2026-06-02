@@ -625,7 +625,7 @@ namespace NLog
             {
                 // Pre-format upfront and skip parameter-object[]-array-allocation when possible
                 var templateEnumerator = new MessageTemplates.TemplateEnumerator(message);
-                if (templateEnumerator.MoveNext() && !templateEnumerator.Current.MaybePositionalTemplate)
+                if (templateEnumerator.MoveNext() && !templateEnumerator.MaybePositionalTemplate)
                 {
                     // Convert parameters into Properties and skip Parameters-array-allocation (Like with Microsoft Extension Logging)
                     LogEventInfo logEvent = RenderPreformattedLogEvent(Factory.AutoMessageTemplateFormatter, level, exception, formatProvider, message, args, ref templateEnumerator);
