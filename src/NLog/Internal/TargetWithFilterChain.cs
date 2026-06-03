@@ -339,7 +339,7 @@ namespace NLog.Internal
 
             if (_callSiteClassNameCache is null)
             {
-                System.Threading.Interlocked.CompareExchange(ref _callSiteClassNameCache, new MruCache<CallSiteKey, string>(1000), null);
+                System.Threading.Interlocked.CompareExchange(ref _callSiteClassNameCache, new MruCache<CallSiteKey, string>(2000), null);
             }
 
             CallSiteKey callSiteKey = new CallSiteKey(logEvent.CallerMemberName, logEvent.CallerFilePath, logEvent.CallerLineNumber);
@@ -370,7 +370,13 @@ namespace NLog.Internal
 
             public override int GetHashCode()
             {
-                return MethodName.GetHashCode() ^ FileSourceName.GetHashCode() ^ FileSourceLineNumber;
+                unchecked
+                {
+                    int hash = MethodName.GetHashCode();
+                    hash = (hash * 397) ^ FileSourceName.GetHashCode();
+                    hash = (hash * 397) ^ FileSourceLineNumber;
+                    return hash;
+                }
             }
 
             public override bool Equals(object? obj)
