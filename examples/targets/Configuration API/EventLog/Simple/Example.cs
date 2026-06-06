@@ -4,21 +4,21 @@ using NLog.Targets;
 
 namespace NLog
 {
-    class Example
-    {
-        static void Main(string[] args)
-        {
-            EventLogTarget target = new EventLogTarget();
-            target.Source = "My Source";
-            target.Log = "Application";
-            target.Layout = "${logger}: ${message} ${exception}";
+   class Example
+   {
+      static void Main(string[] args)
+      {
+        EventLogTarget target = new EventLogTarget();
+        target.Source = "My Source";
+        target.Log = "Application";
+        target.Layout = "${logger}: ${message} ${exception}";
 
-            LoggingConfiguration nlogConfig = new LoggingConfiguration();
-            nlogConfig.AddRuleForAllLevels(target);
-            LogManager.Configuration = nlogConfig;
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
-            Logger logger = LogManager.GetLogger("Example");
-            logger.Debug("log message");
-        }
-    }
+        Logger logger = LogManager.GetLogger("Example");
+        logger.Debug("log message");
+      }
+   }
 }

@@ -7,21 +7,21 @@ using System.Diagnostics;
 
 namespace NLog
 {
-    class Example
-    {
-        static void Main(string[] args)
-        {
-            Trace.Listeners.Add(new ConsoleTraceListener());
+   class Example
+   {
+      static void Main(string[] args)
+      {
+        Trace.Listeners.Add(new ConsoleTraceListener());
 
-            TraceTarget target = new TraceTarget();
-            target.Layout = "${message}";
+        TraceTarget target = new TraceTarget();
+        target.Layout = "${message}";
 
-            LoggingConfiguration nlogConfig = new LoggingConfiguration();
-            nlogConfig.AddRuleForAllLevels(target);
-            LogManager.Configuration = nlogConfig;
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
-            Logger logger = LogManager.GetLogger("Example");
-            logger.Debug("log message");
-        }
-    }
+        Logger logger = LogManager.GetLogger("Example");
+        logger.Debug("log message");
+      }
+   }
 }
