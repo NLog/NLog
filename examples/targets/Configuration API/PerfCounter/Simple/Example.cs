@@ -4,23 +4,23 @@ using NLog.Targets;
 
 namespace NLog
 {
-    class Example
-    {
-        static void Main(string[] args)
-        {
-            PerfCounterTarget target = new PerfCounterTarget();
-            target.AutoCreate = true;
-            target.CategoryName = "My category";
-            target.CounterName = "My counter";
-            target.CounterType = System.Diagnostics.PerformanceCounterType.NumberOfItems32;
-            target.InstanceName = "My instance";
+   class Example
+   {
+      static void Main(string[] args)
+      {
+        PerfCounterTarget target = new PerfCounterTarget();
+        target.AutoCreate = true;
+        target.CategoryName = "My category";
+        target.CounterName = "My counter";
+        target.CounterType = System.Diagnostics.PerformanceCounterType.NumberOfItems32;
+        target.InstanceName = "My instance";
 
-            LoggingConfiguration nlogConfig = new LoggingConfiguration();
-            nlogConfig.AddRuleForAllLevels(target);
-            LogManager.Configuration = nlogConfig;
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
-            Logger logger = LogManager.GetLogger("Example");
-            logger.Debug("log message");
-        }
-    }
+        Logger logger = LogManager.GetLogger("Example");
+        logger.Debug("log message");
+      }
+   }
 }

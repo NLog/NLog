@@ -5,26 +5,26 @@ using NLog.Targets.Wrapper;
 
 namespace NLog
 {
-    class Example
-    {
-        static void Main(string[] args)
-        {
-            FileTarget file1 = new FileTarget();
-            file1.FileName = "${basedir}/file1.txt";
+   class Example
+   {
+      static void Main(string[] args)
+      {
+        FileTarget file1 = new FileTarget();
+        file1.FileName = "${basedir}/file1.txt";
 
-            FileTarget file2 = new FileTarget();
-            file2.FileName = "${basedir}/file2.txt";
+        FileTarget file2 = new FileTarget();
+        file2.FileName = "${basedir}/file2.txt";
 
-            SplitTarget target = new SplitTarget();
-            target.Targets.Add(file1);
-            target.Targets.Add(file2);
+        SplitTarget target = new SplitTarget();
+        target.Targets.Add(file1);
+        target.Targets.Add(file2);
 
-            LoggingConfiguration nlogConfig = new LoggingConfiguration();
-            nlogConfig.AddRuleForAllLevels(target);
-            LogManager.Configuration = nlogConfig;
+        LoggingConfiguration nlogConfig = new LoggingConfiguration();
+        nlogConfig.AddRuleForAllLevels(target);
+        LogManager.Configuration = nlogConfig;
 
-            Logger logger = LogManager.GetLogger("Example");
-            logger.Debug("log message");
-        }
-    }
+        Logger logger = LogManager.GetLogger("Example");
+        logger.Debug("log message");
+      }
+   }
 }

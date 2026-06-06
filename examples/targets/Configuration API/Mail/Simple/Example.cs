@@ -6,33 +6,33 @@ using NLog.Targets;
 
 namespace NLog
 {
-    class Example
-    {
-        static void Main(string[] args)
+   class Example
+   {
+      static void Main(string[] args)
+      {
+        try
         {
-            try
-            {
-                Console.WriteLine("Setting up the target...");
-                MailTarget target = new MailTarget();
+           Console.WriteLine("Setting up the target...");
+           MailTarget target = new MailTarget();
 
-                target.SmtpServer = "192.168.0.15";
-                target.From = "jaak@jkowalski.net";
-                target.To = "jaak@jkowalski.net";
-                target.Subject = "sample subject";
+           target.SmtpServer = "192.168.0.15";
+           target.From = "jaak@jkowalski.net";
+           target.To = "jaak@jkowalski.net";
+           target.Subject = "sample subject";
 
-                LoggingConfiguration nlogConfig = new LoggingConfiguration();
-                nlogConfig.AddRuleForAllLevels(target);
-                LogManager.Configuration = nlogConfig;
+           LoggingConfiguration nlogConfig = new LoggingConfiguration();
+           nlogConfig.AddRuleForAllLevels(target);
+           LogManager.Configuration = nlogConfig;
 
-                Console.WriteLine("Sending...");
-                Logger logger = LogManager.GetLogger("Example");
-                Console.WriteLine("Sent.");
-                logger.Debug("log message");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("EX: {0}", ex);
-            }
+           Console.WriteLine("Sending...");
+           Logger logger = LogManager.GetLogger("Example");
+           Console.WriteLine("Sent.");
+           logger.Debug("log message");
         }
-    }
+        catch (Exception ex)
+        {
+           Console.WriteLine("EX: {0}", ex);
+        }
+      }
+   }
 }
