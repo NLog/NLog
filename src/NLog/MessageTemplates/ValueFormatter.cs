@@ -35,7 +35,6 @@ namespace NLog.MessageTemplates
 {
     using System;
     using System.Collections;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Text;
     using NLog.Config;
@@ -46,7 +45,7 @@ namespace NLog.MessageTemplates
     /// </summary>
     internal sealed class ValueFormatter : IValueFormatter
     {
-        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(2000);
+        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(4000);
         private readonly IServiceProvider _serviceProvider;
         private readonly bool _legacyStringQuotes;
 
