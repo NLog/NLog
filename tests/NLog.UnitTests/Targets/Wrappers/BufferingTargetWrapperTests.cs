@@ -237,7 +237,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var continuationHit = new bool[totalEvents];
             var lastException = new Exception[totalEvents];
             var continuationThread = new Thread[totalEvents];
-            var hitCount = 0;
+            var hitCount = 0L;
 
             CreateContinuationFunc createAsyncContinuation =
                 eventNumber =>
@@ -314,7 +314,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 var continuationHit = new bool[totalEvents];
                 var lastException = new Exception[totalEvents];
                 var continuationThread = new Thread[totalEvents];
-                var hitCount = 0;
+                var hitCount = 0L;
 
                 CreateContinuationFunc createAsyncContinuation =
                     eventNumber =>
@@ -483,7 +483,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var continuationHit = new bool[totalEvents];
             var lastException = new Exception[totalEvents];
             var continuationThread = new Thread[totalEvents];
-            var hitCount = 0;
+            var hitCount = 0L;
 
             CreateContinuationFunc createAsyncContinuation =
                 eventNumber =>
@@ -706,11 +706,11 @@ namespace NLog.UnitTests.Targets.Wrappers
 
         private delegate AsyncContinuation CreateContinuationFunc(int eventNumber);
 
-        private static void WaitAndAssertExpectedValue(ref int hitCount, int expectedValue)
+        private static void WaitAndAssertExpectedValue(ref long hitCount, int expectedValue)
         {
             for (int i = 0; i < 100; ++i)
             {
-                if (Thread.VolatileRead(ref hitCount) >= expectedValue)
+                if (Interlocked.Read(ref hitCount) >= expectedValue)
                     break;  // Ready to assert
 
                 Thread.Sleep(50);

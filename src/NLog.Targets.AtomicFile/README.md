@@ -10,7 +10,7 @@ See the [NLog Wiki](https://github.com/NLog/NLog/wiki/Atomic-File-target) for av
 
 Linux requires platform specific publish for [Mono.Posix.NETStandard](https://www.nuget.org/packages/Mono.Posix.NETStandard) nuget-package:
 ```
-dotnet publish with --framework net8.0 --configuration release --runtime linux-x64
+dotnet publish with --framework net10.0 --configuration release --runtime linux-x64
 ```
 
 ## Register Extension

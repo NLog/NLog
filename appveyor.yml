@@ -22,6 +22,7 @@ for:
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
       DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_NOLOGO: true
       github_auth_token:
         secure: WYvd/k1xGCsDS+4iOhjzxA5/e36RjkxnuVOHpBR+eDtZNNjpYydCyNfd1COME9jI
       sonar_token:
@@ -57,6 +58,7 @@ for:
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
       DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_NOLOGO: true
       MSBUILDTERMINALLOGGER: off
       FrameworkPathOverride: /usr/lib/mono/4.6.1-api/
     build_script:

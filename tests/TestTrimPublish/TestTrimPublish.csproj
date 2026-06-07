@@ -4,8 +4,9 @@
     <OutputType>Exe</OutputType>
 
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
-    <TargetFramework Condition=" '$(TargetFramework)' == '' AND '$(VisualStudioVersion)' &lt; '17.0' ">netcoreapp3.1</TargetFramework>
-    <TargetFramework Condition=" '$(TargetFramework)' == '' ">net8.0</TargetFramework>
+    <TargetFramework Condition=" '$(TargetFramework)' == '' AND '$(VisualStudioVersion)' &lt; '17.0' ">net462</TargetFramework>
+    <TargetFramework Condition=" '$(TargetFramework)' == '' AND '$(VisualStudioVersion)' &lt; '18.0' ">net8.0</TargetFramework>
+    <TargetFramework Condition=" '$(TargetFramework)' == '' ">net10.0</TargetFramework>
 
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
