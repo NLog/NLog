@@ -35,7 +35,6 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Globalization;
     using System.Text;
@@ -47,7 +46,7 @@ namespace NLog.Targets
     public class DefaultJsonSerializer : IJsonConverter
     {
         private readonly ObjectReflectionCache _objectReflectionCache;
-        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(2000);
+        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(4000);
 
         private const int MaxJsonLength = 512 * 1024;
 

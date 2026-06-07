@@ -34,6 +34,9 @@
 namespace NLog.Internal
 {
     using System.Collections.Generic;
+#if !NET35
+    using System.Collections.Concurrent;
+#endif
 
     /// <summary>
     /// Most-Recently-Used-Cache, that discards less frequently used items on overflow
@@ -43,18 +46,26 @@ namespace NLog.Internal
         where TKey : notnull
 #endif
     {
+#if NET35
         private readonly Dictionary<TKey, MruCacheItem> _dictionary;
+#else
+        private readonly ConcurrentDictionary<TKey, MruCacheItem> _dictionary;
+#endif
         private readonly int _maxCapacity;
         private long _currentVersion;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="maxCapacity">Maximum number of items the cache will hold before discarding.</param>
+        /// <param name="maxCapacity">Maximum number of items the cache will hold before discarding (Avoid higher than 10000 to ensure fast cache prune).</param>
         public MruCache(int maxCapacity)
         {
             _maxCapacity = maxCapacity;
+#if NET35
             _dictionary = new Dictionary<TKey, MruCacheItem>(_maxCapacity / 4);
+#else
+            _dictionary = new ConcurrentDictionary<TKey, MruCacheItem>(concurrencyLevel: 1, capacity: maxCapacity / 4);
+#endif
             _currentVersion = 1;
         }
 
@@ -80,19 +91,21 @@ namespace NLog.Internal
                 }
                 else
                 {
-                    if (_dictionary.Count >= _maxCapacity)
+                    var orgSize = _dictionary.Count;    // Count hurts performance when ConcurrentDictionary
+                    if (orgSize >= _maxCapacity)
                     {
                         ++_currentVersion;
-                        PruneCache();
+                        PruneCache(orgSize);
                     }
 
-                    _dictionary.Add(key, new MruCacheItem(value, _currentVersion, true));
+                    // Insert as new virgin, so old virgins are more likely to be pruned first
+                    _dictionary[key] = new MruCacheItem(value, _currentVersion, true);
                     return true;
                 }
             }
         }
 
-        private void PruneCache()
+        private void PruneCache(int orgSize)
         {
             // There 3 priorities:
             //  - High Priority - Non-Virgins with version very close to _currentVersion
@@ -104,7 +117,9 @@ namespace NLog.Internal
             //  - Slaughterhouse
             long latestGeneration = _currentVersion - 2;
             long oldestGeneration = 1;
-            var pruneKeys = new List<TKey>((int)(_dictionary.Count / 2.5));
+#if NET35
+            var pruneKeys = new List<TKey>((int)(orgSize / 2.5));
+#endif
             for (int i = 0; i < 3; ++i)
             {
                 long oldGeneration = _currentVersion - 5;
@@ -124,11 +139,16 @@ namespace NLog.Internal
                     elementGeneration = element.Value.Version;
                     if (elementGeneration <= oldGeneration || (element.Value.Virgin && (i != 0 || elementGeneration < latestGeneration)))
                     {
+                        --orgSize;
+#if NET35
                         pruneKeys.Add(element.Key);
-                        if (_dictionary.Count - pruneKeys.Count < _maxCapacity / 1.5)
+#else
+                        _dictionary.TryRemove(element.Key, out _);
+#endif
+                        if (orgSize < _maxCapacity / 1.5)
                         {
                             i = 3;
-                            break;  // Do not clear the entire cache
+                            break;  // Found enough candidates, avoid clearing the entire cache
                         }
                     }
                     else if (elementGeneration < oldestGeneration)
@@ -138,12 +158,15 @@ namespace NLog.Internal
                 }
             }
 
+#if NET35
             foreach (var pruneKey in pruneKeys)
             {
                 _dictionary.Remove(pruneKey);
             }
+            orgSize = _dictionary.Count;    // Multiple sweeps may have found duplicate candidates
+#endif
 
-            if (_dictionary.Count >= _maxCapacity)
+            if (orgSize >= _maxCapacity)
             {
                 _dictionary.Clear(); // Failed to perform sweep, fallback to fail safe
             }
@@ -157,6 +180,13 @@ namespace NLog.Internal
         /// <returns><see langword="true"/> when the key is found in the cache, <see langword="false"/> otherwise.</returns>
         public bool TryGetValue(TKey key, out TValue? value)
         {
+#if !NET35
+            if (!_dictionary.TryGetValue(key, out var item))
+            {
+                value = default(TValue);
+                return false;
+            }
+#else
             MruCacheItem item;
             try
             {
@@ -170,34 +200,45 @@ namespace NLog.Internal
             {
                 item = default(MruCacheItem);    // Too many people in the same room
             }
+#endif
 
             if (item.Version != _currentVersion || item.Virgin)
             {
-                // Update item version to mark as recently used
-                lock (_dictionary)
+                if (!TryMarkRecentlyUsed(key, out item))
                 {
-                    var version = _currentVersion;
-                    if (_dictionary.TryGetValue(key, out item))
-                    {
-                        if (item.Version != version || item.Virgin)
-                        {
-                            if (item.Virgin)
-                            {
-                                version = ++_currentVersion;
-                            }
-                            _dictionary[key] = new MruCacheItem(item.Value, version, false);
-                        }
-                    }
-                    else
-                    {
-                        value = default(TValue);
-                        return false;
-                    }
+                    value = default(TValue);
+                    return false;
                 }
             }
 
             value = item.Value;
             return true;
+        }
+
+        private bool TryMarkRecentlyUsed(TKey key, out MruCacheItem item)
+        {
+            // Update item version to mark as recently used
+            lock (_dictionary)
+            {
+                var version = _currentVersion;
+                if (_dictionary.TryGetValue(key, out item))
+                {
+                    if (item.Version != version || item.Virgin)
+                    {
+                        if (item.Virgin)
+                        {
+                            version = ++_currentVersion;
+                        }
+                        _dictionary[key] = new MruCacheItem(item.Value, version, false);
+                    }
+                    return true;
+                }
+                else
+                {
+                    item = default(MruCacheItem);
+                    return false;
+                }
+            }
         }
 
         private
