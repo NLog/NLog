@@ -287,7 +287,21 @@ namespace NLog.Internal
                 return true;
             }
 
-            return PropertyTypeConverter.TryConvertFromString(value, propertyType, null, CultureInfo.InvariantCulture, out newValue);
+            if (PropertyTypeConverter.TryConvertFromString(value, propertyType, null, CultureInfo.InvariantCulture, out newValue))
+            {
+                return true;
+            }
+
+            if (!typeof(IConvertible).IsAssignableFrom(propertyType) && !propertyType.IsAssignableFrom(typeof(string)))
+            {
+                if (TryTypeConverterConversion(propertyType, value, out var convertedValue))
+                {
+                    newValue = convertedValue;
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private static SimpleLayout ParseSimpleLayout(string stringValue, ConfigurationItemFactory configurationItemFactory)

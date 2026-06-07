@@ -191,15 +191,6 @@ namespace NLog.Config
                 return true;
             }
 
-            if (!typeof(IConvertible).IsAssignableFrom(propertyType) && !propertyType.IsAssignableFrom(typeof(string)))
-            {
-                if (PropertyHelper.TryTypeConverterConversion(propertyType, propertyString, out var convertedValue))
-                {
-                    propertyValue = convertedValue;
-                    return true;
-                }
-            }
-
             return false;
         }
 
@@ -243,11 +234,11 @@ namespace NLog.Config
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
         private static bool TryConvertToType(object propertyValue, Type propertyType, out object? convertedValue)
         {
+            if (propertyValue is null
 #if NETSTANDARD2_1_OR_GREATER || NET
-            if (!System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported)
-#else
-            if (propertyValue is null || propertyType.IsAssignableFrom(propertyValue.GetType()))
+             || !System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported
 #endif
+             || propertyType.IsAssignableFrom(propertyValue.GetType()))
             {
                 convertedValue = null;
                 return false;
