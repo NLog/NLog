@@ -139,7 +139,13 @@ namespace NLog
         [Obsolete("Replaced by ScopeContext.GetAllNestedStates. Marked obsolete on NLog 5.0")]
         public static string[] GetAllMessages(IFormatProvider? formatProvider)
         {
-            return GetAllObjects().Select((o) => FormatHelper.ConvertToString(o, formatProvider)).ToArray();
+            var stack = GetAllObjects();
+            if (stack.Length == 0)
+                return ArrayHelper.Empty<string>();
+            else if (formatProvider is null)
+                return stack.Select((o) => FormatHelper.ConvertToString(o, null)).ToArray();
+            else
+                return stack.Select((o) => FormatHelper.ConvertToString(o, formatProvider)).ToArray();
         }
 
         /// <summary>
