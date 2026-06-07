@@ -250,7 +250,7 @@ namespace NLog.Internal
         {
             if (_nestedStateCollector is null)
             {
-                _nestedStateCollector = new List<object>(Math.Max(4, _allNestedStates?.Count ?? 0 + 1));
+                _nestedStateCollector = new List<object>(Math.Max(4, (_allNestedStates?.Count ?? 0) + 1));
                 if (_allNestedStates?.Count > 0)
                 {
                     for (int i = 0; i < _allNestedStates.Count; ++i)
