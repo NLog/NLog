@@ -155,6 +155,8 @@ namespace NLog
             var stack = GetAllObjects();
             if (stack.Length == 0)
                 return ArrayHelper.Empty<string>();
+            else if (formatProvider is null)
+                return stack.Select((o) => FormatHelper.ConvertToString(o, null)).ToArray();
             else
                 return stack.Select((o) => FormatHelper.ConvertToString(o, formatProvider)).ToArray();
         }
