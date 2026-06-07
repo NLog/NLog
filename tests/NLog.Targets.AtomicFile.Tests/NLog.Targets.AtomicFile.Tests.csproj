@@ -3,7 +3,8 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
     <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' AND '$(VisualStudioVersion)' &lt; '17.0' ">net462</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net462;net8.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' AND '$(VisualStudioVersion)' &lt; '18.0' ">net462;net8.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net462;net10.0</TargetFrameworks>
 
     <IsPackable>false</IsPackable>
 
@@ -29,7 +30,7 @@
     <PackageReference Include="Basic.Reference.Assemblies " Version="1.8.0" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' != 'net8.0' AND '$(TestTargetFramework)' != '' ">
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net10.0' AND '$(TestTargetFramework)' != '' ">
     <Reference Include="NLog.Targets.AtomicFile">
       <HintPath>../../src/NLog.Targets.AtomicFile/bin/$(Configuration)/$(TestTargetFramework)/NLog.Targets.AtomicFile.dll</HintPath>
       <Private>True</Private>

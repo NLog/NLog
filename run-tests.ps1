@@ -2,7 +2,7 @@ dotnet restore ./tests/NLog.UnitTests/
 if (-not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-dotnet test ./tests/NLog.UnitTests/ --framework net8.0 --configuration release --no-restore
+dotnet test ./tests/NLog.UnitTests/ --framework net10.0 --configuration release --no-restore
 if (-not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
@@ -12,7 +12,7 @@ if ($isWindows -or $Env:WinDir)
 	if (-not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
-	.\Tests\TestTrimPublish\bin\release\net8.0\win-X64\publish\TestTrimPublish.exe
+	.\Tests\TestTrimPublish\bin\release\net10.0\win-X64\publish\TestTrimPublish.exe
 	if (-not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
@@ -60,15 +60,15 @@ if ($isWindows -or $Env:WinDir)
 }
 else
 {
-	dotnet test ./tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj --framework net8.0 --configuration release --runtime linux-x64
+	dotnet test ./tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj --framework net10.0 --configuration release --runtime linux-x64
 	if (-not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
-	dotnet test ./tests/NLog.RegEx.Tests/ --framework net8.0 --configuration release
+	dotnet test ./tests/NLog.RegEx.Tests/ --framework net10.0 --configuration release
 	if (-not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
-	dotnet test ./tests/NLog.Targets.GZipFile.Tests/ --framework net8.0 --configuration release
+	dotnet test ./tests/NLog.Targets.GZipFile.Tests/ --framework net10.0 --configuration release
 	if (-not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 

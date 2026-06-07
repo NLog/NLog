@@ -1,6 +1,6 @@
 version: 6.0.0-{build} # Only change for mayor versions (e.g. 7.0)
 image:
-  - Visual Studio 2022
+  - Visual Studio 2026
   - Ubuntu2204
 configuration: Release
 build: false
@@ -18,9 +18,11 @@ for:
   -
     matrix:
       only:
-        - image: Visual Studio 2022
+        - image: Visual Studio 2026
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_NOLOGO: true
       github_auth_token:
         secure: WYvd/k1xGCsDS+4iOhjzxA5/e36RjkxnuVOHpBR+eDtZNNjpYydCyNfd1COME9jI
       sonar_token:
@@ -55,6 +57,8 @@ for:
         - image: Ubuntu2204
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_NOLOGO: true
       MSBUILDTERMINALLOGGER: off
       FrameworkPathOverride: /usr/lib/mono/4.6.1-api/
     build_script:
