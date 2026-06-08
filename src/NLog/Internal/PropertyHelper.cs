@@ -517,7 +517,7 @@ namespace NLog.Internal
             if (!System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported)
             {
                 newValue = null;
-                return false;
+                return false;   // System.ComponentModel.TypeDescriptor is legacy and increases AOT filesize with 500 KBytes.
             }
 #endif
 

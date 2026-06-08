@@ -234,11 +234,15 @@ namespace NLog.Config
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
         private static bool TryConvertToType(object propertyValue, Type propertyType, out object? convertedValue)
         {
-            if (propertyValue is null
 #if NETSTANDARD2_1_OR_GREATER || NET
-             || !System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported
+            if (!System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported)
+            {
+                convertedValue = null;
+                return false;   // System.ComponentModel.TypeDescriptor is legacy and increases AOT filesize with 500 KBytes.
+            }
 #endif
-             || propertyType.IsAssignableFrom(propertyValue.GetType()))
+
+            if (propertyValue is null || propertyType.IsAssignableFrom(propertyValue.GetType()))
             {
                 convertedValue = null;
                 return false;
