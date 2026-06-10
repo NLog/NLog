@@ -315,7 +315,7 @@ namespace NLog
         {
 #if !NET35 && !NET40 && !NET45
             var nestedStates = GetAllNestedStateList();
-            if (nestedStates?.Count > 0)
+            if (nestedStates.Count > 0)
             {
                 if (nestedStates is object[] nestedArray)
                     return nestedArray;
@@ -347,7 +347,7 @@ namespace NLog
         {
             var parent = GetAsyncLocalContext();
             var nestedStateCollector = new ScopeContextNestedStateCollector();
-            return parent?.CaptureNestedContext(ref nestedStateCollector) ?? ArrayHelper.Empty<object>();
+            return parent?.CloneNestedContext(ref nestedStateCollector) ?? ArrayHelper.Empty<object>();
         }
 #else
         internal static IList<object> GetAllNestedStateList()
@@ -629,7 +629,7 @@ namespace NLog
                 if ((contextState.Parent is null && contextState is ScopeContextLegacyAsyncState) || contextState.NestedState is null)
                 {
                     var nestedStateCollector = new ScopeContextNestedStateCollector();
-                    var nestedStates = contextState.CaptureNestedContext(ref nestedStateCollector) ?? ArrayHelper.Empty<object>();
+                    var nestedStates = contextState.CloneNestedContext(ref nestedStateCollector) ?? ArrayHelper.Empty<object>();
                     if (nestedStates.Count == 0)
                         return null;    // Nothing to pop, just leave scope alone
 

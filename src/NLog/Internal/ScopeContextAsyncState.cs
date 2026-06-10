@@ -70,7 +70,7 @@ namespace NLog.Internal
         object? NestedState { get; }
         long NestedStateTimestamp { get; }
         IReadOnlyCollection<KeyValuePair<string, object?>>? CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector);
-        IList<object>? CaptureNestedContext(ref ScopeContextNestedStateCollector contextCollector);
+        IList<object>? CloneNestedContext(ref ScopeContextNestedStateCollector contextCollector);
     }
 
     struct ScopeContextPropertyCollector
@@ -225,19 +225,18 @@ namespace NLog.Internal
     struct ScopeContextNestedStateCollector
     {
         private IList<object> _allNestedStates;
-        private List<object> _nestedStateCollector;
 
-        public bool IsCollectorEmpty => _allNestedStates is null || (_allNestedStates.Count == 0 && _nestedStateCollector is null);
+        public bool IsCollectorEmpty => _allNestedStates is null || _allNestedStates.Count == 0;
 
         public bool IsCollectorInactive => _allNestedStates is null;
 
-        public IList<object> StartCaptureNestedStates(IScopeContextAsyncState? state)
+        public IList<object> StartCloneNestedContext(IScopeContextAsyncState? state)
         {
             _allNestedStates = _allNestedStates ?? Array.Empty<object>();
 
             while (state != null)
             {
-                var result = state.CaptureNestedContext(ref this);
+                var result = state.CloneNestedContext(ref this);
                 if (result != null)
                     return result;
                 state = state.Parent;
@@ -248,17 +247,11 @@ namespace NLog.Internal
 
         public void CollectNestedState(object state)
         {
-            if (_nestedStateCollector is null)
+            if (_allNestedStates is null || _allNestedStates.Count == 0)
             {
-                _nestedStateCollector = new List<object>(Math.Max(4, (_allNestedStates?.Count ?? 0) + 1));
-                if (_allNestedStates?.Count > 0)
-                {
-                    for (int i = 0; i < _allNestedStates.Count; ++i)
-                        _nestedStateCollector.Add(_allNestedStates[i]);
-                }
-                _allNestedStates = _nestedStateCollector;
+                _allNestedStates = new List<object>();
             }
-            _nestedStateCollector.Add(state);    // Collected in "reversed" order
+            _allNestedStates.Add(state);    // Collected in "reversed" order
         }
     }
 
@@ -287,7 +280,7 @@ namespace NLog.Internal
 
         public long NestedStateTimestamp { get; }
 
-        IList<object>? IScopeContextAsyncState.CaptureNestedContext(ref ScopeContextNestedStateCollector contextCollector)
+        IList<object>? IScopeContextAsyncState.CloneNestedContext(ref ScopeContextNestedStateCollector contextCollector)
         {
             object? objectValue = _value;
 
@@ -300,7 +293,7 @@ namespace NLog.Internal
                 {
                     if (objectValue is not null)
                         contextCollector.CollectNestedState(objectValue);   // Mark as active
-                    return contextCollector.StartCaptureNestedStates(Parent);
+                    return contextCollector.StartCloneNestedContext(Parent);
                 }
             }
 
@@ -347,7 +340,7 @@ namespace NLog.Internal
             Value = value;
         }
 
-        IList<object>? IScopeContextAsyncState.CaptureNestedContext(ref ScopeContextNestedStateCollector contextCollector)
+        IList<object>? IScopeContextAsyncState.CloneNestedContext(ref ScopeContextNestedStateCollector contextCollector)
         {
             if (contextCollector.IsCollectorInactive)
             {
@@ -357,7 +350,7 @@ namespace NLog.Internal
                 }
                 else
                 {
-                    return contextCollector.StartCaptureNestedStates(Parent);
+                    return contextCollector.StartCloneNestedContext(Parent);
                 }
             }
 
@@ -432,12 +425,12 @@ namespace NLog.Internal
             NestedStateTimestamp = ScopeContext.GetNestedContextTimestampNow();
         }
 
-        IList<object>? IScopeContextAsyncState.CaptureNestedContext(ref ScopeContextNestedStateCollector contextCollector)
+        IList<object>? IScopeContextAsyncState.CloneNestedContext(ref ScopeContextNestedStateCollector contextCollector)
         {
             if (NestedState is null)
             {
                 if (contextCollector.IsCollectorInactive)
-                    return contextCollector.StartCaptureNestedStates(Parent);
+                    return contextCollector.StartCloneNestedContext(Parent);
                 else
                     return null;    // continue with parent
             }
@@ -452,7 +445,7 @@ namespace NLog.Internal
                     else if (contextCollector.IsCollectorInactive)
                     {
                         contextCollector.CollectNestedState(NestedState);  // Mark as active
-                        return contextCollector.StartCaptureNestedStates(Parent);
+                        return contextCollector.StartCloneNestedContext(Parent);
                     }
                 }
 
@@ -520,7 +513,7 @@ namespace NLog.Internal
         {
             var nestedStateCollector = new ScopeContextNestedStateCollector();
             var propertyCollector = new ScopeContextPropertyCollector();
-            var nestedStates = contextState?.CaptureNestedContext(ref nestedStateCollector) ?? Array.Empty<object>();
+            var nestedStates = contextState?.CloneNestedContext(ref nestedStateCollector) ?? Array.Empty<object>();
             var scopeProperties = contextState?.CaptureContextProperties(ref propertyCollector) ?? Array.Empty<KeyValuePair<string, object?>>();
             allProperties = new Dictionary<string, object?>(scopeProperties.Count, ScopeContext.DefaultComparer);
             ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(scopeProperties, allProperties);
@@ -549,7 +542,7 @@ namespace NLog.Internal
 
         object? IScopeContextAsyncState.NestedState => NestedContext?.Length > 0 ? NestedContext[0] : null;
 
-        IList<object> IScopeContextAsyncState.CaptureNestedContext(ref ScopeContextNestedStateCollector contextCollector)
+        IList<object> IScopeContextAsyncState.CloneNestedContext(ref ScopeContextNestedStateCollector contextCollector)
         {
             if (contextCollector.IsCollectorEmpty)
             {
@@ -559,7 +552,7 @@ namespace NLog.Internal
             {
                 for (int i = 0; i < NestedContext.Length; ++i)
                     contextCollector.CollectNestedState(NestedContext[i]);
-                return contextCollector.StartCaptureNestedStates(null); // We are done
+                return contextCollector.StartCloneNestedContext(null); // We are done
             }
         }
 

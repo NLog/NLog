@@ -520,7 +520,7 @@ namespace NLog.Targets
         {
             var stack = ScopeContext.GetAllNestedStateList();
             if (stack.Count == 0)
-                return stack;
+                return ArrayHelper.Empty<object>();
 
             List<object>? filteredStack = null;
             for (int i = 0; i < stack.Count; ++i)

@@ -36,3 +36,4 @@ build/
 .vs
 .cr
 /artifacts
+/.github/copilot-instructions.md
