@@ -34,6 +34,7 @@
 namespace NLog.Targets.AtomicFile.Tests
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using Xunit;
 
@@ -52,16 +53,17 @@ namespace NLog.Targets.AtomicFile.Tests
 
             try
             {
+                var callRecording = new List<string>();
                 var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
                 {
-                    cfg.ForLogger().WriteTo(new AtomicFileTarget()
+                    cfg.ForLogger().WriteTo(new AtomicFileTarget(new MockFileLifecycleHooks("hooks", callRecording))
                     {
                         FileName = logFileName,
                         Layout = "${message}",
                         LineEnding = LineEndingMode.LF,
                         Header = "Hello World",
                         Footer = "Goodbye World",
-                        WriteBom = true,
+                        WriteBom = true
                     });
                 }).LogFactory;
 
@@ -75,6 +77,16 @@ namespace NLog.Targets.AtomicFile.Tests
                     Assert.Equal("Goodbye World", logFile.ReadLine());
                     Assert.Null(logFile.ReadLine());
                 }
+
+                var expected = new List<string>
+                {
+                    "hooks_OnTargetInitialize_AtomFile",
+                    $"hooks_OnFileOpened_{logFileName}_FileStream",
+                    "hooks_OnTargetClose_AtomFile",
+                    $"hooks_OnFileClosed_{logFileName}"
+                };
+
+                Assert.Equal(expected, callRecording);
             }
             finally
             {
@@ -83,6 +95,40 @@ namespace NLog.Targets.AtomicFile.Tests
                 if (Directory.Exists(tempDir))
                     Directory.Delete(tempDir, true);
             }
+        }
+
+        private sealed class MockFileLifecycleHooks : FileLifecycleHooks
+        {
+            private string _name;
+            private List<string> _callRecording;
+
+            public MockFileLifecycleHooks(string name, List<string> callRecording)
+            {
+                _name = name;
+                _callRecording = callRecording;
+            }
+
+            #region Overrides of FileLifecycleHooks
+
+            public override void OnTargetClose(FileTarget target) =>
+                _callRecording.Add($"{_name}_{nameof(OnTargetClose)}_{target.Name}");
+
+            public override void OnFileClosed(String filePath) =>
+                _callRecording.Add($"{_name}_{nameof(OnFileClosed)}_{filePath}");
+
+            public override void OnFileDeleting(String filePath) =>
+                _callRecording.Add($"{_name}_{nameof(OnFileDeleting)}_{filePath}");
+
+            public override Stream OnFileOpened(String filePath, Stream underlyingStream)
+            {
+                _callRecording.Add($"{_name}_{nameof(OnFileOpened)}_{filePath}_{underlyingStream.GetType().Name}");
+                return underlyingStream;
+            }
+
+            public override void OnTargetInitialize(FileTarget target) =>
+                _callRecording.Add($"{_name}_{nameof(OnTargetInitialize)}_{target.Name}");
+
+            #endregion
         }
     }
 }

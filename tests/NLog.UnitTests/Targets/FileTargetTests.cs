@@ -35,7 +35,6 @@ namespace NLog.UnitTests.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -103,6 +102,42 @@ namespace NLog.UnitTests.Targets
                 LogManager.Configuration = null;    // Flush
 
                 AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+            }
+        }
+
+        [Fact]
+        public void HooksTest()
+        {
+            var logFile = Path.GetTempFileName();
+            try
+            {
+                var callRecording = new List<string>();
+                var fileTarget = new FileTarget(new MockFileLifecycleHooks("hooks", callRecording))
+                {
+                    FileName = Layout.FromLiteral(logFile),
+                    Name = "my-file"
+                };
+
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+
+                logger.Warn("ccc");
+
+                LogManager.Configuration = null;    // Flush
+
+                var expected = new List<string>
+                {
+                    "hooks_OnTargetInitialize_my-file",
+                    $"hooks_OnFileOpened_{logFile}_FileStream",
+                    "hooks_OnTargetClose_my-file",
+                    $"hooks_OnFileClosed_{logFile}"
+                };
+
+                Assert.Equal(expected, callRecording);
             }
             finally
             {
@@ -1096,7 +1131,7 @@ namespace NLog.UnitTests.Targets
                 logger.Info("bbb");
                 logger.Warn("ccc");
 
-                if (autoFlush || !keepFileOpen) 
+                if (autoFlush || !keepFileOpen)
                 {
                     AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
                 }
@@ -4567,6 +4602,39 @@ namespace NLog.UnitTests.Targets
             string fileText = File.ReadAllText(fileName, encoding);
             Assert.True(fileText.Length >= contents.Length);
             Assert.Equal(contents, fileText.Substring(fileText.Length - contents.Length));
+        }
+        private sealed class MockFileLifecycleHooks : FileLifecycleHooks
+        {
+            private string _name;
+            private List<string> _callRecording;
+
+            public MockFileLifecycleHooks(string name, List<string> callRecording)
+            {
+                _name = name;
+                _callRecording = callRecording;
+            }
+
+            #region Overrides of FileLifecycleHooks
+
+            public override void OnTargetClose(FileTarget target) =>
+                _callRecording.Add($"{_name}_{nameof(OnTargetClose)}_{target.Name}");
+
+            public override void OnFileClosed(String filePath) =>
+                _callRecording.Add($"{_name}_{nameof(OnFileClosed)}_{filePath}");
+
+            public override void OnFileDeleting(String filePath) =>
+                _callRecording.Add($"{_name}_{nameof(OnFileDeleting)}_{filePath}");
+
+            public override Stream OnFileOpened(String filePath, Stream underlyingStream)
+            {
+                _callRecording.Add($"{_name}_{nameof(OnFileOpened)}_{filePath}_{underlyingStream.GetType().Name}");
+                return underlyingStream;
+            }
+
+            public override void OnTargetInitialize(FileTarget target) =>
+                _callRecording.Add($"{_name}_{nameof(OnTargetInitialize)}_{target.Name}");
+
+            #endregion
         }
     }
 }

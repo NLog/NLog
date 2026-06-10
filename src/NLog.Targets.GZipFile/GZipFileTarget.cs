@@ -63,6 +63,14 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="GZipFileTarget" /> class.
+        /// </summary>
+        /// <param name="hooks">Hooks to perform actions on certain life cycle events.</param>
+        public GZipFileTarget(FileLifecycleHooks hooks) : base(hooks)
+        {
+        }
+
+        /// <summary>
         /// Gets or sets whether to enable file-compression using <see cref="GZipStream" />
         /// </summary>
         public bool EnableArchiveFileCompression { get; set; } = true;

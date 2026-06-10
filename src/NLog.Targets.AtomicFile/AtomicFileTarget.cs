@@ -54,6 +54,21 @@ namespace NLog.Targets
         /// </summary>
         public bool ConcurrentWrites { get; set; } = true;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AtomicFileTarget" /> class.
+        /// </summary>
+        public AtomicFileTarget()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AtomicFileTarget" /> class.
+        /// </summary>
+        /// <param name="hooks">Hooks to perform actions on certain life cycle events.</param>
+        public AtomicFileTarget(FileLifecycleHooks hooks) : base(hooks)
+        {
+        }
+
         /// <inheritdoc />
         protected override Stream CreateFileStream(string filePath, int bufferSize)
         {
@@ -100,27 +115,61 @@ namespace NLog.Targets
             // If only the FILE_APPEND_DATA and SYNCHRONIZE flags are set, the caller can write only to the end of the file,
             // and any offset information about writes to the file is ignored.
             // However, the file will automatically be extended as necessary for this type of write operation.
-            return new FileStream(
+            Stream netFxStream = new FileStream(
                 filePath,
                 FileMode.Append,
                 System.Security.AccessControl.FileSystemRights.AppendData | System.Security.AccessControl.FileSystemRights.Synchronize, // <- Atomic append
                 fileShare,
                 bufferSize: 1,  // No internal buffer, write directly from user-buffer
                 FileOptions.None);
+
+            if (Hooks is not null)
+                try
+                {
+                    netFxStream = Hooks.OnFileOpened(filePath, netFxStream);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileOpened), filePath);
+                }
+
+            return netFxStream;
 #else
 
 #if !WINDOWS
             if (!System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
             {
-                return CreateUnixStream(filePath);
+                Stream unixStream = CreateUnixStream(filePath);
+                if (Hooks is not null)
+                    try
+                    {
+                        unixStream = Hooks.OnFileOpened(filePath, unixStream);
+                    }
+                    catch (Exception ex)
+                    {
+                        InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileOpened), filePath);
+                    }
+
+                return unixStream;
             }
 #endif
 
 #if NETSTANDARD
-            return CreateWindowsStream(filePath, FileMode.Append, fileShare, FileOptions.None);
+            Stream netStandardStream = CreateWindowsStream(filePath, FileMode.Append, fileShare, FileOptions.None);
+            if (Hooks is not null)
+                try
+                {
+                    netStandardStream = Hooks.OnFileOpened(filePath, netStandardStream);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileOpened), filePath);
+                }
+
+            return netStandardStream;
 #else
             var systemRights = System.Security.AccessControl.FileSystemRights.AppendData | System.Security.AccessControl.FileSystemRights.Synchronize;
-            return FileSystemAclExtensions.Create(
+            Stream stream = FileSystemAclExtensions.Create(
                 new FileInfo(filePath),
                 FileMode.Append,
                 systemRights,
@@ -128,6 +177,18 @@ namespace NLog.Targets
                 bufferSize: 1,    // No internal buffer, write directly from user-buffer
                 FileOptions.None,
                 fileSecurity: null);
+
+            if (Hooks is not null)
+                try
+                {
+                    stream = Hooks.OnFileOpened(filePath, stream);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileOpened), filePath);
+                }
+
+            return stream;
 #endif // NETSTANDARD
 
 #endif // NETFRAMEWORK
