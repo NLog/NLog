@@ -108,14 +108,23 @@ namespace NLog.UnitTests.Targets
 
             #region Overrides of FileLifecycleHooks
 
-            public override void OnTargetClose(FileTarget target) =>
+            public override void OnTargetClose(FileTarget target)
+            {
                 _callRecording.Add($"{_name}_{nameof(OnTargetClose)}_{target.Name}");
+                base.OnTargetClose(target);
+            }
 
-            public override void OnFileClosed(String filePath) =>
+            public override void OnFileClosed(String filePath)
+            {
                 _callRecording.Add($"{_name}_{nameof(OnFileClosed)}_{filePath}");
+                base.OnFileClosed(filePath);
+            }
 
-            public override void OnFileDeleting(String filePath) =>
+            public override void OnFileDeleting(String filePath)
+            {
                 _callRecording.Add($"{_name}_{nameof(OnFileDeleting)}_{filePath}");
+                base.OnFileDeleting(filePath);
+            }
 
             public override Stream OnFileOpened(String filePath, Stream underlyingStream)
             {
@@ -124,11 +133,15 @@ namespace NLog.UnitTests.Targets
                     streamName = mockStream.Name;
                 _callRecording.Add($"{_name}_{nameof(OnFileOpened)}_{filePath}_{streamName}");
 
-                return new MockStream(underlyingStream, _name);
+                var stream = new MockStream(underlyingStream, _name);
+                return base.OnFileOpened(filePath, stream);
             }
 
-            public override void OnTargetInitialize(FileTarget target) =>
+            public override void OnTargetInitialize(FileTarget target)
+            {
                 _callRecording.Add($"{_name}_{nameof(OnTargetInitialize)}_{target.Name}");
+                base.OnTargetInitialize(target);
+            }
 
             #endregion
         }

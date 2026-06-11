@@ -146,6 +146,43 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+
+        [Fact]
+        public void Hooks_ErrorHandlingTest()
+        {
+            var logFile = Path.GetTempFileName();
+            try
+            {
+                var callRecording = new List<string>();
+                var fileTarget = new FileTarget(new MockFileLifecycleHooks("hooks", callRecording, true))
+                {
+                    FileName = Layout.FromLiteral(logFile),
+                    Name = "my-file"
+                };
+
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+
+                logger.Warn("ccc");
+
+                LogManager.Configuration = null;    // Flush
+
+                var expected = new List<string>
+                {
+                    "hooks_OnTargetInitialize_my-file",
+                    $"hooks_OnFileOpened_{logFile}_FileStream",
+                    "hooks_OnTargetClose_my-file",
+                    $"hooks_OnFileClosed_{logFile}"
+                };
+
+                Assert.Equal(expected, callRecording);
+            }
+            finally
+            {
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+            }
+        }
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -4607,32 +4644,50 @@ namespace NLog.UnitTests.Targets
         {
             private string _name;
             private List<string> _callRecording;
+            private readonly Boolean _throwOnCall;
 
-            public MockFileLifecycleHooks(string name, List<string> callRecording)
+            public MockFileLifecycleHooks(string name, List<string> callRecording, Boolean throwOnCall = false)
             {
                 _name = name;
                 _callRecording = callRecording;
+                _throwOnCall = throwOnCall;
             }
 
             #region Overrides of FileLifecycleHooks
 
-            public override void OnTargetClose(FileTarget target) =>
+            public override void OnTargetClose(FileTarget target)
+            {
                 _callRecording.Add($"{_name}_{nameof(OnTargetClose)}_{target.Name}");
+                if (_throwOnCall)
+                    throw new DivideByZeroException("Test error");
+            }
 
-            public override void OnFileClosed(String filePath) =>
+            public override void OnFileClosed(String filePath)
+            {
                 _callRecording.Add($"{_name}_{nameof(OnFileClosed)}_{filePath}");
+                if (_throwOnCall)
+                    throw new DivideByZeroException("Test error");
+            }
 
-            public override void OnFileDeleting(String filePath) =>
+            public override void OnFileDeleting(String filePath)
+            {
                 _callRecording.Add($"{_name}_{nameof(OnFileDeleting)}_{filePath}");
+                if (_throwOnCall)
+                    throw new DivideByZeroException("Test error");
+            }
 
             public override Stream OnFileOpened(String filePath, Stream underlyingStream)
             {
                 _callRecording.Add($"{_name}_{nameof(OnFileOpened)}_{filePath}_{underlyingStream.GetType().Name}");
-                return underlyingStream;
+                return _throwOnCall ? throw new DivideByZeroException("Test error") : underlyingStream;
             }
 
-            public override void OnTargetInitialize(FileTarget target) =>
+            public override void OnTargetInitialize(FileTarget target)
+            {
                 _callRecording.Add($"{_name}_{nameof(OnTargetInitialize)}_{target.Name}");
+                if (_throwOnCall)
+                    throw new DivideByZeroException("Test error");
+            }
 
             #endregion
         }
