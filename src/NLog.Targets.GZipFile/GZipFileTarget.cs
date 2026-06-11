@@ -68,6 +68,7 @@ namespace NLog.Targets
         /// <param name="hooks">Hooks to perform actions on certain life cycle events.</param>
         public GZipFileTarget(FileLifecycleHooks hooks) : base(hooks)
         {
+            ArchiveOldFileOnStartup = true; // Not possible to append to existing file using GZip, must read the entire file into memory and rewrite everything again
         }
 
         /// <summary>
