@@ -1337,6 +1337,17 @@ namespace NLog.Targets
 
             try
             {
+                var wrappedStream = Hooks?.OnFileOpened(filePath, fileStream);
+                if (wrappedStream is not null)
+                    fileStream = wrappedStream;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileOpened), filePath);
+            }
+
+            try
+            {
                 bool? fileWasEmpty = null;
 
                 if (WriteBom)
@@ -1402,18 +1413,7 @@ namespace NLog.Targets
                 fileMode = FileMode.Create; // Create or truncate
             }
 
-            Stream stream = new FileStream(filePath, fileMode, FileAccess.Write, fileShare, bufferSize);
-            try
-            {
-                var wrappedStream = Hooks?.OnFileOpened(filePath, stream);
-                if (wrappedStream is not null)
-                    stream = wrappedStream;
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileOpened), filePath);
-            }
-
+            var stream = new FileStream(filePath, fileMode, FileAccess.Write, fileShare, bufferSize);
             return stream;
         }
 
