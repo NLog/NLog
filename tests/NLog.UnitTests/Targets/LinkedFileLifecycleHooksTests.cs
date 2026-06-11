@@ -95,6 +95,49 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(expected, callRecording);
         }
 
+        [Fact]
+        public void CreateLinkedHooks()
+        {
+            var callRecording = new List<string>();
+
+            var first = new MockFileLifecycleHooks("hook_1", callRecording);
+            var second = new MockFileLifecycleHooks("hook_2", callRecording);
+            var target = first.CreateLinkedHooks(second);
+
+            target.OnFileDeleting("del.log");
+            target.OnFileClosed("close.log");
+            using (var stream = new MemoryStream())
+            {
+                var actualStream = target.OnFileOpened("open.log", stream);
+                Assert.IsType<MockStream>(actualStream);
+                Assert.Equal("hook_2", ((MockStream)actualStream).Name);
+            }
+
+            var expectedTarget = new FileTarget("my-file_1");
+            target.OnTargetInitialize(expectedTarget);
+
+            expectedTarget = new FileTarget("my-file_2");
+            expectedTarget.Dispose();
+            target.OnTargetClose(expectedTarget);
+
+            var expected = new List<string>
+            {
+                "hook_1_OnFileDeleting_del.log",
+                "hook_2_OnFileDeleting_del.log",
+                "hook_1_OnFileClosed_close.log",
+                "hook_2_OnFileClosed_close.log",
+                "hook_1_OnFileOpened_open.log_stream",
+                "hook_2_OnFileOpened_open.log_hook_1",
+                "hook_1_OnTargetInitialize_my-file_1",
+                "hook_2_OnTargetInitialize_my-file_1",
+                "hook_1_OnTargetClose_my-file_2",
+                "hook_2_OnTargetClose_my-file_2"
+
+            };
+
+            Assert.Equal(expected, callRecording);
+        }
+
         private sealed class MockFileLifecycleHooks : FileLifecycleHooks
         {
             private string _name;
