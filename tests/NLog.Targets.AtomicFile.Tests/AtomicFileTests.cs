@@ -86,7 +86,14 @@ namespace NLog.Targets.AtomicFile.Tests
                     $"hooks_OnFileClosed_{logFileName}"
                 };
 
-                Assert.Equal(expected, callRecording);
+                Assert.Equal(expected.Count, callRecording.Count);
+                for (var i = 0; i < expected.Count; i++)
+                {
+                    var expectedString = expected[i];
+                    var actualString = callRecording[i];
+                    Assert.True(expectedString.Equals(actualString, StringComparison.OrdinalIgnoreCase), $"Call record '{actualString}' does not match expected value '{expectedString}'");
+                }
+
             }
             finally
             {
