@@ -581,15 +581,14 @@ namespace NLog.Targets
             if (Layout.IsNullOrEmpty(FileName))
                 throw new NLogConfigurationException("FileTarget FileName-property must be assigned. FileName is needed for file writing.");
 
-            if (Hooks is not null)
-                try
-                {
-                    Hooks.OnTargetInitialize(this);
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error", this, nameof(FileLifecycleHooks.OnTargetInitialize));
-                }
+            try
+            {
+                Hooks?.OnTargetInitialize(this);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error", this, nameof(FileLifecycleHooks.OnTargetInitialize));
+            }
 
             if (_archiveSuffixFormat != null)
             {
@@ -608,15 +607,14 @@ namespace NLog.Targets
         /// <inheritdoc />
         protected override void CloseTarget()
         {
-            if (Hooks is not null)
-                try
-                {
-                    Hooks.OnTargetClose(this);
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error", this, nameof(FileLifecycleHooks.OnTargetClose));
-                }
+            try
+            {
+                Hooks?.OnTargetClose(this);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error", this, nameof(FileLifecycleHooks.OnTargetClose));
+            }
 
             var openFileMonitorTimer = _openFileMonitorTimer;
             _openFileMonitorTimer = null;
@@ -1031,15 +1029,15 @@ namespace NLog.Targets
             finally
             {
                 openFile.FileAppender.Dispose();
-                if (Hooks is not null)
-                    try
-                    {
-                        Hooks.OnFileClosed(openFile.FileAppender.FilePath);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileClosed), openFile.FileAppender.FilePath);
-                    }
+
+                try
+                {
+                    Hooks?.OnFileClosed(openFile.FileAppender.FilePath);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileClosed), openFile.FileAppender.FilePath);
+                }
             }
         }
 
@@ -1405,15 +1403,16 @@ namespace NLog.Targets
             }
 
             Stream stream = new FileStream(filePath, fileMode, FileAccess.Write, fileShare, bufferSize);
-            if (Hooks is not null)
-                try
-                {
-                    stream = Hooks.OnFileOpened(filePath, stream);
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileOpened), filePath);
-                }
+            try
+            {
+                var wrappedStream = Hooks?.OnFileOpened(filePath, stream);
+                if (wrappedStream is not null)
+                    stream = wrappedStream;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileOpened), filePath);
+            }
 
             return stream;
         }
