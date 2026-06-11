@@ -38,6 +38,7 @@ namespace NLog.Targets.AtomicFile.Tests
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using Xunit;
 
     public class AtomicFileTests
     {
