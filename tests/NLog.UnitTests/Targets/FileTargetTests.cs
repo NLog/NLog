@@ -120,11 +120,16 @@ namespace NLog.UnitTests.Targets
                 var fileTarget = new FileTarget(new MockFileLifecycleHooks("hooks", callRecording))
                 {
                     FileName = Layout.FromLiteral(logFile),
-                    Name = "my-file"
+                    Name = "my-file",
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    OpenFileCacheTimeout = 0
                 };
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
 
+                logger.Debug("aaa");
+                logger.Info("bbb");
                 logger.Warn("ccc");
 
                 LogManager.Configuration = null;    // Flush
@@ -138,6 +143,8 @@ namespace NLog.UnitTests.Targets
                 };
 
                 Assert.Equal(expected, callRecording);
+
+                AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
             finally
             {
@@ -157,11 +164,16 @@ namespace NLog.UnitTests.Targets
                 var fileTarget = new FileTarget(new MockFileLifecycleHooks("hooks", callRecording, true))
                 {
                     FileName = Layout.FromLiteral(logFile),
-                    Name = "my-file"
+                    Name = "my-file",
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    OpenFileCacheTimeout = 0
                 };
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
 
+                logger.Debug("aaa");
+                logger.Info("bbb");
                 logger.Warn("ccc");
 
                 LogManager.Configuration = null;    // Flush
@@ -175,6 +187,8 @@ namespace NLog.UnitTests.Targets
                 };
 
                 Assert.Equal(expected, callRecording);
+
+                AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
             finally
             {

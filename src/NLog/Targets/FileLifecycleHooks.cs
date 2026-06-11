@@ -88,7 +88,7 @@ namespace NLog.Targets
         /// Creates a linked hook combining the current and given <see cref="FileLifecycleHooks"/>.
         /// </summary>
         /// <param name="hooks">Hooks to link with current <see cref="FileLifecycleHooks"/>. Methods on <paramref name="hooks"/> will be invoked after the current <see cref="FileLifecycleHooks"/> methods.</param>
-        /// <returns></returns>
+        /// <returns>Returns a <see cref="FileLifecycleHooks"/> chaining this <see cref="FileLifecycleHooks"/> and <paramref name="hooks"/>. Methods of this instance will be invoked before methods of <paramref name="hooks"/>.</returns>
         public FileLifecycleHooks CreateLinkedHooks(FileLifecycleHooks hooks) =>
             new LinkedFileLifecycleHooks(this, hooks);
     }
