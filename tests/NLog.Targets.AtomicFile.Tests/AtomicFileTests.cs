@@ -31,12 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+using System.Runtime.InteropServices;
+
 namespace NLog.Targets.AtomicFile.Tests
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using Xunit;
 
     public class AtomicFileTests
     {
@@ -78,10 +79,11 @@ namespace NLog.Targets.AtomicFile.Tests
                     Assert.Null(logFile.ReadLine());
                 }
 
+                var streamName = RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? "UnixStream" : "FileStream";
                 var expected = new List<string>
                 {
                     "hooks_OnTargetInitialize_AtomFile",
-                    $"hooks_OnFileOpened_{logFileName}_FileStream",
+                    $"hooks_OnFileOpened_{logFileName}_{streamName}",
                     "hooks_OnTargetClose_AtomFile",
                     $"hooks_OnFileClosed_{logFileName}"
                 };
@@ -93,7 +95,6 @@ namespace NLog.Targets.AtomicFile.Tests
                     var actualString = callRecording[i];
                     Assert.True(expectedString.Equals(actualString, StringComparison.OrdinalIgnoreCase), $"Call record '{actualString}' does not match expected value '{expectedString}'");
                 }
-
             }
             finally
             {
