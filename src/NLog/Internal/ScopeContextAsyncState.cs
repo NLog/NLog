@@ -80,8 +80,6 @@ namespace NLog.Internal
 
         public bool IsCollectorEmpty => _allProperties is null || (_allProperties.Count == 0 && _propertyCollector is null);
 
-        public bool IsCollectorInactive => _allProperties is null;
-
         public ScopeContextPropertyCollector(List<KeyValuePair<string, object?>> propertyCollector)
         {
             _allProperties = _propertyCollector = propertyCollector;
@@ -304,16 +302,11 @@ namespace NLog.Internal
 
         IReadOnlyCollection<KeyValuePair<string, object?>>? IScopeContextAsyncState.CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
         {
-            if (contextCollector.IsCollectorInactive)
-            {
-                if (Parent is null)
-                    return Array.Empty<KeyValuePair<string, object?>>(); // We are done
+            if (Parent is null)
+                return contextCollector.IsCollectorEmpty ? Array.Empty<KeyValuePair<string, object?>>() : contextCollector.CaptureCompleted(null);
 
-                contextCollector.AddProperties(Array.Empty<KeyValuePair<string, object?>>());    // Mark as active
-                return contextCollector.StartCaptureProperties(Parent);   // Start parent enumeration
-            }
-
-            return null;    // Continue with Parent
+            contextCollector.AddProperties(Array.Empty<KeyValuePair<string, object?>>());    // Mark as active
+            return contextCollector.StartCaptureProperties(Parent);   // Start parent enumeration
         }
 
         public override string ToString()
@@ -465,18 +458,14 @@ namespace NLog.Internal
                 }
                 return _allProperties;  // We are done
             }
-            else
+
+            if (_allProperties is null)
             {
-                if (_allProperties is null)
-                {
-                    contextCollector.AddProperties(_scopeProperties as IReadOnlyCollection<KeyValuePair<string, object?>> ?? this);
-                    return null;    // Continue with Parent
-                }
-                else
-                {
-                    return contextCollector.CaptureCompleted(_allProperties);     // We are done
-                }
+                contextCollector.AddProperties(_scopeProperties as IReadOnlyCollection<KeyValuePair<string, object?>> ?? this);
+                return null;    // Continue with Parent
             }
+
+            return contextCollector.CaptureCompleted(_allProperties);     // We are done
         }
 
         public override string ToString()
