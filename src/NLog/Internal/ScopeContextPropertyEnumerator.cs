@@ -91,6 +91,23 @@ namespace NLog.Internal
                 }
             }
         }
+
+        public static void TryAddScopePropertiesToDictionary(IReadOnlyCollection<KeyValuePair<string, TValue?>> parentContext, Dictionary<string, object?> scopeDictionary)
+        {
+            using (var propertyEnumerator = new ScopeContextPropertyEnumerator<TValue?>(parentContext))
+            {
+                while (propertyEnumerator.MoveNext())
+                {
+                    var item = propertyEnumerator.Current;
+#if NETSTANDARD2_1_OR_GREATER || NET
+                    scopeDictionary.TryAdd(item.Key, item.Value);
+#else
+                    if (!scopeDictionary.ContainsKey(item.Key))
+                        scopeDictionary.Add(item.Key, item.Value);
+#endif
+                }
+            }
+        }
 #endif
 
         public static bool HasUniqueCollectionKeys(IEnumerable<KeyValuePair<string, TValue>> scopeProperties, IEqualityComparer<string> keyComparer)

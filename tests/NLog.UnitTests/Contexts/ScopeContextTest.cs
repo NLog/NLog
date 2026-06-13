@@ -813,6 +813,68 @@ namespace NLog.UnitTests.Contexts
             Assert.Equal("World", propertyValue);
         }
 
+        [Fact]
+        public void ScopeContextPropertiesCollapseObjectGraph()
+        {
+            // Arrange
+            ScopeContext.Clear();
+
+            // Act
+            List<KeyValuePair<string, object>> twoProperties;
+            List<KeyValuePair<string, object>> threeProperties;
+            List<KeyValuePair<string, object>> fourProperties;
+
+            using (ScopeContext.PushProperty("Scope1", "World1"))
+            {
+                using (ScopeContext.PushProperty("Scope2", "World2"))
+                {
+                    var collection1 = ScopeContext.GetAllProperties();
+                    var collection2 = ScopeContext.GetAllProperties();
+#if !NET35 && !NET40 && !NET45
+                    Assert.Same(collection1, collection2);
+#endif
+                    twoProperties = collection1.ToList();
+
+                    using (ScopeContext.PushProperty("Scope3", "World3"))
+                    {
+                        collection1 = ScopeContext.GetAllProperties();
+                        collection2 = ScopeContext.GetAllProperties();
+#if !NET35 && !NET40 && !NET45
+                        Assert.Same(collection1, collection2);
+#endif
+                        threeProperties = collection1.ToList();
+
+                        using (ScopeContext.PushProperty("Scope4", "World4"))
+                        {
+                            // Scope4 is top-of-stack and its parent contains the collapsed properties.
+                            collection1 = ScopeContext.GetAllProperties();
+                            collection2 = ScopeContext.GetAllProperties();
+#if !NET35 && !NET40 && !NET45
+                            Assert.Same(collection1, collection2);
+#endif
+                            fourProperties = collection1.ToList();
+                        }
+                    }
+                }
+            }
+
+            // Assert
+            Assert.Equal(2, twoProperties.Count);
+            Assert.Equal("Scope2", twoProperties[0].Key);  // Newest scope added first, since top of stack, so most optimal
+            Assert.Equal("Scope1", twoProperties[1].Key);
+
+            Assert.Equal(3, threeProperties.Count);
+            Assert.Equal("Scope3", threeProperties[0].Key);  // Newest scope added first, since top of stack, so most optimal
+            Assert.Equal("Scope2", threeProperties[1].Key);
+            Assert.Equal("Scope1", threeProperties[2].Key);
+
+            Assert.Equal(4, fourProperties.Count);
+            Assert.Equal("Scope4", fourProperties[0].Key);   // Newest scope added first, since top of stack, so most optimal
+            Assert.Equal("Scope3", fourProperties[1].Key);
+            Assert.Equal("Scope2", fourProperties[2].Key);
+            Assert.Equal("Scope1", fourProperties[3].Key);
+        }
+
 #if !NET35 && !NET40
         [Fact]
         public void ScopeContextPushWithoutStackOverflow3()

@@ -73,13 +73,13 @@ namespace NLog
                 var parent = GetAsyncLocalContext();
                 if (nestedState is null)
                 {
-                    var allProperties = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, properties.Count);
-                    if (allProperties != null)
+                    var existingPropertyCount = ScopeContextPropertiesCollapsed.TryCollapseExistingProperties(parent);
+                    if (existingPropertyCount.HasValue)
                     {
-                        // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
-                        ScopeContextPropertyEnumerator<object?>.CopyScopePropertiesToDictionary(properties, allProperties);
-
-                        var collapsedState = new ScopeContextPropertiesAsyncState<object>(parent?.Parent?.Parent, allProperties, nestedState);
+                        var collapsedState = new ScopeContextMergeAsyncState(parent?.Parent?.Parent, existingPropertyCount.Value + properties.Count, nestedState);
+                        ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(properties, collapsedState.MergedProperties);
+                        var propertyCollector = new ScopeContextPropertyCollector(collapsedState.MergedProperties, collapsedState);
+                        propertyCollector.StartCaptureProperties(parent);
                         SetAsyncLocalContext(collapsedState);
                         return new ScopeContextPropertiesCollapsed(parent, collapsedState);
                     }
@@ -124,13 +124,14 @@ namespace NLog
 #if !NET45
             var parent = GetAsyncLocalContext();
 
-            var allProperties = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, properties.Count);
-            if (allProperties != null)
+            var existingPropertyCount = ScopeContextPropertiesCollapsed.TryCollapseExistingProperties(parent);
+            if (existingPropertyCount.HasValue)
             {
                 // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
-                ScopeContextPropertyEnumerator<TValue>.CopyScopePropertiesToDictionary(properties, allProperties);
-
-                var collapsedState = new ScopeContextPropertiesAsyncState<object>(parent?.Parent?.Parent, allProperties);
+                var collapsedState = new ScopeContextMergeAsyncState(parent?.Parent?.Parent, existingPropertyCount.Value + properties.Count);
+                ScopeContextPropertyEnumerator<TValue>.CopyScopePropertiesToDictionary(properties, collapsedState.MergedProperties);
+                var propertyCollector = new ScopeContextPropertyCollector(collapsedState.MergedProperties, collapsedState);
+                propertyCollector.StartCaptureProperties(parent);
                 SetAsyncLocalContext(collapsedState);
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
             }
@@ -158,13 +159,14 @@ namespace NLog
 #if !NET35 && !NET40 && !NET45
             var parent = GetAsyncLocalContext();
 
-            var allProperties = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, 1);
-            if (allProperties != null)
+            var existingPropertyCount = ScopeContextPropertiesCollapsed.TryCollapseExistingProperties(parent);
+            if (existingPropertyCount.HasValue)
             {
                 // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
-                allProperties[key] = value;
-
-                var collapsedState = new ScopeContextPropertiesAsyncState<object>(parent?.Parent?.Parent, allProperties);
+                var collapsedState = new ScopeContextMergeAsyncState(parent?.Parent?.Parent, existingPropertyCount.Value + 1);
+                collapsedState.MergedProperties[key] = value;
+                var propertyCollector = new ScopeContextPropertyCollector(collapsedState.MergedProperties, collapsedState);
+                propertyCollector.StartCaptureProperties(parent);
                 SetAsyncLocalContext(collapsedState);
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
             }
@@ -493,20 +495,15 @@ namespace NLog
                 _collapsed = collapsed;
             }
 
-            public static Dictionary<string, object?>? BuildCollapsedDictionary(IScopeContextAsyncState? parent, int initialCapacity)
+            public static int? TryCollapseExistingProperties(IScopeContextAsyncState? parent)
             {
                 if (parent is IScopeContextPropertiesAsyncState parentProperties && parentProperties.Parent is IScopeContextPropertiesAsyncState grandParentProperties)
                 {
                     if (parentProperties.NestedState is null && grandParentProperties.NestedState is null)
                     {
-                        var propertyCollectorList = new List<KeyValuePair<string, object?>>();   // Marks the collector as active
-                        var propertyCollector = new ScopeContextPropertyCollector(propertyCollectorList);
-                        var propertyCollection = propertyCollector.StartCaptureProperties(parent);
-                        if (propertyCollectorList.Count > 0 && propertyCollection is Dictionary<string, object?> propertyDictionary)
-                            return propertyDictionary;  // New property collector was built from the list
-                        propertyDictionary = new Dictionary<string, object?>(propertyCollection.Count + initialCapacity, ScopeContext.DefaultComparer);
-                        ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(propertyCollection, propertyDictionary);
-                        return propertyDictionary;
+                        var parentPropertyCount = parentProperties.PropertyCount;
+                        var grandParentPropertyCount = grandParentProperties.PropertyCount;
+                        return (parentPropertyCount > 1 && grandParentPropertyCount < parentPropertyCount) ? parentPropertyCount : (parentPropertyCount + grandParentPropertyCount);
                     }
                 }
 

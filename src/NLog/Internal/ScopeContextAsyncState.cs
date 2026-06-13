@@ -36,6 +36,7 @@
 namespace NLog.Internal
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
 
     /// <summary>
@@ -76,15 +77,16 @@ namespace NLog.Internal
     struct ScopeContextPropertyCollector
     {
         IReadOnlyCollection<KeyValuePair<string, object?>>? _allProperties;
-        List<KeyValuePair<string, object?>> _propertyCollector;
+        ICollection<KeyValuePair<string, object?>>? _propertyCollector;
 
         public bool IsCollectorEmpty => _allProperties is null || (_allProperties.Count == 0 && _propertyCollector is null);
 
         public bool IsCollectorInactive => _allProperties is null;
 
-        public ScopeContextPropertyCollector(List<KeyValuePair<string, object?>> propertyCollector)
+        public ScopeContextPropertyCollector(IReadOnlyCollection<KeyValuePair<string, object?>> allProperties, ICollection<KeyValuePair<string, object?>> propertyCollector)
         {
-            _allProperties = _propertyCollector = propertyCollector;
+            _allProperties = allProperties;
+            _propertyCollector = propertyCollector;
         }
 
         public IReadOnlyCollection<KeyValuePair<string, object?>> StartCaptureProperties(IScopeContextAsyncState? state)
@@ -125,11 +127,11 @@ namespace NLog.Internal
             }
         }
 
-        private static Dictionary<string, object?> MergeUniqueProperties(IReadOnlyCollection<KeyValuePair<string, object?>> currentProperties, IReadOnlyCollection<KeyValuePair<string, object?>> properties)
+        private static Dictionary<string, object?> MergeUniqueProperties(IReadOnlyCollection<KeyValuePair<string, object?>> newProperties, IReadOnlyCollection<KeyValuePair<string, object?>> existingProperties)
         {
-            var scopeProperties = new Dictionary<string, object?>(currentProperties.Count + properties.Count, ScopeContext.DefaultComparer);
-            ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(properties, scopeProperties);
-            ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(currentProperties, scopeProperties);
+            var scopeProperties = new Dictionary<string, object?>(newProperties.Count + existingProperties.Count, ScopeContext.DefaultComparer);
+            ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(newProperties, scopeProperties);
+            ScopeContextPropertyEnumerator<object>.TryAddScopePropertiesToDictionary(existingProperties, scopeProperties);
             return scopeProperties;
         }
 
@@ -145,8 +147,9 @@ namespace NLog.Internal
             // Must validate that collected properties are unique
             if (scopePropertyCount > 10 || !ScopeContextPropertyEnumerator<object?>.HasUniqueCollectionKeys(properties, ScopeContext.DefaultComparer))
             {
+                // The newest properties are added first, so do not overwrite with old values
                 var scopeProperties = new Dictionary<string, object?>(Math.Min(scopePropertyCount, 10), ScopeContext.DefaultComparer);
-                ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(properties, scopeProperties);
+                ScopeContextPropertyEnumerator<object>.TryAddScopePropertiesToDictionary(properties, scopeProperties);
                 return scopeProperties;
             }
 
@@ -163,14 +166,15 @@ namespace NLog.Internal
             {
                 if (_propertyCollector is null)
                 {
-                    _propertyCollector = new List<KeyValuePair<string, object?>>(Math.Max(4, _allProperties.Count + 1));
-                    _propertyCollector.Add(new KeyValuePair<string, object?>(propertyName, propertyValue));
-                    CollectProperties(_allProperties);
-                    _allProperties = _propertyCollector;
+                    var propertyCollector = new List<KeyValuePair<string, object?>>(Math.Max(4, _allProperties.Count + 1));
+                    _propertyCollector = propertyCollector;
+                    CollectProperties(_allProperties, propertyCollector);
+                    propertyCollector.Add(new KeyValuePair<string, object?>(propertyName, propertyValue));
+                    _allProperties = propertyCollector;
                 }
                 else
                 {
-                    _propertyCollector.Insert(0, new KeyValuePair<string, object?>(propertyName, propertyValue));
+                    _propertyCollector.Add(new KeyValuePair<string, object?>(propertyName, propertyValue));
                 }
             }
         }
@@ -185,38 +189,27 @@ namespace NLog.Internal
             {
                 if (_propertyCollector is null)
                 {
-                    _propertyCollector = new List<KeyValuePair<string, object?>>(Math.Max(4, _allProperties.Count + properties.Count));
-                    CollectProperties(properties);
-                    CollectProperties(_allProperties);
-                    _allProperties = _propertyCollector;
-                }
-                else if (_propertyCollector.Count == 0)
-                {
-                    CollectProperties(properties);
+                    var propertyCollector = new List<KeyValuePair<string, object?>>(Math.Max(4, _allProperties.Count + properties.Count));
+                    _propertyCollector = propertyCollector;
+                    CollectProperties(_allProperties, propertyCollector);
+                    CollectProperties(properties, propertyCollector);
+                    _allProperties = propertyCollector;
                 }
                 else
                 {
-                    int insertPosition = 0;
-                    using (var scopeEnumerator = new ScopeContextPropertyEnumerator<object?>(properties))
-                    {
-                        while (scopeEnumerator.MoveNext())
-                        {
-                            var property = scopeEnumerator.Current;
-                            _propertyCollector.Insert(insertPosition++, property);
-                        }
-                    }
+                    CollectProperties(properties, _propertyCollector);
                 }
             }
         }
 
-        private void CollectProperties(IReadOnlyCollection<KeyValuePair<string, object?>> properties)
+        private static void CollectProperties(IReadOnlyCollection<KeyValuePair<string, object?>> properties, ICollection<KeyValuePair<string, object?>> propertyCollector)
         {
             using (var scopeEnumerator = new ScopeContextPropertyEnumerator<object?>(properties))
             {
                 while (scopeEnumerator.MoveNext())
                 {
                     var property = scopeEnumerator.Current;
-                    _propertyCollector.Add(property);
+                    propertyCollector.Add(property);
                 }
             }
         }
@@ -277,6 +270,7 @@ namespace NLog.Internal
     /// </summary>
     internal interface IScopeContextPropertiesAsyncState : IScopeContextAsyncState
     {
+        int PropertyCount { get; }
     }
 
     /// <summary>
@@ -327,6 +321,7 @@ namespace NLog.Internal
     {
         long IScopeContextAsyncState.NestedStateTimestamp => 0;
         object? IScopeContextAsyncState.NestedState => null;
+        int IScopeContextPropertiesAsyncState.PropertyCount => _allProperties?.Count ?? 1;
         public string Name { get; }
         public TValue? Value { get; }
         private IReadOnlyCollection<KeyValuePair<string, object?>>? _allProperties;
@@ -373,29 +368,96 @@ namespace NLog.Internal
     /// <summary>
     /// Immutable state for ScopeContext Multiple Properties (MDLC)
     /// </summary>
+    internal sealed class ScopeContextMergeAsyncState : ScopeContextAsyncState, IScopeContextPropertiesAsyncState, ICollection<KeyValuePair<string, object?>>, IReadOnlyCollection<KeyValuePair<string, object?>>
+    {
+        int IScopeContextPropertiesAsyncState.PropertyCount => MergedProperties.Count;
+
+        public long NestedStateTimestamp { get; }
+        public object? NestedState { get; }
+        public Dictionary<string, object?> MergedProperties { get; }
+
+        public int Count => MergedProperties.Count;
+
+        public ScopeContextMergeAsyncState(IScopeContextAsyncState? parent, int initialCapacity)
+          : base(parent)
+        {
+            MergedProperties = new Dictionary<string, object?>(initialCapacity, ScopeContext.DefaultComparer);
+        }
+
+        public ScopeContextMergeAsyncState(IScopeContextAsyncState? parent, int initialCapacity, object? nestedState)
+            : base(parent)
+        {
+            MergedProperties = new Dictionary<string, object?>(initialCapacity, ScopeContext.DefaultComparer);
+            NestedState = nestedState;
+            NestedStateTimestamp = ScopeContext.GetNestedContextTimestampNow();
+        }
+
+        public IReadOnlyCollection<KeyValuePair<string, object?>>? CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
+        {
+            return contextCollector.CaptureCompleted(MergedProperties);     // We are done
+        }
+
+        public IList<object>? CloneNestedContext(ref ScopeContextNestedStateCollector contextCollector)
+        {
+            return contextCollector.CollectNestedStates(NestedState, Parent);
+        }
+
+        public void Add(KeyValuePair<string, object?> item)
+        {
+            // Newest properties are added first, so do not overwrite with old values
+#if NETSTANDARD2_1_OR_GREATER || NET
+            MergedProperties.TryAdd(item.Key, item.Value);
+#else
+            if (!MergedProperties.ContainsKey(item.Key))
+                MergedProperties.Add(item.Key, item.Value);
+#endif
+        }
+
+        void ICollection<KeyValuePair<string, object?>>.Clear()
+        {
+            MergedProperties.Clear();
+        }
+
+        bool ICollection<KeyValuePair<string, object?>>.Contains(KeyValuePair<string, object?> item)
+        {
+            return MergedProperties.ContainsKey(item.Key);
+        }
+
+        void ICollection<KeyValuePair<string, object?>>.CopyTo(KeyValuePair<string, object?>[] array, int arrayIndex)
+        {
+            ((ICollection<KeyValuePair<string, object?>>)MergedProperties).CopyTo(array, arrayIndex);
+        }
+
+        bool ICollection<KeyValuePair<string, object?>>.Remove(KeyValuePair<string, object?> item)
+        {
+            return MergedProperties.Remove(item.Key);
+        }
+
+        bool ICollection<KeyValuePair<string, object?>>.IsReadOnly => ((ICollection<KeyValuePair<string, object?>>)MergedProperties).IsReadOnly;
+
+        public IEnumerator<KeyValuePair<string, object?>> GetEnumerator()
+        {
+            return MergedProperties.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)MergedProperties).GetEnumerator();
+        }
+    }
+
+    /// <summary>
+    /// Immutable state for ScopeContext Multiple Properties (MDLC)
+    /// </summary>
     internal sealed class ScopeContextPropertiesAsyncState<TValue> : ScopeContextAsyncState, IScopeContextPropertiesAsyncState, IReadOnlyCollection<KeyValuePair<string, object?>>
     {
+        int IScopeContextPropertiesAsyncState.PropertyCount => _allProperties?.Count ?? _scopeProperties.Count;
+
         public long NestedStateTimestamp { get; }
         public object? NestedState { get; }
 
         private readonly IReadOnlyCollection<KeyValuePair<string, TValue?>> _scopeProperties;
         private IReadOnlyCollection<KeyValuePair<string, object?>>? _allProperties;
-
-        public ScopeContextPropertiesAsyncState(IScopeContextAsyncState? parent, Dictionary<string, object?> allProperties)
-            : base(parent)
-        {
-            _allProperties = allProperties; // Collapsed dictionary that includes all properties from parent scopes with case-insensitive-comparer
-            _scopeProperties = Array.Empty<KeyValuePair<string, TValue?>>();
-        }
-
-        public ScopeContextPropertiesAsyncState(IScopeContextAsyncState? parent, Dictionary<string, object?> allProperties, object? nestedState)
-            : base(parent)
-        {
-            _allProperties = allProperties; // Collapsed dictionary that includes all properties from parent scopes with case-insensitive-comparer
-            _scopeProperties = Array.Empty<KeyValuePair<string, TValue?>>();
-            NestedState = nestedState;
-            NestedStateTimestamp = ScopeContext.GetNestedContextTimestampNow();
-        }
 
         public ScopeContextPropertiesAsyncState(IScopeContextAsyncState? parent, IReadOnlyCollection<KeyValuePair<string, TValue?>> scopeProperties)
             : base(parent)
