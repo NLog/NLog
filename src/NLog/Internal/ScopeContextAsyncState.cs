@@ -80,6 +80,8 @@ namespace NLog.Internal
 
         public bool IsCollectorEmpty => _allProperties is null || (_allProperties.Count == 0 && _propertyCollector is null);
 
+        public bool IsCollectorInactive => _allProperties is null;
+
         public ScopeContextPropertyCollector(List<KeyValuePair<string, object?>> propertyCollector)
         {
             _allProperties = _propertyCollector = propertyCollector;
@@ -297,16 +299,18 @@ namespace NLog.Internal
 
             if (objectValue is not null)
                 contextCollector.CollectNestedState(objectValue);
-            return null;    // continue with parent
+            return null;    // Continue with Parent
         }
 
         IReadOnlyCollection<KeyValuePair<string, object?>>? IScopeContextAsyncState.CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
         {
-            if (Parent is null)
-                return contextCollector.IsCollectorEmpty ? Array.Empty<KeyValuePair<string, object?>>() : contextCollector.CaptureCompleted(null);
+            if (contextCollector.IsCollectorInactive && Parent is not null)
+            {
+                contextCollector.AddProperties(Array.Empty<KeyValuePair<string, object?>>());    // Mark as active
+                return contextCollector.StartCaptureProperties(Parent);   // Start parent enumeration
+            }
 
-            contextCollector.AddProperties(Array.Empty<KeyValuePair<string, object?>>());    // Mark as active
-            return contextCollector.StartCaptureProperties(Parent);   // Start parent enumeration
+            return null;    // Continue with Parent
         }
 
         public override string ToString()
