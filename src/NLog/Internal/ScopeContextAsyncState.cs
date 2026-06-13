@@ -253,6 +253,23 @@ namespace NLog.Internal
             }
             _allNestedStates.Add(state);    // Collected in "reversed" order
         }
+
+        public IList<object>? CollectNestedStates(object? nestedState, IScopeContextAsyncState? parent)
+        {
+            if (IsCollectorInactive && parent is not null)
+            {
+                if (nestedState is not null)
+                    CollectNestedState(nestedState);
+                return StartCloneNestedContext(parent);
+            }
+
+            if (parent is null && IsCollectorEmpty)
+                return nestedState is null ? Array.Empty<object>() : new object[] { nestedState };   // We are done
+
+            if (nestedState is not null)
+                CollectNestedState(nestedState);
+            return null;    // Continue with Parent
+        }
     }
 
     /// <summary>
@@ -283,23 +300,7 @@ namespace NLog.Internal
         IList<object>? IScopeContextAsyncState.CloneNestedContext(ref ScopeContextNestedStateCollector contextCollector)
         {
             object? objectValue = _value;
-
-            if (contextCollector.IsCollectorEmpty)
-            {
-                if (Parent is null)
-                    return objectValue is null ? Array.Empty<object>() : new object[] { objectValue }; // We are done
-
-                if (contextCollector.IsCollectorInactive)
-                {
-                    if (objectValue is not null)
-                        contextCollector.CollectNestedState(objectValue);   // Mark as active
-                    return contextCollector.StartCloneNestedContext(Parent);
-                }
-            }
-
-            if (objectValue is not null)
-                contextCollector.CollectNestedState(objectValue);
-            return null;    // Continue with Parent
+            return contextCollector.CollectNestedStates(objectValue, Parent);
         }
 
         IReadOnlyCollection<KeyValuePair<string, object?>>? IScopeContextAsyncState.CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
@@ -339,19 +340,7 @@ namespace NLog.Internal
 
         IList<object>? IScopeContextAsyncState.CloneNestedContext(ref ScopeContextNestedStateCollector contextCollector)
         {
-            if (contextCollector.IsCollectorInactive)
-            {
-                if (Parent is null)
-                {
-                    return Array.Empty<object>();   // We are done
-                }
-                else
-                {
-                    return contextCollector.StartCloneNestedContext(Parent);
-                }
-            }
-
-            return null;    // Continue with Parent
+            return contextCollector.CollectNestedStates(null, Parent);
         }
 
         IReadOnlyCollection<KeyValuePair<string, object?>>? IScopeContextAsyncState.CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
@@ -424,31 +413,7 @@ namespace NLog.Internal
 
         IList<object>? IScopeContextAsyncState.CloneNestedContext(ref ScopeContextNestedStateCollector contextCollector)
         {
-            if (NestedState is null)
-            {
-                if (contextCollector.IsCollectorInactive)
-                    return contextCollector.StartCloneNestedContext(Parent);
-                else
-                    return null;    // continue with parent
-            }
-            else
-            {
-                if (contextCollector.IsCollectorEmpty)
-                {
-                    if (Parent is null)
-                    {
-                        return new object[] { NestedState };    // We are done
-                    }
-                    else if (contextCollector.IsCollectorInactive)
-                    {
-                        contextCollector.CollectNestedState(NestedState);  // Mark as active
-                        return contextCollector.StartCloneNestedContext(Parent);
-                    }
-                }
-
-                contextCollector.CollectNestedState(NestedState);
-                return null;    // continue with parent
-            }
+            return contextCollector.CollectNestedStates(NestedState, Parent);
         }
 
         IReadOnlyCollection<KeyValuePair<string, object?>>? IScopeContextAsyncState.CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
