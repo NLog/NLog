@@ -793,6 +793,26 @@ namespace NLog.UnitTests.Contexts
             Assert.Equal(scopeData, scopeNestedStates[0]);
         }
 
+        [Fact]
+        public void ScopeContextNestedStateWithParentProperties()
+        {
+            // Arrange
+            ScopeContext.Clear();
+
+            // Act
+            object propertyValue;
+            using (ScopeContext.PushProperty("Hello", "World"))
+            {
+                using (ScopeContext.PushNestedState("Hello World"))
+                {
+                    ScopeContext.TryGetProperty("Hello", out propertyValue);
+                }
+            }
+
+            // Assert
+            Assert.Equal("World", propertyValue);
+        }
+
 #if !NET35 && !NET40
         [Fact]
         public void ScopeContextPushWithoutStackOverflow3()
