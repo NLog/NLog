@@ -111,7 +111,7 @@ namespace NLog.Internal
                         return _allProperties = MergeUniqueProperties(_allProperties, properties);
                     }
 
-                    AddProperties(properties);
+                    CollectProperties(properties);
                 }
 
                 return _allProperties = EnsureUniqueProperties(_allProperties);
