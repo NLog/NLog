@@ -905,7 +905,6 @@ namespace NLog.UnitTests.Contexts
 
                         using (ScopeContext.PushProperties(new[] { new KeyValuePair<string, object>("Scope8", "World8"), new KeyValuePair<string, object>("Scope7", "World7") }))
                         {
-                            // Scope4 is top-of-stack and its parent contains the collapsed properties.
                             collection1 = ScopeContext.GetAllProperties();
                             collection2 = ScopeContext.GetAllProperties();
                             Assert.Same(collection1, collection2);

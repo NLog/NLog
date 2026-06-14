@@ -413,37 +413,13 @@ namespace NLog.Internal
 #endif
         }
 
-        void ICollection<KeyValuePair<string, object?>>.Clear()
-        {
-            MergedProperties.Clear();
-        }
-
-        bool ICollection<KeyValuePair<string, object?>>.Contains(KeyValuePair<string, object?> item)
-        {
-            return MergedProperties.ContainsKey(item.Key);
-        }
-
-        void ICollection<KeyValuePair<string, object?>>.CopyTo(KeyValuePair<string, object?>[] array, int arrayIndex)
-        {
-            ((ICollection<KeyValuePair<string, object?>>)MergedProperties).CopyTo(array, arrayIndex);
-        }
-
-        bool ICollection<KeyValuePair<string, object?>>.Remove(KeyValuePair<string, object?> item)
-        {
-            return MergedProperties.Remove(item.Key);
-        }
-
+        void ICollection<KeyValuePair<string, object?>>.Clear() => MergedProperties.Clear();
+        bool ICollection<KeyValuePair<string, object?>>.Contains(KeyValuePair<string, object?> item) => MergedProperties.ContainsKey(item.Key);
+        void ICollection<KeyValuePair<string, object?>>.CopyTo(KeyValuePair<string, object?>[] array, int arrayIndex) => ((ICollection<KeyValuePair<string, object?>>)MergedProperties).CopyTo(array, arrayIndex);
+        bool ICollection<KeyValuePair<string, object?>>.Remove(KeyValuePair<string, object?> item) => MergedProperties.Remove(item.Key);
         bool ICollection<KeyValuePair<string, object?>>.IsReadOnly => ((ICollection<KeyValuePair<string, object?>>)MergedProperties).IsReadOnly;
-
-        public IEnumerator<KeyValuePair<string, object?>> GetEnumerator()
-        {
-            return MergedProperties.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable)MergedProperties).GetEnumerator();
-        }
+        public IEnumerator<KeyValuePair<string, object?>> GetEnumerator() => MergedProperties.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)MergedProperties).GetEnumerator();
     }
 
     /// <summary>
