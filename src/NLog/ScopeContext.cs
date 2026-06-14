@@ -609,7 +609,9 @@ namespace NLog
             var oldContext = GetMappedContextCallContext();
             if (oldContext?.ContainsKey(key) == true)
             {
-                var newContext = CloneMappedContext(oldContext, 0);
+                var newContext = new Dictionary<string, object?>(oldContext.Count, DefaultComparer);
+                foreach (var item in oldContext)
+                    newContext.Add(item.Key, item.Value);
                 newContext.Remove(key);
                 SetMappedContextCallContext(newContext);
             }
@@ -729,13 +731,21 @@ namespace NLog
         private static Dictionary<string, object?>? PushPropertiesCallContext<TValue>(IReadOnlyCollection<KeyValuePair<string, TValue>> properties)
         {
             var oldContext = GetMappedContextCallContext();
-            var newContext = CloneMappedContext(oldContext, properties.Count);
+            var newContext = oldContext?.Count > 0 ? new Dictionary<string, object?>(oldContext.Count + properties.Count, DefaultComparer) : new Dictionary<string, object?>(properties.Count, DefaultComparer);
             using (var scopeEnumerator = new ScopeContextPropertyEnumerator<TValue>(properties))
             {
                 while (scopeEnumerator.MoveNext())
                 {
                     var item = scopeEnumerator.Current;
                     SetPropertyCallContext(item.Key, item.Value, newContext);
+                }
+            }
+            if (oldContext?.Count > 0)
+            {
+                foreach (var item in oldContext)
+                {
+                    if (!newContext.ContainsKey(item.Key))
+                        newContext.Add(item.Key, item.Value);
                 }
             }
             SetMappedContextCallContext(newContext);
@@ -746,8 +756,24 @@ namespace NLog
         private static Dictionary<string, object?>? PushPropertyCallContext<TValue>(string propertyName, TValue propertyValue)
         {
             var oldContext = GetMappedContextCallContext();
-            var newContext = CloneMappedContext(oldContext, 1);
+            var newContext = oldContext?.Count > 0 ? new Dictionary<string, object?>(oldContext.Count + 1, DefaultComparer) : new Dictionary<string, object?>(DefaultComparer);
             SetPropertyCallContext(propertyName, propertyValue, newContext);
+            if (oldContext?.Count > 0)
+            {
+                if (!oldContext.ContainsKey(propertyName))
+                {
+                    foreach (var item in oldContext)
+                        newContext.Add(item.Key, item.Value);
+                }
+                else
+                {
+                    foreach (var item in oldContext)
+                    {
+                        if (!DefaultComparer.Equals(item.Key, propertyName))
+                            newContext.Add(item.Key, item.Value);
+                    }
+                }
+            }
             SetMappedContextCallContext(newContext);
             return oldContext;
         }
@@ -770,19 +796,6 @@ namespace NLog
                     yield return item;
                 }
             }
-        }
-
-        private static Dictionary<string, object?> CloneMappedContext(Dictionary<string, object?>? oldContext, int initialCapacity = 0)
-        {
-            if (oldContext?.Count > 0)
-            {
-                var dictionary = new Dictionary<string, object?>(oldContext.Count + initialCapacity, DefaultComparer);
-                foreach (var keyValue in oldContext)
-                    dictionary[keyValue.Key] = keyValue.Value;
-                return dictionary;
-            }
-
-            return new Dictionary<string, object?>(initialCapacity, DefaultComparer);
         }
 
         private static void SetPropertyCallContext<TValue>(string item, TValue? value, Dictionary<string, object?> mappedContext)
