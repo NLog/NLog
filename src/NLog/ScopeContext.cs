@@ -79,7 +79,9 @@ namespace NLog
                         var collapsedState = new ScopeContextMergeAsyncState(parent?.Parent?.Parent, existingPropertyCount.Value + properties.Count, nestedState);
                         ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(properties, collapsedState.MergedProperties);
                         var propertyCollector = new ScopeContextPropertyCollector(collapsedState.MergedProperties, collapsedState);
-                        propertyCollector.StartCaptureProperties(parent);
+                        var allProperties = propertyCollector.StartCaptureProperties(parent);
+                        if (collapsedState.MergedProperties.Count == 0)
+                            ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(allProperties, collapsedState.MergedProperties);
                         SetAsyncLocalContext(collapsedState);
                         return new ScopeContextPropertiesCollapsed(parent, collapsedState);
                     }
@@ -131,7 +133,9 @@ namespace NLog
                 var collapsedState = new ScopeContextMergeAsyncState(parent?.Parent?.Parent, existingPropertyCount.Value + properties.Count);
                 ScopeContextPropertyEnumerator<TValue>.CopyScopePropertiesToDictionary(properties, collapsedState.MergedProperties);
                 var propertyCollector = new ScopeContextPropertyCollector(collapsedState.MergedProperties, collapsedState);
-                propertyCollector.StartCaptureProperties(parent);
+                var allProperties = propertyCollector.StartCaptureProperties(parent);
+                if (collapsedState.MergedProperties.Count == 0)
+                    ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(allProperties, collapsedState.MergedProperties);
                 SetAsyncLocalContext(collapsedState);
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
             }
