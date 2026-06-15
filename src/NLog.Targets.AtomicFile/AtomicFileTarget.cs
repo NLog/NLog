@@ -54,21 +54,6 @@ namespace NLog.Targets
         /// </summary>
         public bool ConcurrentWrites { get; set; } = true;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AtomicFileTarget" /> class.
-        /// </summary>
-        public AtomicFileTarget()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AtomicFileTarget" /> class.
-        /// </summary>
-        /// <param name="hooks">Hooks to perform actions on certain life cycle events.</param>
-        public AtomicFileTarget(FileLifecycleHooks hooks) : base(hooks)
-        {
-        }
-
         /// <inheritdoc />
         protected override Stream CreateFileStream(string filePath, int bufferSize)
         {

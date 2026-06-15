@@ -63,15 +63,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GZipFileTarget" /> class.
-        /// </summary>
-        /// <param name="hooks">Hooks to perform actions on certain life cycle events.</param>
-        public GZipFileTarget(FileLifecycleHooks hooks) : base(hooks)
-        {
-            ArchiveOldFileOnStartup = true; // Not possible to append to existing file using GZip, must read the entire file into memory and rewrite everything again
-        }
-
-        /// <summary>
         /// Gets or sets whether to enable file-compression using <see cref="GZipStream" />
         /// </summary>
         public bool EnableArchiveFileCompression { get; set; } = true;

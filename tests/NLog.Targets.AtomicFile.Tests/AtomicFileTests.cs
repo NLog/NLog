@@ -31,79 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System.Runtime.InteropServices;
-
 namespace NLog.Targets.AtomicFile.Tests
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using Xunit;
 
     public class AtomicFileTests
     {
         public AtomicFileTests()
         {
             LogManager.ThrowExceptions = true;
-        }
-
-        [Fact]
-        public void SimpleAtomicFileStream_HeaderFooterBom()
-        {
-            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
-            var logFileName = Path.Combine(tempDir, "log.txt");
-
-            try
-            {
-                var callRecording = new List<string>();
-                var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
-                {
-                    cfg.ForLogger().WriteTo(new AtomicFileTarget(new MockFileLifecycleHooks("hooks", callRecording))
-                    {
-                        FileName = logFileName,
-                        Layout = "${message}",
-                        LineEnding = LineEndingMode.LF,
-                        Header = "Hello World",
-                        Footer = "Goodbye World",
-                        WriteBom = true
-                    });
-                }).LogFactory;
-
-                logFactory.GetCurrentClassLogger().Info("There was light");
-                logFactory.Shutdown();
-
-                using (var logFile = new StreamReader(new FileStream(logFileName, FileMode.Open)))
-                {
-                    Assert.Equal("Hello World", logFile.ReadLine());
-                    Assert.Equal("There was light", logFile.ReadLine());
-                    Assert.Equal("Goodbye World", logFile.ReadLine());
-                    Assert.Null(logFile.ReadLine());
-                }
-
-                var streamName = RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? "UnixStream" : "FileStream";
-                var expected = new List<string>
-                {
-                    "hooks_OnTargetInitialize_AtomFile",
-                    $"hooks_OnFileOpened_{logFileName}_{streamName}",
-                    "hooks_OnTargetClose_AtomFile",
-                    $"hooks_OnFileClosed_{logFileName}"
-                };
-
-                Assert.Equal(expected.Count, callRecording.Count);
-                for (var i = 0; i < expected.Count; i++)
-                {
-                    var expectedString = expected[i];
-                    var actualString = callRecording[i];
-                    Assert.True(expectedString.Equals(actualString, StringComparison.OrdinalIgnoreCase), $"Call record '{actualString}' does not match expected value '{expectedString}'");
-                }
-            }
-            finally
-            {
-                if (File.Exists(logFileName))
-                    File.Delete(logFileName);
-                if (Directory.Exists(tempDir))
-                    Directory.Delete(tempDir, true);
-            }
         }
 
         private sealed class MockFileLifecycleHooks : FileLifecycleHooks

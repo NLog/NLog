@@ -466,7 +466,7 @@ namespace NLog.Targets
         /// <summary>
         /// Optional file lifecycle hooks.
         /// </summary>
-        protected internal FileLifecycleHooks? Hooks { get; }
+        internal FileLifecycleHooks? Hooks { get; }
 
         private int OpenFileMonitorTimerInterval
         {
