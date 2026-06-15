@@ -34,8 +34,8 @@
 namespace NLog.Targets.AtomicFile.Tests
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
+    using Xunit;
 
     public class AtomicFileTests
     {
@@ -44,38 +44,45 @@ namespace NLog.Targets.AtomicFile.Tests
             LogManager.ThrowExceptions = true;
         }
 
-        private sealed class MockFileLifecycleHooks : FileLifecycleHooks
+        [Fact]
+        public void SimpleAtomicFileStream_HeaderFooterBom()
         {
-            private string _name;
-            private List<string> _callRecording;
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+            var logFileName = Path.Combine(tempDir, "log.txt");
 
-            public MockFileLifecycleHooks(string name, List<string> callRecording)
+            try
             {
-                _name = name;
-                _callRecording = callRecording;
+                var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+                {
+                    cfg.ForLogger().WriteTo(new AtomicFileTarget()
+                    {
+                        FileName = logFileName,
+                        Layout = "${message}",
+                        LineEnding = LineEndingMode.LF,
+                        Header = "Hello World",
+                        Footer = "Goodbye World",
+                        WriteBom = true,
+                    });
+                }).LogFactory;
+
+                logFactory.GetCurrentClassLogger().Info("There was light");
+                logFactory.Shutdown();
+
+                using (var logFile = new StreamReader(new FileStream(logFileName, FileMode.Open)))
+                {
+                    Assert.Equal("Hello World", logFile.ReadLine());
+                    Assert.Equal("There was light", logFile.ReadLine());
+                    Assert.Equal("Goodbye World", logFile.ReadLine());
+                    Assert.Null(logFile.ReadLine());
+                }
             }
-
-            #region Overrides of FileLifecycleHooks
-
-            public override void OnTargetClose(FileTarget target) =>
-                _callRecording.Add($"{_name}_{nameof(OnTargetClose)}_{target.Name}");
-
-            public override void OnFileClosed(String filePath) =>
-                _callRecording.Add($"{_name}_{nameof(OnFileClosed)}_{filePath}");
-
-            public override void OnFileDeleting(String filePath) =>
-                _callRecording.Add($"{_name}_{nameof(OnFileDeleting)}_{filePath}");
-
-            public override Stream OnFileOpened(String filePath, Stream underlyingStream)
+            finally
             {
-                _callRecording.Add($"{_name}_{nameof(OnFileOpened)}_{filePath}_{underlyingStream.GetType().Name}");
-                return underlyingStream;
+                if (File.Exists(logFileName))
+                    File.Delete(logFileName);
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
             }
-
-            public override void OnTargetInitialize(FileTarget target) =>
-                _callRecording.Add($"{_name}_{nameof(OnTargetInitialize)}_{target.Name}");
-
-            #endregion
         }
     }
 }
