@@ -42,10 +42,13 @@ namespace NLog.Targets
     public abstract class FileLifecycleHooks
     {
         /// <summary>
-        /// Called before a log file gets deleted.
-        /// This can be used to copy old logs to an archive location or send to a backup server.
+        /// Invoked immediately before a log file is deleted.
         /// </summary>
-        /// <param name="filePath">The full path to the file being deleted.</param>
+        /// <remarks>
+        /// Use this callback to perform custom actions before a log file is removed, such as copying it to an archive location or uploading it to a backup server.
+        /// The timing of file deletion depends on the archive retention settings. Use <see cref="FileTarget.MaxArchiveDays"/> and <see cref="FileTarget.MaxArchiveFiles"/> to control when archived log files become eligible for deletion.
+        /// </remarks>
+        /// <param name="filePath">The full path of the log file that is about to be deleted.</param>
         public virtual void OnFileDeleting(string filePath)
         {
         }
