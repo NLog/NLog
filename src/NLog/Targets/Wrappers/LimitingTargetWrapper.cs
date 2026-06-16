@@ -113,7 +113,13 @@ namespace NLog.Targets.Wrappers
         public int MessagesWrittenCount { get; private set; }
 
         /// <summary>
-        /// Initializes the target and resets the current Interval and <see cref="MessagesWrittenCount"/>.
+        /// Gets the number of <see cref="AsyncLogEventInfo"/> discarded in the current <see cref="Interval"/> because <see cref="MessageLimit"/> was reached.
+        /// </summary>
+        /// <docgen category='General Options' order='10' />
+        public int MessagesDroppedCount { get; private set; }
+
+        /// <summary>
+        /// Initializes the target and resets the current Interval, <see cref="MessagesWrittenCount"/>, and <see cref="MessagesDroppedCount"/>.
         ///  </summary>
         protected override void InitializeTarget()
         {
@@ -151,6 +157,7 @@ namespace NLog.Targets.Wrappers
             }
             else
             {
+                MessagesDroppedCount++;
                 logEvent.Continuation(null);
                 InternalLogger.Trace("{0}: Discarded event, because MessageLimit of '{1}' was reached.", this, messageLimit);
             }
@@ -160,6 +167,7 @@ namespace NLog.Targets.Wrappers
         {
             _firstWriteInInterval = timestamp;
             MessagesWrittenCount = 0;
+            MessagesDroppedCount = 0;
         }
     }
 }
