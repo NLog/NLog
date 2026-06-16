@@ -1413,8 +1413,7 @@ namespace NLog.Targets
                 fileMode = FileMode.Create; // Create or truncate
             }
 
-            var stream = new FileStream(filePath, fileMode, FileAccess.Write, fileShare, bufferSize);
-            return stream;
+            return new FileStream(filePath, fileMode, FileAccess.Write, fileShare, bufferSize);
         }
 
         private IFileAppender CreateFileAppender(string filePath)

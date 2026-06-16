@@ -4674,6 +4674,7 @@ namespace NLog.UnitTests.Targets
                 _callRecording.Add($"{_name}_{nameof(OnTargetClose)}_{target.Name}");
                 if (_throwOnCall)
                     throw new DivideByZeroException("Test error");
+                base.OnTargetClose(target);
             }
 
             public override void OnFileClosed(String filePath)
@@ -4681,6 +4682,7 @@ namespace NLog.UnitTests.Targets
                 _callRecording.Add($"{_name}_{nameof(OnFileClosed)}_{filePath}");
                 if (_throwOnCall)
                     throw new DivideByZeroException("Test error");
+                base.OnFileClosed(filePath);
             }
 
             public override void OnFileDeleting(String filePath)
@@ -4688,6 +4690,7 @@ namespace NLog.UnitTests.Targets
                 _callRecording.Add($"{_name}_{nameof(OnFileDeleting)}_{filePath}");
                 if (_throwOnCall)
                     throw new DivideByZeroException("Test error");
+                base.OnFileDeleting(filePath);
             }
 
             public override Stream OnFileOpened(String filePath, Stream underlyingStream)
@@ -4701,6 +4704,7 @@ namespace NLog.UnitTests.Targets
                 _callRecording.Add($"{_name}_{nameof(OnTargetInitialize)}_{target.Name}");
                 if (_throwOnCall)
                     throw new DivideByZeroException("Test error");
+                base.OnTargetInitialize(target);
             }
 
             #endregion
