@@ -37,8 +37,7 @@ namespace NLog.Targets
 {
     /// <summary>
     ///     Enables hooking into log file lifecycle events.
-    ///     Hooks run synchronously and therefore may affect responsiveness of the application if long operations are
-    ///     performed.
+    ///     Hooks run synchronously and therefore may affect responsiveness of the application if long operations are performed.
     /// </summary>
     public abstract class FileLifecycleHooks
     {
