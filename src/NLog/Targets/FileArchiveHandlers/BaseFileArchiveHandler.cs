@@ -440,7 +440,7 @@ namespace NLog.Targets.FileArchiveHandlers
                     _fileTarget.CloseOpenFileBeforeArchiveCleanup(filepath);
                     try
                     {
-                        _fileTarget.Hooks?.OnFileDeleting(filepath);
+                        _fileTarget.FileLifeCycle?.OnFileDeleting(filepath);
                     }
                     catch (Exception ex)
                     {

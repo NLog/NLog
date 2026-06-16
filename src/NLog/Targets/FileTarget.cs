@@ -466,7 +466,7 @@ namespace NLog.Targets
         /// <summary>
         /// Optional file lifecycle hooks.
         /// </summary>
-        internal FileLifecycleHooks? Hooks { get; }
+        internal FileLifecycleHooks? FileLifeCycle { get; }
 
         private int OpenFileMonitorTimerInterval
         {
@@ -539,10 +539,10 @@ namespace NLog.Targets
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
-        /// <param name="hooks">Hooks to perform actions on certain life cycle events.</param>
+        /// <param name="hooks">FileLifeCycle to perform actions on certain life cycle events.</param>
         public FileTarget(FileLifecycleHooks hooks) : this()
         {
-            Hooks = Guard.ThrowIfNull(hooks);
+            FileLifeCycle = Guard.ThrowIfNull(hooks);
         }
 
         /// <summary>
@@ -583,7 +583,7 @@ namespace NLog.Targets
 
             try
             {
-                Hooks?.OnTargetInitialize(this);
+                FileLifeCycle?.OnTargetInitialize(this);
             }
             catch (Exception ex)
             {
@@ -609,7 +609,7 @@ namespace NLog.Targets
         {
             try
             {
-                Hooks?.OnTargetClose(this);
+                FileLifeCycle?.OnTargetClose(this);
             }
             catch (Exception ex)
             {
@@ -1032,7 +1032,7 @@ namespace NLog.Targets
 
                 try
                 {
-                    Hooks?.OnFileClosed(openFile.FileAppender.FilePath);
+                    FileLifeCycle?.OnFileClosed(openFile.FileAppender.FilePath);
                 }
                 catch (Exception ex)
                 {
@@ -1337,7 +1337,7 @@ namespace NLog.Targets
 
             try
             {
-                var wrappedStream = Hooks?.OnFileOpened(filePath, fileStream);
+                var wrappedStream = FileLifeCycle?.OnFileOpened(filePath, fileStream);
                 if (wrappedStream is not null)
                     fileStream = wrappedStream;
             }
