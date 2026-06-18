@@ -52,7 +52,7 @@ namespace NLog.Targets
         ///     - An open file is deleted from storage and no longer exists.
         ///     - If <see cref="FileTarget.DeleteOldFileOnStartup"/> is enabled, <see cref="FileTarget"/> may close open files.
         ///     - <see cref="FileTarget"/> closes all open files when the target itself is shutting down.
-        ///     - If <see cref="FileTarget.OpenFileMonitorTimerInterval"/> is greater than 0, <see cref="FileTarget"/> may close files that have not received log events for a period of time.
+        ///     You can set <see cref="FileTarget.OpenFileCacheSize "/> to <value>1</value> to prevent having multiple file open at the same time.
         /// </remarks>
         /// <param name="filePath">The full path to the file being closed.</param>
         public virtual void OnFileClosed(string filePath)
