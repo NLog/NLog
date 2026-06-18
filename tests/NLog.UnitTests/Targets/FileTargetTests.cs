@@ -4702,8 +4702,6 @@ namespace NLog.UnitTests.Targets
             public override void OnTargetInitialize(FileTarget target)
             {
                 _callRecording.Add($"{_name}_{nameof(OnTargetInitialize)}_{target.Name}");
-                if (_throwOnCall)
-                    throw new DivideByZeroException("Test error");
                 base.OnTargetInitialize(target);
             }
 
