@@ -111,7 +111,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void HooksTest()
+        public void FileLifeCycleTest()
         {
             var logFile = Path.GetTempFileName();
             try
@@ -155,7 +155,7 @@ namespace NLog.UnitTests.Targets
 
 
         [Fact]
-        public void Hooks_ErrorHandlingTest()
+        public void FileLifeCycle_ErrorHandlingTest()
         {
             var logFile = Path.GetTempFileName();
             try

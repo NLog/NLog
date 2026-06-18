@@ -539,10 +539,10 @@ namespace NLog.Targets
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
-        /// <param name="hooks">FileLifeCycle to perform actions on certain life cycle events.</param>
-        public FileTarget(FileLifecycleHooks hooks) : this()
+        /// <param name="fileLifeCycle">FileLifeCycle to perform actions on certain life cycle events.</param>
+        public FileTarget(FileLifecycleHooks fileLifeCycle) : this()
         {
-            FileLifeCycle = Guard.ThrowIfNull(hooks);
+            FileLifeCycle = Guard.ThrowIfNull(fileLifeCycle);
         }
 
         /// <summary>
@@ -983,15 +983,6 @@ namespace NLog.Targets
 
         internal void CloseOpenFileBeforeArchiveFileDelete(string filepath)
         {
-            try
-            {
-                FileLifeCycle?.OnFileDeleting(filepath);
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileDeleting), filepath);
-            }
-
             KeyValuePair<string, OpenFileAppender> foundOpenFile;
 
             string fileName = _openFileCache.Count > 0 ? Path.GetFileName(filepath) : string.Empty;
@@ -1016,6 +1007,15 @@ namespace NLog.Targets
                     CloseFile(foundOpenFile.Key, foundOpenFile.Value);
                 }
             } while (foundOpenFile.Key != null);
+
+            try
+            {
+                FileLifeCycle?.OnFileDeleting(filepath);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileDeleting), filepath);
+            }
         }
 
         private void CloseFile(string filename, OpenFileAppender openFile)
