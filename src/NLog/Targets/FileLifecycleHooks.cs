@@ -84,7 +84,10 @@ namespace NLog.Targets
         /// <summary>
         ///     Called when the target is being closed.
         /// </summary>
-        /// <param name="target">Closing target.</param>
+        /// <remarks>
+        ///      You can use this method to perform custom cleanup logic and to distinguish between files being closed due to rollover and those being closed because the target itself is shutting down.
+        /// </remarks>
+        /// <param name="target">The target that is being closed.</param>
         public virtual void OnTargetClose(FileTarget target)
         {
         }
@@ -92,7 +95,11 @@ namespace NLog.Targets
         /// <summary>
         ///     Called when the target gets initialized.
         /// </summary>
-        /// <param name="target">Initialized target.</param>
+        /// <remarks>
+        ///     If <see cref="OnTargetInitialize"/> throws an exception, the <see cref="FileTarget"/> is placed into an error state and will be disabled for output.
+        ///     You can use this method to modify the properties of <paramref name="target"/> in order to adjust the behavior of <see cref="FileTarget"/> according to your requirements.
+        /// </remarks>
+        /// <param name="target"><see cref="FileTarget"/> beeing initialized.</param>
         public virtual void OnTargetInitialize(FileTarget target)
         {
         }

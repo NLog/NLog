@@ -466,7 +466,7 @@ namespace NLog.Targets
         /// <summary>
         /// Optional file lifecycle hooks.
         /// </summary>
-        internal FileLifecycleHooks? FileLifeCycle { get; }
+        private FileLifecycleHooks? FileLifeCycle { get; }
 
         private int OpenFileMonitorTimerInterval
         {
@@ -581,14 +581,7 @@ namespace NLog.Targets
             if (Layout.IsNullOrEmpty(FileName))
                 throw new NLogConfigurationException("FileTarget FileName-property must be assigned. FileName is needed for file writing.");
 
-            try
-            {
-                FileLifeCycle?.OnTargetInitialize(this);
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error", this, nameof(FileLifecycleHooks.OnTargetInitialize));
-            }
+            FileLifeCycle?.OnTargetInitialize(this);
 
             if (_archiveSuffixFormat != null)
             {
@@ -988,8 +981,17 @@ namespace NLog.Targets
             }
         }
 
-        internal void CloseOpenFileBeforeArchiveCleanup(string filepath)
+        internal void CloseOpenFileBeforeArchiveFileDelete(string filepath)
         {
+            try
+            {
+                FileLifeCycle?.OnFileDeleting(filepath);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileDeleting), filepath);
+            }
+
             KeyValuePair<string, OpenFileAppender> foundOpenFile;
 
             string fileName = _openFileCache.Count > 0 ? Path.GetFileName(filepath) : string.Empty;

@@ -437,15 +437,7 @@ namespace NLog.Targets.FileArchiveHandlers
                 try
                 {
                     InternalLogger.Info("{0}: Cleanup file archive {1}. Delete file: '{2}'", _fileTarget, archiveCleanupReason, filepath);
-                    _fileTarget.CloseOpenFileBeforeArchiveCleanup(filepath);
-                    try
-                    {
-                        _fileTarget.FileLifeCycle?.OnFileDeleting(filepath);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", _fileTarget, nameof(FileLifecycleHooks.OnFileDeleting), filepath);
-                    }
+                    _fileTarget.CloseOpenFileBeforeArchiveFileDelete(filepath);
 
                     File.Delete(filepath);
                     return true;
