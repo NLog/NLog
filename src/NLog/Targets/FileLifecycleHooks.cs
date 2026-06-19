@@ -45,7 +45,7 @@ namespace NLog.Targets
         ///        Called after an open file has been closed.
         /// </summary>
         /// <remarks>
-        ///     Note that<see cref="OnFileClosed" /> is not guaranteed to be invoked before <see cref = "FileTarget" /> advances to the next file.
+        ///     Note that <see cref="OnFileClosed" /> is not guaranteed to be invoked before <see cref = "FileTarget" /> advances to the next file.
         ///     You may override <see cref="OnTargetClose" /> to determine whether a file-closed event was caused by <see cref="FileTarget" /> shutting down or by <see cref="FileTarget" /> switching to a different file.
         ///     <see cref="FileTarget"/> may close files in the following scenarios:
         ///     - <see cref="FileTarget"/> archives the current file because of an archive constraint and switches to the next file.
@@ -99,7 +99,7 @@ namespace NLog.Targets
         ///     If <see cref="OnTargetInitialize"/> throws an exception, the <see cref="FileTarget"/> is placed into an error state and will be disabled for output.
         ///     You can use this method to modify the properties of <paramref name="target"/> in order to adjust the behavior of <see cref="FileTarget"/> according to your requirements.
         /// </remarks>
-        /// <param name="target"><see cref="FileTarget"/> beeing initialized.</param>
+        /// <param name="target"><see cref="FileTarget"/> being initialized.</param>
         public virtual void OnTargetInitialize(FileTarget target)
         {
         }
