@@ -123,7 +123,8 @@ namespace NLog.UnitTests.Targets
                     Name = "my-file",
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
-                    OpenFileCacheTimeout = 0
+                    ArchiveAboveSize = 5,
+                    MaxArchiveFiles = 1
                 };
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
@@ -132,11 +133,17 @@ namespace NLog.UnitTests.Targets
                 logger.Info("bbb");
                 logger.Warn("ccc");
 
-                LogManager.Configuration = null;    // Flush
+                LogManager.Configuration = null; // Flush
 
                 var expected = new List<string>
                 {
                     "hooks_OnTargetInitialize_my-file",
+                    $"hooks_OnFileOpened_{logFile}_FileStream",
+                    $"hooks_OnFileClosed_{logFile}",
+                    $"hooks_OnFileDeleting_{logFile}",
+                    $"hooks_OnFileOpened_{logFile}_FileStream",
+                    $"hooks_OnFileClosed_{logFile}",
+                    $"hooks_OnFileDeleting_{logFile}",
                     $"hooks_OnFileOpened_{logFile}_FileStream",
                     "hooks_OnTargetClose_my-file",
                     $"hooks_OnFileClosed_{logFile}"
@@ -144,7 +151,7 @@ namespace NLog.UnitTests.Targets
 
                 Assert.Equal(expected, callRecording);
 
-                AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+                AssertFileContents(logFile, "Warn ccc\n", Encoding.UTF8);
             }
             finally
             {
