@@ -4703,6 +4703,7 @@ namespace NLog.UnitTests.Targets
             public override Stream OnFileOpened(String filePath, Stream underlyingStream)
             {
                 _callRecording.Add($"{_name}_{nameof(OnFileOpened)}_{filePath}_{underlyingStream.GetType().Name}");
+                underlyingStream = base.OnFileOpened(filePath, underlyingStream);
                 return _throwOnCall ? throw new DivideByZeroException("Test error") : underlyingStream;
             }
 
