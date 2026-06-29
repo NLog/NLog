@@ -128,7 +128,8 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog throwExceptions=true />")]
         [InlineData("<nlog throwExceptions='true />")]
         [InlineData("<nlog throwExceptions=\"true />")]
-        [InlineData("<nlog throwExceptions='&gt' />")]
+        [InlineData("<nlog throwExceptions='<' />")]
+        [InlineData("<nlog throwExceptions='&lt' />")]
         [InlineData("<nlog xsi:internalLogLevel='Debug' throwExceptions='true\" />")]
         [InlineData("<nlog xsi:internalLogLevel='Debug' throwExceptions=\"true' />")]
         [InlineData("<nlog xsi:internalLogLevel='Debug' throwExceptions=true />")]
@@ -246,14 +247,16 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog internalLogFile='./logfile.txt' />", "./logfile.txt")]
         [InlineData("<nlog internalLogFile='./%HOSTNAME%.txt' />", "./%HOSTNAME%.txt")]
         [InlineData("<nlog internalLogFile='http://example.com' />", "http://example.com")]
-        [InlineData("<nlog internalLogFile=' < > ? \" & ' />", " < > ? \" & ")]
-        [InlineData("<nlog internalLogFile=' < > ? \" &' />", " < > ? \" &")]
+        [InlineData("<nlog internalLogFile=' &lt; > ? \" & ' />", " < > ? \" & ")]
+        [InlineData("<nlog internalLogFile=' &lt; > ? \" &' />", " < > ? \" &")]
         [InlineData("<nlog internalLogFile=' &lt; &gt; ? &quot; &amp; ' />", " < > ? \" & ")]
         [InlineData("<nlog internalLogFile=' &lt; &gt; ? &quot; &amp;' />", " < > ? \" &")]
         [InlineData("<nlog internalLogFile=' &#60; &#62; ? &#34; &#38; ' />", " < > ? \" & ")]
         [InlineData("<nlog internalLogFile=' &#60; &#62; ? &#34; &#38;' />", " < > ? \" &")]
         [InlineData("<nlog internalLogFile=' &#x3c; &#x3e; ? &#x22; &#x26; ' />", " < > ? \" & ")]
         [InlineData("<nlog internalLogFile=' &#x3c; &#x3e; ? &#x22; &#x26;' />", " < > ? \" &")]
+        [InlineData("<nlog internalLogFile='&#x3c;&#x3e;' />", "<>")]
+        [InlineData("<nlog internalLogFile='&lt;&gt;' />", "<>")]
         public void XmlParse_Attributes_Tokens(string xmlSource, string value)
         {
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
