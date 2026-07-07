@@ -78,7 +78,7 @@ namespace NLog.Targets
     {
         private readonly Timer _taskTimeoutTimer;
         private CancellationTokenSource _cancelTokenSource;
-        AsyncRequestQueueBase _requestQueue;
+        private AsyncRequestQueueBase _requestQueue;
         private readonly Action _taskCancelledTokenReInit;
         private readonly Action<Task, object?> _taskCompletion;
         private Task? _previousTask;
@@ -496,6 +496,7 @@ namespace NLog.Targets
                         {
                             if (TaskCreation(logEvents))
                                 return;
+                            _previousTask = null;   // Completed flush, and previous task has completed, but check queue for more.
                         }
                         else
                         {
@@ -556,16 +557,7 @@ namespace NLog.Targets
                         {
                             retryTask = StartWriteAsyncTask(logEvents, _cancelTokenSource.Token);
                         }
-                        if (retryTask != null)
-                        {
-                            return WriteAsyncTaskWithRetry(retryTask, logEvents, _cancelTokenSource.Token, retryCount - 1);
-                        }
-
-#if !NET45
-                        return System.Threading.Tasks.Task.CompletedTask;
-#else
-                        return System.Threading.Tasks.Task.FromResult<object?>(null);
-#endif
+                        return WriteAsyncTaskWithRetry(retryTask, logEvents, _cancelTokenSource.Token, retryCount - 1);
                     }, cancellationToken, TaskContinuationOptions.DenyChildAttach, TaskScheduler).Unwrap();
                 }
 
@@ -645,7 +637,6 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                _previousTask = null;
                 InternalLogger.Error(ex, "{0}: WriteAsyncTask failed on creation", this);
                 NotifyTaskCompletion(reusableLogEvents?.Item2 ?? (IList<AsyncContinuation>)ArrayHelper.Empty<AsyncContinuation>(), ex);
             }

@@ -586,7 +586,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void AsynTaskTarget_AutoFlushWrapper()
+        public void AsyncTaskTarget_AutoFlushWrapper()
         {
             var asyncTarget = new AsyncTaskBatchTestTarget
             {
@@ -634,6 +634,40 @@ namespace NLog.UnitTests.Targets
 
             // Assert
             Assert.Equal(1, asyncTarget.WriteTasks);
+        }
+
+        [Fact]
+        public void AsyncTaskTarget_TestFlushAfterWriteFailure()
+        {
+            var asyncTarget = new AsyncTaskTestTarget
+            {
+                Layout = "${message}",
+                TaskDelayMilliseconds = 750,    // Large enough that Flush() is always enqueued before the timer fires
+                BatchSize = 1,
+            };
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(asyncTarget);
+            }).LogFactory;
+            var logger = logFactory.GetCurrentClassLogger();
+
+            // Step 1: Write event that will fail when timer fires for background-writer.
+            logger.Info("EXCEPTION");
+
+            // Step 2: Flush that triggers timer immediately, and because BatchSize=1 then it first writes the failing LogEvent, and afterwards handles the synthetic flush-event in next batch.
+            logFactory.Flush(TimeSpan.FromSeconds(5));
+
+            // Step 3: Write next event.
+            logger.Info("INFO");
+
+            // Assert the INFO event is processed by the background-writer timer WITHOUT an explicit Flush.
+            Assert.True(asyncTarget.WaitForWriteEvent(), "INFO event should be processed by the background-writer timer after failed task + flush");
+            Assert.Single(asyncTarget.Logs);
+            asyncTarget.Logs.TryDequeue(out var message);
+            Assert.Equal("INFO", message);
+
+            logFactory.Configuration = null;
         }
 
         [Fact]
