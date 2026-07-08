@@ -4,6 +4,32 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.1.4 (2026/07/08)
+**Improvements**
+- [#6225](https://github.com/NLog/NLog/pull/6225) AsyncTaskTarget - Fixed bug when using BatchSize=1 and doing explicit flush and next LogEvent fails. (@snakefoot)
+- [#6206](https://github.com/NLog/NLog/pull/6206) MruCache - Changed to ConcurrentDictionary but still single writer. (@snakefoot)
+- [#6205](https://github.com/NLog/NLog/pull/6205) TargetWithFilterChain - Increase CallSite MaxCapacity from 1000 to 2000. (@snakefoot)
+- [#6197](https://github.com/NLog/NLog/pull/6197) JsonAttribute - New constructor with JsonLayout and Encode = false. (@snakefoot)
+- [#6174](https://github.com/NLog/NLog/pull/6174) Reduce AOT file-size by changing PropertyTypeConverter to avoid Dictionary for conversion mapping. (@snakefoot)
+- [#6177](https://github.com/NLog/NLog/pull/6177) Reduce AOT file-size by changing LogFactory PurgeObsoleteLoggers to clone Dictionary instead of ToList. (@snakefoot)
+- [#6185](https://github.com/NLog/NLog/pull/6185) Reduce AOT file-size by changing to use yield instead of Linq. (@snakefoot)
+- [#6188](https://github.com/NLog/NLog/pull/6188) Reduce AOT file-size by changing ConfigurationItemFactory from Dictionary to Array of PropertyInfo. (@snakefoot)
+- [#6192](https://github.com/NLog/NLog/pull/6192) Reduce AOT file-size by changing Target FindAllLayouts to use HashSet instead of Linq Distinct. (@snakefoot)
+- [#6193](https://github.com/NLog/NLog/pull/6193) Reduce AOT file-size by changing XmlLoggingConfiguration AutoReloadFileNames to use yield instead of Linq. (@snakefoot)
+- [#6195](https://github.com/NLog/NLog/pull/6195) Reduce AOT file-size by changing LoggingConfiguration CheckUnusedTargets to use HashSet instead of Linq. (@snakefoot)
+- [#6204](https://github.com/NLog/NLog/pull/6204) TemplateEnumerator - Replace LiteralHole with CurrentHole and CurrentLiteral. (@snakefoot)
+- [#6223](https://github.com/NLog/NLog/pull/6223) XmlParser - ReadUntilChar avoid extra string-allocation on trim InnerText. (@snakefoot)
+- [#6222](https://github.com/NLog/NLog/pull/6222) XmlParser - Simplify ReadUntilChar by extracting parse of attribute-name into ReadEntityName. (@snakefoot)
+- [#6209](https://github.com/NLog/NLog/pull/6209) AppVeyor - Visual Studio 2026. (@snakefoot)
+- [#6199](https://github.com/NLog/NLog/pull/6199) Fixed nullable warnings from Activator.CreateInstance. (@snakefoot)
+- [#6190](https://github.com/NLog/NLog/pull/6190) SetupConfigurationTargetBuilder - Fix Sonar Code Smell. (@snakefoot)
+- [#6176](https://github.com/NLog/NLog/pull/6176) TryNLogSpecificConversion - Refactor parsing Layout from string. (@snakefoot)
+- [#6210](https://github.com/NLog/NLog/pull/6210) ScopeContext - Fix List capacity for GetAllNestedStates. (@jnyrup)
+- [#6211](https://github.com/NLog/NLog/pull/6211) ScopeContext - Renamed PushNestedState to CollectNestedState. (@snakefoot)
+- [#6214](https://github.com/NLog/NLog/pull/6214) ScopeContext - Rename CaptureNestedContext to CloneNestedContext. (@snakefoot)
+- [#6216](https://github.com/NLog/NLog/pull/6216) ScopeContext - Simplify CaptureContextProperties when only nested state. (@snakefoot)
+- [#6217](https://github.com/NLog/NLog/pull/6217) ScopeContext - Unify CollectNestedState implementation. (@snakefoot)
+
 ### Version 6.1.3 (2026/05/04)
 **Improvements**
 - [#6168](https://github.com/NLog/NLog/pull/6168) PropertiesDictionary - Preserve MessageTemplate property details when adding extra properties. (@snakefoot)
