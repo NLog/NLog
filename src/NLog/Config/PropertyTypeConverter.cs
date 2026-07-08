@@ -58,7 +58,7 @@ namespace NLog.Config
 
         internal static bool IsComplexType(Type type)
         {
-            return !type.IsValueType && !typeof(IConvertible).IsAssignableFrom(type) && !HasConvertFromStringSupport(type);
+            return !type.IsValueType && !typeof(IConvertible).IsAssignableFrom(type) && !HasConvertFromStringSupport(type) && type.GetFirstCustomAttribute<System.ComponentModel.TypeConverterAttribute>() is null;
         }
 
         /// <inheritdoc/>
@@ -234,14 +234,6 @@ namespace NLog.Config
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
         private static bool TryConvertToType(object propertyValue, Type propertyType, out object? convertedValue)
         {
-#if NETSTANDARD2_1_OR_GREATER || NET
-            if (!System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported)
-            {
-                convertedValue = null;
-                return false;   // System.ComponentModel.TypeDescriptor is legacy and increases AOT filesize with 500 KBytes.
-            }
-#endif
-
             if (propertyValue is null || propertyType.IsAssignableFrom(propertyValue.GetType()))
             {
                 convertedValue = null;
