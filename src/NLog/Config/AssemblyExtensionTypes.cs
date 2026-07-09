@@ -144,6 +144,7 @@ namespace NLog.Config
             layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessIdLayoutRenderer>("processid", checkTypeExists);
             layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessInfoLayoutRenderer>("processinfo", checkTypeExists);
             layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessNameLayoutRenderer>("processname", checkTypeExists);
+            layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessStartLayoutRenderer>("processstart", checkTypeExists);
             layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessTimeLayoutRenderer>("processtime", checkTypeExists);
             layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextIndentLayoutRenderer>("scopeindent", checkTypeExists);
             layoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("scopenested", checkTypeExists);

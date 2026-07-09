@@ -33,39 +33,51 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
+
     /// <summary>
     /// Property of System.Diagnostics.Process to retrieve.
     /// </summary>
+    /// <remarks>
+    /// Retained for backward compatibility with the obsolete <see cref="ProcessInfoLayoutRenderer"/>.
+    /// </remarks>
+    [Obsolete("Alternative use ${processid} or ${processname} or ${processstart} or ${processtime} or ${gc:WorkingSet}. Marked obsolete with NLog v6.2 because of AOT-filesize.")]
     public enum ProcessInfoProperty
     {
         /// <summary>
         /// Base Priority.
         /// </summary>
+        /// <remarks>Compatibility value: Normal priority.</remarks>
         BasePriority,
 
         /// <summary>
         /// Exit Code.
         /// </summary>
+        /// <remarks>Compatibility value: 0.</remarks>
         ExitCode,
 
         /// <summary>
         /// Exit Time.
         /// </summary>
+        /// <remarks>Compatibility value: <see cref="DateTime.MinValue"/>.</remarks>
         ExitTime,
 
         /// <summary>
         /// Process Handle.
         /// </summary>
+        /// <remarks>Compatibility value: 0.</remarks>
         Handle,
 
         /// <summary>
         /// Handle Count.
         /// </summary>
+        /// <remarks>Compatibility value: 1.</remarks>
         HandleCount,
 
         /// <summary>
         /// Whether process has exited.
         /// </summary>
+        /// <remarks>Compatibility value: <see langword="false"/>.</remarks>
         HasExited,
 
         /// <summary>
@@ -81,106 +93,127 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Handle of the main window.
         /// </summary>
+        /// <remarks>Compatibility value: 0.</remarks>
         MainWindowHandle,
 
         /// <summary>
         /// Title of the main window.
         /// </summary>
+        /// <remarks>Compatibility value: process base name.</remarks>
         MainWindowTitle,
 
         /// <summary>
         /// Maximum Working Set.
         /// </summary>
+        /// <remarks>Compatibility value: current working set.</remarks>
         MaxWorkingSet,
 
         /// <summary>
         /// Minimum Working Set.
         /// </summary>
+        /// <remarks>Compatibility value: current working set.</remarks>
         MinWorkingSet,
 
         /// <summary>
         /// Non-paged System Memory Size.
         /// </summary>
+        /// <remarks>Compatibility value: current working set. Notice never worked before because of incorrect case-insensitivity on property-name.</remarks>
         NonPagedSystemMemorySize,
 
         /// <summary>
         /// Non-paged System Memory Size (64-bit).
         /// </summary>
+        /// <remarks>Compatibility value: current working set. Notice never worked before because of incorrect case-insensitivity on property-name.</remarks>
         NonPagedSystemMemorySize64,
 
         /// <summary>
         /// Paged Memory Size.
         /// </summary>
+        /// <remarks>Compatibility value: current working set.</remarks>
         PagedMemorySize,
 
         /// <summary>
-        /// Paged Memory Size (64-bit)..
+        /// Paged Memory Size (64-bit).
         /// </summary>
+        /// <remarks>Compatibility value: current working set.</remarks>
         PagedMemorySize64,
 
         /// <summary>
         /// Paged System Memory Size.
         /// </summary>
+        /// <remarks>Compatibility value: current working set.</remarks>
         PagedSystemMemorySize,
 
         /// <summary>
         /// Paged System Memory Size (64-bit).
         /// </summary>
+        /// <remarks>Compatibility value: current working set.</remarks>
         PagedSystemMemorySize64,
 
         /// <summary>
         /// Peak Paged Memory Size.
         /// </summary>
+        /// <remarks>Compatibility value: current working set.</remarks>
         PeakPagedMemorySize,
 
         /// <summary>
         /// Peak Paged Memory Size (64-bit).
         /// </summary>
+        /// <remarks>Compatibility value: current working set.</remarks>
         PeakPagedMemorySize64,
 
         /// <summary>
         /// Peak Virtual Memory Size.
         /// </summary>
+        /// <remarks>Compatibility value: <see cref="int.MaxValue"/>.</remarks>
         PeakVirtualMemorySize,
 
         /// <summary>
-        /// Peak Virtual Memory Size (64-bit)..
+        /// Peak Virtual Memory Size (64-bit).
         /// </summary>
+        /// <remarks>Compatibility value: architecture-dependent large value.</remarks>
         PeakVirtualMemorySize64,
 
         /// <summary>
         /// Peak Working Set Size.
         /// </summary>
+        /// <remarks>Compatibility value: current working set.</remarks>
         PeakWorkingSet,
 
         /// <summary>
         /// Peak Working Set Size (64-bit).
         /// </summary>
+        /// <remarks>Compatibility value: current working set.</remarks>
         PeakWorkingSet64,
 
         /// <summary>
         /// Whether priority boost is enabled.
         /// </summary>
+        /// <remarks>Compatibility value: <see langword="true"/>.</remarks>
         PriorityBoostEnabled,
 
         /// <summary>
         /// Priority Class.
         /// </summary>
+        /// <remarks>Compatibility value: Normal priority.</remarks>
         PriorityClass,
 
         /// <summary>
         /// Private Memory Size.
         /// </summary>
+        /// <remarks>Compatibility value: current working set.</remarks>
         PrivateMemorySize,
 
         /// <summary>
         /// Private Memory Size (64-bit).
         /// </summary>
+        /// <remarks>Compatibility value: current working set.</remarks>
         PrivateMemorySize64,
 
         /// <summary>
         /// Privileged Processor Time.
         /// </summary>
+        /// <remarks>Compatibility value: elapsed time since NLog initialization.</remarks>
         PrivilegedProcessorTime,
 
         /// <summary>
@@ -191,46 +224,61 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Whether process is responding.
         /// </summary>
+        /// <remarks>Compatibility value: <see langword="true"/>.</remarks>
         Responding,
 
         /// <summary>
         /// Session ID.
         /// </summary>
+        /// <remarks>Compatibility value: 1.</remarks>
         SessionId,
 
         /// <summary>
-        /// Process Start Time.
+        /// Process Start Time (Local Time).
         /// </summary>
+        /// <remarks>Compatibility value: NLog initialization time in local time.</remarks>
         StartTime,
 
         /// <summary>
         /// Total Processor Time.
         /// </summary>
+        /// <remarks>Compatibility value: elapsed time since NLog initialization.</remarks>
         TotalProcessorTime,
 
         /// <summary>
         /// User Processor Time.
         /// </summary>
+        /// <remarks>Compatibility value: elapsed time since NLog initialization.</remarks>
         UserProcessorTime,
 
         /// <summary>
         /// Virtual Memory Size.
         /// </summary>
+        /// <remarks>Compatibility value: <see cref="int.MaxValue"/>.</remarks>
         VirtualMemorySize,
 
         /// <summary>
         /// Virtual Memory Size (64-bit).
         /// </summary>
+        /// <remarks>Compatibility value: architecture-dependent large value.</remarks>
         VirtualMemorySize64,
 
         /// <summary>
         /// Working Set Size.
         /// </summary>
+        /// <remarks>Compatibility value: Current working set.</remarks>
         WorkingSet,
 
         /// <summary>
         /// Working Set Size (64-bit).
         /// </summary>
+        /// <remarks>Compatibility value: Current working set.</remarks>
         WorkingSet64,
+
+        /// <summary>
+        /// Process Start Time (UTC Time).
+        /// </summary>
+        /// <remarks>Compatibility value: NLog initialization time in UTC.</remarks>
+        StartTimeUtc,
     }
 }
