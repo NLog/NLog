@@ -33,9 +33,12 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
+
     /// <summary>
     /// Property of System.Diagnostics.Process to retrieve.
     /// </summary>
+    [Obsolete("Alternative use ${processid} or ${processname} or ${processstart} or ${processtime} or ${gc}. Marked obsolete with NLog v6.2 because of AOT-filesize.")]
     public enum ProcessInfoProperty
     {
         /// <summary>
@@ -199,7 +202,7 @@ namespace NLog.LayoutRenderers
         SessionId,
 
         /// <summary>
-        /// Process Start Time.
+        /// Process Start Time (Local).
         /// </summary>
         StartTime,
 
@@ -232,5 +235,10 @@ namespace NLog.LayoutRenderers
         /// Working Set Size (64-bit).
         /// </summary>
         WorkingSet64,
+
+        /// <summary>
+        /// Process Start Time (UTC).
+        /// </summary>
+        StartTimeUtc,
     }
 }
