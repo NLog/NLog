@@ -1,4 +1,4 @@
-//
+﻿//
 // Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 //
 // All rights reserved.
@@ -31,49 +31,33 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-
-namespace NLog.LayoutRenderers
+namespace NLog.UnitTests.LayoutRenderers
 {
-    /// <summary>
-    /// Gets or sets the property of System.GC to retrieve.
-    /// </summary>
-    public enum GarbageCollectorProperty
+    using System;
+    using NLog.LayoutRenderers;
+    using NLog.Layouts;
+    using Xunit;
+
+    public class GarbageCollectorInfoLayoutRendererTests : NLogTestBase
     {
-        /// <summary>
-        /// Total bytes of managed memory allocated. Reported by <see cref="GC.GetTotalMemory(bool)"/>
-        /// </summary>
-        TotalMemory,
+        [Fact]
+        public void GarbageCollectorPropertyTest()
+        {
+            foreach (GarbageCollectorProperty propertyType in Enum.GetValues(typeof(GarbageCollectorProperty)))
+            {
+                Layout layout = "${gc:property=" + propertyType + "}";
+                var result = layout.Render(LogEventInfo.CreateNullEvent());
+                Assert.NotEmpty(result);
 
-        /// <summary>
-        /// Total bytes of managed memory allocated (perform full garbage collection first).
-        /// </summary>
-        [Obsolete("Instead use TotalMemory (without forced garbage collection). Marked obsolete with NLog v6.2")]
-        TotalMemoryForceCollection,
+                Layout layout2 = "${gc:format=N0:property=" + propertyType + "}";
+                var result2 = layout2.Render(LogEventInfo.CreateNullEvent());
+                Assert.NotEmpty(result2);
 
-        /// <summary>
-        /// Gets the number of Gen0 collections. Reported by <see cref="GC.CollectionCount(int)"/>
-        /// </summary>
-        CollectionCount0,
-
-        /// <summary>
-        /// Gets the number of Gen1 collections. Reported by <see cref="GC.CollectionCount(int)"/>
-        /// </summary>
-        CollectionCount1,
-
-        /// <summary>
-        /// Gets the number of Gen2 collections. Reported by <see cref="GC.CollectionCount(int)"/>
-        /// </summary>
-        CollectionCount2,
-
-        /// <summary>
-        /// Maximum generation number supported by GC. Reported by <see cref="GC.MaxGeneration"/>
-        /// </summary>
-        MaxGeneration,
-
-        /// <summary>
-        /// Physical memory mapped to the current process context (includes both managed and unmanaged memory). Reported by <see cref="Environment.WorkingSet"/>
-        /// </summary>
-        WorkingSet,
+                if (result2.Length > 3)
+                    Assert.NotEqual(result, result2);
+                else
+                    Assert.Equal(result, result2);
+            }
+        }
     }
 }
