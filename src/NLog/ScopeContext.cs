@@ -76,12 +76,9 @@ namespace NLog
                     var existingPropertyCount = ScopeContextPropertiesCollapsed.TryCollapseExistingProperties(parent);
                     if (existingPropertyCount.HasValue)
                     {
+                        // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
                         var collapsedState = new ScopeContextMergeAsyncState(parent?.Parent?.Parent, existingPropertyCount.Value + properties.Count, nestedState);
-                        ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(properties, collapsedState.MergedProperties);
-                        var propertyCollector = new ScopeContextPropertyCollector(collapsedState.MergedProperties, collapsedState);
-                        var allProperties = propertyCollector.StartCaptureProperties(parent);
-                        if (collapsedState.MergedProperties.Count == 0)
-                            ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(allProperties, collapsedState.MergedProperties);
+                        collapsedState.CollectMergedProperties(properties, parent);
                         SetAsyncLocalContext(collapsedState);
                         return new ScopeContextPropertiesCollapsed(parent, collapsedState);
                     }
@@ -131,11 +128,7 @@ namespace NLog
             {
                 // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
                 var collapsedState = new ScopeContextMergeAsyncState(parent?.Parent?.Parent, existingPropertyCount.Value + properties.Count);
-                ScopeContextPropertyEnumerator<TValue>.CopyScopePropertiesToDictionary(properties, collapsedState.MergedProperties);
-                var propertyCollector = new ScopeContextPropertyCollector(collapsedState.MergedProperties, collapsedState);
-                var allProperties = propertyCollector.StartCaptureProperties(parent);
-                if (collapsedState.MergedProperties.Count == 0)
-                    ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(allProperties, collapsedState.MergedProperties);
+                collapsedState.CollectMergedProperties(properties, parent);
                 SetAsyncLocalContext(collapsedState);
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
             }
@@ -735,7 +728,7 @@ namespace NLog
         private static Dictionary<string, object?>? PushPropertiesCallContext<TValue>(IReadOnlyCollection<KeyValuePair<string, TValue>> properties)
         {
             var oldContext = GetMappedContextCallContext();
-            var newContext = oldContext?.Count > 0 ? new Dictionary<string, object?>(oldContext.Count + properties.Count, DefaultComparer) : new Dictionary<string, object?>(properties.Count, DefaultComparer);
+            var newContext = new Dictionary<string, object?>((oldContext?.Count ?? 0) + properties.Count, DefaultComparer);
             using (var scopeEnumerator = new ScopeContextPropertyEnumerator<TValue>(properties))
             {
                 while (scopeEnumerator.MoveNext())
@@ -760,7 +753,7 @@ namespace NLog
         private static Dictionary<string, object?>? PushPropertyCallContext<TValue>(string propertyName, TValue propertyValue)
         {
             var oldContext = GetMappedContextCallContext();
-            var newContext = oldContext?.Count > 0 ? new Dictionary<string, object?>(oldContext.Count + 1, DefaultComparer) : new Dictionary<string, object?>(DefaultComparer);
+            var newContext = new Dictionary<string, object?>((oldContext?.Count ?? 0) + 1, DefaultComparer);
             SetPropertyCallContext(propertyName, propertyValue, newContext);
             if (oldContext?.Count > 0)
             {

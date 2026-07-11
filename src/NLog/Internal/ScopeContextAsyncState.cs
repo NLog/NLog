@@ -36,7 +36,6 @@
 namespace NLog.Internal
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
 
     /// <summary>
@@ -368,63 +367,6 @@ namespace NLog.Internal
     /// <summary>
     /// Immutable state for ScopeContext Multiple Properties (MDLC)
     /// </summary>
-    internal sealed class ScopeContextMergeAsyncState : ScopeContextAsyncState, IScopeContextPropertiesAsyncState, ICollection<KeyValuePair<string, object?>>, IReadOnlyCollection<KeyValuePair<string, object?>>
-    {
-        int IScopeContextPropertiesAsyncState.PropertyCount => MergedProperties.Count;
-
-        public long NestedStateTimestamp { get; }
-        public object? NestedState { get; }
-        public Dictionary<string, object?> MergedProperties { get; }
-
-        public int Count => MergedProperties.Count;
-
-        public ScopeContextMergeAsyncState(IScopeContextAsyncState? parent, int initialCapacity)
-          : base(parent)
-        {
-            MergedProperties = new Dictionary<string, object?>(initialCapacity, ScopeContext.DefaultComparer);
-        }
-
-        public ScopeContextMergeAsyncState(IScopeContextAsyncState? parent, int initialCapacity, object? nestedState)
-            : base(parent)
-        {
-            MergedProperties = new Dictionary<string, object?>(initialCapacity, ScopeContext.DefaultComparer);
-            NestedState = nestedState;
-            NestedStateTimestamp = ScopeContext.GetNestedContextTimestampNow();
-        }
-
-        public IReadOnlyCollection<KeyValuePair<string, object?>>? CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
-        {
-            return contextCollector.CaptureCompleted(MergedProperties);     // We are done
-        }
-
-        public IList<object>? CloneNestedContext(ref ScopeContextNestedStateCollector contextCollector)
-        {
-            return contextCollector.CollectNestedStates(NestedState, Parent);
-        }
-
-        public void Add(KeyValuePair<string, object?> item)
-        {
-            // Newest properties are added first, so do not overwrite with old values
-#if NETSTANDARD2_1_OR_GREATER || NET
-            MergedProperties.TryAdd(item.Key, item.Value);
-#else
-            if (!MergedProperties.ContainsKey(item.Key))
-                MergedProperties.Add(item.Key, item.Value);
-#endif
-        }
-
-        void ICollection<KeyValuePair<string, object?>>.Clear() => MergedProperties.Clear();
-        bool ICollection<KeyValuePair<string, object?>>.Contains(KeyValuePair<string, object?> item) => MergedProperties.ContainsKey(item.Key);
-        void ICollection<KeyValuePair<string, object?>>.CopyTo(KeyValuePair<string, object?>[] array, int arrayIndex) => ((ICollection<KeyValuePair<string, object?>>)MergedProperties).CopyTo(array, arrayIndex);
-        bool ICollection<KeyValuePair<string, object?>>.Remove(KeyValuePair<string, object?> item) => MergedProperties.Remove(item.Key);
-        bool ICollection<KeyValuePair<string, object?>>.IsReadOnly => ((ICollection<KeyValuePair<string, object?>>)MergedProperties).IsReadOnly;
-        public IEnumerator<KeyValuePair<string, object?>> GetEnumerator() => MergedProperties.GetEnumerator();
-        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)MergedProperties).GetEnumerator();
-    }
-
-    /// <summary>
-    /// Immutable state for ScopeContext Multiple Properties (MDLC)
-    /// </summary>
     internal sealed class ScopeContextPropertiesAsyncState<TValue> : ScopeContextAsyncState, IScopeContextPropertiesAsyncState, IReadOnlyCollection<KeyValuePair<string, object?>>
     {
         int IScopeContextPropertiesAsyncState.PropertyCount => _allProperties?.Count ?? _scopeProperties.Count;
@@ -485,6 +427,72 @@ namespace NLog.Internal
         IEnumerator<KeyValuePair<string, object?>> IEnumerable<KeyValuePair<string, object?>>.GetEnumerator() => new ScopeContextPropertyEnumerator<TValue?>(_scopeProperties);
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => new ScopeContextPropertyEnumerator<TValue?>(_scopeProperties);
+    }
+
+    /// <summary>
+    /// Special merged state that can collapse multiple property-scopes into single scope (Avoid huge object-graphs)
+    /// </summary>
+    internal sealed class ScopeContextMergeAsyncState : ScopeContextAsyncState, IScopeContextPropertiesAsyncState, ICollection<KeyValuePair<string, object?>>, IReadOnlyCollection<KeyValuePair<string, object?>>
+    {
+        int IScopeContextPropertiesAsyncState.PropertyCount => MergedProperties.Count;
+
+        public long NestedStateTimestamp { get; }
+        public object? NestedState { get; }
+        public Dictionary<string, object?> MergedProperties { get; }
+
+        public int Count => MergedProperties.Count;
+
+        public ScopeContextMergeAsyncState(IScopeContextAsyncState? parent, int initialCapacity)
+          : base(parent)
+        {
+            MergedProperties = new Dictionary<string, object?>(initialCapacity, ScopeContext.DefaultComparer);
+        }
+
+        public ScopeContextMergeAsyncState(IScopeContextAsyncState? parent, int initialCapacity, object? nestedState)
+            : base(parent)
+        {
+            MergedProperties = new Dictionary<string, object?>(initialCapacity, ScopeContext.DefaultComparer);
+            NestedState = nestedState;
+            NestedStateTimestamp = ScopeContext.GetNestedContextTimestampNow();
+        }
+
+        public void CollectMergedProperties<TValue>(IReadOnlyCollection<KeyValuePair<string, TValue?>> properties, IScopeContextAsyncState? parent)
+        {
+            ScopeContextPropertyEnumerator<TValue>.CopyScopePropertiesToDictionary(properties, MergedProperties);
+            var propertyCollector = new ScopeContextPropertyCollector(MergedProperties, this);
+            var allProperties = propertyCollector.StartCaptureProperties(parent);
+            if (MergedProperties.Count == 0)
+                ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(allProperties, MergedProperties);
+        }
+
+        public IReadOnlyCollection<KeyValuePair<string, object?>>? CaptureContextProperties(ref ScopeContextPropertyCollector contextCollector)
+        {
+            return contextCollector.CaptureCompleted(MergedProperties);     // We are done
+        }
+
+        public IList<object>? CloneNestedContext(ref ScopeContextNestedStateCollector contextCollector)
+        {
+            return contextCollector.CollectNestedStates(NestedState, Parent);
+        }
+
+        public void Add(KeyValuePair<string, object?> item)
+        {
+            // Newest properties are added first, so do not overwrite with old values
+#if NETSTANDARD2_1_OR_GREATER || NET
+            MergedProperties.TryAdd(item.Key, item.Value);
+#else
+            if (!MergedProperties.ContainsKey(item.Key))
+                MergedProperties.Add(item.Key, item.Value);
+#endif
+        }
+
+        void ICollection<KeyValuePair<string, object?>>.Clear() => MergedProperties.Clear();
+        bool ICollection<KeyValuePair<string, object?>>.Contains(KeyValuePair<string, object?> item) => MergedProperties.ContainsKey(item.Key);
+        void ICollection<KeyValuePair<string, object?>>.CopyTo(KeyValuePair<string, object?>[] array, int arrayIndex) => ((ICollection<KeyValuePair<string, object?>>)MergedProperties).CopyTo(array, arrayIndex);
+        bool ICollection<KeyValuePair<string, object?>>.Remove(KeyValuePair<string, object?> item) => MergedProperties.Remove(item.Key);
+        bool ICollection<KeyValuePair<string, object?>>.IsReadOnly => ((ICollection<KeyValuePair<string, object?>>)MergedProperties).IsReadOnly;
+        public IEnumerator<KeyValuePair<string, object?>> GetEnumerator() => MergedProperties.GetEnumerator();
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => ((System.Collections.IEnumerable)MergedProperties).GetEnumerator();
     }
 
     /// <summary>
