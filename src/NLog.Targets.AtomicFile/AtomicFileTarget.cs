@@ -159,7 +159,7 @@ namespace NLog.Targets
             uint dwFlagsAndAttributes = (uint)fileOptions;
             dwFlagsAndAttributes |= (uint)(NativeMethods.Win32SecurityOptions.SECURITY_SQOS_PRESENT | NativeMethods.Win32SecurityOptions.SECURITY_ANONYMOUS);
 
-            var handle = NativeMethods.CreateFile(
+            var fileHandle = NativeMethods.CreateFile(
                 filePath,
                 dwDesiredAccess,
                 fileShare,
@@ -167,7 +167,7 @@ namespace NLog.Targets
                 fileMode,
                 dwFlagsAndAttributes,
                 IntPtr.Zero);
-            if (handle.IsInvalid)
+            if (fileHandle.IsInvalid)
             {
                 System.Runtime.InteropServices.Marshal.ThrowExceptionForHR(System.Runtime.InteropServices.Marshal.GetHRForLastWin32Error());
             }
@@ -175,13 +175,13 @@ namespace NLog.Targets
             try
             {
                 return new FileStream(
-                    handle,
+                    fileHandle,
                     FileAccess.Write,
                     bufferSize: 1); // No internal buffer, write directly from user-buffer
             }
             catch
             {
-                handle.Dispose();
+                fileHandle.Dispose();
                 throw;
             }
         }
@@ -190,29 +190,60 @@ namespace NLog.Targets
 #if !NETFRAMEWORK && !WINDOWS
         private Stream CreateUnixStream(string filePath)
         {
-            // Use 0666 (read/write for all)
-            var permissions = (Mono.Unix.Native.FilePermissions)(6 | (6 << 3) | (6 << 6));
-            var openFlags = Mono.Unix.Native.OpenFlags.O_CREAT | Mono.Unix.Native.OpenFlags.O_WRONLY | Mono.Unix.Native.OpenFlags.O_APPEND;
-
-            int fd = Mono.Unix.Native.Syscall.open(filePath, openFlags, permissions);
-            if (fd == -1 && Mono.Unix.Native.Stdlib.GetLastError() == Mono.Unix.Native.Errno.ENOENT && CreateDirs)
+            // Linux fcntl.h values (stable across Linux architectures)
+            int O_WRONLY = (1 << 0);
+            int O_CREAT = (1 << 6);
+            int O_APPEND = (1 << 10);
+            int O_CLOEXEC = (1 << 19);  // Prevent inheritance across exec(); avoids leaking the descriptor into child processes. Available since 2007
+            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
             {
-                var dirName = Path.GetDirectoryName(filePath);
-                if (dirName != null && !Directory.Exists(dirName))
-                    Directory.CreateDirectory(dirName);
-
-                fd = Mono.Unix.Native.Syscall.open(filePath, openFlags, permissions);
+                O_WRONLY = 0x0001;          /* open for writing only */
+                O_CREAT = 0x00000200;       /* create if nonexistent */
+                O_APPEND = 0x00000008;      /* set append mode */
+                O_CLOEXEC = 0x01000000;     /* implicitly set FD_CLOEXEC (__DARWIN_C_LEVEL >= 200809L) */
             }
-            if (fd == -1)
-                Mono.Unix.UnixMarshal.ThrowExceptionForLastError();
+
+            // Linux errno.h values (stable across Linux architectures)
+            const int EPERM = 1;    // Operation not permitted
+            const int ENOENT = 2;   // No such file or directory
+            const int EACCES = 13;  // Permission denied
+            const int EINVAL = 22;  // Invalid argument
+
+            // Use 0666 (read/write for all)
+            const uint permissions = (6 | (6 << 3) | (6 << 6));
+            var openFlags = O_WRONLY | O_CREAT | O_APPEND | O_CLOEXEC;
+
+            int errno = 0;
+            var fileHandle = NativeMethods.open(filePath, openFlags, permissions);
+            if (fileHandle.IsInvalid)
+            {
+#if NET
+                errno = System.Runtime.InteropServices.Marshal.GetLastPInvokeError();
+#else
+                errno = System.Runtime.InteropServices.Marshal.GetLastWin32Error();
+#endif
+                if (errno == ENOENT)
+                    throw new DirectoryNotFoundException($"Directory not found for '{filePath}'");
+
+                if (errno == EACCES || errno == EPERM)
+                    throw new UnauthorizedAccessException($"Access denied for '{filePath}'");
+
+                if (errno  == EINVAL)
+                    throw new ArgumentException($"open() failed with errno=EINVAL for '{filePath}'");
+
+                throw new IOException($"open() failed with errno={errno} for '{filePath}'");
+            }
 
             try
             {
-                return new Mono.Unix.UnixStream(fd, true);
+                return new FileStream(
+                    fileHandle,
+                    FileAccess.Write,
+                    bufferSize: 1);  // No internal buffer, write directly from user-buffer
             }
             catch
             {
-                Mono.Unix.Native.Syscall.close(fd);
+                fileHandle.Dispose();
                 throw;
             }
         }

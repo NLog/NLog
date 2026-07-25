@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if NETSTANDARD
-
 namespace NLog.Internal
 {
     using System;
@@ -41,6 +39,8 @@ namespace NLog.Internal
 
     internal static class NativeMethods
     {
+#if NETSTANDARD
+
         [Flags]
         public enum Win32SecurityOptions : uint
         {
@@ -94,7 +94,12 @@ namespace NLog.Internal
             FileMode dwCreationDisposition,
             uint dwFlagsAndAttributes,
             IntPtr hTemplateFile);
-    }
-}
 
 #endif
+
+#if (NET || NETSTANDARD) && !WINDOWS
+        [DllImport("libc", SetLastError = true)]
+        internal static extern Microsoft.Win32.SafeHandles.SafeFileHandle open(string pathname, int flags, uint mode);
+#endif
+    }
+}
