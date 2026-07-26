@@ -8,10 +8,7 @@ See the [NLog Wiki](https://github.com/NLog/NLog/wiki/Atomic-File-target) for av
 
 ## Linux Support
 
-Linux requires platform specific publish for [Mono.Posix.NETStandard](https://www.nuget.org/packages/Mono.Posix.NETStandard) nuget-package:
-```
-dotnet publish with --framework net10.0 --configuration release --runtime linux-x64
-```
+Uses libc `open()` with `O_APPEND` flag, which is supported on Linux and other Unix-like operating systems.
 
 ## Register Extension
 
