@@ -269,7 +269,7 @@ namespace NLog.Targets
 #if !NET45
                     System.Threading.Tasks.Task.CompletedTask;
 #else
-                    System.Threading.Tasks.Task.FromResult<object?>(null);               
+                    System.Threading.Tasks.Task.FromResult<object?>(null);
 #endif
             }
         }

@@ -398,8 +398,9 @@ namespace NLog
 
             try
             {
-                var disposeTimeout = System.Threading.Tasks.Task.Delay(DefaultFlushTimeout).ContinueWith(prevTask => throw new System.Threading.Tasks.TaskCanceledException("NLog LogFactory Dispose Timeout"));
-                await System.Threading.Tasks.TaskExtensions.Unwrap(System.Threading.Tasks.Task.WhenAny(System.Threading.Tasks.Task.Run(() => DisposeInternal()), disposeTimeout)).ConfigureAwait(false);
+                var disposeTask = System.Threading.Tasks.Task.Run(() => DisposeInternal());
+                var disposeTimeout = System.Threading.Tasks.Task.Delay(DefaultFlushTimeout, CancellationToken.None).ContinueWith(prevTask => throw new System.Threading.Tasks.TaskCanceledException("NLog LogFactory Dispose Timeout"), CancellationToken.None, System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously, System.Threading.Tasks.TaskScheduler.Default);
+                await System.Threading.Tasks.TaskExtensions.Unwrap(System.Threading.Tasks.Task.WhenAny(disposeTask, disposeTimeout)).ConfigureAwait(false);
                 GC.SuppressFinalize(this);
             }
             catch (Exception ex)
@@ -697,25 +698,29 @@ namespace NLog
 #if !NET45
                     return System.Threading.Tasks.Task.CompletedTask;
 #else
-                    return System.Threading.Tasks.Task.FromResult<object?>(null);                  
+                    return System.Threading.Tasks.Task.FromResult<object?>(null);
 #endif
                 }
             }
 
+#if !NET45
+            var flushCompleted = new System.Threading.Tasks.TaskCompletionSource<bool>(System.Threading.Tasks.TaskCreationOptions.RunContinuationsAsynchronously);
+#else
             var flushCompleted = new System.Threading.Tasks.TaskCompletionSource<bool>();
-            var flushTimeoutHandler = config.FlushAllTargets((ex) => flushCompleted.SetResult(true));
+#endif
+            var flushTimeoutHandler = config.FlushAllTargets((ex) => flushCompleted.TrySetResult(true));
             if (flushTimeoutHandler is null)
             {
 #if !NET45
                 return System.Threading.Tasks.Task.CompletedTask;
 #else
-                return System.Threading.Tasks.Task.FromResult<object?>(null);                
+                return System.Threading.Tasks.Task.FromResult<object?>(null);
 #endif
             }
 
             var timeout = cancellationToken.CanBeCanceled ? -1 : (int)DefaultFlushTimeout.TotalMilliseconds;
-            var flushTimeout = System.Threading.Tasks.Task.Delay(timeout, cancellationToken).ContinueWith(prevTask => throw new System.Threading.Tasks.TaskCanceledException("NLog LogFactory Flush Timeout"));
-            flushTimeout.ContinueWith(prevTask => { flushTimeoutHandler.Invoke(null); flushCompleted.TrySetCanceled(); });
+            var flushTimeout = System.Threading.Tasks.Task.Delay(timeout, cancellationToken).ContinueWith(prevTask => throw new System.Threading.Tasks.TaskCanceledException("NLog LogFactory Flush Timeout"), CancellationToken.None, System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously, System.Threading.Tasks.TaskScheduler.Default);
+            flushTimeout.ContinueWith(prevTask => flushTimeoutHandler.Invoke(null), CancellationToken.None, System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously, System.Threading.Tasks.TaskScheduler.Default);
             return System.Threading.Tasks.TaskExtensions.Unwrap(System.Threading.Tasks.Task.WhenAny(flushCompleted.Task, flushTimeout));
         }
 #endif
