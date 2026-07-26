@@ -29,6 +29,7 @@
 
     <SignAssembly>true</SignAssembly>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <Version>6.1.5</Version>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 
@@ -88,7 +89,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NLog\NLog.csproj" />
+    <PackageReference Include="NLog" Version="6.1.4" />
   </ItemGroup>
 
   <PropertyGroup>
