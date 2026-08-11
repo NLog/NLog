@@ -393,7 +393,7 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>").LogFactory;
 
             var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
-            var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
+            var elr = ((SimpleLayout)t.Layout).LayoutRenderers.First() as ExceptionLayoutRenderer;
             Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
 
             string exceptionMessage = "Test exception";
@@ -858,7 +858,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                              "CustomArgumentException Test exception");
 
             var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
-            var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
+            var elr = ((SimpleLayout)t.Layout).LayoutRenderers.First() as ExceptionLayoutRenderer;
 
             Assert.Equal(ExceptionRenderingFormat.ShortType, elr.Formats.First());
             Assert.Equal(ExceptionRenderingFormat.Message, elr.Formats.Last());
@@ -904,7 +904,7 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>").LogFactory;
 
             var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
-            var elr = ((SimpleLayout)t.Layout).Renderers[0] as CustomExceptionLayoutRendrer;
+            var elr = ((SimpleLayout)t.Layout).LayoutRenderers.First() as CustomExceptionLayoutRendrer;
             Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
 
             string exceptionMessage = "Test exception";
@@ -944,7 +944,7 @@ namespace NLog.UnitTests.LayoutRenderers
             const string exceptionDataValue2 = "testvalue2";
 
             var target = (DebugTarget)logFactory.Configuration.AllTargets[0];
-            var exceptionLayoutRenderer = ((SimpleLayout)target.Layout).Renderers[0] as ExceptionLayoutRenderer;
+            var exceptionLayoutRenderer = ((SimpleLayout)target.Layout).LayoutRenderers.First() as ExceptionLayoutRenderer;
             Assert.NotNull(exceptionLayoutRenderer);
             Assert.Equal(defaultExceptionDataSeparator, exceptionLayoutRenderer.ExceptionDataSeparator);
 

@@ -97,8 +97,8 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Single(layout.Renderers);
-            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
+            var layoutRenderer = Assert.Single(layout.LayoutRenderers);
+            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layoutRenderer.GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
             Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
@@ -143,8 +143,8 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Single(layout.Renderers);
-            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
+            var layoutRenderer = Assert.Single(layout.LayoutRenderers);
+            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layoutRenderer.GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
             Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
@@ -193,8 +193,8 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Single(layout.Renderers);
-            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
+            var layoutRenderer = Assert.Single(layout.LayoutRenderers);
+            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layoutRenderer.GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
             Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
@@ -241,8 +241,8 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Single(layout.Renderers);
-            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
+            var layoutRenderer = Assert.Single(layout.LayoutRenderers);
+            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layoutRenderer.GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
             Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
@@ -291,8 +291,8 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Single(layout.Renderers);
-            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
+            var layoutRenderer = Assert.Single(layout.LayoutRenderers);
+            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layoutRenderer.GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
             Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
@@ -350,8 +350,8 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Single(layout.Renderers);
-            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
+            var layoutRenderer = Assert.Single(layout.LayoutRenderers);
+            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layoutRenderer.GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
             Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);

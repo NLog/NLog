@@ -36,6 +36,7 @@ namespace NLog.UnitTests.Config
     using System;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using NLog.Conditions;
     using NLog.Config;
@@ -63,8 +64,8 @@ namespace NLog.UnitTests.Config
             SimpleLayout l = t.Layout as SimpleLayout;
             Assert.Equal("${message}", l.Text);
             Assert.NotNull(t.Layout);
-            Assert.Single(l.Renderers);
-            Assert.IsType<MessageLayoutRenderer>(l.Renderers[0]);
+            var layoutRenderer = Assert.Single(l.LayoutRenderers);
+            Assert.IsType<MessageLayoutRenderer>(layoutRenderer);
         }
 
         [Fact]
@@ -86,8 +87,8 @@ namespace NLog.UnitTests.Config
             SimpleLayout l = t.Layout as SimpleLayout;
             Assert.Equal("${message}", l.Text);
             Assert.NotNull(t.Layout);
-            Assert.Single(l.Renderers);
-            Assert.IsType<MessageLayoutRenderer>(l.Renderers[0]);
+            var layoutRenderer = Assert.Single(l.LayoutRenderers);
+            Assert.IsType<MessageLayoutRenderer>(layoutRenderer);
         }
 
         [Fact]
@@ -101,10 +102,14 @@ namespace NLog.UnitTests.Config
             // Ensure the default Layout for two Targets are not reusing objects
             // As it would cause havoc with initializing / closing lifetime-events
             Assert.NotSame(simpleLayout1, simpleLayout2);
-            Assert.Equal(simpleLayout1.Renderers.Count, simpleLayout1.Renderers.Count);
-            for (int i = 0; i < simpleLayout1.Renderers.Count; ++i)
+            Assert.Equal(simpleLayout1.LayoutRenderers.Count(), simpleLayout2.LayoutRenderers.Count());
+            Assert.NotSame(simpleLayout1.LayoutRenderers, simpleLayout2.LayoutRenderers);
+            foreach (var layoutRenderer1 in simpleLayout1.LayoutRenderers)
             {
-                Assert.NotSame(simpleLayout1.Renderers[i], simpleLayout2.Renderers[i]);
+                foreach (var layoutRenderer2 in simpleLayout2.LayoutRenderers)
+                {
+                    Assert.NotSame(layoutRenderer1, layoutRenderer2);
+                }
             }
         }
 
@@ -219,11 +224,11 @@ namespace NLog.UnitTests.Config
             SimpleLayout l = t.Layout as SimpleLayout;
             Assert.Equal("${message} ${level}", l.Text);
             Assert.NotNull(l);
-            Assert.Equal(3, l.Renderers.Count);
-            Assert.IsType<MessageLayoutRenderer>(l.Renderers[0]);
-            Assert.IsType<LiteralLayoutRenderer>(l.Renderers[1]);
-            Assert.IsType<LevelLayoutRenderer>(l.Renderers[2]);
-            Assert.Equal(" ", ((LiteralLayoutRenderer)l.Renderers[1]).Text);
+            Assert.Equal(3, l.LayoutRenderers.Count());
+            Assert.IsType<MessageLayoutRenderer>(l.LayoutRenderers.ElementAt(0));
+            Assert.IsType<LiteralLayoutRenderer>(l.LayoutRenderers.ElementAt(1));
+            Assert.IsType<LevelLayoutRenderer>(l.LayoutRenderers.ElementAt(2));
+            Assert.Equal(" ", ((LiteralLayoutRenderer)l.LayoutRenderers.ElementAt(1)).Text);
         }
 
         [Fact]

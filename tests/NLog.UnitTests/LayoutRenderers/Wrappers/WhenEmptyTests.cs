@@ -36,6 +36,7 @@ using NLog.Internal;
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using System;
+    using System.Linq;
     using NLog;
     using NLog.Layouts;
     using Xunit;
@@ -112,7 +113,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             // Arrange
             SimpleLayout layout = @"${message:whenEmpty=default}";
             layout.Initialize(null);
-            var stringValueRenderer = (IStringValueRenderer)layout.Renderers[0];
+            var stringValueRenderer = (IStringValueRenderer)layout.LayoutRenderers.First();
 
             // Act
             var logEvent = LogEventInfo.Create(LogLevel.Info, "logger", message);

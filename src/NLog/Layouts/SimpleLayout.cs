@@ -166,6 +166,8 @@ namespace NLog.Layouts
         /// Gets a collection of <see cref="LayoutRenderer"/> objects that make up this layout.
         /// </summary>
         [NLogConfigurationIgnoreProperty]
+        [Obsolete("Use LayoutRenderers property instead. Marked obsolete with NLog 6.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ReadOnlyCollection<LayoutRenderer> Renderers => _renderers ?? (_renderers = new ReadOnlyCollection<LayoutRenderer>(_layoutRenderers));
         private ReadOnlyCollection<LayoutRenderer>? _renderers;
         private readonly LayoutRenderer[] _layoutRenderers;
