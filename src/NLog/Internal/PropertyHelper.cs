@@ -513,6 +513,13 @@ namespace NLog.Internal
         internal static bool TryTypeConverterConversion(Type type, string value, out object? newValue)
         {
             InternalLogger.Debug("Object reflection needed for creating external type: {0} from string-value: {1}", type, value);
+#if NETSTANDARD2_1_OR_GREATER || NET
+            if (!System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported)
+            {
+                newValue = null;
+                return false;   // System.ComponentModel.TypeDescriptor is legacy and increases AOT filesize with 500 KBytes.
+            }
+#endif
 
             try
             {
