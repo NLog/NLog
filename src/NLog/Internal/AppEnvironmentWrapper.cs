@@ -43,8 +43,6 @@ namespace NLog.Internal.Fakeables
     {
         const string LongUNCPrefix = @"\\?\UNC\";
 
-        private const string UnknownProcessName = "[unknown]";
-
         private string? _entryAssemblyLocation;
         private string? _entryAssemblyFileName;
         private string? _currentProcessFilePath;
@@ -59,11 +57,11 @@ namespace NLog.Internal.Fakeables
         /// <inheritdoc/>
         public string EntryAssemblyLocation => _entryAssemblyLocation ?? (_entryAssemblyLocation = LookupEntryAssemblyLocation());
         /// <inheritdoc/>
-        public string EntryAssemblyFileName => _entryAssemblyFileName ?? (_entryAssemblyFileName = LookupEntryAssemblyFileName());
+        public string EntryAssemblyFileName => _entryAssemblyFileName ?? (_entryAssemblyFileName = LookupEntryAssemblyFileName() ?? (CurrentProcessBaseName + ".dll"));
         /// <inheritdoc/>
         public string CurrentProcessFilePath => _currentProcessFilePath ?? (_currentProcessFilePath = LookupCurrentProcessFilePathWithFallback());
         /// <inheritdoc/>
-        public string CurrentProcessBaseName => _currentProcessBaseName ?? (_currentProcessBaseName = LookupCurrentProcessNameWithFallback());
+        public string CurrentProcessBaseName => _currentProcessBaseName ?? (_currentProcessBaseName = LookupCurrentProcessNameWithFallback() ?? $"Unknown_ProcessId_{CurrentProcessId}");
         /// <inheritdoc/>
         public int CurrentProcessId => _currentProcessId ?? (_currentProcessId = LookupCurrentProcessIdWithFallback()).Value;
         /// <inheritdoc/>
@@ -77,7 +75,7 @@ namespace NLog.Internal.Fakeables
         /// <inheritdoc/>
         public IEnumerable<string> AppDomainPrivateBinPath => _appDomainPrivateBinPath ?? (_appDomainPrivateBinPath = LookupAppDomainPrivateBinPathSafe());
         /// <inheritdoc/>
-        public IEnumerable<System.Reflection.Assembly> GetAppDomainRuntimeAssemblies() => AppDomain.CurrentDomain?.GetAssemblies() ?? ArrayHelper.Empty<System.Reflection.Assembly>();
+        public IEnumerable<System.Reflection.Assembly> GetAppDomainRuntimeAssemblies() => AppDomain.CurrentDomain.GetAssemblies() ?? ArrayHelper.Empty<System.Reflection.Assembly>();
         /// <inheritdoc/>
         public event EventHandler ProcessExit
         {
@@ -213,12 +211,14 @@ namespace NLog.Internal.Fakeables
             }
         }
 
-        private static string LookupAppDomainFriendlyName()
+        private static string? LookupAppDomainFriendlyName()
         {
             try
             {
                 var friendlyName = AppDomain.CurrentDomain.FriendlyName;
-                return !string.IsNullOrEmpty(friendlyName) ? friendlyName : LookupEntryAssemblyFriendlyName();
+                if (string.IsNullOrEmpty(friendlyName))
+                    friendlyName = LookupEntryAssemblyFriendlyName();
+                return string.IsNullOrEmpty(friendlyName) ? null : friendlyName;
             }
             catch (Exception ex)
             {
@@ -230,16 +230,20 @@ namespace NLog.Internal.Fakeables
             }
         }
 
-        private static string LookupEntryAssemblyFriendlyName()
+        private static string? LookupEntryAssemblyFriendlyName()
         {
             try
             {
-                var assemblyName = System.Reflection.Assembly.GetEntryAssembly()?.GetName()?.Name;
-                return assemblyName ?? UnknownProcessName;
+                var fileName = LookupEntryAssemblyFileName();
+                if (string.IsNullOrEmpty(fileName))
+                    return null;
+
+                var friendlyName = Path.GetFileNameWithoutExtension(fileName);
+                return string.IsNullOrEmpty(friendlyName) ? fileName : friendlyName;
             }
             catch
             {
-                return UnknownProcessName;
+                return null;
             }
         }
 
@@ -253,7 +257,7 @@ namespace NLog.Internal.Fakeables
                 return string.Empty;
         }
 
-        private static string LookupEntryAssemblyFileName()
+        private static string? LookupEntryAssemblyFileName()
         {
             try
             {
@@ -267,7 +271,7 @@ namespace NLog.Internal.Fakeables
                 if (!string.IsNullOrEmpty(assemblyName))
                     return assemblyName + ".dll";
                 else
-                    return string.Empty;
+                    return null;
             }
             catch (Exception ex)
             {
@@ -275,7 +279,7 @@ namespace NLog.Internal.Fakeables
                     throw;
 
                 InternalLogger.Debug("LookupEntryAssemblyFileName Failed - {0}", ex.Message);
-                return string.Empty;
+                return null;
             }
         }
 
@@ -284,10 +288,13 @@ namespace NLog.Internal.Fakeables
             try
             {
                 var processFilePath = LookupCurrentProcessFilePath();
-                return processFilePath ?? LookupCurrentProcessFilePathNative();
+                if (string.IsNullOrEmpty(processFilePath))
+                    processFilePath = LookupCurrentProcessFilePathNative();
+                return processFilePath ?? string.Empty;
             }
             catch (Exception ex)
             {
+                // May throw a SecurityException if running from an IIS app. pool process (Cannot compile method)
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
@@ -351,12 +358,27 @@ namespace NLog.Internal.Fakeables
             }
         }
 
-        private static string LookupCurrentProcessNameWithFallback()
+        private static string? LookupCurrentProcessNameWithFallback()
         {
             try
             {
                 var processName = LookupCurrentProcessName();
-                return processName ?? LookupCurrentProcessNameNative();
+                if (!string.IsNullOrEmpty(processName))
+                    return processName;
+
+                var currentProcessFilePath = LookupCurrentProcessFilePathWithFallback();
+                if (!string.IsNullOrEmpty(currentProcessFilePath))
+                {
+                    processName = Path.GetFileNameWithoutExtension(currentProcessFilePath);
+                    if (!string.IsNullOrEmpty(processName))
+                        return processName;
+                }
+
+                processName = LookupEntryAssemblyFriendlyName();
+                if (!string.IsNullOrEmpty(processName))
+                    return processName;
+
+                return null;
             }
             catch (Exception ex)
             {
@@ -365,7 +387,14 @@ namespace NLog.Internal.Fakeables
 
                 // May throw a SecurityException if running from an IIS app. pool process (Cannot compile method)
                 InternalLogger.Debug("LookupCurrentProcessName Failed - {0}", ex.Message);
-                return LookupCurrentProcessNameNative();
+                var filePath = LookupCurrentProcessFilePathNative();
+                if (!string.IsNullOrEmpty(filePath))
+                {
+                    filePath = Path.GetFileNameWithoutExtension(filePath);
+                    return string.IsNullOrEmpty(filePath) ? null : filePath;
+                }
+                var processName = LookupEntryAssemblyFriendlyName();
+                return string.IsNullOrEmpty(processName) ? null : processName;
             }
         }
 
@@ -387,27 +416,6 @@ namespace NLog.Internal.Fakeables
             }
 
             return null;
-        }
-
-        private static string LookupCurrentProcessNameNative()
-        {
-            var currentProcessFilePath = LookupCurrentProcessFilePath();
-            if (!string.IsNullOrEmpty(currentProcessFilePath))
-            {
-                var currentProcessName = Path.GetFileNameWithoutExtension(currentProcessFilePath);
-                if (!string.IsNullOrEmpty(currentProcessName))
-                    return currentProcessName;
-            }
-
-            var entryAssemblyFileName = LookupEntryAssemblyFileName();
-            if (!string.IsNullOrEmpty(entryAssemblyFileName))
-            {
-                entryAssemblyFileName = Path.GetFileNameWithoutExtension(entryAssemblyFileName);
-                if (!string.IsNullOrEmpty(entryAssemblyFileName))
-                    return entryAssemblyFileName;
-            }
-
-            return UnknownProcessName;
         }
 
 #if NETFRAMEWORK
