@@ -34,7 +34,9 @@
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.Globalization;
     using System.Text;
+    using NLog.Config;
     using NLog.Internal;
 
     /// <summary>
@@ -45,23 +47,65 @@ namespace NLog.LayoutRenderers
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/Gc-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("gc")]
-    public class GarbageCollectorInfoLayoutRenderer : LayoutRenderer
+    [ThreadAgnostic]
+    public class GarbageCollectorInfoLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Gets or sets the property to retrieve.
         /// </summary>
         /// <remarks>Default: <see cref="GarbageCollectorProperty.TotalMemory"/></remarks>
         /// <docgen category='Layout Options' order='10' />
+        [DefaultParameter]
         public GarbageCollectorProperty Property { get; set; } = GarbageCollectorProperty.TotalMemory;
+
+        /// <summary>
+        /// Format string for conversion from object to string.
+        /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
+        /// <docgen category='Layout Options' order='50' />
+        public string? Format
+        {
+            get => _format;
+            set
+            {
+                _format = value;
+                _stringFormat = string.IsNullOrEmpty(_format) ? null : $"{{0:{_format}}}";
+            }
+        }
+        private string? _format;
+        private string? _stringFormat;
+
+        /// <summary>
+        /// Gets or sets the culture used for rendering.
+        /// </summary>
+        /// <remarks>Default: <see cref="CultureInfo.InvariantCulture"/></remarks>
+        /// <docgen category='Layout Options' order='100' />
+        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var value = GetValue();
-            if (value >= 0 && value < uint.MaxValue)
-                builder.AppendInvariant((uint)value);
+            if (_stringFormat is null)
+            {
+#if NETFRAMEWORK
+                if (value >= 0 && value < uint.MaxValue)
+                    builder.AppendInvariant((uint)value);
+                else
+#endif
+                    builder.Append(value);
+            }
             else
-                builder.Append(value);
+            {
+                var culture = GetCulture(logEvent, Culture);
+                builder.AppendFormat(culture, _stringFormat, (object)value);
+            }
+        }
+
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object? value)
+        {
+            value = GetValue();
+            return true;
         }
 
         private long GetValue()
@@ -71,11 +115,10 @@ namespace NLog.LayoutRenderers
             switch (Property)
             {
                 case GarbageCollectorProperty.TotalMemory:
-                    value = GC.GetTotalMemory(false);
-                    break;
-
+#pragma warning disable CS0618 // Type or member is obsolete
                 case GarbageCollectorProperty.TotalMemoryForceCollection:
-                    value = GC.GetTotalMemory(true);
+#pragma warning restore CS0618 // Type or member is obsolete
+                    value = GC.GetTotalMemory(false);
                     break;
 
                 case GarbageCollectorProperty.CollectionCount0:
@@ -92,6 +135,10 @@ namespace NLog.LayoutRenderers
 
                 case GarbageCollectorProperty.MaxGeneration:
                     value = GC.MaxGeneration;
+                    break;
+
+                case GarbageCollectorProperty.WorkingSet:
+                    value = Environment.WorkingSet;
                     break;
             }
 
