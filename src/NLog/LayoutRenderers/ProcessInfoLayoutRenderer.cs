@@ -39,19 +39,22 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Internal.Fakeables;
 
     /// <summary>
     /// The information about the running process.
+    ///
+    /// Obsolete because of AOT-filesize. Instead use ${processid} or ${processname} or ${processstart} or ${processtime} or ${gc:WorkingSet}. 
     /// </summary>
     /// <remarks>
     /// <a href="https://github.com/NLog/NLog/wiki/ProcessInfo-Layout-Renderer">See NLog Wiki</a>
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/ProcessInfo-Layout-Renderer">Documentation on NLog Wiki</seealso>
+    [Obsolete("Alternative use ${processid} or ${processname} or ${processstart} or ${processtime} or ${gc:WorkingSet}. Marked obsolete with NLog v6.2 because of AOT-filesize.")]
     [LayoutRenderer("processinfo")]
     public class ProcessInfoLayoutRenderer : LayoutRenderer
     {
-        private Process? _process;
-        private ReflectionHelpers.LateBoundMethod? _lateBoundPropertyGet;
+        private readonly IAppEnvironment _appEnvironment;
 
         /// <summary>
         /// Gets or sets the property to retrieve.
@@ -76,45 +79,119 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
-        /// <inheritdoc/>
-        protected override void InitializeLayoutRenderer()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProcessInfoLayoutRenderer" /> class.
+        /// </summary>
+        public ProcessInfoLayoutRenderer() : this(LogFactory.DefaultAppEnvironment)
         {
-            base.InitializeLayoutRenderer();
-            var propertyInfo = typeof(Process).GetProperty(Property.ToString());
-            if (propertyInfo is null)
-            {
-                throw new ArgumentException($"Property '{Property}' not found in System.Diagnostics.Process");
-            }
-
-            var getGetMethodInfo = propertyInfo.GetGetMethod();
-            if (getGetMethodInfo is null)
-            {
-                throw new ArgumentException($"Property '{Property}' not found in System.Diagnostics.Process with valid getter-method");
-            }
-
-            _lateBoundPropertyGet = ReflectionHelpers.CreateLateBoundMethod(getGetMethodInfo);
-
-            _process = Process.GetCurrentProcess();
         }
 
-        /// <inheritdoc/>
-        protected override void CloseLayoutRenderer()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProcessInfoLayoutRenderer" /> class.
+        /// </summary>
+        internal ProcessInfoLayoutRenderer(IAppEnvironment appEnvironment)
         {
-            _process?.Close();
-            _process = null;
-            base.CloseLayoutRenderer();
+            _appEnvironment = appEnvironment;
         }
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (_process is null || _lateBoundPropertyGet is null)
-                return;
-
-            var value = _lateBoundPropertyGet.Invoke(_process, ArrayHelper.Empty<object>());
-            if (value != null)
+            switch (Property)
             {
-                AppendFormattedValue(builder, logEvent, value, Format, Culture);
+                case ProcessInfoProperty.Id:
+                    if (string.IsNullOrEmpty(Format))
+                        builder.AppendInvariant(_appEnvironment.CurrentProcessId);
+                    else
+                        AppendFormattedValue(builder, logEvent, _appEnvironment.CurrentProcessId, Format, Culture);
+                    break;
+                case ProcessInfoProperty.ProcessName:
+                    builder.Append(_appEnvironment.CurrentProcessBaseName);
+                    break;
+                case ProcessInfoProperty.StartTime:
+                    var startTimeLocal = LogEventInfo.ZeroDate.ToLocalTime();
+                    AppendFormattedValue(builder, logEvent, startTimeLocal, Format, Culture);
+                    break;
+                case ProcessInfoProperty.StartTimeUtc:
+                    var startTimeUtc = LogEventInfo.ZeroDate.ToUniversalTime();
+                    AppendFormattedValue(builder, logEvent, startTimeUtc, Format, Culture);
+                    break;
+                case ProcessInfoProperty.TotalProcessorTime:
+                case ProcessInfoProperty.UserProcessorTime:
+                case ProcessInfoProperty.PrivilegedProcessorTime:
+                    var processorTime = DateTime.UtcNow - LogEventInfo.ZeroDate;
+                    AppendFormattedValue(builder, logEvent, processorTime, Format, Culture);
+                    break;
+                case ProcessInfoProperty.BasePriority:
+                    AppendFormattedValue(builder, logEvent, (int)ProcessPriorityClass.Normal, Format, Culture);
+                    break;
+                case ProcessInfoProperty.ExitCode:
+                    AppendFormattedValue(builder, logEvent, 0, Format, Culture);
+                    break;
+                case ProcessInfoProperty.ExitTime:
+                    AppendFormattedValue(builder, logEvent, DateTime.MinValue, Format, Culture);
+                    break;
+                case ProcessInfoProperty.HasExited:
+                    AppendFormattedValue(builder, logEvent, false, Format, Culture);
+                    break;
+                case ProcessInfoProperty.MachineName:
+                    builder.Append('.');
+                    break;
+                case ProcessInfoProperty.MainWindowHandle:
+                case ProcessInfoProperty.Handle:
+                    AppendFormattedValue(builder, logEvent, 0L, Format, Culture);
+                    break;
+                case ProcessInfoProperty.HandleCount:
+                    AppendFormattedValue(builder, logEvent, 1, Format, Culture);
+                    break;
+                case ProcessInfoProperty.MainWindowTitle:
+                    builder.Append(_appEnvironment.CurrentProcessBaseName);
+                    break;
+                case ProcessInfoProperty.PeakVirtualMemorySize:
+                case ProcessInfoProperty.VirtualMemorySize:
+                    AppendFormattedValue(builder, logEvent, int.MaxValue, Format, Culture);
+                    break;
+                case ProcessInfoProperty.PeakVirtualMemorySize64:
+                case ProcessInfoProperty.VirtualMemorySize64:
+                    if (IntPtr.Size == 4)
+                        AppendFormattedValue(builder, logEvent, (long)int.MaxValue, Format, Culture);
+                    else
+                        AppendFormattedValue(builder, logEvent, 1024 * (long)(int.MaxValue), Format, Culture);
+                    break;
+                case ProcessInfoProperty.MaxWorkingSet:
+                case ProcessInfoProperty.MinWorkingSet:
+                case ProcessInfoProperty.NonPagedSystemMemorySize:
+                case ProcessInfoProperty.PagedMemorySize:
+                case ProcessInfoProperty.PagedSystemMemorySize:
+                case ProcessInfoProperty.PeakPagedMemorySize:
+                case ProcessInfoProperty.PeakWorkingSet:
+                case ProcessInfoProperty.WorkingSet:
+                case ProcessInfoProperty.PrivateMemorySize:
+                    var currentMemorySize = (int)Environment.WorkingSet;
+                    AppendFormattedValue(builder, logEvent, currentMemorySize, Format, Culture);
+                    break;
+                case ProcessInfoProperty.NonPagedSystemMemorySize64:
+                case ProcessInfoProperty.PagedMemorySize64:
+                case ProcessInfoProperty.PagedSystemMemorySize64:
+                case ProcessInfoProperty.PeakPagedMemorySize64:
+                case ProcessInfoProperty.PeakWorkingSet64:
+                case ProcessInfoProperty.WorkingSet64:
+                case ProcessInfoProperty.PrivateMemorySize64:
+                    var currentMemorySize64 = Environment.WorkingSet;
+                    AppendFormattedValue(builder, logEvent, currentMemorySize64, Format, Culture);
+                    break;
+                case ProcessInfoProperty.PriorityBoostEnabled:
+                    AppendFormattedValue(builder, logEvent, true, Format, Culture);
+                    break;
+                case ProcessInfoProperty.PriorityClass:
+                    AppendFormattedValue(builder, logEvent, (int)ProcessPriorityClass.Normal, Format, Culture);
+                    break;
+                case ProcessInfoProperty.Responding:
+                    AppendFormattedValue(builder, logEvent, true, Format, Culture);
+                    break;
+                case ProcessInfoProperty.SessionId:
+                    AppendFormattedValue(builder, logEvent, 1, Format, Culture);
+                    break;
             }
         }
     }
