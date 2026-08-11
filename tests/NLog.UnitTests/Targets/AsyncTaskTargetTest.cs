@@ -83,7 +83,9 @@ namespace NLog.UnitTests.Targets
                     }
                     catch (System.Reflection.TargetInvocationException ex)
                     {
-                        throw ex.InnerException;
+                        if (ex.InnerException != null)
+                            throw ex.InnerException;
+                        throw;
                     }
                 }
             }
