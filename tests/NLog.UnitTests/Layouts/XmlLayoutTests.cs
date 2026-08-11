@@ -91,9 +91,9 @@ namespace NLog.UnitTests.Layouts
 
             ScopeContext.Clear();
 
-            ScopeContext.PushProperty("foo1", "bar1");
-            ScopeContext.PushProperty("foo2", "bar2");
             ScopeContext.PushProperty("foo3", "bar3");
+            ScopeContext.PushProperty("foo2", "bar2");
+            ScopeContext.PushProperty("foo1", "bar1");
 
             var logger = logFactory.GetLogger("hello");
 

@@ -222,7 +222,7 @@ namespace NLog.UnitTests.Contexts
             MappedDiagnosticsContext.Set(itemNotRemovedKey, "itemNotRemoved");
             using (MappedDiagnosticsContext.SetScoped(itemRemovedKey, "itemRemoved"))
             {
-                Assert.Equal(MappedDiagnosticsContext.GetNames(), new[] { itemNotRemovedKey, itemRemovedKey });
+                Assert.Equal(MappedDiagnosticsContext.GetNames(), new[] { itemRemovedKey, itemNotRemovedKey });
             }
 
             Assert.Equal(MappedDiagnosticsContext.GetNames(), new[] { itemNotRemovedKey });

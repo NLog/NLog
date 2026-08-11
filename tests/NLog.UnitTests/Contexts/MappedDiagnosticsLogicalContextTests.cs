@@ -336,7 +336,7 @@ namespace NLog.UnitTests.Contexts
             MappedDiagnosticsLogicalContext.Set(itemNotRemovedKey, "itemNotRemoved");
             using (MappedDiagnosticsLogicalContext.SetScoped(itemRemovedKey, "itemRemoved"))
             {
-                Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey, itemRemovedKey });
+                Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemRemovedKey, itemNotRemovedKey });
             }
 
             Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey });
@@ -378,7 +378,7 @@ namespace NLog.UnitTests.Contexts
                 new KeyValuePair<string, object>(item2Key, "2")
             }))
             {
-                Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey, item1Key, item2Key });
+                Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { item1Key, item2Key, itemNotRemovedKey });
             }
 
             Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey });
@@ -391,7 +391,7 @@ namespace NLog.UnitTests.Contexts
                 new KeyValuePair<string, object>(item4Key, "4")
             }))
             {
-                Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey, item1Key, item2Key, item3Key, item4Key });
+                Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { item1Key, item2Key, item3Key, item4Key, itemNotRemovedKey });
             }
 
             Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey });
@@ -414,7 +414,7 @@ namespace NLog.UnitTests.Contexts
                 new KeyValuePair<string, object>(item2Key, "2")
             }))
             {
-                Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey, item1Key, item2Key });
+                Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { item1Key, item2Key, itemNotRemovedKey });
             }
 
             Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey });
@@ -452,7 +452,7 @@ namespace NLog.UnitTests.Contexts
 
                 Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[]
                 {
-                    itemNotRemovedKey, item1Key, item2Key, item3Key, item4Key
+                    item1Key, item2Key, item3Key, item4Key, itemNotRemovedKey
                 });
 
                 Assert.Equal("itemNotRemoved", MappedDiagnosticsLogicalContext.Get(itemNotRemovedKey));

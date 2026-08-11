@@ -599,9 +599,8 @@ namespace NLog.UnitTests.Layouts
             var logEventInfo = CreateLogEventWithExcluded();
 
             MappedDiagnosticsContext.Clear();
-            foreach (var prop in logEventInfo.Properties)
-                if (prop.Key.ToString() != "Excluded1" && prop.Key.ToString() != "Excluded2")
-                    MappedDiagnosticsContext.Set(prop.Key.ToString(), prop.Value);
+            foreach (var prop in logEventInfo.Properties.Reverse())
+                MappedDiagnosticsContext.Set(prop.Key.ToString(), prop.Value);
             logEventInfo.Properties.Clear();
 
             logger.Debug(logEventInfo);
@@ -640,9 +639,8 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello\"" });
 
             MappedDiagnosticsContext.Clear();
-            foreach (var prop in logEventInfo.Properties)
-                if (prop.Key.ToString() != "Excluded1" && prop.Key.ToString() != "Excluded2")
-                    MappedDiagnosticsContext.Set(prop.Key.ToString(), prop.Value);
+            foreach (var prop in logEventInfo.Properties.Reverse())
+                MappedDiagnosticsContext.Set(prop.Key.ToString(), prop.Value);
             logEventInfo.Properties.Clear();
 
             logger.Debug(logEventInfo);
@@ -751,9 +749,8 @@ namespace NLog.UnitTests.Layouts
             var logEventInfo = CreateLogEventWithExcluded();
 
             MappedDiagnosticsLogicalContext.Clear();
-            foreach (var prop in logEventInfo.Properties)
-                if (prop.Key.ToString() != "Excluded1" && prop.Key.ToString() != "Excluded2")
-                    MappedDiagnosticsLogicalContext.Set(prop.Key.ToString(), prop.Value);
+            foreach (var prop in logEventInfo.Properties.Reverse())
+                MappedDiagnosticsLogicalContext.Set(prop.Key.ToString(), prop.Value);
             logEventInfo.Properties.Clear();
 
             logger.Debug(logEventInfo);
@@ -792,9 +789,8 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello\"" });
 
             MappedDiagnosticsLogicalContext.Clear();
-            foreach (var prop in logEventInfo.Properties)
-                if (prop.Key.ToString() != "Excluded1" && prop.Key.ToString() != "Excluded2")
-                    MappedDiagnosticsLogicalContext.Set(prop.Key.ToString(), prop.Value);
+            foreach (var prop in logEventInfo.Properties.Reverse())
+                MappedDiagnosticsLogicalContext.Set(prop.Key.ToString(), prop.Value);
             logEventInfo.Properties.Clear();
 
             logger.Debug(logEventInfo);
@@ -831,7 +827,7 @@ namespace NLog.UnitTests.Layouts
             var logEventInfo = CreateLogEventWithExcluded();
 
             MappedDiagnosticsLogicalContext.Clear();
-            foreach (var prop in logEventInfo.Properties)
+            foreach (var prop in logEventInfo.Properties.Reverse())
                 if (prop.Key.ToString() != "Excluded1" && prop.Key.ToString() != "Excluded2")
                     MappedDiagnosticsLogicalContext.Set(prop.Key.ToString(), prop.Value);
             logEventInfo.Properties.Clear();
