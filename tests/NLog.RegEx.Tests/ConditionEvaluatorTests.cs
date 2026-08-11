@@ -64,7 +64,7 @@ namespace NLog.RegEx.Tests
 
         private static void AssertEvaluationResult(object expectedResult, string conditionText)
         {
-            ConditionExpression condition = ConditionParser.ParseExpression(conditionText);
+            ConditionExpression condition = conditionText;
             LogEventInfo context = CreateWellKnownContext();
             object actualResult = condition.Evaluate(context);
             Assert.Equal(expectedResult, actualResult);

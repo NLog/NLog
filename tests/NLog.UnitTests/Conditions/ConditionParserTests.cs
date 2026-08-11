@@ -47,13 +47,13 @@ namespace NLog.UnitTests.Conditions
         [Fact]
         public void ParseNullText()
         {
-            Assert.Throws<ArgumentNullException>(() => ConditionParser.ParseExpression(null));
+            Assert.Null((ConditionExpression)(string)null);
         }
 
         [Fact]
         public void ParseEmptyText()
         {
-            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression(""));
+            Assert.Throws<ConditionParseException>(() =>((ConditionExpression)""));
         }
 
         [Fact]
@@ -67,57 +67,57 @@ namespace NLog.UnitTests.Conditions
         [Fact]
         public void NullLiteralTest()
         {
-            Assert.Equal("null", ConditionParser.ParseExpression("null").ToString());
+            Assert.Equal("null", ((ConditionExpression)"null").ToString());
         }
 
         [Fact]
         public void BooleanLiteralTest()
         {
-            Assert.Equal("True", ConditionParser.ParseExpression("true").ToString());
-            Assert.Equal("True", ConditionParser.ParseExpression("tRuE").ToString());
-            Assert.Equal("False", ConditionParser.ParseExpression("false").ToString());
-            Assert.Equal("False", ConditionParser.ParseExpression("fAlSe").ToString());
+            Assert.Equal("True", ((ConditionExpression)"true").ToString());
+            Assert.Equal("True", ((ConditionExpression)"tRuE").ToString());
+            Assert.Equal("False", ((ConditionExpression)"false").ToString());
+            Assert.Equal("False", ((ConditionExpression)"fAlSe").ToString());
         }
 
         [Fact]
         public void AndTest()
         {
-            Assert.Equal("(True and True)", ConditionParser.ParseExpression("true and true").ToString());
-            Assert.Equal("(True and True)", ConditionParser.ParseExpression("tRuE AND true").ToString());
-            Assert.Equal("(True and True)", ConditionParser.ParseExpression("tRuE && true").ToString());
-            Assert.Equal("((True and True) and True)", ConditionParser.ParseExpression("true and true && true").ToString());
-            Assert.Equal("((True and True) and True)", ConditionParser.ParseExpression("tRuE AND true and true").ToString());
-            Assert.Equal("((True and True) and True)", ConditionParser.ParseExpression("tRuE && true AND true").ToString());
+            Assert.Equal("(True and True)", ((ConditionExpression)"true and true").ToString());
+            Assert.Equal("(True and True)", ((ConditionExpression)"tRuE AND true").ToString());
+            Assert.Equal("(True and True)", ((ConditionExpression)"tRuE && true").ToString());
+            Assert.Equal("((True and True) and True)", ((ConditionExpression)"true and true && true").ToString());
+            Assert.Equal("((True and True) and True)", ((ConditionExpression)"tRuE AND true and true").ToString());
+            Assert.Equal("((True and True) and True)", ((ConditionExpression)"tRuE && true AND true").ToString());
         }
 
         [Fact]
         public void OrTest()
         {
-            Assert.Equal("(True or True)", ConditionParser.ParseExpression("true or true").ToString());
-            Assert.Equal("(True or True)", ConditionParser.ParseExpression("tRuE OR true").ToString());
-            Assert.Equal("(True or True)", ConditionParser.ParseExpression("tRuE || true").ToString());
-            Assert.Equal("((True or True) or True)", ConditionParser.ParseExpression("true or true || true").ToString());
-            Assert.Equal("((True or True) or True)", ConditionParser.ParseExpression("tRuE OR true or true").ToString());
-            Assert.Equal("((True or True) or True)", ConditionParser.ParseExpression("tRuE || true OR true").ToString());
+            Assert.Equal("(True or True)", ((ConditionExpression)"true or true").ToString());
+            Assert.Equal("(True or True)", ((ConditionExpression)"tRuE OR true").ToString());
+            Assert.Equal("(True or True)", ((ConditionExpression)"tRuE || true").ToString());
+            Assert.Equal("((True or True) or True)", ((ConditionExpression)"true or true || true").ToString());
+            Assert.Equal("((True or True) or True)", ((ConditionExpression)"tRuE OR true or true").ToString());
+            Assert.Equal("((True or True) or True)", ((ConditionExpression)"tRuE || true OR true").ToString());
         }
 
         [Fact]
         public void NotTest()
         {
-            Assert.Equal("(not True)", ConditionParser.ParseExpression("not true").ToString());
-            Assert.Equal("(not (not True))", ConditionParser.ParseExpression("not not true").ToString());
-            Assert.Equal("(not (not (not True)))", ConditionParser.ParseExpression("not not not true").ToString());
+            Assert.Equal("(not True)", ((ConditionExpression)"not true").ToString());
+            Assert.Equal("(not (not True))", ((ConditionExpression)"not not true").ToString());
+            Assert.Equal("(not (not (not True)))", ((ConditionExpression)"not not not true").ToString());
         }
 
         [Fact]
         public void StringTest()
         {
-            Assert.Equal("''", ConditionParser.ParseExpression("''").ToString());
-            Assert.Equal("'Foo'", ConditionParser.ParseExpression("'Foo'").ToString());
-            Assert.Equal("'Bar'", ConditionParser.ParseExpression("'Bar'").ToString());
-            Assert.Equal("'d'Artagnan'", ConditionParser.ParseExpression("'d''Artagnan'").ToString());
+            Assert.Equal("''", ((ConditionExpression)"''").ToString());
+            Assert.Equal("'Foo'", ((ConditionExpression)"'Foo'").ToString());
+            Assert.Equal("'Bar'", ((ConditionExpression)"'Bar'").ToString());
+            Assert.Equal("'d'Artagnan'", ((ConditionExpression)"'d''Artagnan'").ToString());
 
-            var cle = ConditionParser.ParseExpression("'${message} ${level}'") as ConditionLayoutExpression;
+            var cle = ((ConditionExpression)"'${message} ${level}'") as ConditionLayoutExpression;
             Assert.NotNull(cle);
             SimpleLayout sl = cle.Layout as SimpleLayout;
             Assert.NotNull(sl);
@@ -130,11 +130,11 @@ namespace NLog.UnitTests.Conditions
         [Fact]
         public void LogLevelTest()
         {
-            var result = ConditionParser.ParseExpression("LogLevel.Info") as ConditionLiteralExpression;
+            var result = ((ConditionExpression)"LogLevel.Info") as ConditionLiteralExpression;
             Assert.NotNull(result);
             Assert.Same(LogLevel.Info, result.LiteralValue);
 
-            result = ConditionParser.ParseExpression("LogLevel.Trace") as ConditionLiteralExpression;
+            result = ((ConditionExpression)"LogLevel.Trace") as ConditionLiteralExpression;
             Assert.NotNull(result);
             Assert.Same(LogLevel.Trace, result.LiteralValue);
         }
@@ -155,23 +155,23 @@ namespace NLog.UnitTests.Conditions
         [Fact]
         public void NumberTest()
         {
-            var conditionExpression = ConditionParser.ParseExpression("3.141592");
+            ConditionExpression conditionExpression = "3.141592";
             Assert.Equal("3.141592", conditionExpression.ToString());
-            Assert.Equal("42", ConditionParser.ParseExpression("42").ToString());
-            Assert.Equal("-42", ConditionParser.ParseExpression("-42").ToString());
-            Assert.Equal("-3.141592", ConditionParser.ParseExpression("-3.141592").ToString());
+            Assert.Equal("42", ((ConditionExpression)"42").ToString());
+            Assert.Equal("-42", ((ConditionExpression)"-42").ToString());
+            Assert.Equal("-3.141592", ((ConditionExpression)"-3.141592").ToString());
         }
 
         [Fact]
         public void ExtraParenthesisTest()
         {
-            Assert.Equal("3.141592", ConditionParser.ParseExpression("(((3.141592)))").ToString());
+            Assert.Equal("3.141592", ((ConditionExpression)"(((3.141592)))").ToString());
         }
 
         [Fact]
         public void MessageTest()
         {
-            var result = ConditionParser.ParseExpression("message");
+            ConditionExpression result = "message";
             Assert.IsType<ConditionMessageExpression>(result);
             Assert.Equal("message", result.ToString());
         }
@@ -179,7 +179,7 @@ namespace NLog.UnitTests.Conditions
         [Fact]
         public void LevelTest()
         {
-            var result = ConditionParser.ParseExpression("level");
+            ConditionExpression result = "level";
             Assert.IsType<ConditionLevelExpression>(result);
             Assert.Equal("level", result.ToString());
         }
@@ -187,7 +187,7 @@ namespace NLog.UnitTests.Conditions
         [Fact]
         public void LoggerTest()
         {
-            var result = ConditionParser.ParseExpression("logger");
+            ConditionExpression result = "logger";
             Assert.IsType<ConditionLoggerNameExpression>(result);
             Assert.Equal("logger", result.ToString());
         }
@@ -195,7 +195,7 @@ namespace NLog.UnitTests.Conditions
         [Fact]
         public void ConditionFunctionTests()
         {
-            var result = ConditionParser.ParseExpression("starts-with(logger, 'x${message}')") as ConditionMethodExpression;
+            var result = ((ConditionExpression)"starts-with(logger, 'x${message}')") as ConditionMethodExpression;
             Assert.NotNull(result);
             Assert.Equal("starts-with", result.MethodName);
             Assert.Equal("starts-with(logger, 'x${message}')", result.ToString());
@@ -203,6 +203,7 @@ namespace NLog.UnitTests.Conditions
         }
 
         [Fact]
+        [Obsolete("ConditionParser will become internal with NLog v7")]
         public void CustomNLogFactoriesTest()
         {
             var configurationItemFactory = new ConfigurationItemFactory();
@@ -214,6 +215,7 @@ namespace NLog.UnitTests.Conditions
         }
 
         [Fact]
+        [Obsolete("ConditionParser will become internal with NLog v7")]
         public void MethodNameWithUnderscores()
         {
             var configurationItemFactory = new ConfigurationItemFactory();
@@ -227,73 +229,73 @@ namespace NLog.UnitTests.Conditions
         [Fact]
         public void UnbalancedParenthesis1Test()
         {
-            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression("check("));
+            Assert.Throws<ConditionParseException>(() => ((ConditionExpression)"check("));
         }
 
         [Fact]
         public void UnbalancedParenthesis2Test()
         {
-            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression("((1)"));
+            Assert.Throws<ConditionParseException>(() => ((ConditionExpression)"((1)"));
         }
 
         [Fact]
         public void UnbalancedParenthesis3Test()
         {
-            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression("(1))"));
+            Assert.Throws<ConditionParseException>(() => ((ConditionExpression)"(1))"));
         }
 
         [Fact]
         public void LogLevelWithoutAName()
         {
-            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression("LogLevel.'somestring'"));
+            Assert.Throws<ConditionParseException>(() => ((ConditionExpression)"LogLevel.'somestring'"));
         }
 
         [Fact]
         public void InvalidNumberWithUnaryMinusTest()
         {
-            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression("-a31"));
+            Assert.Throws<ConditionParseException>(() => ((ConditionExpression)"-a31"));
         }
 
         [Fact]
         public void InvalidNumberTest()
         {
-            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression("-123.4a"));
+            Assert.Throws<ConditionParseException>(() => ((ConditionExpression)"-123.4a"));
         }
 
         [Fact]
         public void UnclosedString()
         {
-            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression("'Hello world"));
+            Assert.Throws<ConditionParseException>(() => ((ConditionExpression)"'Hello world"));
         }
 
         [Fact]
         public void UnrecognizedToken()
         {
-            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression("somecompletelyunrecognizedtoken"));
+            Assert.Throws<ConditionParseException>(() => ((ConditionExpression)"somecompletelyunrecognizedtoken"));
         }
 
         [Fact]
         public void UnrecognizedPunctuation()
         {
-            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression("#"));
+            Assert.Throws<ConditionParseException>(() => ((ConditionExpression)"#"));
         }
 
         [Fact]
         public void UnrecognizedUnicodeChar()
         {
-            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression("\u0090"));
+            Assert.Throws<ConditionParseException>(() => ((ConditionExpression)"\u0090"));
         }
 
         [Fact]
         public void UnrecognizedUnicodeChar2()
         {
-            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression("\u0015"));
+            Assert.Throws<ConditionParseException>(() => ((ConditionExpression)"\u0015"));
         }
 
         [Fact]
         public void UnrecognizedMethod()
         {
-            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression("unrecognized-method()"));
+            Assert.Throws<ConditionParseException>(() => ((ConditionExpression)"unrecognized-method()"));
         }
 
         [Fact]
@@ -310,7 +312,7 @@ namespace NLog.UnitTests.Conditions
 
             string input = operand1 + " " + op + " " + operand2;
             string expectedOutput = "(" + operand1 + " " + result + " " + operand2 + ")";
-            var condition = ConditionParser.ParseExpression(input);
+            ConditionExpression condition = input;
             Assert.Equal(expectedOutput, condition.ToString());
         }
 

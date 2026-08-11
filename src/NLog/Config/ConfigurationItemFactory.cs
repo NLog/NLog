@@ -497,6 +497,7 @@ namespace NLog.Config
             _targets.RegisterNamedType("nlogviewer", "NLog.Targets.Log4JXmlTarget, NLog.Targets.Network", checkTypeExists);
             _targets.RegisterNamedType("syslog", "NLog.Targets.SyslogTarget, NLog.Targets.Network", checkTypeExists);
             _targets.RegisterNamedType("gelf", "NLog.Targets.GelfTarget, NLog.Targets.Network", checkTypeExists);
+            _targets.RegisterNamedType("splunk", "NLog.Targets.SplunkTarget, NLog.Targets.Network", checkTypeExists);
             _targets.RegisterNamedType("mail", "NLog.Targets.MailTarget, NLog.Targets.Mail", checkTypeExists);
             _targets.RegisterNamedType("email", "NLog.Targets.MailTarget, NLog.Targets.Mail", checkTypeExists);
             _targets.RegisterNamedType("smtp", "NLog.Targets.MailTarget, NLog.Targets.Mail", checkTypeExists);
@@ -509,6 +510,9 @@ namespace NLog.Config
             _targets.RegisterNamedType("trace", "NLog.Targets.TraceTarget, NLog.Targets.Trace", checkTypeExists);
             _targets.RegisterNamedType("tracesystem", "NLog.Targets.TraceTarget, NLog.Targets.Trace", checkTypeExists);
             _targets.RegisterNamedType("webservice", "NLog.Targets.WebServiceTarget, NLog.Targets.WebService", checkTypeExists);
+            _targets.RegisterNamedType("http", "NLog.Targets.HttpClientTarget, NLog.Targets.HttpClient", checkTypeExists);
+            _targets.RegisterNamedType("httpclient", "NLog.Targets.HttpClientTarget, NLog.Targets.HttpClient", checkTypeExists);
+            _targets.RegisterNamedType("opentelemetry", "NLog.Targets.OpenTelemetryHttpTarget, NLog.Targets.OpenTelemetryHttp", checkTypeExists);
 #pragma warning restore CS0618 // Type or member is obsolete
         }
 
@@ -523,6 +527,7 @@ namespace NLog.Config
             _layouts.RegisterNamedType("log4jxmllayout", "NLog.Targets.Log4JXmlEventLayout, NLog.Targets.Network", checkTypeExists);
             _layouts.RegisterNamedType("log4jxmleventlayout", "NLog.Targets.Log4JXmlEventLayout, NLog.Targets.Network", checkTypeExists);
             _layouts.RegisterNamedType("gelflayout", "NLog.Targets.GelfLayout, NLog.Targets.Network", checkTypeExists);
+            _layouts.RegisterNamedType("splunklayout", "NLog.Targets.SplunkLayout, NLog.Targets.Network", checkTypeExists);
 #pragma warning restore CS0618 // Type or member is obsolete
         }
 

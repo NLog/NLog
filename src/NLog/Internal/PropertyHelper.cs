@@ -313,7 +313,9 @@ namespace NLog.Internal
         {
             try
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 return ConditionParser.ParseExpression(stringValue, configurationItemFactory);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
             catch (ConditionParseException ex)
             {

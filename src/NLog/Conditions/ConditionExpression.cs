@@ -59,7 +59,9 @@ namespace NLog.Conditions
         public static implicit operator ConditionExpression?(string? conditionExpressionText)
         {
             if (conditionExpressionText is null) return null;
+#pragma warning disable CS0618 // Type or member is obsolete
             return ConditionParser.ParseExpression(conditionExpressionText);
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         /// <summary>

@@ -50,7 +50,7 @@ Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/
 
 NLog Extensions
 ---
-The NLog-nuget-package provides everything needed for doing file- and console-logging. If you need other output options, then there are many NLog extension packages available (such as databases, email, cloud services, etc.).
+The NLog-nuget-package provides everything needed for doing file- and console-logging. If you need other output options, then there are many NLog extension packages available (such as database, email, https-endpoint, etc.).
 See [targets](https://nlog-project.org/config/?tab=targets) and [layout renderers](https://nlog-project.org/config/?tab=layout-renderers) overview!
 
 The NLog extension packages maintained by the NLog-project are [listed here](https://github.com/NLog/NLog/blob/dev/packages-and-status.md) with Nuget/build status.
