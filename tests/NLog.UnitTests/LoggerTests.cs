@@ -2147,7 +2147,7 @@ namespace NLog.UnitTests
         [Fact]
         public void SingleTargetMessageFormatOptimizationTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>
                     <targets>
                         <target name='target1' type='Debug' layout='${logger}|${message}' />
@@ -2157,52 +2157,52 @@ namespace NLog.UnitTests
                         <logger name='SingleTarget' writeTo='target1' />
                         <logger name='DualTarget' writeTo='target1,target2' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var singleLogger = LogManager.GetLogger("SingleTarget");
-            var dualLogger = LogManager.GetLogger("DualTarget");
+            var singleLogger = logFactory.GetLogger("SingleTarget");
+            var dualLogger = logFactory.GetLogger("DualTarget");
 
-            ConfigurationItemFactory.Default.ParseMessageTemplates = true;
-
-            singleLogger.Debug("Hello");
-            AssertDebugLastMessage("target1", "SingleTarget|Hello");
-            singleLogger.Debug("Hello {0}", "World");
-            AssertDebugLastMessage("target1", "SingleTarget|Hello World");
-
-            dualLogger.Debug("Hello");
-            AssertDebugLastMessage("target1", "DualTarget|Hello");
-            AssertDebugLastMessage("target2", "DualTarget|Hello");
-            dualLogger.Debug("Hello {0}", "World");
-            AssertDebugLastMessage("target1", "DualTarget|Hello World");
-            AssertDebugLastMessage("target2", "DualTarget|Hello World");
-
-            ConfigurationItemFactory.Default.ParseMessageTemplates = false;
+            logFactory.Setup().SetupSerialization(ext => ext.ParseMessageTemplates(true));
 
             singleLogger.Debug("Hello");
-            AssertDebugLastMessage("target1", "SingleTarget|Hello");
+            AssertDebugLastMessage("target1", "SingleTarget|Hello", logFactory);
             singleLogger.Debug("Hello {0}", "World");
-            AssertDebugLastMessage("target1", "SingleTarget|Hello World");
+            AssertDebugLastMessage("target1", "SingleTarget|Hello World", logFactory);
 
             dualLogger.Debug("Hello");
-            AssertDebugLastMessage("target1", "DualTarget|Hello");
-            AssertDebugLastMessage("target2", "DualTarget|Hello");
+            AssertDebugLastMessage("target1", "DualTarget|Hello", logFactory);
+            AssertDebugLastMessage("target2", "DualTarget|Hello", logFactory);
             dualLogger.Debug("Hello {0}", "World");
-            AssertDebugLastMessage("target1", "DualTarget|Hello World");
-            AssertDebugLastMessage("target2", "DualTarget|Hello World");
+            AssertDebugLastMessage("target1", "DualTarget|Hello World", logFactory);
+            AssertDebugLastMessage("target2", "DualTarget|Hello World", logFactory);
 
-            ConfigurationItemFactory.Default.ParseMessageTemplates = null;
+            logFactory.Setup().SetupSerialization(ext => ext.ParseMessageTemplates(false));
 
             singleLogger.Debug("Hello");
-            AssertDebugLastMessage("target1", "SingleTarget|Hello");
+            AssertDebugLastMessage("target1", "SingleTarget|Hello", logFactory);
             singleLogger.Debug("Hello {0}", "World");
-            AssertDebugLastMessage("target1", "SingleTarget|Hello World");
+            AssertDebugLastMessage("target1", "SingleTarget|Hello World", logFactory);
 
             dualLogger.Debug("Hello");
-            AssertDebugLastMessage("target1", "DualTarget|Hello");
-            AssertDebugLastMessage("target2", "DualTarget|Hello");
+            AssertDebugLastMessage("target1", "DualTarget|Hello", logFactory);
+            AssertDebugLastMessage("target2", "DualTarget|Hello", logFactory);
             dualLogger.Debug("Hello {0}", "World");
-            AssertDebugLastMessage("target1", "DualTarget|Hello World");
-            AssertDebugLastMessage("target2", "DualTarget|Hello World");
+            AssertDebugLastMessage("target1", "DualTarget|Hello World", logFactory);
+            AssertDebugLastMessage("target2", "DualTarget|Hello World", logFactory);
+
+            logFactory.Setup().SetupSerialization(ext => ext.ParseMessageTemplates(null));
+
+            singleLogger.Debug("Hello");
+            AssertDebugLastMessage("target1", "SingleTarget|Hello", logFactory);
+            singleLogger.Debug("Hello {0}", "World");
+            AssertDebugLastMessage("target1", "SingleTarget|Hello World", logFactory);
+
+            dualLogger.Debug("Hello");
+            AssertDebugLastMessage("target1", "DualTarget|Hello", logFactory);
+            AssertDebugLastMessage("target2", "DualTarget|Hello", logFactory);
+            dualLogger.Debug("Hello {0}", "World");
+            AssertDebugLastMessage("target1", "DualTarget|Hello World", logFactory);
+            AssertDebugLastMessage("target2", "DualTarget|Hello World", logFactory);
         }
 
         [Theory]
@@ -2223,38 +2223,31 @@ namespace NLog.UnitTests
         [InlineData(null, "OrderId", "@Client")]
         public void MixedStructuredEventsConfigTest(bool? parseMessageTemplates, string param1, string param2)
         {
-            try
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration = CreateSimpleDebugConfig(parseMessageTemplates, cfg.LogFactory)).LogFactory;
+            var logger = logFactory.GetLogger("A");
+            logger.Debug("Process order {" + param1 + "} for {" + param2 + "}", 13424, new { ClientId = 3001, ClientName = "John Doe" });
+
+            string param1Value;
+            if (param1.StartsWith("$"))
             {
-                LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
-                var logger = LogManager.GetLogger("A");
-                logger.Debug("Process order {" + param1 + "} for {" + param2 + "}", 13424, new { ClientId = 3001, ClientName = "John Doe" });
-
-                string param1Value;
-                if (param1.StartsWith("$"))
-                {
-                    param1Value = "\"13424\"";
-                }
-                else
-                {
-                    param1Value = "13424";
-                }
-
-                string param2Value;
-                if (param2.StartsWith("@"))
-                {
-                    param2Value = "{\"ClientId\":3001, \"ClientName\":\"John Doe\"}";
-                }
-                else
-                {
-                    param2Value = "{ ClientId = 3001, ClientName = John Doe }";
-                }
-
-                AssertDebugLastMessage("debug", $"A|Process order {param1Value} for {param2Value}");
+                param1Value = "\"13424\"";
             }
-            finally
+            else
             {
-                ConfigurationItemFactory.Default.ParseMessageTemplates = null;
+                param1Value = "13424";
             }
+
+            string param2Value;
+            if (param2.StartsWith("@"))
+            {
+                param2Value = "{\"ClientId\":3001, \"ClientName\":\"John Doe\"}";
+            }
+            else
+            {
+                param2Value = "{ ClientId = 3001, ClientName = John Doe }";
+            }
+
+            AssertDebugLastMessage("debug", $"A|Process order {param1Value} for {param2Value}", logFactory);
         }
 
         [Fact]
@@ -2290,24 +2283,17 @@ namespace NLog.UnitTests
         [InlineData(null)]
         public void TooManyStructuredParametersShouldKeepBeInParamList(bool? parseMessageTemplates)
         {
-            try
-            {
-                LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
-                var target = new MyTarget();
-                LogManager.Configuration.AddRuleForAllLevels(target);
-                LogManager.ReconfigExistingLoggers();
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration = CreateSimpleDebugConfig(parseMessageTemplates, cfg.LogFactory)).LogFactory;
+            var target = new MyTarget();
+            logFactory.Configuration.AddRuleForAllLevels(target);
+            logFactory.ReconfigExistingLoggers();
 
-                var logger = LogManager.GetLogger("A");
-                logger.Debug("Hello World {0}", "world", "universe");
+            var logger = logFactory.GetLogger("A");
+            logger.Debug("Hello World {0}", "world", "universe");
 
-                Assert.Equal(2, target.LastEvent.Parameters.Length);
-                Assert.Equal("world", target.LastEvent.Parameters[0]);
-                Assert.Equal("universe", target.LastEvent.Parameters[1]);
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default.ParseMessageTemplates = null;
-            }
+            Assert.Equal(2, target.LastEvent.Parameters.Length);
+            Assert.Equal("world", target.LastEvent.Parameters[0]);
+            Assert.Equal("universe", target.LastEvent.Parameters[1]);
         }
 
         [Theory]
@@ -2318,31 +2304,25 @@ namespace NLog.UnitTests
         [InlineData(null, null)]
         public void StructuredEventsConfigTest(bool? parseMessageTemplates, bool? overrideParseMessageTemplates)
         {
-            try
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration = CreateSimpleDebugConfig(parseMessageTemplates, cfg.LogFactory)).LogFactory;
+
+            if (parseMessageTemplates.HasValue)
             {
-                LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
-
-                if (parseMessageTemplates.HasValue)
-                {
-                    Assert.Equal(ConfigurationItemFactory.Default.ParseMessageTemplates, parseMessageTemplates.Value);
-                }
-
-                if (overrideParseMessageTemplates.HasValue)
-                {
-                    ConfigurationItemFactory.Default.ParseMessageTemplates = overrideParseMessageTemplates.Value;
-                }
-
-                var logger = LogManager.GetLogger("A");
-                logger.Debug("Hello World {0}", new object[] { null });
-                if (parseMessageTemplates == true || overrideParseMessageTemplates == true)
-                    AssertDebugLastMessage("debug", "A|Hello World NULL");
-                else
-                    AssertDebugLastMessage("debug", "A|Hello World ");
+                var resolvedParseMessageTemplates = logFactory.ServiceRepository.ResolveParseMessageTemplates();
+                Assert.Equal(resolvedParseMessageTemplates, parseMessageTemplates.Value);
             }
-            finally
+
+            if (overrideParseMessageTemplates.HasValue)
             {
-                ConfigurationItemFactory.Default.ParseMessageTemplates = null;
+                logFactory.Setup().SetupSerialization(ext => ext.ParseMessageTemplates(overrideParseMessageTemplates.Value));
             }
+
+            var logger = logFactory.GetLogger("A");
+            logger.Debug("Hello World {0}", new object[] { null });
+            if (parseMessageTemplates == true || overrideParseMessageTemplates == true)
+                AssertDebugLastMessage("debug", "A|Hello World NULL", logFactory);
+            else
+                AssertDebugLastMessage("debug", "A|Hello World ", logFactory);
         }
 
         [Fact]
@@ -2662,7 +2642,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "Important Noise");
         }
 
-        private static XmlLoggingConfiguration CreateSimpleDebugConfig(bool? parseMessageTemplates)
+        private static XmlLoggingConfiguration CreateSimpleDebugConfig(bool? parseMessageTemplates, LogFactory logFactory)
         {
             return XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog parseMessageTemplates='" + (parseMessageTemplates?.ToString() ?? string.Empty) + @"'>
@@ -2670,7 +2650,7 @@ namespace NLog.UnitTests
                     <rules>
                         <logger name='*' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>", logFactory);
         }
 
         private sealed class Person

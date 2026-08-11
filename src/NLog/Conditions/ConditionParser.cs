@@ -45,6 +45,7 @@ namespace NLog.Conditions
     /// Condition parser. Turns a string representation of condition expression
     /// into an expression tree.
     /// </summary>
+    [Obsolete("Instead use ConditionExpression implicit conversion operator. ConditionParser will become internal with NLog v7")]
     public class ConditionParser
     {
         private readonly ConditionTokenizer _tokenizer;

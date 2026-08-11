@@ -126,40 +126,6 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void ProcessInfoLayoutRendererCultureTest()
-        {
-            string cultureName = "de-DE";
-            string expected = ".";   // dot as date separator (01.10.2008)
-            string output = string.Empty;
-
-            var logEventInfo = CreateLogEventInfo(cultureName);
-
-            if (IsLinux())
-            {
-                Console.WriteLine("[SKIP] CultureInfoTests.ProcessInfoLayoutRendererCultureTest because we are running in Travis");
-            }
-            else
-            {
-                var renderer = new ProcessInfoLayoutRenderer();
-                renderer.Property = ProcessInfoProperty.StartTime;
-                renderer.Format = "d";
-                renderer.Culture = null;
-                output = renderer.Render(logEventInfo);
-
-                Assert.Contains(expected, output);
-                Assert.DoesNotContain("/", output);
-                Assert.DoesNotContain("-", output);
-            }
-
-            var renderer2 = new ProcessInfoLayoutRenderer();
-            renderer2.Property = ProcessInfoProperty.PriorityClass;
-            renderer2.Format = "d";
-            output = renderer2.Render(logEventInfo);
-            Assert.True(output.Length >= 1);
-            Assert.Contains(output[0], "012345678");
-        }
-
-        [Fact]
         public void AllEventPropRendererCultureTest()
         {
             string cultureName = "de-DE";

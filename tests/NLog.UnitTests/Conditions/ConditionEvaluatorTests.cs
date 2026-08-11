@@ -216,6 +216,7 @@ namespace NLog.UnitTests.Conditions
         }
 
         [Fact]
+        [Obsolete("ConditionParser will become internal with NLog v7")]
         public void MethodWithLogEventInfoTest()
         {
             var factories = SetupConditionMethods();
@@ -225,6 +226,7 @@ namespace NLog.UnitTests.Conditions
         }
 
         [Fact]
+        [Obsolete("ConditionParser will become internal with NLog v7")]
         public void DoubleEqualsTest()
         {
             var factories = SetupConditionMethods();
@@ -236,6 +238,7 @@ namespace NLog.UnitTests.Conditions
         }
 
         [Fact]
+        [Obsolete("ConditionParser will become internal with NLog v7")]
         public void ManyParametersTest()
         {
             var factories = SetupConditionMethods();
@@ -244,6 +247,7 @@ namespace NLog.UnitTests.Conditions
         }
 
         [Fact]
+        [Obsolete("ConditionParser will become internal with NLog v7")]
         public void TypePromotionTest()
         {
             var factories = SetupConditionMethods();
@@ -283,6 +287,7 @@ namespace NLog.UnitTests.Conditions
         }
 
         [Fact]
+        [Obsolete("ConditionParser will become internal with NLog v7")]
         public void TypePromotionNegativeTest2()
         {
             var factories = SetupConditionMethods();
@@ -389,7 +394,7 @@ namespace NLog.UnitTests.Conditions
 
         private static void AssertEvaluationResult(object expectedResult, string conditionText)
         {
-            ConditionExpression condition = ConditionParser.ParseExpression(conditionText);
+            ConditionExpression condition = conditionText;
             LogEventInfo context = CreateWellKnownContext();
             object actualResult = condition.Evaluate(context);
             Assert.Equal(expectedResult, actualResult);

@@ -524,7 +524,9 @@ namespace NLog.Layouts
             {
                 try
                 {
+#pragma warning disable CS0618 // Type or member is obsolete
                     return ConditionParser.ParseExpression(stringReader, configurationItemFactory);
+#pragma warning restore CS0618 // Type or member is obsolete
                 }
                 catch (ConditionParseException ex)
                 {
