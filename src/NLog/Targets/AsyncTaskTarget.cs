@@ -151,8 +151,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets or sets the number of log events that should be processed in a batch
-        /// by the lazy writer thread.
+        /// Gets or sets the number of log events processed in a single batch.
         /// </summary>
         /// <remarks>Default: <see langword="1"/></remarks>
         /// <docgen category='Buffering Options' order='100' />
@@ -183,7 +182,7 @@ namespace NLog.Targets
             _requestQueue = new ConcurrentRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
 #endif
 
-            _lazyWriterTimer = new Timer((s) => TaskStartNext(null, false), null, Timeout.Infinite, Timeout.Infinite);
+            _lazyWriterTimer = new Timer(s => TaskStartNextFromQueue(null, false), null, Timeout.Infinite, Timeout.Infinite);
 
             TaskCancelledTokenReInit(out _cancelTokenSource);
         }
@@ -238,7 +237,6 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <param name="cancellationToken">The cancellation token</param>
-        /// <returns></returns>
         protected abstract Task WriteAsyncTask(LogEventInfo logEvent, CancellationToken cancellationToken);
 
         /// <summary>
@@ -246,7 +244,6 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvents">A batch of logevents.</param>
         /// <param name="cancellationToken">The cancellation token</param>
-        /// <returns></returns>
         protected virtual Task WriteAsyncTask(IList<LogEventInfo> logEvents, CancellationToken cancellationToken)
         {
             if (logEvents.Count == 1)
@@ -263,7 +260,7 @@ namespace NLog.Targets
                     if (taskChain is null)
                         taskChain = WriteAsyncTask(logEvent, cancellationToken);
                     else
-                        taskChain = taskChain.ContinueWith(t => WriteAsyncTask(logEvent, cancellationToken), cancellationToken, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach, TaskScheduler).Unwrap();
+                        taskChain = taskChain.ContinueWith(t => WriteAsyncTask(logEvent, cancellationToken), CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach, TaskScheduler).Unwrap();
                 }
                 return taskChain ??
 #if !NET45
@@ -352,9 +349,7 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 if (ExceptionMustBeRethrown(exception))
-                {
                     throw;
-                }
 
                 logEvent.Continuation(exception);
             }
@@ -452,64 +447,85 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Checks the internal queue for the next <see cref="LogEventInfo"/> to create a new task for
-        /// </summary>
-        /// <param name="previousTask">Used for race-condition validation between task-completion and timeout</param>
-        /// <param name="fullBatchCompleted">Signals whether previousTask completed an almost full BatchSize</param>
-        private void TaskStartNext(object? previousTask, bool fullBatchCompleted)
+        private void TaskStartNextFromQueue(object? previousTask, bool fullBatchCompleted)
         {
+            bool checkForMoreWork = true;
             do
             {
-                lock (SyncRoot)
+                try
                 {
-                    if (CheckOtherTask(previousTask))
-                    {
-                        break;  // Other Task is already running
-                    }
-
-                    if (_missingServiceTypes)
-                    {
-                        _previousTask = null;
-                        _lazyWriterTimer.Change(50, Timeout.Infinite);
-                        break;  // Throttle using Timer, since we are not ready yet
-                    }
-
-                    if (!IsInitialized)
-                    {
-                        _previousTask = null;
-                        break;
-                    }
-
-                    if (previousTask != null && !fullBatchCompleted && TaskDelayMilliseconds >= 50 && !_requestQueue.IsEmpty)
-                    {
-                        InternalLogger.Trace("{0}: Throttle to optimize batching", this);
-                        _previousTask = null;
-                        _lazyWriterTimer.Change(TaskDelayMilliseconds, Timeout.Infinite);
-                        break;  // Throttle using Timer, since we didn't write a full batch
-                    }
-
-                    using (var targetList = _reusableAsyncLogEventList.Allocate())
-                    {
-                        var logEvents = targetList.Result;
-                        _requestQueue.DequeueBatch(BatchSize, logEvents);
-                        if (logEvents.Count > 0)
-                        {
-                            if (TaskCreation(logEvents))
-                                return;
-                            _previousTask = null;   // Completed flush, and previous task has completed, but check queue for more.
-                        }
-                        else
-                        {
-                            _previousTask = null;
-                            break;  // Empty queue, let Task Queue Timer begin next task
-                        }
-                    }
+                    checkForMoreWork = TaskStartNext(previousTask, fullBatchCompleted);
                 }
-            } while (!_requestQueue.IsEmpty || previousTask != null);
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "{0}: WriteAsyncTask failed while starting next task", this);
+                    checkForMoreWork = false;
+                }
+            } while (checkForMoreWork);
         }
 
-        private bool CheckOtherTask(object? previousTask)
+        /// <summary>
+        /// Checks the internal queue for any more work, and starts a new task if needed.
+        /// </summary>
+        /// <param name="previousTask">Used for race-condition validation between task-completion and timeout.</param>
+        /// <param name="fullBatchCompleted">Signals whether <paramref name="previousTask"/> completed a batch large enough to skip <see cref="TaskDelayMilliseconds"/>.</param>
+        /// <returns>
+        /// <c>true</c> if the caller should immediately check for more work; otherwise, <c>false</c>.
+        /// </returns>
+        private bool TaskStartNext(object? previousTask, bool fullBatchCompleted)
+        {
+            lock (SyncRoot)
+            {
+                if (CheckOtherTaskRunning(previousTask))
+                {
+                    return false;   // Other Task is already running
+                }
+
+                if (_missingServiceTypes)
+                {
+                    _previousTask = null;
+                    _lazyWriterTimer.Change(50, Timeout.Infinite);
+                    return false;   // Throttle using Timer, since we are not ready yet
+                }
+
+                if (!IsInitialized)
+                {
+                    _previousTask = null;
+                    return false;
+                }
+
+                if (previousTask != null && !fullBatchCompleted && TaskDelayMilliseconds >= 50 && !_requestQueue.IsEmpty)
+                {
+                    InternalLogger.Trace("{0}: Throttle to optimize batching", this);
+                    _previousTask = null;
+                    _lazyWriterTimer.Change(TaskDelayMilliseconds, Timeout.Infinite);
+                    return false;   // Throttle using Timer, since we didn't write a full batch
+                }
+
+                using (var targetList = _reusableAsyncLogEventList.Allocate())
+                {
+                    var logEvents = targetList.Result;
+                    _requestQueue.DequeueBatch(BatchSize, logEvents);
+
+                    if (logEvents.Count == 0)
+                    {
+                        _previousTask = null;
+                        return false;   // Empty queue, let Task Queue Timer begin next task
+                    }
+
+                    if (TaskCreation(logEvents))
+                    {
+                        return false;
+                    }
+
+                    // Completed flush, and previous task has completed, but check queue for more.
+                    _previousTask = null;
+                    return !_requestQueue.IsEmpty || previousTask != null;
+                }
+            }
+        }
+
+        private bool CheckOtherTaskRunning(object? previousTask)
         {
             if (previousTask is null)
             {
@@ -540,36 +556,38 @@ namespace NLog.Targets
                 }
 
                 var actualException = ExtractActualException(t.Exception) ?? new TaskCanceledException("Task failed without exception");
-
-                if (RetryFailedAsyncTask(actualException, cancellationToken, retryCount - 1, out var retryDelay))
+                if (!RetryFailedAsyncTask(actualException, cancellationToken, retryCount - 1, out var retryDelay))
                 {
-                    InternalLogger.Warn(actualException, "{0}: Write operation failed. {1} attempts left. Sleep {2} ms", this, retryCount, retryDelay.TotalMilliseconds);
-
-                    if (TaskTimeoutSeconds > 0 && !cancellationToken.IsCancellationRequested)
-                    {
-                        // Prevent timeout-timer from triggering task cancellation token during retry delay
-                        _taskTimeoutTimer.Change(TaskTimeoutSeconds * 1000, Timeout.Infinite);
-                    }
-
-                    return Task.Delay(retryDelay, cancellationToken).ContinueWith(delayTask =>
-                    {
-                        Task retryTask;
-                        lock (SyncRoot)
-                        {
-                            retryTask = StartWriteAsyncTask(logEvents, _cancelTokenSource.Token);
-                        }
-                        return WriteAsyncTaskWithRetry(retryTask, logEvents, _cancelTokenSource.Token, retryCount - 1);
-                    }, cancellationToken, TaskContinuationOptions.DenyChildAttach, TaskScheduler).Unwrap();
+                    InternalLogger.Warn(actualException, "{0}: Write operation failed after {1} retries", this, RetryCount - retryCount);
+#if !NET45
+                    return Task.FromException(actualException);
+#else
+                    var tcs = new TaskCompletionSource<object?>();
+                    tcs.SetException(actualException);
+                    return tcs.Task;
+#endif
                 }
 
-                InternalLogger.Warn(actualException, "{0}: Write operation failed after {1} retries", this, RetryCount - retryCount);
-#if !NET45
-                return Task.FromException(actualException);
-#else
-                var tcs = new TaskCompletionSource<object?>();
-                tcs.SetException(actualException);
-                return tcs.Task;
-#endif
+                InternalLogger.Warn(actualException, "{0}: Write operation failed. {1} attempts left. Sleep {2} ms", this, retryCount, retryDelay.TotalMilliseconds);
+                if (TaskTimeoutSeconds > 0 && !cancellationToken.IsCancellationRequested)
+                {
+                    // Prevent timeout-timer from triggering task cancellation token during retry delay
+                    _taskTimeoutTimer.Change(TaskTimeoutSeconds * 1000, Timeout.Infinite);
+                }
+
+                return Task.Delay(retryDelay, cancellationToken).ContinueWith(delayTask =>
+                {
+                    if (delayTask.IsCanceled)
+                        return delayTask;
+
+                    Task retryTask;
+                    lock (SyncRoot)
+                    {
+                        retryTask = StartWriteAsyncTask(logEvents, _cancelTokenSource.Token);
+                    }
+                    return WriteAsyncTaskWithRetry(retryTask, logEvents, _cancelTokenSource.Token, retryCount - 1);
+                },
+                CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach, TaskScheduler).Unwrap();
             }, cancellationToken, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach, TaskScheduler).Unwrap();
         }
 
@@ -593,44 +611,46 @@ namespace NLog.Targets
 
                 reusableLogEvents = Interlocked.CompareExchange(ref _reusableLogEvents, null, _reusableLogEvents) ?? System.Tuple.Create(new List<LogEventInfo>(), new List<AsyncContinuation>());
 
-                for (int i = 0; i < logEvents.Count; ++i)
+                List<LogEventInfo> writeEvents = reusableLogEvents.Item1;
+                List<AsyncContinuation> continuations = reusableLogEvents.Item2;
+                int count = logEvents.Count;
+
+                for (int i = 0; i < count; ++i)
                 {
-                    if (ReferenceEquals(logEvents[i].LogEvent, _flushEvent))
+                    AsyncLogEventInfo logEvent = logEvents[i];
+                    if (ReferenceEquals(logEvent.LogEvent, _flushEvent))
                     {
-                        // Flush Request
-                        reusableLogEvents.Item2.Add(logEvents[i].Continuation);
+                        continuations.Add(logEvent.Continuation);
                     }
                     else
                     {
-                        reusableLogEvents.Item1.Add(logEvents[i].LogEvent);
-                        reusableLogEvents.Item2.Add(logEvents[i].Continuation);
+                        writeEvents.Add(logEvent.LogEvent);
+                        continuations.Add(logEvent.Continuation);
                     }
                 }
 
-                if (reusableLogEvents.Item1.Count == 0)
+                if (writeEvents.Count == 0)
                 {
                     // Everything was flush events, no need to schedule write
-                    NotifyTaskCompletion(reusableLogEvents.Item2, null);
-                    reusableLogEvents.Item2.Clear();
+                    NotifyTaskCompletion(continuations, null);
+                    continuations.Clear();
                     Interlocked.CompareExchange(ref _reusableLogEvents, reusableLogEvents, null);
                     InternalLogger.Debug("{0}: Flush Completed", this);
                     return false;
                 }
 
-                Task newTask = StartWriteAsyncTask(reusableLogEvents.Item1, _cancelTokenSource.Token);
-                if (newTask is null)
-                {
-                    InternalLogger.Debug("{0}: WriteAsyncTask returned null", this);
-                    NotifyTaskCompletion(reusableLogEvents.Item2, null);
-                    return false;
-                }
+                Task newTask = StartWriteAsyncTask(writeEvents, _cancelTokenSource.Token);
                 if (RetryCount > 0)
-                    newTask = WriteAsyncTaskWithRetry(newTask, reusableLogEvents.Item1, _cancelTokenSource.Token, RetryCount);
+                {
+                    newTask = WriteAsyncTaskWithRetry(newTask, writeEvents, _cancelTokenSource.Token, RetryCount);
+                }
 
                 _previousTask = newTask;
 
                 if (TaskTimeoutSeconds > 0)
+                {
                     _taskTimeoutTimer.Change(TaskTimeoutSeconds * 1000, Timeout.Infinite);
+                }
 
                 // NOTE - Not using _cancelTokenSource for ContinueWith, or else they will also be cancelled on timeout
                 newTask.ContinueWith(_taskCompletion, reusableLogEvents, CancellationToken.None, TaskContinuationOptions.DenyChildAttach, TaskScheduler);
@@ -640,8 +660,8 @@ namespace NLog.Targets
             {
                 InternalLogger.Error(ex, "{0}: WriteAsyncTask failed on creation", this);
                 NotifyTaskCompletion(reusableLogEvents?.Item2 ?? (IList<AsyncContinuation>)ArrayHelper.Empty<AsyncContinuation>(), ex);
+                return false;
             }
-            return false;
         }
 
         private Task StartWriteAsyncTask(IList<LogEventInfo> logEvents, CancellationToken cancellationToken)
@@ -658,8 +678,12 @@ namespace NLog.Targets
                     return System.Threading.Tasks.Task.FromResult<object?>(null);
 #endif
                 }
+
                 if (newTask.Status == TaskStatus.Created)
-                    newTask.Start(TaskScheduler);
+                {
+                    newTask.Start(TaskScheduler);   // support for custom targets that return manually created cold Tasks.
+                }
+
                 return newTask;
             }
             catch (Exception ex)
@@ -681,17 +705,17 @@ namespace NLog.Targets
             }
         }
 
-        private static void NotifyTaskCompletion(IList<AsyncContinuation> reusableContinuations, Exception? ex)
+        private static void NotifyTaskCompletion(IList<AsyncContinuation> continuations, Exception? exception)
         {
-            for (int i = 0; i < reusableContinuations.Count; ++i)
+            for (int i = 0; i < continuations.Count; ++i)
             {
                 try
                 {
-                    reusableContinuations[i](ex);
+                    continuations[i](exception);
                 }
                 catch
                 {
-                    // Don't wanna die
+                    // Failing continuation should not break the writer.
                 }
             }
         }
@@ -751,9 +775,13 @@ namespace NLog.Targets
 
                 var reusableLogEvents = continuation as System.Tuple<List<LogEventInfo>, List<AsyncContinuation>>;
                 if (reusableLogEvents != null)
+                {
                     NotifyTaskCompletion(reusableLogEvents.Item2, actualException);
+                }
                 else
+                {
                     success = false;
+                }
 
                 if (success && reusableLogEvents != null)
                 {
@@ -767,65 +795,61 @@ namespace NLog.Targets
             finally
             {
                 if (retryOnFailureDelay > TimeSpan.Zero)
+                {
                     _lazyWriterTimer.Change((int)retryOnFailureDelay.TotalMilliseconds, Timeout.Infinite);
+                }
                 else
-                    TaskStartNext(completedTask, fullBatchCompleted);
+                {
+                    TaskStartNextFromQueue(completedTask, fullBatchCompleted);
+                }
             }
         }
 
         /// <summary>
         /// Timer method, that is fired when pending task fails to complete within timeout
         /// </summary>
-        /// <param name="state"></param>
         private void TaskTimeout(object? state)
         {
+            if (!IsInitialized)
+                return;
+
+            InternalLogger.Warn("{0}: WriteAsyncTask had timeout. Task will be cancelled.", this);
+
+            var previousTask = _previousTask;
             try
             {
-                if (!IsInitialized)
-                    return;
-
-                InternalLogger.Warn("{0}: WriteAsyncTask had timeout. Task will be cancelled.", this);
-
-                var previousTask = _previousTask;
-                try
+                lock (SyncRoot)
                 {
-                    lock (SyncRoot)
+                    // Check if active Task changed while waiting for SyncRoot-lock
+                    if (previousTask != null && ReferenceEquals(previousTask, _previousTask))
                     {
-                        // Check if active Task changed while waiting for SyncRoot-lock
-                        if (previousTask != null && ReferenceEquals(previousTask, _previousTask))
-                        {
-                            _previousTask = null;
-                            _cancelTokenSource.Cancel();    // Notice how TaskCancelledToken auto recreates token
-                        }
-                        else
-                        {
-                            // Not the expected task to timeout, most likely noise from retry/recovery
-                            previousTask = null;
-                        }
+                        _previousTask = null;
+                        _cancelTokenSource.Cancel();    // Notice how TaskCancelledToken auto recreates token
                     }
-
-                    if (previousTask != null)
+                    else
                     {
-                        if (!WaitTaskIsCompleted(previousTask, TimeSpan.FromSeconds(TaskTimeoutSeconds / 10.0)))
-                        {
-                            InternalLogger.Debug("{0}: WriteAsyncTask had timeout. Task did not cancel properly: {1}.", this, previousTask.Status);
-                        }
-
-                        var actualException = ExtractActualException(previousTask.Exception);
-                        RetryFailedAsyncTask(actualException ?? new TimeoutException("WriteAsyncTask had timeout"), CancellationToken.None, 0, out var retryDelay);
+                        // Not the expected task to timeout, most likely noise from retry/recovery
+                        previousTask = null;
                     }
                 }
-                catch (Exception ex)
-                {
-                    InternalLogger.Debug(ex, "{0}: WriteAsyncTask had timeout. Task failed to cancel properly.", this);
-                }
 
-                TaskStartNext(null, false);
+                if (previousTask != null)
+                {
+                    if (!WaitTaskIsCompleted(previousTask, TimeSpan.FromSeconds(TaskTimeoutSeconds / 10.0)))
+                    {
+                        InternalLogger.Debug("{0}: WriteAsyncTask had timeout. Task did not cancel properly: {1}.", this, previousTask.Status);
+                    }
+
+                    var actualException = ExtractActualException(previousTask.Exception) ?? new TimeoutException("WriteAsyncTask had timeout");
+                    RetryFailedAsyncTask(actualException, CancellationToken.None, 0, out var _);
+                }
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(ex, "{0}: WriteAsyncTask failed on timeout", this);
+                InternalLogger.Debug(ex, "{0}: WriteAsyncTask had timeout. Task failed to cancel properly.", this);
             }
+
+            TaskStartNextFromQueue(null, false);
         }
 
         private static bool WaitTaskIsCompleted(Task task, TimeSpan timeout)
@@ -842,10 +866,13 @@ namespace NLog.Targets
 
         private static Exception? ExtractActualException(AggregateException? taskException)
         {
-            if (taskException?.InnerExceptions?.Count == 1 && !(taskException.InnerExceptions[0] is AggregateException))
+            if (taskException is null)
+                return null;
+
+            if (taskException.InnerExceptions?.Count == 1 && !(taskException.InnerExceptions[0] is AggregateException))
                 return taskException.InnerExceptions[0];    // Skip Flatten()
 
-            var flattenExceptions = taskException?.Flatten()?.InnerExceptions;
+            var flattenExceptions = taskException.Flatten().InnerExceptions;
             return flattenExceptions?.Count == 1 ? flattenExceptions[0] : taskException;
         }
 
