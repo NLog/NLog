@@ -287,8 +287,20 @@ namespace NLog.Targets
                 return false;
             }
 
-            retryDelay = TimeSpan.FromMilliseconds(RetryDelayMilliseconds * Math.Pow(2d, RetryCount - (1 + retryCountRemaining)));
+            double exponentialDelay = RetryDelayMilliseconds * Math.Pow(2d, RetryCount - (1 + retryCountRemaining));
+            retryDelay = TimeSpan.FromMilliseconds(GetJitter(exponentialDelay));
             return true;
+        }
+
+        private static double GetJitter(double exponentialDelay)
+        {
+            int maxJitter = (int)(exponentialDelay / 10.0);
+            if (maxJitter <= 0)
+                return exponentialDelay;
+
+            uint tickCount = unchecked((uint)Environment.TickCount);
+            int jitter = (int)(tickCount % ((uint)maxJitter + 1));
+            return exponentialDelay + jitter;
         }
 
         /// <summary>
@@ -583,12 +595,13 @@ namespace NLog.Targets
                     Task retryTask;
                     lock (SyncRoot)
                     {
-                        retryTask = StartWriteAsyncTask(logEvents, _cancelTokenSource.Token);
+                        retryTask = StartWriteAsyncTask(logEvents, cancellationToken);
                     }
-                    return WriteAsyncTaskWithRetry(retryTask, logEvents, _cancelTokenSource.Token, retryCount - 1);
+
+                    return WriteAsyncTaskWithRetry(retryTask, logEvents, cancellationToken, retryCount - 1);
                 },
                 CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach, TaskScheduler).Unwrap();
-            }, cancellationToken, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach, TaskScheduler).Unwrap();
+            }, CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach, TaskScheduler).Unwrap();
         }
 
         /// <summary>

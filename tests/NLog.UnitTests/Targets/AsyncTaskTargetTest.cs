@@ -489,8 +489,14 @@ namespace NLog.UnitTests.Targets
 
             logger.Factory.Flush();
 
-            // The zero at the end of the array is used when there will be no more retries.
-            Assert.Equal(new[] { 3, 6, 12, 24, 48, 0 }, asyncTarget.retryDelayLog);
+            // Allow Jitter to avoid thundering herd
+            Assert.InRange(asyncTarget.retryDelayLog[0], 3, 3);
+            Assert.InRange(asyncTarget.retryDelayLog[1], 6, 6);
+            Assert.InRange(asyncTarget.retryDelayLog[2], 12, 13);
+            Assert.InRange(asyncTarget.retryDelayLog[3], 24, 26);
+            Assert.InRange(asyncTarget.retryDelayLog[4], 48, 52);
+            Assert.Equal(0, asyncTarget.retryDelayLog[5]);
+            Assert.Equal(6, asyncTarget.retryDelayLog.Count);
 
             logger.Factory.Configuration = null;
         }
