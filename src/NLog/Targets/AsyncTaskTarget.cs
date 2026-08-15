@@ -98,6 +98,8 @@ namespace NLog.Targets
 
         /// <summary>
         /// How many seconds a Task is allowed to run before it is cancelled.
+        /// When the task timeout window expires, any remaining retries will be skipped,
+        /// but each retry attempt gets a fresh timeout window.
         /// </summary>
         /// <remarks>Default: <see langword="150"/></remarks>
         /// <docgen category='Buffering Options' order='100' />
@@ -288,18 +290,21 @@ namespace NLog.Targets
             }
 
             double exponentialDelay = RetryDelayMilliseconds * Math.Pow(2d, RetryCount - (1 + retryCountRemaining));
-            retryDelay = TimeSpan.FromMilliseconds(GetJitter(exponentialDelay));
+            retryDelay = TimeSpan.FromMilliseconds(GetRetryDelayWithJitter(exponentialDelay));
             return true;
         }
 
-        private static double GetJitter(double exponentialDelay)
+        /// <summary>
+        /// Reduce chance of thundering herd problem by adding a small jitter to the exponential delay
+        /// </summary>
+        private static double GetRetryDelayWithJitter(double exponentialDelay)
         {
             int maxJitter = (int)(exponentialDelay / 10.0);
             if (maxJitter <= 0)
                 return exponentialDelay;
 
-            uint tickCount = unchecked((uint)Environment.TickCount);
-            int jitter = (int)(tickCount % ((uint)maxJitter + 1));
+            long timestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+            int jitter = (int)(timestamp % (maxJitter + 1L));
             return exponentialDelay + jitter;
         }
 
@@ -556,10 +561,13 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Generates recursive task-chain to perform retry of writing logevents with increasing retry-delay
+        /// Generates recursive task-chain to perform retry of writing logevents with increasing retry-delay.
+        /// When task timeout window expires, the remaining retry-chain is aborted, but each retry attempt gets a fresh timeout window.
         /// </summary>
         internal Task WriteAsyncTaskWithRetry(Task firstTask, IList<LogEventInfo> logEvents, CancellationToken cancellationToken, int retryCount)
         {
+            // Keep the ContinueWith uncancellable so it can observe task cancellation and report the failure.
+            // The cancellationToken prevents further retries after the timeout window expires.
             return firstTask.ContinueWith(t =>
             {
                 if (t.Status == TaskStatus.RanToCompletion)
@@ -583,7 +591,7 @@ namespace NLog.Targets
                 InternalLogger.Warn(actualException, "{0}: Write operation failed. {1} attempts left. Sleep {2} ms", this, retryCount, retryDelay.TotalMilliseconds);
                 if (TaskTimeoutSeconds > 0 && !cancellationToken.IsCancellationRequested)
                 {
-                    // Prevent timeout-timer from triggering task cancellation token during retry delay
+                    // Reset the timeout window for the next retry attempt, including its retry delay.
                     _taskTimeoutTimer.Change(TaskTimeoutSeconds * 1000, Timeout.Infinite);
                 }
 
@@ -599,8 +607,7 @@ namespace NLog.Targets
                     }
 
                     return WriteAsyncTaskWithRetry(retryTask, logEvents, cancellationToken, retryCount - 1);
-                },
-                CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach, TaskScheduler).Unwrap();
+                }, CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach, TaskScheduler).Unwrap();
             }, CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach, TaskScheduler).Unwrap();
         }
 
