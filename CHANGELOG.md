@@ -4,6 +4,25 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.2 (2026/08/16)
+**Improvements**
+- [#6215](https://github.com/NLog/NLog/pull/6215) FileTarget - Added FileLifecycleHooks for extending archive logic. (@Dave-Senn)
+- [#6218](https://github.com/NLog/NLog/pull/6218) ScopeContext - Optimize collection of properties in reverse order. (@snakefoot)
+- [#6230](https://github.com/NLog/NLog/pull/6230) PropertyTypeConverter - Disable legacy TypeDescriptor when AOT. (@snakefoot)
+- [#6231](https://github.com/NLog/NLog/pull/6231) Replacing ProcessInfoLayoutRenderer with ProcessStartLayoutRenderer. (@snakefoot)
+- [#6229](https://github.com/NLog/NLog/pull/6229) GarbageCollectorInfoLayoutRenderer - WorkingSet + Format. (@snakefoot)
+- [#6246](https://github.com/NLog/NLog/pull/6246) AsyncTaskTarget - Added Jitter on Retry to reduce thundering herd. (@snakefoot)
+- [#6248](https://github.com/NLog/NLog/pull/6248) AsyncTaskTarget - Changed Jitter to use Stopwatch instead of TickCount. (@snakefoot)
+- [#6245](https://github.com/NLog/NLog/pull/6245) AsyncTaskTarget - Refactor to reduce code complexity. (@snakefoot)
+- [#6148](https://github.com/NLog/NLog/pull/6148) AppEnvironmentWrapper - Return Unknown_ProcessId when empty ProcessName. (@snakefoot)
+- [#6187](https://github.com/NLog/NLog/pull/6187) ConfigurationItemFactory - Marked ParseMessageTemplates as obsolete. (@snakefoot)
+- [#6243](https://github.com/NLog/NLog/pull/6243) ConditionParser - Marked as obsolete, so it can become internal. (@snakefoot)
+- [#6087](https://github.com/NLog/NLog/pull/6087) Target - Reduce code complexity of WriteAsyncLogEvents. (@snakefoot)
+- [#6200](https://github.com/NLog/NLog/pull/6200) SimpleLayout - Marked Renderers-property as obsolete. (@snakefoot)
+- [#6239](https://github.com/NLog/NLog/pull/6239) LogFactory - FlushAsync and DisposeAsync with explict usage of CancellationToken.None. (@snakefoot)
+
+NLog v6.2 release notes: https://nlog-project.org/2026/08/16/nlog-6-2-aot-build-size.html
+
 ### Version 6.1.4 (2026/07/08)
 **Improvements**
 - [#6225](https://github.com/NLog/NLog/pull/6225) AsyncTaskTarget - Fixed bug when using BatchSize=1 and doing explicit flush and next LogEvent fails. (@snakefoot)

@@ -31,31 +31,22 @@ For using NLog with ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web
     <PackageReleaseNotes>
 Changelog:
 
-- [#6225] AsyncTaskTarget - Fixed bug when using BatchSize=1 and doing explicit flush and next LogEvent fails. (@snakefoot)
-- [#6206] MruCache - Changed to ConcurrentDictionary but still single writer. (@snakefoot)
-- [#6205] TargetWithFilterChain - Increase CallSite MaxCapacity from 1000 to 2000. (@snakefoot)
-- [#6197] JsonAttribute - New constructor with JsonLayout and Encode = false. (@snakefoot)
-- [#6174] Reduce AOT file-size by changing PropertyTypeConverter to avoid Dictionary for conversion mapping. (@snakefoot)
-- [#6177] Reduce AOT file-size by changing LogFactory PurgeObsoleteLoggers to clone Dictionary instead of ToList. (@snakefoot)
-- [#6185] Reduce AOT file-size by changing to use yield instead of Linq. (@snakefoot)
-- [#6188] Reduce AOT file-size by changing ConfigurationItemFactory from Dictionary to Array of PropertyInfo. (@snakefoot)
-- [#6192] Reduce AOT file-size by changing Target FindAllLayouts to use HashSet instead of Linq Distinct. (@snakefoot)
-- [#6193] Reduce AOT file-size by changing XmlLoggingConfiguration AutoReloadFileNames to use yield instead of Linq. (@snakefoot)
-- [#6195] Reduce AOT file-size by changing LoggingConfiguration CheckUnusedTargets to use HashSet instead of Linq. (@snakefoot)
-- [#6204] TemplateEnumerator - Replace LiteralHole with CurrentHole and CurrentLiteral. (@snakefoot)
-- [#6223] XmlParser - ReadUntilChar avoid extra string-allocation on trim InnerText. (@snakefoot)
-- [#6222] XmlParser - Simplify ReadUntilChar by extracting parse of attribute-name into ReadEntityName. (@snakefoot)
-- [#6209] AppVeyor - Visual Studio 2026. (@snakefoot)
-- [#6199] Fixed nullable warnings from Activator.CreateInstance. (@snakefoot)
-- [#6190] SetupConfigurationTargetBuilder - Fix Sonar Code Smell. (@snakefoot)
-- [#6176] TryNLogSpecificConversion - Refactor parsing Layout from string. (@snakefoot)
-- [#6210] ScopeContext - Fix List capacity for GetAllNestedStates. (@jnyrup)
-- [#6211] ScopeContext - Renamed PushNestedState to CollectNestedState. (@snakefoot)
-- [#6214] ScopeContext - Rename CaptureNestedContext to CloneNestedContext. (@snakefoot)
-- [#6216] ScopeContext - Simplify CaptureContextProperties when only nested state. (@snakefoot)
-- [#6217] ScopeContext - Unify CollectNestedState implementation. (@snakefoot)
+- [#6215] FileTarget - Added FileLifecycleHooks for extending archive logic. (@Dave-Senn)
+- [#6218] ScopeContext - Optimize collection of properties in reverse order. (@snakefoot)
+- [#6230] PropertyTypeConverter - Disable legacy TypeDescriptor when AOT. (@snakefoot)
+- [#6231] Replacing ProcessInfoLayoutRenderer with ProcessStartLayoutRenderer. (@snakefoot)
+- [#6229] GarbageCollectorInfoLayoutRenderer - WorkingSet + Format. (@snakefoot)
+- [#6246] AsyncTaskTarget - Added Jitter on Retry to reduce thundering herd. (@snakefoot)
+- [#6248] AsyncTaskTarget - Changed Jitter to use Stopwatch instead of TickCount. (@snakefoot)
+- [#6245] AsyncTaskTarget - Refactor to reduce code complexity. (@snakefoot)
+- [#6148] AppEnvironmentWrapper - Return Unknown_ProcessId when empty ProcessName. (@snakefoot)
+- [#6187] ConfigurationItemFactory - Marked ParseMessageTemplates as obsolete. (@snakefoot)
+- [#6243] ConditionParser - Marked as obsolete, so it can become internal. (@snakefoot)
+- [#6087] Target - Reduce code complexity of WriteAsyncLogEvents. (@snakefoot)
+- [#6200] SimpleLayout - Marked Renderers-property as obsolete. (@snakefoot)
+- [#6239] LogFactory - FlushAsync and DisposeAsync with explict usage of CancellationToken.None. (@snakefoot)
 
-NLog v6.0 release notes: https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html
+NLog v6.2 release notes: https://nlog-project.org/2026/08/16/nlog-6-2-aot-build-size.html
 
 Full changelog: https://github.com/NLog/NLog/releases
 
