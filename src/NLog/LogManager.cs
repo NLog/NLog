@@ -189,7 +189,6 @@ namespace NLog
         /// <returns>The logger.</returns>
         /// <remarks>This method introduces performance hit, because of StackTrace capture.
         /// Make sure you are not calling this method in a loop.</remarks>
-        [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger()
         {
@@ -207,7 +206,6 @@ namespace NLog
         /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
         /// <remarks>This method introduces performance hit, because of StackTrace capture.
         /// Make sure you are not calling this method in a loop.</remarks>
-        [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
         [Obsolete("Replaced by LogFactory.GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]
         [EditorBrowsable(EditorBrowsableState.Never)]
