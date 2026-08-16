@@ -31,76 +31,122 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System.IO;
-
 namespace NLog.Targets
 {
+    using System.IO;
+
     /// <summary>
-    ///     Enables hooking into log file lifecycle events.
-    ///     Hooks run synchronously and therefore may affect responsiveness of the application if long operations are performed.
+    ///     Enables hooking into file and <see cref="FileTarget"/> lifecycle events.
+    ///     Hooks are invoked synchronously and therefore may affect application responsiveness
+    ///     if they perform long-running operations.
     /// </summary>
+    /// <remarks>
+    ///     <para>
+    ///         A <see cref="FileTarget"/> can have multiple log files open simultaneously.
+    ///         File lifecycle callbacks therefore apply to the individual file identified by
+    ///         <c>filePath</c> and must not assume that there is only one active file.
+    ///     </para>
+    ///     <para>
+    ///         The same file may be opened and closed multiple times during the lifetime of a <see cref="FileTarget"/>.
+    ///     </para>
+    /// </remarks>
     public abstract class FileLifecycleHooks
     {
         /// <summary>
-        ///        Called after an open file has been closed.
+        ///     Initializes or wraps the stream opened for a log file.
+        ///     This can be used to write file headers, or wrap the stream in another stream
+        ///     that adds buffering, compression, encryption, etc.
         /// </summary>
         /// <remarks>
-        ///     Note that <see cref="OnFileClosed" /> is not guaranteed to be invoked before <see cref = "FileTarget" /> advances to the next file.
-        ///     You may override <see cref="OnTargetClose" /> to determine whether a file-closed event was caused by <see cref="FileTarget" /> shutting down or by <see cref="FileTarget" /> switching to a different file.
-        ///     <see cref="FileTarget"/> may close files in the following scenarios:
-        ///     - <see cref="FileTarget"/> archives the current file because of an archive constraint and switches to the next file.
-        ///     - An open file is deleted from storage and no longer exists.
-        ///     - If <see cref="FileTarget.DeleteOldFileOnStartup"/> is enabled, <see cref="FileTarget"/> may close open files.
-        ///     - <see cref="FileTarget"/> closes all open files when the target itself is shutting down.
-        ///     You can set <see cref="FileTarget.OpenFileCacheSize "/> to <value>1</value> to prevent having multiple file open at the same time.
+        ///     <para>
+        ///         The underlying file may or may not be empty when this method is called.
+        ///     </para>
+        ///     <para>
+        ///         NLog takes ownership of the returned stream and disposes it when the file
+        ///         is closed. If the returned stream wraps <paramref name="underlyingStream"/>,
+        ///         the returned stream is responsible for disposing the underlying stream.
+        ///     </para>
         /// </remarks>
-        /// <param name="filePath">The full path to the file being closed.</param>
+        /// <param name="filePath">The full path to the log file.</param>
+        /// <param name="underlyingStream">The underlying <see cref="Stream"/> opened on the log file.</param>
+        /// <returns>The <see cref="Stream"/> NLog should use when writing events to the log file.</returns>
+        public virtual Stream OnFileOpened(string filePath, Stream underlyingStream)
+            => underlyingStream;
+
+        /// <summary>
+        ///     Called after a log file has been closed by the <see cref="FileTarget"/>.
+        /// </summary>
+        /// <remarks>
+        ///     <para>
+        ///         This is a per-file event. A <see cref="FileTarget"/> can have multiple
+        ///         files open simultaneously, and this method is invoked independently for
+        ///         each file when that file is closed.
+        ///     </para>
+        ///     <para>
+        ///         The same file may be opened and closed multiple times during the lifetime of the target.
+        ///     </para>
+        ///     <para>
+        ///         A file can be closed because of archiving, file cleanup, file cache
+        ///         management, or other <see cref="FileTarget"/> operations.
+        ///     </para>
+        /// </remarks>
+        /// <param name="filePath">The full path to the file that was closed.</param>
         public virtual void OnFileClosed(string filePath)
         {
         }
 
         /// <summary>
-        ///     Invoked immediately before a log file is deleted.
+        ///     Called immediately before a log file is deleted by the <see cref="FileTarget"/>.
         /// </summary>
         /// <remarks>
-        ///     Use this callback to perform custom actions before a log file is removed, such as copying it to an archive location or uploading it to a backup server.
-        ///     The timing of file deletion depends on the archive retention settings. Use <see cref="FileTarget.MaxArchiveDays" /> and <see cref="FileTarget.MaxArchiveFiles" /> to control when archived log files become eligible for deletion.
+        ///     <para>
+        ///         This is a per-file event and can be used to perform custom actions before
+        ///         NLog deletes the file as part of its file cleanup logic, for example when
+        ///         <see cref="FileTarget.MaxArchiveFiles"/> or <see cref="FileTarget.MaxArchiveDays"/>
+        ///         triggers archive cleanup.
+        ///     </para>
+        ///     <para>
+        ///         It is possible to move, rename, or delete the file in this method, as
+        ///         <see cref="FileTarget"/> silently ignores that the file is already gone.
+        ///     </para>
         /// </remarks>
-        /// <param name="filePath">The full path of the log file that is about to be deleted.</param>
+        /// <param name="filePath">The full path to the file that is about to be deleted.</param>
         public virtual void OnFileDeleting(string filePath)
         {
         }
 
         /// <summary>
-        ///     Initialize or wrap the <paramref name="underlyingStream" /> opened on the log file. Wrap the stream in another that adds buffering, compression, encryption, etc.
-        ///     The underlying file may or may not be empty when this method is called.
-        /// </summary>
-        /// <param name="filePath">The full path to the log file.</param>
-        /// <param name="underlyingStream">The underlying <see cref="Stream" /> opened on the log file.</param>
-        /// <returns>The <see cref="Stream" /> NLog should use when writing events to the log file.</returns>
-        public virtual Stream OnFileOpened(string filePath, Stream underlyingStream)
-            => underlyingStream;
-
-        /// <summary>
-        ///     Called when the target is being closed.
+        ///     Called when the <see cref="FileTarget"/> is initialized.
         /// </summary>
         /// <remarks>
-        ///      You can use this method to perform custom cleanup logic and to distinguish between files being closed due to rollover and those being closed because the target itself is shutting down.
+        ///     <para>
+        ///         This callback is invoked once for each initialization of the target.
+        ///     </para>
+        ///     <para>
+        ///         The <paramref name="target"/> can be used to inspect the target configuration
+        ///         when implementing custom initialization logic.
+        ///     </para>
+        ///     <para>
+        ///         If this method throws an exception, initialization of the
+        ///         <see cref="FileTarget"/> may fail and the target may be disabled for output.
+        ///     </para>
         /// </remarks>
-        /// <param name="target">The target that is being closed.</param>
-        public virtual void OnTargetClose(FileTarget target)
+        /// <param name="target">The <see cref="FileTarget"/> being initialized.</param>
+        public virtual void OnTargetInitialize(FileTarget target)
         {
         }
 
         /// <summary>
-        ///     Called when the target gets initialized.
+        ///     Called when the <see cref="FileTarget"/> is being closed.
         /// </summary>
         /// <remarks>
-        ///     If <see cref="OnTargetInitialize"/> throws an exception, the <see cref="FileTarget"/> is placed into an error state and will be disabled for output.
-        ///     You can use this method to modify the properties of <paramref name="target"/> in order to adjust the behavior of <see cref="FileTarget"/> according to your requirements.
+        ///     <para>
+        ///         This callback represents the lifecycle of the target itself rather than
+        ///         the lifecycle of an individual file.
+        ///     </para>
         /// </remarks>
-        /// <param name="target"><see cref="FileTarget"/> being initialized.</param>
-        public virtual void OnTargetInitialize(FileTarget target)
+        /// <param name="target">The <see cref="FileTarget"/> that is being closed.</param>
+        public virtual void OnTargetClose(FileTarget target)
         {
         }
     }
