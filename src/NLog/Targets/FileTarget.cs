@@ -41,7 +41,6 @@ namespace NLog.Targets
     using System.Text;
     using System.Threading;
     using NLog.Common;
-    using NLog.Config;
     using NLog.Internal;
     using NLog.Internal.Fakeables;
     using NLog.Layouts;
@@ -464,6 +463,11 @@ namespace NLog.Targets
         /// <docgen category='Archival Options' order='50' />
         public bool WriteFooterOnArchivingOnly { get; set; }
 
+        /// <summary>
+        /// Optional file lifecycle hooks.
+        /// </summary>
+        private FileLifecycleHooks? FileLifeCycle { get; }
+
         private int OpenFileMonitorTimerInterval
         {
             get
@@ -530,6 +534,18 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="FileTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
+        /// </remarks>
+        /// <param name="fileLifeCycle">FileLifeCycle to perform actions on certain life cycle events.</param>
+        public FileTarget(FileLifecycleHooks fileLifeCycle) : this()
+        {
+            FileLifeCycle = Guard.ThrowIfNull(fileLifeCycle);
+        }
+
+        /// <summary>
         /// Flushes all pending file operations.
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
@@ -565,6 +581,8 @@ namespace NLog.Targets
             if (Layout.IsNullOrEmpty(FileName))
                 throw new NLogConfigurationException("FileTarget FileName-property must be assigned. FileName is needed for file writing.");
 
+            FileLifeCycle?.OnTargetInitialize(this);
+
             if (_archiveSuffixFormat != null)
             {
                 StringFormat_ArchiveSuffixFormat(int.MaxValue, DateTime.MaxValue, true);
@@ -582,6 +600,15 @@ namespace NLog.Targets
         /// <inheritdoc />
         protected override void CloseTarget()
         {
+            try
+            {
+                FileLifeCycle?.OnTargetClose(this);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error", this, nameof(FileLifecycleHooks.OnTargetClose));
+            }
+
             var openFileMonitorTimer = _openFileMonitorTimer;
             _openFileMonitorTimer = null;
             openFileMonitorTimer?.Change(Timeout.Infinite, Timeout.Infinite);
@@ -954,7 +981,7 @@ namespace NLog.Targets
             }
         }
 
-        internal void CloseOpenFileBeforeArchiveCleanup(string filepath)
+        internal void CloseOpenFileBeforeArchiveFileDelete(string filepath)
         {
             KeyValuePair<string, OpenFileAppender> foundOpenFile;
 
@@ -980,6 +1007,15 @@ namespace NLog.Targets
                     CloseFile(foundOpenFile.Key, foundOpenFile.Value);
                 }
             } while (foundOpenFile.Key != null);
+
+            try
+            {
+                FileLifeCycle?.OnFileDeleting(filepath);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileDeleting), filepath);
+            }
         }
 
         private void CloseFile(string filename, OpenFileAppender openFile)
@@ -995,6 +1031,15 @@ namespace NLog.Targets
             finally
             {
                 openFile.FileAppender.Dispose();
+
+                try
+                {
+                    FileLifeCycle?.OnFileClosed(openFile.FileAppender.FilePath);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileClosed), openFile.FileAppender.FilePath);
+                }
             }
         }
 
@@ -1291,6 +1336,17 @@ namespace NLog.Targets
         private Stream OpenNewFileStream(string filePath, int bufferSize, bool initialFileOpen)
         {
             var fileStream = CreateFileStream(filePath, bufferSize);
+
+            try
+            {
+                var wrappedStream = FileLifeCycle?.OnFileOpened(filePath, fileStream);
+                if (wrappedStream is not null)
+                    fileStream = wrappedStream;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: {1} hook threw an unexpected error for file '{2}'", this, nameof(FileLifecycleHooks.OnFileOpened), filePath);
+            }
 
             try
             {

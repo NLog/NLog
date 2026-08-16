@@ -437,7 +437,8 @@ namespace NLog.Targets.FileArchiveHandlers
                 try
                 {
                     InternalLogger.Info("{0}: Cleanup file archive {1}. Delete file: '{2}'", _fileTarget, archiveCleanupReason, filepath);
-                    _fileTarget.CloseOpenFileBeforeArchiveCleanup(filepath);
+                    _fileTarget.CloseOpenFileBeforeArchiveFileDelete(filepath);
+
                     File.Delete(filepath);
                     return true;
                 }

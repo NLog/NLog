@@ -35,7 +35,6 @@ namespace NLog.UnitTests.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -101,6 +100,100 @@ namespace NLog.UnitTests.Targets
                 logger.Warn("ccc");
 
                 LogManager.Configuration = null;    // Flush
+
+                AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+            }
+        }
+
+        [Fact]
+        public void FileLifeCycleTest()
+        {
+            var logFile = Path.GetTempFileName();
+            try
+            {
+                var callRecording = new List<string>();
+                var fileTarget = new FileTarget(new MockFileLifecycleHooks("hooks", callRecording))
+                {
+                    FileName = Layout.FromLiteral(logFile),
+                    Name = "my-file",
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    ArchiveAboveSize = 5,
+                    MaxArchiveFiles = 1
+                };
+
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+
+                LogManager.Configuration = null; // Flush
+
+                var expected = new List<string>
+                {
+                    "hooks_OnTargetInitialize_my-file",
+                    $"hooks_OnFileOpened_{logFile}_FileStream",
+                    $"hooks_OnFileClosed_{logFile}",
+                    $"hooks_OnFileDeleting_{logFile}",
+                    $"hooks_OnFileOpened_{logFile}_FileStream",
+                    $"hooks_OnFileClosed_{logFile}",
+                    $"hooks_OnFileDeleting_{logFile}",
+                    $"hooks_OnFileOpened_{logFile}_FileStream",
+                    "hooks_OnTargetClose_my-file",
+                    $"hooks_OnFileClosed_{logFile}"
+                };
+
+                Assert.Equal(expected, callRecording);
+
+                AssertFileContents(logFile, "Warn ccc\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+            }
+        }
+
+
+        [Fact]
+        public void FileLifeCycle_ErrorHandlingTest()
+        {
+            var logFile = Path.GetTempFileName();
+            try
+            {
+                var callRecording = new List<string>();
+                var fileTarget = new FileTarget(new MockFileLifecycleHooks("hooks", callRecording, true))
+                {
+                    FileName = Layout.FromLiteral(logFile),
+                    Name = "my-file",
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    OpenFileCacheTimeout = 0
+                };
+
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+
+                LogManager.Configuration = null;    // Flush
+
+                var expected = new List<string>
+                {
+                    "hooks_OnTargetInitialize_my-file",
+                    $"hooks_OnFileOpened_{logFile}_FileStream",
+                    "hooks_OnTargetClose_my-file",
+                    $"hooks_OnFileClosed_{logFile}"
+                };
+
+                Assert.Equal(expected, callRecording);
 
                 AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
@@ -1096,7 +1189,7 @@ namespace NLog.UnitTests.Targets
                 logger.Info("bbb");
                 logger.Warn("ccc");
 
-                if (autoFlush || !keepFileOpen) 
+                if (autoFlush || !keepFileOpen)
                 {
                     AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
                 }
@@ -4567,6 +4660,60 @@ namespace NLog.UnitTests.Targets
             string fileText = File.ReadAllText(fileName, encoding);
             Assert.True(fileText.Length >= contents.Length);
             Assert.Equal(contents, fileText.Substring(fileText.Length - contents.Length));
+        }
+        private sealed class MockFileLifecycleHooks : FileLifecycleHooks
+        {
+            private string _name;
+            private List<string> _callRecording;
+            private readonly Boolean _throwOnCall;
+
+            public MockFileLifecycleHooks(string name, List<string> callRecording, Boolean throwOnCall = false)
+            {
+                _name = name;
+                _callRecording = callRecording;
+                _throwOnCall = throwOnCall;
+            }
+
+            #region Overrides of FileLifecycleHooks
+
+            public override void OnTargetClose(FileTarget target)
+            {
+                _callRecording.Add($"{_name}_{nameof(OnTargetClose)}_{target.Name}");
+                if (_throwOnCall)
+                    throw new DivideByZeroException("Test error");
+                base.OnTargetClose(target);
+            }
+
+            public override void OnFileClosed(String filePath)
+            {
+                _callRecording.Add($"{_name}_{nameof(OnFileClosed)}_{filePath}");
+                if (_throwOnCall)
+                    throw new DivideByZeroException("Test error");
+                base.OnFileClosed(filePath);
+            }
+
+            public override void OnFileDeleting(String filePath)
+            {
+                _callRecording.Add($"{_name}_{nameof(OnFileDeleting)}_{filePath}");
+                if (_throwOnCall)
+                    throw new DivideByZeroException("Test error");
+                base.OnFileDeleting(filePath);
+            }
+
+            public override Stream OnFileOpened(String filePath, Stream underlyingStream)
+            {
+                _callRecording.Add($"{_name}_{nameof(OnFileOpened)}_{filePath}_{underlyingStream.GetType().Name}");
+                underlyingStream = base.OnFileOpened(filePath, underlyingStream);
+                return _throwOnCall ? throw new DivideByZeroException("Test error") : underlyingStream;
+            }
+
+            public override void OnTargetInitialize(FileTarget target)
+            {
+                _callRecording.Add($"{_name}_{nameof(OnTargetInitialize)}_{target.Name}");
+                base.OnTargetInitialize(target);
+            }
+
+            #endregion
         }
     }
 }
