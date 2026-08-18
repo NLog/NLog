@@ -4,6 +4,10 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 7.0 (Unreleased)
+**Breaking Changes**
+- [#6232](https://github.com/NLog/NLog/issues/6232) DateLayoutRenderer - Changed default Format to `yyyy-MM-dd HH:mm:ss.ffff` for consistency with rest of NLog (breaking change, was `yyyy/MM/dd HH:mm:ss.fff`).
+
 ### Version 6.2 (2026/08/16)
 **Improvements**
 - [#6215](https://github.com/NLog/NLog/pull/6215) FileTarget - Added FileLifecycleHooks for extending archive logic. (@Dave-Senn)
