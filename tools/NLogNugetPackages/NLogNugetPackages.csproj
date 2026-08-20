@@ -19,8 +19,10 @@
     <PackageReference Include="NLog.RegEx" Version="6.*" />
     <PackageReference Include="NLog.Targets.AtomicFile" Version="6.*" />
     <PackageReference Include="NLog.Targets.GZipFile" Version="6.*" />
+    <PackageReference Include="NLog.Targets.HttpClient" Version="6.*" />
     <PackageReference Include="NLog.Targets.Mail" Version="6.*" />
     <PackageReference Include="NLog.Targets.Network" Version="6.*" />
+    <PackageReference Include="NLog.Targets.OpenTelemetryHttp" Version="6.*" />
     <PackageReference Include="NLog.Targets.Trace" Version="6.*" />
     <PackageReference Include="NLog.Targets.WebService" Version="6.*" />
     <PackageReference Include="NLog.Wcf" Version="6.*" />
