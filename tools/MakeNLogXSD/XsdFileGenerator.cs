@@ -408,7 +408,9 @@ namespace MakeNLogXSD
                         apiTypeName.StartsWith("System.Collections.Generic.HashSet") ||
                         apiTypeName.StartsWith("System.Collections.Generic.IList") ||
                         apiTypeName.StartsWith("System.Collections.Generic.List") ||
-                        apiTypeName.StartsWith("System.Collections.Generic.IEnumerable")
+                        apiTypeName.StartsWith("System.Collections.Generic.IEnumerable") ||
+                        apiTypeName.StartsWith("System.Diagnostics.ActivitySpanId") ||
+                        apiTypeName.StartsWith("System.Diagnostics.ActivityTraceId")
                         )
                     {
                         //comma separated string
