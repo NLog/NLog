@@ -31,17 +31,56 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace MyExtensionNamespace
+namespace NLog.UnitTests.Internal
 {
-    using NLog.Conditions;
+    using System;
+    using NLog.Internal;
+    using Xunit;
 
-    [ConditionMethods]
-    public static class MyConditionMethods
+    public class CryptoRandomTests
     {
-        [ConditionMethod("myvalue")]
-        public static int Value(int value)
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(100)]
+        [InlineData(int.MaxValue)]
+        public void GetInt32_MaxValue_ReturnsWithinRange(int toExclusive)
         {
-            return value;
+            for (int i = 0; i < 100; ++i)
+            {
+                var randomValue = CryptoRandom.GetInt32(toExclusive);
+                Assert.InRange(randomValue, 0, toExclusive - 1);
+            }
+        }
+
+        [Theory]
+        [InlineData(-100, -10)]
+        [InlineData(-10, 10)]
+        [InlineData(10, 100)]
+        [InlineData(int.MinValue, int.MaxValue)]
+        public void GetInt32_Range_ReturnsWithinRange(int fromInclusive, int toExclusive)
+        {
+            for (int i = 0; i < 100; ++i)
+            {
+                var randomValue = CryptoRandom.GetInt32(fromInclusive, toExclusive);
+                Assert.InRange(randomValue, fromInclusive, toExclusive - 1);
+            }
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        public void GetInt32_InvalidMaxValue_Throws(int toExclusive)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => CryptoRandom.GetInt32(toExclusive));
+        }
+
+        [Theory]
+        [InlineData(0, 0)]
+        [InlineData(1, 0)]
+        public void GetInt32_InvalidRange_Throws(int fromInclusive, int toExclusive)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => CryptoRandom.GetInt32(fromInclusive, toExclusive));
         }
     }
 }

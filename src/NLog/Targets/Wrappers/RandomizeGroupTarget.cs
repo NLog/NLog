@@ -33,8 +33,8 @@
 
 namespace NLog.Targets.Wrappers
 {
-    using System;
     using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Sends log messages to a randomly selected target.
@@ -60,10 +60,6 @@ namespace NLog.Targets.Wrappers
     [Target("RandomizeGroup", IsCompound = true)]
     public class RandomizeGroupTarget : CompoundTargetBase
     {
-#pragma warning disable S2245   // Make sure that using this pseudorandom number generator is safe here (Not security sensitive)
-        private readonly Random _random = new Random(); //NOSONAR
-#pragma warning restore S2245   // Make sure that using this pseudorandom number generator is safe here
-
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomizeGroupTarget" /> class.
         /// </summary>
@@ -105,13 +101,7 @@ namespace NLog.Targets.Wrappers
                 return;
             }
 
-            int selectedTarget;
-
-            lock (_random)
-            {
-                selectedTarget = _random.Next(Targets.Count);
-            }
-
+            var selectedTarget = CryptoRandom.GetInt32(Targets.Count);
             Targets[selectedTarget].WriteAsyncLogEvent(logEvent);
         }
     }
