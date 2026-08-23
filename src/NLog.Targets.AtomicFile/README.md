@@ -1,14 +1,17 @@
 # NLog AtomFile Target
 
-NLog File Target writing to file using operating system API for atomic file appending (O_APPEND), so multiple processes can write concurrently to the same file.
+NLog File Target extension that uses operating-system append semantics, allowing multiple processes to write concurrently to the same file.
+
+`AtomicFileTarget` extends NLog's standard `FileTarget` and uses native operating-system file APIs to provide atomic append semantics:
+
+- **Windows**: uses `FILE_APPEND_DATA` together with `SYNCHRONIZE`.
+- **Linux** and **macOS**: uses `open()` with `O_APPEND` and `O_CLOEXEC`.
+  - `O_APPEND` ensures that each write is positioned at the end of the file by the operating system.
+  - `O_CLOEXEC` prevents the file descriptor from being unintentionally inherited across `exec()`.
 
 If having trouble with output, then check [NLog InternalLogger](https://github.com/NLog/NLog/wiki/Internal-Logging) for clues. See also [Troubleshooting NLog](https://github.com/NLog/NLog/wiki/Logging-Troubleshooting)
 
 See the [NLog Wiki](https://github.com/NLog/NLog/wiki/Atomic-File-target) for available options and examples.
-
-## Linux Support
-
-Uses libc `open()` with `O_APPEND` flag, which is supported on Linux and other Unix-like operating systems.
 
 ## Register Extension
 
@@ -26,4 +29,20 @@ Alternative register from code using [fluent configuration API](https://github.c
 LogManager.Setup().SetupExtensions(ext => {
    ext.RegisterTarget<NLog.Targets.AtomicFileTarget>();
 });
+```
+
+## Example Configuration:
+
+```xml
+<nlog>
+<extensions>
+    <add assembly="NLog.Targets.AtomicFile"/>
+</extensions>
+<targets>
+  <target xsi:type="AtomFile"
+          name="logfile"
+          fileName="${basedir}/logs/application.log"
+          layout="${longdate}|${level:uppercase=true}|${message} ${exception:format=tostring}" />
+</targets>
+</nlog>
 ```
