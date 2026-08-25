@@ -35,12 +35,14 @@ namespace NLog.Internal
 {
     using System;
     using System.Diagnostics;
-    using System.Runtime.CompilerServices;
+    using System.Threading;
 
     internal sealed class VariationGenerator
     {
         // An odd Weyl-sequence increment produces a full 2^32 period.
         private const uint Gamma = 0x9E3779B9u;
+
+        private static int _seed;
 
         private uint _state;
 
@@ -48,7 +50,7 @@ namespace NLog.Internal
         {
             unchecked
             {
-                _state = (uint)Stopwatch.GetTimestamp() ^ (uint)RuntimeHelpers.GetHashCode(this);
+                _state = (uint)Stopwatch.GetTimestamp() ^ (uint)Interlocked.Increment(ref _seed);
             }
         }
 
