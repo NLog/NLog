@@ -31,56 +31,66 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.UnitTests.Internal
+namespace NLog.Internal
 {
     using System;
-    using NLog.Internal;
-    using Xunit;
+    using System.Diagnostics;
+    using System.Runtime.CompilerServices;
 
-    public class CryptoRandomTests
+    internal sealed class VariationGenerator
     {
-        [Theory]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(100)]
-        [InlineData(int.MaxValue)]
-        public void GetInt32_MaxValue_ReturnsWithinRange(int toExclusive)
+        // An odd Weyl-sequence increment produces a full 2^32 period.
+        private const uint Gamma = 0x9E3779B9u;
+
+        private uint _state;
+
+        internal VariationGenerator()
         {
-            for (int i = 0; i < 100; ++i)
+            unchecked
             {
-                var randomValue = CryptoRandom.GetInt32(toExclusive);
-                Assert.InRange(randomValue, 0, toExclusive - 1);
+                _state = (uint)Stopwatch.GetTimestamp() ^ (uint)RuntimeHelpers.GetHashCode(this);
             }
         }
 
-        [Theory]
-        [InlineData(-100, -10)]
-        [InlineData(-10, 10)]
-        [InlineData(10, 100)]
-        [InlineData(int.MinValue, int.MaxValue)]
-        public void GetInt32_Range_ReturnsWithinRange(int fromInclusive, int toExclusive)
+        internal uint NextUInt()
         {
-            for (int i = 0; i < 100; ++i)
+            unchecked
             {
-                var randomValue = CryptoRandom.GetInt32(fromInclusive, toExclusive);
-                Assert.InRange(randomValue, fromInclusive, toExclusive - 1);
+                uint value = _state += Gamma;
+                value ^= value >> 16;
+                value *= 0x85EBCA6Bu;
+                value ^= value >> 13;
+                value *= 0xC2B2AE35u;
+                value ^= value >> 16;
+                return value;
             }
         }
 
-        [Theory]
-        [InlineData(0)]
-        [InlineData(-1)]
-        public void GetInt32_InvalidMaxValue_Throws(int toExclusive)
+        internal int Next(int maxValue)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => CryptoRandom.GetInt32(toExclusive));
+            if (maxValue < 0)
+                throw new ArgumentOutOfRangeException(nameof(maxValue), maxValue, "MaxValue must be non-negative");
+
+            if (maxValue == 0)
+                return 0;
+
+            return (int)(((ulong)NextUInt() * (uint)maxValue) >> 32);
         }
 
-        [Theory]
-        [InlineData(0, 0)]
-        [InlineData(1, 0)]
-        public void GetInt32_InvalidRange_Throws(int fromInclusive, int toExclusive)
+        internal int Next(int minValue, int maxValue)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => CryptoRandom.GetInt32(fromInclusive, toExclusive));
+            if (minValue > maxValue)
+                throw new ArgumentOutOfRangeException(nameof(maxValue), maxValue, $"MinValue={minValue} > MaxValue={maxValue}");
+
+            if (minValue == maxValue)
+                return minValue;
+
+            unchecked
+            {
+                uint range = (uint)((long)maxValue - minValue);
+                uint offset = (uint)(((ulong)NextUInt() * range) >> 32);
+                return minValue + (int)offset;
+            }
         }
     }
 }

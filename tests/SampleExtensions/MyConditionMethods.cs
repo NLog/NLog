@@ -33,15 +33,16 @@
 
 namespace MyExtensionNamespace
 {
+    using System.Diagnostics;
     using NLog.Conditions;
 
     [ConditionMethods]
     public static class MyConditionMethods
     {
-        [ConditionMethod("myvalue")]
-        public static int Value(int value)
+        [ConditionMethod("myrandom")]
+        public static int Random(int max)
         {
-            return value;
+            return (int)((ulong)Stopwatch.GetTimestamp() % (uint)max);  // Sloppy by default
         }
     }
 }

@@ -131,7 +131,7 @@ namespace NLog.UnitTests.Config
       <logger name='*' writeTo='t'>
         <filters>
            <whenFoo x='44' action='Ignore' />
-           <when condition='myvalue(10)==3' action='Log' />
+           <when condition='myrandom(10)==3' action='Log' />
         </filters>
       </logger>
     </rules>
@@ -153,7 +153,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
             var cbf = configuration.LoggingRules[0].Filters[1] as ConditionBasedFilter;
             Assert.NotNull(cbf);
-            Assert.Equal("(myvalue(10) == 3)", cbf.Condition.ToString());
+            Assert.Equal("(myrandom(10) == 3)", cbf.Condition.ToString());
         }
 
         [Fact]
@@ -181,7 +181,7 @@ namespace NLog.UnitTests.Config
       <logger name='*' writeTo='t'>
         <filters>
            <whenFoo x='44' action='Ignore' />
-           <when condition='myvalue(10)==3' action='Log' />
+           <when condition='myrandom(10)==3' action='Log' />
         </filters>
       </logger>
     </rules>
@@ -203,7 +203,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
             var cbf = configuration.LoggingRules[0].Filters[1] as ConditionBasedFilter;
             Assert.NotNull(cbf);
-            Assert.Equal("(myvalue(10) == 3)", cbf.Condition.ToString());
+            Assert.Equal("(myrandom(10) == 3)", cbf.Condition.ToString());
         }
 
         [Fact]

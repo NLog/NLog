@@ -31,54 +31,58 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Internal
+namespace NLog.UnitTests.Internal
 {
     using System;
-    using System.Security.Cryptography;
+    using NLog.Internal;
+    using Xunit;
 
-    internal static class CryptoRandom
+    public class VariationGeneratorTests
     {
-        private const ulong UInt32ValueCount = (ulong)uint.MaxValue + 1;
-        [ThreadStatic]
-        private static RandomNumberGenerator? _randomNumberGenerator;
-        [ThreadStatic]
-        private static byte[]? _randomBytes;
-
-        internal static int GetInt32(int toExclusive)
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(100)]
+        [InlineData(int.MaxValue)]
+        public void Next_MaxValue_ReturnsWithinRange(int maxValue)
         {
-            if (toExclusive <= 0)
-                throw new ArgumentOutOfRangeException(nameof(toExclusive));
-
-            return (int)GetUInt32((uint)toExclusive);
-        }
-
-        internal static int GetInt32(int fromInclusive, int toExclusive)
-        {
-            if (fromInclusive >= toExclusive)
-                throw new ArgumentOutOfRangeException(nameof(toExclusive));
-
-            var range = (uint)((long)toExclusive - fromInclusive);
-            return (int)(fromInclusive + (long)GetUInt32(range));
-        }
-
-        private static uint GetUInt32(uint toExclusive)
-        {
-            var upperBound = UInt32ValueCount - (UInt32ValueCount % toExclusive);
-            var randomNumberGenerator = _randomNumberGenerator ?? (_randomNumberGenerator = RandomNumberGenerator.Create());
-            var randomBytes = _randomBytes ?? (_randomBytes = new byte[sizeof(uint)]);
-
-            uint randomValue;
-            do
+            var variationGenerator = new VariationGenerator();
+            for (int i = 0; i < 100; ++i)
             {
-                randomNumberGenerator.GetBytes(randomBytes);
-                randomValue = ((uint)randomBytes[0] << 24)
-                              | ((uint)randomBytes[1] << 16)
-                              | ((uint)randomBytes[2] << 8)
-                              | randomBytes[3];
+                var randomValue = variationGenerator.Next(maxValue);
+                Assert.InRange(randomValue, 0, maxValue - 1);
             }
-            while ((ulong)randomValue >= upperBound);
+        }
 
-            return randomValue % toExclusive;
+        [Theory]
+        [InlineData(-100, -10)]
+        [InlineData(-10, 10)]
+        [InlineData(10, 100)]
+        [InlineData(int.MinValue, int.MaxValue)]
+        public void Next_Range_ReturnsWithinRange(int minValue, int maxValue)
+        {
+            var variationGenerator = new VariationGenerator();
+            for (int i = 0; i < 100; ++i)
+            {
+                var randomValue = variationGenerator.Next(minValue, maxValue);
+                Assert.InRange(randomValue, minValue, maxValue - 1);
+            }
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        public void Next_InvalidMaxValue_Throws(int maxValue)
+        {
+            var variationGenerator = new VariationGenerator();
+            Assert.Throws<ArgumentOutOfRangeException>(() => variationGenerator.Next(maxValue));
+        }
+
+        [Theory]
+        [InlineData(1, 0)]
+        public void Next_InvalidRange_Throws(int minValue, int maxValue)
+        {
+            var variationGenerator = new VariationGenerator();
+            Assert.Throws<ArgumentOutOfRangeException>(() => variationGenerator.Next(minValue, maxValue));
         }
     }
 }
