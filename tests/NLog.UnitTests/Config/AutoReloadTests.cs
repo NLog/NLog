@@ -574,7 +574,7 @@ namespace NLog.UnitTests.Config
 
             public void WaitForReload()
             {
-                _counterEvent.WaitOne(3000);    // Handle Timer-delay of 1 sec
+                _counterEvent.WaitOne(5000);    // Handle FileSystemWatcher and timer delay
             }
 
             private static EventHandler<LoggingConfigurationChangedEventArgs> SignalCounterEvent(ManualResetEvent counterEvent)
