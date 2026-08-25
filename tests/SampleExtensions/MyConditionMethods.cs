@@ -33,6 +33,7 @@
 
 namespace MyExtensionNamespace
 {
+    using System;
     using System.Diagnostics;
     using NLog.Conditions;
 
@@ -42,6 +43,8 @@ namespace MyExtensionNamespace
         [ConditionMethod("myrandom")]
         public static int Random(int max)
         {
+            if (max <= 0)
+                throw new ArgumentOutOfRangeException(nameof(max));
             return (int)((ulong)Stopwatch.GetTimestamp() % (uint)max);  // Sloppy by default
         }
     }
