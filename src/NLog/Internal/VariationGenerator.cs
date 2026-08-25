@@ -76,7 +76,7 @@ namespace NLog.Internal
             if (maxValue == 0)
                 return 0;
 
-            return (int)(((ulong)NextUInt() * (uint)maxValue) >> 32);
+            return (int)NextUInt32((uint)maxValue);
         }
 
         internal int Next(int minValue, int maxValue)
@@ -90,9 +90,24 @@ namespace NLog.Internal
             unchecked
             {
                 uint range = (uint)((long)maxValue - minValue);
-                uint offset = (uint)(((ulong)NextUInt() * range) >> 32);
+                uint offset = NextUInt32(range);
                 return minValue + (int)offset;
             }
+        }
+
+        private uint NextUInt32(uint range)
+        {
+            uint threshold = unchecked(0u - range) % range;
+            ulong product;
+            uint remainder;
+            do
+            {
+                product = (ulong)NextUInt() * range;
+                remainder = (uint)product;
+            }
+            while (remainder < threshold);
+
+            return (uint)(product >> 32);
         }
     }
 }

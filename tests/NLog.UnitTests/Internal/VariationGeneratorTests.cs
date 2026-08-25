@@ -43,6 +43,7 @@ namespace NLog.UnitTests.Internal
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(100)]
+        [InlineData(1073741825)]
         [InlineData(int.MaxValue)]
         public void Next_MaxValue_ReturnsWithinRange(int maxValue)
         {
@@ -58,6 +59,8 @@ namespace NLog.UnitTests.Internal
         [InlineData(-100, -10)]
         [InlineData(-10, 10)]
         [InlineData(10, 100)]
+        [InlineData(1, short.MaxValue)]
+        [InlineData(int.MinValue, 1)]
         [InlineData(int.MinValue, int.MaxValue)]
         public void Next_Range_ReturnsWithinRange(int minValue, int maxValue)
         {
