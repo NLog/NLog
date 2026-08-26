@@ -37,7 +37,7 @@ namespace NLog.Internal
     using System.Diagnostics;
     using System.Threading;
 
-    internal sealed class VariationGenerator
+    internal sealed class ScatterGenerator
     {
         // An odd Weyl-sequence increment produces a full 2^32 period.
         private const uint Gamma = 0x9E3779B9u;
@@ -46,7 +46,7 @@ namespace NLog.Internal
 
         private uint _state;
 
-        internal VariationGenerator()
+        internal ScatterGenerator()
         {
             unchecked
             {

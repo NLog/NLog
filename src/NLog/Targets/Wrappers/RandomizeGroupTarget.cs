@@ -60,7 +60,7 @@ namespace NLog.Targets.Wrappers
     [Target("RandomizeGroup", IsCompound = true)]
     public class RandomizeGroupTarget : CompoundTargetBase
     {
-        private readonly VariationGenerator _variationGenerator = new VariationGenerator();
+        private readonly ScatterGenerator _scatterGenerator = new ScatterGenerator();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomizeGroupTarget" /> class.
@@ -103,7 +103,7 @@ namespace NLog.Targets.Wrappers
                 return;
             }
 
-            var selectedTarget = _variationGenerator.Next(Targets.Count);
+            var selectedTarget = _scatterGenerator.Next(Targets.Count);
             Targets[selectedTarget].WriteAsyncLogEvent(logEvent);
         }
     }

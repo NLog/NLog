@@ -37,7 +37,7 @@ namespace NLog.UnitTests.Internal
     using NLog.Internal;
     using Xunit;
 
-    public class VariationGeneratorTests
+    public class ScatterGeneratorTests
     {
         [Theory]
         [InlineData(1)]
@@ -47,10 +47,10 @@ namespace NLog.UnitTests.Internal
         [InlineData(int.MaxValue)]
         public void Next_MaxValue_ReturnsWithinRange(int maxValue)
         {
-            var variationGenerator = new VariationGenerator();
+            var scatterGenerator = new ScatterGenerator();
             for (int i = 0; i < 100; ++i)
             {
-                var randomValue = variationGenerator.Next(maxValue);
+                var randomValue = scatterGenerator.Next(maxValue);
                 Assert.InRange(randomValue, 0, maxValue - 1);
             }
         }
@@ -64,10 +64,10 @@ namespace NLog.UnitTests.Internal
         [InlineData(int.MinValue, int.MaxValue)]
         public void Next_Range_ReturnsWithinRange(int minValue, int maxValue)
         {
-            var variationGenerator = new VariationGenerator();
+            var scatterGenerator = new ScatterGenerator();
             for (int i = 0; i < 100; ++i)
             {
-                var randomValue = variationGenerator.Next(minValue, maxValue);
+                var randomValue = scatterGenerator.Next(minValue, maxValue);
                 Assert.InRange(randomValue, minValue, maxValue - 1);
             }
         }
@@ -76,16 +76,16 @@ namespace NLog.UnitTests.Internal
         [InlineData(-1)]
         public void Next_InvalidMaxValue_Throws(int maxValue)
         {
-            var variationGenerator = new VariationGenerator();
-            Assert.Throws<ArgumentOutOfRangeException>(() => variationGenerator.Next(maxValue));
+            var scatterGenerator = new ScatterGenerator();
+            Assert.Throws<ArgumentOutOfRangeException>(() => scatterGenerator.Next(maxValue));
         }
 
         [Theory]
         [InlineData(1, 0)]
         public void Next_InvalidRange_Throws(int minValue, int maxValue)
         {
-            var variationGenerator = new VariationGenerator();
-            Assert.Throws<ArgumentOutOfRangeException>(() => variationGenerator.Next(minValue, maxValue));
+            var scatterGenerator = new ScatterGenerator();
+            Assert.Throws<ArgumentOutOfRangeException>(() => scatterGenerator.Next(minValue, maxValue));
         }
     }
 }
