@@ -55,6 +55,14 @@ namespace NLog.UnitTests.Internal
             }
         }
 
+        [Fact]
+        public void Next_ZeroMaxValue_ReturnsZero()
+        {
+            var scatterGenerator = new ScatterGenerator();
+
+            Assert.Equal(0, scatterGenerator.Next(0));
+        }
+
         [Theory]
         [InlineData(-100, -10)]
         [InlineData(-10, 10)]
@@ -70,6 +78,14 @@ namespace NLog.UnitTests.Internal
                 var randomValue = scatterGenerator.Next(minValue, maxValue);
                 Assert.InRange(randomValue, minValue, maxValue - 1);
             }
+        }
+
+        [Fact]
+        public void Next_EqualRange_ReturnsMinimum()
+        {
+            var scatterGenerator = new ScatterGenerator();
+
+            Assert.Equal(10, scatterGenerator.Next(10, 10));
         }
 
         [Theory]
