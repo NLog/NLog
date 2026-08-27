@@ -34,7 +34,6 @@
 namespace NLog.Internal
 {
     using System;
-    using System.Diagnostics;
 
     /// <summary>
     /// Lightweight, non-cryptographic pseudo-random-number-generator (PRNG).
