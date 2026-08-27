@@ -302,7 +302,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Default: <see langword="null"/> .
         /// Archive file-move operation only works if <see cref="FileName"/> is static in nature, and not rolling automatically because of ${date} or ${shortdate} .
-        /// 
+        ///
         /// Legacy archive file-move operation can fail because of file-locks, so file-archiving can stop working because of environment issues (Other applications locking files).
         ///
         /// Avoid using <see cref="ArchiveFileName"/> when possible, and instead rely on only using <see cref="FileName"/> and <see cref="ArchiveSuffixFormat"/>.
@@ -1294,7 +1294,7 @@ namespace NLog.Targets
                         throw; // rethrow
                     }
 
-                    var actualDelay = currentDelay > 4 ? new Random().Next(4, currentDelay) : currentDelay;
+                    var actualDelay = currentDelay > 4 ? new ScatterGenerator().Next(4, currentDelay) : currentDelay;
                     InternalLogger.Warn("{0}: Attempt #{1} to open {2} failed - {3} {4}. Sleeping for {5}ms", this, i, filePath, ex.GetType(), ex.Message, actualDelay);
                     currentDelay *= 4;
                     System.Threading.Thread.Sleep(actualDelay);

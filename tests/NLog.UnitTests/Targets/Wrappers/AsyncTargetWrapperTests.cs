@@ -96,7 +96,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             LogManager.ThrowConfigExceptions = true;
 
             var myTarget = new MyTarget();
-            var targetWrapper = new AsyncTargetWrapper()
+            var targetWrapper = new TrackingAsyncTargetWrapper()
             {
                 WrappedTarget = myTarget,
                 TimeToSleepBetweenBatches = 0,
@@ -153,12 +153,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 Assert.True(eventProducer0.WaitOne(5000), "Producer0 Start Timeout");
                 Assert.True(eventProducer1.WaitOne(5000), "Producer1 Start Timeout");
 
-                long startTicks = Environment.TickCount;
-
                 Assert.True(producer0.Join(5000), "Producer0 Complete Timeout");  // Wait for producer0 to complete
                 Assert.True(producer1.Join(5000), "Producer1 Complete Timeout");  // Wait for producer1 to complete
-
-                long elapsedMilliseconds = Environment.TickCount - startTicks;
 
                 targetWrapper.Flush(flushHandler);
 
@@ -183,10 +179,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     }
                 }
 
-#if DEBUG
-                if (!IsAppVeyor())  // Skip timing test when running within OpenCover.Console.exe
-#endif
-                Assert.InRange(elapsedMilliseconds, 0, 975);
+                Assert.True(targetWrapper.InstantWriterTimerStartCount > 0);
 
                 targetWrapper.Flush(flushHandler);
                 for (int i = 0; i < 2000 && flushCounter != 2; ++i)
@@ -958,6 +951,19 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
 
             public bool ThrowExceptions { get; set; }
+        }
+
+        private sealed class TrackingAsyncTargetWrapper : AsyncTargetWrapper
+        {
+            private int _instantWriterTimerStartCount;
+
+            public int InstantWriterTimerStartCount => Interlocked.CompareExchange(ref _instantWriterTimerStartCount, 0, 0);
+
+            protected override bool StartInstantWriterTimer()
+            {
+                Interlocked.Increment(ref _instantWriterTimerStartCount);
+                return base.StartInstantWriterTimer();
+            }
         }
 
         private class MyTarget : Target

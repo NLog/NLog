@@ -472,9 +472,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void LogEntryWithStaticEventIdAndCategoryInTargetLayout()
         {
-            var rnd = new Random();
-            int eventId = rnd.Next(1, short.MaxValue);
-            int category = rnd.Next(1, short.MaxValue);
+            var scatterGenerator = new ScatterGenerator();
+            int eventId = scatterGenerator.Next(1, short.MaxValue);
+            int category = scatterGenerator.Next(1, short.MaxValue);
             var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
             target.EventId = eventId;
             target.Category = (short)category;
@@ -497,9 +497,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void LogEntryWithDynamicEventIdAndCategory()
         {
-            var rnd = new Random();
-            int eventId = rnd.Next(1, short.MaxValue);
-            int category = rnd.Next(1, short.MaxValue);
+            var scatterGenerator = new ScatterGenerator();
+            int eventId = scatterGenerator.Next(1, short.MaxValue);
+            int category = scatterGenerator.Next(1, short.MaxValue);
             var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
             target.EventId = "${event-properties:EventId}";
             target.Category = "${event-properties:Category}";
