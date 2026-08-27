@@ -35,7 +35,6 @@ namespace NLog.Internal
 {
     using System;
     using System.Diagnostics;
-    using System.Threading;
 
     /// <summary>
     /// Lightweight, non-cryptographic pseudo-random-number-generator (PRNG).
@@ -61,28 +60,6 @@ namespace NLog.Internal
                 // state across instances. Neither source provides uniqueness or entropy.
                 _state = (uint)System.Diagnostics.Stopwatch.GetTimestamp()
                     ^ (uint)System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this);
-            }
-        }
-
-        /// <summary>
-        /// Returns the next pseudo-random unsigned 32-bit value.
-        /// </summary>
-        public uint NextUInt()
-        {
-            unchecked
-            {
-                // Weyl sequence step: cheap deterministic state progression with a full 2^32 period.
-                uint x = _state += Gamma;
-
-                // MurmurHash3 fmix32: invertible avalanche transformation that
-                // scatters the structured Weyl sequence across the output bits.
-                x ^= x >> 16;
-                x *= 0x85EBCA6Bu;
-                x ^= x >> 13;
-                x *= 0xC2B2AE35u;
-                x ^= x >> 16;
-
-                return x;
             }
         }
 
@@ -122,6 +99,28 @@ namespace NLog.Internal
                 // Multiply-high reduction produces an offset in [0, range).
                 uint offset = (uint)(((ulong)NextUInt() * range) >> 32);
                 return minValue + (int)offset;
+            }
+        }
+
+        /// <summary>
+        /// Returns the next pseudo-random unsigned 32-bit value.
+        /// </summary>
+        private uint NextUInt()
+        {
+            unchecked
+            {
+                // Weyl sequence step: cheap deterministic state progression with a full 2^32 period.
+                uint x = _state += Gamma;
+
+                // MurmurHash3 fmix32: invertible avalanche transformation that
+                // scatters the structured Weyl sequence across the output bits.
+                x ^= x >> 16;
+                x *= 0x85EBCA6Bu;
+                x ^= x >> 13;
+                x *= 0xC2B2AE35u;
+                x ^= x >> 16;
+
+                return x;
             }
         }
     }
