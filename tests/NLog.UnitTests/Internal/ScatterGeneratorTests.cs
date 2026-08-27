@@ -34,74 +34,198 @@
 namespace NLog.UnitTests.Internal
 {
     using System;
+    using System.Collections.Generic;
     using NLog.Internal;
     using Xunit;
 
-    public class ScatterGeneratorTests
+    public sealed class ScatterGeneratorTests
     {
-        [Theory]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(100)]
-        [InlineData(1073741825)]
-        [InlineData(int.MaxValue)]
-        public void Next_MaxValue_ReturnsWithinRange(int maxValue)
-        {
-            var scatterGenerator = new ScatterGenerator();
-            for (int i = 0; i < 100; ++i)
-            {
-                var randomValue = scatterGenerator.Next(maxValue);
-                Assert.InRange(randomValue, 0, maxValue - 1);
-            }
-        }
-
         [Fact]
         public void Next_ZeroMaxValue_ReturnsZero()
         {
-            var scatterGenerator = new ScatterGenerator();
+            var generator = new ScatterGenerator();
 
-            Assert.Equal(0, scatterGenerator.Next(0));
-        }
-
-        [Theory]
-        [InlineData(-100, -10)]
-        [InlineData(-10, 10)]
-        [InlineData(10, 100)]
-        [InlineData(1, short.MaxValue)]
-        [InlineData(int.MinValue, 1)]
-        [InlineData(int.MinValue, int.MaxValue)]
-        public void Next_Range_ReturnsWithinRange(int minValue, int maxValue)
-        {
-            var scatterGenerator = new ScatterGenerator();
-            for (int i = 0; i < 100; ++i)
-            {
-                var randomValue = scatterGenerator.Next(minValue, maxValue);
-                Assert.InRange(randomValue, minValue, maxValue - 1);
-            }
+            Assert.Equal(0, generator.Next(0));
         }
 
         [Fact]
-        public void Next_EqualRange_ReturnsMinimum()
+        public void Next_One_AlwaysReturnsZero()
         {
-            var scatterGenerator = new ScatterGenerator();
+            var generator = new ScatterGenerator();
 
-            Assert.Equal(10, scatterGenerator.Next(10, 10));
+            for (int i = 0; i < 100; i++)
+            {
+                Assert.Equal(0, generator.Next(1));
+            }
         }
 
         [Theory]
         [InlineData(-1)]
-        public void Next_InvalidMaxValue_Throws(int maxValue)
+        [InlineData(-100)]
+        [InlineData(int.MinValue)]
+        public void Next_NegativeMaxValue_Throws(int maxValue)
         {
-            var scatterGenerator = new ScatterGenerator();
-            Assert.Throws<ArgumentOutOfRangeException>(() => scatterGenerator.Next(maxValue));
+            var generator = new ScatterGenerator();
+
+            var exception = Assert.Throws<ArgumentOutOfRangeException>(
+                () => generator.Next(maxValue));
+
+            Assert.Equal(nameof(maxValue), exception.ParamName);
+            Assert.Equal(maxValue, exception.ActualValue);
+        }
+
+        [Theory]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(7)]
+        [InlineData(10)]
+        [InlineData(100)]
+        [InlineData(399)]
+        [InlineData(400)]
+        [InlineData(401)]
+        [InlineData(1_000)]
+        [InlineData(1_024)]
+        [InlineData(1_025)]
+        [InlineData(1_000_000)]
+        [InlineData(int.MaxValue - 1)]
+        [InlineData(int.MaxValue)]
+        public void Next_ReturnsValueWithinRange(int maxValue)
+        {
+            var generator = new ScatterGenerator();
+
+            for (var i = 0; i < 1_000; i++)
+            {
+                var value = generator.Next(maxValue);
+
+                Assert.InRange(value, 0, maxValue - 1);
+            }
+        }
+
+        [Theory]
+        [InlineData(0, 1)]
+        [InlineData(1, 2)]
+        [InlineData(-1, 0)]
+        [InlineData(-10, 10)]
+        [InlineData(-100, -10)]
+        [InlineData(10, 100)]
+        [InlineData(-500, 500)]
+        [InlineData(-1, 2)]
+        [InlineData(-100, 101)]
+        [InlineData(int.MinValue, 0)]
+        [InlineData(0, int.MaxValue)]
+        [InlineData(int.MinValue, int.MaxValue)]
+        [InlineData(int.MaxValue - 1, int.MaxValue)]
+        [InlineData(int.MinValue, int.MinValue + 1)]
+        [InlineData(int.MaxValue - 2, int.MaxValue)]
+        [InlineData(int.MinValue, int.MinValue + 2)]
+        public void Next_Range_ReturnsWithinRange(int minValue, int maxValue)
+        {
+            var generator = new ScatterGenerator();
+
+            for (int i = 0; i < 1_000; i++)
+            {
+                int value = generator.Next(minValue, maxValue);
+
+                Assert.True(
+                    value >= minValue && value < maxValue,
+                    $"Expected [{minValue}, {maxValue}), got {value}.");
+            }
+        }
+
+        [Theory]
+        [InlineData(int.MinValue)]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(int.MaxValue - 1)]
+        public void Next_UnitRange_ReturnsMinimum(int minValue)
+        {
+            var generator = new ScatterGenerator();
+
+            for (int i = 0; i < 100; i++)
+            {
+                Assert.Equal(
+                    minValue,
+                    generator.Next(minValue, minValue + 1));
+            }
+        }
+
+        [Theory]
+        [InlineData(int.MinValue)]
+        [InlineData(-100)]
+        [InlineData(0)]
+        [InlineData(100)]
+        [InlineData(int.MaxValue)]
+        public void Next_EqualRange_ReturnsMinimum(int value)
+        {
+            var generator = new ScatterGenerator();
+
+            Assert.Equal(value, generator.Next(value, value));
         }
 
         [Theory]
         [InlineData(1, 0)]
-        public void Next_InvalidRange_Throws(int minValue, int maxValue)
+        [InlineData(10, 5)]
+        [InlineData(0, -1)]
+        [InlineData(int.MaxValue, int.MinValue)]
+        public void Next_MinGreaterThanMax_Throws(int minValue, int maxValue)
         {
-            var scatterGenerator = new ScatterGenerator();
-            Assert.Throws<ArgumentOutOfRangeException>(() => scatterGenerator.Next(minValue, maxValue));
+            var generator = new ScatterGenerator();
+
+            var exception = Assert.Throws<ArgumentOutOfRangeException>(
+                () => generator.Next(minValue, maxValue));
+
+            Assert.Equal(nameof(maxValue), exception.ParamName);
+            Assert.Equal(maxValue, exception.ActualValue);
+        }
+
+        [Fact]
+        public void Next_SmallRange_ProducesAllBuckets()
+        {
+            var generator = new ScatterGenerator();
+            var values = new HashSet<int>();
+
+            for (var i = 0; i < 150; i++)
+            {
+                values.Add(generator.Next(10));
+            }
+
+            Assert.Equal(10, values.Count);
+        }
+
+        [Fact]
+        public void Next_TwoBuckets_ProducesBothValues()
+        {
+            var generator = new ScatterGenerator();
+            var values = new HashSet<int>();
+
+            for (var i = 0; i < 20; i++)
+            {
+                values.Add(generator.Next(2));
+            }
+
+            Assert.Contains(0, values);
+            Assert.Contains(1, values);
+        }
+
+        [Fact]
+        public void Next_EvenOdd_Distribution()
+        {
+            var generator = new ScatterGenerator();
+
+            var even = 0;
+            var odd = 0;
+
+            for (var i = 0; i < 1_000; i++)
+            {
+                if (generator.Next(int.MaxValue) % 2 == 0)
+                    even++;
+                else
+                    odd++;
+            }
+
+            Assert.InRange(even, 300, 700);
+            Assert.InRange(odd, 300, 700);
         }
     }
 }
