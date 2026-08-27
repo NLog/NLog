@@ -59,7 +59,7 @@ namespace NLog.Internal
                 // Mix the current timestamp with an identity-based hash to vary the initial
                 // state across instances. Neither source provides uniqueness or entropy.
                 _state = (uint)System.Diagnostics.Stopwatch.GetTimestamp()
-                    ^ (uint)System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this);
+                    ^ (uint)System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this); // NOSONAR - Sealed
             }
         }
 
