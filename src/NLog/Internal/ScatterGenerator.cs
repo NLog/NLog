@@ -37,38 +37,59 @@ namespace NLog.Internal
     using System.Diagnostics;
     using System.Threading;
 
+    /// <summary>
+    /// Lightweight, non-cryptographic pseudo-random-number-generator (PRNG).
+    /// Intended for jitter, load balancing, and other non-security-sensitive uses.
+    /// </summary>
+    /// <remarks>
+    /// The output is predictable and provides no uniqueness guarantees.
+    /// Must not be used for cryptographic purposes, security tokens, or unique identifiers.
+    /// </remarks>
     internal sealed class ScatterGenerator
     {
-        // An odd Weyl-sequence increment produces a full 2^32 period.
+        // Weyl-sequence increment derived from the golden ratio. Being odd makes it
+        // coprime with 2^32, giving the Weyl sequence a full 2^32-period.
         private const uint Gamma = 0x9E3779B9u;
-
-        private static int _seed;
 
         private uint _state;
 
-        internal ScatterGenerator()
+        public ScatterGenerator()
         {
             unchecked
             {
-                _state = (uint)Stopwatch.GetTimestamp() ^ (uint)Interlocked.Increment(ref _seed);
+                // Mix the current timestamp with an identity-based hash to vary the initial
+                // state across instances. Neither source provides uniqueness or entropy.
+                _state = (uint)System.Diagnostics.Stopwatch.GetTimestamp()
+                    ^ (uint)System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this);
             }
         }
 
-        internal uint NextUInt()
+        /// <summary>
+        /// Returns the next pseudo-random unsigned 32-bit value.
+        /// </summary>
+        public uint NextUInt()
         {
             unchecked
             {
-                uint value = _state += Gamma;
-                value ^= value >> 16;
-                value *= 0x85EBCA6Bu;
-                value ^= value >> 13;
-                value *= 0xC2B2AE35u;
-                value ^= value >> 16;
-                return value;
+                // Weyl sequence step: cheap deterministic state progression with a full 2^32 period.
+                uint x = _state += Gamma;
+
+                // MurmurHash3 fmix32: invertible avalanche transformation that
+                // scatters the structured Weyl sequence across the output bits.
+                x ^= x >> 16;
+                x *= 0x85EBCA6Bu;
+                x ^= x >> 13;
+                x *= 0xC2B2AE35u;
+                x ^= x >> 16;
+
+                return x;
             }
         }
 
-        internal int Next(int maxValue)
+        /// <summary>
+        /// Returns a pseudo-random value in the range [0, maxValue).
+        /// </summary>
+        public int Next(int maxValue)
         {
             if (maxValue < 0)
                 throw new ArgumentOutOfRangeException(nameof(maxValue), maxValue, "MaxValue must be non-negative");
@@ -76,10 +97,16 @@ namespace NLog.Internal
             if (maxValue == 0)
                 return 0;
 
-            return (int)NextUInt32((uint)maxValue);
+            // Multiply-high reduction maps the 32-bit output into [0, maxValue).
+            // Bucket populations differ by at most one, avoiding the systematic
+            // low-bucket bias introduced by naive modulo reduction.
+            return (int)(((ulong)NextUInt() * (uint)maxValue) >> 32);
         }
 
-        internal int Next(int minValue, int maxValue)
+        /// <summary>
+        /// Returns a pseudo-random value in the range [minValue, maxValue).
+        /// </summary>
+        public int Next(int minValue, int maxValue)
         {
             if (minValue > maxValue)
                 throw new ArgumentOutOfRangeException(nameof(maxValue), maxValue, $"MinValue={minValue} > MaxValue={maxValue}");
@@ -89,25 +116,13 @@ namespace NLog.Internal
 
             unchecked
             {
+                // Calculate the range as uint so the full signed Int32 range can be
+                // represented, including int.MinValue to int.MaxValue.
                 uint range = (uint)((long)maxValue - minValue);
-                uint offset = NextUInt32(range);
+                // Multiply-high reduction produces an offset in [0, range).
+                uint offset = (uint)(((ulong)NextUInt() * range) >> 32);
                 return minValue + (int)offset;
             }
-        }
-
-        private uint NextUInt32(uint range)
-        {
-            uint threshold = unchecked(0u - range) % range;
-            ulong product;
-            uint remainder;
-            do
-            {
-                product = (ulong)NextUInt() * range;
-                remainder = (uint)product;
-            }
-            while (remainder < threshold);
-
-            return (uint)(product >> 32);
         }
     }
 }
