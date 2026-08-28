@@ -96,7 +96,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             LogManager.ThrowConfigExceptions = true;
 
             var myTarget = new MyTarget();
-            var targetWrapper = new TrackingAsyncTargetWrapper()
+            var targetWrapper = new AsyncTargetWrapper()
             {
                 WrappedTarget = myTarget,
                 TimeToSleepBetweenBatches = 0,
@@ -153,8 +153,12 @@ namespace NLog.UnitTests.Targets.Wrappers
                 Assert.True(eventProducer0.WaitOne(5000), "Producer0 Start Timeout");
                 Assert.True(eventProducer1.WaitOne(5000), "Producer1 Start Timeout");
 
+                long startTicks = Environment.TickCount;
+
                 Assert.True(producer0.Join(5000), "Producer0 Complete Timeout");  // Wait for producer0 to complete
                 Assert.True(producer1.Join(5000), "Producer1 Complete Timeout");  // Wait for producer1 to complete
+
+                long elapsedMilliseconds = Environment.TickCount - startTicks;
 
                 targetWrapper.Flush(flushHandler);
 
@@ -179,7 +183,10 @@ namespace NLog.UnitTests.Targets.Wrappers
                     }
                 }
 
-                Assert.True(targetWrapper.InstantWriterTimerStartCount > 0);
+#if DEBUG
+                if (!IsAppVeyor())  // Skip timing test when running within OpenCover.Console.exe
+#endif
+                    Assert.InRange(elapsedMilliseconds, 0, 975);
 
                 targetWrapper.Flush(flushHandler);
                 for (int i = 0; i < 2000 && flushCounter != 2; ++i)
@@ -213,11 +220,11 @@ namespace NLog.UnitTests.Targets.Wrappers
                 Thread continuationThread = null;
                 AsyncContinuation continuation =
                     ex =>
-                        {
-                            lastException = ex;
-                            continuationThread = Thread.CurrentThread;
-                            continuationHit.Set();
-                        };
+                    {
+                        lastException = ex;
+                        continuationThread = Thread.CurrentThread;
+                        continuationHit.Set();
+                    };
 
                 targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
@@ -917,26 +924,26 @@ namespace NLog.UnitTests.Targets.Wrappers
                 pendingWriteCounter.BeginOperation();
                 ThreadPool.QueueUserWorkItem(
                     s =>
+                    {
+                        try
                         {
-                            try
+                            Interlocked.Increment(ref WriteCount);
+                            if (ThrowExceptions)
                             {
-                                Interlocked.Increment(ref WriteCount);
-                                if (ThrowExceptions)
-                                {
-                                    logEvent.Continuation(new InvalidOperationException("Some problem!"));
-                                    logEvent.Continuation(new InvalidOperationException("Some problem!"));
-                                }
-                                else
-                                {
-                                    logEvent.Continuation(null);
-                                    logEvent.Continuation(null);
-                                }
+                                logEvent.Continuation(new InvalidOperationException("Some problem!"));
+                                logEvent.Continuation(new InvalidOperationException("Some problem!"));
                             }
-                            finally
+                            else
                             {
-                                pendingWriteCounter.CompleteOperation(null);
+                                logEvent.Continuation(null);
+                                logEvent.Continuation(null);
                             }
-                        });
+                        }
+                        finally
+                        {
+                            pendingWriteCounter.CompleteOperation(null);
+                        }
+                    });
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
@@ -951,19 +958,6 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
 
             public bool ThrowExceptions { get; set; }
-        }
-
-        private sealed class TrackingAsyncTargetWrapper : AsyncTargetWrapper
-        {
-            private int _instantWriterTimerStartCount;
-
-            public int InstantWriterTimerStartCount => Interlocked.CompareExchange(ref _instantWriterTimerStartCount, 0, 0);
-
-            protected override bool StartInstantWriterTimer()
-            {
-                Interlocked.Increment(ref _instantWriterTimerStartCount);
-                return base.StartInstantWriterTimer();
-            }
         }
 
         private class MyTarget : Target
