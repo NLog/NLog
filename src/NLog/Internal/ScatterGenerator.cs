@@ -53,13 +53,7 @@ namespace NLog.Internal
 
         public ScatterGenerator()
         {
-            unchecked
-            {
-                // Mix the current timestamp with an identity-based hash to vary the initial
-                // state across instances. Neither source provides uniqueness or entropy.
-                _state = (uint)System.Diagnostics.Stopwatch.GetTimestamp()
-                    ^ (uint)System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this); // NOSONAR - Sealed
-            }
+            _state = GenerateInitialSeed();
         }
 
         /// <summary>
@@ -120,6 +114,17 @@ namespace NLog.Internal
                 x ^= x >> 16;
 
                 return x;
+            }
+        }
+
+        private uint GenerateInitialSeed()
+        {
+            unchecked
+            {
+                // Mix the current timestamp with an identity-based hash to vary the initial
+                // state across instances. Neither source provides uniqueness or entropy.
+                return (uint)System.Diagnostics.Stopwatch.GetTimestamp()
+                    ^ (uint)System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this);
             }
         }
     }
