@@ -34,28 +34,27 @@
 namespace NLog.Internal
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.IO;
     using System.Text;
     using NLog.Config;
 
     /// <summary>
-    /// A minimal XML reader, because .NET System.Xml.XmlReader doesn't work with AOT
+    /// A minimal XML reader, because .NET System.Xml.XmlReader doesn't work with AOT.
     /// </summary>
     internal sealed class XmlParser
     {
-        private readonly CharEnumerator _xmlSource;
+        private readonly InputCursor _xmlSource;
         private readonly StringBuilder _stringBuilder = new StringBuilder();
 
         public XmlParser(TextReader xmlSource)
         {
-            _xmlSource = new CharEnumerator(xmlSource);
+            _xmlSource = new InputCursor(xmlSource);
         }
 
         public XmlParser(string xmlSource)
         {
-            _xmlSource = new CharEnumerator(new StringReader(xmlSource));
+            _xmlSource = new InputCursor(new StringReader(xmlSource));
         }
 
         public XmlParserElement LoadDocument(out IList<XmlParserElement>? processingInstructions)
@@ -105,20 +104,22 @@ namespace NLog.Internal
                     }
                     catch (XmlParserException ex)
                     {
-                        throw new XmlParserException(ex.Message + $" - Start-tag: {currentNode.Name}");
+                        throw new XmlParserException($"{ex.Message} - Start-tag: {currentNode.Name}");
                     }
                 }
 
                 if (!stillReading)
                     throw new XmlParserException($"Invalid XML document. Cannot parse end-tag: {currentNode.Name}");
 
-                SkipWhiteSpaces();
-                while (_xmlSource.Peek() == '!' && _xmlSource.Current == '<')
+                _xmlSource.SkipWhiteSpace();
+
+                while (!_xmlSource.EndOfInput && _xmlSource.StartsWith('<', '!'))
                 {
-                    _xmlSource.MoveNext();
                     SkipXmlComment();
+                    _xmlSource.SkipWhiteSpace();
                 }
-                if (_xmlSource.MoveNext())
+
+                if (!_xmlSource.EndOfInput)
                     throw new XmlParserException($"Invalid XML document. Unexpected characters after end-tag: {currentNode.Name}");
 
                 return currentNode;
@@ -131,51 +132,46 @@ namespace NLog.Internal
 
         public bool TryReadProcessingInstructions(out IList<XmlParserElement>? processingInstructions)
         {
-            SkipWhiteSpaces();
+            _xmlSource.SkipWhiteSpace();
 
             processingInstructions = null;
 
-            while (_xmlSource.Current == '<')
+            while (_xmlSource.StartsWith('<'))
             {
-                if (_xmlSource.Peek() == '!')
+                if (_xmlSource.StartsWith('<', '!'))
                 {
-                    // Skip XML comments before instructions or root element
-                    _xmlSource.MoveNext();
                     SkipXmlComment();
+                    _xmlSource.SkipWhiteSpace();
                     continue;
                 }
-                if (_xmlSource.Peek() != '?')
+
+                if (!_xmlSource.TryConsume('<', '?'))
                     break;
-                SkipChar('<');
-                SkipChar('?');
 
                 var instructionName = ReadEntityName();
                 if (string.IsNullOrEmpty(instructionName))
                     throw new XmlParserException("Invalid XML document. Cannot parse XML processing instruction");
 
                 List<KeyValuePair<string, string>>? instructionAttributes = null;
-                if (_xmlSource.Current != '?' && _xmlSource.Peek() != '>')
+
+                try
                 {
-                    try
-                    {
-                        _ = TryReadAttributes(out instructionAttributes, expectsProcessingInstruction: true);
-                        SkipChar('>');
-                    }
-                    catch (XmlParserException ex)
-                    {
-                        throw new XmlParserException(ex.Message + $" - Cannot parse attributes for XML processing instruction: {instructionName}");
-                    }
+                    instructionAttributes = TryReadAttributes(expectsProcessingInstruction: true);
+                }
+                catch (XmlParserException ex)
+                {
+                    throw new XmlParserException($"{ex.Message} - Cannot parse attributes for XML processing instruction: {instructionName}");
                 }
 
-                SkipWhiteSpaces();
-                if (!SkipChar('?') || !SkipChar('>'))
+                _xmlSource.SkipWhiteSpace();
+                if (!_xmlSource.TryConsume('?','>'))
                     throw new XmlParserException($"Invalid XML document. Cannot parse XML processing instruction: {instructionName}");
 
                 var xmlInstruction = new XmlParserElement(instructionName, instructionAttributes);
                 processingInstructions = processingInstructions ?? new List<XmlParserElement>();
                 processingInstructions.Add(xmlInstruction);
 
-                SkipWhiteSpaces();
+                _xmlSource.SkipWhiteSpace();
             }
 
             return processingInstructions != null;
@@ -187,64 +183,65 @@ namespace NLog.Internal
         /// <returns><see langword="true"/> if start element was found.</returns>
         public bool TryReadStartElement(out string? elementName, out List<KeyValuePair<string, string>>? attributes)
         {
-            SkipWhiteSpaces();
+            _xmlSource.SkipWhiteSpace();
 
-            if (_xmlSource.Current == '<' && _xmlSource.Peek() != '/' && _xmlSource.Peek() != '!')
+            if (!_xmlSource.StartsWith('<') ||
+                _xmlSource.StartsWith('<', '/') ||
+                _xmlSource.StartsWith('<', '!') ||
+                _xmlSource.StartsWith('<', '?'))
             {
-                SkipChar('<');
-
-                elementName = ReadEntityName();
-                if (string.IsNullOrEmpty(elementName))
-                    throw new XmlParserException("Invalid XML document. Cannot parse XML start-tag");
-
-                try
-                {
-                    _ = TryReadAttributes(out attributes);
-                    SkipChar('>');
-                }
-                catch (XmlParserException ex)
-                {
-                    throw new XmlParserException(ex.Message + $" - Cannot parse attributes for Start-tag: {elementName}");
-                }
-                return true;
+                elementName = null;
+                attributes = null;
+                return false;
             }
 
-            elementName = null;
-            attributes = null;
-            return false;
+            _xmlSource.TryConsume('<');
+
+            elementName = ReadEntityName();
+            if (string.IsNullOrEmpty(elementName))
+                throw new XmlParserException("Invalid XML document. Cannot parse XML start-tag");
+
+            try
+            {
+                attributes = TryReadAttributes();
+                _xmlSource.SkipWhiteSpace();
+
+                // Leave "/>" for TryReadEndElement().
+                if (_xmlSource.StartsWith('/', '>'))
+                    return true;
+            }
+            catch (XmlParserException ex)
+            {
+                throw new XmlParserException($"{ex.Message} - Cannot parse attributes for Start-tag: {elementName}");
+            }
+
+            if (!_xmlSource.TryConsume('>'))
+                throw new XmlParserException($"Invalid XML document. Cannot parse XML start-tag: {elementName}");
+            return true;
         }
 
         /// <summary>
-        /// Skips an end element.
+        /// Reads an end element.
         /// </summary>
-        /// <param name="name">The name of the element to skip.</param>
-        /// <returns><see langword="true"/> if an end element was skipped; otherwise, <see langword="false"/>.</returns>
         public bool TryReadEndElement(string name)
         {
-            SkipWhiteSpaces();
+            _xmlSource.SkipWhiteSpace();
 
-            if (_xmlSource.Current == '<' && _xmlSource.Peek() != '/')
+            // Self-closing element.
+            if (_xmlSource.TryConsume('/', '>'))
+                return true;
+
+            if (!_xmlSource.TryConsume('<', '/'))
                 return false;
 
-            if (_xmlSource.Current == '/' && _xmlSource.Peek() == '>')
-                return SkipChar('/') && SkipChar('>');    // Self-closing element
-
-            if (!SkipChar('<'))
-                return false;
-
-            if (!SkipChar('/'))
-                throw new XmlParserException($"Invalid XML document. Cannot parse end-tag: {name}");
-
-            foreach (var chr in name)
+            if (_xmlSource.Consume(name))
             {
-                if (_xmlSource.Current != chr || !_xmlSource.MoveNext())
-                    throw new XmlParserException($"Invalid XML document. Cannot parse end-tag: {name}");
+                _xmlSource.SkipWhiteSpace();
+                if (_xmlSource.TryConsume('>'))
+                    return true;
             }
 
-            if (!SkipChar('>'))
-                throw new XmlParserException($"Invalid XML document. Cannot parse end-tag: {name}");
-
-            return true;
+            throw new XmlParserException($"Invalid XML document. Cannot parse end-tag: {name}");
         }
 
         /// <summary>
@@ -253,20 +250,20 @@ namespace NLog.Internal
         /// <returns>Whether any content was found (including ignored white-spaces and xml comments).</returns>
         public bool TryReadInnerText(out string innerText)
         {
-            var parsedSomething = SkipWhiteSpaces();
+            var parsedSomething = _xmlSource.SkipWhiteSpace();
 
-            innerText = ReadUntilChar('<');
+            innerText = ReadInnerText();
 
-            while (_xmlSource.Current == '<' && _xmlSource.Peek() == '!')
+            while (_xmlSource.TryConsume('<', '!'))
             {
-                _xmlSource.MoveNext();
                 parsedSomething = true;
-                if (_xmlSource.Peek() == '-')
+
+                if (_xmlSource.TryConsume('-', '-'))
                 {
                     // <!-- XML-Comment -->
-                    SkipXmlComment();
+                    SkipXmlComment(expectHeader: false);
                 }
-                else if (_xmlSource.Peek() == '[')
+                else if (_xmlSource.StartsWith('[', 'C'))
                 {
                     // <![CDATA[some stuff]]>
                     innerText += ReadCDATA();
@@ -276,7 +273,7 @@ namespace NLog.Internal
                     throw new XmlParserException("Invalid XML document. Cannot parse XML comment");
                 }
 
-                innerText += ReadUntilChar('<');
+                innerText += ReadInnerText();
             }
 
             return parsedSomething || !string.IsNullOrEmpty(innerText);
@@ -284,226 +281,173 @@ namespace NLog.Internal
 
         private string ReadCDATA()
         {
-            if (!SkipCDATA())
+            if (!_xmlSource.Consume("[CDATA["))
                 throw new XmlParserException("Invalid XML document. Cannot parse XML CDATA");
 
             _stringBuilder.ClearBuilder();
 
             do
             {
-                if (_xmlSource.Current == ']' && _xmlSource.Peek() == ']')
+                while (_xmlSource.TryConsume(']'))
                 {
-                    _xmlSource.MoveNext();
-                    if (_xmlSource.Peek() == '>')
-                    {
-                        _xmlSource.MoveNext();
-                        _xmlSource.MoveNext();
-                        break;
-                    }
+                    if (_xmlSource.TryConsume(']', '>'))
+                        return _stringBuilder.ToString();
 
                     _stringBuilder.Append(']');
                 }
 
                 _stringBuilder.Append(_xmlSource.Current);
-            } while (_xmlSource.MoveNext());
+            } while (_xmlSource.Read());
 
-            return _stringBuilder.ToString();
+            throw new XmlParserException("Invalid XML document. Unclosed XML CDATA");
         }
 
-        private bool SkipCDATA()
+        private void SkipXmlComment(bool expectHeader = true)
         {
-            if (!SkipChar('!'))
-                return false;
-            if (!SkipChar('['))
-                return false;
-            if (!SkipChar('C'))
-                return false;
-            if (!SkipChar('D'))
-                return false;
-            if (!SkipChar('A'))
-                return false;
-            if (!SkipChar('T'))
-                return false;
-            if (!SkipChar('A'))
-                return false;
-            if (!SkipChar('['))
-                return false;
-            return true;
-        }
-
-        private void SkipXmlComment()
-        {
-            if (!SkipChar('!') || !SkipChar('-') || !SkipChar('-'))
+            if (expectHeader && !_xmlSource.Consume("<!--"))
                 throw new XmlParserException("Invalid XML document. Cannot parse XML comment");
 
-            while (_xmlSource.MoveNext())
+            do
             {
-                if (!SkipChar('-'))
-                    continue;
+                while (_xmlSource.TryConsume('-'))
+                {
+                    if (_xmlSource.TryConsume('-', '>'))
+                        return;
+                }
+            } while (_xmlSource.Read());
 
-                if (SkipChar('-') && SkipChar('>'))
-                    break;
-            }
-
-            SkipWhiteSpaces();
+            throw new XmlParserException("Invalid XML document. Unexpected end of document. Expected '-->'.");
         }
 
-        private bool TryReadAttributes(out List<KeyValuePair<string, string>>? attributes, bool expectsProcessingInstruction = false)
+        private List<KeyValuePair<string, string>>? TryReadAttributes(bool expectsProcessingInstruction = false)
         {
-            SkipWhiteSpaces();
+            List<KeyValuePair<string, string>>? attributes = null;
 
-            attributes = null;
+            _xmlSource.SkipWhiteSpace();
 
-            while (_xmlSource.Current != '>' && _xmlSource.Current != '/' && (!expectsProcessingInstruction || _xmlSource.Current != '?'))
+            while (!_xmlSource.StartsWith('>')
+                && !_xmlSource.StartsWith('/', '>')
+                && !(expectsProcessingInstruction && _xmlSource.StartsWith('?', '>')))
             {
                 var attributeName = ReadEntityName();
                 if (string.IsNullOrEmpty(attributeName))
                     throw new XmlParserException("Invalid XML document. Cannot parse XML attribute");
 
-                SkipWhiteSpaces();
+                _xmlSource.SkipWhiteSpace();
 
-                if (!SkipChar('='))
-                    throw new XmlParserException($"Invalid XML document. Cannot parse XML attribute: {attributeName}");
+                if (!_xmlSource.TryConsume('='))
+                    throw new XmlParserException($"Invalid XML document. Cannot parse XML attribute: {attributeName}"); 
 
-                SkipWhiteSpaces();
+                _xmlSource.SkipWhiteSpace();
 
-                bool isSingleQuote;
-                if (SkipChar('"'))
-                    isSingleQuote = false;
-                else if (SkipChar('\''))
-                    isSingleQuote = true;
-                else
-                    throw new XmlParserException($"Invalid XML document. Cannot parse XML attribute: {attributeName}");
-
-                string attributeValue;
                 try
                 {
-                    attributeValue = ReadUntilChar(isSingleQuote ? '\'' : '"');
+                    var attributeValue = ReadAttributeValue();
+                    attributes = attributes ?? new List<KeyValuePair<string, string>>();
+                    attributes.Add(new KeyValuePair<string, string>(attributeName, attributeValue));
                 }
                 catch (XmlParserException ex)
                 {
-                    throw new XmlParserException(ex.Message + $" - XML attribute: {attributeName}");
+                    throw new XmlParserException($"{ex.Message} - XML attribute: {attributeName}");
                 }
 
-                if (!SkipChar(isSingleQuote ? '\'' : '"'))
-                    throw new XmlParserException($"Invalid XML document. Unclosed attribute value: {attributeName}");
-
-                attributes = attributes ?? new List<KeyValuePair<string, string>>();
-                attributes.Add(new KeyValuePair<string, string>(attributeName, attributeValue));
-
-                SkipWhiteSpaces();
+                _xmlSource.SkipWhiteSpace();
             }
 
-            return attributes != null;
+            return attributes;
         }
 
         private string ReadEntityName()
         {
-            SkipWhiteSpaces();
+            _xmlSource.SkipWhiteSpace();
 
             _stringBuilder.ClearBuilder();
 
             do
             {
                 char chr = _xmlSource.Current;
-                if (CharIsSpace(chr) || chr == '=' || chr == '>' || chr == '/' || chr == '?')
+                if (CharIsSpace(chr) ||
+                    chr == '=' ||
+                    chr == '>' ||
+                    chr == '/' ||
+                    chr == '?')
                     break;
 
                 if (!IsValidXmlNameChar(chr))
                     throw new XmlParserException($"Invalid XML document. Invalid XML name character: {chr}");
 
                 _stringBuilder.Append(chr);
-            } while (_xmlSource.MoveNext());
+            } while (_xmlSource.Read());
 
             return _stringBuilder.ToString();
         }
 
-        private bool SkipChar(char c)
+        private string ReadAttributeValue()
         {
-            if (_xmlSource.Current != c)
+            char quote;
+
+            if (_xmlSource.TryConsume('"'))
             {
-                return false;
+                quote = '"';
+            }
+            else if (_xmlSource.TryConsume('\''))
+            {
+                quote = '\'';
+            }
+            else
+            {
+                throw new XmlParserException("Invalid XML document. Expected quoted value");
             }
 
-            _xmlSource.MoveNext();
-            return true;
-        }
+            _stringBuilder.ClearBuilder();
 
-        private bool SkipWhiteSpaces()
-        {
-            bool skipped = false;
-            while (!_xmlSource.EndOfFile)
+            while (!_xmlSource.TryConsume(quote))
             {
-                if (!CharIsSpace(_xmlSource.Current))
-                    break;
-                if (!_xmlSource.MoveNext())
-                    break;
-                skipped = true;
+                char chr = _xmlSource.Current;
+                if (chr == '<')
+                    throw new XmlParserException("Invalid XML document. Cannot parse value with '<', maybe encode to &lt;");
+
+                if (_xmlSource.TryConsume('&'))
+                {
+                    _stringBuilder.Append(ParseSpecialXmlToken());
+                    continue;
+                }
+
+                _stringBuilder.Append(chr);
+                _xmlSource.Read();
             }
-            return skipped;
+
+            return _stringBuilder.ToString();
         }
 
-        private string ReadUntilChar(char terminator)
+        private string ReadInnerText()
         {
             _stringBuilder.ClearBuilder();
 
-            bool readingInnerText = terminator == '<';
-
-            do
+            while (!_xmlSource.StartsWith('<'))
             {
+                if (_xmlSource.TryConsume('&'))
+                {
+                    _stringBuilder.Append(ParseSpecialXmlToken());
+                    continue;
+                }
+
                 char chr = _xmlSource.Current;
-                if (chr == terminator)
-                    break;
+                _xmlSource.Read();
+                if (_stringBuilder.Length == 0 && CharIsSpace(chr))
+                    continue;   // Trim leading white-spaces
 
-                if (chr == '&')
-                {
-                    _xmlSource.MoveNext();
-
-                    if (_xmlSource.Current == '#' && TryParseUnicodeChar(out var unicodeChar))
-                    {
-                        _stringBuilder.Append(unicodeChar);
-                    }
-                    else if (TryParseSpecialXmlToken(out var specialToken))
-                    {
-                        _stringBuilder.Append(specialToken);
-                    }
-                    else
-                    {
-                        _stringBuilder.Append('&');
-                        if (_xmlSource.Current == terminator)
-                            break;
-                        _stringBuilder.Append(_xmlSource.Current);
-                    }
-                }
-                else if (readingInnerText)
-                {
-                    if (_stringBuilder.Length == 0 && CharIsSpace(chr))
-                        continue;   // Trim leading white-spaces
-
-                    _stringBuilder.Append(chr);
-                }
-                else
-                {
-                    if (chr == '<')
-                        throw new XmlParserException($"Invalid XML document. Cannot parse value with '<', maybe encode to &lt;");
-                    _stringBuilder.Append(chr);
-                }
-            } while (_xmlSource.MoveNext());
-
-            if (readingInnerText)
-            {
-                return _stringBuilder.ToString(0, TrimEndWhitespace(_stringBuilder));   // Trim trailing white-spaces
+                _stringBuilder.Append(chr);
             }
 
-            return _stringBuilder.ToString();
+            return _stringBuilder.ToString(0, TrimEndWhitespace(_stringBuilder));
         }
 
         private static int TrimEndWhitespace(StringBuilder sb)
         {
             int i = sb.Length - 1;
-            for (; i >= 0; i--)
-                if (!CharIsSpace(sb[i]))
-                    break;
+            while (i >= 0 && CharIsSpace(sb[i]))
+                --i;
             return i + 1;
         }
 
@@ -524,32 +468,16 @@ namespace NLog.Internal
             }
         }
 
-        private bool TryParseUnicodeChar(out string unicodeChar)
+        private string ReadUnicodeValue()
         {
-            int unicode;
-            char chr = _xmlSource.Peek();
-            if (chr == 'x' || chr == 'X')
-            {
-                _xmlSource.MoveNext();
-                unicode = TryParseUnicodeValueHex();
-            }
-            else if (chr >= '0' && chr <= '9')
-            {
-                unicode = TryParseUnicodeValue();
-            }
-            else
-            {
-                unicodeChar = string.Empty;
-                return false;
-            }
-
+            var hexadecimal = _xmlSource.TryConsume('x') || _xmlSource.TryConsume('X');
+            var unicode = hexadecimal ? ReadUnicodeHexValue() : ReadUnicodeInteger();
             if ((uint)unicode > 0x10FFFF)
                 throw new XmlParserException($"Invalid XML document. Unicode value {unicode} not legal XML character");
 
             try
             {
-                unicodeChar = char.ConvertFromUtf32(unicode);
-                return true;
+                return char.ConvertFromUtf32(unicode);
             }
             catch (ArgumentException ex)
             {
@@ -557,12 +485,12 @@ namespace NLog.Internal
             }
         }
 
-        private int TryParseUnicodeValue()
+        private int ReadUnicodeInteger()
         {
             int unicode = 0;
             bool hasDigit = false;
 
-            while (_xmlSource.MoveNext())
+            do
             {
                 char chr = _xmlSource.Current;
                 if (chr == ';')
@@ -570,6 +498,7 @@ namespace NLog.Internal
                     if (!hasDigit)
                         throw new XmlParserException("Invalid XML document. Cannot parse unicode-char digit-value");
 
+                    _xmlSource.Read();
                     return unicode;
                 }
 
@@ -581,17 +510,17 @@ namespace NLog.Internal
                     throw new XmlParserException("Invalid XML document. Cannot parse unicode-char digit-value");
 
                 hasDigit = true;
-            }
+            } while (_xmlSource.Read());
 
             throw new XmlParserException("Invalid XML document. Cannot parse unicode-char digit-value");
         }
 
-        private int TryParseUnicodeValueHex()
+        private int ReadUnicodeHexValue()
         {
             int unicode = 0;
             bool hasDigit = false;
 
-            while (_xmlSource.MoveNext())
+            do
             {
                 char chr = _xmlSource.Current;
                 if (chr == ';')
@@ -599,57 +528,57 @@ namespace NLog.Internal
                     if (!hasDigit)
                         throw new XmlParserException("Invalid XML document. Cannot parse unicode-char hex-value");
 
+                    _xmlSource.Read();
                     return unicode;
                 }
 
                 unicode *= 16;
 
-                var chrUpper = char.ToUpperInvariant(chr);
-                if (chrUpper >= 'A' && chrUpper <= 'F')
-                    unicode += chrUpper - 'A' + 10;
-                else if (chrUpper >= '0' && chrUpper <= '9')
-                    unicode += chrUpper - '0';
+                if (chr >= '0' && chr <= '9')
+                    unicode += chr - '0';
+                else if (chr >= 'a' && chr <= 'f')
+                    unicode += chr - 'a' + 10;
+                else if (chr >= 'A' && chr <= 'F')
+                    unicode += chr - 'A' + 10;
                 else
                     throw new XmlParserException("Invalid XML document. Cannot parse unicode-char hex-value");
 
                 hasDigit = true;
-            }
+            } while (_xmlSource.Read());
 
             throw new XmlParserException("Invalid XML document. Cannot parse unicode-char hex-value");
         }
 
-        private bool TryParseSpecialXmlToken(out char specialToken)
+        private string ParseSpecialXmlToken()
         {
-            if (TryConvertSpecialXmlToken("lt;", '<', out specialToken))
-                return true;
-            if (TryConvertSpecialXmlToken("gt;", '>', out specialToken))
-                return true;
-            if (TryConvertSpecialXmlToken("amp;", '&', out specialToken))
-                return true;
-            if (TryConvertSpecialXmlToken("apos;", '\'', out specialToken))
-                return true;
-            if (TryConvertSpecialXmlToken("quot;", '\"', out specialToken))
-                return true;
+            if (_xmlSource.TryConsume('#'))
+                return ReadUnicodeValue();
 
-            return false;
+            // At this point the '&' has already been consumed.
+            if (TryConvertSpecialXmlToken("lt;", "<", out var specialToken))
+                return specialToken;
+            if (TryConvertSpecialXmlToken("gt;", ">", out specialToken))
+                return specialToken;
+            if (TryConvertSpecialXmlToken("amp;", "&", out specialToken))
+                return specialToken;
+            if (TryConvertSpecialXmlToken("apos;", "'", out specialToken))
+                return specialToken;
+            if (TryConvertSpecialXmlToken("quot;", "\"", out specialToken))
+                return specialToken;
+
+            return "&"; // Unrecognized special token, return the '&' character as-is.
         }
 
-        private bool TryConvertSpecialXmlToken(string expectedToken, char convertToValue, out char result)
+        private bool TryConvertSpecialXmlToken(string expectedToken, string convertToValue, out string result)
         {
-            result = '\0';
+            result = string.Empty;
             if (expectedToken is null || expectedToken.Length < 2)
                 return false;
 
-            if (_xmlSource.Current != expectedToken[0] || _xmlSource.Peek() != expectedToken[1])
+            if (!_xmlSource.StartsWith(expectedToken[0], expectedToken[1]))
                 return false;
 
-            for (int i = 0; i < expectedToken.Length - 1; ++i)
-            {
-                if (!SkipChar(expectedToken[i]))
-                    throw new XmlParserException($"Invalid XML document. Cannot parse special token: {expectedToken}");
-            }
-
-            if (_xmlSource.Current != expectedToken[expectedToken.Length - 1])
+            if (!_xmlSource.Consume(expectedToken))
                 throw new XmlParserException($"Invalid XML document. Cannot parse special token: {expectedToken}");
 
             result = convertToValue;
@@ -693,19 +622,20 @@ namespace NLog.Internal
             }
         }
 
-        private sealed class CharEnumerator : IEnumerator<char>
+        private sealed class InputCursor
         {
             private readonly TextReader _xmlSource;
             private int _lineNumber;
             private char _current;
             private char? _peek;
-            private bool _endOfFile;
+            private bool _endOfInput;
 
-            public CharEnumerator(TextReader xmlSource)
+            public InputCursor(TextReader xmlSource)
             {
-                _xmlSource = xmlSource;
-                var current = xmlSource.Read();
-                _current = current < 0 ? '\0' : (char)current;
+                _xmlSource = xmlSource ?? throw new ArgumentNullException(nameof(xmlSource));
+                var current = _xmlSource.Read();
+                _endOfInput = current < 0;
+                _current = _endOfInput ? '\0' : (char)current;
                 _lineNumber = current == '\n' ? 2 : 1;
             }
 
@@ -713,7 +643,7 @@ namespace NLog.Internal
             {
                 get
                 {
-                    if (_endOfFile)
+                    if (_endOfInput)
                         throw new XmlParserException("Invalid XML document. Unexpected end of document.");
                     return _current;
                 }
@@ -721,54 +651,104 @@ namespace NLog.Internal
 
             public int LineNumber => _lineNumber;
 
-            object IEnumerator.Current => Current;
+            public bool EndOfInput => _endOfInput;
 
-            public bool EndOfFile => _endOfFile;
-
-            public bool MoveNext()
+            public bool Read()
             {
                 if (_peek.HasValue)
                 {
                     _current = _peek.Value;
-                    if (_current == '\n')
-                        ++_lineNumber;
                     _peek = null;
-                    return true;
                 }
-
-                var current = _xmlSource.Read();
-                if (current < 0)
+                else
                 {
-                    _endOfFile = true;
-                    return false;
+                    var current = _endOfInput ? -1 : _xmlSource.Read();
+                    if (current < 0)
+                    {
+                        _endOfInput = true;
+                        return false;
+                    }
+
+                    _current = (char)current;
                 }
 
-                _current = (char)current;
                 if (_current == '\n')
                     ++_lineNumber;
                 return true;
             }
 
-            public char Peek()
+            private char? Peek()
             {
                 if (_peek.HasValue)
                     return _peek.Value;
 
                 var current = _xmlSource.Read();
                 if (current < 0)
-                    return '\0';
+                    return null;
+
                 _peek = (char)current;
                 return _peek.Value;
             }
 
-            void IEnumerator.Reset()
+            public bool StartsWith(char value)
             {
-                // NOSONAR: Nothing to reset
+                if (_endOfInput)
+                    throw new XmlParserException("Invalid XML document. Unexpected end of document.");
+
+                return _current == value;
             }
 
-            void IDisposable.Dispose()
+            public bool StartsWith(char first, char second)
             {
-                // NOSONAR: Nothing to dispose
+                if (_endOfInput)
+                    throw new XmlParserException("Invalid XML document. Unexpected end of document.");
+
+                return _current == first && Peek() == second;
+            }
+
+            public bool TryConsume(char value)
+            {
+                if (!StartsWith(value))
+                    return false;
+
+                Read();
+                return true;
+            }
+
+            public bool TryConsume(char first, char second)
+            {
+                if (!StartsWith(first, second))
+                    return false;
+
+                Read();
+                Read();
+                return true;
+            }
+
+            public bool Consume(string value)
+            {
+                foreach (var chr in value)
+                {
+                    if (chr != _current)
+                        return false;
+                    if (!Read())
+                        return false;
+                }
+                return true;
+            }
+
+            public bool SkipWhiteSpace()
+            {
+                var skipped = false;
+
+                while (CharIsSpace(_current))
+                {
+                    skipped = true;
+                    if (!Read())
+                        break;
+                }
+
+                return skipped;
             }
         }
     }
