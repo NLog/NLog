@@ -309,8 +309,11 @@ namespace NLog.Internal
 
             do
             {
-                if (_xmlSource.TryConsume('-', '-') && _xmlSource.TryConsume('>'))
-                    return;
+                while (_xmlSource.TryConsume('-'))
+                {
+                    if (_xmlSource.TryConsume('-', '>'))
+                        return;
+                }
             } while (_xmlSource.Read());
 
             throw new XmlParserException("Invalid XML document. Unexpected end of document. Expected '-->'.");
@@ -621,16 +624,16 @@ namespace NLog.Internal
 
         private sealed class InputCursor
         {
-            private readonly TextReader _source;
+            private readonly TextReader _xmlSource;
             private int _lineNumber;
             private char _current;
             private char? _peek;
             private bool _endOfInput;
 
-            public InputCursor(TextReader source)
+            public InputCursor(TextReader xmlSource)
             {
-                _source = source ?? throw new ArgumentNullException(nameof(source));
-                var current = _source.Read();
+                _xmlSource = xmlSource ?? throw new ArgumentNullException(nameof(xmlSource));
+                var current = _xmlSource.Read();
                 _endOfInput = current < 0;
                 _current = _endOfInput ? '\0' : (char)current;
                 _lineNumber = current == '\n' ? 2 : 1;
@@ -659,7 +662,7 @@ namespace NLog.Internal
                 }
                 else
                 {
-                    var current = _endOfInput ? -1 : _source.Read();
+                    var current = _endOfInput ? -1 : _xmlSource.Read();
                     if (current < 0)
                     {
                         _endOfInput = true;
@@ -679,7 +682,7 @@ namespace NLog.Internal
                 if (_peek.HasValue)
                     return _peek.Value;
 
-                var current = _source.Read();
+                var current = _xmlSource.Read();
                 if (current < 0)
                     return null;
 

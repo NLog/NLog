@@ -186,7 +186,8 @@ namespace NLog.UnitTests.Internal
         [InlineData("<?xml ?><nlog />")]
         [InlineData("<?xml ?>\n<nlog />")]
         [InlineData("<?xml ?><!-- Hello --><nlog />")]
-        [InlineData("<!-- Hello --><?xml ?><!-- World --><nlog />")]
+        [InlineData("<!-- Hello --><!-- World --><nlog />")]
+        [InlineData("<!--a---><nlog/>")]
         public void XmlParse_EmptyDocument(string xmlSource)
         {
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
