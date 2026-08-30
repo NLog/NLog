@@ -154,18 +154,13 @@ namespace NLog.Internal
 
                 List<KeyValuePair<string, string>>? instructionAttributes = null;
 
-                _xmlSource.SkipWhiteSpace();
-
-                if (!_xmlSource.StartsWith('?', '>'))
+                try
                 {
-                    try
-                    {
-                        instructionAttributes = TryReadAttributes(expectsProcessingInstruction: true);
-                    }
-                    catch (XmlParserException ex)
-                    {
-                        throw new XmlParserException($"{ex.Message} - Cannot parse attributes for XML processing instruction: {instructionName}");
-                    }
+                    instructionAttributes = TryReadAttributes(expectsProcessingInstruction: true);
+                }
+                catch (XmlParserException ex)
+                {
+                    throw new XmlParserException($"{ex.Message} - Cannot parse attributes for XML processing instruction: {instructionName}");
                 }
 
                 _xmlSource.SkipWhiteSpace();
@@ -312,18 +307,11 @@ namespace NLog.Internal
             if (expectHeader && !_xmlSource.Consume("<!--"))
                 throw new XmlParserException("Invalid XML document. Cannot parse XML comment");
 
-            while (!_xmlSource.EndOfInput)
+            do
             {
-                if (_xmlSource.TryConsume('-', '-'))
-                {
-                    if (_xmlSource.TryConsume('>'))
-                        return;
-
-                    continue;
-                }
-
-                _xmlSource.Read();
-            }
+                if (_xmlSource.TryConsume('-', '-') && _xmlSource.TryConsume('>'))
+                    return;
+            } while (_xmlSource.Read());
 
             throw new XmlParserException("Invalid XML document. Unexpected end of document. Expected '-->'.");
         }
@@ -332,17 +320,12 @@ namespace NLog.Internal
         {
             List<KeyValuePair<string, string>>? attributes = null;
 
-            while (!_xmlSource.EndOfInput)
+            _xmlSource.SkipWhiteSpace();
+
+            while (!_xmlSource.StartsWith('>')
+                && !_xmlSource.StartsWith('/', '>')
+                && !(expectsProcessingInstruction && _xmlSource.StartsWith('?', '>')))
             {
-                _xmlSource.SkipWhiteSpace();
-
-                if (_xmlSource.StartsWith('>') ||
-                    _xmlSource.StartsWith('/', '>') ||
-                    (expectsProcessingInstruction && _xmlSource.StartsWith('?', '>')))
-                {
-                    break;
-                }
-
                 var attributeName = ReadEntityName();
                 if (string.IsNullOrEmpty(attributeName))
                     throw new XmlParserException("Invalid XML document. Cannot parse XML attribute");
@@ -364,6 +347,8 @@ namespace NLog.Internal
                 {
                     throw new XmlParserException($"{ex.Message} - XML attribute: {attributeName}");
                 }
+
+                _xmlSource.SkipWhiteSpace();
             }
 
             return attributes;
@@ -502,7 +487,7 @@ namespace NLog.Internal
             int unicode = 0;
             bool hasDigit = false;
 
-            while (!_xmlSource.EndOfInput)
+            do
             {
                 char chr = _xmlSource.Current;
                 if (chr == ';')
@@ -522,8 +507,7 @@ namespace NLog.Internal
                     throw new XmlParserException("Invalid XML document. Cannot parse unicode-char digit-value");
 
                 hasDigit = true;
-                _xmlSource.Read();
-            }
+            } while (_xmlSource.Read());
 
             throw new XmlParserException("Invalid XML document. Cannot parse unicode-char digit-value");
         }
@@ -533,7 +517,7 @@ namespace NLog.Internal
             int unicode = 0;
             bool hasDigit = false;
 
-            while (!_xmlSource.EndOfInput)
+            do
             {
                 char chr = _xmlSource.Current;
                 if (chr == ';')
@@ -557,8 +541,7 @@ namespace NLog.Internal
                     throw new XmlParserException("Invalid XML document. Cannot parse unicode-char hex-value");
 
                 hasDigit = true;
-                _xmlSource.Read();
-            }
+            } while (_xmlSource.Read());
 
             throw new XmlParserException("Invalid XML document. Cannot parse unicode-char hex-value");
         }
@@ -743,7 +726,9 @@ namespace NLog.Internal
             {
                 foreach (var chr in value)
                 {
-                    if (!TryConsume(chr))
+                    if (chr != _current)
+                        return false;
+                    if (!Read())
                         return false;
                 }
                 return true;
@@ -753,7 +738,7 @@ namespace NLog.Internal
             {
                 var skipped = false;
 
-                while (!_endOfInput && CharIsSpace(_current))
+                while (CharIsSpace(_current))
                 {
                     skipped = true;
                     if (!Read())
