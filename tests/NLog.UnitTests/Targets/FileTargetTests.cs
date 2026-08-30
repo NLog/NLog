@@ -113,7 +113,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void FileLifeCycleTest()
         {
-            var logFile = Path.GetTempFileName();
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid());
+            var logFile = Path.Combine(tempDir, "FileLifeCycleTest.log");
+
             try
             {
                 var callRecording = new List<string>();
@@ -157,14 +159,17 @@ namespace NLog.UnitTests.Targets
             {
                 if (File.Exists(logFile))
                     File.Delete(logFile);
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
             }
         }
-
 
         [Fact]
         public void FileLifeCycle_ErrorHandlingTest()
         {
-            var logFile = Path.GetTempFileName();
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid());
+            var logFile = Path.Combine(tempDir, "FileLifeCycleTest.log");
+
             try
             {
                 var callRecording = new List<string>();
@@ -201,6 +206,8 @@ namespace NLog.UnitTests.Targets
             {
                 if (File.Exists(logFile))
                     File.Delete(logFile);
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
             }
         }
 
