@@ -291,6 +291,9 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog>\n<!--CDATA-->\n<![CDATA[<CDATA>]]>\n</nlog>", "<CDATA>")]
         [InlineData("<nlog><!--CDATA--><!--CDATA--><![CDATA[<CD]]>A<!--CDATA--><!--CDATA--><![CDATA[TA>]]></nlog>", "<CDATA>")]
         [InlineData("<nlog><![CDATA[<![CDATA[]]>]]<![CDATA[>]]></nlog>", "<![CDATA[]]>")]
+        [InlineData("<nlog><![CDATA[]]]]></nlog>", "]]")]
+        [InlineData("<nlog><![CDATA[abc]]x]]></nlog>", "abc]]x")]
+        [InlineData("<nlog><![CDATA[abc]]]]></nlog>", "abc]]")]
         [InlineData("<nlog>hello<![CDATA[]]>world</nlog>", "helloworld")]
         public void XmlParse_InnerText_Tokens(string xmlSource, string value)
         {
