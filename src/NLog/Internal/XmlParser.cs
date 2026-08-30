@@ -627,7 +627,7 @@ namespace NLog.Internal
             private readonly TextReader _xmlSource;
             private int _lineNumber;
             private char _current;
-            private char? _peek;
+            private char _peek;
             private bool _endOfInput;
 
             public InputCursor(TextReader xmlSource)
@@ -655,10 +655,10 @@ namespace NLog.Internal
 
             public bool Read()
             {
-                if (_peek.HasValue)
+                if (_peek > '\0')
                 {
-                    _current = _peek.Value;
-                    _peek = null;
+                    _current = _peek;
+                    _peek = '\0';
                 }
                 else
                 {
@@ -677,18 +677,19 @@ namespace NLog.Internal
                 return true;
             }
 
-            private char? Peek()
+            private char Peek()
             {
-                if (_peek.HasValue)
-                    return _peek.Value;
+                if (_peek > '\0')
+                    return _peek;
 
                 var current = _xmlSource.Read();
                 if (current < 0)
-                    return null;
+                    return '\0';
 
                 _peek = (char)current;
-                return _peek.Value;
+                return _peek;
             }
+
 
             public bool StartsWith(char value)
             {
