@@ -154,6 +154,7 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog>&quot</nlog>")]
         [InlineData("<nlog><nlog/>")]
         [InlineData("<nlog><targets><targets/><nlog/>")]
+        [InlineData("<\0nlog></nlog>")]
         public void XmlParse_InvalidDocument(string xmlSource)
         {
             Assert.Throws<XmlParserException>(() => new XmlParser(xmlSource).LoadDocument(out var _));
