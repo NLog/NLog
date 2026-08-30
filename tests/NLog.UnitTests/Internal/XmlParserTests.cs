@@ -136,7 +136,6 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog xsi:internalLogLevel='Debug' throwExceptions='true />")]
         [InlineData("<nlog xsi:internalLogLevel='Debug' throwExceptions=\"true />")]
         [InlineData("<nlog xsi:internalLogLevel='Debug' throwExceptions='&gt' />")]
-        [InlineData("<nlog><![CDATA[]]]></nlog>")]
         [InlineData("<nlog><![CDATA[]></nlog>")]
         [InlineData("<nlog><![CDATA]></nlog>")]
         [InlineData("<nlog><![CDATA></nlog>")]
@@ -284,6 +283,7 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog>&#x3c; &#x3e; ? &#x22; &#x26;</nlog>", "< > ? \" &")]
         [InlineData("<nlog> &#x3c; &#x3e; ? &#x22; &#x26; </nlog>", "< > ? \" &")]
         [InlineData("<nlog>\n&#x3c; &#x3e; ? &#x22; &#x26;\n</nlog>", "< > ? \" &")]
+        [InlineData("<nlog><![CDATA[]]></nlog>", "")]
         [InlineData("<nlog><![CDATA[\n\n]]></nlog>", "\n\n")]
         [InlineData("<nlog> <![CDATA[\n\n]]> </nlog>", "\n\n")]
         [InlineData("<nlog>\n<![CDATA[\n\n]]>\n</nlog>", "\n\n")]
@@ -291,9 +291,10 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog>\n<!--CDATA-->\n<![CDATA[<CDATA>]]>\n</nlog>", "<CDATA>")]
         [InlineData("<nlog><!--CDATA--><!--CDATA--><![CDATA[<CD]]>A<!--CDATA--><!--CDATA--><![CDATA[TA>]]></nlog>", "<CDATA>")]
         [InlineData("<nlog><![CDATA[<![CDATA[]]>]]<![CDATA[>]]></nlog>", "<![CDATA[]]>")]
+        [InlineData("<nlog><![CDATA[]]]></nlog>", "]")]
         [InlineData("<nlog><![CDATA[]]]]></nlog>", "]]")]
-        [InlineData("<nlog><![CDATA[abc]]x]]></nlog>", "abc]]x")]
         [InlineData("<nlog><![CDATA[abc]]]]></nlog>", "abc]]")]
+        [InlineData("<nlog><![CDATA[abc]]x]]></nlog>", "abc]]x")]
         [InlineData("<nlog>hello<![CDATA[]]>world</nlog>", "helloworld")]
         public void XmlParse_InnerText_Tokens(string xmlSource, string value)
         {

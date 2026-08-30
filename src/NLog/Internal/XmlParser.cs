@@ -293,17 +293,15 @@ namespace NLog.Internal
 
             do
             {
-                while (_xmlSource.TryConsume(']', ']'))
+                while (_xmlSource.TryConsume(']'))
                 {
-                    if (_xmlSource.TryConsume('>'))
+                    if (_xmlSource.TryConsume(']', '>'))
                         return _stringBuilder.ToString();
 
-                    _stringBuilder.Append(']');
                     _stringBuilder.Append(']');
                 }
 
                 _stringBuilder.Append(_xmlSource.Current);
-
             } while (_xmlSource.Read());
 
             throw new XmlParserException("Invalid XML document. Unclosed XML CDATA");
@@ -384,8 +382,7 @@ namespace NLog.Internal
                     chr == '=' ||
                     chr == '>' ||
                     chr == '/' ||
-                    chr == '?' ||
-                    chr == '<')
+                    chr == '?')
                     break;
 
                 if (!IsValidXmlNameChar(chr))
