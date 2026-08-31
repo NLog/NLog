@@ -288,15 +288,18 @@ namespace NLog.Internal
 
             do
             {
-                while (_xmlSource.TryConsume(']'))
+                var chr = _xmlSource.Current;
+                while (chr == ']')
                 {
+                    _xmlSource.Read();
                     if (_xmlSource.TryConsume(']', '>'))
                         return _stringBuilder.ToString();
 
                     _stringBuilder.Append(']');
+                    chr = _xmlSource.Current;
                 }
 
-                _stringBuilder.Append(_xmlSource.Current);
+                _stringBuilder.Append(chr);
             } while (_xmlSource.Read());
 
             throw new XmlParserException("Invalid XML document. Unclosed XML CDATA");
@@ -316,7 +319,7 @@ namespace NLog.Internal
                 }
             } while (_xmlSource.Read());
 
-            throw new XmlParserException("Invalid XML document. Unexpected end of document. Expected '-->'.");
+            throw new XmlParserException("Invalid XML document. Unclosed XML comment");
         }
 
         private List<KeyValuePair<string, string>>? TryReadAttributes(bool expectsProcessingInstruction = false)
@@ -384,63 +387,58 @@ namespace NLog.Internal
 
         private string ReadAttributeValue()
         {
-            char quote;
-
-            if (_xmlSource.TryConsume('"'))
-            {
-                quote = '"';
-            }
-            else if (_xmlSource.TryConsume('\''))
-            {
-                quote = '\'';
-            }
-            else
-            {
+            char quote = _xmlSource.Current;
+            if (quote != '"' && quote != '\'')
                 throw new XmlParserException("Invalid XML document. Expected quoted value");
-            }
 
-            _stringBuilder.ClearBuilder();
-
-            while (!_xmlSource.TryConsume(quote))
-            {
-                char chr = _xmlSource.Current;
-                if (chr == '<')
-                    throw new XmlParserException("Invalid XML document. Cannot parse value with '<', maybe encode to &lt;");
-
-                if (_xmlSource.TryConsume('&'))
-                {
-                    _stringBuilder.Append(ParseSpecialXmlToken());
-                    continue;
-                }
-
-                _stringBuilder.Append(chr);
-                _xmlSource.Read();
-            }
-
-            return _stringBuilder.ToString();
+            _xmlSource.Read();
+            var attributeValue = ReadContentUntil(quote);
+            if (!_xmlSource.TryConsume(quote))
+                throw new XmlParserException("Invalid XML document. Missing closing quote for value");
+            return attributeValue;
         }
 
         private string ReadInnerText()
         {
+            return ReadContentUntil('<');
+        }
+
+        private string ReadContentUntil(char terminator)
+        {
             _stringBuilder.ClearBuilder();
 
-            while (!_xmlSource.StartsWith('<'))
+            do
             {
-                if (_xmlSource.TryConsume('&'))
+                char chr = _xmlSource.Current;
+                if (chr == terminator)
+                    break;
+
+                if (chr == '<')
+                    throw new XmlParserException("Invalid XML document. Cannot parse value with '<', maybe encode to &lt;");
+
+                if (chr == '&')
                 {
-                    _stringBuilder.Append(ParseSpecialXmlToken());
+                    _xmlSource.Read();
+                    if (TryParseSpecialXmlToken(out var specialToken))
+                    {
+                        _stringBuilder.Append(specialToken);
+                    }
+                    else
+                    {
+                        _stringBuilder.Append('&'); // Unrecognized special token, return the '&' character as-is.
+                        if (_xmlSource.Current == terminator)
+                            break;
+                        _stringBuilder.Append(_xmlSource.Current);
+                    }
                     continue;
                 }
 
-                char chr = _xmlSource.Current;
-                _xmlSource.Read();
-                if (_stringBuilder.Length == 0 && CharIsSpace(chr))
-                    continue;   // Trim leading white-spaces
-
                 _stringBuilder.Append(chr);
-            }
+            } while (_xmlSource.Read());
 
-            return _stringBuilder.ToString(0, TrimEndWhitespace(_stringBuilder));
+            return terminator == '<'
+                ? _stringBuilder.ToString(0, TrimEndWhitespace(_stringBuilder))
+                : _stringBuilder.ToString();
         }
 
         private static int TrimEndWhitespace(StringBuilder sb)
@@ -498,7 +496,6 @@ namespace NLog.Internal
                     if (!hasDigit)
                         throw new XmlParserException("Invalid XML document. Cannot parse unicode-char digit-value");
 
-                    _xmlSource.Read();
                     return unicode;
                 }
 
@@ -528,7 +525,6 @@ namespace NLog.Internal
                     if (!hasDigit)
                         throw new XmlParserException("Invalid XML document. Cannot parse unicode-char hex-value");
 
-                    _xmlSource.Read();
                     return unicode;
                 }
 
@@ -549,24 +545,28 @@ namespace NLog.Internal
             throw new XmlParserException("Invalid XML document. Cannot parse unicode-char hex-value");
         }
 
-        private string ParseSpecialXmlToken()
+        private bool TryParseSpecialXmlToken(out string specialToken)
         {
             if (_xmlSource.TryConsume('#'))
-                return ReadUnicodeValue();
+            {
+                specialToken = ReadUnicodeValue();
+                return true;
+            }
 
             // At this point the '&' has already been consumed.
-            if (TryConvertSpecialXmlToken("lt;", "<", out var specialToken))
-                return specialToken;
+            if (TryConvertSpecialXmlToken("lt;", "<", out specialToken))
+                return true;
             if (TryConvertSpecialXmlToken("gt;", ">", out specialToken))
-                return specialToken;
+                return true;
             if (TryConvertSpecialXmlToken("amp;", "&", out specialToken))
-                return specialToken;
+                return true;
             if (TryConvertSpecialXmlToken("apos;", "'", out specialToken))
-                return specialToken;
+                return true;
             if (TryConvertSpecialXmlToken("quot;", "\"", out specialToken))
-                return specialToken;
+                return true;
 
-            return "&"; // Unrecognized special token, return the '&' character as-is.
+            specialToken = string.Empty;
+            return false;
         }
 
         private bool TryConvertSpecialXmlToken(string expectedToken, string convertToValue, out string result)
@@ -578,7 +578,13 @@ namespace NLog.Internal
             if (!_xmlSource.StartsWith(expectedToken[0], expectedToken[1]))
                 return false;
 
-            if (!_xmlSource.Consume(expectedToken))
+            for (int i = 0; i < expectedToken.Length - 1; ++i)
+            {
+                if (!_xmlSource.TryConsume(expectedToken[i]))
+                    throw new XmlParserException($"Invalid XML document. Cannot parse special token: {expectedToken}");
+            }
+
+            if (_xmlSource.Current != expectedToken[expectedToken.Length - 1])
                 throw new XmlParserException($"Invalid XML document. Cannot parse special token: {expectedToken}");
 
             result = convertToValue;
