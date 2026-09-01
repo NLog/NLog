@@ -84,5 +84,75 @@ namespace NLog.Targets.AtomicFile.Tests
                     Directory.Delete(tempDir, true);
             }
         }
+
+        [Fact]
+        public void FastAndSlowAtomicFileWriters()
+        {
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+            var logFileName = Path.Combine(tempDir, "log.txt");
+
+            var logFactoryFast = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.ForLogger().WriteTo(new AtomicFileTarget()
+                {
+                    FileName = logFileName,
+                    Layout = "${message}",
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveAboveSize = 15,
+                    MaxArchiveFiles = 2,
+                });
+            }).LogFactory;
+
+            var logFactorySlow = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.ForLogger().WriteTo(new AtomicFileTarget()
+                {
+                    FileName = logFileName,
+                    Layout = "${message}",
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveAboveSize = 15,
+                    MaxArchiveFiles = 2,
+                });
+            }).LogFactory;
+
+            logFactoryFast.GetCurrentClassLogger().Info("Fast1");
+            logFactorySlow.GetCurrentClassLogger().Info("Slow1");
+
+            using (var logFile = new StreamReader(new FileStream(logFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)))
+            {
+                Assert.Equal("Fast1", logFile.ReadLine());
+                Assert.Equal("Slow1", logFile.ReadLine());
+                Assert.Null(logFile.ReadLine());
+            }
+
+            logFactoryFast.GetCurrentClassLogger().Info("Fast2");
+            logFactoryFast.GetCurrentClassLogger().Info("Fast3");
+            logFactoryFast.GetCurrentClassLogger().Info("Fast4");
+            logFactoryFast.GetCurrentClassLogger().Info("Fast5");
+            logFactoryFast.GetCurrentClassLogger().Info("Fast6");
+            logFactoryFast.GetCurrentClassLogger().Info("Fast7");
+            logFactoryFast.GetCurrentClassLogger().Info("Fast8");
+            logFactoryFast.GetCurrentClassLogger().Info("Fast9");
+
+            Assert.False(File.Exists(logFileName));
+            Assert.False(File.Exists(Path.Combine(tempDir, "log_01.txt")));
+            Assert.True(File.Exists(Path.Combine(tempDir, "log_02.txt")));
+            Assert.True(File.Exists(Path.Combine(tempDir, "log_03.txt")));
+
+            logFactorySlow.GetCurrentClassLogger().Info("Slow2");
+
+            logFactoryFast.Shutdown();
+            logFactorySlow.Shutdown();
+
+            using (var logFile = new StreamReader(new FileStream(Path.Combine(tempDir, "log_03.txt"), FileMode.Open, FileAccess.Read, FileShare.ReadWrite)))
+            {
+                Assert.Equal("Fast9", logFile.ReadLine());
+                Assert.Equal("Slow2", logFile.ReadLine());
+                Assert.Null(logFile.ReadLine());
+            }
+
+            if (Directory.Exists(tempDir))
+                Directory.Delete(tempDir, true);
+        }
     }
 }
