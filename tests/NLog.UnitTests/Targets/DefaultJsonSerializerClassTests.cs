@@ -69,6 +69,32 @@ namespace NLog.UnitTests.Targets
             public IncludedClass Included { get; set; }
         }
 
+        private sealed class ClassWithPublicField
+        {
+            public string Name { get; set; }
+            public int Age;
+        }
+
+        private sealed class ClassWithOnlyFields
+        {
+            public string Name;
+            public int Age;
+        }
+
+        private sealed class ClassWithNestedField
+        {
+            public IncludedClass Nested;
+            public string Skipped = null;   // A null field must be left out of the JSON
+        }
+
+        private sealed class ClassWithMixedVisibility
+        {
+            public string Public;
+            internal string Internal;
+            private string _private = "hidden";
+            public string ReadPrivate() => _private;
+        }
+
         private static ContainerClass BuildSampleObject()
         {
             var testObject = new ContainerClass
@@ -130,6 +156,147 @@ namespace NLog.UnitTests.Targets
             const string expectedValue =
                 @"{""S"":""sample"",""Excluded"":""Skipped"",""Included"":{""IncludedString"":""serialized""}}";
             Assert.Equal(expectedValue, sb.ToString());
+        }
+
+        [Fact]
+        public void IncludePublicFields_Enabled_SerializesPublicFieldsAlongsideProperties()
+        {
+            var testObject = new ClassWithPublicField { Name = "John", Age = 42 };
+
+            var sb = new StringBuilder();
+            var options = new JsonSerializeOptions { IncludePublicFields = true };
+
+            var jsonSerializer = new DefaultJsonSerializer(null);
+            jsonSerializer.SerializeObject(testObject, sb, options);
+
+            Assert.Equal(@"{""Name"":""John"",""Age"":42}", sb.ToString());
+        }
+
+        [Fact]
+        public void IncludePublicFields_Disabled_SkipsPublicFields()
+        {
+            var testObject = new ClassWithPublicField { Name = "John", Age = 42 };
+
+            var sb = new StringBuilder();
+            var options = new JsonSerializeOptions { IncludePublicFields = false };
+
+            var jsonSerializer = new DefaultJsonSerializer(null);
+            jsonSerializer.SerializeObject(testObject, sb, options);
+
+            Assert.Equal(@"{""Name"":""John""}", sb.ToString());
+        }
+
+        [Fact]
+        public void IncludePublicFields_ClassWithoutProperties_SerializesFields()
+        {
+            var json = SerializeWithFields(new ClassWithOnlyFields { Name = "John", Age = 42 });
+            Assert.Equal(@"{""Name"":""John"",""Age"":42}", json);
+        }
+
+        [Fact]
+        public void IncludePublicFields_NullFieldValue_IsSkipped()
+        {
+            var json = SerializeWithFields(new ClassWithNestedField { Nested = new IncludedClass { IncludedString = "abc" } });
+            Assert.Equal(@"{""Nested"":{""IncludedString"":""abc""}}", json);
+        }
+
+        [Fact]
+        public void IncludePublicFields_NonPublicFields_AreNotSerialized()
+        {
+            var testObject = new ClassWithMixedVisibility { Public = "yes", Internal = "no" };
+            Assert.Equal("hidden", testObject.ReadPrivate());
+            Assert.Equal(@"{""Public"":""yes""}", SerializeWithFields(testObject));
+        }
+
+        [Fact]
+        public void IncludePublicFields_WithoutSuppressSpaces_SeparatesWithSpace()
+        {
+            var sb = new StringBuilder();
+            var options = new JsonSerializeOptions { IncludePublicFields = true, SuppressSpaces = false };
+            new DefaultJsonSerializer(null).SerializeObject(new ClassWithOnlyFields { Name = "John", Age = 42 }, sb, options);
+            Assert.Equal(@"{""Name"":""John"", ""Age"":42}", sb.ToString());
+        }
+
+        [Fact]
+        public void IncludePublicFields_SameTypeWithAndWithoutOption_DoesNotShareCachedMembers()
+        {
+            var testObject = new ClassWithPublicField { Name = "John", Age = 42 };
+            var jsonSerializer = new DefaultJsonSerializer(null);
+
+            var withFields = new StringBuilder();
+            jsonSerializer.SerializeObject(testObject, withFields, new JsonSerializeOptions { IncludePublicFields = true });
+            var withoutFields = new StringBuilder();
+            jsonSerializer.SerializeObject(testObject, withoutFields, new JsonSerializeOptions { IncludePublicFields = false });
+            var withFieldsAgain = new StringBuilder();
+            jsonSerializer.SerializeObject(testObject, withFieldsAgain, new JsonSerializeOptions { IncludePublicFields = true });
+
+            Assert.Equal(@"{""Name"":""John"",""Age"":42}", withFields.ToString());
+            Assert.Equal(@"{""Name"":""John""}", withoutFields.ToString());
+            Assert.Equal(@"{""Name"":""John"",""Age"":42}", withFieldsAgain.ToString());
+        }
+
+        [Fact]
+        public void IncludePublicFields_ExpandoObject_StillEnumeratesEntries()
+        {
+            var testObject = new System.Collections.Generic.Dictionary<string, object> { { "Name", "John" }, { "Age", 42 } };
+            Assert.Equal(@"{""Name"":""John"",""Age"":42}", SerializeWithFields(testObject));
+        }
+
+        [Fact]
+        public void IncludePublicFields_Exception_KeepsArtificialTypeProperty()
+        {
+            var json = SerializeWithFields(new System.InvalidOperationException("Oops"));
+            Assert.Contains(@"""Type"":""System.InvalidOperationException""", json);
+            Assert.Contains(@"""Message"":""Oops""", json);
+        }
+
+        [Fact]
+        public void IncludePublicFields_TypeWithoutFields_IsStableAcrossCalls()
+        {
+            var testObject = new IncludedClass { IncludedString = "abc" };
+            Assert.Equal(@"{""IncludedString"":""abc""}", SerializeWithFields(testObject));
+            Assert.Equal(@"{""IncludedString"":""abc""}", SerializeWithFields(testObject));
+        }
+
+        private class BaseWithProperty
+        {
+            public string Shadowed { get; set; }
+        }
+
+        private sealed class DerivedWithField : BaseWithProperty
+        {
+            public new string Shadowed;
+        }
+
+        private sealed class ExceptionWithTypeField : System.Exception
+        {
+            public string Type = "collides";
+        }
+        [Fact]
+        public void IncludePublicFields_FieldShadowingInheritedProperty_EmitsMemberOnce()
+        {
+            var testObject = new DerivedWithField { Shadowed = "field" };
+            ((BaseWithProperty)testObject).Shadowed = "property";
+
+            Assert.Equal(@"{""Shadowed"":""property""}", SerializeWithFields(testObject));
+        }
+
+        [Fact]
+        public void IncludePublicFields_ExceptionWithTypeField_KeepsArtificialTypeOnly()
+        {
+            var json = SerializeWithFields(new ExceptionWithTypeField());
+
+            Assert.Contains(@"""Type"":""" + typeof(ExceptionWithTypeField).ToString() + @"""", json);
+            Assert.DoesNotContain(@"""Type"":""collides""", json);
+        }
+
+
+        private static string SerializeWithFields(object value)
+        {
+            var sb = new StringBuilder();
+            var options = new JsonSerializeOptions { IncludePublicFields = true, SuppressSpaces = true };
+            new DefaultJsonSerializer(null).SerializeObject(value, sb, options);
+            return sb.ToString();
         }
     }
 }
