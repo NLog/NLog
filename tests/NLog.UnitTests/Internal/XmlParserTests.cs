@@ -155,6 +155,8 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog><nlog/>")]
         [InlineData("<nlog><targets><targets/><nlog/>")]
         [InlineData("<\0nlog></nlog>")]
+        [InlineData("<nlog/><!-- hello")]
+        [InlineData("<nlog/><!-- hello -- >")]
         public void XmlParse_InvalidDocument(string xmlSource)
         {
             Assert.Throws<XmlParserException>(() => new XmlParser(xmlSource).LoadDocument(out var _));
@@ -188,7 +190,9 @@ namespace NLog.UnitTests.Internal
         [InlineData("<?xml ?>\n<nlog />")]
         [InlineData("<?xml ?><!-- Hello --><nlog />")]
         [InlineData("<!-- Hello --><!-- World --><nlog />")]
-        [InlineData("<!--a---><nlog/>")]
+        [InlineData("<nlog/><!-- hello -->")]
+        [InlineData("<!--hello--><nlog/>")]
+        [InlineData("<nlog><!-- --></nlog>")]
         public void XmlParse_EmptyDocument(string xmlSource)
         {
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
