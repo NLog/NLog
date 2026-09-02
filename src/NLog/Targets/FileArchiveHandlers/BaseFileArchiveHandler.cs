@@ -460,6 +460,19 @@ namespace NLog.Targets.FileArchiveHandlers
                     if (i >= 3 && ex.MustBeRethrown(_fileTarget))
                         throw;
                 }
+                catch (UnauthorizedAccessException ex)
+                {
+#if NET35
+                    var hResult = 0;
+#else
+                    var hResult = ex.HResult;
+#endif
+                    InternalLogger.Debug(ex, "{0}: Failed to delete old file HResult=0x{1:X8}, maybe file is locked: '{2}'", _fileTarget, hResult, filepath);
+                    if (!File.Exists(filepath))
+                        return true;
+
+                    return false;
+                }
                 catch (Exception ex)
                 {
                     InternalLogger.Warn(ex, "{0}: Failed to delete old archive file: '{1}'", _fileTarget, filepath);
