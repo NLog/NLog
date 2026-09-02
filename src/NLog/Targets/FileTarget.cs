@@ -786,36 +786,48 @@ namespace NLog.Targets
                 openFile = OpenFile(filename, firstLogEvent, null);
             }
 
-            try
+            for (int i = 0; i < 2; ++i)
             {
-                if (ArchiveAboveSize > 0 || ArchiveEvery != FileArchivePeriod.None)
+                try
                 {
-                    openFile = RollArchiveFile(filename, openFile, firstLogEvent, hasWritten);
+                    if (ArchiveAboveSize > 0 || ArchiveEvery != FileArchivePeriod.None || i != 0)
+                    {
+                        openFile = RollArchiveFile(filename, openFile, firstLogEvent, hasWritten, i != 0);
+                    }
+
+                    openFile.FileAppender.Write(firstLogEvent.TimeStamp, ms.GetBuffer(), 0, (int)ms.Length);
+                    if (AutoFlush)
+                    {
+                        openFile.FileAppender.Flush();
+                    }
+
+                    break;  // Succesful file-write
                 }
-
-                openFile.FileAppender.Write(firstLogEvent.TimeStamp, ms.GetBuffer(), 0, (int)ms.Length);
-
-                if (AutoFlush)
+                catch (IOException ex)
                 {
-                    openFile.FileAppender.Flush();
+                    CloseFile(filename, openFile);
+                    if (i == 0 && KeepFileOpen)
+                    {
+                        InternalLogger.Info(ex, "{0}: Failed writing {1} bytes, will close and reopen file: {2}", this, ms.Length, openFile.FileAppender.FilePath);
+                        continue;
+                    }
+                    throw;
                 }
-            }
-            catch
-            {
-                // Close file (any retry-logic must happen inside the FileStream-implementation)
-                _openFileCache.Remove(filename);
-                openFile.FileAppender.Dispose();
-                throw;
+                catch
+                {
+                    CloseFile(filename, openFile);
+                    throw;
+                }
             }
         }
 
-        private OpenFileAppender RollArchiveFile(string filename, OpenFileAppender openFile, LogEventInfo firstLogEvent, bool hasWritten)
+        private OpenFileAppender RollArchiveFile(string filename, OpenFileAppender openFile, LogEventInfo firstLogEvent, bool hasWritten, bool retryAfterError)
         {
             var lastSequenceNo = -1;
 
             bool skipFileLastModified = ArchiveFileName is null;
 
-            while (lastSequenceNo != openFile.SequenceNumber && MustArchiveFile(openFile.FileAppender, firstLogEvent))
+            while (lastSequenceNo != openFile.SequenceNumber && (retryAfterError || MustArchiveFile(openFile.FileAppender, firstLogEvent)))
             {
                 lastSequenceNo = openFile.SequenceNumber;
 
@@ -823,14 +835,25 @@ namespace NLog.Targets
                 if (previousFileLastModified > openFile.FileAppender.LastWriteTime && (previousFileLastModified == openFile.FileAppender.OpenStreamTime || firstLogEvent.TimeStamp.Date == previousFileLastModified?.Date))
                     previousFileLastModified = openFile.FileAppender.LastWriteTime;
 
-                // Close file and roll to next file
-                if (hasWritten)
-                    CloseFileWithFooter(filename, openFile, true);
-                else
-                    CloseFile(filename, openFile);
+                // Close file and roll to next file, and ensure File.Exists check works by closing file-handles first
+                if (!retryAfterError)
+                {
+                    if (hasWritten)
+                        CloseFileWithFooter(filename, openFile, true);
+                    else
+                        CloseFile(filename, openFile);
+                }
+
+                var nextSequenceNumber = openFile.SequenceNumber + 1;
+                if (nextSequenceNumber != 0 && (retryAfterError || !openFile.FileAppender.VerifyFileExists()))
+                {
+                    InternalLogger.Debug("{0}: Resets current archive sequence number, after issues with file: '{1}'", this, openFile.FileAppender.FilePath);
+                    retryAfterError = false;
+                    nextSequenceNumber = 0; // Signal that OpenFile must re-enumerate existing files to resolve next sequence-number
+                }
 
                 hasWritten = false;
-                openFile = OpenFile(filename, firstLogEvent, previousFileLastModified, openFile.SequenceNumber + 1);
+                openFile = OpenFile(filename, firstLogEvent, previousFileLastModified, nextSequenceNumber);
             }
 
             return openFile;
