@@ -117,6 +117,38 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("{\"date\":\"2010-01-01 12:34:56.0000\",\"level\":\"Info\",\"message\":\"hello, world\"}", jsonLayout.Render(logEventInfo));
         }
 
+
+        [Fact]
+        public void JsonLayoutRenderingNestedSuppressSpacesExplicit()
+        {
+            var innerJsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("type", "${exception:format=type}"),
+                    },
+                SuppressSpaces = true,  // Explicitly avoid inheriting from parent JsonLayout
+            };
+
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("level", "${level}"),
+                        new JsonAttribute("exception", innerJsonLayout, false),
+                    },
+                SuppressSpaces = false, // Default propagates to Attributes that uses JsonLayout
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Level = LogLevel.Error,
+                Exception = new InvalidOperationException("boom"),
+            };
+
+            Assert.Equal("{ \"level\": \"Error\", \"exception\": {\"type\":\"System.InvalidOperationException\"} }", jsonLayout.Render(logEventInfo));
+        }
+
         [Fact]
         public void JsonLayoutRenderingEscapeUnicode()
         {

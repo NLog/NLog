@@ -113,7 +113,7 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='100' />
         public bool SuppressSpaces
         {
-            get => _suppressSpaces;
+            get => _suppressSpaces ?? true;
             set
             {
                 if (_suppressSpaces != value)
@@ -123,7 +123,7 @@ namespace NLog.Layouts
                 }
             }
         }
-        private bool _suppressSpaces = true;
+        private bool? _suppressSpaces;
 
         /// <summary>
         /// Gets or sets the option to render the empty object value {}
@@ -146,7 +146,7 @@ namespace NLog.Layouts
                 if (_indentJson != value)
                 {
                     _indentJson = value;
-                    if (_indentJson)
+                    if (_indentJson && !_suppressSpaces.HasValue)
                         _suppressSpaces = false;
                     RefreshJsonDelimiters();
                 }
@@ -277,7 +277,7 @@ namespace NLog.Layouts
                     if (!attribute.IncludeEmptyValue && !jsonLayout._renderEmptyObject.HasValue)
                         jsonLayout.RenderEmptyObject = false;
 
-                    if (!SuppressSpaces || IndentJson)
+                    if ((!SuppressSpaces || IndentJson) && !jsonLayout._suppressSpaces.HasValue)
                         jsonLayout.SuppressSpaces = false;
                 }
             }
