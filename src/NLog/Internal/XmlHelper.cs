@@ -42,15 +42,11 @@ namespace NLog.Internal
     /// </summary>
     internal static class XmlHelper
     {
-        const char HIGH_SURROGATE_START = '\ud800';
-        const char HIGH_SURROGATE_END = '\udbff';
-
-        const char LOW_SURROGATE_START = '\udc00';
-        const char LOW_SURROGATE_END = '\udfff';
-
         internal static bool XmlConvertIsXmlChar(char chr)
         {
-            return (chr > '\u001f' && chr < HIGH_SURROGATE_START) || ExoticIsXmlChar(chr);
+            const char HIGH_SURROGATE_START = '\ud800';
+            const char UNICODE_C0_CONTROL_CODES_LAST = '\u001f';  // Unit Separator, Information Separator One
+            return (chr > UNICODE_C0_CONTROL_CODES_LAST && chr < HIGH_SURROGATE_START) || ExoticIsXmlChar(chr);
         }
 
         private static bool ExoticIsXmlChar(char chr)
@@ -58,7 +54,7 @@ namespace NLog.Internal
             if (chr < '\u0020')
                 return chr == '\u0009' || chr == '\u000a' || chr == '\u000d';
 
-            if (XmlConvertIsHighSurrogate(chr) || XmlConvertIsLowSurrogate(chr))
+            if (char.IsHighSurrogate(chr) || char.IsLowSurrogate(chr))
                 return false;
 
             if (chr == '\ufffe' || chr == '\uffff')
@@ -67,19 +63,9 @@ namespace NLog.Internal
             return true;
         }
 
-        public static bool XmlConvertIsHighSurrogate(char chr)
-        {
-            return chr >= HIGH_SURROGATE_START && chr <= HIGH_SURROGATE_END;
-        }
-
-        public static bool XmlConvertIsLowSurrogate(char chr)
-        {
-            return chr >= LOW_SURROGATE_START && chr <= LOW_SURROGATE_END;
-        }
-
         public static bool XmlConvertIsXmlSurrogatePair(char lowChar, char highChar)
         {
-            return XmlConvertIsHighSurrogate(highChar) && XmlConvertIsLowSurrogate(lowChar);
+            return char.IsHighSurrogate(highChar) && char.IsLowSurrogate(lowChar);
         }
 
         /// <summary>
