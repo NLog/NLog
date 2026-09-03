@@ -620,6 +620,15 @@ namespace NLog.Targets
                     continue;
                 }
 
+                if (!escapeUnicode && char.IsHighSurrogate(ch) && i + 1 < text.Length && char.IsLowSurrogate(text[i + 1]))
+                {
+                    // Valid surrogate-pair can be written as-is. Only lone surrogates need escaping,
+                    // since they cannot be encoded as UTF8 (and would corrupt the output)
+                    destination.Append(ch);
+                    destination.Append(text[++i]);
+                    continue;
+                }
+
                 switch (ch)
                 {
                     case '"':
@@ -677,7 +686,7 @@ namespace NLog.Targets
             if (ch < 32)
                 return true;
             if (ch > 127)
-                return escapeUnicode;
+                return escapeUnicode || char.IsSurrogate(ch);
             return ch == '"' || ch == '\\';
         }
 
