@@ -651,10 +651,28 @@ namespace NLog.Targets
                         break;
 
                     default:
-                        destination.AppendFormat(CultureInfo.InvariantCulture, "\\u{0:x4}", (int)ch);
+                        if (escapeUnicode || !TryAppendSurrogatePair(destination, text, ref i))
+                            destination.AppendFormat(CultureInfo.InvariantCulture, "\\u{0:x4}", (int)ch);
                         break;
                 }
             }
+        }
+
+        /// <summary>
+        /// Writes a valid surrogate-pair as-is, since only lone surrogates need escaping.
+        /// A lone surrogate cannot be encoded as UTF8 (and would corrupt the output).
+        /// </summary>
+        /// <returns>Surrogate-pair written, and <paramref name="i"/> moved to its low surrogate.</returns>
+        private static bool TryAppendSurrogatePair(StringBuilder destination, string text, ref int i)
+        {
+            if (char.IsHighSurrogate(text[i]) && i + 1 < text.Length && char.IsLowSurrogate(text[i + 1]))
+            {
+                destination.Append(text[i]);
+                destination.Append(text[++i]);
+                return true;
+            }
+
+            return false;
         }
 
         internal static void PerformJsonEscapeWhenNeeded(StringBuilder builder, int startPos, bool escapeUnicode)
@@ -677,7 +695,7 @@ namespace NLog.Targets
             if (ch < 32)
                 return true;
             if (ch > 127)
-                return escapeUnicode;
+                return escapeUnicode || char.IsSurrogate(ch);
             return ch == '"' || ch == '\\';
         }
 
