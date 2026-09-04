@@ -613,66 +613,62 @@ namespace NLog.Targets
 
             for (int i = startIndex; i < text.Length; ++i)
             {
-                char ch = text[i];
-                if (!RequiresJsonEscape(ch, escapeUnicode))
+                char chr = text[i];
+                if (!RequiresJsonEscape(chr, escapeUnicode))
                 {
-                    destination.Append(ch);
+                    destination.Append(chr);
                     continue;
                 }
 
-                switch (ch)
+                var basicEncode = TryGetJsonEscape(chr);
+                if (basicEncode is null)
                 {
-                    case '"':
-                        destination.Append("\\\"");
-                        break;
-
-                    case '\\':
-                        destination.Append("\\\\");
-                        break;
-
-                    case '\b':
-                        destination.Append("\\b");
-                        break;
-
-                    case '\r':
-                        destination.Append("\\r");
-                        break;
-
-                    case '\n':
-                        destination.Append("\\n");
-                        break;
-
-                    case '\f':
-                        destination.Append("\\f");
-                        break;
-
-                    case '\t':
-                        destination.Append("\\t");
-                        break;
-
-                    default:
-                        if (escapeUnicode || !TryAppendSurrogatePair(destination, text, ref i))
-                            destination.AppendFormat(CultureInfo.InvariantCulture, "\\u{0:x4}", (int)ch);
-                        break;
+                    if (escapeUnicode || !char.IsHighSurrogate(chr) || i + 1 >= text.Length || !char.IsLowSurrogate(text[i + 1]))
+                    {
+                        destination.AppendFormat(CultureInfo.InvariantCulture, "\\u{0:x4}", (int)chr);
+                    }
+                    else
+                    {
+                        // Writes a valid surrogate-pair as-is, since only lone surrogates need escaping.
+                        destination.Append(text[i]);
+                        destination.Append(text[++i]);
+                    }
+                }
+                else
+                {
+                    destination.Append(basicEncode);
                 }
             }
         }
 
-        /// <summary>
-        /// Writes a valid surrogate-pair as-is, since only lone surrogates need escaping.
-        /// A lone surrogate cannot be encoded as UTF8 (and would corrupt the output).
-        /// </summary>
-        /// <returns>Surrogate-pair written, and <paramref name="i"/> moved to its low surrogate.</returns>
-        private static bool TryAppendSurrogatePair(StringBuilder destination, string text, ref int i)
+        private static string? TryGetJsonEscape(char chr)
         {
-            if (char.IsHighSurrogate(text[i]) && i + 1 < text.Length && char.IsLowSurrogate(text[i + 1]))
+            switch (chr)
             {
-                destination.Append(text[i]);
-                destination.Append(text[++i]);
-                return true;
-            }
+                case '"':
+                    return "\\\"";
 
-            return false;
+                case '\\':
+                    return "\\\\";
+
+                case '\b':
+                    return "\\b";
+
+                case '\r':
+                    return "\\r";
+
+                case '\n':
+                    return "\\n";
+
+                case '\f':
+                    return "\\f";
+
+                case '\t':
+                    return "\\t";
+
+                default:
+                    return null;
+            }
         }
 
         internal static void PerformJsonEscapeWhenNeeded(StringBuilder builder, int startPos, bool escapeUnicode)
