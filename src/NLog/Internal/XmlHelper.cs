@@ -46,7 +46,10 @@ namespace NLog.Internal
         {
             const char HIGH_SURROGATE_START = '\ud800';
             const char UNICODE_C0_CONTROL_CODES_LAST = '\u001f';  // Unit Separator, Information Separator One
-            return (chr > UNICODE_C0_CONTROL_CODES_LAST && chr < HIGH_SURROGATE_START) || ExoticIsXmlChar(chr);
+            if (chr > UNICODE_C0_CONTROL_CODES_LAST && chr < HIGH_SURROGATE_START)
+                return true;
+
+            return ExoticIsXmlChar(chr);
         }
 
         private static bool ExoticIsXmlChar(char chr)
@@ -63,7 +66,7 @@ namespace NLog.Internal
             return true;
         }
 
-        public static bool XmlConvertIsXmlSurrogatePair(char lowChar, char highChar)
+        private static bool XmlConvertIsXmlSurrogatePair(char lowChar, char highChar)
         {
             return char.IsHighSurrogate(highChar) && char.IsLowSurrogate(lowChar);
         }
@@ -80,16 +83,16 @@ namespace NLog.Internal
             for (int i = 0; i < length; ++i)
             {
                 char ch = text[i];
-                if (!XmlConvertIsXmlChar(ch))
+                if (XmlConvertIsXmlChar(ch))
+                    continue;
+
+                if (i + 1 < text.Length && XmlConvertIsXmlSurrogatePair(text[i + 1], ch))
                 {
-                    if (i + 1 < text.Length && XmlConvertIsXmlSurrogatePair(text[i + 1], ch))
-                    {
-                        ++i;
-                    }
-                    else
-                    {
-                        return CreateValidXmlString(text, i, builder);   // rare expensive case
-                    }
+                    ++i;
+                }
+                else
+                {
+                    return CreateValidXmlString(text, i, builder);   // rare expensive case
                 }
             }
 
@@ -101,7 +104,7 @@ namespace NLog.Internal
         /// Cleans string of any invalid XML chars found
         /// </summary>
         /// <returns>string with only valid XML chars</returns>
-        private static string CreateValidXmlString(string text, int startIndex = 0, StringBuilder? builder = null)
+        private static string CreateValidXmlString(string text, int startIndex, StringBuilder? builder = null)
         {
             var sb = builder ?? new StringBuilder(text.Length);
             sb.Append(text, 0, startIndex);
@@ -223,10 +226,9 @@ namespace NLog.Internal
                         {
                             destination.Append(chr);
                             destination.Append(text[++i]);
-                        }                        
+                        }
                         break;
                 }
-
             }
         }
 
@@ -247,7 +249,7 @@ namespace NLog.Internal
         /// <returns>Object value converted to string</returns>
         internal static string XmlConvertToString(object? value)
         {
-            return value is string stringValue ? stringValue : XmlConvertToString(value, false);
+            return value as string ?? XmlConvertToString(value, false);
         }
 
         internal static string XmlConvertToString(float value)
@@ -375,7 +377,6 @@ namespace NLog.Internal
         ///  - Element names can contain letters, digits, hyphens, underscores, and periods
         ///  - Element names cannot contain spaces
         /// </summary>
-        /// <param name="xmlElementName"></param>
         internal static string XmlConvertToElementName(string xmlElementName)
         {
             if (string.IsNullOrEmpty(xmlElementName))
@@ -434,7 +435,9 @@ namespace NLog.Internal
 
                 if (sb is null)
                 {
-                    sb = CreateStringBuilder(xmlElementName, i);
+                    sb = new StringBuilder(xmlElementName.Length);
+                    if (i > 0)
+                        sb.Append(xmlElementName, 0, i);
                 }
                 sb.Append('_');
                 if (includeChr)
@@ -443,14 +446,6 @@ namespace NLog.Internal
 
             sb?.TrimRight();
             return sb?.ToString() ?? xmlElementName;
-
-            StringBuilder CreateStringBuilder(string orgValue, int i)
-            {
-                var sb2 = new StringBuilder(orgValue.Length);
-                if (i > 0)
-                    sb2.Append(orgValue, 0, i);
-                return sb2;
-            }
         }
 
         private static string EnsureDecimalPlace(string text)
@@ -480,7 +475,6 @@ namespace NLog.Internal
 
         private static readonly char[] DecimalScientificExponent = new[] { 'e', 'E' };
 
-
         public static void EscapeCDataWhenNeeded(StringBuilder builder, int orgLength)
         {
             var builderLength = builder.Length;
@@ -496,8 +490,9 @@ namespace NLog.Internal
 
                 if (!XmlConvertIsXmlChar(chr2) || (chr0 == ']' && chr1 == ']' && chr2 == '>'))
                 {
-                    var text = builder.ToString(i - 2, builderLength - i + 2);
-                    builder.Length = i - 2;
+                    int offset = !XmlConvertIsXmlChar(chr2) ? 0 : 2;
+                    var text = builder.ToString(i - offset, builderLength - i + offset);
+                    builder.Length = i - offset;
                     text = RemoveInvalidXmlChars(text);
                     text = text.Replace("]]>", "]]]]><![CDATA[>");
                     builder.Append(text);
@@ -510,9 +505,9 @@ namespace NLog.Internal
         {
             if (string.IsNullOrEmpty(text))
             {
-                var emptyCData = "<![CDATA[]]>";
+                const string emptyCData = "<![CDATA[]]>";
                 builder?.Append(emptyCData);
-                return emptyCData;
+                return builder is null ? emptyCData : string.Empty;
             }
 
             builder?.Append("<![CDATA[");
@@ -536,7 +531,7 @@ namespace NLog.Internal
             }
             builder?.Append("]]>");
 
-            return builder is null ? $"<![CDATA[{validText}]]>" : string.Empty;
+            return builder is null ? string.Concat("<![CDATA[", validText, "]]>") : string.Empty;
         }
     }
 }

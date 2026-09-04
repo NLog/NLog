@@ -118,7 +118,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void XmlEncodeCDataTest1()
         {
-            var propertyValue = " abc<>&'\"def \u0001";
+            var propertyValue = "\u0001 abc<>&'\"def \u0001";
             using (ScopeContext.PushProperty("foo", propertyValue))
             {
                 SimpleLayout l = "${xml-encode:${scopeproperty:foo}:CDataEncode=true}";
