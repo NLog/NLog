@@ -620,8 +620,8 @@ namespace NLog.Targets
                     continue;
                 }
 
-                var basicEncode = TryGetJsonEscape(chr);
-                if (basicEncode is null)
+                var jsonEscape = TryGetJsonEscape(chr);
+                if (jsonEscape is null)
                 {
                     if (escapeUnicode || !char.IsHighSurrogate(chr) || i + 1 >= text.Length || !char.IsLowSurrogate(text[i + 1]))
                     {
@@ -636,7 +636,7 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    destination.Append(basicEncode);
+                    destination.Append(jsonEscape);
                 }
             }
         }
