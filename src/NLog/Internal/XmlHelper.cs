@@ -57,18 +57,13 @@ namespace NLog.Internal
             if (chr < '\u0020')
                 return chr == '\u0009' || chr == '\u000a' || chr == '\u000d';
 
-            if (char.IsHighSurrogate(chr) || char.IsLowSurrogate(chr))
+            if (char.IsSurrogate(chr))
                 return false;
 
             if (chr == '\ufffe' || chr == '\uffff')
                 return false;
 
             return true;
-        }
-
-        private static bool XmlConvertIsXmlSurrogatePair(char lowChar, char highChar)
-        {
-            return char.IsHighSurrogate(highChar) && char.IsLowSurrogate(lowChar);
         }
 
         /// <summary>
@@ -82,11 +77,11 @@ namespace NLog.Internal
             int length = text.Length;
             for (int i = 0; i < length; ++i)
             {
-                char ch = text[i];
-                if (XmlConvertIsXmlChar(ch))
+                char chr = text[i];
+                if (XmlConvertIsXmlChar(chr))
                     continue;
 
-                if (i + 1 < text.Length && XmlConvertIsXmlSurrogatePair(text[i + 1], ch))
+                if (char.IsHighSurrogate(chr) && i + 1 < text.Length && char.IsLowSurrogate(text[i + 1]))
                 {
                     ++i;
                 }
@@ -110,14 +105,14 @@ namespace NLog.Internal
             sb.Append(text, 0, startIndex);
             for (int i = startIndex; i < text.Length; ++i)
             {
-                char ch = text[i];
-                if (XmlConvertIsXmlChar(ch))
+                char chr = text[i];
+                if (XmlConvertIsXmlChar(chr))
                 {
-                    sb.Append(ch);
+                    sb.Append(chr);
                 }
-                else if (i + 1 < text.Length && XmlConvertIsXmlSurrogatePair(text[i + 1], ch))
+                else if (char.IsHighSurrogate(chr) && i + 1 < text.Length && char.IsLowSurrogate(text[i + 1]))
                 {
-                    sb.Append(ch);
+                    sb.Append(chr);
                     sb.Append(text[++i]);
                 }
             }
@@ -222,7 +217,7 @@ namespace NLog.Internal
                         {
                             destination.Append(chr);
                         }
-                        else if (i + 1 < text.Length && XmlConvertIsXmlSurrogatePair(text[i + 1], chr))
+                        else if (char.IsHighSurrogate(chr) && i + 1 < text.Length && char.IsLowSurrogate(text[i + 1]))
                         {
                             destination.Append(chr);
                             destination.Append(text[++i]);
@@ -505,7 +500,7 @@ namespace NLog.Internal
         {
             if (string.IsNullOrEmpty(text))
             {
-                const string emptyCData = "<![CDATA[]]>";
+                var emptyCData = "<![CDATA[]]>";
                 builder?.Append(emptyCData);
                 return builder is null ? emptyCData : string.Empty;
             }
