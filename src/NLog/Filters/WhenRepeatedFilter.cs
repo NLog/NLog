@@ -54,12 +54,14 @@ namespace NLog.Filters
         /// <summary>
         /// How long before a filter expires, and logging is accepted again
         /// </summary>
+        /// <remarks>Default: <c>10</c></remarks>
         /// <docgen category='Filtering Options' order='10' />
         public int TimeoutSeconds { get; set; } = 10;
 
         /// <summary>
         /// Max length of filter values, will truncate if above limit
         /// </summary>
+        /// <remarks>Default: <c>1000</c></remarks>
         /// <docgen category='Filtering Options' order='10' />
         public int MaxLength { get; set; } = 1000;
 
@@ -67,30 +69,35 @@ namespace NLog.Filters
         /// Applies the configured action to the initial logevent that starts the timeout period.
         /// Used to configure that it should ignore all events until timeout.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Filtering Options' order='10' />
         public bool IncludeFirst { get; set; }
 
         /// <summary>
         /// Max number of unique filter values to expect simultaneously
         /// </summary>
+        /// <remarks>Default: <c>50000</c></remarks>
         /// <docgen category='Filtering Options' order='100' />
         public int MaxFilterCacheSize { get; set; } = 50000;
 
         /// <summary>
         /// Default number of unique filter values to expect, will automatically increase if needed
         /// </summary>
+        /// <remarks>Default: <c>1000</c></remarks>
         /// <docgen category='Filtering Options' order='100' />
         public int DefaultFilterCacheSize { get; set; } = 1000;
 
         /// <summary>
         /// Insert FilterCount value into <see cref="LogEventInfo.Properties"/> when an event is no longer filtered
         /// </summary>
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Filtering Options' order='10' />
         public string FilterCountPropertyName { get; set; } = string.Empty;
 
         /// <summary>
         /// Append FilterCount to the <see cref="LogEventInfo.Message"/> when an event is no longer filtered
         /// </summary>
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Filtering Options' order='10' />
         public string FilterCountMessageAppendFormat { get; set; } = string.Empty;
 
@@ -106,6 +113,7 @@ namespace NLog.Filters
         /// <summary>
         /// Default buffer size for the internal buffers
         /// </summary>
+        /// <remarks>Default: <c>1000</c></remarks>
         /// <docgen category='Filtering Options' order='100' />
         public int OptimizeBufferDefaultLength { get; set; } = 1000;
 
