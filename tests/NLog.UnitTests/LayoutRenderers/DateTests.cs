@@ -51,12 +51,12 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>").LogFactory;
 
-            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg")
+            {
+                TimeStamp = new DateTime(2026, 1, 2, 3, 4, 5).AddTicks(1234000)
+            };
             logFactory.GetLogger("d").Debug(ei);
-            DateTime dt = DateTime.ParseExact(GetDebugLastMessage("debug", logFactory), "yyyy/MM/dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
-            DateTime now = ei.TimeStamp;
-
-            Assert.True(Math.Abs((dt - now).TotalSeconds) < 1);
+            Assert.Equal("2026-01-02 03:04:05.1234", GetDebugLastMessage("debug", logFactory));
         }
 
         [Fact]
