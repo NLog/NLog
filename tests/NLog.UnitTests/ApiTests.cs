@@ -610,10 +610,16 @@ namespace NLog.UnitTests
 
                 foreach (var property in type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
                 {
-                    if (!property.CanWrite || property.GetCustomAttribute<ObsoleteAttribute>() != null || property.GetSetMethod()?.IsPublic != true)
+                    if (!property.CanWrite || property.GetSetMethod()?.IsPublic != true)
                         continue;
 
                     if (typeof(LoggingConfiguration).Equals(property.PropertyType) || (typeof(System.Collections.IEnumerable).IsAssignableFrom(property.PropertyType) && !typeof(string).Equals(property.PropertyType)))
+                        continue;
+
+                    if (property.GetCustomAttribute<ObsoleteAttribute>() != null)
+                        continue;
+
+                    if (property.GetCustomAttribute<NLog.Config.NLogConfigurationIgnorePropertyAttribute>() != null)
                         continue;
 
                     var memberName = $"P:{type.FullName}.{property.Name}";
