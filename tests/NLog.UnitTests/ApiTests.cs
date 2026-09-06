@@ -613,7 +613,7 @@ namespace NLog.UnitTests
                     if (!property.CanWrite || property.GetSetMethod()?.IsPublic != true)
                         continue;
 
-                    if (typeof(LoggingConfiguration).Equals(property.PropertyType) || (typeof(System.Collections.IEnumerable).IsAssignableFrom(property.PropertyType) && !typeof(string).Equals(property.PropertyType)))
+                    if (typeof(Delegate).IsAssignableFrom(property.PropertyType) || typeof(LoggingConfiguration).Equals(property.PropertyType) || (typeof(System.Collections.IEnumerable).IsAssignableFrom(property.PropertyType) && !typeof(string).Equals(property.PropertyType)))
                         continue;
 
                     if (property.GetCustomAttribute<ObsoleteAttribute>() != null)
