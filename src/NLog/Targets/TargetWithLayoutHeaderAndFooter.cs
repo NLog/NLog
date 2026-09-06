@@ -55,6 +55,7 @@ namespace NLog.Targets
         }
 
         /// <inheritdoc />
+        /// <docgen category='Layout Options' order='1' />
         public override Layout Layout
         {
             get => _layout;

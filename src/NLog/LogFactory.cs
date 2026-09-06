@@ -170,33 +170,28 @@ namespace NLog
         public ServiceRepository ServiceRepository => _serviceRepository;
 
         /// <summary>
-        /// Gets or sets a value indicating whether exceptions should be thrown. See also <see cref="ThrowConfigExceptions"/>.
+        /// Gets or sets whether NLog should rethrow its own exceptions into application instead of keeping them surpressed.
         /// </summary>
-        /// <value>A value of <see langword="true"/> if exception should be thrown; otherwise, <see langword="false"/>.</value>
-        /// <remarks>By default exceptions are not thrown under any circumstances.</remarks>
+        /// <remarks>Default: <see langword="false"/> and should only be set to <see langword="true"/> for unit-tests or for last resort troubleshooting, when <see cref="ThrowConfigExceptions"/> does not work.</remarks>
         public bool ThrowExceptions { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether <see cref="NLogConfigurationException"/> should be thrown.
-        ///
-        /// If <c>null</c> then <see cref="ThrowExceptions"/> is used.
+        /// Gets or sets whether NLog should only rethrow <see cref="NLogConfigurationException"/>, to report NLog configuration errors.
         /// </summary>
-        /// <value>A value of <see langword="true"/> if exception should be thrown; otherwise, <see langword="false"/>.</value>
-        /// <remarks>
-        /// This option is for backwards-compatibility.
-        /// By default exceptions are not thrown under any circumstances.
-        /// </remarks>
+        /// <remarks>Default: Fallback to value of <see cref="ThrowExceptions"/> when not explicitly set.</remarks>
         public bool? ThrowConfigExceptions { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether Variables should be kept on configuration reload.
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         public bool KeepVariablesOnReload { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to automatically call <see cref="LogFactory.Shutdown"/>
         /// on AppDomain.Unload or AppDomain.ProcessExit
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         public bool AutoShutdown
         {
             get { return _autoShutdown; }
@@ -315,6 +310,7 @@ namespace NLog
         /// <summary>
         /// Gets or sets the global log level threshold. Log events below this threshold are not logged.
         /// </summary>
+        /// <remarks>Default: <see cref="LogLevel.Trace"/></remarks>
         public LogLevel GlobalThreshold
         {
             get => _globalThreshold;
@@ -336,9 +332,7 @@ namespace NLog
         /// <summary>
         /// Gets or sets the default culture info to use as <see cref="LogEventInfo.FormatProvider"/>.
         /// </summary>
-        /// <value>
-        /// Specific culture info or null to use <see cref="CultureInfo.CurrentCulture"/>
-        /// </value>
+        /// <remarks>Default: <see langword="null"/> with fallback to <see cref="LoggingConfiguration.DefaultCultureInfo"/></remarks>
         public CultureInfo? DefaultCultureInfo
         {
             get => _config is null ? _defaultCultureInfo : _config.DefaultCultureInfo;

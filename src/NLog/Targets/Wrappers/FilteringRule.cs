@@ -63,12 +63,14 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the condition to be tested.
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Filtering Options' order='10' />
         public ConditionExpression? Exists { get; set; }
 
         /// <summary>
         /// Gets or sets the resulting filter to be applied when the condition matches.
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Filtering Options' order='10' />
         public ConditionExpression? Filter { get; set; }
     }

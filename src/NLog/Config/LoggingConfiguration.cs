@@ -167,9 +167,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets the default culture info to use as <see cref="LogEventInfo.FormatProvider"/>.
         /// </summary>
-        /// <value>
-        /// Specific culture info or null to use <see cref="CultureInfo.CurrentCulture"/>
-        /// </value>
+        /// <remarks>Default: <see langword="null"/> that means fallback to <see cref="CultureInfo.CurrentCulture"/></remarks>
         public CultureInfo? DefaultCultureInfo { get; set; }
 
         /// <summary>

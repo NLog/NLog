@@ -81,12 +81,14 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the number of times this target has been called.
         /// </summary>
+        /// <remarks>Default: <see langword="0"/></remarks>
         /// <docgen category='Debugging Options' order='10' />
         public int Counter { get; private set; }
 
         /// <summary>
         /// Gets the last message rendered by this target.
         /// </summary>
+        /// <remarks>Default: <see cref="string.Empty"/></remarks>
         /// <docgen category='Debugging Options' order='10' />
         public string LastMessage { get; private set; }
 

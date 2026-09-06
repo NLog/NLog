@@ -73,24 +73,25 @@ namespace NLog.Config
         {
             LogOutput = logOutput;
             Parameters = new Dictionary<string, string>();
-            LogLevel = LogLevel.Info;
-            ThrowExceptions = false;
         }
 
         /// <summary>
         /// Gets or sets the installation log level.
         /// </summary>
-        public LogLevel LogLevel { get; set; }
+        /// <remarks>Default: <see cref="NLog.LogLevel.Info"/></remarks>
+        public LogLevel LogLevel { get; set; } = LogLevel.Info;
 
         /// <summary>
         /// Gets or sets a value indicating whether to ignore failures during installation.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         public bool IgnoreFailures { get; set; }
 
         /// <summary>
         /// Whether installation exceptions should be rethrown. If IgnoreFailures is set to true,
         /// this property has no effect (there are no exceptions to rethrow).
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         public bool ThrowExceptions { get; set; }
 
         /// <summary>
@@ -101,6 +102,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets the log output.
         /// </summary>
+        /// <remarks>Default: <see cref="TextWriter.Null"/></remarks>
         public TextWriter? LogOutput { get; set; }
 
         /// <summary>

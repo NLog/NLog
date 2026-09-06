@@ -132,6 +132,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
         /// </summary>
+        /// <remarks>Default: <see langword="null"/> that fallback to <see langword="false"/></remarks>
         /// <docgen category='Console Options' order='10' />
         public Layout<bool>? StdErr { get; set; }
 
@@ -183,8 +184,8 @@ namespace NLog.Targets
 
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
-        ///  </summary>
-        /// <remarks>Has side effect</remarks>
+        /// </summary>
+        /// <remarks>Default: <see cref="Console.OutputEncoding"/> and assignment will modify the application console.</remarks>
         /// <docgen category='Console Options' order='10' />
         public Encoding Encoding
         {
