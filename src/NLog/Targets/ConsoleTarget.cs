@@ -94,7 +94,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
         /// </summary>
-        /// <remarks>Default: <see langword="null"/> that fallback to <see langword="false"/></remarks>
+        /// <remarks>Default: <see langword="null"/>, that also means <see langword="false"/></remarks>
         /// <docgen category='Console Options' order='10' />
         public Layout<bool>? StdErr { get; set; }
 

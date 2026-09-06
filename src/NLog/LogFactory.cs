@@ -170,7 +170,7 @@ namespace NLog
         public ServiceRepository ServiceRepository => _serviceRepository;
 
         /// <summary>
-        /// Gets or sets whether NLog should rethrow its own exceptions into application instead of keeping them surpressed.
+        /// Gets or sets whether NLog should rethrow its own exceptions into application instead of keeping them suppressed.
         /// </summary>
         /// <remarks>Default: <see langword="false"/> and should only be set to <see langword="true"/> for unit-tests or for last resort troubleshooting, when <see cref="ThrowConfigExceptions"/> does not work.</remarks>
         public bool ThrowExceptions { get; set; }
