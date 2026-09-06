@@ -54,6 +54,8 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the system special folder to use.
         /// </summary>
         /// <remarks>
+        /// Default: <see cref="Environment.SpecialFolder.CommonApplicationData"/>
+        /// <para>
         /// Full list of options is available at <a href="https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder">MSDN</a>.
         /// The most common ones are:
         /// <ul>
@@ -64,7 +66,7 @@ namespace NLog.LayoutRenderers
         /// <li><b>DesktopDirectory</b> - Desktop-directory for current user</li>
         /// <li><b>MyDocuments</b> - My Documents-directory for current user</li>
         /// <li><b>System</b> - System directory</li>
-        /// </ul>
+        /// </ul></para>
         /// </remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]

@@ -46,18 +46,21 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the body layout (can be repeated multiple times).
         /// </summary>
+        /// <remarks>Default: <see cref="Layout.Empty" /></remarks>
         /// <docgen category='Layout Options' order='10' />
         public Layout Layout { get; set; } = Layout.Empty;
 
         /// <summary>
         /// Gets or sets the header layout.
         /// </summary>
+        /// <remarks>Default: <see langword="null" /></remarks>
         /// <docgen category='Layout Options' order='10' />
         public Layout? Header { get; set; }
 
         /// <summary>
         /// Gets or sets the footer layout.
         /// </summary>
+        /// <remarks>Default: <see langword="null" /></remarks>
         /// <docgen category='Layout Options' order='10' />
         public Layout? Footer { get; set; }
 

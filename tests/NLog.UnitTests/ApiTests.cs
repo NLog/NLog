@@ -40,7 +40,6 @@ namespace NLog.UnitTests
     using System.Runtime.CompilerServices;
     using System.Text;
     using NLog.Config;
-    using NLog.LayoutRenderers;
     using Xunit;
 
     /// <summary>
@@ -586,6 +585,49 @@ namespace NLog.UnitTests
             if (newConstructors.Count > 0)
             {
                 Assert.Fail($"Found new explicit static constructors in:\n{string.Join("\n", newConstructors)}");
+            }
+        }
+
+        [Fact]
+        public void PublicPropertiesShouldDocumentDefaultValue()
+        {
+            var propertiesMissingDefaultValueDocs = new List<string>();
+
+            var xmlDocPath = System.IO.Path.Combine(System.AppContext.BaseDirectory, nlogAssembly.GetName().Name + ".xml");
+            Assert.True(System.IO.File.Exists(xmlDocPath), $"Generated XML doc file not found at '{xmlDocPath}'. Build NLog.csproj with GenerateDocumentationFile enabled.");
+
+            var documentedMembers = System.Xml.Linq.XDocument.Load(xmlDocPath)
+                .Descendants("member")
+                .ToDictionary(member => (string)member.Attribute("name"), member => member.ToString());
+
+            foreach (var type in allTypes)
+            {
+                if (!type.IsPublic)
+                    continue;
+
+                if (typeof(Logger).Equals(type) || typeof(LogEventInfo).Equals(type) || typeof(Attribute).IsAssignableFrom(type))
+                    continue;
+
+                foreach (var property in type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+                {
+                    if (!property.CanWrite || property.GetCustomAttribute<ObsoleteAttribute>() != null || property.GetSetMethod()?.IsPublic != true)
+                        continue;
+
+                    if (typeof(LoggingConfiguration).Equals(property.PropertyType) || (typeof(System.Collections.IEnumerable).IsAssignableFrom(property.PropertyType) && !typeof(string).Equals(property.PropertyType)))
+                        continue;
+
+                    var memberName = $"P:{type.FullName}.{property.Name}";
+
+                    if (!documentedMembers.TryGetValue(memberName, out var memberDocs) || (!memberDocs.Contains("Default:") && !memberDocs.Contains("<inheritdoc")))
+                    {
+                        propertiesMissingDefaultValueDocs.Add(memberName);
+                    }
+                }
+            }
+
+            if (propertiesMissingDefaultValueDocs.Count > 0)
+            {
+                Assert.Fail($"The following public settable properties are missing 'Default:' in their XML docs:\n{string.Join("\n", propertiesMissingDefaultValueDocs)}");
             }
         }
     }

@@ -55,13 +55,14 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating whether lower case conversion should be applied.
         /// </summary>
-        /// <value>A value of <see langword="true"/> if lower case conversion should be applied; otherwise, <see langword="false"/>.</value>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public bool Lowercase { get; set; } = true;
 
         /// <summary>
         /// Same as <see cref="Lowercase"/>-property, so it can be used as ambient property.
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         /// <example>
         /// ${level:tolower}
         /// </example>

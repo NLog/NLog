@@ -109,6 +109,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets the number of <see cref="AsyncLogEventInfo"/> written in the current <see cref="Interval"/>.
         /// </summary>
+        /// <remarks>Default: <see langword="0"/>. Resets to zero on next write after <see cref="Interval"/> has expired.</remarks>
         /// <docgen category='General Options' order='10' />
         public int MessagesWrittenCount { get; private set; }
 

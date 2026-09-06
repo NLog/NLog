@@ -58,6 +58,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the layout used for rendering the value.
         /// </summary>
+        /// <remarks>Default: <see cref="Layout.Empty"/></remarks>
         /// <docgen category='Layout Options' order='10' />
         public Layout Layout
         {
@@ -91,6 +92,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the result value type, for conversion of layout rendering output
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public Type? ValueType
         {
@@ -115,6 +117,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='50' />
         public Layout? DefaultValue
         {
@@ -144,6 +147,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the fallback value should be null (instead of default value of <see cref="ValueType"/>) when result value is not available
         /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public bool ForceDefaultValueNull
         {
@@ -161,6 +165,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets format used for parsing parameter string-value for type-conversion
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public string? ValueParseFormat
         {
@@ -177,6 +182,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the culture used for parsing parameter string-value for type-conversion
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public CultureInfo? ValueParseCulture
         {

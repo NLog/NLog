@@ -72,6 +72,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the literal text.
         /// </summary>
+        /// <remarks>Default: <see cref="string.Empty" /></remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public string Text { get; set; } = string.Empty;
