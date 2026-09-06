@@ -41,7 +41,6 @@ namespace NLog
     using System.Runtime.CompilerServices;
     using System.Text;
     using System.Threading;
-    using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
