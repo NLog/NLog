@@ -610,7 +610,7 @@ namespace NLog.UnitTests
 
                 foreach (var property in type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
                 {
-                    if (!property.CanWrite || property.GetCustomAttribute<ObsoleteAttribute>() != null)
+                    if (!property.CanWrite || property.GetCustomAttribute<ObsoleteAttribute>() != null || property.GetSetMethod()?.IsPublic != true)
                         continue;
 
                     if (typeof(LoggingConfiguration).Equals(property.PropertyType) || (typeof(System.Collections.IEnumerable).IsAssignableFrom(property.PropertyType) && !typeof(string).Equals(property.PropertyType)))

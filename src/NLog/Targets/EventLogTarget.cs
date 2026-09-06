@@ -155,7 +155,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Default: <see langword="null" />
         /// <para>
-        /// <value>MaxKilobytes</value> cannot be less than 64 or greater than 4194240 or not a multiple of 64.
+        /// <c>MaxKilobytes</c> cannot be less than 64 or greater than 4194240 or not a multiple of 64.
         /// If <c>null</c>, the value will not be specified while creating the Event log.
         /// </para>
         /// </remarks>
