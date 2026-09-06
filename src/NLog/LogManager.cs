@@ -77,7 +77,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets or sets whether NLog should rethrow its own exceptions into application instead of keeping them suppressed.
+        /// Gets or sets whether NLog should rethrow its own exceptions into the application instead of keeping them suppressed.
         /// </summary>
         /// <remarks>Default: <see langword="false"/> and should only be set to <see langword="true"/> for unit-tests or for last resort troubleshooting, when <see cref="ThrowConfigExceptions"/> does not work.</remarks>
         public static bool ThrowExceptions
@@ -87,9 +87,9 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets or sets whether NLog should only rethrow <see cref="NLogConfigurationException"/>, to report NLog configuration errors.
+        /// Gets or sets whether NLog should rethrow <see cref="NLogConfigurationException"/> to alert about configuration errors.
         /// </summary>
-        /// <remarks>Default: Fallback to value of <see cref="ThrowExceptions"/> when not explicitly set.</remarks>
+        /// <remarks>Default: Fallback to the value of <see cref="ThrowExceptions"/> when not explicitly set.</remarks>
         public static bool? ThrowConfigExceptions
         {
             get => LogFactory.ThrowConfigExceptions;
