@@ -53,7 +53,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Default Layout-value that renders string.Empty
         /// </summary>
-        public static readonly Layout Empty = new SimpleLayout() { ThreadAgnostic = true, IsInitialized = true };
+        public static readonly Layout Empty = new SimpleLayout();
 
         /// <summary>
         /// Is this layout initialized? See <see cref="Initialize(NLog.Config.LoggingConfiguration)"/>
