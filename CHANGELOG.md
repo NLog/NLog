@@ -4,6 +4,24 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.2.1 (2026/09/16)
+**Improvements**
+- [#6254](https://github.com/NLog/NLog/pull/6254) Replace System.Random usage with custom ScatterGenerator. (@jobvk)
+- [#6267](https://github.com/NLog/NLog/pull/6267) JsonLayout - Escape lone surrogates so output stays valid UTF8. (@dylanpulver)
+- [#6275](https://github.com/NLog/NLog/pull/6275) XML docs with Default value for class properties in Filters namespace. (@dualfroz)
+- [#6276](https://github.com/NLog/NLog/pull/6276) XML docs with Default value for class properties with unit test. (@snakefoot)
+- [#6265](https://github.com/NLog/NLog/pull/6265) AtomicFileTarget - Improve recovery when file suddenly disappears. (@snakefoot)
+- [#6266](https://github.com/NLog/NLog/pull/6266) JsonLayout - Explicit assigned SuppressSpaces should win. (@snakefoot)
+- [#6271](https://github.com/NLog/NLog/pull/6271) DefaultJsonSerializer - Refactor AppendStringEscape to make method simpler. (@snakefoot)
+- [#6268](https://github.com/NLog/NLog/pull/6268) XmlHelper - Replace with char.IsHighSurrogate + char.IsLowSurrogate. (@snakefoot)
+- [#6269](https://github.com/NLog/NLog/pull/6269) XmlHelper - Improve CDATA encoding when first char is invalid. (@snakefoot)
+- [#6273](https://github.com/NLog/NLog/pull/6273) XmlHelper - Check char.IsHighSurrogate before checking length. (@snakefoot)
+- [#6251](https://github.com/NLog/NLog/pull/6251) LogManager - Remove CLSCompliant(false) attribute from GetCurrentClassLogger. (@snakefoot)
+- [#6255](https://github.com/NLog/NLog/pull/6255) NLog.Schema - NLog.Targets.HttpClient + NLog.Targets.OpenTelemetryHttp. (@snakefoot)
+- [#6261](https://github.com/NLog/NLog/pull/6261) XmlParser - Moved primitive parsing logic into InputCursor. (@snakefoot)
+- [#6264](https://github.com/NLog/NLog/pull/6264) XmlParser - Optimize parsing of Attributes and InnerText and CDATA. (@snakefoot)
+- [#6280](https://github.com/NLog/NLog/pull/6280) Layout - FromLiteral is IsInitialized from the start and ThreadAgnostic. (@snakefoot)
+
 ### Version 6.2 (2026/08/16)
 **Improvements**
 - [#6215](https://github.com/NLog/NLog/pull/6215) FileTarget - Added FileLifecycleHooks for extending archive logic. (@Dave-Senn)
