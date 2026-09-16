@@ -239,15 +239,10 @@ namespace NLog.Targets
                         return;
                     }
 
-                    var last = _list[GetPhysicalIndex(count - 1)];
-                    _list.Add(last);
-
-                    for (var i = count - 1; i > index; i--)
-                    {
-                        _list[GetPhysicalIndex(i)] = _list[GetPhysicalIndex(i - 1)];
-                    }
-
-                    _list[GetPhysicalIndex(index)] = item;
+                    var physicalIndex = GetPhysicalIndex(index);
+                    _list.Insert(physicalIndex, item);
+                    if (physicalIndex < _startIndex)
+                        _startIndex++;
                 }
             }
 

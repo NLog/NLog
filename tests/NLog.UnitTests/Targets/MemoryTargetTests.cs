@@ -480,19 +480,20 @@ namespace NLog.UnitTests.Targets
             memoryTarget.Logs.Add("B");
             memoryTarget.Logs.Add("C");
             memoryTarget.Logs.Add("D");
+            memoryTarget.Logs.Add("E");
 
-            Assert.Equal(new[] { "B", "C", "D" }, memoryTarget.Logs);
+            Assert.Equal(new[] { "C", "D", "E" }, memoryTarget.Logs);
 
             memoryTarget.MaxLogsCount = 0;
 
-            memoryTarget.Logs.Insert(0, "X");
-            Assert.Equal(new[] { "X", "B", "C", "D" }, memoryTarget.Logs);
+            memoryTarget.Logs.Insert(1, "X");
+            Assert.Equal(new[] { "C", "X", "D", "E" }, memoryTarget.Logs);
 
             memoryTarget.Logs.Insert(2, "Y");
-            Assert.Equal(new[] { "X", "B", "Y", "C", "D" }, memoryTarget.Logs);
+            Assert.Equal(new[] { "C", "X", "Y", "D", "E" }, memoryTarget.Logs);
 
             memoryTarget.Logs.Insert(memoryTarget.Logs.Count, "Z");
-            Assert.Equal(new[] { "X", "B", "Y", "C", "D", "Z" }, memoryTarget.Logs);
+            Assert.Equal(new[] { "C", "X", "Y", "D", "E", "Z" }, memoryTarget.Logs);
         }
 
         [Fact]
