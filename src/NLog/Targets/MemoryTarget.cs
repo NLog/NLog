@@ -354,7 +354,7 @@ namespace NLog.Targets
             {
                 var cursor = startIndex;
 
-                if (BlockingEnumeration)
+                if (BlockingEnumeration && MaxLogsCount > 0)
                 {
                     lock (_list)
                     {
