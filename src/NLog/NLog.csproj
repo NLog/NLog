@@ -31,20 +31,21 @@ For using NLog with ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web
     <PackageReleaseNotes>
 Changelog:
 
-- [#6215] FileTarget - Added FileLifecycleHooks for extending archive logic. (@Dave-Senn)
-- [#6218] ScopeContext - Optimize collection of properties in reverse order. (@snakefoot)
-- [#6230] PropertyTypeConverter - Disable legacy TypeDescriptor when AOT. (@snakefoot)
-- [#6231] Replacing ProcessInfoLayoutRenderer with ProcessStartLayoutRenderer. (@snakefoot)
-- [#6229] GarbageCollectorInfoLayoutRenderer - WorkingSet + Format. (@snakefoot)
-- [#6246] AsyncTaskTarget - Added Jitter on Retry to reduce thundering herd. (@snakefoot)
-- [#6248] AsyncTaskTarget - Changed Jitter to use Stopwatch instead of TickCount. (@snakefoot)
-- [#6245] AsyncTaskTarget - Refactor to reduce code complexity. (@snakefoot)
-- [#6148] AppEnvironmentWrapper - Return Unknown_ProcessId when empty ProcessName. (@snakefoot)
-- [#6187] ConfigurationItemFactory - Marked ParseMessageTemplates as obsolete. (@snakefoot)
-- [#6243] ConditionParser - Marked as obsolete, so it can become internal. (@snakefoot)
-- [#6087] Target - Reduce code complexity of WriteAsyncLogEvents. (@snakefoot)
-- [#6200] SimpleLayout - Marked Renderers-property as obsolete. (@snakefoot)
-- [#6239] LogFactory - FlushAsync and DisposeAsync with explict usage of CancellationToken.None. (@snakefoot)
+- [#6254] Replace System.Random usage with custom ScatterGenerator. (@jobvk)
+- [#6267] JsonLayout - Escape lone surrogates so output stays valid UTF8. (@dylanpulver)
+- [#6275] XML docs with Default value for class properties in Filters namespace. (@dualfroz)
+- [#6276] XML docs with Default value for class properties with unit test. (@snakefoot)
+- [#6265] AtomicFileTarget - Improve recovery when file suddenly disappears. (@snakefoot)
+- [#6266] JsonLayout - Explicit assigned SuppressSpaces should win. (@snakefoot)
+- [#6271] DefaultJsonSerializer - Refactor AppendStringEscape to make method simpler. (@snakefoot)
+- [#6268] XmlHelper - Replace with char.IsHighSurrogate + char.IsLowSurrogate. (@snakefoot)
+- [#6269] XmlHelper - Improve CDATA encoding when first char is invalid. (@snakefoot)
+- [#6273] XmlHelper - Check char.IsHighSurrogate before checking length. (@snakefoot)
+- [#6251] LogManager - Remove CLSCompliant(false) attribute from GetCurrentClassLogger. (@snakefoot)
+- [#6255] NLog.Schema - NLog.Targets.HttpClient + NLog.Targets.OpenTelemetryHttp. (@snakefoot)
+- [#6261] XmlParser - Moved primitive parsing logic into InputCursor. (@snakefoot)
+- [#6264] XmlParser - Optimize parsing of Attributes and InnerText and CDATA. (@snakefoot)
+- [#6280] Layout - FromLiteral is IsInitialized from the start and ThreadAgnostic. (@snakefoot)
 
 NLog v6.2 release notes: https://nlog-project.org/2026/08/16/nlog-6-2-aot-build-size.html
 
