@@ -85,13 +85,20 @@ namespace NLog.Targets
         /// Gets the list of logs gathered in the <see cref="MemoryTarget"/>.
         /// </summary>
         /// <remarks>
-        /// By default enumeration will block the NLog target from writing (blocks application logging). Assign <see cref="BlockingEnumeration"/> to <see langword="false"/> to prevent blocking.
+        /// When <see cref="MaxLogsCount"/> is greater than zero, enumeration is blocking by default
+        /// to provide a consistent view of the logs. This can temporarily block application logging.
+        /// Set <see cref="BlockingEnumeration"/> to <see langword="false"/> to allow logging to continue
+        /// while the logs are being enumerated.
         /// </remarks>
         public IList<string> Logs => _logs;
 
         /// <summary>
-        /// Gets or sets the max number of items to have in memory. Zero or Negative means no limit.
+        /// Gets or sets the maximum number of logs to retain in memory. Zero or Negative means no limit.
         /// </summary>
+        /// <remarks>
+        /// A value greater than zero enables ring-buffer behavior, where the oldest logs are discarded
+        /// when the limit is reached.
+        /// </remarks>
         /// <remarks>Default: <see langword="0"/></remarks>
         /// <docgen category='Buffering Options' order='10' />
         public int MaxLogsCount
@@ -102,9 +109,12 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets or sets a value indicating whether enumeration of <see cref="Logs"/> blocks application logging.
-        /// When <see cref="MaxLogsCount"/> is used, non-blocking enumeration can skip items as the buffer wraps.
+        ///
+        /// Blocking enumeration provides a consistent view of the logs, but can temporarily block application logging.
+        /// When set to <see langword="false"/>, logging can continue during enumeration, but items can be skipped
+        /// if the ring-buffer wraps while the enumeration is in progress.
         /// </summary>
-        /// <remarks>Default: <see langword="true"/>. Blocking enumeration provides a consistent view of the logs.</remarks>
+        /// <remarks>Default: <see langword="true"/> when <see cref="MaxLogsCount"/> is greater than zero.</remarks>
         /// <docgen category='Buffering Options' order='20' />
         public bool BlockingEnumeration
         {
@@ -147,10 +157,15 @@ namespace NLog.Targets
         {
             private readonly List<T> _list = new List<T>();
             private int _startIndex;
+            private bool? _blockingEnumeration;
 
             public int MaxLogsCount { get; set; }
 
-            public bool BlockingEnumeration { get; set; } = true;
+            public bool BlockingEnumeration
+            {
+                get => _blockingEnumeration ?? MaxLogsCount > 0;
+                set => _blockingEnumeration = value;
+            }
 
             public T this[int index]
             {
@@ -323,11 +338,11 @@ namespace NLog.Targets
                 {
                     startIndex = _startIndex;
                     count = _list.Count;
-                    if (count == 0)
-                        return System.Linq.Enumerable.Empty<T>().GetEnumerator();
                 }
-
-                return Enumerate(startIndex, count).GetEnumerator();
+                if (count == 0)
+                    return System.Linq.Enumerable.Empty<T>().GetEnumerator();
+                else
+                    return Enumerate(startIndex, count).GetEnumerator();
             }
 
             System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
@@ -336,7 +351,7 @@ namespace NLog.Targets
             {
                 var cursor = startIndex;
 
-                if (BlockingEnumeration && MaxLogsCount > 0)
+                if (BlockingEnumeration)
                 {
                     lock (_list)
                     {
