@@ -190,26 +190,16 @@ namespace NLog.Targets
                 lock (_list)
                 {
                     var maxCount = MaxLogsCount;
-                    if (maxCount <= 0)
+                    if (maxCount > 0)
                     {
-                        AddAtEnd(item);
-                        return;
-                    }
-
-                    while (_list.Count > maxCount)
-                    {
-                        // MaxLogsCount was lowered.
-                        RemoveAt(0);
-                    }
-
-                    if (_list.Count == maxCount)
-                    {
-                        _list[_startIndex] = item;
-                        if (++_startIndex == _list.Count)
+                        var count = TrimToMaxLogsCount(_list.Count);
+                        if (count == maxCount)
                         {
-                            _startIndex = 0;
+                            _list[_startIndex] = item;
+                            if (++_startIndex == count)
+                                _startIndex = 0;
+                            return;
                         }
-                        return;
                     }
 
                     AddAtEnd(item);
@@ -224,25 +214,17 @@ namespace NLog.Targets
                     if ((uint)index > (uint)count)
                         throw new ArgumentOutOfRangeException(nameof(index));
 
-                    while (MaxLogsCount > 0 && _list.Count >= MaxLogsCount)
+                    count = TrimToMaxLogsCount(count + 1) - 1;
+                    if (index < count)
                     {
-                        // MaxLogsCount was lowered.
-                        RemoveAt(0);
-                        count--;
-                        if (index > count)
-                            index = count;
-                    }
-
-                    if (index == count)
-                    {
-                        Add(item);
+                        var physicalIndex = GetPhysicalIndex(index);
+                        _list.Insert(physicalIndex, item);
+                        if (physicalIndex < _startIndex)
+                            _startIndex++;
                         return;
                     }
 
-                    var physicalIndex = GetPhysicalIndex(index);
-                    _list.Insert(physicalIndex, item);
-                    if (physicalIndex < _startIndex)
-                        _startIndex++;
+                    AddAtEnd(item);
                 }
             }
 
@@ -395,6 +377,21 @@ namespace NLog.Targets
                 while (--remaining > 0 && cursor != startIndex);
             }
 
+            private int TrimToMaxLogsCount(int count)
+            {
+                var maxCount = MaxLogsCount;
+                if (maxCount <= 0)
+                    return count;
+
+                while (count > maxCount)
+                {
+                    // MaxLogsCount was lowered.
+                    RemoveAt(0);
+                    --count;
+                }
+                return count;
+            }
+
             private void AddAtEnd(T item)
             {
                 if (_startIndex == 0)
@@ -410,11 +407,9 @@ namespace NLog.Targets
             private int GetPhysicalIndex(int logicalIndex)
             {
                 var index = _startIndex + logicalIndex;
-                if (index >= _list.Count)
-                {
-                    index -= _list.Count;
-                }
-                return index;
+                return index < _list.Count
+                    ? index
+                    : index - _list.Count;
             }
 
             private void ValidateIndex(int index)

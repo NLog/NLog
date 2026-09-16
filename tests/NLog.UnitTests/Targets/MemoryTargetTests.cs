@@ -36,6 +36,7 @@ namespace NLog.UnitTests.Targets
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using NLog.Internal;
     using NLog.Targets;
     using Xunit;
 
@@ -351,7 +352,7 @@ namespace NLog.UnitTests.Targets
             var memoryTarget = new MemoryTarget();
 
             // Empty collection.
-            var empty = new string[0];
+            var empty = ArrayHelper.Empty<string>();
             memoryTarget.Logs.CopyTo(empty, 0);
             Assert.Empty(empty);
 
