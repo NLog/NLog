@@ -33,6 +33,7 @@
 
 namespace NLog.Targets
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -56,7 +57,7 @@ namespace NLog.Targets
     [Target("Memory")]
     public sealed class MemoryTarget : TargetWithLayoutHeaderAndFooter
     {
-        private readonly ThreadSafeList<string> _logs = new ThreadSafeList<string>();
+        private readonly RingBufferList<string> _logs = new RingBufferList<string>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MemoryTarget" /> class.
@@ -84,16 +85,32 @@ namespace NLog.Targets
         /// Gets the list of logs gathered in the <see cref="MemoryTarget"/>.
         /// </summary>
         /// <remarks>
-        /// Be careful when enumerating, as NLog target is blocked from writing during enumeration (blocks application logging)
+        /// By default enumeration will block the NLog target from writing (blocks application logging). Assign <see cref="BlockingEnumeration"/> to <see langword="false"/> to prevent blocking.
         /// </remarks>
         public IList<string> Logs => _logs;
 
         /// <summary>
         /// Gets or sets the max number of items to have in memory. Zero or Negative means no limit.
         /// </summary>
-        /// <remarks>Default: <c>0</c></remarks>
+        /// <remarks>Default: <see langword="0"/></remarks>
         /// <docgen category='Buffering Options' order='10' />
-        public int MaxLogsCount { get; set; }
+        public int MaxLogsCount
+        {
+            get => _logs.MaxLogsCount;
+            set => _logs.MaxLogsCount = value;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether enumeration of <see cref="Logs"/> blocks application logging.
+        /// When <see cref="MaxLogsCount"/> is used, non-blocking enumeration can skip items as the buffer wraps.
+        /// </summary>
+        /// <remarks>Default: <see langword="true"/>. Blocking enumeration provides a consistent view of the logs.</remarks>
+        /// <docgen category='Buffering Options' order='20' />
+        public bool BlockingEnumeration
+        {
+            get => _logs.BlockingEnumeration;
+            set => _logs.BlockingEnumeration = value;
+        }
 
         /// <inheritdoc/>
         protected override void InitializeTarget()
@@ -123,12 +140,17 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            _logs.Add(RenderLogEvent(Layout, logEvent), MaxLogsCount);
+            _logs.Add(RenderLogEvent(Layout, logEvent));
         }
 
-        private sealed class ThreadSafeList<T> : IList<T>
+        private sealed class RingBufferList<T> : IList<T>
         {
             private readonly List<T> _list = new List<T>();
+            private int _startIndex;
+
+            public int MaxLogsCount { get; set; }
+
+            public bool BlockingEnumeration { get; set; } = true;
 
             public T this[int index]
             {
@@ -136,39 +158,116 @@ namespace NLog.Targets
                 {
                     lock (_list)
                     {
-                        return _list[index];
+                        ValidateIndex(index);
+                        return _list[GetPhysicalIndex(index)];
                     }
                 }
                 set
                 {
                     lock (_list)
                     {
-                        _list[index] = value;
+                        ValidateIndex(index);
+                        _list[GetPhysicalIndex(index)] = value;
                     }
                 }
             }
 
-            public int Count => _list.Count;
-            bool ICollection<T>.IsReadOnly => ((ICollection<T>)_list).IsReadOnly;
+            public int Count
+            {
+                get
+                {
+                    lock (_list)
+                    {
+                        return _list.Count;
+                    }
+                }
+            }
+
+            bool ICollection<T>.IsReadOnly => false;
 
             public void Add(T item)
             {
                 lock (_list)
                 {
-                    _list.Add(item);
+                    var maxCount = MaxLogsCount;
+                    if (maxCount <= 0)
+                    {
+                        AddAtEnd(item);
+                        return;
+                    }
+
+                    while (_list.Count > maxCount)
+                    {
+                        // MaxLogsCount was lowered.
+                        RemoveAt(0);
+                    }
+
+                    if (_list.Count == maxCount)
+                    {
+                        _list[_startIndex] = item;
+                        if (++_startIndex == _list.Count)
+                        {
+                            _startIndex = 0;
+                        }
+                        return;
+                    }
+
+                    AddAtEnd(item);
                 }
             }
 
-            public void Add(T item, int maxListCount)
+            public void Insert(int index, T item)
             {
                 lock (_list)
                 {
-                    if (maxListCount > 0)
+                    var count = _list.Count;
+                    if ((uint)index > (uint)count)
+                        throw new ArgumentOutOfRangeException(nameof(index));
+
+                    while (MaxLogsCount > 0 && _list.Count >= MaxLogsCount)
                     {
-                        while (_list.Count >= maxListCount)
-                            _list.RemoveAt(0);
+                        // MaxLogsCount was lowered.
+                        RemoveAt(0);
+                        count--;
+                        if (index > count)
+                            index = count;
                     }
-                    _list.Add(item);
+
+                    if (index == count)
+                    {
+                        Add(item);
+                        return;
+                    }
+
+                    var last = _list[GetPhysicalIndex(count - 1)];
+                    _list.Add(last);
+
+                    for (var i = count - 1; i > index; i--)
+                    {
+                        _list[GetPhysicalIndex(i)] = _list[GetPhysicalIndex(i - 1)];
+                    }
+
+                    _list[GetPhysicalIndex(index)] = item;
+                }
+            }
+
+            public void RemoveAt(int index)
+            {
+                lock (_list)
+                {
+                    ValidateIndex(index);
+
+                    var physicalIndex = GetPhysicalIndex(index);
+                    _list.RemoveAt(physicalIndex);
+                    if (physicalIndex < _startIndex)
+                    {
+                        _startIndex--;
+                    }
+
+                    if (_startIndex == _list.Count)
+                    {
+                        _startIndex = 0;
+                    }
                 }
             }
 
@@ -177,6 +276,7 @@ namespace NLog.Targets
                 lock (_list)
                 {
                     _list.Clear();
+                    _startIndex = 0;
                 }
             }
 
@@ -192,7 +292,19 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
-                    _list.CopyTo(array, arrayIndex);
+                    if (array is null)
+                        throw new ArgumentNullException(nameof(array));
+
+                    if (arrayIndex < 0)
+                        throw new ArgumentOutOfRangeException(nameof(arrayIndex));
+
+                    if (array.Length - arrayIndex < _list.Count)
+                        throw new ArgumentException("The destination array is too small.");
+
+                    for (var i = 0; i < _list.Count; i++)
+                    {
+                        array[arrayIndex + i] = _list[GetPhysicalIndex(i)];
+                    }
                 }
             }
 
@@ -200,15 +312,16 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
-                    return _list.IndexOf(item);
-                }
-            }
+                    var comparer = EqualityComparer<T>.Default;
+                    for (var i = 0; i < _list.Count; i++)
+                    {
+                        if (comparer.Equals(_list[GetPhysicalIndex(i)], item))
+                        {
+                            return i;
+                        }
+                    }
 
-            public void Insert(int index, T item)
-            {
-                lock (_list)
-                {
-                    _list.Insert(index, item);
+                    return -1;
                 }
             }
 
@@ -216,33 +329,104 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
-                    return _list.Remove(item);
-                }
-            }
+                    var index = IndexOf(item);
+                    if (index < 0)
+                        return false;
 
-            public void RemoveAt(int index)
-            {
-                lock (_list)
-                {
-                    _list.RemoveAt(index);
+                    RemoveAt(index);
+                    return true;
                 }
             }
 
             public IEnumerator<T> GetEnumerator()
             {
+                int startIndex;
+                int count;
                 lock (_list)
                 {
-                    foreach (var item in _list)
-                        yield return item;
+                    startIndex = _startIndex;
+                    count = _list.Count;
+                    if (count == 0)
+                        return System.Linq.Enumerable.Empty<T>().GetEnumerator();
                 }
+
+                return Enumerate(startIndex, count).GetEnumerator();
             }
 
-            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
+
+            private IEnumerable<T> Enumerate(int startIndex, int count)
             {
-                lock (_list)
+                var cursor = startIndex;
+
+                if (BlockingEnumeration)
                 {
-                    foreach (var item in _list)
-                        yield return item;
+                    lock (_list)
+                    {
+                        if (_list.Count == 0)
+                            yield break;
+
+                        cursor = _startIndex;
+                        do
+                        {
+                            yield return _list[cursor];
+
+                            if (++cursor == _list.Count)
+                                cursor = 0;
+                        }
+                        while (cursor != _startIndex);
+                    }
+                    yield break;
+                }
+
+                // Enumerate until meeting original startIndex, or reach original count to avoid infinite loop.
+                var remaining = count;
+                do
+                {
+                    T item;
+
+                    lock (_list)
+                    {
+                        if (_list.Count == 0 || cursor >= _list.Count || startIndex >= _list.Count)
+                            yield break;
+
+                        item = _list[cursor];
+                        if (++cursor == _list.Count)
+                            cursor = 0;
+                    }
+
+                    yield return item;
+                }
+                while (--remaining > 0 && cursor != startIndex);
+            }
+
+            private void AddAtEnd(T item)
+            {
+                if (_startIndex == 0)
+                {
+                    _list.Add(item);
+                    return;
+                }
+
+                _list.Insert(_startIndex, item);
+                _startIndex++;
+            }
+
+            private int GetPhysicalIndex(int logicalIndex)
+            {
+                var index = _startIndex + logicalIndex;
+                if (index >= _list.Count)
+                {
+                    index -= _list.Count;
+                }
+                return index;
+            }
+
+            private void ValidateIndex(int index)
+            {
+                if ((uint)index >= (uint)_list.Count)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(index));
                 }
             }
         }
