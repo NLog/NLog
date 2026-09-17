@@ -96,10 +96,9 @@ namespace NLog.Targets
         /// Gets or sets the maximum number of logs to retain in memory. Zero or Negative means no limit.
         /// </summary>
         /// <remarks>
-        /// A value greater than zero enables ring-buffer behavior, where the oldest logs are discarded
-        /// when the limit is reached.
+        /// Default: <see langword="0"/>. A value greater than zero enables ring-buffer behavior,
+        /// where the oldest logs are discarded when the limit is reached.
         /// </remarks>
-        /// <remarks>Default: <see langword="0"/></remarks>
         /// <docgen category='Buffering Options' order='10' />
         public int MaxLogsCount
         {
@@ -173,7 +172,6 @@ namespace NLog.Targets
                 {
                     lock (_list)
                     {
-                        ValidateIndex(index);
                         return _list[GetPhysicalIndex(index)];
                     }
                 }
@@ -181,7 +179,6 @@ namespace NLog.Targets
                 {
                     lock (_list)
                     {
-                        ValidateIndex(index);
                         _list[GetPhysicalIndex(index)] = value;
                     }
                 }
@@ -207,7 +204,14 @@ namespace NLog.Targets
                     var maxCount = MaxLogsCount;
                     if (maxCount > 0)
                     {
-                        var count = TrimToMaxLogsCount(_list.Count);
+                        int count = _list.Count;
+                        if (count > maxCount)
+                        {
+                            // Someone reduced MaxLogsCount
+                            Normalize();
+                            _list.RemoveRange(0, count - maxCount);
+                            count = _list.Count;
+                        }
                         if (count == maxCount)
                         {
                             _list[_startIndex] = item;
@@ -217,49 +221,8 @@ namespace NLog.Targets
                         }
                     }
 
-                    AddAtEnd(item);
-                }
-            }
-
-            public void Insert(int index, T item)
-            {
-                lock (_list)
-                {
-                    var count = _list.Count;
-                    if ((uint)index > (uint)count)
-                        throw new ArgumentOutOfRangeException(nameof(index));
-
-                    count = TrimToMaxLogsCount(count + 1) - 1;
-                    if (index < count)
-                    {
-                        var physicalIndex = GetPhysicalIndex(index);
-                        _list.Insert(physicalIndex, item);
-                        if (physicalIndex < _startIndex)
-                            _startIndex++;
-                        return;
-                    }
-
-                    AddAtEnd(item);
-                }
-            }
-
-            public void RemoveAt(int index)
-            {
-                lock (_list)
-                {
-                    ValidateIndex(index);
-
-                    var physicalIndex = GetPhysicalIndex(index);
-                    _list.RemoveAt(physicalIndex);
-                    if (physicalIndex < _startIndex)
-                    {
-                        _startIndex--;
-                    }
-
-                    if (_startIndex == _list.Count)
-                    {
-                        _startIndex = 0;
-                    }
+                    Normalize();
+                    _list.Add(item);
                 }
             }
 
@@ -284,19 +247,8 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
-                    if (array is null)
-                        throw new ArgumentNullException(nameof(array));
-
-                    if (arrayIndex < 0)
-                        throw new ArgumentOutOfRangeException(nameof(arrayIndex));
-
-                    if (array.Length - arrayIndex < _list.Count)
-                        throw new ArgumentException("The destination array is too small.");
-
-                    for (var i = 0; i < _list.Count; i++)
-                    {
-                        array[arrayIndex + i] = _list[GetPhysicalIndex(i)];
-                    }
+                    Normalize();
+                    _list.CopyTo(array, arrayIndex);
                 }
             }
 
@@ -304,16 +256,17 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
-                    var comparer = EqualityComparer<T>.Default;
-                    for (var i = 0; i < _list.Count; i++)
-                    {
-                        if (comparer.Equals(_list[GetPhysicalIndex(i)], item))
-                        {
-                            return i;
-                        }
-                    }
+                    Normalize();
+                    return _list.IndexOf(item);
+                }
+            }
 
-                    return -1;
+            public void Insert(int index, T item)
+            {
+                lock (_list)
+                {
+                    Normalize();
+                    _list.Insert(index, item);
                 }
             }
 
@@ -321,12 +274,17 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
-                    var index = IndexOf(item);
-                    if (index < 0)
-                        return false;
+                    Normalize();
+                    return _list.Remove(item);
+                }
+            }
 
-                    RemoveAt(index);
-                    return true;
+            public void RemoveAt(int index)
+            {
+                lock (_list)
+                {
+                    Normalize();
+                    _list.RemoveAt(index);
                 }
             }
 
@@ -371,9 +329,10 @@ namespace NLog.Targets
                     yield break;
                 }
 
-                // Enumerate until meeting original startIndex, or reach original count to avoid infinite loop.
+                // Enumerate at most the number of items present when enumeration started.
+                // The count bound guarantees termination even if items are continuously added.
                 var remaining = count;
-                do
+                while (remaining-- > 0)
                 {
                     T item;
 
@@ -388,51 +347,30 @@ namespace NLog.Targets
                     }
 
                     yield return item;
+                    if (cursor == startIndex)
+                        yield break;
                 }
-                while (--remaining > 0 && cursor != startIndex);
             }
 
-            private int TrimToMaxLogsCount(int count)
-            {
-                var maxCount = MaxLogsCount;
-                if (maxCount <= 0)
-                    return count;
-
-                while (count > maxCount)
-                {
-                    // MaxLogsCount was lowered.
-                    RemoveAt(0);
-                    --count;
-                }
-                return count;
-            }
-
-            private void AddAtEnd(T item)
+            private void Normalize()
             {
                 if (_startIndex == 0)
-                {
-                    _list.Add(item);
                     return;
-                }
-
-                _list.Insert(_startIndex, item);
-                _startIndex++;
+                _list.Reverse(0, _startIndex);
+                _list.Reverse(_startIndex, _list.Count - _startIndex);
+                _list.Reverse();
+                _startIndex = 0;
             }
 
-            private int GetPhysicalIndex(int logicalIndex)
-            {
-                var index = _startIndex + logicalIndex;
-                return index < _list.Count
-                    ? index
-                    : index - _list.Count;
-            }
-
-            private void ValidateIndex(int index)
+            private int GetPhysicalIndex(int index)
             {
                 if ((uint)index >= (uint)_list.Count)
-                {
                     throw new ArgumentOutOfRangeException(nameof(index));
-                }
+
+                var physicalIndex = _startIndex + index;
+                return physicalIndex < _list.Count
+                    ? physicalIndex
+                    : physicalIndex - _list.Count;
             }
         }
     }
