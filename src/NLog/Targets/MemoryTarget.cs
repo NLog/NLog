@@ -184,18 +184,8 @@ namespace NLog.Targets
                 }
             }
 
-            public int Count
-            {
-                get
-                {
-                    lock (_list)
-                    {
-                        return _list.Count;
-                    }
-                }
-            }
-
-            bool ICollection<T>.IsReadOnly => false;
+            public int Count => _list.Count;
+            bool ICollection<T>.IsReadOnly => ((ICollection<T>)_list).IsReadOnly;
 
             public void Add(T item)
             {
