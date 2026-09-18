@@ -13,6 +13,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{ff8480e8-de05-4447-a460-d63ee65bdcbf}</ProjectGuid>
     <SHFBSchemaVersion>2017.9.26.0</SHFBSchemaVersion>
+    <AlwaysLoadProject>true</AlwaysLoadProject>
     <BuildVersion Condition="'$(BuildVersion)'==''">
     </BuildVersion>
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual

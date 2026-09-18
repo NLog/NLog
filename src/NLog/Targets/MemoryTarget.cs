@@ -319,26 +319,26 @@ namespace NLog.Targets
                     yield break;
                 }
 
-                // Enumerate at most the number of items present when enumeration started.
-                // The count bound guarantees termination even if items are continuously added.
+                // Best-effort enumeration of the entry count that existed when enumeration started. 
+                // If ring-buffer wraps during enumeration then entries can be skipped, and not give consistent view.
                 var remaining = count;
+
                 while (remaining-- > 0)
                 {
                     T item;
 
                     lock (_list)
                     {
-                        if (_list.Count == 0 || cursor >= _list.Count || startIndex >= _list.Count)
+                        if (cursor >= _list.Count)
                             yield break;
 
                         item = _list[cursor];
+
                         if (++cursor == _list.Count)
                             cursor = 0;
                     }
 
                     yield return item;
-                    if (cursor == startIndex)
-                        yield break;
                 }
             }
 
