@@ -34,7 +34,9 @@
 namespace NLog.UnitTests.Targets
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
+    using NLog.Internal;
     using NLog.Targets;
     using Xunit;
 
@@ -222,6 +224,170 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("Info III", memoryTarget.Logs[2]);
             Assert.Equal("Warn ", memoryTarget.Logs[3]);
             Assert.Equal("Error EEE", memoryTarget.Logs[4]);
+        }
+
+        [Fact]
+        public void MemoryTarget_IList_GetEnumerator()
+        {
+            var memoryTarget = new MemoryTarget();
+
+            Assert.Empty(memoryTarget.Logs);
+
+            memoryTarget.Logs.Add("A");
+            Assert.Equal(new[] { "A" }, memoryTarget.Logs);
+
+            memoryTarget.Logs.Add("B");
+            Assert.Equal(new[] { "A", "B" }, memoryTarget.Logs);
+
+            // Force the internal ring buffer to wrap.
+            memoryTarget.MaxLogsCount = 3;
+            memoryTarget.Logs.Add("C");
+            memoryTarget.Logs.Add("D");
+
+            Assert.Equal(new[] { "B", "C", "D" }, memoryTarget.Logs);
+            Assert.Equal(new[] { "B", "C", "D" }, memoryTarget.Logs.ToList());
+        }
+
+        [Fact]
+        public void MemoryTarget_IList_Add()
+        {
+            var memoryTarget = new MemoryTarget();
+
+            memoryTarget.Logs.Add("A");
+            Assert.Equal(new[] { "A" }, memoryTarget.Logs);
+
+            memoryTarget.Logs.Add("B");
+            Assert.Equal(new[] { "A", "B" }, memoryTarget.Logs);
+
+            // Exercise normal growth.
+            memoryTarget.Logs.Add("C");
+            memoryTarget.Logs.Add("D");
+            Assert.Equal(new[] { "A", "B", "C", "D" }, memoryTarget.Logs);
+
+            // Exercise ring-buffer wrapping.
+            memoryTarget.MaxLogsCount = 3;
+
+            memoryTarget.Logs.Add("E");
+            Assert.Equal(new[] { "C", "D", "E" }, memoryTarget.Logs);
+
+            memoryTarget.Logs.Add("F");
+            Assert.Equal(new[] { "D", "E", "F" }, memoryTarget.Logs);
+
+            memoryTarget.Logs.Add("G");
+            Assert.Equal(new[] { "E", "F", "G" }, memoryTarget.Logs);
+
+            memoryTarget.MaxLogsCount = 0;
+            memoryTarget.Logs.Add("H");
+            Assert.Equal(new[] { "E", "F", "G", "H" }, memoryTarget.Logs);
+        }
+
+        [Fact]
+        public void MemoryTarget_IList_IndexOperator()
+        {
+            var memoryTarget = new MemoryTarget();
+
+            Assert.Throws<ArgumentOutOfRangeException>(
+                () => _ = memoryTarget.Logs[0]);
+
+            memoryTarget.Logs.Add("A");
+
+            Assert.Equal("A", memoryTarget.Logs[0]);
+
+            memoryTarget.Logs[0] = "X";
+            Assert.Equal("X", memoryTarget.Logs[0]);
+
+            memoryTarget.Logs.Add("B");
+
+            Assert.Equal("X", memoryTarget.Logs[0]);
+            Assert.Equal("B", memoryTarget.Logs[1]);
+
+            memoryTarget.Logs[1] = "Y";
+            Assert.Equal(new[] { "X", "Y" }, memoryTarget.Logs);
+
+            Assert.Throws<ArgumentOutOfRangeException>(
+                () => _ = memoryTarget.Logs[-1]);
+
+            Assert.Throws<ArgumentOutOfRangeException>(
+                () => _ = memoryTarget.Logs[memoryTarget.Logs.Count]);
+
+            Assert.Throws<ArgumentOutOfRangeException>(
+                () => memoryTarget.Logs[memoryTarget.Logs.Count] = "Z");
+
+            // Exercise logical indexing after ring-buffer wrap.
+            memoryTarget.MaxLogsCount = 3;
+            memoryTarget.Logs.Add("C");
+            memoryTarget.Logs.Add("D");
+
+            Assert.Equal(new[] { "Y", "C", "D" }, memoryTarget.Logs);
+
+            Assert.Equal("Y", memoryTarget.Logs[0]);
+            Assert.Equal("C", memoryTarget.Logs[1]);
+            Assert.Equal("D", memoryTarget.Logs[2]);
+
+            memoryTarget.Logs[1] = "X";
+            Assert.Equal(new[] { "Y", "X", "D" }, memoryTarget.Logs);
+        }
+
+        [Fact]
+        public void MemoryTarget_NonBlockingEnumeration_WithoutMaxLogsCount()
+        {
+            var memoryTarget = new MemoryTarget
+            {
+                Layout = "${message}",
+                BlockingEnumeration = false
+            };
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(memoryTarget);
+            }).GetCurrentClassLogger();
+
+            logger.Info("A");
+            logger.Info("B");
+            logger.Info("C");
+
+            var seen = new List<string>();
+            foreach (var line in memoryTarget.Logs)
+            {
+                seen.Add(line);
+                logger.Info("x" + seen.Count);
+            }
+
+            Assert.Contains("A", seen);
+            Assert.Contains("B", seen);
+            Assert.Contains("C", seen);
+        }
+
+        [Fact]
+        public void MemoryTarget_NonBlockingEnumeration_WithMaxLogsCount()
+        {
+            var memoryTarget = new MemoryTarget
+            {
+                Layout = "${message}",
+                MaxLogsCount = 5,
+                BlockingEnumeration = false
+            };
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(memoryTarget);
+            }).GetCurrentClassLogger();
+
+            for (var i = 0; i < 10; i++)
+                logger.Info(i.ToString());
+
+            var seen = new List<string>();
+            foreach (var line in memoryTarget.Logs)
+            {
+                seen.Add(line);
+                for (var i = 0; i < 5; i++)
+                    logger.Info("x" + seen.Count + i);
+            }
+
+            Assert.Equal("5", seen[0]);
+            Assert.InRange(seen.Count, 1, 5);
+            Assert.DoesNotContain("6", seen);
+            Assert.DoesNotContain("7", seen);
+            Assert.DoesNotContain("8", seen);
+            Assert.DoesNotContain("9", seen);
         }
     }
 }

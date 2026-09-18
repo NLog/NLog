@@ -33,6 +33,7 @@
 
 namespace NLog.Targets
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -56,7 +57,7 @@ namespace NLog.Targets
     [Target("Memory")]
     public sealed class MemoryTarget : TargetWithLayoutHeaderAndFooter
     {
-        private readonly ThreadSafeList<string> _logs = new ThreadSafeList<string>();
+        private readonly RingBufferList<string> _logs = new RingBufferList<string>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MemoryTarget" /> class.
@@ -84,16 +85,41 @@ namespace NLog.Targets
         /// Gets the list of logs gathered in the <see cref="MemoryTarget"/>.
         /// </summary>
         /// <remarks>
-        /// Be careful when enumerating, as NLog target is blocked from writing during enumeration (blocks application logging)
+        /// When <see cref="MaxLogsCount"/> is greater than zero, enumeration is blocking by default
+        /// to provide a consistent view of the logs. This can temporarily block application logging.
+        /// Set <see cref="BlockingEnumeration"/> to <see langword="false"/> to allow logging to continue
+        /// while the logs are being enumerated.
         /// </remarks>
         public IList<string> Logs => _logs;
 
         /// <summary>
-        /// Gets or sets the max number of items to have in memory. Zero or Negative means no limit.
+        /// Gets or sets the maximum number of logs to retain in memory. Zero or Negative means no limit.
         /// </summary>
-        /// <remarks>Default: <c>0</c></remarks>
+        /// <remarks>
+        /// Default: <see langword="0"/>. A value greater than zero enables ring-buffer behavior,
+        /// where the oldest logs are discarded when the limit is reached.
+        /// </remarks>
         /// <docgen category='Buffering Options' order='10' />
-        public int MaxLogsCount { get; set; }
+        public int MaxLogsCount
+        {
+            get => _logs.MaxLogsCount;
+            set => _logs.MaxLogsCount = value;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether enumeration of <see cref="Logs"/> blocks application logging.
+        ///
+        /// Blocking enumeration provides a consistent view of the logs, but can temporarily block application logging.
+        /// When set to <see langword="false"/>, logging can continue during enumeration, but items can be skipped
+        /// if the ring-buffer wraps while the enumeration is in progress.
+        /// </summary>
+        /// <remarks>Default: <see langword="true"/> when <see cref="MaxLogsCount"/> is greater than zero.</remarks>
+        /// <docgen category='Buffering Options' order='20' />
+        public bool BlockingEnumeration
+        {
+            get => _logs.BlockingEnumeration;
+            set => _logs.BlockingEnumeration = value;
+        }
 
         /// <inheritdoc/>
         protected override void InitializeTarget()
@@ -123,12 +149,22 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            _logs.Add(RenderLogEvent(Layout, logEvent), MaxLogsCount);
+            _logs.Add(RenderLogEvent(Layout, logEvent));
         }
 
-        private sealed class ThreadSafeList<T> : IList<T>
+        private sealed class RingBufferList<T> : IList<T>
         {
             private readonly List<T> _list = new List<T>();
+            private int _startIndex;
+            private bool? _blockingEnumeration;
+
+            public int MaxLogsCount { get; set; }
+
+            public bool BlockingEnumeration
+            {
+                get => _blockingEnumeration ?? MaxLogsCount > 0;
+                set => _blockingEnumeration = value;
+            }
 
             public T this[int index]
             {
@@ -136,14 +172,14 @@ namespace NLog.Targets
                 {
                     lock (_list)
                     {
-                        return _list[index];
+                        return _list[GetPhysicalIndex(index)];
                     }
                 }
                 set
                 {
                     lock (_list)
                     {
-                        _list[index] = value;
+                        _list[GetPhysicalIndex(index)] = value;
                     }
                 }
             }
@@ -155,19 +191,27 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
-                    _list.Add(item);
-                }
-            }
-
-            public void Add(T item, int maxListCount)
-            {
-                lock (_list)
-                {
-                    if (maxListCount > 0)
+                    var maxCount = MaxLogsCount;
+                    if (maxCount > 0)
                     {
-                        while (_list.Count >= maxListCount)
-                            _list.RemoveAt(0);
+                        int count = _list.Count;
+                        if (count > maxCount)
+                        {
+                            // Someone reduced MaxLogsCount
+                            Normalize();
+                            _list.RemoveRange(0, count - maxCount);
+                            count = _list.Count;
+                        }
+                        if (count == maxCount)
+                        {
+                            _list[_startIndex] = item;
+                            if (++_startIndex == count)
+                                _startIndex = 0;
+                            return;
+                        }
                     }
+
+                    Normalize();
                     _list.Add(item);
                 }
             }
@@ -177,6 +221,7 @@ namespace NLog.Targets
                 lock (_list)
                 {
                     _list.Clear();
+                    _startIndex = 0;
                 }
             }
 
@@ -192,6 +237,7 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
+                    Normalize();
                     _list.CopyTo(array, arrayIndex);
                 }
             }
@@ -200,6 +246,7 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
+                    Normalize();
                     return _list.IndexOf(item);
                 }
             }
@@ -208,6 +255,7 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
+                    Normalize();
                     _list.Insert(index, item);
                 }
             }
@@ -216,6 +264,7 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
+                    Normalize();
                     return _list.Remove(item);
                 }
             }
@@ -224,26 +273,94 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
+                    Normalize();
                     _list.RemoveAt(index);
                 }
             }
 
             public IEnumerator<T> GetEnumerator()
             {
+                int startIndex;
+                int count;
                 lock (_list)
                 {
-                    foreach (var item in _list)
-                        yield return item;
+                    startIndex = _startIndex;
+                    count = _list.Count;
+                }
+                if (count == 0)
+                    return System.Linq.Enumerable.Empty<T>().GetEnumerator();
+                else
+                    return Enumerate(startIndex, count).GetEnumerator();
+            }
+
+            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
+
+            private IEnumerable<T> Enumerate(int startIndex, int count)
+            {
+                var cursor = startIndex;
+
+                if (BlockingEnumeration)
+                {
+                    lock (_list)
+                    {
+                        if (_list.Count == 0)
+                            yield break;
+
+                        cursor = _startIndex;
+                        do
+                        {
+                            yield return _list[cursor];
+
+                            if (++cursor == _list.Count)
+                                cursor = 0;
+                        }
+                        while (cursor != _startIndex);
+                    }
+                    yield break;
+                }
+
+                // Enumerate at most the number of items present when enumeration started.
+                // The count bound guarantees termination even if items are continuously added.
+                var remaining = count;
+                while (remaining-- > 0)
+                {
+                    T item;
+
+                    lock (_list)
+                    {
+                        if (_list.Count == 0 || cursor >= _list.Count || startIndex >= _list.Count)
+                            yield break;
+
+                        item = _list[cursor];
+                        if (++cursor == _list.Count)
+                            cursor = 0;
+                    }
+
+                    yield return item;
+                    if (cursor == startIndex)
+                        yield break;
                 }
             }
 
-            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+            private void Normalize()
             {
-                lock (_list)
-                {
-                    foreach (var item in _list)
-                        yield return item;
-                }
+                if (_startIndex == 0)
+                    return;
+                _list.Reverse(0, _startIndex);
+                _list.Reverse(_startIndex, _list.Count - _startIndex);
+                _list.Reverse();
+                _startIndex = 0;
+            }
+
+            private int GetPhysicalIndex(int index)
+            {
+                if ((uint)index >= (uint)_list.Count)
+                    throw new ArgumentOutOfRangeException(nameof(index));
+
+                var physicalIndex = _startIndex + index;
+                return physicalIndex < _list.Count
+                    ? physicalIndex
+                    : physicalIndex - _list.Count;
             }
         }
     }
