@@ -132,47 +132,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets the first log message at <see cref="LogLevel.Error"/> or more severe,
-        /// together with all log messages containing an exception.
-        /// </summary>
-        /// <remarks>
-        /// Useful for providing focused diagnostic context in unit tests. Ex. <c>Assert.Empty(memoryTarget.ErrorLogs)</c>.
-        /// Notice logevent can carry an exception regardless of its log level, for example, a <see cref="NLog.LogLevel.Debug"/> event can have an exception.
-        /// </remarks>
-        public IEnumerable<string> ErrorLogs
-        {
-            get
-            {
-                if (_logs.FirstErrorOrException is null)
-                    return ArrayHelper.Empty<string>();
-
-                return _logs.ExceptionLogs;
-            }
-        }
-
-        /// <summary>
-        /// Dumps all captured log messages to the specified <see cref="TextWriter"/>.
-        /// </summary>
-        public void Dump(TextWriter writer)
-        {
-            Guard.ThrowIfNull(writer);
-            foreach (var record in _logs)
-                writer.WriteLine(record);
-        }
-
-        /// <summary>
-        /// Gets all captured log messages as a string.
-        /// </summary>
-        public string Dump()
-        {
-            if (_logs.Count == 0)
-                return string.Empty;
-            using var writer = new StringWriter();
-            Dump(writer);
-            return writer.ToString();
-        }
-
-        /// <summary>
         /// Dumps all captured log messages as a string if any log event with <see cref="LogLevel.Error"/> or more severe,
         /// or with an exception, have been logged.
         /// </summary>
@@ -181,9 +140,49 @@ namespace NLog.Targets
         /// </remarks>
         public string DumpOnError()
         {
-            if (_logs.FirstErrorOrException is null)
+            var firstErrorOrException = _logs.FirstErrorOrException;
+            if (firstErrorOrException is null)
                 return string.Empty;
-            return Dump();
+
+            var stringBuilder = new System.Text.StringBuilder();
+            foreach (var logMessage in _logs)
+            {
+                stringBuilder.AppendLine(logMessage);
+            }
+            return stringBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Dumps the first log message at <see cref="LogLevel.Error"/> or more severe, together with all log messages containing an exception.
+        /// </summary>
+        /// <remarks>
+        /// Useful for providing focused diagnostic context in unit tests. Ex. <c>Assert.Empty(memoryTarget.DumpErrors())</c>.
+        /// A logevent can include an exception regardless of log level, for example, a <see cref="NLog.LogLevel.Debug"/> event can have an exception.
+        /// </remarks>
+        public string DumpErrors()
+        {
+            var firstErrorOrException = _logs.FirstErrorOrException;
+            if (firstErrorOrException is null)
+                return string.Empty;
+
+            System.Text.StringBuilder? stringBuilder = null;
+            foreach (var logMessage in _logs)
+            {
+                if (stringBuilder != null)
+                {
+                    if (logMessage.IndexOf("EXCEPTION", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        stringBuilder.AppendLine();
+                        stringBuilder.Append(logMessage);
+                    }
+                }
+                else if (ReferenceEquals(logMessage, firstErrorOrException))
+                {
+                    stringBuilder = new System.Text.StringBuilder();
+                    stringBuilder.Append(firstErrorOrException);
+                }
+            }
+            return stringBuilder?.ToString() ?? firstErrorOrException;
         }
 
         /// <inheritdoc/>
@@ -247,30 +246,6 @@ namespace NLog.Targets
             public bool HasLogLevel(LogLevel minLevel)
             {
                 return _maxLogLevel != null && _maxLogLevel >= minLevel;
-            }
-
-            public IEnumerable<string> ExceptionLogs
-            {
-                get
-                {
-                    var firstErrorOrException = FirstErrorOrException;
-                    if (firstErrorOrException != null)
-                        yield return firstErrorOrException;
-
-                    bool foundFirstError = firstErrorOrException is null;
-                    foreach (var record in this)
-                    {
-                        if (foundFirstError)
-                        {
-                            if (record.IndexOf("EXCEPTION", StringComparison.OrdinalIgnoreCase) >= 0)
-                                yield return record;
-                        }
-                        else if (ReferenceEquals(record, firstErrorOrException))
-                        {
-                            foundFirstError = true;
-                        }
-                    }
-                }
             }
         }
 
