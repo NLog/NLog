@@ -77,11 +77,13 @@ namespace NLog.UnitTests.Targets
             Assert.NotEmpty(memoryTarget.ErrorLogs);
             Assert.Equal(0, memoryTarget.ErrorLogs.Count(s => string.IsNullOrEmpty(s)));
             Assert.NotEmpty(memoryTarget.Dump());
+            Assert.NotEmpty(memoryTarget.DumpOnError());
             memoryTarget.Logs.Clear();
             Assert.False(memoryTarget.HasLogLevel(LogLevel.Error));
             Assert.False(memoryTarget.HasLogLevel(LogLevel.Fatal));
             Assert.Empty(memoryTarget.ErrorLogs);
             Assert.Empty(memoryTarget.Dump());
+            Assert.Empty(memoryTarget.DumpOnError());
         }
 
         [Fact]

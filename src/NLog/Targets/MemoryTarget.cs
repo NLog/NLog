@@ -133,10 +133,11 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets the first log message at <see cref="LogLevel.Error"/> or more severe,
-        /// together with all containing an exception.
+        /// together with all log messages containing an exception.
         /// </summary>
         /// <remarks>
-        /// A log event can carry an exception regardless of its log level, for example, a <see cref="NLog.LogLevel.Debug"/> event can have an exception.
+        /// Useful for providing focused diagnostic context in unit tests. Ex. <c>Assert.Empty(memoryTarget.ErrorLogs)</c>.
+        /// Notice logevent can carry an exception regardless of its log level, for example, a <see cref="NLog.LogLevel.Debug"/> event can have an exception.
         /// </remarks>
         public IEnumerable<string> ErrorLogs
         {
@@ -169,6 +170,20 @@ namespace NLog.Targets
             using var writer = new StringWriter();
             Dump(writer);
             return writer.ToString();
+        }
+
+        /// <summary>
+        /// Dumps all captured log messages as a string if any log event with <see cref="LogLevel.Error"/> or more severe,
+        /// or with an exception, have been logged.
+        /// </summary>
+        /// <remarks>
+        /// Useful for providing full diagnostic context in unit tests. Ex. <c>Assert.Empty(memoryTarget.DumpOnError())</c>
+        /// </remarks>
+        public string DumpOnError()
+        {
+            if (_logs.FirstErrorOrException is null)
+                return string.Empty;
+            return Dump();
         }
 
         /// <inheritdoc/>
