@@ -55,6 +55,7 @@ namespace NLog.UnitTests.Targets
             }).GetCurrentClassLogger();
 
             Assert.Empty(memoryTarget.Logs);
+            Assert.False(memoryTarget.HasLogLevel(LogLevel.Trace));
             logger.Trace("TTT");
             logger.Debug("DDD");
             logger.Info("III");
@@ -71,6 +72,17 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("Warn WWW", memoryTarget.Logs[3]);
             Assert.Equal("Error EEE", memoryTarget.Logs[4]);
             Assert.Equal("Fatal FFF", memoryTarget.Logs[5]);
+            Assert.True(memoryTarget.HasLogLevel(LogLevel.Error));
+            Assert.True(memoryTarget.HasLogLevel(LogLevel.Fatal));
+            Assert.True(memoryTarget.HasLogLevelOrException(LogLevel.Error));
+            Assert.True(memoryTarget.HasLogLevelOrException(LogLevel.Fatal));
+            Assert.NotEmpty(memoryTarget.Dump());
+            memoryTarget.Logs.Clear();
+            Assert.False(memoryTarget.HasLogLevel(LogLevel.Error));
+            Assert.False(memoryTarget.HasLogLevel(LogLevel.Fatal));
+            Assert.False(memoryTarget.HasLogLevelOrException(LogLevel.Error));
+            Assert.False(memoryTarget.HasLogLevelOrException(LogLevel.Fatal));
+            Assert.Empty(memoryTarget.Dump());
         }
 
         [Fact]
