@@ -55,6 +55,7 @@ namespace NLog.UnitTests.Targets
             }).GetCurrentClassLogger();
 
             Assert.Empty(memoryTarget.Logs);
+            Assert.False(memoryTarget.HasLogLevel(LogLevel.Trace));
             logger.Trace("TTT");
             logger.Debug("DDD");
             logger.Info("III");
@@ -71,6 +72,15 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("Warn WWW", memoryTarget.Logs[3]);
             Assert.Equal("Error EEE", memoryTarget.Logs[4]);
             Assert.Equal("Fatal FFF", memoryTarget.Logs[5]);
+            Assert.True(memoryTarget.HasLogLevel(LogLevel.Error));
+            Assert.True(memoryTarget.HasLogLevel(LogLevel.Fatal));
+            Assert.NotEmpty(memoryTarget.DumpErrors());
+            Assert.NotEmpty(memoryTarget.DumpOnError());
+            memoryTarget.Logs.Clear();
+            Assert.False(memoryTarget.HasLogLevel(LogLevel.Error));
+            Assert.False(memoryTarget.HasLogLevel(LogLevel.Fatal));
+            Assert.Empty(memoryTarget.DumpErrors());
+            Assert.Empty(memoryTarget.DumpOnError());
         }
 
         [Fact]
@@ -116,54 +126,6 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("Trace TTT", memoryTarget.Logs[0]);
             Assert.Equal("Error EEE", memoryTarget.Logs[1]);
             Assert.Equal("Fatal FFF", memoryTarget.Logs[2]);
-        }
-
-        [Fact]
-        public void MemoryTarget_ClearLogsTest()
-        {
-            var memoryTarget = new MemoryTarget
-            {
-                Layout = "${level} ${message}"
-            };
-
-            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
-            {
-                builder.ForLogger().WriteTo(memoryTarget);
-            }).GetCurrentClassLogger();
-
-            logger.Warn("WWW");
-            logger.Error("EEE");
-            logger.Fatal("FFF");
-
-            memoryTarget.Logs.Clear();
-            logger.Trace("TTT");
-            logger.Debug("DDD");
-            logger.Info("III");
-
-            logger.Factory.Configuration = null;
-
-            Assert.Equal(3, memoryTarget.Logs.Count);
-            Assert.Equal("Trace TTT", memoryTarget.Logs[0]);
-            Assert.Equal("Debug DDD", memoryTarget.Logs[1]);
-            Assert.Equal("Info III", memoryTarget.Logs[2]);
-
-            Assert.True(memoryTarget.Logs.All(l => !string.IsNullOrEmpty(l)));
-            Assert.True(memoryTarget.Logs.Contains(memoryTarget.Logs[0]));
-            Assert.False(memoryTarget.Logs.Contains(string.Empty));
-            Assert.True(memoryTarget.Logs.Remove(memoryTarget.Logs[0]));
-            Assert.False(memoryTarget.Logs.Remove(string.Empty));
-            Assert.Equal(2, memoryTarget.Logs.Count);
-            Assert.Equal(0, memoryTarget.Logs.IndexOf(memoryTarget.Logs[0]));
-            Assert.Equal(1, memoryTarget.Logs.IndexOf(memoryTarget.Logs[1]));
-            Assert.Equal(-1, memoryTarget.Logs.IndexOf(string.Empty));
-            memoryTarget.Logs.RemoveAt(1);
-            Assert.Single(memoryTarget.Logs);
-            memoryTarget.Logs[0] = "Hello World";
-            Assert.Contains("Hello World", memoryTarget.Logs);
-            memoryTarget.Logs.Insert(1, "Goodbye World");
-            Assert.Equal("Hello World", memoryTarget.Logs[0]);
-            Assert.Equal("Goodbye World", memoryTarget.Logs[1]);
-            Assert.Equal(2, memoryTarget.Logs.Count);
         }
 
         [Fact]
@@ -224,6 +186,54 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("Info III", memoryTarget.Logs[2]);
             Assert.Equal("Warn ", memoryTarget.Logs[3]);
             Assert.Equal("Error EEE", memoryTarget.Logs[4]);
+        }
+
+        [Fact]
+        public void MemoryTarget_IList_Clear()
+        {
+            var memoryTarget = new MemoryTarget
+            {
+                Layout = "${level} ${message}",
+            };
+
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(memoryTarget);
+            }).GetCurrentClassLogger();
+
+            logger.Warn("WWW");
+            logger.Error("EEE");
+            logger.Fatal("FFF");
+
+            memoryTarget.Logs.Clear();
+            logger.Trace("TTT");
+            logger.Debug("DDD");
+            logger.Info("III");
+
+            logger.Factory.Configuration = null;
+
+            Assert.Equal(3, memoryTarget.Logs.Count);
+            Assert.Equal("Trace TTT", memoryTarget.Logs[0]);
+            Assert.Equal("Debug DDD", memoryTarget.Logs[1]);
+            Assert.Equal("Info III", memoryTarget.Logs[2]);
+
+            Assert.True(memoryTarget.Logs.All(l => !string.IsNullOrEmpty(l)));
+            Assert.True(memoryTarget.Logs.Contains(memoryTarget.Logs[0]));
+            Assert.False(memoryTarget.Logs.Contains(string.Empty));
+            Assert.True(memoryTarget.Logs.Remove(memoryTarget.Logs[0]));
+            Assert.False(memoryTarget.Logs.Remove(string.Empty));
+            Assert.Equal(2, memoryTarget.Logs.Count);
+            Assert.Equal(0, memoryTarget.Logs.IndexOf(memoryTarget.Logs[0]));
+            Assert.Equal(1, memoryTarget.Logs.IndexOf(memoryTarget.Logs[1]));
+            Assert.Equal(-1, memoryTarget.Logs.IndexOf(string.Empty));
+            memoryTarget.Logs.RemoveAt(1);
+            Assert.Single(memoryTarget.Logs);
+            memoryTarget.Logs[0] = "Hello World";
+            Assert.Contains("Hello World", memoryTarget.Logs);
+            memoryTarget.Logs.Insert(1, "Goodbye World");
+            Assert.Equal("Hello World", memoryTarget.Logs[0]);
+            Assert.Equal("Goodbye World", memoryTarget.Logs[1]);
+            Assert.Equal(2, memoryTarget.Logs.Count);
         }
 
         [Fact]
@@ -329,7 +339,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void MemoryTarget_NonBlockingEnumeration_WithoutMaxLogsCount()
+        public void MemoryTarget_NonBlockingEnumeration()
         {
             var memoryTarget = new MemoryTarget
             {
@@ -388,6 +398,29 @@ namespace NLog.UnitTests.Targets
             Assert.DoesNotContain("7", seen);
             Assert.DoesNotContain("8", seen);
             Assert.DoesNotContain("9", seen);
+        }
+
+        [Fact]
+        public void MemoryTarget_NonBlockingEnumeration_WithMaxLogsCount1()
+        {
+            var memoryTarget = new MemoryTarget
+            {
+                Layout = "${message}",
+                MaxLogsCount = 1,
+                BlockingEnumeration = false
+            };
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(memoryTarget);
+            }).GetCurrentClassLogger();
+
+            for (var i = 0; i < 10; i++)
+                logger.Error(i.ToString());
+
+            Assert.Single(memoryTarget.Logs);
+            Assert.Equal("9", memoryTarget.Logs[0]);
+            Assert.NotEmpty(memoryTarget.DumpErrors());
+            Assert.Equal("0", memoryTarget.DumpErrors());
         }
     }
 }

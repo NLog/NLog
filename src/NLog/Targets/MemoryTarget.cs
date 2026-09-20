@@ -35,6 +35,8 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
+    using NLog.Internal;
 
     /// <summary>
     /// Writes log messages to <see cref="Logs"/> in memory for programmatic retrieval.
@@ -57,7 +59,7 @@ namespace NLog.Targets
     [Target("Memory")]
     public sealed class MemoryTarget : TargetWithLayoutHeaderAndFooter
     {
-        private readonly RingBufferList<string> _logs = new RingBufferList<string>();
+        private readonly LogMessageList _logs = new LogMessageList();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MemoryTarget" /> class.
@@ -121,6 +123,68 @@ namespace NLog.Targets
             set => _logs.BlockingEnumeration = value;
         }
 
+        /// <summary>
+        /// Whether any log events with specified <paramref name="minLevel"/> or more severe have been logged.
+        /// </summary>
+        public bool HasLogLevel(LogLevel minLevel)
+        {
+            return _logs.HasLogLevel(minLevel);
+        }
+
+        /// <summary>
+        /// Dumps all captured log messages as a string if any log event with <see cref="LogLevel.Error"/> or more severe,
+        /// or with an exception, have been logged.
+        /// </summary>
+        /// <remarks>
+        /// Useful for providing full diagnostic context in unit tests. Ex. <c>Assert.Empty(memoryTarget.DumpOnError())</c>
+        /// </remarks>
+        public string DumpOnError()
+        {
+            var firstErrorOrException = _logs.FirstErrorOrException;
+            if (firstErrorOrException is null)
+                return string.Empty;
+
+            var stringBuilder = new System.Text.StringBuilder();
+            foreach (var logMessage in _logs)
+            {
+                stringBuilder.AppendLine(logMessage);
+            }
+            return stringBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Dumps the first log message at <see cref="LogLevel.Error"/> or more severe, together with all log messages containing an exception.
+        /// </summary>
+        /// <remarks>
+        /// Useful for providing focused diagnostic context in unit tests. Ex. <c>Assert.Empty(memoryTarget.DumpErrors())</c>.
+        /// A logevent can include an exception regardless of log level, for example, a <see cref="NLog.LogLevel.Debug"/> event can have an exception.
+        /// </remarks>
+        public string DumpErrors()
+        {
+            var firstErrorOrException = _logs.FirstErrorOrException;
+            if (firstErrorOrException is null)
+                return string.Empty;
+
+            System.Text.StringBuilder? stringBuilder = null;
+            foreach (var logMessage in _logs)
+            {
+                if (stringBuilder != null)
+                {
+                    if (logMessage.IndexOf("EXCEPTION", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        stringBuilder.AppendLine();
+                        stringBuilder.Append(logMessage);
+                    }
+                }
+                else if (ReferenceEquals(logMessage, firstErrorOrException))
+                {
+                    stringBuilder = new System.Text.StringBuilder();
+                    stringBuilder.Append(firstErrorOrException);
+                }
+            }
+            return stringBuilder?.ToString() ?? firstErrorOrException;
+        }
+
         /// <inheritdoc/>
         protected override void InitializeTarget()
         {
@@ -149,10 +213,44 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            _logs.Add(RenderLogEvent(Layout, logEvent));
+            _logs.Add(RenderLogEvent(Layout, logEvent), logEvent.Level, logEvent.Exception);
         }
 
-        private sealed class RingBufferList<T> : IList<T>
+        private sealed class LogMessageList : RingBufferList<string>
+        {
+            LogLevel? _maxLogLevel;
+            public string? FirstErrorOrException { get; private set; }
+
+            public void Add(string logMessage, LogLevel logLevel, Exception? exception)
+            {
+                if (FirstErrorOrException is null && (logLevel >= LogLevel.Error || exception != null))
+                {
+                    FirstErrorOrException = logMessage;
+                }
+
+                if (_maxLogLevel is null || logLevel > _maxLogLevel)
+                {
+                    _maxLogLevel = logLevel;
+                }
+
+                base.Add(logMessage);
+            }
+
+            public override void Clear()
+            {
+                _maxLogLevel = null;
+                FirstErrorOrException = null;
+                base.Clear();
+            }
+
+            public bool HasLogLevel(LogLevel minLevel)
+            {
+                return _maxLogLevel != null && _maxLogLevel >= minLevel;
+            }
+        }
+
+        [System.Diagnostics.DebuggerDisplay("Count = {Count}")]
+        private class RingBufferList<T> : IList<T>
         {
             private readonly List<T> _list = new List<T>();
             private int _startIndex;
@@ -216,7 +314,7 @@ namespace NLog.Targets
                 }
             }
 
-            void ICollection<T>.Clear()
+            public virtual void Clear()
             {
                 lock (_list)
                 {
