@@ -124,7 +124,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Whether any logevents with loglevel <paramref name="minLevel"/> (or more severe) has been logged.
+        /// Whether any log events at <paramref name="minLevel"/> or more severe have been logged.
         /// </summary>
         public bool HasLogLevel(LogLevel minLevel)
         {
@@ -132,17 +132,13 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Whether any logevents with loglevel <paramref name="minLevel"/> (or more severe) has been logged or with exception.
+        /// Gets the message of the first event at <see cref="LogLevel.Error"/> or with an exception,
+        /// or <see langword="null"/> if no error or exception was logged.
         /// </summary>
-        public bool HasLogLevelOrException(LogLevel minLevel)
-        {
-            return HasLogLevel(minLevel) || GetFirstExceptionLog() != null;
-        }
-
-        /// <summary>
-        /// Gets the first log message that contains an exception, or <see langword="null"/> if no exceptions have been logged.
-        /// </summary>
-        public string? GetFirstExceptionLog() => _logs.FirstExceptionLog;
+        /// <remarks>
+        /// A log event can carry an exception regardless of its log level, for example, a <see cref="NLog.LogLevel.Debug"/> event can have an exception.
+        /// </remarks>
+        public string? GetFirstErrorOrException() => _logs.FirstErrorOrException;
 
         /// <summary>
         /// Dumps the logs to the specified <see cref="TextWriter"/>.
@@ -200,21 +196,27 @@ namespace NLog.Targets
         private sealed class LogMessageList : RingBufferList<string>
         {
             LogLevel? _maxLogLevel;
-            public string? FirstExceptionLog { get; private set; }
+            public string? FirstErrorOrException { get; private set; }
 
             public void Add(string logMessage, LogLevel logLevel, Exception? exception)
             {
+                if (FirstErrorOrException is null && (logLevel >= LogLevel.Error || exception != null))
+                {
+                    FirstErrorOrException = logMessage;
+                }
+
                 if (_maxLogLevel is null || logLevel > _maxLogLevel)
+                {
                     _maxLogLevel = logLevel;
-                if (exception != null && FirstExceptionLog is null)
-                    FirstExceptionLog = logMessage;
+                }
+
                 base.Add(logMessage);
             }
 
             public override void Clear()
             {
                 _maxLogLevel = null;
-                FirstExceptionLog = null;
+                FirstErrorOrException = null;
                 base.Clear();
             }
 

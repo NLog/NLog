@@ -74,14 +74,12 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("Fatal FFF", memoryTarget.Logs[5]);
             Assert.True(memoryTarget.HasLogLevel(LogLevel.Error));
             Assert.True(memoryTarget.HasLogLevel(LogLevel.Fatal));
-            Assert.True(memoryTarget.HasLogLevelOrException(LogLevel.Error));
-            Assert.True(memoryTarget.HasLogLevelOrException(LogLevel.Fatal));
+            Assert.NotEmpty(memoryTarget.GetFirstErrorOrException());
             Assert.NotEmpty(memoryTarget.Dump());
             memoryTarget.Logs.Clear();
             Assert.False(memoryTarget.HasLogLevel(LogLevel.Error));
             Assert.False(memoryTarget.HasLogLevel(LogLevel.Fatal));
-            Assert.False(memoryTarget.HasLogLevelOrException(LogLevel.Error));
-            Assert.False(memoryTarget.HasLogLevelOrException(LogLevel.Fatal));
+            Assert.Null(memoryTarget.GetFirstErrorOrException());
             Assert.Empty(memoryTarget.Dump());
         }
 
