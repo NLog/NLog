@@ -76,6 +76,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(memoryTarget.HasLogLevel(LogLevel.Fatal));
             Assert.NotEmpty(memoryTarget.DumpErrors());
             Assert.NotEmpty(memoryTarget.DumpOnError());
+            Assert.NotEqual(memoryTarget.DumpErrors(), memoryTarget.DumpOnError());
             memoryTarget.Logs.Clear();
             Assert.False(memoryTarget.HasLogLevel(LogLevel.Error));
             Assert.False(memoryTarget.HasLogLevel(LogLevel.Fatal));
@@ -421,6 +422,8 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("9", memoryTarget.Logs[0]);
             Assert.NotEmpty(memoryTarget.DumpErrors());
             Assert.Equal("0", memoryTarget.DumpErrors());
+            Assert.StartsWith("0", memoryTarget.DumpOnError());
+            Assert.NotEqual(memoryTarget.DumpErrors(), memoryTarget.DumpOnError());
         }
     }
 }

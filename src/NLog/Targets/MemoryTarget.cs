@@ -145,9 +145,25 @@ namespace NLog.Targets
                 return string.Empty;
 
             var stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(firstErrorOrException);
             foreach (var logMessage in _logs)
             {
-                stringBuilder.AppendLine(logMessage);
+                if (firstErrorOrException != null)
+                {
+                    if (ReferenceEquals(logMessage, firstErrorOrException))
+                    {
+                        firstErrorOrException = null;
+                        continue;
+                    }
+                    stringBuilder.AppendLine();
+                    stringBuilder.AppendLine();
+                    firstErrorOrException = null;
+                }
+                else
+                {
+                    stringBuilder.AppendLine();
+                }
+                stringBuilder.Append(logMessage);
             }
             return stringBuilder.ToString();
         }
