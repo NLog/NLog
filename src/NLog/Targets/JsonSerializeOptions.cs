@@ -106,7 +106,7 @@ namespace NLog.Targets
         public int MaxRecursionLimit { get; set; } = 10;
 
         /// <summary>
-        /// Should public fields be included in the JSON output, in addition to public properties.
+        /// Should public fields be included in the JSON output, for objects that have no public properties.
         /// </summary>
         /// <remarks>Default: <see langword="false"/></remarks>
         public bool IncludePublicFields { get; set; }
