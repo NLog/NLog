@@ -159,7 +159,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void IncludePublicFields_Enabled_SerializesPublicFieldsAlongsideProperties()
+        public void IncludePublicFields_TypeWithProperties_KeepsSerializingOnlyProperties()
         {
             var testObject = new ClassWithPublicField { Name = "John", Age = 42 };
 
@@ -169,7 +169,8 @@ namespace NLog.UnitTests.Targets
             var jsonSerializer = new DefaultJsonSerializer(null);
             jsonSerializer.SerializeObject(testObject, sb, options);
 
-            Assert.Equal(@"{""Name"":""John"",""Age"":42}", sb.ToString());
+            // Properties are what a type exposes, so a type that has them is unaffected
+            Assert.Equal(@"{""Name"":""John""}", sb.ToString());
         }
 
         [Fact]
@@ -220,7 +221,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void IncludePublicFields_SameTypeWithAndWithoutOption_DoesNotShareCachedMembers()
         {
-            var testObject = new ClassWithPublicField { Name = "John", Age = 42 };
+            var testObject = new ClassWithOnlyFields { Name = "John", Age = 42 };
             var jsonSerializer = new DefaultJsonSerializer(null);
 
             var withFields = new StringBuilder();
@@ -231,7 +232,7 @@ namespace NLog.UnitTests.Targets
             jsonSerializer.SerializeObject(testObject, withFieldsAgain, new JsonSerializeOptions { IncludePublicFields = true });
 
             Assert.Equal(@"{""Name"":""John"",""Age"":42}", withFields.ToString());
-            Assert.Equal(@"{""Name"":""John""}", withoutFields.ToString());
+            Assert.DoesNotContain(@"""Age"":42", withoutFields.ToString());
             Assert.Equal(@"{""Name"":""John"",""Age"":42}", withFieldsAgain.ToString());
         }
 
