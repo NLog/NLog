@@ -192,20 +192,22 @@ namespace NLog.Internal
         {
             var objectType = value.GetType();
             var properties = GetPublicProperties(objectType);
-            var fields = includeFields ? GetPublicFields(objectType) : ArrayHelper.Empty<FieldInfo>();
             if (value is Exception)
             {
                 // Special handling of Exception (Include Exception-Type as artificial first property)
-                var fastLookup = BuildFastLookup(properties, true, fields);
+                var fastLookup = BuildFastLookup(properties, true);
                 return new ObjectPropertyInfos(properties, fastLookup);
-            }
-            else if (fields.Length > 0)
-            {
-                // Fields are only reachable through the fast-lookup, so it cannot be built lazily
-                return new ObjectPropertyInfos(properties, BuildFastLookup(properties, false, fields));
             }
             else if (properties.Length == 0)
             {
+                // Nothing to show as properties, so fall back to the public fields when asked to.
+                var fields = includeFields ? GetPublicFields(objectType) : ArrayHelper.Empty<FieldInfo>();
+                if (fields.Length > 0)
+                {
+                    // Fields are only reachable through the fast-lookup, so it cannot be built lazily
+                    return new ObjectPropertyInfos(ArrayHelper.Empty<PropertyInfo>(), BuildFieldLookup(fields));
+                }
+
                 return ObjectPropertyInfos.SimpleToString;
             }
             else
@@ -280,38 +282,6 @@ namespace NLog.Internal
             return properties ?? ArrayHelper.Empty<PropertyInfo>();
         }
 
-        private static FieldInfo[] ExcludeNamesAlreadyTaken(FieldInfo[] fields, PropertyInfo[] properties, bool includeType)
-        {
-            var taken = new HashSet<string>(ObjectPropertyList.NameComparer);
-            if (includeType)
-                taken.Add("Type");
-            foreach (var prop in properties)
-                taken.Add(prop.Name);
-
-            FieldInfo[]? unique = null;
-            int count = 0;
-            for (int i = 0; i < fields.Length; ++i)
-            {
-                if (taken.Add(fields[i].Name))
-                {
-                    if (unique != null)
-                        unique[count] = fields[i];
-                    ++count;
-                }
-                else if (unique is null)
-                {
-                    unique = new FieldInfo[fields.Length - 1];
-                    Array.Copy(fields, unique, count);
-                }
-            }
-
-            if (unique is null)
-                return fields;
-
-            Array.Resize(ref unique, count);
-            return unique;
-        }
-
         private static FieldInfo[] GetPublicFields([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicFields)] Type type)
         {
             try
@@ -325,16 +295,22 @@ namespace NLog.Internal
             }
         }
 
-        private static FastPropertyLookup[] BuildFastLookup(PropertyInfo[] properties, bool includeType, FieldInfo[]? fields = null)
+        private static FastPropertyLookup[] BuildFieldLookup(FieldInfo[] fields)
         {
-            // A field can share its name with an inherited property, or with the artificial
-            // Type member. Properties win, so that including fields only adds JSON members.
-            if (fields?.Length > 0)
-                fields = ExcludeNamesAlreadyTaken(fields, properties, includeType);
+            FastPropertyLookup[] fastLookup = new FastPropertyLookup[fields.Length];
+            for (int i = 0; i < fields.Length; ++i)
+            {
+                var field = fields[i];
+                TypeCode typeCode = Type.GetTypeCode(field.FieldType);
+                fastLookup[i] = new FastPropertyLookup(field.Name, typeCode, (o, p) => field.GetValue(o));
+            }
+            return fastLookup;
+        }
 
-            int fieldCount = fields?.Length ?? 0;
+        private static FastPropertyLookup[] BuildFastLookup(PropertyInfo[] properties, bool includeType)
+        {
             int fastAccessIndex = includeType ? 1 : 0;
-            FastPropertyLookup[] fastLookup = new FastPropertyLookup[properties.Length + fieldCount + fastAccessIndex];
+            FastPropertyLookup[] fastLookup = new FastPropertyLookup[properties.Length + fastAccessIndex];
             if (includeType)
             {
                 fastLookup[0] = new FastPropertyLookup("Type", TypeCode.String, (o, p) => o.GetType().ToString());
@@ -355,13 +331,6 @@ namespace NLog.Internal
                     TypeCode typeCode = Type.GetTypeCode(propertyType); // Skip cyclic-reference checks when not TypeCode.Object
                     fastLookup[fastAccessIndex++] = new FastPropertyLookup(prop.Name, typeCode, valueLookup);
                 }
-            }
-
-            for (int i = 0; i < fieldCount; ++i)
-            {
-                var field = fields![i];
-                TypeCode typeCode = Type.GetTypeCode(field.FieldType);
-                fastLookup[fastAccessIndex++] = new FastPropertyLookup(field.Name, typeCode, (o, p) => field.GetValue(o));
             }
 
             return fastLookup;
