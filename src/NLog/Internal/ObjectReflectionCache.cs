@@ -298,13 +298,30 @@ namespace NLog.Internal
         private static FastPropertyLookup[] BuildFieldLookup(FieldInfo[] fields)
         {
             FastPropertyLookup[] fastLookup = new FastPropertyLookup[fields.Length];
+            int count = 0;
             for (int i = 0; i < fields.Length; ++i)
             {
                 var field = fields[i];
+                if (IsHiddenByDerivedField(field, fields))
+                    continue;   // A derived type redeclared the name with "new", so the member is written once
+
                 TypeCode typeCode = Type.GetTypeCode(field.FieldType);
-                fastLookup[i] = new FastPropertyLookup(field.Name, typeCode, (o, p) => field.GetValue(o));
+                fastLookup[count++] = new FastPropertyLookup(field.Name, typeCode, (o, p) => field.GetValue(o));
             }
+
+            if (count != fastLookup.Length)
+                Array.Resize(ref fastLookup, count);
             return fastLookup;
+        }
+
+        private static bool IsHiddenByDerivedField(FieldInfo field, FieldInfo[] fields)
+        {
+            foreach (var other in fields)
+            {
+                if (!ReferenceEquals(other, field) && other.Name == field.Name && other.DeclaringType != null && field.DeclaringType != null && other.DeclaringType.IsSubclassOf(field.DeclaringType))
+                    return true;
+            }
+            return false;
         }
 
         private static FastPropertyLookup[] BuildFastLookup(PropertyInfo[] properties, bool includeType)

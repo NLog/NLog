@@ -95,6 +95,16 @@ namespace NLog.UnitTests.Targets
             public string ReadPrivate() => _private;
         }
 
+        private class ClassWithBaseField
+        {
+            public string Name = "base";
+        }
+
+        private sealed class ClassWithShadowingField : ClassWithBaseField
+        {
+            public new string Name = "derived";
+        }
+
         private static ContainerClass BuildSampleObject()
         {
             var testObject = new ContainerClass
@@ -234,6 +244,12 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(@"{""Name"":""John"",""Age"":42}", withFields.ToString());
             Assert.DoesNotContain(@"""Age"":42", withoutFields.ToString());
             Assert.Equal(@"{""Name"":""John"",""Age"":42}", withFieldsAgain.ToString());
+        }
+
+        [Fact]
+        public void IncludePublicFields_ShadowedField_IsWrittenOnce()
+        {
+            Assert.Equal(@"{""Name"":""derived""}", SerializeWithFields(new ClassWithShadowingField()));
         }
 
         [Fact]
