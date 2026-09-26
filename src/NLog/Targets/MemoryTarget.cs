@@ -35,8 +35,6 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
-    using NLog.Internal;
 
     /// <summary>
     /// Writes log messages to <see cref="Logs"/> in memory for programmatic retrieval.
@@ -169,37 +167,18 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Dumps the first log message at <see cref="LogLevel.Error"/> or more severe, together with all log messages containing an exception.
+        /// Dumps the first log message at <see cref="LogLevel.Error"/> or more severe,
+        /// or the first log message containing an exception.
         /// </summary>
         /// <remarks>
-        /// Useful for providing focused diagnostic context in unit tests. Ex. <c>Assert.Empty(memoryTarget.DumpErrors())</c>.
+        /// Useful for providing focused diagnostic context in unit tests. Ex. <c>Assert.Empty(memoryTarget.DumpInitialError())</c>.
         /// A logevent can include an exception regardless of log level, for example, a <see cref="NLog.LogLevel.Debug"/> event can have an exception.
         /// </remarks>
-        public string DumpErrors()
+        public string DumpInitialError()
         {
-            var firstErrorOrException = _logs.FirstErrorOrException;
-            if (firstErrorOrException is null)
-                return string.Empty;
-
-            System.Text.StringBuilder? stringBuilder = null;
-            foreach (var logMessage in _logs)
-            {
-                if (stringBuilder != null)
-                {
-                    if (logMessage.IndexOf("EXCEPTION", StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        stringBuilder.AppendLine();
-                        stringBuilder.Append(logMessage);
-                    }
-                }
-                else if (ReferenceEquals(logMessage, firstErrorOrException))
-                {
-                    stringBuilder = new System.Text.StringBuilder();
-                    stringBuilder.Append(firstErrorOrException);
-                }
-            }
-            return stringBuilder?.ToString() ?? firstErrorOrException;
+            return _logs.FirstErrorOrException ?? string.Empty;
         }
+
 
         /// <inheritdoc/>
         protected override void InitializeTarget()

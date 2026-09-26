@@ -74,13 +74,13 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("Fatal FFF", memoryTarget.Logs[5]);
             Assert.True(memoryTarget.HasLogLevel(LogLevel.Error));
             Assert.True(memoryTarget.HasLogLevel(LogLevel.Fatal));
-            Assert.NotEmpty(memoryTarget.DumpErrors());
+            Assert.NotEmpty(memoryTarget.DumpInitialError());
             Assert.NotEmpty(memoryTarget.DumpOnError());
-            Assert.NotEqual(memoryTarget.DumpErrors(), memoryTarget.DumpOnError());
+            Assert.NotEqual(memoryTarget.DumpInitialError(), memoryTarget.DumpOnError());
             memoryTarget.Logs.Clear();
             Assert.False(memoryTarget.HasLogLevel(LogLevel.Error));
             Assert.False(memoryTarget.HasLogLevel(LogLevel.Fatal));
-            Assert.Empty(memoryTarget.DumpErrors());
+            Assert.Empty(memoryTarget.DumpInitialError());
             Assert.Empty(memoryTarget.DumpOnError());
         }
 
@@ -420,10 +420,10 @@ namespace NLog.UnitTests.Targets
 
             Assert.Single(memoryTarget.Logs);
             Assert.Equal("9", memoryTarget.Logs[0]);
-            Assert.NotEmpty(memoryTarget.DumpErrors());
-            Assert.Equal("0", memoryTarget.DumpErrors());
+            Assert.NotEmpty(memoryTarget.DumpInitialError());
+            Assert.Equal("0", memoryTarget.DumpInitialError());
             Assert.StartsWith("0", memoryTarget.DumpOnError());
-            Assert.NotEqual(memoryTarget.DumpErrors(), memoryTarget.DumpOnError());
+            Assert.NotEqual(memoryTarget.DumpInitialError(), memoryTarget.DumpOnError());
         }
     }
 }
