@@ -278,7 +278,7 @@ namespace NLog.Targets
             }
 
             public int Count => _list.Count;
-            bool ICollection<T>.IsReadOnly => ((ICollection<T>)_list).IsReadOnly;
+            bool ICollection<T>.IsReadOnly => false;
 
             public void Add(T item)
             {
