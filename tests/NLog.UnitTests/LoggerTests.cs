@@ -101,7 +101,7 @@ namespace NLog.UnitTests
                 logger.Trace("message{0}", (double)2.3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.3");
 
-                logger.Trace("message{0}", (decimal)2.3);
+                logger.Trace("message{0}", 2.3m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.3");
 
                 logger.Trace("message{0}", (object)2.3);
@@ -203,7 +203,7 @@ namespace NLog.UnitTests
                 logger.Trace(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-                logger.Trace(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                logger.Trace(CultureInfo.InvariantCulture, "message{0}", 2.5m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
                 logger.Trace(new Exception("test"));
@@ -284,7 +284,7 @@ namespace NLog.UnitTests
                 logger.Debug("message{0}", (double)2.3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.3");
 
-                logger.Debug("message{0}", (decimal)2.3);
+                logger.Debug("message{0}", 2.3m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.3");
 
                 logger.Debug("message{0}", (object)2.3);
@@ -386,7 +386,7 @@ namespace NLog.UnitTests
                 logger.Debug(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", 2.5m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
                 logger.Debug(new Exception("test"));
@@ -467,7 +467,7 @@ namespace NLog.UnitTests
                 logger.Info("message{0}", (double)2.3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.3");
 
-                logger.Info("message{0}", (decimal)2.3);
+                logger.Info("message{0}", 2.3m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.3");
 
                 logger.Info("message{0}", (object)2.3);
@@ -569,7 +569,7 @@ namespace NLog.UnitTests
                 logger.Info(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-                logger.Info(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", 2.5m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
                 logger.Info(new Exception("test"));
@@ -650,7 +650,7 @@ namespace NLog.UnitTests
                 logger.Warn("message{0}", (double)2.3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.3");
 
-                logger.Warn("message{0}", (decimal)2.3);
+                logger.Warn("message{0}", 2.3m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.3");
 
                 logger.Warn("message{0}", (object)2.3);
@@ -752,7 +752,7 @@ namespace NLog.UnitTests
                 logger.Warn(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", 2.5m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
                 logger.Warn(new Exception("test"));
@@ -833,7 +833,7 @@ namespace NLog.UnitTests
                 logger.Error("message{0}", (double)2.3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.3");
 
-                logger.Error("message{0}", (decimal)2.3);
+                logger.Error("message{0}", 2.3m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.3");
 
                 logger.Error("message{0}", (object)2.3);
@@ -935,7 +935,7 @@ namespace NLog.UnitTests
                 logger.Error(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-                logger.Error(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", 2.5m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
                 logger.Error(new Exception("test"));
@@ -1016,7 +1016,7 @@ namespace NLog.UnitTests
                 logger.Fatal("message{0}", (double)2.3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.3");
 
-                logger.Fatal("message{0}", (decimal)2.3);
+                logger.Fatal("message{0}", 2.3m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.3");
 
                 logger.Fatal("message{0}", (object)2.3);
@@ -1118,7 +1118,7 @@ namespace NLog.UnitTests
                 logger.Fatal(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", 2.5m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
                 logger.Fatal(new Exception("test"));
@@ -1273,7 +1273,7 @@ namespace NLog.UnitTests
                     logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (double)2.5);
                     if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", 2.5m);
                     if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
                     logger.Log(level, new Exception("test"));
@@ -1459,7 +1459,7 @@ namespace NLog.UnitTests
                 logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", 2.5m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
                 logger.ConditionalTrace(new Exception("test"), "message");
@@ -1632,7 +1632,7 @@ namespace NLog.UnitTests
                 logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", 2.5m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
                 logger.ConditionalTrace(new Exception("test"), "message");
@@ -1804,7 +1804,7 @@ namespace NLog.UnitTests
                 logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", 2.5m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
                 logger.ConditionalDebug(new Exception("test"), "message");
@@ -1977,7 +1977,7 @@ namespace NLog.UnitTests
                 logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", 2.5m);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
                 logger.ConditionalDebug(new Exception("test"), "message");
@@ -2410,7 +2410,7 @@ namespace NLog.UnitTests
                 //                logger.Error("message{0}", (double)2.3);
                 //                if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.3");
 
-                //                logger.Error("message{0}", (decimal)2.3);
+                //                logger.Error("message{0}", 2.3m);
                 //                if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.3");
 
                 //                logger.Error("message{0}", (object)2.3);
@@ -2512,7 +2512,7 @@ namespace NLog.UnitTests
                 //                logger.Error(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 //                if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", 2.5m);
                 //                if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
                 logger.Error(new Exception("test"), "message");
