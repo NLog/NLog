@@ -88,6 +88,7 @@ namespace NLog.LayoutRenderers.Wrappers
         private string? _renderedCacheKey;
         private DateTime _cachedValueExpires;
         private TimeSpan? _cachedValueTimeout;
+        private DateTime _cachedValuePeriodStart;
         private DateTime _cachedValuePeriodEnd;
         private CachedUntilOption _cachedUntil;
 
@@ -186,7 +187,7 @@ namespace NLog.LayoutRenderers.Wrappers
                             if (_cachedValueTimeout.HasValue)
                                 _cachedValueExpires = logEvent.TimeStamp + _cachedValueTimeout.Value;
                             if (_cachedUntil != CachedUntilOption.None)
-                                _cachedValuePeriodEnd = CalculatePeriodEnd(_cachedUntil, logEvent.TimeStamp);
+                                UpdateCachedValuePeriod(logEvent.TimeStamp);
                         }
                     }
                 }
@@ -207,20 +208,18 @@ namespace NLog.LayoutRenderers.Wrappers
             if (_cachedValueTimeout.HasValue && logEvent.TimeStamp > _cachedValueExpires)
                 return null;
 
-            if (_cachedUntil != CachedUntilOption.None && logEvent.TimeStamp >= _cachedValuePeriodEnd)
+            if (_cachedUntil != CachedUntilOption.None && (logEvent.TimeStamp < _cachedValuePeriodStart || logEvent.TimeStamp > _cachedValuePeriodEnd))
                 return null;
 
             return _cachedValue;
         }
 
-        private static DateTime CalculatePeriodEnd(CachedUntilOption cachedUntil, DateTime timeStamp)
+        private void UpdateCachedValuePeriod(DateTime timeStamp)
         {
-            switch (cachedUntil)
-            {
-                case CachedUntilOption.DayChange: return new DateTime(timeStamp.Year, timeStamp.Month, timeStamp.Day, 0, 0, 0, timeStamp.Kind).AddDays(1);
-                case CachedUntilOption.HourChange: return new DateTime(timeStamp.Year, timeStamp.Month, timeStamp.Day, timeStamp.Hour, 0, 0, timeStamp.Kind).AddHours(1);
-                default: return DateTime.MaxValue;
-            }
+            var periodTicks = _cachedUntil == CachedUntilOption.DayChange ? TimeSpan.TicksPerDay : TimeSpan.TicksPerHour;
+            _cachedValuePeriodStart = new DateTime(timeStamp.Ticks - timeStamp.Ticks % periodTicks, timeStamp.Kind);
+            // Inclusive end, so the last period ends at DateTime.MaxValue without overflow
+            _cachedValuePeriodEnd = _cachedValuePeriodStart.AddTicks(periodTicks - 1);
         }
 
         string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => Cached ? RenderInner(logEvent) : null;

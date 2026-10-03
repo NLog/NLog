@@ -152,5 +152,45 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             var s3 = l.Render(new LogEventInfo() { TimeStamp = timeStamp.AddHours(6.5) });
             Assert.NotEqual(s2, s3);
         }
+
+        [Fact]
+        public void CachedUntilHourChangeEarlierTimeStampTest()
+        {
+            SimpleLayout l = "${guid:cachedUntil=HourChange}";
+            var timeStamp = new DateTime(2021, 2, 27, 17, 30, 0);
+            var s1 = l.Render(new LogEventInfo() { TimeStamp = timeStamp });
+            var s2 = l.Render(new LogEventInfo() { TimeStamp = timeStamp.AddMinutes(30) });
+            Assert.NotEqual(s1, s2);
+            var s3 = l.Render(new LogEventInfo() { TimeStamp = timeStamp.AddMinutes(15) });
+            Assert.NotEqual(s2, s3);
+            var s4 = l.Render(new LogEventInfo() { TimeStamp = timeStamp.AddMinutes(-30) });
+            Assert.Equal(s3, s4);
+        }
+
+        [Fact]
+        public void CachedUntilDayChangeEarlierTimeStampTest()
+        {
+            SimpleLayout l = "${guid:cachedUntil=DayChange}";
+            var timeStamp = new DateTime(2021, 2, 27, 17, 30, 0);
+            var s1 = l.Render(new LogEventInfo() { TimeStamp = timeStamp });
+            var s2 = l.Render(new LogEventInfo() { TimeStamp = timeStamp.AddHours(7) });
+            Assert.NotEqual(s1, s2);
+            var s3 = l.Render(new LogEventInfo() { TimeStamp = timeStamp.AddHours(6) });
+            Assert.NotEqual(s2, s3);
+            var s4 = l.Render(new LogEventInfo() { TimeStamp = timeStamp.AddHours(-17.5) });
+            Assert.Equal(s3, s4);
+        }
+
+        [Theory]
+        [InlineData("HourChange")]
+        [InlineData("DayChange")]
+        public void CachedUntilLastPeriodTest(string cachedUntil)
+        {
+            SimpleLayout l = "${guid:cachedUntil=" + cachedUntil + "}";
+            var s1 = l.Render(new LogEventInfo() { TimeStamp = DateTime.MaxValue.AddMinutes(-30) });
+            var s2 = l.Render(new LogEventInfo() { TimeStamp = DateTime.MaxValue });
+            Assert.NotEmpty(s1);
+            Assert.Equal(s1, s2);
+        }
     }
 }
