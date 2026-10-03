@@ -246,6 +246,9 @@ namespace NLog.Targets
 
         [System.Diagnostics.DebuggerDisplay("Count = {Count}")]
         private class RingBufferList<T> : IList<T>
+#if !NET35
+            , IReadOnlyList<T>
+#endif
         {
             private readonly List<T> _list = new List<T>();
             private int _startIndex;
