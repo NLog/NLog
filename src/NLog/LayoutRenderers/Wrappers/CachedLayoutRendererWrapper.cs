@@ -86,7 +86,7 @@ namespace NLog.LayoutRenderers.Wrappers
         private readonly object _lockObject = new object();
         private string? _cachedValue;
         private string? _renderedCacheKey;
-        private DateTime _cachedValueExpires;
+        private DateTime? _cachedValueExpires;
         private TimeSpan? _cachedValueTimeout;
         private CachedUntilOption _cachedUntil;
 
@@ -200,22 +200,22 @@ namespace NLog.LayoutRenderers.Wrappers
             if (_renderedCacheKey != newCacheKey)
                 return null;
 
-            if ((_cachedValueTimeout.HasValue || _cachedUntil != CachedUntilOption.None) && logEvent.TimeStamp > _cachedValueExpires)
+            if (_cachedValueExpires.HasValue && logEvent.TimeStamp > _cachedValueExpires.Value)
                 return null;
 
             return _cachedValue;
         }
 
-        private DateTime ResolveCachedValueExpires(DateTime timeStamp)
+        private DateTime? ResolveCachedValueExpires(DateTime timeStamp)
         {
-            var expires = _cachedValueTimeout.HasValue ? timeStamp + _cachedValueTimeout.Value : DateTime.MaxValue;
+            DateTime? expires = _cachedValueTimeout.HasValue ? timeStamp + _cachedValueTimeout.Value : null;
             if (_cachedUntil != CachedUntilOption.None)
             {
                 var periodTicks = _cachedUntil == CachedUntilOption.DayChange ? TimeSpan.TicksPerDay : TimeSpan.TicksPerHour;
                 var periodStart = new DateTime(timeStamp.Ticks - timeStamp.Ticks % periodTicks, timeStamp.Kind);
                 // Inclusive end, so the last period ends at DateTime.MaxValue without overflow
                 var periodEnd = periodStart.AddTicks(periodTicks - 1);
-                if (periodEnd < expires)
+                if (!expires.HasValue || periodEnd < expires.Value)
                     expires = periodEnd;
             }
             return expires;
