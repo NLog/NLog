@@ -88,7 +88,6 @@ namespace NLog.LayoutRenderers.Wrappers
         private string? _renderedCacheKey;
         private DateTime _cachedValueExpires;
         private TimeSpan? _cachedValueTimeout;
-        private DateTime _cachedValuePeriodStart;
         private CachedUntilOption _cachedUntil;
 
         /// <summary>
@@ -204,9 +203,6 @@ namespace NLog.LayoutRenderers.Wrappers
             if ((_cachedValueTimeout.HasValue || _cachedUntil != CachedUntilOption.None) && logEvent.TimeStamp > _cachedValueExpires)
                 return null;
 
-            if (_cachedUntil != CachedUntilOption.None && logEvent.TimeStamp < _cachedValuePeriodStart)
-                return null;
-
             return _cachedValue;
         }
 
@@ -216,9 +212,9 @@ namespace NLog.LayoutRenderers.Wrappers
             if (_cachedUntil != CachedUntilOption.None)
             {
                 var periodTicks = _cachedUntil == CachedUntilOption.DayChange ? TimeSpan.TicksPerDay : TimeSpan.TicksPerHour;
-                _cachedValuePeriodStart = new DateTime(timeStamp.Ticks - timeStamp.Ticks % periodTicks, timeStamp.Kind);
+                var periodStart = new DateTime(timeStamp.Ticks - timeStamp.Ticks % periodTicks, timeStamp.Kind);
                 // Inclusive end, so the last period ends at DateTime.MaxValue without overflow
-                var periodEnd = _cachedValuePeriodStart.AddTicks(periodTicks - 1);
+                var periodEnd = periodStart.AddTicks(periodTicks - 1);
                 if (periodEnd < expires)
                     expires = periodEnd;
             }
