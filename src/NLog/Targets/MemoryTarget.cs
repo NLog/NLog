@@ -294,7 +294,7 @@ namespace NLog.Targets
                         if (count > maxCount)
                         {
                             // Someone reduced MaxLogsCount
-                            Normalize();
+                            RotateToStartAtZero();
                             _list.RemoveRange(0, count - maxCount);
                             count = _list.Count;
                         }
@@ -307,7 +307,7 @@ namespace NLog.Targets
                         }
                     }
 
-                    Normalize();
+                    RotateToStartAtZero();
                     _list.Add(item);
                 }
             }
@@ -333,7 +333,7 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
-                    Normalize();
+                    RotateToStartAtZero();
                     _list.CopyTo(array, arrayIndex);
                 }
             }
@@ -342,7 +342,7 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
-                    Normalize();
+                    RotateToStartAtZero();
                     return _list.IndexOf(item);
                 }
             }
@@ -351,7 +351,7 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
-                    Normalize();
+                    RotateToStartAtZero();
                     _list.Insert(index, item);
                 }
             }
@@ -360,7 +360,7 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
-                    Normalize();
+                    RotateToStartAtZero();
                     return _list.Remove(item);
                 }
             }
@@ -369,7 +369,7 @@ namespace NLog.Targets
             {
                 lock (_list)
                 {
-                    Normalize();
+                    RotateToStartAtZero();
                     _list.RemoveAt(index);
                 }
             }
@@ -438,7 +438,7 @@ namespace NLog.Targets
                 }
             }
 
-            private void Normalize()
+            private void RotateToStartAtZero()
             {
                 if (_startIndex == 0)
                     return;
