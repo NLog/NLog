@@ -73,7 +73,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// A value indicating when the cached value expires, because the time of the <see cref="LogEventInfo"/> has moved into a new period.
         /// </summary>
-        public enum CachedUntilOption
+        public enum CachedUntilLifetime
         {
             /// <summary>Never expire the cached value because of the time.</summary>
             None = 0,
@@ -88,7 +88,7 @@ namespace NLog.LayoutRenderers.Wrappers
         private string? _renderedCacheKey;
         private DateTime? _cachedValueExpires;
         private TimeSpan? _cachedValueTimeout;
-        private CachedUntilOption _cachedUntil;
+        private CachedUntilLifetime _cachedUntil;
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="CachedLayoutRendererWrapper"/> is enabled.
@@ -130,15 +130,15 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets when the cached value should expire, so it is reset exactly when the hour or day of the LogEvent TimeStamp changes. Example HourChange will reset the cached value at the start of every hour.
         /// </summary>
-        /// <remarks>Default: <see cref="CachedUntilOption.None"/></remarks>
+        /// <remarks>Default: <see cref="CachedUntilLifetime.None"/></remarks>
         /// <docgen category='Layout Options' order='10' />
-        public CachedUntilOption CachedUntil
+        public CachedUntilLifetime CachedUntil
         {
             get => _cachedUntil;
             set
             {
                 _cachedUntil = value;
-                if (_cachedUntil != CachedUntilOption.None)
+                if (_cachedUntil != CachedUntilLifetime.None)
                     Cached = true;
             }
         }
@@ -209,9 +209,9 @@ namespace NLog.LayoutRenderers.Wrappers
         private DateTime? ResolveCachedValueExpires(DateTime timeStamp)
         {
             DateTime? expires = _cachedValueTimeout.HasValue ? timeStamp + _cachedValueTimeout.Value : null;
-            if (_cachedUntil != CachedUntilOption.None)
+            if (_cachedUntil != CachedUntilLifetime.None)
             {
-                var periodTicks = _cachedUntil == CachedUntilOption.DayChange ? TimeSpan.TicksPerDay : TimeSpan.TicksPerHour;
+                var periodTicks = _cachedUntil == CachedUntilLifetime.DayChange ? TimeSpan.TicksPerDay : TimeSpan.TicksPerHour;
                 var periodStart = new DateTime(timeStamp.Ticks - timeStamp.Ticks % periodTicks, timeStamp.Kind);
                 // Inclusive end, so the last period ends at DateTime.MaxValue without overflow
                 var periodEnd = periodStart.AddTicks(periodTicks - 1);
