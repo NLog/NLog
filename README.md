@@ -43,7 +43,7 @@ Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/
 -----
 
 
- ℹ️ NLog ver 6 supports AOT
+ ℹ️ NLog ver. 6 supports AOT
 
 [NLog v6](https://www.nuget.org/packages/NLog/) now available. See also [List of major changes in NLog v6](https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html)
 
