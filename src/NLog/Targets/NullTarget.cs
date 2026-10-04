@@ -78,7 +78,14 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>Requires <see cref="FormatMessage"/> = <see langword="true"/></remarks>
         /// <docgen category='Layout Options' order='10' />
-        public string LastMessage => _lastMesageBuilder?.ToString() ?? string.Empty;
+        public string LastMessage
+        {
+            get
+            {
+                lock (SyncRoot)
+                    return _lastMesageBuilder?.ToString() ?? string.Empty;
+            }
+        }
         private StringBuilder? _lastMesageBuilder;
 
         /// <summary>
