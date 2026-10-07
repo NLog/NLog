@@ -52,39 +52,39 @@ namespace NLog.Targets.FileArchiveHandlers
         public virtual int ArchiveBeforeOpenFile(string newFileName, LogEventInfo firstLogEvent, DateTime? previousFileLastModified, int newSequenceNumber)
         {
             bool initialFileOpen = newSequenceNumber == 0;
+            bool singleFileArchive = _fileTarget.MaxArchiveFiles == 0 || _fileTarget.MaxArchiveFiles == 1 || (initialFileOpen && _fileTarget.DeleteOldFileOnStartup);
+            bool cleanupFileArchives = _fileTarget.MaxArchiveFiles >= 0 || _fileTarget.MaxArchiveDays > 0 || (initialFileOpen && _fileTarget.DeleteOldFileOnStartup);
+            if (cleanupFileArchives)
+                CleanupFileArchives(newFileName, initialFileOpen, singleFileArchive);
 
-            if (_fileTarget.MaxArchiveFiles >= 0 || _fileTarget.MaxArchiveDays > 0 || (initialFileOpen && _fileTarget.DeleteOldFileOnStartup))
+            if (singleFileArchive)
+                return 0;
+
+            if (!initialFileOpen)
+                return newSequenceNumber;
+
+            if (_fileTarget.ArchiveOldFileOnStartup
+             || _fileTarget.ArchiveAboveSize > 0
+             || _fileTarget.ArchiveEvery != FileArchivePeriod.None)
             {
                 var newFilePath = FileTarget.CleanFullFilePath(newFileName);
-                var parseArchiveSequenceNo = !Path.GetFileNameWithoutExtension(newFilePath).Any(c => char.IsDigit(c));
-                bool initialFileExists = initialFileOpen && File.Exists(newFilePath);
-                bool deletedOldFiles = DeleteOldFilesBeforeArchive(newFilePath, initialFileOpen, parseArchiveSequenceNo);
-
-                if (_fileTarget.MaxArchiveFiles == 0 || _fileTarget.MaxArchiveFiles == 1 || (initialFileOpen && _fileTarget.DeleteOldFileOnStartup))
-                {
-                    if (deletedOldFiles)
-                    {
-                        FixWindowsFileSystemTunneling(newFilePath);
-                    }
-                    return 0;
-                }
-
-                if (initialFileExists && deletedOldFiles)
-                {
-                    FixWindowsFileSystemTunneling(newFilePath);
-                }
+                return RollToInitialSequenceNumber(newFilePath);
             }
 
-            if (initialFileOpen)
+            return 0;
+        }
+
+        private void CleanupFileArchives(string newFileName, bool initialFileOpen, bool singleFileArchive)
+        {
+            var newFilePath = FileTarget.CleanFullFilePath(newFileName);
+            var parseArchiveSequenceNo = !Path.GetFileNameWithoutExtension(newFilePath).Any(c => char.IsDigit(c));
+            bool resetFileCreationTime = singleFileArchive || (initialFileOpen && File.Exists(newFilePath));
+            bool deletedOldFiles = DeleteOldFilesBeforeArchive(newFilePath, initialFileOpen, parseArchiveSequenceNo);
+
+            if (deletedOldFiles && resetFileCreationTime)
             {
-                if (_fileTarget.ArchiveOldFileOnStartup || _fileTarget.ArchiveAboveSize > 0 || _fileTarget.ArchiveEvery != FileArchivePeriod.None)
-                {
-                    var newFilePath = FileTarget.CleanFullFilePath(newFileName);
-                    return RollToInitialSequenceNumber(newFilePath);
-                }
+                FixWindowsFileSystemTunneling(newFilePath);
             }
-
-            return newSequenceNumber;
         }
 
         private int RollToInitialSequenceNumber(string newFilePath)

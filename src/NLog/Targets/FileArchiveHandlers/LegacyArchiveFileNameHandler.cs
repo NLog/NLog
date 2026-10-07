@@ -76,7 +76,10 @@ namespace NLog.Targets.FileArchiveHandlers
         private bool ArchiveBeforeOpenFile(string archiveFileName, string newFilePath, LogEventInfo firstLogEvent, DateTime? previousFileLastModified, bool initialFileOpen)
         {
             bool oldFilesDeleted = false;
-            if (_fileTarget.MaxArchiveFiles >= 0 || _fileTarget.MaxArchiveDays > 0 || (initialFileOpen && _fileTarget.DeleteOldFileOnStartup))
+
+            bool cleanupFileArchives = _fileTarget.MaxArchiveFiles >= 0 || _fileTarget.MaxArchiveDays > 0 || (initialFileOpen && _fileTarget.DeleteOldFileOnStartup);
+
+            if (cleanupFileArchives)
             {
                 bool wildCardStrictSeqNo = _fileTarget.ArchiveSuffixFormat.IndexOf("{0", StringComparison.Ordinal) >= 0 && _fileTarget.ArchiveSuffixFormat.IndexOf("{1", StringComparison.Ordinal) < 0 &&
                     !(_fileTarget.ArchiveFileName is SimpleLayout simpleLayout && (simpleLayout.OriginalText.IndexOf("${date", StringComparison.OrdinalIgnoreCase) >= 0 || simpleLayout.OriginalText.IndexOf("${shortdate", StringComparison.OrdinalIgnoreCase) >= 0));
