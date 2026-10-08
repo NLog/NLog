@@ -403,8 +403,7 @@ namespace NLog.Layouts
 
         private bool HasNestedXmlElements(LogEventInfo logEvent)
         {
-            var innerText = LayoutWrapper.Inner;
-            if (!ReferenceEquals(innerText, null) && !ReferenceEquals(innerText, Layout.Empty))
+            if (!Layout.IsNullOrEmpty(LayoutWrapper.Inner))
                 return true;
 
             if (_elements.Count > 0)
