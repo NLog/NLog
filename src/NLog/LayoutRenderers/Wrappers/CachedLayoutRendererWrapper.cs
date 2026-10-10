@@ -51,6 +51,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty(nameof(Cached))]
     [AmbientProperty(nameof(ClearCache))]
     [AmbientProperty(nameof(CachedSeconds))]
+    [AmbientProperty(nameof(CachedUntil))]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     public sealed class CachedLayoutRendererWrapper : WrapperLayoutRendererBase, IStringValueRenderer
@@ -69,11 +70,25 @@ namespace NLog.LayoutRenderers.Wrappers
             OnClose = 2
         }
 
+        /// <summary>
+        /// A value indicating when the cached value expires, because the time of the <see cref="LogEventInfo"/> has moved into a new period.
+        /// </summary>
+        public enum CachedUntilOption
+        {
+            /// <summary>Never expire the cached value because of the time.</summary>
+            None = 0,
+            /// <summary>Expire the cached value when the day changes.</summary>
+            DayChange,
+            /// <summary>Expire the cached value when the hour changes.</summary>
+            HourChange
+        }
+
         private readonly object _lockObject = new object();
         private string? _cachedValue;
         private string? _renderedCacheKey;
         private DateTime _cachedValueExpires;
         private TimeSpan? _cachedValueTimeout;
+        private CachedUntilOption _cachedUntil;
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="CachedLayoutRendererWrapper"/> is enabled.
@@ -108,6 +123,22 @@ namespace NLog.LayoutRenderers.Wrappers
             {
                 _cachedValueTimeout = TimeSpan.FromSeconds(value);
                 if (_cachedValueTimeout > TimeSpan.Zero)
+                    Cached = true;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets when the cached value should expire, so it is reset exactly when the hour or day of the LogEvent TimeStamp changes. Example HourChange will reset the cached value at the start of every hour.
+        /// </summary>
+        /// <remarks>Default: <see cref="CachedUntilOption.None"/></remarks>
+        /// <docgen category='Layout Options' order='10' />
+        public CachedUntilOption CachedUntil
+        {
+            get => _cachedUntil;
+            set
+            {
+                _cachedUntil = value;
+                if (_cachedUntil != CachedUntilOption.None)
                     Cached = true;
             }
         }
@@ -151,8 +182,7 @@ namespace NLog.LayoutRenderers.Wrappers
                         {
                             _cachedValue = cachedValue = base.RenderInner(logEvent);
                             _renderedCacheKey = newCacheKey;
-                            if (_cachedValueTimeout.HasValue)
-                                _cachedValueExpires = logEvent.TimeStamp + _cachedValueTimeout.Value;
+                            _cachedValueExpires = ResolveCachedValueExpires(logEvent.TimeStamp);
                         }
                     }
                 }
@@ -170,10 +200,25 @@ namespace NLog.LayoutRenderers.Wrappers
             if (_renderedCacheKey != newCacheKey)
                 return null;
 
-            if (_cachedValueTimeout.HasValue && logEvent.TimeStamp > _cachedValueExpires)
+            if ((_cachedValueTimeout.HasValue || _cachedUntil != CachedUntilOption.None) && logEvent.TimeStamp > _cachedValueExpires)
                 return null;
 
             return _cachedValue;
+        }
+
+        private DateTime ResolveCachedValueExpires(DateTime timeStamp)
+        {
+            var expires = _cachedValueTimeout.HasValue ? timeStamp + _cachedValueTimeout.Value : DateTime.MaxValue;
+            if (_cachedUntil != CachedUntilOption.None)
+            {
+                var periodTicks = _cachedUntil == CachedUntilOption.DayChange ? TimeSpan.TicksPerDay : TimeSpan.TicksPerHour;
+                var periodStart = new DateTime(timeStamp.Ticks - timeStamp.Ticks % periodTicks, timeStamp.Kind);
+                // Inclusive end, so the last period ends at DateTime.MaxValue without overflow
+                var periodEnd = periodStart.AddTicks(periodTicks - 1);
+                if (periodEnd < expires)
+                    expires = periodEnd;
+            }
+            return expires;
         }
 
         string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => Cached ? RenderInner(logEvent) : null;

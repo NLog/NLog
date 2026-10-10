@@ -172,6 +172,7 @@ namespace NLog.Config
             ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("Cached", checkTypeExists);
             ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("ClearCache", checkTypeExists);
             ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("CachedSeconds", checkTypeExists);
+            ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("CachedUntil", checkTypeExists);
             layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.FileSystemNormalizeLayoutRendererWrapper>("filesystemnormalize", checkTypeExists);
             ambientPropertyFactory.RegisterType<NLog.LayoutRenderers.Wrappers.FileSystemNormalizeLayoutRendererWrapper>("FSNormalize", checkTypeExists);
             layoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper>("jsonencode", checkTypeExists);
