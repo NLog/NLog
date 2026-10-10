@@ -36,7 +36,6 @@ namespace NLog.Internal
     using System;
     using System.Globalization;
     using System.IO;
-    using System.Linq;
     using System.Text;
     using NLog.MessageTemplates;
 
@@ -395,25 +394,16 @@ namespace NLog.Internal
         /// <param name="number">the number</param>
         internal static void Append2DigitsZeroPadded(this StringBuilder builder, int number)
         {
-            if (number < 0 || number >= _zeroPaddedDigits.Length)
-            {
-                builder.Append((char)((number / 10) + '0'));
-                builder.Append((char)((number % 10) + '0'));
-            }
-            else
-            {
-                builder.Append(_zeroPaddedDigits[number]);
-            }
+#if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
+            builder.Append([
+                (char)((number / 10) + '0'),
+                (char)((number % 10) + '0')
+            ]); // Single Append instead of many
+#else
+            builder.Append((char)((number / 10) + '0'));
+            builder.Append((char)((number % 10) + '0'));
+#endif
         }
-
-        private static readonly string[] _zeroPaddedDigits = {
-            "00","01","02","03","04","05","06","07","08","09",
-            "10","11","12","13","14","15","16","17","18","19",
-            "20","21","22","23","24","25","26","27","28","29",
-            "30","31","32","33","34","35","36","37","38","39",
-            "40","41","42","43","44","45","46","47","48","49",
-            "50","51","52","53","54","55","56","57","58","59",
-        };
 
         /// <summary>
         /// Append a number and pad with 0 to 4 digits
@@ -422,29 +412,18 @@ namespace NLog.Internal
         /// <param name="number">the number</param>
         internal static void Append4DigitsZeroPadded(this StringBuilder builder, int number)
         {
-#if !NETFRAMEWORK
-            if (999 < number && number < 10000)
-            {
-                builder.Append(number);
-            }
-            else
-#endif
 #if NETSTANDARD2_1_OR_GREATER || NET9_0_OR_GREATER
-            {
-                builder.Append([
-                    (char)(((number / 1000) % 10) + '0'),
-                    (char)(((number / 100) % 10) + '0'),
-                    (char)(((number / 10) % 10) + '0'),
-                    (char)((number % 10) + '0'),
-                ]); // Single Append instead of many
-            }
+            builder.Append([
+                (char)(((number / 1000) % 10) + '0'),
+                (char)(((number / 100) % 10) + '0'),
+                (char)(((number / 10) % 10) + '0'),
+                (char)((number % 10) + '0'),
+            ]); // Single Append instead of many
 #else
-            {
-                builder.Append((char)(((number / 1000) % 10) + '0'));
-                builder.Append((char)(((number / 100) % 10) + '0'));
-                builder.Append((char)(((number / 10) % 10) + '0'));
-                builder.Append((char)((number % 10) + '0'));
-            }
+            builder.Append((char)(((number / 1000) % 10) + '0'));
+            builder.Append((char)(((number / 100) % 10) + '0'));
+            builder.Append((char)(((number / 10) % 10) + '0'));
+            builder.Append((char)((number % 10) + '0'));
 #endif
         }
 
