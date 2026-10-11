@@ -49,8 +49,6 @@ namespace NLog.Internal
     {
         private MruCache<Type, ObjectPropertyInfos> ObjectTypeCache => _objectTypeCache ?? System.Threading.Interlocked.CompareExchange(ref _objectTypeCache, new MruCache<Type, ObjectPropertyInfos>(10000), null) ?? _objectTypeCache;
         private MruCache<Type, ObjectPropertyInfos>? _objectTypeCache;
-        private MruCache<Type, ObjectPropertyInfos> ObjectTypeFieldCache => _objectTypeFieldCache ?? System.Threading.Interlocked.CompareExchange(ref _objectTypeFieldCache, new MruCache<Type, ObjectPropertyInfos>(10000), null) ?? _objectTypeFieldCache;
-        private MruCache<Type, ObjectPropertyInfos>? _objectTypeFieldCache;
         private readonly IServiceProvider _serviceProvider;
         private IObjectTypeTransformer ObjectTypeTransformation => _objectTypeTransformation ?? (_objectTypeTransformation = _serviceProvider?.GetService<IObjectTypeTransformer>() ?? this);
         private IObjectTypeTransformer? _objectTypeTransformation;
@@ -97,13 +95,14 @@ namespace NLog.Internal
             }
 
             var objectType = value.GetType();
-            var typeCache = includeFields ? ObjectTypeFieldCache : ObjectTypeCache;
-            if (!typeCache.TryGetValue(objectType, out var propertyInfos))
+            var propertyInfos = CheckForObjectProperties(value) ? BuildObjectPropertyInfos(value, includeFields) : ObjectPropertyInfos.SimpleToString;
+            if (includeFields && propertyInfos.FieldLookup is null)
             {
-                propertyInfos = CheckForObjectProperties(value) ? BuildObjectPropertyInfos(value, includeFields) : ObjectPropertyInfos.SimpleToString;
-                typeCache.TryAddValue(objectType, propertyInfos);
+                // Remember that the public fields were resolved, so the type is not reflected again
+                propertyInfos = new ObjectPropertyInfos(propertyInfos.Properties, propertyInfos.FastLookup, ArrayHelper.Empty<FastPropertyLookup>());
             }
-            return new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
+            ObjectTypeCache.TryAddValue(objectType, propertyInfos);
+            return propertyInfos.CreatePropertyList(value, includeFields);
         }
 
         /// <summary>
@@ -162,15 +161,15 @@ namespace NLog.Internal
 #endif
 
             Type objectType = value.GetType();
-            if (!includeFields && ObjectTypeCache.TryGetValue(objectType, out var propertyInfos))
+            if (ObjectTypeCache.TryGetValue(objectType, out var propertyInfos) && !(includeFields && propertyInfos.NeedsFieldLookup))
             {
                 if (!propertyInfos.HasFastLookup)
                 {
                     var fastLookup = BuildFastLookup(propertyInfos.Properties, false);
-                    propertyInfos = new ObjectPropertyInfos(propertyInfos.Properties, fastLookup);
+                    propertyInfos = new ObjectPropertyInfos(propertyInfos.Properties, fastLookup, propertyInfos.FieldLookup);
                     ObjectTypeCache.TryAddValue(objectType, propertyInfos);
                 }
-                objectPropertyList = new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
+                objectPropertyList = propertyInfos.CreatePropertyList(value, includeFields);
                 return true;
             }
 
@@ -200,15 +199,12 @@ namespace NLog.Internal
             }
             else if (properties.Length == 0)
             {
-                // Nothing to show as properties, so fall back to the public fields when asked to.
-                var fields = includeFields ? GetPublicFields(objectType) : ArrayHelper.Empty<FieldInfo>();
-                if (fields.Length > 0)
-                {
-                    // Fields are only reachable through the fast-lookup, so it cannot be built lazily
-                    return new ObjectPropertyInfos(ArrayHelper.Empty<PropertyInfo>(), BuildFieldLookup(fields));
-                }
+                if (!includeFields)
+                    return ObjectPropertyInfos.SimpleToString;
 
-                return ObjectPropertyInfos.SimpleToString;
+                // Nothing to show as properties, so keep the public fields aside for the IncludePublicFields fallback
+                var fields = GetPublicFields(objectType);
+                return new ObjectPropertyInfos(ArrayHelper.Empty<PropertyInfo>(), ArrayHelper.Empty<FastPropertyLookup>(), BuildFieldLookup(fields));
             }
             else
             {
@@ -626,20 +622,32 @@ namespace NLog.Internal
         {
             public readonly PropertyInfo[] Properties;
             public readonly FastPropertyLookup[]? FastLookup;
+            /// <summary>Public fields of a type without public properties, null until resolved</summary>
+            public readonly FastPropertyLookup[]? FieldLookup;
 
             public static readonly ObjectPropertyInfos SimpleToString = new ObjectPropertyInfos(ArrayHelper.Empty<PropertyInfo>(), ArrayHelper.Empty<FastPropertyLookup>());
 
-            public ObjectPropertyInfos(PropertyInfo[] properties, FastPropertyLookup[]? fastLookup)
+            public ObjectPropertyInfos(PropertyInfo[] properties, FastPropertyLookup[]? fastLookup, FastPropertyLookup[]? fieldLookup = null)
             {
                 Properties = properties;
                 FastLookup = fastLookup;
+                FieldLookup = fieldLookup;
             }
 
             public bool HasFastLookup => FastLookup != null;
 
+            public bool NeedsFieldLookup => FieldLookup is null && Properties.Length == 0 && FastLookup?.Length == 0;
+
+            public ObjectPropertyList CreatePropertyList(object value, bool includeFields)
+            {
+                if (includeFields && FieldLookup?.Length > 0)
+                    return new ObjectPropertyList(value, Properties, FieldLookup);
+                return new ObjectPropertyList(value, Properties, FastLookup);
+            }
+
             public bool Equals(ObjectPropertyInfos other)
             {
-                return ReferenceEquals(Properties, other.Properties) && FastLookup?.Length == other.FastLookup?.Length;
+                return ReferenceEquals(Properties, other.Properties) && FastLookup?.Length == other.FastLookup?.Length && ReferenceEquals(FieldLookup, other.FieldLookup);
             }
         }
 
