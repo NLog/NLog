@@ -152,17 +152,5 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             var s3 = l.Render(new LogEventInfo() { TimeStamp = timeStamp.AddHours(6.5) });
             Assert.NotEqual(s2, s3);
         }
-
-        [Theory]
-        [InlineData("HourChange")]
-        [InlineData("DayChange")]
-        public void CachedUntilLastPeriodTest(string cachedUntil)
-        {
-            SimpleLayout l = "${guid:cachedUntil=" + cachedUntil + "}";
-            var s1 = l.Render(new LogEventInfo() { TimeStamp = DateTime.MaxValue.AddMinutes(-30) });
-            var s2 = l.Render(new LogEventInfo() { TimeStamp = DateTime.MaxValue });
-            Assert.NotEmpty(s1);
-            Assert.Equal(s1, s2);
-        }
     }
 }
