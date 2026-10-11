@@ -247,6 +247,24 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void IncludePublicFields_SameTypeWithoutOptionFirst_StillSerializesFieldsLater()
+        {
+            var testObject = new ClassWithOnlyFields { Name = "John", Age = 42 };
+            var jsonSerializer = new DefaultJsonSerializer(null);
+
+            var withoutFields = new StringBuilder();
+            jsonSerializer.SerializeObject(testObject, withoutFields, new JsonSerializeOptions { IncludePublicFields = false });
+            var withFields = new StringBuilder();
+            jsonSerializer.SerializeObject(testObject, withFields, new JsonSerializeOptions { IncludePublicFields = true });
+            var withoutFieldsAgain = new StringBuilder();
+            jsonSerializer.SerializeObject(testObject, withoutFieldsAgain, new JsonSerializeOptions { IncludePublicFields = false });
+
+            Assert.DoesNotContain(@"""Age"":42", withoutFields.ToString());
+            Assert.Equal(@"{""Name"":""John"",""Age"":42}", withFields.ToString());
+            Assert.Equal(withoutFields.ToString(), withoutFieldsAgain.ToString());
+        }
+
+        [Fact]
         public void IncludePublicFields_ShadowedField_IsWrittenOnce()
         {
             Assert.Equal(@"{""Name"":""derived""}", SerializeWithFields(new ClassWithShadowingField()));
