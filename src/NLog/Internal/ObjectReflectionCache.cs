@@ -66,7 +66,7 @@ namespace NLog.Internal
         public ObjectPropertyList LookupObjectProperties(object value) => LookupObjectProperties(value, false);
 
         /// <summary>
-        /// Lookup object members, optionally including public fields besides public properties.
+        /// Lookup object properties, optionally falling back to public fields when the object has no public properties.
         /// </summary>
         public ObjectPropertyList LookupObjectProperties(object value, bool includeFields)
         {
