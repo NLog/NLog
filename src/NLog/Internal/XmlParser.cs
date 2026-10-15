@@ -40,7 +40,7 @@ namespace NLog.Internal
     using NLog.Config;
 
     /// <summary>
-    /// A minimal XML reader, because .NET System.Xml.XmlReader doesn't work with AOT.
+    /// A minimal XML reader to reduce native AOT binary size, because System.Xml.XmlReader cannot be trimmed effectively.
     /// </summary>
     internal sealed class XmlParser
     {
