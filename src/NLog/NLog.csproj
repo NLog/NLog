@@ -31,21 +31,15 @@ For using NLog with ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web
     <PackageReleaseNotes>
 Changelog:
 
-- [#6254] Replace System.Random usage with custom ScatterGenerator. (@jobvk)
-- [#6267] JsonLayout - Escape lone surrogates so output stays valid UTF8. (@dylanpulver)
-- [#6275] XML docs with Default value for class properties in Filters namespace. (@dualfroz)
-- [#6276] XML docs with Default value for class properties with unit test. (@snakefoot)
-- [#6265] AtomicFileTarget - Improve recovery when file suddenly disappears. (@snakefoot)
-- [#6266] JsonLayout - Explicit assigned SuppressSpaces should win. (@snakefoot)
-- [#6271] DefaultJsonSerializer - Refactor AppendStringEscape to make method simpler. (@snakefoot)
-- [#6268] XmlHelper - Replace with char.IsHighSurrogate + char.IsLowSurrogate. (@snakefoot)
-- [#6269] XmlHelper - Improve CDATA encoding when first char is invalid. (@snakefoot)
-- [#6273] XmlHelper - Check char.IsHighSurrogate before checking length. (@snakefoot)
-- [#6251] LogManager - Remove CLSCompliant(false) attribute from GetCurrentClassLogger. (@snakefoot)
-- [#6255] NLog.Schema - NLog.Targets.HttpClient + NLog.Targets.OpenTelemetryHttp. (@snakefoot)
-- [#6261] XmlParser - Moved primitive parsing logic into InputCursor. (@snakefoot)
-- [#6264] XmlParser - Optimize parsing of Attributes and InnerText and CDATA. (@snakefoot)
-- [#6280] Layout - FromLiteral is IsInitialized from the start and ThreadAgnostic. (@snakefoot)
+- [#6292] CachedLayoutRendererWrapper - Support CachedUntil=HourChange and CachedUntil=DayChange. (@dualfroz)
+- [#6298] ObjectGraphScanner - Skip scanning Layout.Empty. (@snakefoot)
+- [#6297] Remove Microsoft.SourceLink.GitHub as part of NET8 SDK. (@snakefoot)
+- [#6296] FileTarget - Refactor RollingArchiveFileHandler to reduce complexity. (@snakefoot)
+- [#6295] NullTarget - LastMessage property lock SyncRoot. (@snakefoot)
+- [#6303] XmlParser - Keep whitespace from character references in InnerText. (@APX403)
+- [#6289] MemoryTarget - Introduced DumpInitialError with focused diagnostic context. (@snakefoot)
+- [#6287] MemoryTarget - Introduced DumpOnError with full diagnostic context. (@snakefoot)
+- [#6283] MemoryTarget - RingBuffer supporting non-blocking enumeration. (@snakefoot)
 
 NLog v6.2 release notes: https://nlog-project.org/2026/08/16/nlog-6-2-aot-build-size.html
 
