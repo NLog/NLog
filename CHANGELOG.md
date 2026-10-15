@@ -4,6 +4,18 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.2.2 (2026/10/15)
+**Improvements**
+- [#6303](https://github.com/NLog/NLog/pull/6303) XmlParser - Keep whitespace from character references in InnerText. (@APX403)
+- [#6292](https://github.com/NLog/NLog/pull/6292) CachedLayoutRendererWrapper - Support CachedUntil=HourChange and CachedUntil=DayChange. (@dualfroz)
+- [#6298](https://github.com/NLog/NLog/pull/6298) ObjectGraphScanner - Skip scanning Layout.Empty. (@snakefoot)
+- [#6297](https://github.com/NLog/NLog/pull/6297) Remove Microsoft.SourceLink.GitHub as part of NET8 SDK. (@snakefoot)
+- [#6296](https://github.com/NLog/NLog/pull/6296) FileTarget - Refactor RollingArchiveFileHandler to reduce complexity. (@snakefoot)
+- [#6295](https://github.com/NLog/NLog/pull/6295) NullTarget - LastMessage property lock SyncRoot. (@snakefoot)
+- [#6289](https://github.com/NLog/NLog/pull/6289) MemoryTarget - Introduced DumpInitialError with focused diagnostic context. (@snakefoot)
+- [#6287](https://github.com/NLog/NLog/pull/6287) MemoryTarget - Introduced DumpOnError with full diagnostic context. (@snakefoot)
+- [#6283](https://github.com/NLog/NLog/pull/6283) MemoryTarget - RingBuffer supporting non-blocking enumeration. (@snakefoot)
+
 ### Version 6.2.1 (2026/09/16)
 **Improvements**
 - [#6254](https://github.com/NLog/NLog/pull/6254) Replace System.Random usage with custom ScatterGenerator. (@jobvk)
