@@ -655,6 +655,7 @@ namespace NLog
                 Common.InternalLogger.Warn(ex, "Error when formatting a message.");
                 if (ex.MustBeRethrown())
                     throw;
+                messageTemplateParameters = null;   // Render can fail after partial assignment
             }
 
             var logEvent = new LogEventInfo(level, Name, formattedMessage, messageTemplate, (IList<MessageTemplates.MessageTemplateParameter>?)null);
