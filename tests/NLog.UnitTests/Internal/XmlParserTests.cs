@@ -302,6 +302,9 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog><![CDATA[abc]]]]></nlog>", "abc]]")]
         [InlineData("<nlog><![CDATA[abc]]x]]></nlog>", "abc]]x")]
         [InlineData("<nlog>hello<![CDATA[]]>world</nlog>", "helloworld")]
+        [InlineData("<nlog>&#10;</nlog>", "\n")]
+        [InlineData("<nlog>&#x20;</nlog>", " ")]
+        [InlineData("<nlog>hello&#10;</nlog>", "hello\n")]
         public void XmlParse_InnerText_Tokens(string xmlSource, string value)
         {
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);

@@ -406,6 +406,7 @@ namespace NLog.Internal
         private string ReadContentUntil(char terminator)
         {
             _stringBuilder.ClearBuilder();
+            int keepLength = 0;
 
             do
             {
@@ -422,6 +423,7 @@ namespace NLog.Internal
                     if (TryParseSpecialXmlToken(out var specialToken))
                     {
                         _stringBuilder.Append(specialToken);
+                        keepLength = _stringBuilder.Length;  // Whitespace from character references should not be trimmed
                     }
                     else
                     {
@@ -437,14 +439,14 @@ namespace NLog.Internal
             } while (_xmlSource.Read());
 
             return terminator == '<'
-                ? _stringBuilder.ToString(0, TrimEndWhitespace(_stringBuilder))
+                ? _stringBuilder.ToString(0, TrimEndWhitespace(_stringBuilder, keepLength))
                 : _stringBuilder.ToString();
         }
 
-        private static int TrimEndWhitespace(StringBuilder sb)
+        private static int TrimEndWhitespace(StringBuilder sb, int keepLength)
         {
             int i = sb.Length - 1;
-            while (i >= 0 && CharIsSpace(sb[i]))
+            while (i >= keepLength && CharIsSpace(sb[i]))
                 --i;
             return i + 1;
         }
