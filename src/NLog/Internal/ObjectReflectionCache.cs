@@ -63,9 +63,14 @@ namespace NLog.Internal
             return null;
         }
 
-        public ObjectPropertyList LookupObjectProperties(object value)
+        public ObjectPropertyList LookupObjectProperties(object value) => LookupObjectProperties(value, false);
+
+        /// <summary>
+        /// Lookup object properties, optionally falling back to public fields when the object has no public properties.
+        /// </summary>
+        public ObjectPropertyList LookupObjectProperties(object value, bool includeFields)
         {
-            if (TryLookupExpandoObject(value, out var propertyValues))
+            if (TryLookupExpandoObject(value, includeFields, out var propertyValues))
             {
                 return propertyValues;
             }
@@ -90,9 +95,14 @@ namespace NLog.Internal
             }
 
             var objectType = value.GetType();
-            var propertyInfos = CheckForObjectProperties(value) ? BuildObjectPropertyInfos(value) : ObjectPropertyInfos.SimpleToString;
+            var propertyInfos = CheckForObjectProperties(value) ? BuildObjectPropertyInfos(value, includeFields) : ObjectPropertyInfos.SimpleToString;
+            if (includeFields && propertyInfos.FieldLookup is null)
+            {
+                // Remember that the public fields were resolved, so the type is not reflected again
+                propertyInfos = new ObjectPropertyInfos(propertyInfos.Properties, propertyInfos.FastLookup, ArrayHelper.Empty<FastPropertyLookup>());
+            }
             ObjectTypeCache.TryAddValue(objectType, propertyInfos);
-            return new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
+            return propertyInfos.CreatePropertyList(value, includeFields);
         }
 
         /// <summary>
@@ -131,6 +141,9 @@ namespace NLog.Internal
         }
 
         public bool TryLookupExpandoObject(object value, out ObjectPropertyList objectPropertyList)
+            => TryLookupExpandoObject(value, false, out objectPropertyList);
+
+        private bool TryLookupExpandoObject(object value, bool includeFields, out ObjectPropertyList objectPropertyList)
         {
             if (value is IDictionary<string, object> expando)
             {
@@ -148,24 +161,24 @@ namespace NLog.Internal
 #endif
 
             Type objectType = value.GetType();
-            if (ObjectTypeCache.TryGetValue(objectType, out var propertyInfos))
+            if (ObjectTypeCache.TryGetValue(objectType, out var propertyInfos) && !(includeFields && propertyInfos.NeedsFieldLookup))
             {
                 if (!propertyInfos.HasFastLookup)
                 {
                     var fastLookup = BuildFastLookup(propertyInfos.Properties, false);
-                    propertyInfos = new ObjectPropertyInfos(propertyInfos.Properties, fastLookup);
+                    propertyInfos = new ObjectPropertyInfos(propertyInfos.Properties, fastLookup, propertyInfos.FieldLookup);
                     ObjectTypeCache.TryAddValue(objectType, propertyInfos);
                 }
-                objectPropertyList = new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
+                objectPropertyList = propertyInfos.CreatePropertyList(value, includeFields);
                 return true;
             }
 
             var dictionaryEnumerator = TryGetDictionaryEnumerator(value);
             if (dictionaryEnumerator != null)
             {
-                propertyInfos = new ObjectPropertyInfos(ArrayHelper.Empty<PropertyInfo>(), new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => dictionaryEnumerator.GetEnumerator(o)) });
-                ObjectTypeCache.TryAddValue(objectType, propertyInfos);
-                objectPropertyList = new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
+                var dictionaryInfos = new ObjectPropertyInfos(ArrayHelper.Empty<PropertyInfo>(), new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => dictionaryEnumerator.GetEnumerator(o)) });
+                ObjectTypeCache.TryAddValue(objectType, dictionaryInfos);
+                objectPropertyList = new ObjectPropertyList(value, dictionaryInfos.Properties, dictionaryInfos.FastLookup);
                 return true;
             }
 
@@ -174,9 +187,10 @@ namespace NLog.Internal
         }
 
         [UnconditionalSuppressMessage("Trimming - Allow reflection of message args", "IL2072")]
-        private static ObjectPropertyInfos BuildObjectPropertyInfos(object value)
+        private static ObjectPropertyInfos BuildObjectPropertyInfos(object value, bool includeFields)
         {
-            var properties = GetPublicProperties(value.GetType());
+            var objectType = value.GetType();
+            var properties = GetPublicProperties(objectType);
             if (value is Exception)
             {
                 // Special handling of Exception (Include Exception-Type as artificial first property)
@@ -185,7 +199,12 @@ namespace NLog.Internal
             }
             else if (properties.Length == 0)
             {
-                return ObjectPropertyInfos.SimpleToString;
+                if (!includeFields)
+                    return ObjectPropertyInfos.SimpleToString;
+
+                // Nothing to show as properties, so keep the public fields aside for the IncludePublicFields fallback
+                var fields = GetPublicFields(objectType);
+                return new ObjectPropertyInfos(ArrayHelper.Empty<PropertyInfo>(), ArrayHelper.Empty<FastPropertyLookup>(), BuildFieldLookup(fields));
             }
             else
             {
@@ -259,6 +278,48 @@ namespace NLog.Internal
             return properties ?? ArrayHelper.Empty<PropertyInfo>();
         }
 
+        private static FieldInfo[] GetPublicFields([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicFields)] Type type)
+        {
+            try
+            {
+                return type.GetFields(BindingFlags.Instance | BindingFlags.Public);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Failed to get object fields for type: {0}", type);
+                return ArrayHelper.Empty<FieldInfo>();
+            }
+        }
+
+        private static FastPropertyLookup[] BuildFieldLookup(FieldInfo[] fields)
+        {
+            FastPropertyLookup[] fastLookup = new FastPropertyLookup[fields.Length];
+            int count = 0;
+            for (int i = 0; i < fields.Length; ++i)
+            {
+                var field = fields[i];
+                if (IsHiddenByDerivedField(field, fields))
+                    continue;   // A derived type redeclared the name with "new", so the member is written once
+
+                TypeCode typeCode = Type.GetTypeCode(field.FieldType);
+                fastLookup[count++] = new FastPropertyLookup(field.Name, typeCode, (o, p) => field.GetValue(o));
+            }
+
+            if (count != fastLookup.Length)
+                Array.Resize(ref fastLookup, count);
+            return fastLookup;
+        }
+
+        private static bool IsHiddenByDerivedField(FieldInfo field, FieldInfo[] fields)
+        {
+            foreach (var other in fields)
+            {
+                if (!ReferenceEquals(other, field) && other.Name == field.Name && other.DeclaringType != null && field.DeclaringType != null && other.DeclaringType.IsSubclassOf(field.DeclaringType))
+                    return true;
+            }
+            return false;
+        }
+
         private static FastPropertyLookup[] BuildFastLookup(PropertyInfo[] properties, bool includeType)
         {
             int fastAccessIndex = includeType ? 1 : 0;
@@ -284,6 +345,7 @@ namespace NLog.Internal
                     fastLookup[fastAccessIndex++] = new FastPropertyLookup(prop.Name, typeCode, valueLookup);
                 }
             }
+
             return fastLookup;
         }
 
@@ -366,9 +428,13 @@ namespace NLog.Internal
                 _fastLookup = CreateIDictionaryEnumerator;
             }
 
+            // The expando enumerator is stored as a single nameless entry, which no real member can be
+            private static bool IsExpandoLookup(FastPropertyLookup[] fastLookup)
+                => fastLookup.Length == 1 && fastLookup[0].Name.Length == 0;
+
             public bool TryGetPropertyValue(string name, out PropertyValue propertyValue)
             {
-                if (_properties.Length == 0)
+                if (_properties.Length == 0 && (_fastLookup is null || _fastLookup.Length == 0 || IsExpandoLookup(_fastLookup)))
                 {
                     if (_object is IDictionary<string, object> expandoObject)
                     {
@@ -444,7 +510,7 @@ namespace NLog.Internal
 
             public Enumerator GetEnumerator()
             {
-                if (_properties.Length > 0 || _fastLookup is null || _fastLookup.Length == 0)
+                if (_properties.Length > 0 || _fastLookup is null || _fastLookup.Length == 0 || !IsExpandoLookup(_fastLookup))
                     return new Enumerator(_object, _properties, _fastLookup);
 
                 var expandoObject = _fastLookup[0].ValueLookup(_object, ArrayHelper.Empty<object>());
@@ -556,20 +622,32 @@ namespace NLog.Internal
         {
             public readonly PropertyInfo[] Properties;
             public readonly FastPropertyLookup[]? FastLookup;
+            /// <summary>Public fields of a type without public properties, null until resolved</summary>
+            public readonly FastPropertyLookup[]? FieldLookup;
 
             public static readonly ObjectPropertyInfos SimpleToString = new ObjectPropertyInfos(ArrayHelper.Empty<PropertyInfo>(), ArrayHelper.Empty<FastPropertyLookup>());
 
-            public ObjectPropertyInfos(PropertyInfo[] properties, FastPropertyLookup[]? fastLookup)
+            public ObjectPropertyInfos(PropertyInfo[] properties, FastPropertyLookup[]? fastLookup, FastPropertyLookup[]? fieldLookup = null)
             {
                 Properties = properties;
                 FastLookup = fastLookup;
+                FieldLookup = fieldLookup;
             }
 
             public bool HasFastLookup => FastLookup != null;
 
+            public bool NeedsFieldLookup => FieldLookup is null && Properties.Length == 0 && FastLookup?.Length == 0;
+
+            public ObjectPropertyList CreatePropertyList(object value, bool includeFields)
+            {
+                if (includeFields && FieldLookup?.Length > 0)
+                    return new ObjectPropertyList(value, Properties, FieldLookup);
+                return new ObjectPropertyList(value, Properties, FastLookup);
+            }
+
             public bool Equals(ObjectPropertyInfos other)
             {
-                return ReferenceEquals(Properties, other.Properties) && FastLookup?.Length == other.FastLookup?.Length;
+                return ReferenceEquals(Properties, other.Properties) && FastLookup?.Length == other.FastLookup?.Length && ReferenceEquals(FieldLookup, other.FieldLookup);
             }
         }
 
