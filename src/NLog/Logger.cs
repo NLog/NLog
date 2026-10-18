@@ -670,14 +670,12 @@ namespace NLog
 
         private LogEventInfo PrepareLogEventInfo(LogEventInfo logEvent)
         {
-            if (_contextProperties != null)
+            if (_contextProperties?.Count > 0)
             {
+                var properties = logEvent.CreatePropertiesInternal();
                 foreach (var property in _contextProperties)
                 {
-                    if (!logEvent.Properties.ContainsKey(property.Key))
-                    {
-                        logEvent.Properties[property.Key] = property.Value;
-                    }
+                    properties.TryAdd(property.Key, property.Value);
                 }
             }
             return logEvent;
