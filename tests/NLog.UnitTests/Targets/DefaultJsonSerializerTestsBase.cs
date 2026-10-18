@@ -438,6 +438,16 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void SerializeBadStringKeyExpandoDict_Test()
+        {
+            IDictionary<string, IFormattable> dictionary = new Internal.ExpandoTestDictionary();
+            dictionary.Add("C:\\temp", 1);
+            dictionary.Add("\"quoted\"", 2);
+            var actual = SerializeObject(dictionary);
+            Assert.Equal("{\"C:\\\\temp\":1,\"\\\"quoted\\\"\":2}", actual);
+        }
+
+        [Fact]
         public void SerializeNull_Test()
         {
             var actual = SerializeObject(null);
