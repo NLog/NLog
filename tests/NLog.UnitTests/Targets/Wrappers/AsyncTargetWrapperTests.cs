@@ -39,6 +39,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     using NLog.Common;
     using NLog.Config;
     using NLog.Targets;
+    using NLog.Targets.Dispatchers;
     using NLog.Targets.Wrappers;
     using Xunit;
 
@@ -70,28 +71,32 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(200, targetWrapper.BatchSize);
         }
 
-        [Fact]
-        public void AsyncTargetWrapperSyncTest_WithLock_WhenTimeToSleepBetweenBatchesIsEqualToZero()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void AsyncTargetWrapperSyncTest_WithLock_WhenTimeToSleepBetweenBatchesIsEqualToZero(bool dedicatedThread)
         {
             RetryingIntegrationTest(3, () =>
             {
-                AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(true);
+                AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(true, dedicatedThread);
             });
         }
 
-        [Fact]
-        public void AsyncTargetWrapperSyncTest_NoLock_WhenTimeToSleepBetweenBatchesIsEqualToZero()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void AsyncTargetWrapperSyncTest_NoLock_WhenTimeToSleepBetweenBatchesIsEqualToZero(bool dedicatedThread)
         {
             RetryingIntegrationTest(3, () =>
             {
-                AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(false);
+                AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(false, dedicatedThread);
             });
         }
 
         /// <summary>
         /// Test Fix for https://github.com/NLog/NLog/issues/1069
         /// </summary>
-        private static void AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(bool forceLockingQueue)
+        private static void AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(bool forceLockingQueue, bool dedicatedThread)
         {
             LogManager.ThrowConfigExceptions = true;
 
@@ -108,6 +113,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 FullBatchSizeWriteLimit = 1,
                 OverflowAction = AsyncTargetWrapperOverflowAction.Block
             };
+            UseDispatcher(targetWrapper, dedicatedThread);
             targetWrapper.Initialize(null);
             myTarget.Initialize(null);
 
@@ -200,8 +206,10 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
-        [Fact]
-        public void AsyncTargetWrapperSyncTest1()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void AsyncTargetWrapperSyncTest1(bool dedicatedThread)
         {
             var myTarget = new MyTarget();
             var targetWrapper = new AsyncTargetWrapper
@@ -209,6 +217,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = myTarget,
                 Name = "AsyncTargetWrapperSyncTest1_Wrapper",
             };
+            UseDispatcher(targetWrapper, dedicatedThread);
             targetWrapper.Initialize(null);
             myTarget.Initialize(null);
 
@@ -336,8 +345,10 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
-        [Fact]
-        public void AsyncTargetWrapperFlushTest()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void AsyncTargetWrapperFlushTest(bool dedicatedThread)
         {
             RetryingIntegrationTest(3, () =>
             {
@@ -351,6 +362,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     Name = "AsyncTargetWrapperFlushTest_Wrapper",
                     OverflowAction = AsyncTargetWrapperOverflowAction.Grow
                 };
+                UseDispatcher(targetWrapper, dedicatedThread);
 
                 targetWrapper.Initialize(null);
                 myTarget.Initialize(null);
@@ -416,8 +428,10 @@ namespace NLog.UnitTests.Targets.Wrappers
             });
         }
 
-        [Fact]
-        public void AsyncTargetWrapperCloseTest()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void AsyncTargetWrapperCloseTest(bool dedicatedThread)
         {
             var myTarget = new MyAsyncTarget
             {
@@ -430,6 +444,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 TimeToSleepBetweenBatches = 1000,
                 Name = "AsyncTargetWrapperCloseTest_Wrapper",
             };
+            UseDispatcher(targetWrapper, dedicatedThread);
 
             targetWrapper.Initialize(null);
             myTarget.Initialize(null);
@@ -575,8 +590,10 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
-        [Fact]
-        public void LogEventNotDropped_IfOverflowActionBlock()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void LogEventNotDropped_IfOverflowActionBlock(bool dedicatedThread)
         {
             int queueLimit = 2;
             int loggedEventCount = 5;
@@ -589,6 +606,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 QueueLimit = queueLimit,
                 OverflowAction = AsyncTargetWrapperOverflowAction.Block
             };
+            UseDispatcher(targetWrapper, dedicatedThread);
 
             var logFactory = new LogFactory();
             var loggingConfig = new NLog.Config.LoggingConfiguration(logFactory);
@@ -903,6 +921,259 @@ namespace NLog.UnitTests.Targets.Wrappers
         private class MisingDependencyClass : IMisingDependencyClass
         {
 
+        }
+
+        private static void UseDispatcher(AsyncTargetWrapper targetWrapper, bool dedicatedThread)
+        {
+            if (dedicatedThread)
+                targetWrapper.Dispatcher = AsyncTargetWrapperDispatcher.DedicatedThread;
+        }
+
+        [Fact]
+        public void Dispatcher_DefaultsToThreadPool()
+        {
+            var targetWrapper = new AsyncTargetWrapper();
+            Assert.Equal(AsyncTargetWrapperDispatcher.ThreadPool, targetWrapper.Dispatcher);
+        }
+
+        [Fact]
+        public void ThreadPoolDispatcher_WritesRunOnThreadPool()
+        {
+            var recordingTarget = new ThreadRecordingTarget();
+            var targetWrapper = new AsyncTargetWrapper(recordingTarget) { Name = "ThreadPoolDispatcher_WritesRunOnThreadPool_Wrapper" };
+            targetWrapper.Initialize(null);
+            recordingTarget.Initialize(null);
+            try
+            {
+                targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+
+                Assert.True(recordingTarget.WaitForWrites(1, 5000));
+                Assert.True(recordingTarget.WriteThreads[0].IsThreadPoolThread);
+            }
+            finally
+            {
+                recordingTarget.Close();
+                targetWrapper.Close();
+            }
+        }
+
+        [Fact]
+        public void Dispatcher_ConfiguredFromXml()
+        {
+            var config = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>
+                    <target type='AsyncWrapper' name='explicit' dispatcher='DedicatedThread'>
+                        <target type='Debug' />
+                    </target>
+                    <target type='AsyncWrapper' name='default'>
+                        <target type='Debug' />
+                    </target>
+                </targets>
+            </nlog>");
+
+            Assert.Equal(AsyncTargetWrapperDispatcher.DedicatedThread, ((AsyncTargetWrapper)config.FindTargetByName("explicit")).Dispatcher);
+            Assert.Equal(AsyncTargetWrapperDispatcher.ThreadPool, ((AsyncTargetWrapper)config.FindTargetByName("default")).Dispatcher);
+        }
+
+        [Fact]
+        public void Dispatcher_FromXmlDefaultWrapper_WritesOnDedicatedThread()
+        {
+            var logFactory = new LogFactory().Setup()
+                .SetupExtensions(ext => ext.RegisterTarget<ThreadRecordingTarget>("threadrecording"))
+                .LoadConfigurationFromXml(@"
+                <nlog throwConfigExceptions='true'>
+                    <targets>
+                        <default-wrapper type='AsyncWrapper' dispatcher='dedicatedthread' />
+                        <target type='threadrecording' name='d' />
+                    </targets>
+                    <rules>
+                        <logger name='*' writeTo='d' />
+                    </rules>
+                </nlog>").LogFactory;
+            try
+            {
+                var targetWrapper = Assert.IsType<AsyncTargetWrapper>(logFactory.Configuration.FindTargetByName("d"));
+                var recordingTarget = Assert.IsType<ThreadRecordingTarget>(targetWrapper.WrappedTarget);
+
+                logFactory.GetLogger("A").Info("Hello");
+
+                Assert.True(recordingTarget.WaitForWrites(1, 5000));
+                Assert.False(recordingTarget.WriteThreads[0].IsThreadPoolThread);
+                Assert.Equal("NLog AsyncWrapper d", recordingTarget.WriteThreads[0].Name);
+            }
+            finally
+            {
+                logFactory.Shutdown();
+            }
+        }
+
+        [Fact]
+        public void Initialize_WhenStartFails_StopsDispatcher()
+        {
+            var recordingDispatcher = new RecordingDispatcher();
+            var targetWrapper = new FailingStartTargetWrapper(new MyTarget()) { Name = "Initialize_WhenStartFails_Wrapper" };
+            targetWrapper.DispatcherFactory = () => recordingDispatcher;
+
+            using (new NoThrowNLogExceptions())
+            {
+                targetWrapper.Initialize(null);
+                targetWrapper.Close();
+            }
+
+            Assert.Equal(1, recordingDispatcher.StopCount);
+        }
+
+        [Fact]
+        public void Reinitialize_WhenSubclassSkipsStop_StopsPreviousDispatcher()
+        {
+            var firstDispatcher = new RecordingDispatcher();
+            var secondDispatcher = new RecordingDispatcher();
+            var dispatchers = new Queue<RecordingDispatcher>(new[] { firstDispatcher, secondDispatcher });
+            var targetWrapper = new NoStopTargetWrapper(new MyTarget()) { Name = "Reinitialize_WhenSubclassSkipsStop_Wrapper" };
+            targetWrapper.DispatcherFactory = () => dispatchers.Dequeue();
+            try
+            {
+                targetWrapper.Initialize(null);
+                targetWrapper.Close();
+                Assert.Equal(0, firstDispatcher.StopCount);
+
+                targetWrapper.Initialize(null);
+                Assert.Equal(1, firstDispatcher.StopCount);
+                Assert.Equal(0, secondDispatcher.StopCount);
+            }
+            finally
+            {
+                targetWrapper.Close();
+                secondDispatcher.Stop(TimeSpan.Zero);
+            }
+        }
+
+        private class FailingStartTargetWrapper : AsyncTargetWrapper
+        {
+            public FailingStartTargetWrapper(Target wrappedTarget) : base(wrappedTarget) { }
+
+            protected override void StartLazyWriterTimer()
+            {
+                throw new ApplicationException("start failure");
+            }
+        }
+
+        private class NoStopTargetWrapper : AsyncTargetWrapper
+        {
+            public NoStopTargetWrapper(Target wrappedTarget) : base(wrappedTarget) { }
+
+            protected override void StopLazyWriterThread()
+            {
+                // Simulates a subclass that does not call base, leaving the dispatcher running
+            }
+        }
+
+        private class RecordingDispatcher : IDispatcher
+        {
+            private readonly TimerDispatcher _inner = new TimerDispatcher();
+            private int _stopCount;
+
+            public int StopCount => Interlocked.CompareExchange(ref _stopCount, 0, 0);
+
+            public bool Set(Action callback) => _inner.Set(callback);
+
+            public bool Change(int dueTime, int period) => _inner.Change(dueTime, period);
+
+            public bool Stop(TimeSpan timeout)
+            {
+                Interlocked.Increment(ref _stopCount);
+                return _inner.Stop(timeout);
+            }
+        }
+
+        [Fact]
+        public void DedicatedThread_WritesNeverRunOnThreadPool()
+        {
+            var recordingTarget = new ThreadRecordingTarget();
+            var targetWrapper = new AsyncTargetWrapper(recordingTarget) { Name = "DedicatedThread_WritesNeverRunOnThreadPool_Wrapper" };
+            UseDispatcher(targetWrapper, true);
+            targetWrapper.Initialize(null);
+            recordingTarget.Initialize(null);
+            try
+            {
+                for (int i = 0; i < 50; ++i)
+                    targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+
+                Assert.True(recordingTarget.WaitForWrites(50, 5000));
+                Assert.All(recordingTarget.WriteThreads, t => Assert.False(t.IsThreadPoolThread));
+                Assert.All(recordingTarget.WriteThreads, t => Assert.Equal("NLog AsyncWrapper DedicatedThread_WritesNeverRunOnThreadPool_Wrapper", t.Name));
+            }
+            finally
+            {
+                recordingTarget.Close();
+                targetWrapper.Close();
+            }
+        }
+
+        [Fact]
+        public void DedicatedThread_CloseAndReinitialize_KeepsWriting()
+        {
+            var recordingTarget = new ThreadRecordingTarget();
+            var targetWrapper = new AsyncTargetWrapper(recordingTarget) { Name = "DedicatedThread_CloseAndReinitialize_Wrapper" };
+            UseDispatcher(targetWrapper, true);
+            recordingTarget.Initialize(null);
+            try
+            {
+                targetWrapper.Initialize(null);
+                targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+                Assert.True(recordingTarget.WaitForWrites(1, 5000));
+                var firstThread = recordingTarget.WriteThreads[0];
+                targetWrapper.Close();
+                Assert.True(firstThread.Join(5000));
+
+                targetWrapper.Initialize(null);
+                targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+                Assert.True(recordingTarget.WaitForWrites(2, 5000));
+                Assert.NotSame(firstThread, recordingTarget.WriteThreads[1]);
+                Assert.False(recordingTarget.WriteThreads[1].IsThreadPoolThread);
+            }
+            finally
+            {
+                recordingTarget.Close();
+                targetWrapper.Close();
+            }
+        }
+
+        private class ThreadRecordingTarget : Target
+        {
+            private readonly object _sync = new object();
+            private readonly List<Thread> _writeThreads = new List<Thread>();
+
+            public List<Thread> WriteThreads
+            {
+                get { lock (_sync) return new List<Thread>(_writeThreads); }
+            }
+
+            public bool WaitForWrites(int count, int timeoutMilliseconds)
+            {
+                lock (_sync)
+                {
+                    var deadline = DateTime.UtcNow.AddMilliseconds(timeoutMilliseconds);
+                    while (_writeThreads.Count < count)
+                    {
+                        var remaining = deadline - DateTime.UtcNow;
+                        if (remaining <= TimeSpan.Zero)
+                            return false;
+                        Monitor.Wait(_sync, remaining);
+                    }
+                    return true;
+                }
+            }
+
+            protected override void Write(LogEventInfo logEvent)
+            {
+                lock (_sync)
+                {
+                    _writeThreads.Add(Thread.CurrentThread);
+                    Monitor.PulseAll(_sync);
+                }
+            }
         }
 
         private class MyAsyncTarget : Target
