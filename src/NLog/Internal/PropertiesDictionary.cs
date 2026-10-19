@@ -222,6 +222,17 @@ namespace NLog.Internal
             Add(item.Key, item.Value);
         }
 
+        public void TryAdd(object key, object? value)
+        {
+            var eventProperties = GetEventProperties(true);
+#if NET || NETSTANDARD2_1_OR_GREATER
+            eventProperties.TryAdd(key, new PropertyValue(value, false));
+#else
+            if (!eventProperties.ContainsKey(key))
+                eventProperties.Add(key, new PropertyValue(value, false));
+#endif
+        }
+
         /// <inheritDoc/>
         public void Clear()
         {
