@@ -99,5 +99,15 @@ namespace NLog.Conditions
         /// <param name="context">Evaluation context.</param>
         /// <returns>Expression result.</returns>
         protected abstract object? EvaluateNode(LogEventInfo context);
+
+        /// <summary>
+        /// Create a <see cref="ConditionExpression"/> from a lambda method.
+        /// </summary>
+        public static ConditionExpression FromMethod(Func<LogEventInfo, bool> method)
+        {
+            Guard.ThrowIfNull(method);
+            var methodName = $"{method.Method?.DeclaringType?.ToString()}.{method.Method?.Name}";
+            return ConditionMethodExpression.CreateMethodNoParameters(methodName, method);
+        }
     }
 }
