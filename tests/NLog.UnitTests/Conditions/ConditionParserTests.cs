@@ -203,6 +203,21 @@ namespace NLog.UnitTests.Conditions
         }
 
         [Fact]
+        public void ConditionFromMethodTest()
+        {
+            Assert.Throws<ArgumentNullException>(() => ConditionExpression.FromMethod(null));
+
+            var condition = ConditionExpression.FromMethod(logEvent => logEvent.Level >= LogLevel.Warn);
+            Assert.Contains(nameof(ConditionFromMethodTest), condition.ToString());
+
+            var infoLogEvent = LogEventInfo.Create(LogLevel.Info, "MyLogger", "Hello Info");
+            Assert.False((bool)condition.Evaluate(infoLogEvent));
+
+            var warnLogEvent = LogEventInfo.Create(LogLevel.Warn, "MyLogger", "Hello Warn");
+            Assert.True((bool)condition.Evaluate(warnLogEvent));
+        }
+
+        [Fact]
         [Obsolete("ConditionParser will become internal with NLog v7")]
         public void CustomNLogFactoriesTest()
         {

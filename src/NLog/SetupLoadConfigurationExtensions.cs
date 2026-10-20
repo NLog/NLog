@@ -674,7 +674,7 @@ namespace NLog
             {
                 var targetWrapper = new AutoFlushTargetWrapper() { WrappedTarget = t };
 
-                var autoFlushCondition = ConditionMethodExpression.CreateMethodNoParameters("AutoFlush", conditionMethod);
+                var autoFlushCondition = ConditionExpression.FromMethod(conditionMethod);
                 targetWrapper.Condition = autoFlushCondition;
                 if (flushOnConditionOnly.HasValue)
                     targetWrapper.FlushOnConditionOnly = flushOnConditionOnly.Value;
