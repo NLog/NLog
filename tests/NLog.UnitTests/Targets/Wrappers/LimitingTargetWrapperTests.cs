@@ -34,6 +34,7 @@
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading;
     using NLog.Common;
     using NLog.Targets;
@@ -358,6 +359,59 @@ namespace NLog.UnitTests.Targets.Wrappers
             logFactory.AssertDebugLastMessage("a");
         }
 
+        [Fact]
+        public void WriteFromMultipleThreadsOnlyWritesLimitMessages()
+        {
+            const int messageLimit = 50;
+            const int threadCount = 8;
+            const int messagesPerThread = 100;
+
+            var wrappedTarget = new ConcurrentCountTarget();
+            var wrapper = new LimitingTargetWrapper(wrappedTarget, messageLimit, TimeSpan.FromHours(1));
+            InitializeTargets(wrappedTarget, wrapper);
+
+            var threads = new List<Thread>();
+            for (int t = 0; t < threadCount; t++)
+            {
+                var thread = new Thread(() =>
+                {
+                    for (int i = 0; i < messagesPerThread; i++)
+                    {
+                        wrapper.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Debug, "test", "Hello").WithContinuation(ex => { }));
+                    }
+                });
+                threads.Add(thread);
+                thread.Start();
+            }
+            foreach (var thread in threads)
+                Assert.True(thread.Join(TimeSpan.FromSeconds(30)));
+
+            Assert.Equal(messageLimit, wrappedTarget.WriteCount);
+            Assert.Equal(messageLimit, wrapper.MessagesWrittenCount);
+        }
+
+        [Fact]
+        public void WriteDoesNotHoldTargetLockWhileWritingToWrappedTarget()
+        {
+            var wrappedTarget = new ConcurrentCountTarget { WaitForConcurrentWrites = 2 };
+            var wrapper = new LimitingTargetWrapper(wrappedTarget, 100, TimeSpan.FromHours(1));
+            InitializeTargets(wrappedTarget, wrapper);
+
+            var threads = new List<Thread>();
+            for (int t = 0; t < 2; t++)
+            {
+                var thread = new Thread(() => wrapper.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Debug, "test", "Hello").WithContinuation(ex => { })));
+                threads.Add(thread);
+                thread.Start();
+            }
+            foreach (var thread in threads)
+                Assert.True(thread.Join(TimeSpan.FromSeconds(30)));
+
+            // Both writes must have been inside the wrapped target at the same time
+            Assert.True(wrappedTarget.ConcurrentWritesObserved);
+            Assert.Equal(2, wrappedTarget.WriteCount);
+        }
+
         private static void InitializeTargets(params Target[] targets)
         {
             foreach (Target target in targets)
@@ -392,5 +446,37 @@ namespace NLog.UnitTests.Targets.Wrappers
 
         }
 
+        private class ConcurrentCountTarget : Target
+        {
+            private int _writeCount;
+            private int _activeWrites;
+
+            public int WriteCount => _writeCount;
+            public int WaitForConcurrentWrites { get; set; }
+            public bool ConcurrentWritesObserved { get; private set; }
+
+            protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+            {
+                var active = Interlocked.Increment(ref _activeWrites);
+                try
+                {
+                    if (WaitForConcurrentWrites > 0)
+                    {
+                        // Wait until the other writer arrives, this only completes when writes are not serialized
+                        var deadline = DateTime.UtcNow.AddSeconds(10);
+                        while (Volatile.Read(ref _activeWrites) < WaitForConcurrentWrites && DateTime.UtcNow < deadline)
+                            Thread.Sleep(1);
+                        if (Volatile.Read(ref _activeWrites) >= WaitForConcurrentWrites)
+                            ConcurrentWritesObserved = true;
+                    }
+                    Interlocked.Increment(ref _writeCount);
+                    logEvent.Continuation(null);
+                }
+                finally
+                {
+                    Interlocked.Decrement(ref _activeWrites);
+                }
+            }
+        }
     }
 }

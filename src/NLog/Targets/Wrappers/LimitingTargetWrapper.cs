@@ -34,6 +34,8 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
+    using System.Collections.Generic;
+    using System.Threading;
     using NLog.Common;
     using NLog.Layouts;
 
@@ -47,7 +49,8 @@ namespace NLog.Targets.Wrappers
     [Target("LimitingWrapper", IsWrapper = true)]
     public class LimitingTargetWrapper : WrapperTargetBase
     {
-        private DateTime _firstWriteInInterval;
+        private long _firstWriteInIntervalTicks;
+        private int _messagesWrittenCount;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LimitingTargetWrapper" /> class.
@@ -111,7 +114,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <remarks>Default: <see langword="0"/>. Resets to zero on next write after <see cref="Interval"/> has expired.</remarks>
         /// <docgen category='General Options' order='10' />
-        public int MessagesWrittenCount { get; private set; }
+        public int MessagesWrittenCount => Interlocked.CompareExchange(ref _messagesWrittenCount, 0, 0);
 
         /// <summary>
         /// Initializes the target and resets the current Interval and <see cref="MessagesWrittenCount"/>.
@@ -134,21 +137,54 @@ namespace NLog.Targets.Wrappers
         /// <see cref="MessagesWrittenCount"/> resets when the current <see cref="Interval"/> is expired.
         /// </summary>
         /// <param name="logEvent">Log event to be written out.</param>
+        protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+        {
+            if (!IsInitialized)
+            {
+                // In case target was Closed
+                logEvent.Continuation(null);
+                return;
+            }
+
+            Write(logEvent);
+        }
+
+        /// <summary>
+        /// Writes the log events to the wrapped target, where each log event is subject to the <see cref="MessageLimit"/>.
+        /// </summary>
+        /// <param name="logEvents">Log events to be written out.</param>
+        protected override void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
+        {
+            for (int i = 0; i < logEvents.Count; ++i)
+            {
+                WriteAsyncThreadSafe(logEvents[i]);
+            }
+        }
+
+        /// <summary>
+        /// Writes log event to the wrapped target if the current <see cref="MessagesWrittenCount"/> is lower than <see cref="MessageLimit"/>.
+        /// Uses interlocked updates of the counter, so the target lock is not held while writing to the wrapped target.
+        /// </summary>
+        /// <param name="logEvent">Log event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             var messageLimit = RenderLogEvent(MessageLimit, logEvent.LogEvent);
             var interval = RenderLogEvent(Interval, logEvent.LogEvent);
 
-            if ((logEvent.LogEvent.TimeStamp - _firstWriteInInterval) > interval)
+            var timestampTicks = logEvent.LogEvent.TimeStamp.Ticks;
+            var firstWriteTicks = Interlocked.CompareExchange(ref _firstWriteInIntervalTicks, 0, 0);
+            if ((timestampTicks - firstWriteTicks) > interval.Ticks)
             {
-                ResetInterval(logEvent.LogEvent.TimeStamp);
-                InternalLogger.Debug("{0}: New interval of '{1}' started.", this, interval);
+                if (Interlocked.CompareExchange(ref _firstWriteInIntervalTicks, timestampTicks, firstWriteTicks) == firstWriteTicks)
+                {
+                    Interlocked.Exchange(ref _messagesWrittenCount, 0);
+                    InternalLogger.Debug("{0}: New interval of '{1}' started.", this, interval);
+                }
             }
 
-            if (messageLimit <= 0 || MessagesWrittenCount < messageLimit)
+            if (TryReserveMessage(messageLimit))
             {
                 WrappedTarget?.WriteAsyncLogEvent(logEvent);
-                MessagesWrittenCount++;
             }
             else
             {
@@ -157,10 +193,29 @@ namespace NLog.Targets.Wrappers
             }
         }
 
+        private bool TryReserveMessage(int messageLimit)
+        {
+            if (messageLimit <= 0)
+            {
+                Interlocked.Increment(ref _messagesWrittenCount);
+                return true;
+            }
+
+            while (true)
+            {
+                var messagesWritten = Interlocked.CompareExchange(ref _messagesWrittenCount, 0, 0);
+                if (messagesWritten >= messageLimit)
+                    return false;
+
+                if (Interlocked.CompareExchange(ref _messagesWrittenCount, messagesWritten + 1, messagesWritten) == messagesWritten)
+                    return true;
+            }
+        }
+
         private void ResetInterval(DateTime timestamp)
         {
-            _firstWriteInInterval = timestamp;
-            MessagesWrittenCount = 0;
+            Interlocked.Exchange(ref _firstWriteInIntervalTicks, timestamp.Ticks);
+            Interlocked.Exchange(ref _messagesWrittenCount, 0);
         }
     }
 }
