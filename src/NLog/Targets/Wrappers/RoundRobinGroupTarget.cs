@@ -33,6 +33,7 @@
 
 namespace NLog.Targets.Wrappers
 {
+    using System.Collections.Generic;
     using System.Threading;
     using NLog.Common;
 
@@ -93,7 +94,17 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Ensures forwarding happens without holding lock
         /// </summary>
-        /// <param name="logEvent"></param>
+        protected override sealed void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
+        {
+            for (int i = 0; i < logEvents.Count; ++i)
+            {
+                WriteAsyncThreadSafe(logEvents[i]);
+            }
+        }
+
+        /// <summary>
+        /// Ensures forwarding happens without holding lock
+        /// </summary>
         protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
         {
             Write(logEvent);
