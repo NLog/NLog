@@ -1004,6 +1004,45 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// NLog v4 / v5 had special repair logic when rolling to new file (FileName contains ${date} or ${shortdate}) in combination with legacy static-archive-logic (ArchiveFileName specified)
+        /// NLog v4 / v5 always kept track of previous file-name and file-last-modified, used as fallback for archive-check when rolling to new file.
+        /// NLog v6 is lazy and only activated this 'random' legacy archive-logic when using ArchiveEvery.
+        /// </summary>
+        internal string? ClosePreviousFileWhenArchiveEveryLegacy(LogEventInfo firstLogEvent, out DateTime previousFileClosedLastModified)
+        {
+            if ((FileName as SimpleLayout)?.IsFixedText == true || ArchiveFileName is null || ArchiveEvery == FileArchivePeriod.None)
+            {
+                previousFileClosedLastModified = default;
+                return null;
+            }
+
+            KeyValuePair<string, OpenFileAppender> openFileExpired = default;
+
+            foreach (var openFile in _openFileCache)
+            {
+                var fileAppender = openFile.Value.FileAppender;
+                if (fileAppender.NextArchiveTime > firstLogEvent.TimeStamp)
+                    continue;
+
+                if (openFileExpired.Key is null || fileAppender.LastWriteTime >= openFileExpired.Value.FileAppender.LastWriteTime)
+                {
+                    openFileExpired = openFile;
+                }
+            }
+
+            if (openFileExpired.Key != null)
+            {
+                var previousFullFilePath = openFileExpired.Value.FileAppender.FilePath;
+                previousFileClosedLastModified = openFileExpired.Value.FileAppender.FileLastModified;
+                CloseFileWithFooter(openFileExpired.Key, openFileExpired.Value, true);
+                return previousFullFilePath;
+            }
+
+            previousFileClosedLastModified = default;
+            return null;    
+        }
+
         internal void CloseOpenFileBeforeArchiveFileDelete(string filepath)
         {
             KeyValuePair<string, OpenFileAppender> foundOpenFile;
@@ -1026,7 +1065,6 @@ namespace NLog.Targets
 
                 if (foundOpenFile.Key != null)
                 {
-                    InternalLogger.Debug("{0}: Archive cleanup closing file: {1}", this, filepath);
                     CloseFile(foundOpenFile.Key, foundOpenFile.Value);
                 }
             } while (foundOpenFile.Key != null);
@@ -1045,6 +1083,7 @@ namespace NLog.Targets
         {
             try
             {
+                InternalLogger.Debug("{0}: Closing file: {1}", this, filename);
                 _openFileCache.Remove(filename);
                 if (_openFileCache.Count == 0)
                 {
