@@ -377,7 +377,7 @@ namespace NLog.Targets
         /// </summary>
         protected override sealed void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
         {
-            base.WriteAsyncThreadSafe(logEvents);
+            base.WriteAsyncThreadSafe(logEvents);   // Called by target-wrapper that enables/supports bulk-writing, so try to write batch with SyncRoot locked
         }
 
         /// <summary>

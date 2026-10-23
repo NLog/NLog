@@ -448,7 +448,6 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Write to queue without locking <see cref="Target.SyncRoot"/>
         /// </summary>
-        /// <param name="logEvent"></param>
         protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
         {
             try
@@ -463,6 +462,17 @@ namespace NLog.Targets.Wrappers
                 }
 
                 logEvent.Continuation(exception);
+            }
+        }
+
+        /// <summary>
+        /// Write to queue without locking <see cref="Target.SyncRoot"/>
+        /// </summary>
+        protected override sealed void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
+        {
+            for (int i = 0; i < logEvents.Count; ++i)
+            {
+                WriteAsyncThreadSafe(logEvents[i]);
             }
         }
 
