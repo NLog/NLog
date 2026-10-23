@@ -117,12 +117,23 @@ namespace NLog.Targets.Wrappers
             base.InitializeTarget();
         }
 
+        /// <inheritdoc/>
+        protected sealed override void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
+        {
+            Write(logEvents);
+        }
+
+        /// <inheritdoc/>
+        protected sealed override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+        {
+            Write(logEvent);
+        }
+
         /// <summary>
         /// Checks the condition against the passed log event.
         /// If the condition is met, the log event is forwarded to
         /// the wrapped target.
         /// </summary>
-        /// <param name="logEvent">Log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             if (ShouldLogEvent(logEvent, Filter))
