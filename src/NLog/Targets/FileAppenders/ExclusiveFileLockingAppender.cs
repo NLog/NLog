@@ -90,8 +90,7 @@ namespace NLog.Targets.FileAppenders
             _lastFileDeletedCheck = OpenStreamTime;
 
             var fileInfoSize = RefreshFileBirthTimeUtc(true);
-
-            _fileStream = _fileTarget.CreateFileStreamWithRetry(this, fileTarget.BufferSize, initialFileOpen: true);
+            _fileStream = _fileTarget.CreateFileStreamWithRetry(_filePath, fileTarget.BufferSize, initialFileOpen: true);
             _countedFileSize = RefreshCountedFileSize(_fileStream, fileInfoSize);
         }
 
