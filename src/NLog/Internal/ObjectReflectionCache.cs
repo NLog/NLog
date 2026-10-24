@@ -350,6 +350,8 @@ namespace NLog.Internal
 
             public bool IsSimpleValue => _properties.Length == 0 && (_fastLookup is null || _fastLookup.Length == 0);
 
+            public bool IsExpandoObject => _properties.Length == 0 && _fastLookup?.Length == 1 && _fastLookup[0].Name.Length == 0;
+
             public object ObjectValue => _object;
 
             internal ObjectPropertyList(object value, PropertyInfo[] properties, FastPropertyLookup[]? fastLookup)
