@@ -1005,9 +1005,9 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// NLog v4 / v5 had special repair logic when rolling to new file (FileName contains ${date} or ${shortdate}) in combination with legacy static-archive-logic (ArchiveFileName specified)
-        /// NLog v4 / v5 always kept track of previous file-name and file-last-modified, used as fallback for archive-check when rolling to new file.
-        /// NLog v6 is lazy and only activated this 'random' legacy archive-logic when using ArchiveEvery.
+        /// NLog FileTarget supports both dynamic-archive-mode (FileName with ${date} / ${shortdate} and legacy static-archive-mode (ArchiveFileName specified)
+        /// Mixing dynamic-archive-mode with legacy static-archive-mode is not supported, and will give a bad user-experience as files from yesterday are not handled at startup.
+        /// NLog v4/v5 had special repair logic where it kept track of previous file-name / file-modified, used as hint on day-roll. Trying to replicate this repair logic for legacy archive mode.
         /// </summary>
         internal string? ClosePreviousFileWhenArchiveEveryLegacy(LogEventInfo firstLogEvent, out DateTime previousFileClosedLastModified)
         {
@@ -1018,20 +1018,19 @@ namespace NLog.Targets
             }
 
             KeyValuePair<string, OpenFileAppender> openFileExpired = default;
-
             foreach (var openFile in _openFileCache)
             {
                 var fileAppender = openFile.Value.FileAppender;
-                if (fileAppender.NextArchiveTime > firstLogEvent.TimeStamp)
-                    continue;
+                if (fileAppender.NextArchiveTime >= firstLogEvent.TimeStamp)
+                    continue;   // Not using MustArchiveEveryTimePeriod-method to avoid confusion from InternalLogger output
 
                 if (openFileExpired.Key is null || fileAppender.LastWriteTime >= openFileExpired.Value.FileAppender.LastWriteTime)
                 {
-                    openFileExpired = openFile;
+                    openFileExpired = openFile; // Find the most recent used file to match NLog v4/v5 special repair logic
                 }
             }
 
-            if (openFileExpired.Key != null)
+            if (openFileExpired.Key != null && MustArchiveEveryTimePeriod(openFileExpired.Value.FileAppender, firstLogEvent))
             {
                 var previousFullFilePath = openFileExpired.Value.FileAppender.FilePath;
                 previousFileClosedLastModified = openFileExpired.Value.FileAppender.FileLastModified;

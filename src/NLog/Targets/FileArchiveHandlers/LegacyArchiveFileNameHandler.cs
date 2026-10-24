@@ -103,14 +103,9 @@ namespace NLog.Targets.FileArchiveHandlers
             {
                 DateTime previousFileClosedLastModified = default;
                 var previousFilePath = _fileTarget.ArchiveEvery != FileArchivePeriod.None ? _fileTarget.ClosePreviousFileWhenArchiveEveryLegacy(firstLogEvent, out previousFileClosedLastModified) : null;
-                if (previousFilePath != null)
-                {
-                    InternalLogger.Info("{0}: ArchiveEvery fallback using previous file '{1}'", _fileTarget, previousFilePath);
-                    if (ArchiveOldFileWithRetry(archiveFileName, previousFilePath, firstLogEvent, previousFileClosedLastModified))
-                    {
-                        return true;
-                    }
-                }
+                if (previousFilePath != null && ArchiveOldFileWithRetry(archiveFileName, previousFilePath, firstLogEvent, previousFileClosedLastModified))
+                    return true;
+
                 return oldFilesDeleted;
             }
 
