@@ -133,7 +133,7 @@ namespace NLog.Targets.FileAppenders
             var initialFileOpen = _initialFileOpen;
             _initialFileOpen = false;
 
-            using (var fileStream = _fileTarget.CreateFileStreamWithRetry(this, overrideBufferSize, initialFileOpen))
+            using (var fileStream = _fileTarget.CreateFileStreamWithRetry(_filePath, overrideBufferSize, initialFileOpen))
             {
                 fileStream.Write(buffer, offset, count);
 

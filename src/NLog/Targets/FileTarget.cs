@@ -1294,11 +1294,10 @@ namespace NLog.Targets
             return ArrayHelper.Empty<byte>();
         }
 
-        internal Stream CreateFileStreamWithRetry(IFileAppender fileAppender, int bufferSize, bool initialFileOpen)
+        internal Stream CreateFileStreamWithRetry(string filePath, int bufferSize, bool initialFileOpen)
         {
             int currentDelay = 1;
             int retryCount = KeepFileOpen ? 0 : 5;
-            var filePath = fileAppender.FilePath;
 
             for (int i = 0; i <= retryCount; ++i)
             {
