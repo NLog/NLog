@@ -504,7 +504,7 @@ namespace NLog.UnitTests.Targets
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void DateArchive_ArchivePreviousDateFile(bool keepFileOpen)
+        public void UnsupportedMixingOfLegacyStaticArchiveModeWithDynamic(bool keepFileOpen)
         {
             var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid());
             var defaultTimeSource = TimeSource.Current;
@@ -522,14 +522,14 @@ namespace NLog.UnitTests.Targets
 
                 TimeSource.Current = timeSource;
 
-                var day1File = Path.Combine(
-                    tempDir, timeSource.Time.ToString("yyyyMMdd") + ".log");
+                var day1File = Path.Combine(tempDir, timeSource.Time.ToString("yyyyMMdd") + ".log");
 
                 var fileTarget = new FileTarget
                 {
                     FileName = Path.Combine(tempDir, "${date:format=yyyyMMdd}.log"),
                     ArchiveFileName = Path.Combine(tempDir, "archive", "{#}.log"),
                     ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveAboveSize = 5,
                     Layout = "${message}",
                     LineEnding = LineEndingMode.LF,
                     KeepFileOpen = keepFileOpen,
@@ -539,10 +539,17 @@ namespace NLog.UnitTests.Targets
                     c => c.ForLogger().WriteTo(fileTarget));
 
                 // Day 1: NLog creates today's file.
-                logger.Debug("day1");
-
-                LogManager.Flush();
+                logger.Debug("day1_roll");
                 Assert.True(File.Exists(day1File));
+                // Day 1: NLog archives today's file, because of ArchiveAboveSize
+                logger.Debug("day1");
+                Assert.True(File.Exists(day1File));
+
+                var archiveFolder = Path.Combine(tempDir, "archive");
+                Assert.True(Directory.Exists(archiveFolder));
+                var archivedFiles = Directory.GetFiles(archiveFolder);
+                Assert.Single(archivedFiles);
+                AssertFileContents(archivedFiles[0], "day1_roll\n", Encoding.UTF8);
 
                 // Day 2: NLog should archive the previous day's file
                 // when the next message is logged.
@@ -551,15 +558,13 @@ namespace NLog.UnitTests.Targets
                 Assert.NotEqual(day1File, day2File);
 
                 logger.Debug("day2");
-                LogManager.Flush();
 
-                var archiveFolder = Path.Combine(tempDir, "archive");
-                Assert.True(Directory.Exists(archiveFolder));
+                archivedFiles = Directory.GetFiles(archiveFolder).OrderBy(f => f).ToArray();
+                Assert.Equal(2, archivedFiles.Length);
 
-                var archivedFiles = Directory.GetFiles(archiveFolder);
-                Assert.Single(archivedFiles);
-
-                AssertFileContents(archivedFiles[0], "day1\n", Encoding.UTF8);
+                AssertFileContents(archivedFiles[0], "day1_roll\n", Encoding.UTF8);
+                AssertFileContents(archivedFiles[1], "day1\n", Encoding.UTF8);
+                Assert.False(File.Exists(day1File));
                 Assert.True(File.Exists(day2File));
                 AssertFileContents(day2File, "day2\n", Encoding.UTF8);
             }
