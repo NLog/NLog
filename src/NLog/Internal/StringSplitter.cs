@@ -93,16 +93,6 @@ namespace NLog.Internal
                 char c = text[i];
                 if (c == quoteChar)
                 {
-                    if (doubleQuotesEscapes && i + 1 < text.Length && text[i + 1] == quoteChar)
-                    {
-                        if (inQuotedMode || item.Length == 0)
-                        {
-                            item.Append(quoteChar);
-                            skipNext = true;
-                            continue;
-                        }
-                    }
-
                     if (inQuotedMode)
                     {
                         if (i + 1 < text.Length && text[i + 1] != splitChar)
@@ -113,6 +103,16 @@ namespace NLog.Internal
                         }
                         inQuotedMode = false;
                         continue;
+                    }
+
+                    if (doubleQuotesEscapes && i + 1 < text.Length && text[i + 1] == quoteChar)
+                    {
+                        if (item.Length == 0 || inQuotedMode)
+                        {
+                            item.Append(quoteChar);
+                            skipNext = true;
+                            continue;
+                        }
                     }
 
                     if (item.Length == 0)

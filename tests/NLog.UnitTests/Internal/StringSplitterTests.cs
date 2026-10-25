@@ -130,6 +130,23 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"''''", "'''")]
         [InlineData(@"a'b;c", "a'b,c")]
         [InlineData(@"a; 'b;c'", "a, 'b,c'")]
+        [InlineData(@"a;;", "a,,")]
+        [InlineData(@";a", ",a")]
+        [InlineData(@";;a", ",,a")]
+        [InlineData(@"'a';", "a,")]
+        [InlineData(@";'a'", ",a")]
+        [InlineData(@"'a';'b'", "a,b")]
+        [InlineData(@"'a;b';'c;d'", "a;b,c;d")]
+        [InlineData(@"'a''b'", "a,b")]
+        [InlineData(@"'a''''b'", "a,''b'")]
+        [InlineData(@"'a''b;c'", "a,b;c")]
+        [InlineData(@"a'''b;c", "a'''b,c")]
+        [InlineData(@"'''a';b", "''a',b")]
+        [InlineData(@"'a''", "a,'")]
+        [InlineData(@"'a''';b", "a,',b")]
+        [InlineData(@"'a''b';", "a,b,")]
+        [InlineData(@"'a';;", "a,,")]
+        [InlineData(@"'';''", "','")]
         public void SplitStringWithQuotes_selfQuoted(string input, string output)
         {
             AssertSplit(input, ';', SingleQuote, SingleQuote, output);
@@ -206,6 +223,8 @@ namespace NLog.UnitTests.Internal
         [InlineData("'a'a; b", "a,a, b")]
         [InlineData("'a' ; b", "a, , b")]
         [InlineData("' a ' ; b", " a , , b")]
+        [InlineData(@"a\''b;c", @"a''b,c")]
+        [InlineData(@"'a''b';c", @"a,b,c")]
         public void SplitStringWithQuotes_escaped(string input, string output)
         {
             AssertSplit(input, ';', SingleQuote, Backslash, output);
