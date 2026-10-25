@@ -54,22 +54,15 @@ namespace NLog.Internal
         /// </param>
         public static IEnumerable<string> SplitQuoted(this string text, char splitChar, char quoteChar, char escapeChar)
         {
-            if (!string.IsNullOrEmpty(text))
-            {
-                if (splitChar == quoteChar)
-                {
-                    throw new NotSupportedException("Quote character should different from split character");
-                }
+            if (splitChar == quoteChar)
+                throw new NotSupportedException("Quote character should be different from split character");
 
-                if (splitChar == escapeChar)
-                {
-                    throw new NotSupportedException("Escape character should different from split character");
-                }
+            if (splitChar == escapeChar)
+                throw new NotSupportedException("Escape character should be different from split character");
 
-                return SplitQuoted2(text, splitChar, quoteChar, escapeChar);
-            }
-
-            return ArrayHelper.Empty<string>();
+            return string.IsNullOrEmpty(text)
+                ? ArrayHelper.Empty<string>()
+                : EnumerateSplitQuoted(text, splitChar, quoteChar, escapeChar);
         }
 
         /// <summary>
@@ -82,127 +75,91 @@ namespace NLog.Internal
         /// Escape for the <paramref name="quoteChar" />, not escape for the <paramref name="splitChar" />
         /// , use quotes for that.
         /// </param>
-        private static IEnumerable<string> SplitQuoted2(string text, char splitChar, char quoteChar, char escapeChar)
+        private static IEnumerable<string> EnumerateSplitQuoted(string text, char splitChar, char quoteChar, char escapeChar)
         {
-            bool inQuotedMode = false;
-            bool prevEscape = false;
-            bool prevQuote = false;
-            bool doubleQuotesEscapes = escapeChar == quoteChar;  // Special mode
-
             var item = new StringBuilder();
+            bool inQuotedMode = false;
+            bool skipNext = false;
+            bool doubleQuotesEscapes = escapeChar == quoteChar;  // Special mode (Not used by NLog)
 
-            foreach (var c in text)
+            for (int i = 0; i < text.Length; i++)
             {
-                if (c == quoteChar)
+                if (skipNext)
                 {
-                    if (inQuotedMode)
+                    skipNext = false;
+                    continue;
+                }
+
+                char c = text[i];
+                if (c == escapeChar && escapeChar != quoteChar)
+                {
+                    if (i + 1 < text.Length && text[i + 1] == quoteChar)
                     {
-                        if (prevEscape && !doubleQuotesEscapes)
-                        {
-                            item.Append(c); // Escaped quote-char in quoted-mode
-                            prevEscape = false;
-                            prevQuote = false;
-                        }
-                        else if (prevQuote && doubleQuotesEscapes)
-                        {
-                            // Double quote, means escaped quote, quoted-mode not real
-                            item.Append(c);
-                            inQuotedMode = false;
-                            prevEscape = false;
-                            prevQuote = false;
-                        }
-                        else if (item.Length > 0)
-                        {
-                            // quoted-mode ended with something to yield
-                            inQuotedMode = false;
+                        item.Append(quoteChar);
+                        skipNext = true;
+                    }
+                    else if (!inQuotedMode || i + 1 >= text.Length)
+                    {
+                        // Escape-chars are kept when not in quoted-mode (or nothing to escape)
+                        item.Append(escapeChar);
+                    }
+                    else if (i + 1 < text.Length && text[i + 1] == escapeChar)
+                    {
+                        // Escape-chars can escape themselves in quoted-mode
+                        item.Append(escapeChar);
+                        skipNext = true;
+                    }
+                }
+                else if (c == quoteChar && doubleQuotesEscapes && i + 1 < text.Length && text[i + 1] == quoteChar)
+                {
+                    if (inQuotedMode || item.Length == 0)
+                    {
+                        skipNext = true;
+                    }
+                    item.Append(quoteChar);
+                }
+                else if (c == quoteChar && inQuotedMode)
+                {
+                    if (i + 1 < text.Length && text[i + 1] != splitChar)
+                    {
+                        // Special legacy behavior of yielding multiple items, when dangling characters after closing quote
+                        if (item.Length > 0)
                             yield return item.ToString();
-                            item.Length = 0;    // Start new item
-                            prevEscape = false;
-                            prevQuote = true;   // signal that item is empty, because it has just been yielded after quoted-mode
-                        }
-                        else
-                        {
-                            // quoted-mode ended without anything to yield
-                            inQuotedMode = false;
-                            prevEscape = false;
-                            prevQuote = false;
-                        }
+                        item.ClearBuilder();
                     }
-                    else
-                    {
-                        if (item.Length != 0 || prevEscape)
-                        {
-                            // Quoted-mode can only be activated initially
-                            item.Append(c);
-                            prevEscape = false;
-                            prevQuote = false;
-                        }
-                        else
-                        {
-                            // Quoted-mode is now activated
-                            prevEscape = c == escapeChar;
-                            prevQuote = true;
-                            inQuotedMode = true;
-                        }
-                    }
+                    inQuotedMode = false;
                 }
-                else if (c == escapeChar)
+                else if (c == quoteChar && item.Length == 0)
                 {
-                    if (prevEscape)
-                        item.Append(escapeChar);     // Escape-chars are only stripped in quoted-mode when placed before quote
-
-                    prevEscape = true;
-                    prevQuote = false;
+                    // Quoted-mode can only be activated initially
+                    inQuotedMode = true;
                 }
-                else if (inQuotedMode)
+                else if (c == splitChar && !inQuotedMode)
                 {
-                    item.Append(c);
-                    prevEscape = false;
-                    prevQuote = false;
-                }
-                else if (c == splitChar)
-                {
-                    if (prevEscape)
-                        item.Append(escapeChar);    // Escape-chars are only stripped in quoted-mode when placed before quote
-
-                    if (item.Length > 0 || !prevQuote)
-                    {
-                        yield return item.ToString();
-                        item.Length = 0;   // Start new item
-                    }
-
-                    prevEscape = false;
-                    prevQuote = false;
+                    yield return item.ToString();
+                    item.ClearBuilder();
                 }
                 else
                 {
-                    if (prevEscape)
-                        item.Append(escapeChar);    // Escape-chars are only stripped in quoted-mode when placed before quote
-
                     item.Append(c);
-                    prevEscape = false;
-                    prevQuote = false;
                 }
             }
 
-            if (prevEscape && !doubleQuotesEscapes)
-                item.Append(escapeChar);   // incomplete escape-sequence, means escape should be included
-
             if (inQuotedMode)
             {
-                // incomplete quoted-mode, means quotes should be included
-                if (prevQuote)
+                if (item.Length > 0 && item[item.Length - 1] == quoteChar)
                 {
-                    item.Append(quoteChar);
+                    // incomplete quoted-mode, where ending quote was escaped, so replace with escape-char
+                    item[item.Length - 1] = escapeChar;
                 }
                 else
                 {
+                    // incomplete quoted-mode, means starting quotes should be included
                     item.Insert(0, quoteChar);
                 }
             }
 
-            if (item.Length > 0 || !prevQuote)
-                yield return item.ToString();
+            yield return item.ToString();
         }
     }
 }
