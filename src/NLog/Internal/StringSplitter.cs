@@ -120,11 +120,10 @@ namespace NLog.Internal
                 }
                 else if (c == quoteChar && inQuotedMode)
                 {
-                    if (i + 1 < text.Length && text[i + 1] != splitChar)
+                    if (item.Length > 0 && i + 1 < text.Length && text[i + 1] != splitChar)
                     {
                         // Special legacy behavior of yielding multiple items, when dangling characters after closing quote
-                        if (item.Length > 0)
-                            yield return item.ToString();
+                        yield return item.ToString();
                         item.ClearBuilder();
                     }
                     inQuotedMode = false;
