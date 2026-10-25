@@ -147,7 +147,7 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"'a''b';", "a'b,")]        // Bug fix as before expected = a,b, (Split into 3 parts)
         [InlineData(@"'a';;", "a,,")]
         [InlineData(@"'';''", "','")]
-        [InlineData(@"a'b''c'", "a'b''c'")] 
+        [InlineData(@"a'b''c'", "a'b''c'")]
         [InlineData(@"'ab''cd';e", "ab'cd,e")]  // Bug fix as before expected = ab,cd,e (Split into 3 parts)
         public void SplitStringWithQuotes_selfQuoted(string input, string output)
         {
@@ -227,6 +227,8 @@ namespace NLog.UnitTests.Internal
         [InlineData("' a ' ; b", " a , , b")]
         [InlineData(@"a\''b;c", @"a''b,c")]
         [InlineData(@"'a''b';c", @"a,b,c")]
+        [InlineData(@"''a", "a")]
+        [InlineData(@"''a;b", "a,b")]
         public void SplitStringWithQuotes_escaped(string input, string output)
         {
             AssertSplit(input, ';', SingleQuote, Backslash, output);

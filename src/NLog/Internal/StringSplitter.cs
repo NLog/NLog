@@ -108,7 +108,8 @@ namespace NLog.Internal
                         if (i + 1 < text.Length && text[i + 1] != splitChar)
                         {
                             // Special legacy behavior of yielding multiple items, when dangling characters after closing quote
-                            yield return item.ToString();
+                            if (item.Length > 0)
+                                yield return item.ToString();
                             item.ClearBuilder();
                         }
                         inQuotedMode = false;
