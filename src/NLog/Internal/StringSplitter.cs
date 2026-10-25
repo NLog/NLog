@@ -91,43 +91,7 @@ namespace NLog.Internal
                 }
 
                 char c = text[i];
-                if (c == quoteChar)
-                {
-                    if (doubleQuotesEscapes && i + 1 < text.Length && text[i + 1] == quoteChar)
-                    {
-                        if (inQuotedMode || item.Length == 0)
-                        {
-                            item.Append(quoteChar);
-                            skipNext = true;
-                            continue;
-                        }
-                    }
-
-                    if (inQuotedMode)
-                    {
-                        if (i + 1 < text.Length && text[i + 1] != splitChar)
-                        {
-                            // Special legacy behavior of yielding multiple items, when dangling characters after closing quote
-                            if (item.Length > 0)
-                                yield return item.ToString();
-                            item.ClearBuilder();
-                        }
-                        inQuotedMode = false;
-                        continue;
-                    }
-
-                    if (item.Length == 0)
-                    {
-                        // Quoted-mode can only be activated initially
-                        inQuotedMode = true;
-                        continue;
-                    }
-
-                    item.Append(c);
-                    continue;
-                }
-
-                if (c == escapeChar)
+                if (c == escapeChar && escapeChar != quoteChar)
                 {
                     if (i + 1 < text.Length && text[i + 1] == quoteChar)
                     {
@@ -137,7 +101,7 @@ namespace NLog.Internal
                     else if (!inQuotedMode || i + 1 >= text.Length)
                     {
                         // Escape-chars are kept when not in quoted-mode (or nothing to escape)
-                        item.Append(c);
+                        item.Append(escapeChar);
                     }
                     else if (i + 1 < text.Length && text[i + 1] == escapeChar)
                     {
@@ -145,10 +109,32 @@ namespace NLog.Internal
                         item.Append(escapeChar);
                         skipNext = true;
                     }
-                    continue;
                 }
-
-                if (c == splitChar && !inQuotedMode)
+                else if (c == quoteChar && doubleQuotesEscapes && i + 1 < text.Length && text[i + 1] == quoteChar)
+                {
+                    if (inQuotedMode || item.Length == 0)
+                    {
+                        skipNext = true;
+                    }
+                    item.Append(quoteChar);
+                }
+                else if (c == quoteChar && inQuotedMode)
+                {
+                    if (i + 1 < text.Length && text[i + 1] != splitChar)
+                    {
+                        // Special legacy behavior of yielding multiple items, when dangling characters after closing quote
+                        if (item.Length > 0)
+                            yield return item.ToString();
+                        item.ClearBuilder();
+                    }
+                    inQuotedMode = false;
+                }
+                else if (c == quoteChar && item.Length == 0)
+                {
+                    // Quoted-mode can only be activated initially
+                    inQuotedMode = true;
+                }
+                else if (c == splitChar && !inQuotedMode)
                 {
                     yield return item.ToString();
                     item.ClearBuilder();
