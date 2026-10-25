@@ -137,16 +137,18 @@ namespace NLog.UnitTests.Internal
         [InlineData(@";'a'", ",a")]
         [InlineData(@"'a';'b'", "a,b")]
         [InlineData(@"'a;b';'c;d'", "a;b,c;d")]
-        [InlineData(@"'a''b'", "a,b")]
-        [InlineData(@"'a''''b'", "a,''b'")]
-        [InlineData(@"'a''b;c'", "a,b;c")]
+        [InlineData(@"'a''b'", "a'b")]          // Bug fix as before expected = a,b (Split into 2 parts)
+        [InlineData(@"'a''''b'", "a''b")]       // Bug fix as before expected = a,''b' (Split into 2 parts)
+        [InlineData(@"'a''b;c'", "a'b;c")]      // Bug fix as before expected = a,b;c (Split into 2 parts)
         [InlineData(@"a'''b;c", "a'''b,c")]
         [InlineData(@"'''a';b", "''a',b")]
-        [InlineData(@"'a''", "a,'")]
-        [InlineData(@"'a''';b", "a,',b")]
-        [InlineData(@"'a''b';", "a,b,")]
+        [InlineData(@"'a''", "a'")]            // Todo How to handle ending with double quotes? (Old expected 2 parts = a,')
+        [InlineData(@"'a''';b", "a',b")]        // Bug fix as before expected = a,',b (Split into 3 parts)
+        [InlineData(@"'a''b';", "a'b,")]        // Bug fix as before expected = a,b, (Split into 3 parts)
         [InlineData(@"'a';;", "a,,")]
         [InlineData(@"'';''", "','")]
+        [InlineData(@"a'b''c'", "a'b''c'")] 
+        [InlineData(@"'ab''cd';e", "ab'cd,e")]  // Bug fix as before expected = ab,cd,e (Split into 3 parts)
         public void SplitStringWithQuotes_selfQuoted(string input, string output)
         {
             AssertSplit(input, ';', SingleQuote, SingleQuote, output);
