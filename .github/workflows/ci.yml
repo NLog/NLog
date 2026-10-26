@@ -23,11 +23,23 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            name: Build & test (Windows)
-            framework_args:
+            name: Build & test (.NET 3.5, Windows)
+            framework_args: -p:targetFrameworks=net35
+          - os: windows-latest
+            name: Build & test (.NET 4.5, Windows)
+            framework_args: -p:targetFrameworks=net45
+          - os: windows-latest
+            name: Build & test (.NET 4.6, Windows)
+            framework_args: -p:targetFrameworks=net46
+          - os: windows-latest
+            name: Build & test (.NET Standard 2.0, Windows)
+            framework_args: -p:targetFrameworks=netstandard2.0
+          - os: windows-latest
+            name: Build & test (.NET Standard 2.1, Windows)
+            framework_args: -p:targetFrameworks=netstandard2.1
           - os: ubuntu-latest
-            name: Build & test (Ubuntu)
-            framework_args: -p:TargetFrameworks=net8.0
+            name: Build & test (.NET Standard 2.0, Ubuntu)
+            framework_args: -p:TargetFrameworksnetstandard2.0
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
