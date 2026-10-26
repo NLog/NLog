@@ -592,7 +592,7 @@ namespace NLog.Targets
                 if (TaskTimeoutSeconds > 0 && !cancellationToken.IsCancellationRequested)
                 {
                     // Reset the timeout window for the next retry attempt, including its retry delay.
-                    _taskTimeoutTimer.Change(TaskTimeoutSeconds * 1000, Timeout.Infinite);
+                    _taskTimeoutTimer.Change(TaskTimeoutSeconds * 1000L, Timeout.Infinite);
                 }
 
                 return Task.Delay(retryDelay, cancellationToken).ContinueWith(delayTask =>
@@ -669,7 +669,7 @@ namespace NLog.Targets
 
                 if (TaskTimeoutSeconds > 0)
                 {
-                    _taskTimeoutTimer.Change(TaskTimeoutSeconds * 1000, Timeout.Infinite);
+                    _taskTimeoutTimer.Change(TaskTimeoutSeconds * 1000L, Timeout.Infinite);
                 }
 
                 // NOTE - Not using _cancelTokenSource for ContinueWith, or else they will also be cancelled on timeout
@@ -816,7 +816,7 @@ namespace NLog.Targets
             {
                 if (retryOnFailureDelay > TimeSpan.Zero)
                 {
-                    _lazyWriterTimer.Change((int)retryOnFailureDelay.TotalMilliseconds, Timeout.Infinite);
+                    _lazyWriterTimer.Change((long)retryOnFailureDelay.TotalMilliseconds, Timeout.Infinite);
                 }
                 else
                 {
