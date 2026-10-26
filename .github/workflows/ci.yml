@@ -17,30 +17,33 @@ env:
 
 jobs:
   build:
-    name: ${{ matrix.name }}
+    name: Build solution
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build
+        run: dotnet build ${{ env.SOLUTION }} --configuration Release
+
+  test:
+    name: Test (${{ matrix.framework }}, ${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
         include:
           - os: windows-latest
-            name: Build & test (.NET 3.5, Windows)
-            test_args: -p:targetFrameworks=net35
+            framework: net462
           - os: windows-latest
-            name: Build & test (.NET 4.5, Windows)
-            test_args: -p:targetFrameworks=net45
-          - os: windows-latest
-            name: Build & test (.NET 4.6, Windows)
-            test_args: -p:targetFrameworks=net46
-          - os: windows-latest
-            name: Build & test (.NET Standard 2.0, Windows)
-            test_args: -p:targetFrameworks=netstandard2.0
-          - os: windows-latest
-            name: Build & test (.NET Standard 2.1, Windows)
-            test_args: -p:targetFrameworks=netstandard2.1
-            trim_publish: true
+            framework: net8.0
           - os: ubuntu-latest
-            name: Build & test (.NET Standard 2.0, Ubuntu)
-            test_args: -p:TargetFrameworks=netstandard2.0
+            framework: net8.0
+          - os: windows-latest
+            framework: net10.0
+          - os: ubuntu-latest
+            framework: net10.0
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -48,14 +51,19 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Restore & Build
-        run: dotnet build ${{ env.SOLUTION }} --configuration Release
-
       - name: Test
-        run: dotnet test ${{ env.SOLUTION }} --configuration Release --no-restore --no-build ${{ matrix.test_args }} --logger "console;verbosity=normal"
+        run: dotnet test ${{ env.SOLUTION }} --configuration Release -p:TargetFrameworks=${{ matrix.framework }} --logger "console;verbosity=normal"
+
+  trim-publish:
+    name: Build trim publish test project
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
 
       - name: Build trim publish test project
-        if: matrix.trim_publish
         run: dotnet build tests/TestTrimPublish/TestTrimPublish.csproj --configuration Release -p:TargetFramework=net10.0
 
   pack:
@@ -103,7 +111,7 @@ jobs:
 
   publish:
     name: Publish NuGet package
-    needs: [build, pack]
+    needs: [build, test, pack, trim-publish]
     if: >-
       (github.event_name == 'push' && github.ref == 'refs/heads/master') ||
       (github.event_name == 'workflow_dispatch' && inputs.force_nuget_publish)
