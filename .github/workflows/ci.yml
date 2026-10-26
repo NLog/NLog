@@ -37,9 +37,10 @@ jobs:
           - os: windows-latest
             name: Build & test (.NET Standard 2.1, Windows)
             framework_args: -p:targetFrameworks=netstandard2.1
+            trim_publish: true
           - os: ubuntu-latest
             name: Build & test (.NET Standard 2.0, Ubuntu)
-            framework_args: -p:TargetFrameworksnetstandard2.0
+            framework_args: -p:TargetFrameworks=netstandard2.0
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -52,6 +53,10 @@ jobs:
 
       - name: Test
         run: dotnet test ${{ env.SOLUTION }} --configuration Release --no-restore --no-build ${{ matrix.framework_args }} --logger "console;verbosity=normal"
+
+      - name: Build trim publish test project
+        if: matrix.trim_publish
+        run: dotnet build tests/TestTrimPublish/TestTrimPublish.csproj --configuration Release -p:TargetFramework=net10.0
 
   pack:
     name: Create NuGet package
