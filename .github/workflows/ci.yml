@@ -36,19 +36,24 @@ jobs:
         include:
           - os: windows-latest
             framework: net462
-            test_args: ""
+            lang_version: ""
+            no_warn: ""
           - os: windows-latest
             framework: net8.0
-            test_args: -p:LangVersion=12.0 -p:NoWarn=CS8765%3BCS8619%3BCS8604%3BCS8603%3BCS8601
+            lang_version: "12.0"
+            no_warn: CS8765,CS8619,CS8604,CS8603,CS8601
           - os: ubuntu-latest
             framework: net8.0
-            test_args: -p:LangVersion=12.0 -p:NoWarn=CS8765%3BCS8619%3BCS8604%3BCS8603%3BCS8601
+            lang_version: "12.0"
+            no_warn: CS8765,CS8619,CS8604,CS8603,CS8601
           - os: windows-latest
             framework: net10.0
-            test_args: -p:NoWarn=CS8765%3BCS8619%3BCS8604%3BCS8603%3BCS8601
+            lang_version: ""
+            no_warn: CS8765,CS8619,CS8604,CS8603,CS8601
           - os: ubuntu-latest
             framework: net10.0
-            test_args: -p:NoWarn=CS8765%3BCS8619%3BCS8604%3BCS8603%3BCS8601
+            lang_version: ""
+            no_warn: CS8765,CS8619,CS8604,CS8603,CS8601
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -57,7 +62,31 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Test
-        run: dotnet test ${{ env.SOLUTION }} --configuration Release -p:TargetFrameworks=${{ matrix.framework }} ${{ matrix.test_args }} --logger "console;verbosity=normal"
+        shell: pwsh
+        env:
+          TEST_FRAMEWORK: ${{ matrix.framework }}
+          LANG_VERSION: ${{ matrix.lang_version }}
+          NO_WARN: ${{ matrix.no_warn }}
+        run: |
+          function ConvertTo-MSBuildList($value) {
+            ($value -split ',') -join '%3B'
+          }
+
+          $testArguments = @(
+            '--configuration', 'Release',
+            "-p:TargetFrameworks=$env:TEST_FRAMEWORK",
+            '--logger', 'console;verbosity=normal'
+          )
+
+          if ($env:LANG_VERSION) {
+            $testArguments += "-p:LangVersion=$env:LANG_VERSION"
+          }
+
+          if ($env:NO_WARN) {
+            $testArguments += "-p:NoWarn=$(ConvertTo-MSBuildList $env:NO_WARN)"
+          }
+
+          dotnet test $env:SOLUTION @testArguments
 
   trim-publish:
     name: Build trim publish test project
