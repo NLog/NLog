@@ -36,14 +36,19 @@ jobs:
         include:
           - os: windows-latest
             framework: net462
+            test_args: ""
           - os: windows-latest
             framework: net8.0
+            test_args: -p:LangVersion=12.0
           - os: ubuntu-latest
             framework: net8.0
+            test_args: -p:LangVersion=12.0
           - os: windows-latest
             framework: net10.0
+            test_args: -p:NoWarn=CS8765
           - os: ubuntu-latest
             framework: net10.0
+            test_args: -p:NoWarn=CS8765
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -52,7 +57,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Test
-        run: dotnet test ${{ env.SOLUTION }} --configuration Release -p:TargetFrameworks=${{ matrix.framework }} --logger "console;verbosity=normal"
+        run: dotnet test ${{ env.SOLUTION }} --configuration Release -p:TargetFrameworks=${{ matrix.framework }} ${{ matrix.test_args }} --logger "console;verbosity=normal"
 
   trim-publish:
     name: Build trim publish test project
