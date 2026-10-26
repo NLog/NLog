@@ -468,7 +468,7 @@ namespace NLog.Targets
         /// </summary>
         private FileLifecycleHooks? FileLifeCycle { get; }
 
-        private int OpenFileMonitorTimerInterval
+        private int OpenFileMonitorIntervalSeconds
         {
             get
             {
@@ -588,7 +588,7 @@ namespace NLog.Targets
                 StringFormat_ArchiveSuffixFormat(int.MaxValue, DateTime.MaxValue, true);
             }
 
-            if (OpenFileMonitorTimerInterval > 0)
+            if (OpenFileMonitorIntervalSeconds > 0)
             {
                 // Prepare Timer for periodic checking of flushing/closing open files (inactive until first file is opened)
                 _openFileMonitorTimer = new Timer(OpenFileMonitorTimer);
@@ -732,7 +732,7 @@ namespace NLog.Targets
 
         private int WriteToMemoryStream(IList<AsyncLogEventInfo> logEvents, int startIndex, MemoryStream ms)
         {
-            long maxBufferSize = BufferSize * 100;   // Max Buffer Default = 30 KiloByte * 100 = 3 MegaByte
+            long maxBufferSize = BufferSize * 100L;   // Max Buffer Default = 30 KiloByte * 100 = 3 MegaByte
 
             using (var targetStream = _reusableFileWriteStream.Allocate())
             using (var targetBuilder = ReusableLayoutBuilder.Allocate())
@@ -958,7 +958,7 @@ namespace NLog.Targets
 
             if (_openFileCache.Count == 1)
             {
-                _openFileMonitorTimer?.Change(OpenFileMonitorTimerInterval * 1000, Timeout.Infinite);
+                _openFileMonitorTimer?.Change(OpenFileMonitorIntervalSeconds * 1000L, Timeout.Infinite);
             }
 
             return openFile;
@@ -1167,13 +1167,13 @@ namespace NLog.Targets
             finally
             {
                 if (startTimer)
-                    _openFileMonitorTimer?.Change(OpenFileMonitorTimerInterval * 1000, Timeout.Infinite);
+                    _openFileMonitorTimer?.Change(OpenFileMonitorIntervalSeconds * 1000L, Timeout.Infinite);
             }
         }
 
         private void PruneOpenFileCacheUsingTimeout()
         {
-            DateTime closeTime = Time.TimeSource.Current.Time.AddSeconds(-OpenFileCacheTimeout).AddSeconds(OpenFileCacheTimeout > OpenFileMonitorTimerInterval ? -OpenFileMonitorTimerInterval : 0);
+            DateTime closeTime = Time.TimeSource.Current.Time.AddSeconds(-OpenFileCacheTimeout).AddSeconds(OpenFileCacheTimeout > OpenFileMonitorIntervalSeconds ? -OpenFileMonitorIntervalSeconds : 0);
             bool unusedFileMustBeClosed = false;
 
             foreach (var openFile in _openFileCache)
