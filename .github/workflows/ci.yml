@@ -24,23 +24,23 @@ jobs:
         include:
           - os: windows-latest
             name: Build & test (.NET 3.5, Windows)
-            framework_args: -p:targetFrameworks=net35
+            test_args: -p:targetFrameworks=net35
           - os: windows-latest
             name: Build & test (.NET 4.5, Windows)
-            framework_args: -p:targetFrameworks=net45
+            test_args: -p:targetFrameworks=net45
           - os: windows-latest
             name: Build & test (.NET 4.6, Windows)
-            framework_args: -p:targetFrameworks=net46
+            test_args: -p:targetFrameworks=net46
           - os: windows-latest
             name: Build & test (.NET Standard 2.0, Windows)
-            framework_args: -p:targetFrameworks=netstandard2.0
+            test_args: -p:targetFrameworks=netstandard2.0
           - os: windows-latest
             name: Build & test (.NET Standard 2.1, Windows)
-            framework_args: -p:targetFrameworks=netstandard2.1
+            test_args: -p:targetFrameworks=netstandard2.1
             trim_publish: true
           - os: ubuntu-latest
             name: Build & test (.NET Standard 2.0, Ubuntu)
-            framework_args: -p:TargetFrameworks=netstandard2.0
+            test_args: -p:TargetFrameworks=netstandard2.0
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -49,10 +49,10 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Restore & Build
-        run: dotnet build ${{ env.SOLUTION }} --configuration Release ${{ matrix.framework_args }}
+        run: dotnet build ${{ env.SOLUTION }} --configuration Release
 
       - name: Test
-        run: dotnet test ${{ env.SOLUTION }} --configuration Release --no-restore --no-build ${{ matrix.framework_args }} --logger "console;verbosity=normal"
+        run: dotnet test ${{ env.SOLUTION }} --configuration Release --no-restore --no-build ${{ matrix.test_args }} --logger "console;verbosity=normal"
 
       - name: Build trim publish test project
         if: matrix.trim_publish
