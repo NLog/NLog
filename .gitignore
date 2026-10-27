@@ -36,4 +36,6 @@ build/
 .vs
 .cr
 /artifacts
+/src/*/N.png
+/tools/nuget.exe
 /.github/copilot-instructions.md
