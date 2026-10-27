@@ -83,7 +83,6 @@ jobs:
         env:
           TEST_PROJECT: ${{ matrix.project }}
           TEST_FRAMEWORK: ${{ matrix.framework }}
-          LANG_VERSION: ${{ matrix.framework == 'net8.0' && '12.0' || '' }}
           NO_WARN: ${{ matrix.framework != 'net462' && 'CS8765,CS8619,CS8604,CS8603,CS8601' || '' }}
         run: |
           function ConvertTo-MSBuildList($value) {
@@ -95,10 +94,6 @@ jobs:
             '--framework', $env:TEST_FRAMEWORK,
             '--logger', 'console;verbosity=normal'
           )
-
-          if ($env:LANG_VERSION) {
-            $testArguments += "-p:LangVersion=$env:LANG_VERSION"
-          }
 
           if ($env:NO_WARN) {
             $testArguments += "-p:NoWarn=$(ConvertTo-MSBuildList $env:NO_WARN)"
