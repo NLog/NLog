@@ -79,16 +79,16 @@ namespace NLog.Targets
                 _searchText = Text;
             }
 
-            var matches = _regexHelper.Matches(haystack);
-            if (matches is null || matches.Count == 0)
+            var match = _regexHelper.Match(haystack);
+            if (match is null || !match.Success)
                 return null;
 
-            return YieldWordsForHighlighting(matches);
+            return YieldWordsForHighlighting(match);
         }
 
-        private static IEnumerable<KeyValuePair<int, int>> YieldWordsForHighlighting(System.Text.RegularExpressions.MatchCollection matches)
+        private static IEnumerable<KeyValuePair<int, int>> YieldWordsForHighlighting(System.Text.RegularExpressions.Match match)
         {
-            foreach (System.Text.RegularExpressions.Match match in matches)
+            for (; match.Success; match = match.NextMatch())
                 yield return new KeyValuePair<int, int>(match.Index, match.Length);
         }
     }

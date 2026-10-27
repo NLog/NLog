@@ -60,7 +60,7 @@ namespace NLog.RegEx.Internal
             get => _regexPattern;
             set
             {
-                _regexPattern = value;
+                _regexPattern = string.IsNullOrEmpty(value) ? null : value;
                 _searchText = null;
                 ResetRegex();
             }
@@ -155,19 +155,19 @@ namespace NLog.RegEx.Internal
             }
             else
             {
-                return _regexPattern != null ? Regex.Replace(input, _regexPattern, replacement, GetRegexOptions()) : input;
+                return _regexPattern is null ? input : Regex.Replace(input, _regexPattern, replacement, GetRegexOptions());
             }
         }
 
-        public MatchCollection? Matches(string input)
+        public Match? Match(string input)
         {
             if (CompileRegex)
             {
-                return Regex?.Matches(input);
+                return Regex?.Match(input);
             }
             else
             {
-                return _regexPattern != null ? Regex.Matches(input, _regexPattern, GetRegexOptions()) : null;
+                return _regexPattern is null ? null : Regex.Match(input, _regexPattern, GetRegexOptions());
             }
         }
     }
