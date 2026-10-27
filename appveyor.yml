@@ -1,0 +1,67 @@
+version: 6.0.0-{build} # Only change for mayor versions (e.g. 7.0)
+image:
+  - Visual Studio 2026
+  - Ubuntu2204
+configuration: Release
+build: false
+test: false
+skip_tags: true
+skip_branch_with_pr: true
+
+nuget:
+  disable_publish_on_pr: true
+
+matrix:
+  fast_finish: true
+
+for:
+  -
+    matrix:
+      only:
+        - image: Visual Studio 2026
+    environment:
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_NOLOGO: true
+      github_auth_token:
+        secure: WYvd/k1xGCsDS+4iOhjzxA5/e36RjkxnuVOHpBR+eDtZNNjpYydCyNfd1COME9jI
+      sonar_token:
+        secure: OUI/jCbBF75TwKMPT+IfewdgwCgx9nQkRg3cYOEQNJeX5J2++oWS3dmpwO51XduP
+    build_script:
+    - ps: ./build.ps1
+    test_script:
+    - msbuild /t:rebuild .\tools\CheckSourceCode\src\ /p:Configuration=Release /verbosity:minimal
+    - tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
+    - ps: if (./Test-XmlFile.ps1) { Write-Output "Valid XSD" } else { exit 400 }
+    - ps: ./run-tests.ps1
+    deploy:
+    - provider: NuGet
+      api_key:
+        secure: mRvJYZWVnHgtsNn4w2elMG1PdpotS8F6K0MuRV4BKZkrYuW5W6d5N9W5fz5VZUkR
+      on:
+        branch: master
+    - provider: NuGet
+      api_key:
+        secure: mRvJYZWVnHgtsNn4w2elMG1PdpotS8F6K0MuRV4BKZkrYuW5W6d5N9W5fz5VZUkR
+      on:
+        branch: dev
+    artifacts:
+    - path: 'artifacts\*.nupkg'
+      type: NuGetPackage
+    - path: 'artifacts\*.snupkg'
+      type: NuGetPackage
+
+  -
+    matrix:
+      only:
+        - image: Ubuntu2204
+    environment:
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_NOLOGO: true
+      MSBUILDTERMINALLOGGER: off
+      FrameworkPathOverride: /usr/lib/mono/4.6.1-api/
+    build_script:
+    - ps: dotnet --version
+    test_script:
+    - ps: ./run-tests.ps1
