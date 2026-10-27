@@ -52,6 +52,12 @@ jobs:
       - name: Run XSD check
         shell: pwsh
         run: |
+          $excludedTests = @('Database', 'Chainsaw', 'NLogViewer')
+          $configFiles = @(Get-ChildItem -Path './examples/targets/Configuration File' -Directory -Exclude $excludedTests | Get-ChildItem -Recurse -File -Filter NLog.config)
+          if ($configFiles.Count -eq 0) {
+            throw 'No example NLog.config files were found for XSD validation.'
+          }
+
           if (-not (./Test-XmlFile.ps1)) {
             throw "Example configuration XSD check failed."
           }
@@ -92,7 +98,9 @@ jobs:
           $testArguments = @(
             '--configuration', 'Release',
             '--framework', $env:TEST_FRAMEWORK,
-            '--logger', 'console;verbosity=normal'
+            '--logger', 'console;verbosity=normal',
+            '--logger', 'trx;LogFileName=test-results.trx',
+            '--results-directory', $env:RUNNER_TEMP
           )
 
           if ($env:NO_WARN) {
@@ -100,18 +108,105 @@ jobs:
           }
 
           dotnet test $env:TEST_PROJECT @testArguments
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
+          $testResultsPath = Join-Path $env:RUNNER_TEMP 'test-results.trx'
+          if (-not (Test-Path $testResultsPath)) {
+            throw "Test results were not produced for $env:TEST_PROJECT ($env:TEST_FRAMEWORK)."
+          }
+
+          [xml] $testResults = Get-Content -Raw $testResultsPath
+          if ([int] $testResults.TestRun.ResultSummary.Counters.total -eq 0) {
+            throw "No tests were discovered for $env:TEST_PROJECT ($env:TEST_FRAMEWORK)."
+          }
 
   trim-publish:
-    name: Build trim publish test project
-    runs-on: ubuntu-latest
+    name: Publish and run trim test
+    runs-on: windows-latest
     permissions:
       contents: read
 
     steps:
       - uses: actions/checkout@v7
 
-      - name: Build trim publish test project
-        run: dotnet build tests/TestTrimPublish/TestTrimPublish.csproj --configuration Release -p:TargetFramework=net10.0
+      - name: Publish trim test project
+        run: dotnet publish tests/TestTrimPublish/TestTrimPublish.csproj --configuration Release --framework net10.0
+
+      - name: Run trim test project
+        run: .\tests\TestTrimPublish\bin\Release\net10.0\win-x64\publish\TestTrimPublish.exe
+
+  legacy-framework-tests:
+    name: Unit tests (${{ matrix.framework }})
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [net35, net45]
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Restore UnitTests
+        run: dotnet restore tests/NLog.UnitTests/NLog.UnitTests.csproj
+
+      - name: Build NLog
+        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework ${{ matrix.framework }}
+
+      - name: Build UnitTests for legacy framework
+        run: dotnet msbuild /t:Build /p:TargetFramework=net462 /p:Configuration=Release /p:DebugType=Full /p:TestTargetFramework=${{ matrix.framework }} tests/NLog.UnitTests/NLog.UnitTests.csproj
+
+      - name: Run UnitTests
+        shell: pwsh
+        run: |
+          dotnet vstest tests/NLog.UnitTests/bin/Release/${{ matrix.framework }}/NLog.UnitTests.dll --logger "trx;LogFileName=legacy-test-results.trx" --ResultsDirectory $env:RUNNER_TEMP
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
+          $testResultsPath = Join-Path $env:RUNNER_TEMP 'legacy-test-results.trx'
+          if (-not (Test-Path $testResultsPath)) {
+            throw 'Legacy UnitTests did not produce test results.'
+          }
+
+          [xml] $testResults = Get-Content -Raw $testResultsPath
+          if ([int] $testResults.TestRun.ResultSummary.Counters.total -eq 0) {
+            throw 'No legacy UnitTests were discovered.'
+          }
+
+  atomic-file-netstandard:
+    name: AtomicFile tests (netstandard2.0)
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Test AtomicFile against netstandard2.0
+        shell: pwsh
+        run: |
+          dotnet test tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj --configuration Release -p:TestTargetFramework=netstandard2.0 --logger 'trx;LogFileName=atomic-tests.trx' --results-directory $env:RUNNER_TEMP
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
+          $testResults = Get-ChildItem -Path $env:RUNNER_TEMP -Filter 'atomic-tests*.trx'
+          if (-not $testResults) {
+            throw 'AtomicFile tests did not produce test results.'
+          }
+
+          $totalTests = 0
+          foreach ($testResult in $testResults) {
+            [xml] $results = Get-Content -Raw $testResult.FullName
+            $totalTests += [int] $results.TestRun.ResultSummary.Counters.total
+          }
+          if ($totalTests -eq 0) {
+            throw 'No AtomicFile tests were discovered.'
+          }
 
   pack:
     name: Create NuGet package
@@ -147,6 +242,29 @@ jobs:
           VERSION_SUFFIX: ${{ steps.version.outputs.suffix }}
         run: dotnet pack ${{ env.SOLUTION }} --no-restore --configuration Release --output artifacts -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:EmbedUntrackedSources=true -p:ContinuousIntegrationBuild=true --version-suffix "$env:VERSION_SUFFIX"
 
+      - name: Download NuGet CLI
+        shell: pwsh
+        run: Invoke-WebRequest https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile tools/NuGet.exe
+
+      - name: Build NLog for schema package
+        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net45
+
+      - uses: microsoft/setup-msbuild@v2
+
+      - name: Generate and pack NLog.Schema
+        shell: pwsh
+        env:
+          VERSION_SUFFIX: ${{ steps.version.outputs.suffix }}
+        run: |
+          msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX45=true
+
+          $schemaProperties = @('/p:Configuration=Release', '/p:BuildNetFX45=true', '/p:BuildLabelOverride=NONE')
+          if ($env:VERSION_SUFFIX) {
+            $schemaProperties += "/p:NuGetPrelease=$env:VERSION_SUFFIX"
+          }
+
+          msbuild src/NLog.proj /t:NuGetSchemaPackage @schemaProperties
+
       - name: Upload NuGet package
         uses: actions/upload-artifact@v7
         with:
@@ -158,9 +276,9 @@ jobs:
 
   publish:
     name: Publish NuGet package
-    needs: [build, source-checks, test, pack, trim-publish]
+    needs: [build, source-checks, test, trim-publish, legacy-framework-tests, atomic-file-netstandard, pack]
     if: >-
-      (github.event_name == 'push' && github.ref == 'refs/heads/master') ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/dev') ||
       (github.event_name == 'workflow_dispatch' && inputs.force_nuget_publish)
     runs-on: ubuntu-latest
     permissions:

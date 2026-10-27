@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
 
+  <Import Project="$(MSBuildThisFileDirectory)Directory.Build.props" />
+
   <PropertyGroup>
     <MajorMinorVersion>2.0</MajorMinorVersion>
     <BuildLabel Condition=" '$(BuildLabelOverride)' == '' "> (PrivateBuild)</BuildLabel>
@@ -10,6 +12,7 @@
     <BuildLabelDash Condition=" '$(BuildLabelOverride)' == 'NONE' "></BuildLabelDash>
     <BuildLabelDash Condition=" '$(BuildLabelOverride)' != '' and '$(BuildLabelOverride)' != 'NONE' ">-$(BuildLabelOverride)</BuildLabelDash>
     <BuildVersion Condition=" '$(BuildVersion)' == '' " >$(BUILD_NUMBER)</BuildVersion>
+    <BuildVersion Condition=" '$(BuildVersion)' == '' " >$(VersionPrefix)</BuildVersion>
     <BuildVersion Condition=" '$(BuildVersion)' == '' " >3.2.0.0</BuildVersion>
     <BuildVersion Condition=" '$(CCNetLabel)'!='' ">$(CCNetLabel)</BuildVersion>
     <BuildLastMajorVersion Condition=" '$(BuildLastMajorVersion)' == '' ">$(BUILD_NUMBER)</BuildLastMajorVersion>
