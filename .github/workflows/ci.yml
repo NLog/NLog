@@ -162,12 +162,12 @@ jobs:
       - name: Run UnitTests
         shell: pwsh
         run: |
-          dotnet vstest tests/NLog.UnitTests/bin/Release/${{ matrix.framework }}/NLog.UnitTests.dll --logger "trx;LogFileName=legacy-test-results.trx" --ResultsDirectory $env:RUNNER_TEMP
+          dotnet vstest tests/NLog.UnitTests/bin/Release/${{ matrix.framework }}/NLog.UnitTests.dll --logger "trx;LogFileName=legacy-test-results.trx"
           if ($LASTEXITCODE -ne 0) {
             exit $LASTEXITCODE
           }
 
-          $testResultsPath = Join-Path $env:RUNNER_TEMP 'legacy-test-results.trx'
+          $testResultsPath = Join-Path (Get-Location) 'TestResults/legacy-test-results.trx'
           if (-not (Test-Path $testResultsPath)) {
             throw 'Legacy UnitTests did not produce test results.'
           }
