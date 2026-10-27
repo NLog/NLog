@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Build source code checks
-        run: msbuild /t:rebuild .\tools\CheckSourceCode\src\ /p:Configuration=Release /verbosity:minimal
+        run: dotnet build tools/CheckSourceCode/src/NLog.SourceCodeTests.sln --configuration Release --no-incremental
 
       - name: Run source code checks
         run: .\tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
