@@ -36,7 +36,7 @@ namespace NLog.RegEx.Tests
     using NLog.Conditions;
     using Xunit;
 
-    public class ConditionEvaluatorTests 
+    public class ConditionEvaluatorTests
     {
         public ConditionEvaluatorTests()
         {
@@ -45,12 +45,12 @@ namespace NLog.RegEx.Tests
         }
 
         [Fact]
-        public void ConditionMethodsTest()
+        public void ConditionMethodsTests_RegexMatches()
         {
             AssertEvaluationResult(true, "regex-matches('foo', '^foo$')");
             AssertEvaluationResult(false, "regex-matches('foo', '^bar$')");
 
-            //Check that calling with empty string is equivalent with not passing the parameter
+            // Check that an empty options string is equivalent to omitting the parameter
             AssertEvaluationResult(true, "regex-matches('foo', '^foo$', '')");
             AssertEvaluationResult(false, "regex-matches('foo', '^bar$', '')");
 
@@ -60,6 +60,32 @@ namespace NLog.RegEx.Tests
             AssertEvaluationResult(true, "regex-matches('foo\nbar', '^Foo$', 'ignorecase,multiline')");
             AssertEvaluationResult(false, "regex-matches('foo\nbar', '^Foo$')");
             Assert.Throws<ConditionEvaluationException>(() => AssertEvaluationResult(true, "regex-matches('foo\nbar', '^Foo$', 'ignorecase,nonexistent')"));
+        }
+
+        [Fact]
+        public void ConditionMethodsTests_RegexCount()
+        {
+            // regex-count: zero, one, and multiple matches
+            AssertEvaluationResult(0, "regex-count('foo', '^bar$')");
+            AssertEvaluationResult(1, "regex-count('foo', '^foo$')");
+            AssertEvaluationResult(3, "regex-count('foo foo foo', 'foo')");
+
+            // Check that omitting options and passing an empty options string are equivalent
+            AssertEvaluationResult(3, "regex-count('foo foo foo', 'foo', '')");
+
+            // Check that options are parsed correctly
+            AssertEvaluationResult(3, "regex-count('Foo foo FOO', 'foo', 'ignorecase')");
+            AssertEvaluationResult(1, "regex-count('Foo foo FOO', 'foo')");
+            AssertEvaluationResult(2, "regex-count('foo\nfoo', '^foo$', 'multiline')");
+            AssertEvaluationResult(0, "regex-count('foo\nfoo', '^foo$')");
+
+            // Check that invalid options throw an exception
+            Assert.Throws<ConditionEvaluationException>(() =>
+                AssertEvaluationResult(1, "regex-count('Foo', 'foo', 'ignorecase,nonexistent')"));
+
+            // Check that the result can be used in a comparison
+            AssertEvaluationResult(true, "regex-count('foo foo foo', 'foo') == 3");
+            AssertEvaluationResult(false, "regex-count('foo foo', 'foo') > 2");
         }
 
         private static void AssertEvaluationResult(object expectedResult, string conditionText)
