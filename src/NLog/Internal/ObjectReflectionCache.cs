@@ -216,6 +216,11 @@ namespace NLog.Internal
             if (objectValue is System.IO.Stream)
                 return false;   // Skip serializing properties that often throws exceptions
 
+#if !NET35
+            if (objectValue is System.Threading.Tasks.Task)
+                return false;   // Skip serializing Task.Result that will block until task is completed or throw exception.
+#endif
+
             return true;
         }
 
