@@ -328,7 +328,7 @@ jobs:
       - name: Build NLog for schema package
         run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net45
 
-      - uses: microsoft/setup-msbuild@v2
+      - uses: microsoft/setup-msbuild@30375c66a4eea26614e0d39710365f22f8b0af57 # v3
 
       - name: Generate and pack NLog.Schema
         shell: pwsh
