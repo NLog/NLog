@@ -62,20 +62,21 @@ jobs:
             throw "Example configuration XSD check failed."
           }
 
-  test:
-    name: Test ${{ matrix.project }} (${{ matrix.framework }}, ${{ matrix.os }})
+  unit-tests:
+    name: Unit tests (${{ matrix.framework }}, ${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
-        project:
-          - tests/NLog.UnitTests/NLog.UnitTests.csproj
-          - tests/NLog.RegEx.Tests/NLog.RegEx.Tests.csproj
-          - tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj
-          - tests/NLog.Targets.GZipFile.Tests/NLog.Targets.GZipFile.Tests.csproj
-        framework: [net462, net8.0, net10.0]
-        os: [windows-latest, ubuntu-latest]
-        exclude:
+        include:
           - framework: net462
+            os: windows-latest
+          - framework: net8.0
+            os: windows-latest
+          - framework: net8.0
+            os: ubuntu-latest
+          - framework: net10.0
+            os: windows-latest
+          - framework: net10.0
             os: ubuntu-latest
     runs-on: ${{ matrix.os }}
     permissions:
@@ -87,7 +88,7 @@ jobs:
       - name: Test
         shell: pwsh
         env:
-          TEST_PROJECT: ${{ matrix.project }}
+          TEST_PROJECT: tests/NLog.UnitTests/NLog.UnitTests.csproj
           TEST_FRAMEWORK: ${{ matrix.framework }}
           NO_WARN: ${{ matrix.framework != 'net462' && 'CS8765,CS8619,CS8604,CS8603,CS8601' || '' }}
         run: |
@@ -120,6 +121,84 @@ jobs:
           [xml] $testResults = Get-Content -Raw $testResultsPath
           if ([int] $testResults.TestRun.ResultSummary.Counters.total -eq 0) {
             throw "No tests were discovered for $env:TEST_PROJECT ($env:TEST_FRAMEWORK)."
+          }
+
+  package-tests:
+    name: Package tests (${{ matrix.framework }}, ${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - framework: net462
+            os: windows-latest
+          - framework: net8.0
+            os: windows-latest
+          - framework: net8.0
+            os: ubuntu-latest
+          - framework: net10.0
+            os: windows-latest
+          - framework: net10.0
+            os: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Test package projects
+        shell: pwsh
+        env:
+          TEST_FRAMEWORK: ${{ matrix.framework }}
+          NO_WARN: ${{ matrix.framework != 'net462' && 'CS8765,CS8619,CS8604,CS8603,CS8601' || '' }}
+        run: |
+          function ConvertTo-MSBuildList($value) {
+            ($value -split ',') -join '%3B'
+          }
+
+          $projects = @(
+            'tests/NLog.RegEx.Tests/NLog.RegEx.Tests.csproj',
+            'tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj',
+            'tests/NLog.Targets.GZipFile.Tests/NLog.Targets.GZipFile.Tests.csproj'
+          )
+          $failedProjects = @()
+
+          foreach ($project in $projects) {
+            $projectName = [System.IO.Path]::GetFileNameWithoutExtension($project)
+            $resultFileName = "$projectName-$env:TEST_FRAMEWORK.trx"
+            $testArguments = @(
+              '--configuration', 'Release',
+              '--framework', $env:TEST_FRAMEWORK,
+              '--logger', 'console;verbosity=normal',
+              '--logger', "trx;LogFileName=$resultFileName",
+              '--results-directory', $env:RUNNER_TEMP
+            )
+
+            if ($env:NO_WARN) {
+              $testArguments += "-p:NoWarn=$(ConvertTo-MSBuildList $env:NO_WARN)"
+            }
+
+            dotnet test $project @testArguments
+            if ($LASTEXITCODE -ne 0) {
+              $failedProjects += "$project failed for $env:TEST_FRAMEWORK with exit code $LASTEXITCODE"
+              continue
+            }
+
+            $testResultsPath = Join-Path $env:RUNNER_TEMP $resultFileName
+            if (-not (Test-Path $testResultsPath)) {
+              $failedProjects += "$project produced no test results for $env:TEST_FRAMEWORK"
+              continue
+            }
+
+            [xml] $testResults = Get-Content -Raw $testResultsPath
+            if ([int] $testResults.TestRun.ResultSummary.Counters.total -eq 0) {
+              $failedProjects += "$project discovered no tests for $env:TEST_FRAMEWORK"
+            }
+          }
+
+          if ($failedProjects.Count -gt 0) {
+            $failedProjects | ForEach-Object { Write-Error $_ }
+            exit 1
           }
 
   trim-publish:
@@ -276,7 +355,7 @@ jobs:
 
   publish:
     name: Publish NuGet package
-    needs: [build, source-checks, test, trim-publish, legacy-framework-tests, atomic-file-netstandard, pack]
+    needs: [build, source-checks, unit-tests, package-tests, trim-publish, legacy-framework-tests, atomic-file-netstandard, pack]
     if: >-
       (github.event_name == 'push' && github.ref == 'refs/heads/dev') ||
       (github.event_name == 'workflow_dispatch' && inputs.force_nuget_publish)
