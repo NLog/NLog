@@ -79,30 +79,35 @@ namespace NLog.Internal
 
             string methodName = method.Name;
 
-            var callerClassType = method.DeclaringType;
-            if (cleanAsyncMoveNext && methodName == "MoveNext" && callerClassType?.DeclaringType != null && callerClassType.Name.IndexOf('<') == 0)
+            if (cleanAsyncMoveNext && string.Equals(methodName, "MoveNext", StringComparison.Ordinal))
             {
-                // NLog.UnitTests.LayoutRenderers.CallSiteTests+<CleanNamesOfAsyncContinuations>d_3'1.MoveNext
-                int endIndex = callerClassType.Name.IndexOf('>', 1);
-                if (endIndex > 1)
+                var callerClassType = GetAsyncStateMachineClassType(method.DeclaringType);
+                if (callerClassType != null)
                 {
-                    methodName = callerClassType.Name.Substring(1, endIndex - 1);
-                    if (methodName.IndexOf('<') == 0)
-                        methodName = methodName.Substring(1);    // Local functions, and anonymous-methods in Task.Run()
+                    // NLog.UnitTests.LayoutRenderers.CallSiteTests+<CleanNamesOfAsyncContinuations>d_3'1.MoveNext
+                    int endIndex = callerClassType.Name.IndexOf('>', 1);
+                    if (endIndex > 1)
+                    {
+                        methodName = callerClassType.Name.Substring(1, endIndex - 1);
+                        if (methodName.IndexOf('<') == 0)
+                            methodName = methodName.Substring(1);    // Local functions, and anonymous-methods in Task.Run()
+                    }
                 }
             }
 
-            // Clean up the function name if it is an anonymous delegate
+            // Clean up compiler-generated anonymous delegate names:
             // <.ctor>b__0
             // <Main>b__2
-            if (cleanAnonymousDelegates && (methodName.IndexOf('<') == 0 && methodName.IndexOf("__", StringComparison.Ordinal) >= 0 && methodName.IndexOf('>') >= 0))
+            if (cleanAnonymousDelegates && methodName.Length > 0 && methodName[0] == '<')
             {
-                int startIndex = methodName.IndexOf('<') + 1;
                 int endIndex = methodName.IndexOf('>');
-                methodName = methodName.Substring(startIndex, endIndex - startIndex);
+                if (endIndex > 1 && methodName.IndexOf("__", endIndex, StringComparison.Ordinal) >= 0)
+                {
+                    methodName = methodName.Substring(1, endIndex - 1);
+                }
             }
 
-            if (includeMethodInfo && methodName == method.Name)
+            if (includeMethodInfo && string.Equals(methodName, method.Name, StringComparison.Ordinal))
             {
                 methodName = method.ToString() ?? methodName;
             }
@@ -116,20 +121,15 @@ namespace NLog.Internal
                 return string.Empty;
 
             var callerClassType = method.DeclaringType;
-            if (cleanAsyncMoveNext
-              && method.Name == "MoveNext"
-              && callerClassType?.DeclaringType != null
-              && callerClassType.Name?.IndexOf('<') == 0
-              && callerClassType.Name.IndexOf('>', 1) > 1)
+            if (cleanAsyncMoveNext && string.Equals(method.Name, "MoveNext", StringComparison.Ordinal))
             {
-                // NLog.UnitTests.LayoutRenderers.CallSiteTests+<CleanNamesOfAsyncContinuations>d_3'1
-                callerClassType = callerClassType.DeclaringType;
+                callerClassType = GetAsyncStateMachineClassType(callerClassType)?.DeclaringType ?? callerClassType;
             }
 
             if (callerClassType is null)
                 return string.Empty;
 
-            var className = includeNameSpace ? callerClassType.FullName : callerClassType.Name;
+            string className = includeNameSpace ? callerClassType.FullName : callerClassType.Name;
             if (cleanAnonymousDelegates && className?.IndexOf("<>", StringComparison.Ordinal) >= 0)
             {
                 if (!includeNameSpace && callerClassType.DeclaringType != null && callerClassType.IsNested)
@@ -141,9 +141,7 @@ namespace NLog.Internal
                     // NLog.UnitTests.LayoutRenderers.CallSiteTests+<>c__DisplayClassa
                     int index = className.IndexOf("+<>", StringComparison.Ordinal);
                     if (index >= 0)
-                    {
                         className = className.Substring(0, index);
-                    }
                 }
             }
 
@@ -156,15 +154,29 @@ namespace NLog.Internal
             return className ?? string.Empty;
         }
 
+        private static Type? GetAsyncStateMachineClassType(Type callerClassType)
+        {
+            if (callerClassType is null || callerClassType.DeclaringType is null)
+                return null;
+
+            string name = callerClassType.Name;
+            if (string.IsNullOrEmpty(name) || name[0] != '<' || name.IndexOf('>', 1) <= 1)
+                return null;
+
+            return callerClassType;
+        }
+
         private static string GetNamespaceFromTypeAssembly(Type? callerClassType)
         {
             var classAssembly = callerClassType?.Assembly;
             if (classAssembly != null && classAssembly != mscorlibAssembly && classAssembly != systemAssembly)
             {
                 var assemblyFullName = classAssembly.FullName;
-                if (assemblyFullName?.IndexOf(',') >= 0 && !assemblyFullName.StartsWith("System.", StringComparison.Ordinal) && !assemblyFullName.StartsWith("Microsoft.", StringComparison.Ordinal))
+                if (assemblyFullName?.IndexOf(',') >= 0)
                 {
-                    return assemblyFullName.Substring(0, assemblyFullName.IndexOf(','));
+                     if (!assemblyFullName.StartsWith("System.", StringComparison.Ordinal)
+                      && !assemblyFullName.StartsWith("Microsoft.", StringComparison.Ordinal))
+                        return assemblyFullName.Substring(0, assemblyFullName.IndexOf(','));
                 }
             }
 
@@ -201,12 +213,14 @@ namespace NLog.Internal
 
         private static string GetClassFullName(StackTrace stackTrace)
         {
-            foreach (StackFrame frame in stackTrace.GetFrames())
+            var stackFrames = stackTrace.GetFrames();
+            if (stackFrames?.Length > 0)
             {
-                string className = LookupClassNameFromStackFrame(frame);
-                if (!string.IsNullOrEmpty(className))
+                foreach (StackFrame frame in stackFrames)
                 {
-                    return className;
+                    string className = LookupClassNameFromStackFrame(frame);
+                    if (!string.IsNullOrEmpty(className))
+                        return className;
                 }
             }
             return string.Empty;
