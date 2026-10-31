@@ -1,0 +1,384 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      force_nuget_publish:
+        description: Force NuGet publish # for non-master. The package version gets a suffix. See Create NuGet Package step
+        type: boolean
+        default: false
+
+env:
+  SOLUTION: src/NLog.sln
+
+jobs:
+  build:
+    name: Build solution
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build
+        run: dotnet build ${{ env.SOLUTION }} --configuration Release
+
+  source-checks:
+    name: Source code and XSD check
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build source code checks
+        run: dotnet build tools/CheckSourceCode/src/NLog.SourceCodeTests.sln --configuration Release --no-incremental
+
+      - name: Run source code checks
+        run: .\tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
+
+      - name: Build NLog for schema generation
+        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net45
+
+      - name: Generate configuration schema
+        run: dotnet msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX45=true
+
+      - name: Run XSD check
+        shell: pwsh
+        run: |
+          $excludedTests = @('Database', 'Chainsaw', 'NLogViewer')
+          $configFiles = @(Get-ChildItem -Path './examples/targets/Configuration File' -Directory -Exclude $excludedTests | Get-ChildItem -Recurse -File -Filter NLog.config)
+          if ($configFiles.Count -eq 0) {
+            throw 'No example NLog.config files were found for XSD validation.'
+          }
+
+          if (-not (./Test-XmlFile.ps1)) {
+            throw "Example configuration XSD check failed."
+          }
+
+  unit-tests:
+    name: Unit tests main test project (${{ matrix.framework }}, ${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - framework: net462
+            os: windows-latest
+          - framework: net8.0
+            os: windows-latest
+          - framework: net8.0
+            os: ubuntu-latest
+          - framework: net10.0
+            os: windows-latest
+          - framework: net10.0
+            os: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Test
+        shell: pwsh
+        env:
+          TEST_PROJECT: tests/NLog.UnitTests/NLog.UnitTests.csproj
+          TEST_FRAMEWORK: ${{ matrix.framework }}
+          NO_WARN: ${{ matrix.framework != 'net462' && 'CS8765,CS8619,CS8604,CS8603,CS8601' || '' }}
+        run: |
+          function ConvertTo-MSBuildList($value) {
+            ($value -split ',') -join '%3B'
+          }
+
+          $testArguments = @(
+            '--configuration', 'Release',
+            '--framework', $env:TEST_FRAMEWORK,
+            '--logger', 'console;verbosity=normal',
+            '--logger', 'trx;LogFileName=test-results.trx',
+            '--results-directory', $env:RUNNER_TEMP
+          )
+
+          if ($env:NO_WARN) {
+            $testArguments += "-p:NoWarn=$(ConvertTo-MSBuildList $env:NO_WARN)"
+          }
+
+          dotnet test $env:TEST_PROJECT @testArguments
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
+          $testResultsPath = Join-Path $env:RUNNER_TEMP 'test-results.trx'
+          if (-not (Test-Path $testResultsPath)) {
+            throw "Test results were not produced for $env:TEST_PROJECT ($env:TEST_FRAMEWORK)."
+          }
+
+          [xml] $testResults = Get-Content -Raw $testResultsPath
+          if ([int] $testResults.TestRun.ResultSummary.Counters.total -eq 0) {
+            throw "No tests were discovered for $env:TEST_PROJECT ($env:TEST_FRAMEWORK)."
+          }
+
+  package-tests:
+    name: Unit tests other test projects (${{ matrix.framework }}, ${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - framework: net462
+            os: windows-latest
+          - framework: net8.0
+            os: windows-latest
+          - framework: net8.0
+            os: ubuntu-latest
+          - framework: net10.0
+            os: windows-latest
+          - framework: net10.0
+            os: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Test package projects
+        shell: pwsh
+        env:
+          TEST_FRAMEWORK: ${{ matrix.framework }}
+          NO_WARN: ${{ matrix.framework != 'net462' && 'CS8765,CS8619,CS8604,CS8603,CS8601' || '' }}
+        run: |
+          function ConvertTo-MSBuildList($value) {
+            ($value -split ',') -join '%3B'
+          }
+
+          $projects = @(
+            'tests/NLog.RegEx.Tests/NLog.RegEx.Tests.csproj',
+            'tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj',
+            'tests/NLog.Targets.GZipFile.Tests/NLog.Targets.GZipFile.Tests.csproj'
+          )
+          $failedProjects = @()
+
+          foreach ($project in $projects) {
+            $projectName = [System.IO.Path]::GetFileNameWithoutExtension($project)
+            $resultFileName = "$projectName-$env:TEST_FRAMEWORK.trx"
+            $testArguments = @(
+              '--configuration', 'Release',
+              '--framework', $env:TEST_FRAMEWORK,
+              '--logger', 'console;verbosity=normal',
+              '--logger', "trx;LogFileName=$resultFileName",
+              '--results-directory', $env:RUNNER_TEMP
+            )
+
+            if ($env:NO_WARN) {
+              $testArguments += "-p:NoWarn=$(ConvertTo-MSBuildList $env:NO_WARN)"
+            }
+
+            dotnet test $project @testArguments
+            if ($LASTEXITCODE -ne 0) {
+              $failedProjects += "$project failed for $env:TEST_FRAMEWORK with exit code $LASTEXITCODE"
+              continue
+            }
+
+            $testResultsPath = Join-Path $env:RUNNER_TEMP $resultFileName
+            if (-not (Test-Path $testResultsPath)) {
+              $failedProjects += "$project produced no test results for $env:TEST_FRAMEWORK"
+              continue
+            }
+
+            [xml] $testResults = Get-Content -Raw $testResultsPath
+            if ([int] $testResults.TestRun.ResultSummary.Counters.total -eq 0) {
+              $failedProjects += "$project discovered no tests for $env:TEST_FRAMEWORK"
+            }
+          }
+
+          if ($failedProjects.Count -gt 0) {
+            $failedProjects | ForEach-Object { Write-Error $_ }
+            exit 1
+          }
+
+  trim-publish:
+    name: Publish and run trim test
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Publish trim test project
+        run: dotnet publish tests/TestTrimPublish/TestTrimPublish.csproj --configuration Release --framework net10.0
+
+      - name: Run trim test project
+        run: .\tests\TestTrimPublish\bin\Release\net10.0\win-x64\publish\TestTrimPublish.exe
+
+  netframework-tests:
+    name: Unit tests main test project .NET framework (${{ matrix.framework }})
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [net35, net45]
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Restore UnitTests
+        run: dotnet restore tests/NLog.UnitTests/NLog.UnitTests.csproj
+
+      - name: Build NLog
+        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework ${{ matrix.framework }}
+
+      - name: Build UnitTests for .NET framework
+        run: dotnet msbuild /t:Build /p:TargetFramework=net462 /p:Configuration=Release /p:DebugType=Full /p:TestTargetFramework=${{ matrix.framework }} tests/NLog.UnitTests/NLog.UnitTests.csproj
+
+      - name: Run UnitTests for .NET framework
+        shell: pwsh
+        run: |
+          dotnet vstest tests/NLog.UnitTests/bin/Release/${{ matrix.framework }}/NLog.UnitTests.dll --logger "trx;LogFileName=netframework-test-results.trx"
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
+          $testResultsPath = Join-Path (Get-Location) 'TestResults/netframework-test-results.trx'
+          if (-not (Test-Path $testResultsPath)) {
+            throw 'UnitTests for .NET framework did not produce test results.'
+          }
+
+          [xml] $testResults = Get-Content -Raw $testResultsPath
+          if ([int] $testResults.TestRun.ResultSummary.Counters.total -eq 0) {
+            throw 'No UnitTests for .NET framework were discovered.'
+          }
+
+  atomic-file-netstandard:
+    name: AtomicFile tests (netstandard2.0)
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Test AtomicFile against netstandard2.0
+        shell: pwsh
+        run: |
+          dotnet test tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj --configuration Release -p:TestTargetFramework=netstandard2.0 --logger 'trx;LogFileName=atomic-tests.trx' --results-directory $env:RUNNER_TEMP
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
+          $testResults = Get-ChildItem -Path $env:RUNNER_TEMP -Filter 'atomic-tests*.trx'
+          if (-not $testResults) {
+            throw 'AtomicFile tests did not produce test results.'
+          }
+
+          $totalTests = 0
+          foreach ($testResult in $testResults) {
+            [xml] $results = Get-Content -Raw $testResult.FullName
+            $totalTests += [int] $results.TestRun.ResultSummary.Counters.total
+          }
+          if ($totalTests -eq 0) {
+            throw 'No AtomicFile tests were discovered.'
+          }
+
+  pack:
+    name: Create NuGet package
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Restore
+        run: dotnet restore ${{ env.SOLUTION }}
+
+      - name: Determine version suffix
+        id: version
+        shell: pwsh
+        env:
+          REF: ${{ github.ref }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          if ($env:REF -eq "refs/heads/master") {
+            echo "suffix=" >> $env:GITHUB_OUTPUT
+          } elseif ($env:PR_NUMBER) {
+            echo "suffix=pr.$($env:PR_NUMBER).ci.$($env:RUN_NUMBER)" >> $env:GITHUB_OUTPUT
+          } else {
+            echo "suffix=ci.$($env:RUN_NUMBER)" >> $env:GITHUB_OUTPUT
+          }
+
+      - name: Create NuGet package
+        shell: pwsh
+        env:
+          VERSION_SUFFIX: ${{ steps.version.outputs.suffix }}
+        run: dotnet pack ${{ env.SOLUTION }} --no-restore --configuration Release --output artifacts -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:EmbedUntrackedSources=true -p:ContinuousIntegrationBuild=true --version-suffix "$env:VERSION_SUFFIX"
+
+      - name: Download NuGet CLI
+        shell: pwsh
+        run: Invoke-WebRequest https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile tools/NuGet.exe
+
+      - name: Build NLog for schema package
+        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net45
+
+      - uses: microsoft/setup-msbuild@30375c66a4eea26614e0d39710365f22f8b0af57 # v3
+
+      - name: Generate and pack NLog.Schema
+        shell: pwsh
+        env:
+          VERSION_SUFFIX: ${{ steps.version.outputs.suffix }}
+        run: |
+          msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX45=true
+
+          $schemaProperties = @('/p:Configuration=Release', '/p:BuildNetFX45=true', '/p:BuildLabelOverride=NONE')
+          if ($env:VERSION_SUFFIX) {
+            $schemaProperties += "/p:NuGetPrelease=$env:VERSION_SUFFIX"
+          }
+
+          msbuild src/NLog.proj /t:NuGetSchemaPackage @schemaProperties
+
+      - name: Upload NuGet package
+        uses: actions/upload-artifact@v7
+        with:
+          name: NuGetPackages
+          path: |
+            artifacts/*.nupkg
+            artifacts/*.snupkg
+          if-no-files-found: error
+
+  publish:
+    name: Publish NuGet package
+    needs: [build, source-checks, unit-tests, package-tests, trim-publish, netframework-tests, atomic-file-netstandard, pack]
+    if: >-
+      (github.event_name == 'push' && github.ref == 'refs/heads/dev') ||
+      (github.event_name == 'workflow_dispatch' && inputs.force_nuget_publish)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Download NuGet package
+        uses: actions/download-artifact@v7
+        with:
+          name: NuGetPackages
+          path: artifacts
+
+      - name: NuGet login
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Push to NuGet.org
+        shell: pwsh
+        env:
+          NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
+        run: dotnet nuget push "artifacts/*.nupkg" --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate

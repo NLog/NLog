@@ -103,8 +103,7 @@ How to build
 Use Visual Studio 2022 and open the solution 'NLog.sln'.
 
 For building in the cloud we use:
-- AppVeyor for Windows- and Linux-builds
-- SonarQube for code coverage
+- GitHub Actions for CI (see `.github/workflows/ci.yml`)
 
 Trying to build your fork in the cloud? Check [this how-to](howto-build-your-fork.md)
 
