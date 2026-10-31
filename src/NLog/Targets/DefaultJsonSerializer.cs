@@ -701,6 +701,7 @@ namespace NLog.Targets
             destination.Append('{');
 
             string? jsonPropertyDelimeter = null;
+            bool escapePropertyNames = objectPropertyList.IsExpandoObject;   // Expando keys can contain any character
 
             foreach (var propertyValue in objectPropertyList)
             {
@@ -713,7 +714,12 @@ namespace NLog.Targets
 
                     destination.Append(jsonPropertyDelimeter);
 
-                    QuoteValue(destination, propertyValue.Name);
+                    destination.Append('"');
+                    if (escapePropertyNames)
+                        AppendStringEscape(destination, propertyValue.Name, options);
+                    else
+                        destination.Append(propertyValue.Name);
+                    destination.Append('"');
                     destination.Append(':');
 
                     var objTypeCode = propertyValue.TypeCode;
