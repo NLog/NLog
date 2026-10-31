@@ -162,7 +162,7 @@ namespace NLog
                 // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
                 var collapsedState = new ScopeContextMergeAsyncState(parent?.Parent?.Parent, existingPropertyCount.Value + 1);
                 collapsedState.MergedProperties[key] = value;
-                var propertyCollector = new ScopeContextPropertyCollector(collapsedState.MergedProperties, collapsedState);
+                var propertyCollector = new ScopeContextPropertyCollector(collapsedState.MergedProperties, collapsedState.MergedProperties);
                 propertyCollector.StartCaptureProperties(parent);
                 SetAsyncLocalContext(collapsedState);
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
