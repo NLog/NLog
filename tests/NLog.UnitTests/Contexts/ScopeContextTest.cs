@@ -137,7 +137,7 @@ namespace NLog.UnitTests.Contexts
             Assert.False(stringValueLookup3);
         }
 
-#if !NET35 && !NET40 && !NET45
+#if !NETFRAMEWORK
         [Fact]
         public void PushPropertiesDuplicateKeyTest()
         {
@@ -164,7 +164,7 @@ namespace NLog.UnitTests.Contexts
         }
 #endif
 
-#if !NET35 && !NET40 && !NET45
+#if !NETFRAMEWORK
         [Fact]
         public void PushPropertiesDuplicateKeyCollapsedTest()
         {
