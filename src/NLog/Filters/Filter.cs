@@ -53,6 +53,7 @@ namespace NLog.Filters
         /// <summary>
         /// Gets or sets the action to be taken when filter matches.
         /// </summary>
+        /// <remarks>Default: <see cref="FilterResult.Neutral"/></remarks>
         /// <docgen category='Filtering Options' order='10' />
         public FilterResult Action { get; set; }
 

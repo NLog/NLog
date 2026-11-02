@@ -90,8 +90,7 @@ namespace NLog.Targets.FileAppenders
             _lastFileDeletedCheck = OpenStreamTime;
 
             var fileInfoSize = RefreshFileBirthTimeUtc(true);
-
-            _fileStream = _fileTarget.CreateFileStreamWithRetry(this, fileTarget.BufferSize, initialFileOpen: true);
+            _fileStream = _fileTarget.CreateFileStreamWithRetry(_filePath, fileTarget.BufferSize, initialFileOpen: true);
             _countedFileSize = RefreshCountedFileSize(_fileStream, fileInfoSize);
         }
 
@@ -164,7 +163,7 @@ namespace NLog.Targets.FileAppenders
 
                 if (!SafeFileExists(_filePath))
                 {
-                    InternalLogger.Info("{0}: Closing FileStream because it no longer File.Exists: '{1}'", _fileTarget, _filePath);
+                    InternalLogger.Info("{0}: Closing FileStream because no longer File.Exists: '{1}'", _fileTarget, _filePath);
                     SafeCloseFile(_filePath, _fileStream);
                     throw new FileNotFoundException($"Could not find file: '{_filePath}'", _filePath);
                 }

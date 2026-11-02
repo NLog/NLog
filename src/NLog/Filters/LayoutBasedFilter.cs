@@ -51,6 +51,7 @@ namespace NLog.Filters
         /// Gets or sets the layout to be used to filter log messages.
         /// </summary>
         /// <value>The layout.</value>
+        /// <remarks><b>[Required]</b> Default: <see cref="Layout.Empty"/></remarks>
         /// <docgen category='Filtering Options' order='10' />
         public Layout Layout { get; set; } = Layout.Empty;
     }

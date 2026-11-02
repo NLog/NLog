@@ -79,6 +79,8 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the layout used for rendering the property value. Alias for <see cref="Layout"/>
         /// </summary>
+        /// <remarks><b>[Required]</b> Default: <see cref="Layout.Empty"/></remarks>
+        /// <docgen category='Layout Options' order='10' />
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Layout Value { get => Layout; set => Layout = value; }
 

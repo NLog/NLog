@@ -4,6 +4,36 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 6.2.2 (2026/10/15)
+**Improvements**
+- [#6303](https://github.com/NLog/NLog/pull/6303) XmlParser - Keep whitespace from character references in InnerText. (@APX403)
+- [#6292](https://github.com/NLog/NLog/pull/6292) CachedLayoutRendererWrapper - Support CachedUntil=HourChange and CachedUntil=DayChange. (@dualfroz)
+- [#6298](https://github.com/NLog/NLog/pull/6298) ObjectGraphScanner - Skip scanning Layout.Empty. (@snakefoot)
+- [#6297](https://github.com/NLog/NLog/pull/6297) Remove Microsoft.SourceLink.GitHub as part of NET8 SDK. (@snakefoot)
+- [#6296](https://github.com/NLog/NLog/pull/6296) FileTarget - Refactor RollingArchiveFileHandler to reduce complexity. (@snakefoot)
+- [#6295](https://github.com/NLog/NLog/pull/6295) NullTarget - LastMessage property lock SyncRoot. (@snakefoot)
+- [#6289](https://github.com/NLog/NLog/pull/6289) MemoryTarget - Introduced DumpInitialError with focused diagnostic context. (@snakefoot)
+- [#6287](https://github.com/NLog/NLog/pull/6287) MemoryTarget - Introduced DumpOnError with full diagnostic context. (@snakefoot)
+- [#6283](https://github.com/NLog/NLog/pull/6283) MemoryTarget - RingBuffer supporting non-blocking enumeration. (@snakefoot)
+
+### Version 6.2.1 (2026/09/16)
+**Improvements**
+- [#6254](https://github.com/NLog/NLog/pull/6254) Replace System.Random usage with custom ScatterGenerator. (@jobvk)
+- [#6267](https://github.com/NLog/NLog/pull/6267) JsonLayout - Escape lone surrogates so output stays valid UTF8. (@dylanpulver)
+- [#6275](https://github.com/NLog/NLog/pull/6275) XML docs with Default value for class properties in Filters namespace. (@dualfroz)
+- [#6276](https://github.com/NLog/NLog/pull/6276) XML docs with Default value for class properties with unit test. (@snakefoot)
+- [#6265](https://github.com/NLog/NLog/pull/6265) AtomicFileTarget - Improve recovery when file suddenly disappears. (@snakefoot)
+- [#6266](https://github.com/NLog/NLog/pull/6266) JsonLayout - Explicit assigned SuppressSpaces should win. (@snakefoot)
+- [#6271](https://github.com/NLog/NLog/pull/6271) DefaultJsonSerializer - Refactor AppendStringEscape to make method simpler. (@snakefoot)
+- [#6268](https://github.com/NLog/NLog/pull/6268) XmlHelper - Replace with char.IsHighSurrogate + char.IsLowSurrogate. (@snakefoot)
+- [#6269](https://github.com/NLog/NLog/pull/6269) XmlHelper - Improve CDATA encoding when first char is invalid. (@snakefoot)
+- [#6273](https://github.com/NLog/NLog/pull/6273) XmlHelper - Check char.IsHighSurrogate before checking length. (@snakefoot)
+- [#6251](https://github.com/NLog/NLog/pull/6251) LogManager - Remove CLSCompliant(false) attribute from GetCurrentClassLogger. (@snakefoot)
+- [#6255](https://github.com/NLog/NLog/pull/6255) NLog.Schema - NLog.Targets.HttpClient + NLog.Targets.OpenTelemetryHttp. (@snakefoot)
+- [#6261](https://github.com/NLog/NLog/pull/6261) XmlParser - Moved primitive parsing logic into InputCursor. (@snakefoot)
+- [#6264](https://github.com/NLog/NLog/pull/6264) XmlParser - Optimize parsing of Attributes and InnerText and CDATA. (@snakefoot)
+- [#6280](https://github.com/NLog/NLog/pull/6280) Layout - FromLiteral is IsInitialized from the start and ThreadAgnostic. (@snakefoot)
+
 ### Version 6.2 (2026/08/16)
 **Improvements**
 - [#6215](https://github.com/NLog/NLog/pull/6215) FileTarget - Added FileLifecycleHooks for extending archive logic. (@Dave-Senn)

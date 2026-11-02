@@ -302,6 +302,12 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog><![CDATA[abc]]]]></nlog>", "abc]]")]
         [InlineData("<nlog><![CDATA[abc]]x]]></nlog>", "abc]]x")]
         [InlineData("<nlog>hello<![CDATA[]]>world</nlog>", "helloworld")]
+        [InlineData("<nlog>&#10;</nlog>", "\n")]
+        [InlineData("<nlog>&#x20;</nlog>", " ")]
+        [InlineData("<nlog>hello&#10;</nlog>", "hello\n")]
+        [InlineData("<nlog>&#xA;</nlog>", "\n")]
+        [InlineData("<nlog>&#xA; </nlog>", "\n")]
+        [InlineData("<nlog> &#xA; </nlog>", "\n")]
         public void XmlParse_InnerText_Tokens(string xmlSource, string value)
         {
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
@@ -319,7 +325,8 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog>\n<variable\nname='abc'\nlayout='${message}'>\n<!--  <variable name='abc' layout='${message}' /> -->\n</variable></nlog>")]
         [InlineData("<nlog>\n<variable\nname='abc'\nlayout='level >= LogLevel.Warn'/>\n</nlog>")]
         [InlineData("<nlog><variable><name>abc</name><layout>${message}</layout></variable></nlog>")]
-        [InlineData("<nlog><variable><variable/></variable></nlog>")]
+        [InlineData("<nlog><variable><name/></variable></nlog>")]
+        [InlineData("<nlog><variable><name/><value/></variable></nlog>")]
         [InlineData("<nlog>\n<variable>\n<name>abc</name>\n<layout>${message}</layout>\n</variable>\n</nlog>")]
         [InlineData("<nlog>\n<variable>\n<name>abc</name>\n<layout>level >= LogLevel.Warn</layout>\n</variable>\n</nlog>")]
         public void XmlParse_Children(string xmlSource)
@@ -339,6 +346,7 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog><variable><name>abc</name><layout>${message}</layout></variable><variable><name>123</name><layout>${message}</layout></variable></nlog>")]
         [InlineData("<nlog>\n<variable>\n<name>abc</name>\n<layout>${message}</layout>\n</variable>\n<variable>\n<name>123</name>\n<layout>${message}</layout>\n</variable>\n</nlog>")]
         [InlineData("<nlog><variable/><variable></variable></nlog>")]
+        [InlineData("<nlog><variable/><variable/></nlog>")]
         public void XmlParse_Children_Multiple(string xmlSource)
         {
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);

@@ -188,6 +188,7 @@ namespace NLog.Config
         /// Gets or sets a value indicating whether any of the configuration files
         /// should be watched for changes and reloaded automatically when changed.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/> unless the <c>autoReload</c> attribute is set in the configuration file.</remarks>
         public bool AutoReload
         {
             get => AutoReloadFileNames.Any();

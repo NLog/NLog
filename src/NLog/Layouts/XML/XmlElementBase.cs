@@ -180,10 +180,12 @@ namespace NLog.Layouts
         /// XML element name to use when rendering properties
         /// </summary>
         /// <remarks>
+        /// Default: <c>property</c>
+        /// <para>
         /// Support string-format where {0} means property-key-name
         ///
         /// Skips closing element tag when having configured <see cref="PropertiesElementValueAttribute"/>
-        /// </remarks>
+        /// </para></remarks>
         /// <docgen category='Layout Options' order='50' />
         public string PropertiesElementName
         {
@@ -401,8 +403,7 @@ namespace NLog.Layouts
 
         private bool HasNestedXmlElements(LogEventInfo logEvent)
         {
-            var innerText = LayoutWrapper.Inner;
-            if (!ReferenceEquals(innerText, null) && !ReferenceEquals(innerText, Layout.Empty))
+            if (!Layout.IsNullOrEmpty(LayoutWrapper.Inner))
                 return true;
 
             if (_elements.Count > 0)

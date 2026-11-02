@@ -38,7 +38,6 @@ namespace NLog
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Runtime.CompilerServices;
-    using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -78,9 +77,9 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether NLog should throw exceptions.
-        /// By default exceptions are not thrown under any circumstances.
+        /// Gets or sets whether NLog should rethrow its own exceptions into the application instead of keeping them suppressed.
         /// </summary>
+        /// <remarks>Default: <see langword="false"/> and should only be set to <see langword="true"/> for unit-tests or for last resort troubleshooting, when <see cref="ThrowConfigExceptions"/> does not work.</remarks>
         public static bool ThrowExceptions
         {
             get => LogFactory.ThrowExceptions;
@@ -88,14 +87,9 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether <see cref="NLogConfigurationException"/> should be thrown.
+        /// Gets or sets whether NLog should rethrow <see cref="NLogConfigurationException"/> to alert about configuration errors.
         /// </summary>
-        /// <value>A value of <see langword="true"/> if exception should be thrown; otherwise, <see langword="false"/>.</value>
-        /// <remarks>
-        /// This option is for backwards-compatibility.
-        /// By default exceptions are not thrown under any circumstances.
-        ///
-        /// </remarks>
+        /// <remarks>Default: Fallback to the value of <see cref="ThrowExceptions"/> when not explicitly set.</remarks>
         public static bool? ThrowConfigExceptions
         {
             get => LogFactory.ThrowConfigExceptions;
@@ -105,6 +99,7 @@ namespace NLog
         /// <summary>
         /// Gets or sets a value indicating whether Variables should be kept on configuration reload.
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         public static bool KeepVariablesOnReload
         {
             get => LogFactory.KeepVariablesOnReload;
@@ -115,6 +110,7 @@ namespace NLog
         /// Gets or sets a value indicating whether to automatically call <see cref="LogManager.Shutdown"/>
         /// on AppDomain.Unload or AppDomain.ProcessExit
         /// </summary>
+        /// <remarks>Default: <see langword="true"/></remarks>
         public static bool AutoShutdown
         {
             get => LogFactory.AutoShutdown;
@@ -136,6 +132,7 @@ namespace NLog
         /// <summary>
         /// Gets or sets the global log threshold. Log events below this threshold are not logged.
         /// </summary>
+        /// <remarks>Default: <see cref="LogLevel.Trace"/></remarks>
         public static LogLevel GlobalThreshold
         {
             get => LogFactory.GlobalThreshold;

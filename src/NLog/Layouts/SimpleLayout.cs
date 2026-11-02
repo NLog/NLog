@@ -115,6 +115,8 @@ namespace NLog.Layouts
             {
                 FixedText = string.Empty;
                 _stringValueRenderer = this;
+                IsInitialized = true;
+                ThreadAgnostic = true;
             }
             else if (_layoutRenderers.Length == 1)
             {
@@ -122,6 +124,8 @@ namespace NLog.Layouts
                 {
                     FixedText = renderer.Text;
                     _stringValueRenderer = this;
+                    IsInitialized = true;
+                    ThreadAgnostic = true;
                 }
                 else if (_layoutRenderers[0] is IStringValueRenderer stringValueRenderer)
                 {

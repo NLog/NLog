@@ -84,7 +84,10 @@ namespace NLog.Targets
         /// The category of the message.
         /// </summary>
         /// <remarks>
+        /// Default: <c>${logger}</c> (the name of the logger that generated the message).
+        /// <para>
         /// The category parameter is limited to 256 characters. Strings longer than 256 characters are truncated.
+        /// </para>
         /// </remarks>
         public Layout Category { get; set; } = Layout.FromMethod(l => l.LoggerName, LayoutRenderOptions.ThreadAgnostic);
 
@@ -99,6 +102,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the action that should be taken if the message is larger than <see cref="MaxMessageSize" />
         /// </summary>
+        /// <remarks>Default: <see cref="DebuggerTargetOverflowAction.Split"/></remarks>
         public DebuggerTargetOverflowAction OnOverflow { get; set; } = DebuggerTargetOverflowAction.Split;
 
         /// <inheritdoc/>

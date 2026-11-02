@@ -501,6 +501,83 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void UnsupportedMixingOfLegacyStaticArchiveModeWithDynamic(bool keepFileOpen)
+        {
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid());
+            var defaultTimeSource = TimeSource.Current;
+
+            try
+            {
+                var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
+
+                if (timeSource.Time.Minute == 59)
+                {
+                    // Avoid double-archive due to overflow of the hour.
+                    timeSource.AddToLocalTime(TimeSpan.FromMinutes(1));
+                    timeSource.AddToSystemTime(TimeSpan.FromMinutes(1));
+                }
+
+                TimeSource.Current = timeSource;
+
+                var day1File = Path.Combine(tempDir, timeSource.Time.ToString("yyyyMMdd") + ".log");
+
+                var fileTarget = new FileTarget
+                {
+                    FileName = Path.Combine(tempDir, "${date:format=yyyyMMdd}.log"),
+                    ArchiveFileName = Path.Combine(tempDir, "archive", "{#}.log"),
+                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveAboveSize = 5,
+                    Layout = "${message}",
+                    LineEnding = LineEndingMode.LF,
+                    KeepFileOpen = keepFileOpen,
+                };
+
+                LogManager.Setup().LoadConfiguration(
+                    c => c.ForLogger().WriteTo(fileTarget));
+
+                // Day 1: NLog creates today's file.
+                logger.Debug("day1_roll");
+                Assert.True(File.Exists(day1File));
+                // Day 1: NLog archives today's file, because of ArchiveAboveSize
+                logger.Debug("day1");
+                Assert.True(File.Exists(day1File));
+
+                var archiveFolder = Path.Combine(tempDir, "archive");
+                Assert.True(Directory.Exists(archiveFolder));
+                var archivedFiles = Directory.GetFiles(archiveFolder);
+                Assert.Single(archivedFiles);
+                AssertFileContents(archivedFiles[0], "day1_roll\n", Encoding.UTF8);
+
+                // Day 2: NLog should archive the previous day's file
+                // when the next message is logged.
+                timeSource.AddToLocalTime(TimeSpan.FromDays(1));
+                var day2File = Path.Combine(tempDir, timeSource.Time.ToString("yyyyMMdd") + ".log");
+                Assert.NotEqual(day1File, day2File);
+
+                logger.Debug("day2");
+
+                archivedFiles = Directory.GetFiles(archiveFolder).OrderBy(f => f).ToArray();
+                Assert.Equal(2, archivedFiles.Length);
+
+                AssertFileContents(archivedFiles[0], "day1_roll\n", Encoding.UTF8);
+                AssertFileContents(archivedFiles[1], "day1\n", Encoding.UTF8);
+                Assert.False(File.Exists(day1File));
+                Assert.True(File.Exists(day2File));
+                AssertFileContents(day2File, "day2\n", Encoding.UTF8);
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                TimeSource.Current = defaultTimeSource;
+
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
+            }
+        }
+
 #if !MONO
         [Theory]
 #else

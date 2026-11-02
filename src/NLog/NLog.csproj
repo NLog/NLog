@@ -31,20 +31,15 @@ For using NLog with ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web
     <PackageReleaseNotes>
 Changelog:
 
-- [#6215] FileTarget - Added FileLifecycleHooks for extending archive logic. (@Dave-Senn)
-- [#6218] ScopeContext - Optimize collection of properties in reverse order. (@snakefoot)
-- [#6230] PropertyTypeConverter - Disable legacy TypeDescriptor when AOT. (@snakefoot)
-- [#6231] Replacing ProcessInfoLayoutRenderer with ProcessStartLayoutRenderer. (@snakefoot)
-- [#6229] GarbageCollectorInfoLayoutRenderer - WorkingSet + Format. (@snakefoot)
-- [#6246] AsyncTaskTarget - Added Jitter on Retry to reduce thundering herd. (@snakefoot)
-- [#6248] AsyncTaskTarget - Changed Jitter to use Stopwatch instead of TickCount. (@snakefoot)
-- [#6245] AsyncTaskTarget - Refactor to reduce code complexity. (@snakefoot)
-- [#6148] AppEnvironmentWrapper - Return Unknown_ProcessId when empty ProcessName. (@snakefoot)
-- [#6187] ConfigurationItemFactory - Marked ParseMessageTemplates as obsolete. (@snakefoot)
-- [#6243] ConditionParser - Marked as obsolete, so it can become internal. (@snakefoot)
-- [#6087] Target - Reduce code complexity of WriteAsyncLogEvents. (@snakefoot)
-- [#6200] SimpleLayout - Marked Renderers-property as obsolete. (@snakefoot)
-- [#6239] LogFactory - FlushAsync and DisposeAsync with explict usage of CancellationToken.None. (@snakefoot)
+- [#6292] CachedLayoutRendererWrapper - Support CachedUntil=HourChange and CachedUntil=DayChange. (@dualfroz)
+- [#6298] ObjectGraphScanner - Skip scanning Layout.Empty. (@snakefoot)
+- [#6297] Remove Microsoft.SourceLink.GitHub as part of NET8 SDK. (@snakefoot)
+- [#6296] FileTarget - Refactor RollingArchiveFileHandler to reduce complexity. (@snakefoot)
+- [#6295] NullTarget - LastMessage property lock SyncRoot. (@snakefoot)
+- [#6303] XmlParser - Keep whitespace from character references in InnerText. (@APX403)
+- [#6289] MemoryTarget - Introduced DumpInitialError with focused diagnostic context. (@snakefoot)
+- [#6287] MemoryTarget - Introduced DumpOnError with full diagnostic context. (@snakefoot)
+- [#6283] MemoryTarget - RingBuffer supporting non-blocking enumeration. (@snakefoot)
 
 NLog v6.2 release notes: https://nlog-project.org/2026/08/16/nlog-6-2-aot-build-size.html
 
@@ -105,10 +100,6 @@ For all config options and platform support, check https://nlog-project.org/conf
     <Title>$(Title) - Mono</Title>
     <DefineConstants>$(DefineConstants);MONO</DefineConstants>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.400" PrivateAssets="All" />
-  </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFrameworkIdentifier)' == '.NETFramework' ">
     <Reference Include="System" />

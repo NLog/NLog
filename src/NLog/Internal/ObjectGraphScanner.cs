@@ -79,7 +79,7 @@ namespace NLog.Internal
         private static void ScanProperties<T>(ConfigurationItemFactory configFactory, bool aggressiveSearch, object? targetObject, List<T> result, int level, HashSet<object> visitedObjects)
             where T : class
         {
-            if (targetObject is null)
+            if (targetObject is null || ReferenceEquals(targetObject, NLog.Layouts.Layout.Empty))
             {
                 return;
             }
