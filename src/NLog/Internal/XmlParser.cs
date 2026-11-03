@@ -435,6 +435,14 @@ namespace NLog.Internal
                     continue;
                 }
 
+                if (terminator != '<' && (chr == '\n' || chr == '\r' || chr == '\t'))
+                {
+                    // Attribute value normalization like XmlReader, where CRLF becomes a single space
+                    if (!_xmlSource.StartsWith('\r', '\n'))
+                        _stringBuilder.Append(' ');
+                    continue;
+                }
+
                 _stringBuilder.Append(chr);
             } while (_xmlSource.Read());
 

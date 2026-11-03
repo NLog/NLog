@@ -264,6 +264,11 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog internalLogFile='&lt;&gt;' />", "<>")]
         [InlineData("<nlog internalLogFile='\"' />", "\"")]
         [InlineData("<nlog internalLogFile=\"'\" />", "'")]
+        [InlineData("<nlog internalLogFile='a\nb' />", "a b")]
+        [InlineData("<nlog internalLogFile='a\r\nb' />", "a b")]
+        [InlineData("<nlog internalLogFile='a\rb' />", "a b")]
+        [InlineData("<nlog internalLogFile='a\tb' />", "a b")]
+        [InlineData("<nlog internalLogFile='a&#13;&#10;b&#9;' />", "a\r\nb\t")]
         public void XmlParse_Attributes_Tokens(string xmlSource, string value)
         {
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
