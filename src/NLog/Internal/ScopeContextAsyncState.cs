@@ -124,20 +124,20 @@ namespace NLog.Internal
         {
             if (_propertyCollector is null)
             {
-                if (_allProperties is null || _allProperties.Count == 0)
+                var existingPropertyCount = _allProperties?.Count ?? 0;
+                if (_allProperties is null || existingPropertyCount == 0)
                 {
                     _allProperties = new[] { new KeyValuePair<string, object?>(propertyName, propertyValue) };
                     return;
                 }
-                else if (_allProperties.Count == 1 && _allProperties is IReadOnlyList<KeyValuePair<string, object?>> existingList)
+
+                if (existingPropertyCount == 1 && _allProperties is IReadOnlyList<KeyValuePair<string, object?>> existingList)
                 {
-                    // Newest properties are added first, so do not overwrite with old values
-                    if (!ScopeContext.DefaultComparer.Equals(existingList[0].Key, propertyName))
-                        _allProperties = new[] { existingList[0], new KeyValuePair<string, object?>(propertyName, propertyValue) };
+                    _allProperties = MergeSingleProperties(existingList, propertyName, propertyValue);
                     return;
                 }
 
-                _allProperties = _propertyCollector = CreatedPropertyCollector(_allProperties, 1);
+                _allProperties = _propertyCollector = CreatedPropertyCollector(_allProperties, existingPropertyCount, 1);
             }
 
             // Newest properties are added first, so do not overwrite with old values
@@ -158,32 +158,44 @@ namespace NLog.Internal
                     _allProperties = properties;
                     return;
                 }
-                else if (properties is null || properties.Count == 0)
-                {
+
+                if (properties is null)
                     return; // No properties to add
-                }
-                else if (_allProperties.Count == 0)
+
+                var propertiesCount = properties.Count;
+                if (propertiesCount == 0)
+                    return; // No properties to add
+
+                var existingPropertyCount = _allProperties.Count;
+                if (existingPropertyCount == 0)
                 {
                     _allProperties = properties;
                     return;
                 }
-                else if (_allProperties.Count == 1 && properties.Count == 1 && _allProperties is IReadOnlyList<KeyValuePair<string, object?>> existingList && properties is IReadOnlyList<KeyValuePair<string, object?>> propertiesList)
+
+                if (existingPropertyCount == 1 && propertiesCount == 1 && _allProperties is IReadOnlyList<KeyValuePair<string, object?>> existingList && properties is IReadOnlyList<KeyValuePair<string, object?>> propertiesList)
                 {
-                    // Newest properties are added first, so do not overwrite with old values
-                    if (!ScopeContext.DefaultComparer.Equals(existingList[0].Key, propertiesList[0].Key))
-                        _allProperties = new[] { existingList[0], propertiesList[0] };
+                    var singleProperty = propertiesList[0];
+                    _allProperties = MergeSingleProperties(existingList, singleProperty.Key, singleProperty.Value);
                     return;
                 }
 
-                _allProperties = _propertyCollector = CreatedPropertyCollector(_allProperties, properties.Count);
+                _allProperties = _propertyCollector = CreatedPropertyCollector(_allProperties, existingPropertyCount, propertiesCount);
             }
 
             ScopeContextPropertyEnumerator<object>.TryAddScopePropertiesToDictionary(properties, _propertyCollector);
         }
 
-        private static Dictionary<string, object?> CreatedPropertyCollector(IReadOnlyCollection<KeyValuePair<string, object?>> existingProperties, int additionalCapacity)
+        private static IReadOnlyList<KeyValuePair<string, object?>> MergeSingleProperties(IReadOnlyList<KeyValuePair<string, object?>> existingList, string propertyName, object? propertyValue)
         {
-            var existingPropertyCount = existingProperties.Count;
+            // Newest properties are added first, so do not overwrite with old values
+            var existingProperty = existingList[0];
+            return ScopeContext.DefaultComparer.Equals(existingProperty.Key, propertyName) ?
+                existingList : new[] { existingProperty, new KeyValuePair<string, object?>(propertyName, propertyValue) };
+        }
+
+        private static Dictionary<string, object?> CreatedPropertyCollector(IReadOnlyCollection<KeyValuePair<string, object?>> existingProperties, int existingPropertyCount, int additionalCapacity)
+        {
             var dictionary = new Dictionary<string, object?>(existingPropertyCount + additionalCapacity, ScopeContext.DefaultComparer);
             if (existingPropertyCount > 0)
             {
