@@ -2379,6 +2379,12 @@ namespace NLog.UnitTests
 
                     logger.Error("invalid format {guid:l}", Guid.NewGuid());
                     if (enabled == 1) AssertDebugLastMessage("debug", "A|invalid format {guid:l}");
+
+                    logger.WithProperty("Stage", 1).Error("invalid format {guid:l} {name}", Guid.NewGuid(), "x");
+                    if (enabled == 1) AssertDebugLastMessage("debug", "A|invalid format {guid:l} {name}");
+
+                    logger.Error("invalid format {guid:l} {a} {b}", Guid.NewGuid(), 1, 2);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "A|invalid format {guid:l} {a} {b}");
                 }
 
                 logger.Error("message{a}{b}{c}", 1, 2, 3);
