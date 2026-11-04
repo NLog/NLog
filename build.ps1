@@ -23,21 +23,21 @@ if (-not (Test-Path $targetNugetExe))
 	Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
 }
 
-msbuild /t:Restore,Pack ./src/NLog/ /p:targetFrameworks='"net46;net45;net35;netstandard2.0;netstandard2.1"' /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:ContinuousIntegrationBuild=true  /p:EmbedUntrackedSources=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal /maxcpucount
+msbuild /t:Restore,Pack ./src/NLog/ /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:ContinuousIntegrationBuild=true  /p:EmbedUntrackedSources=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal /maxcpucount
 if (-not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-function Create-Package($packageName, $targetFrameworks)
+function Create-Package($packageName)
 {
 	$path = "./src/$packageName/"
-	msbuild /t:Restore,Pack $path /p:targetFrameworks=$targetFrameworks /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:ContinuousIntegrationBuild=true /p:EmbedUntrackedSources=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal  /maxcpucount
+	msbuild /t:Restore,Pack $path /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:ContinuousIntegrationBuild=true /p:EmbedUntrackedSources=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal  /maxcpucount
 	if (-not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 }
 
-Create-Package 'NLog.Targets.GZipFile' '"net45;net46;netstandard2.0;netstandard2.1"'
-Create-Package 'NLog.OutputDebugString' '"net35;net45;net46;netstandard2.0;netstandard2.1"'
-Create-Package 'NLog.RegEx' '"net35;net45;net46;netstandard2.0;netstandard2.1"'
+Create-Package 'NLog.Targets.GZipFile'
+Create-Package 'NLog.OutputDebugString'
+Create-Package 'NLog.RegEx'
 msbuild /t:Restore,Pack ./src/NLog.Targets.AtomicFile/ /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:ContinuousIntegrationBuild=true /p:EmbedUntrackedSources=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal  /maxcpucount
 if (-not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
