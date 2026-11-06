@@ -74,7 +74,8 @@ namespace NLog.Targets.Dispatchers
             _consume = consume ?? throw new ArgumentNullException(nameof(consume));
             _timeToSleepBetweenBatches = timeToSleepBetweenBatches;
             _name = name;
-            _timer = CreateTimer(OnTimer);
+            
+            _timer = new Timer(OnTimer, null, Timeout.Infinite, Timeout.Infinite);
         }
 
         /// <inheritdoc/>
@@ -118,18 +119,6 @@ namespace NLog.Targets.Dispatchers
             }
 
             return _timer.WaitForDispose(timeout);
-        }
-
-        private static Timer CreateTimer(TimerCallback callback)
-        {
-            // Long-lived timer must not capture the initializing thread's AsyncLocal / ScopeContext state
-            if (ExecutionContext.IsFlowSuppressed())
-                return new Timer(callback, null, Timeout.Infinite, Timeout.Infinite);
-
-            using (ExecutionContext.SuppressFlow())
-            {
-                return new Timer(callback, null, Timeout.Infinite, Timeout.Infinite);
-            }
         }
 
         private void ScheduleRun(int dueTime)

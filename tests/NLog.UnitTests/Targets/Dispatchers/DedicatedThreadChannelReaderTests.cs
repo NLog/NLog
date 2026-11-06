@@ -42,8 +42,6 @@ namespace NLog.UnitTests.Targets.Dispatchers
     {
         private const string ThreadName = "NLog ChannelReaderTests";
 
-        private static readonly AsyncLocal<string> AmbientValue = new AsyncLocal<string>();
-
         internal override IChannelReader CreateReader(Func<ConsumeResult> consume, int timeToSleepBetweenBatches)
         {
             return new DedicatedThreadChannelReader(consume, timeToSleepBetweenBatches, ThreadName);
@@ -64,36 +62,6 @@ namespace NLog.UnitTests.Targets.Dispatchers
                     Assert.Equal(ThreadName, consumerThread.Name);
                     Assert.True(consumerThread.IsBackground);
                     Assert.False(consumerThread.IsThreadPoolThread);
-                }
-                finally
-                {
-                    reader.Stop(WaitTimeout);
-                }
-            }
-        }
-
-        [Fact]
-        public void ExecutionContext_DoesNotFlowIntoReaderThread()
-        {
-            string observed = "not-called";
-            using (var called = new ManualResetEvent(false))
-            {
-                IChannelReader reader;
-                AmbientValue.Value = "caller-value";
-                try
-                {
-                    reader = CreateReader(() => { observed = AmbientValue.Value; called.Set(); return ConsumeResult.Drained; }, 1);
-                    reader.Start();
-                }
-                finally
-                {
-                    AmbientValue.Value = null;
-                }
-
-                try
-                {
-                    Assert.True(called.WaitOne(WaitTimeout));
-                    Assert.Null(observed);
                 }
                 finally
                 {

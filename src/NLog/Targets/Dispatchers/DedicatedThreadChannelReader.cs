@@ -95,18 +95,7 @@ namespace NLog.Targets.Dispatchers
                 Schedule(ChannelReaderSchedule.StartDelay(_timeToSleepBetweenBatches));
             }
 
-            // Long-lived thread must not capture the caller's AsyncLocal / ScopeContext state
-            if (ExecutionContext.IsFlowSuppressed())
-            {
-                _thread.Start();
-            }
-            else
-            {
-                using (ExecutionContext.SuppressFlow())
-                {
-                    _thread.Start();
-                }
-            }
+            _thread.Start();
         }
 
         /// <inheritdoc/>

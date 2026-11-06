@@ -356,6 +356,73 @@ namespace NLog.UnitTests.Targets.Dispatchers
             }
         }
 
+        private static readonly AsyncLocal<string> AmbientValue = new AsyncLocal<string>();
+
+        [Fact]
+        public void ExecutionContext_FlowsFromInitializingThread()
+        {
+            // Same as the Timer that AsyncTargetWrapper always used: the consumer runs with the ExecutionContext
+            // (AsyncLocal values, culture) of the thread that created and started the reader during InitializeTarget
+            string observed = "not-called";
+            using (var called = new ManualResetEvent(false))
+            {
+                IChannelReader reader;
+                AmbientValue.Value = "caller-value";
+                try
+                {
+                    reader = CreateReader(() => { observed = AmbientValue.Value; called.Set(); return ConsumeResult.Drained; }, 1);
+                    reader.Start();
+                }
+                finally
+                {
+                    AmbientValue.Value = null;
+                }
+
+                try
+                {
+                    Assert.True(called.WaitOne(WaitTimeout));
+                    Assert.Equal("caller-value", observed);
+                }
+                finally
+                {
+                    reader.Stop(WaitTimeout);
+                }
+            }
+        }
+
+        [Fact]
+        public void CurrentCulture_FlowsFromInitializingThread()
+        {
+            // Log formatting on the background thread must not depend on which dispatcher is selected
+            var originalCulture = System.Globalization.CultureInfo.CurrentCulture;
+            var testCulture = originalCulture.Name == "de-DE" ? "fr-FR" : "de-DE";
+            string observed = "not-called";
+            using (var called = new ManualResetEvent(false))
+            {
+                IChannelReader reader;
+                System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo(testCulture);
+                try
+                {
+                    reader = CreateReader(() => { observed = System.Globalization.CultureInfo.CurrentCulture.Name; called.Set(); return ConsumeResult.Drained; }, 1);
+                    reader.Start();
+                }
+                finally
+                {
+                    System.Globalization.CultureInfo.CurrentCulture = originalCulture;
+                }
+
+                try
+                {
+                    Assert.True(called.WaitOne(WaitTimeout));
+                    Assert.Equal(testCulture, observed);
+                }
+                finally
+                {
+                    reader.Stop(WaitTimeout);
+                }
+            }
+        }
+
         [Fact]
         public void Stop_FromInsideConsumer_DoesNotDeadlock()
         {

@@ -1109,21 +1109,25 @@ namespace NLog.UnitTests.Targets.Wrappers
             targetWrapper.Initialize(null);
             try
             {
+                // Generous budget: with QueueLimit 2 every run writes 2 events, and the throttled
+                // path rounds 1 ms up to the ~15.6 ms timer tick on Windows (slow CI agents)
+                const int eventsPerProducer = 200;
+                const int timeoutMs = 30000;
                 var producers = new Thread[8];
                 for (int i = 0; i < producers.Length; ++i)
                 {
                     producers[i] = new Thread(() =>
                     {
-                        for (int j = 0; j < 500; ++j)
+                        for (int j = 0; j < eventsPerProducer; ++j)
                             targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
                     }) { IsBackground = true };
                     producers[i].Start();
                 }
 
                 foreach (var producer in producers)
-                    Assert.True(producer.Join(10000));
+                    Assert.True(producer.Join(timeoutMs));
 
-                Assert.True(countingTarget.WaitForWrites(8 * 500, 10000), $"Written: {countingTarget.WriteCount}");
+                Assert.True(countingTarget.WaitForWrites(producers.Length * eventsPerProducer, timeoutMs), $"Written: {countingTarget.WriteCount}");
             }
             finally
             {
@@ -1161,25 +1165,25 @@ namespace NLog.UnitTests.Targets.Wrappers
         [InlineData(true)]
         public void WrappedTargetThrows_LaterEventsStillWritten(bool dedicatedThread)
         {
+            // LogManager.ThrowExceptions is true in unit tests, so the exception escapes WrappedTarget.WriteAsyncLogEvents
+            // and reaches the wrapper's consumer. BatchSize = 1 leaves the later events queued when the first write throws.
+            // The queue never becomes empty, so no new Signal() arrives: only the consumer's result can schedule the retry.
             var countingTarget = new CountingTarget { ThrowOnFirstWrite = true };
-            var targetWrapper = new AsyncTargetWrapper(countingTarget) { Name = "WrappedTargetThrows_Wrapper" };
+            var targetWrapper = new AsyncTargetWrapper(countingTarget) { Name = "WrappedTargetThrows_Wrapper", BatchSize = 1 };
             UseDispatcher(targetWrapper, dedicatedThread);
-            using (new NoThrowNLogExceptions())
+            countingTarget.Initialize(null);
+            targetWrapper.Initialize(null);
+            try
             {
-                countingTarget.Initialize(null);
-                targetWrapper.Initialize(null);
-                try
-                {
-                    for (int i = 0; i < 5; ++i)
-                        targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+                for (int i = 0; i < 5; ++i)
+                    targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
 
-                    Assert.True(countingTarget.WaitForWrites(4, 5000), $"Written: {countingTarget.WriteCount}");
-                }
-                finally
-                {
-                    targetWrapper.Close();
-                    countingTarget.Close();
-                }
+                Assert.True(countingTarget.WaitForWrites(4, 5000), $"Written: {countingTarget.WriteCount}");
+            }
+            finally
+            {
+                targetWrapper.Close();
+                countingTarget.Close();
             }
         }
 
