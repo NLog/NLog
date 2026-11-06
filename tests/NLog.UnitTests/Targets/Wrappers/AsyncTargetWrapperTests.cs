@@ -1009,11 +1009,11 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Fact]
-        public void Initialize_WhenStartFails_StopsDispatcher()
+        public void Initialize_WhenReaderStartFails_StopsReader()
         {
-            var recordingDispatcher = new RecordingDispatcher();
-            var targetWrapper = new FailingStartTargetWrapper(new MyTarget()) { Name = "Initialize_WhenStartFails_Wrapper" };
-            targetWrapper.DispatcherFactory = () => recordingDispatcher;
+            RecordingReader reader = null;
+            var targetWrapper = new AsyncTargetWrapper(new MyTarget()) { Name = "Initialize_WhenReaderStartFails_Wrapper" };
+            targetWrapper.ReaderFactory = (consume, timeToSleepBetweenBatches) => reader = new RecordingReader(consume, timeToSleepBetweenBatches) { ThrowOnStart = true };
 
             using (new NoThrowNLogExceptions())
             {
@@ -1021,69 +1021,277 @@ namespace NLog.UnitTests.Targets.Wrappers
                 targetWrapper.Close();
             }
 
-            Assert.Equal(1, recordingDispatcher.StopCount);
+            Assert.NotNull(reader);
+            Assert.Equal(1, reader.StopCount);
         }
 
         [Fact]
-        public void Reinitialize_WhenSubclassSkipsStop_StopsPreviousDispatcher()
+        public void Reinitialize_WhenSubclassSkipsClose_StopsPreviousReader()
         {
-            var firstDispatcher = new RecordingDispatcher();
-            var secondDispatcher = new RecordingDispatcher();
-            var dispatchers = new Queue<RecordingDispatcher>(new[] { firstDispatcher, secondDispatcher });
-            var targetWrapper = new NoStopTargetWrapper(new MyTarget()) { Name = "Reinitialize_WhenSubclassSkipsStop_Wrapper" };
-            targetWrapper.DispatcherFactory = () => dispatchers.Dequeue();
+            var readers = new List<RecordingReader>();
+            var targetWrapper = new NoCloseTargetWrapper(new MyTarget()) { Name = "Reinitialize_WhenSubclassSkipsClose_Wrapper" };
+            targetWrapper.ReaderFactory = (consume, timeToSleepBetweenBatches) =>
+            {
+                var reader = new RecordingReader(consume, timeToSleepBetweenBatches);
+                readers.Add(reader);
+                return reader;
+            };
             try
             {
                 targetWrapper.Initialize(null);
                 targetWrapper.Close();
-                Assert.Equal(0, firstDispatcher.StopCount);
+                Assert.Equal(0, readers[0].StopCount);
 
                 targetWrapper.Initialize(null);
-                Assert.Equal(1, firstDispatcher.StopCount);
-                Assert.Equal(0, secondDispatcher.StopCount);
+                Assert.Equal(1, readers[0].StopCount);
+                Assert.Equal(0, readers[1].StopCount);
             }
             finally
             {
                 targetWrapper.Close();
-                secondDispatcher.Stop(TimeSpan.Zero);
+                foreach (var reader in readers)
+                    reader.Stop(TimeSpan.Zero);
             }
         }
 
-        private class FailingStartTargetWrapper : AsyncTargetWrapper
+        [Fact]
+        public void ForceLockingQueue_NotSet_KeepsFrameworkDefaultQueue()
         {
-            public FailingStartTargetWrapper(Target wrappedTarget) : base(wrappedTarget) { }
-
-            protected override void StartLazyWriterTimer()
+            var targetWrapper = new AsyncTargetWrapper(new MyTarget()) { Name = "ForceLockingQueue_NotSet_Wrapper" };
+            targetWrapper.Initialize(null);
+            try
             {
-                throw new ApplicationException("start failure");
+#if NETFRAMEWORK
+                Assert.True(GetChannel(targetWrapper).IsLockingQueue);
+#else
+                Assert.False(GetChannel(targetWrapper).IsLockingQueue);
+#endif
             }
-        }
-
-        private class NoStopTargetWrapper : AsyncTargetWrapper
-        {
-            public NoStopTargetWrapper(Target wrappedTarget) : base(wrappedTarget) { }
-
-            protected override void StopLazyWriterThread()
+            finally
             {
-                // Simulates a subclass that does not call base, leaving the dispatcher running
+                targetWrapper.Close();
             }
         }
 
-        private class RecordingDispatcher : IDispatcher
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void ForceLockingQueue_Set_UsesRequestedQueue(bool forceLockingQueue)
         {
-            private readonly TimerDispatcher _inner = new TimerDispatcher();
+            var targetWrapper = new AsyncTargetWrapper(new MyTarget()) { Name = "ForceLockingQueue_Set_Wrapper", ForceLockingQueue = forceLockingQueue };
+            targetWrapper.Initialize(null);
+            try
+            {
+                Assert.Equal(forceLockingQueue, GetChannel(targetWrapper).IsLockingQueue);
+            }
+            finally
+            {
+                targetWrapper.Close();
+            }
+        }
+
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void ManyProducers_TinyBlockQueue_AllEventsWritten(bool dedicatedThread)
+        {
+            var countingTarget = new CountingTarget();
+            var targetWrapper = new AsyncTargetWrapper(countingTarget)
+            {
+                Name = "ManyProducers_TinyBlockQueue_Wrapper",
+                TimeToSleepBetweenBatches = 0,
+                QueueLimit = 2,
+                BatchSize = 3,
+                OverflowAction = AsyncTargetWrapperOverflowAction.Block,
+            };
+            UseDispatcher(targetWrapper, dedicatedThread);
+            countingTarget.Initialize(null);
+            targetWrapper.Initialize(null);
+            try
+            {
+                var producers = new Thread[8];
+                for (int i = 0; i < producers.Length; ++i)
+                {
+                    producers[i] = new Thread(() =>
+                    {
+                        for (int j = 0; j < 500; ++j)
+                            targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+                    }) { IsBackground = true };
+                    producers[i].Start();
+                }
+
+                foreach (var producer in producers)
+                    Assert.True(producer.Join(10000));
+
+                Assert.True(countingTarget.WaitForWrites(8 * 500, 10000), $"Written: {countingTarget.WriteCount}");
+            }
+            finally
+            {
+                targetWrapper.Close();
+                countingTarget.Close();
+            }
+        }
+
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void PeriodicSleep_WritesWithoutSignal(bool dedicatedThread)
+        {
+            var countingTarget = new CountingTarget();
+            var targetWrapper = new AsyncTargetWrapper(countingTarget) { Name = "PeriodicSleep_Wrapper", TimeToSleepBetweenBatches = 50 };
+            UseDispatcher(targetWrapper, dedicatedThread);
+            countingTarget.Initialize(null);
+            targetWrapper.Initialize(null);
+            try
+            {
+                for (int i = 0; i < 10; ++i)
+                    targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+
+                Assert.True(countingTarget.WaitForWrites(10, 5000), $"Written: {countingTarget.WriteCount}");
+            }
+            finally
+            {
+                targetWrapper.Close();
+                countingTarget.Close();
+            }
+        }
+
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void WrappedTargetThrows_LaterEventsStillWritten(bool dedicatedThread)
+        {
+            var countingTarget = new CountingTarget { ThrowOnFirstWrite = true };
+            var targetWrapper = new AsyncTargetWrapper(countingTarget) { Name = "WrappedTargetThrows_Wrapper" };
+            UseDispatcher(targetWrapper, dedicatedThread);
+            using (new NoThrowNLogExceptions())
+            {
+                countingTarget.Initialize(null);
+                targetWrapper.Initialize(null);
+                try
+                {
+                    for (int i = 0; i < 5; ++i)
+                        targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+
+                    Assert.True(countingTarget.WaitForWrites(4, 5000), $"Written: {countingTarget.WriteCount}");
+                }
+                finally
+                {
+                    targetWrapper.Close();
+                    countingTarget.Close();
+                }
+            }
+        }
+
+        [Fact]
+        public void LogEventDropped_SubscribedBeforeInitialize_StillRaised()
+        {
+            using (var releaseWrites = new ManualResetEvent(false))
+            {
+                var blockingTarget = new CountingTarget { BlockWrites = releaseWrites };
+                var targetWrapper = new AsyncTargetWrapper(blockingTarget)
+                {
+                    Name = "LogEventDropped_SubscribedBeforeInitialize_Wrapper",
+                    QueueLimit = 2,
+                    OverflowAction = AsyncTargetWrapperOverflowAction.Discard,
+                    ForceLockingQueue = true,
+                };
+                int droppedCount = 0;
+                targetWrapper.LogEventDropped += (sender, args) => Interlocked.Increment(ref droppedCount);
+
+                blockingTarget.Initialize(null);
+                targetWrapper.Initialize(null);
+                try
+                {
+                    for (int i = 0; i < 5; ++i)
+                        targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+
+                    Assert.True(Interlocked.CompareExchange(ref droppedCount, 0, 0) >= 1);
+                }
+                finally
+                {
+                    releaseWrites.Set();
+                    targetWrapper.Close();
+                    blockingTarget.Close();
+                }
+            }
+        }
+
+        private static AsyncLogEventChannel GetChannel(AsyncTargetWrapper targetWrapper)
+        {
+            var channelField = typeof(AsyncTargetWrapper).GetField("_channel", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            return (AsyncLogEventChannel)channelField.GetValue(targetWrapper);
+        }
+
+        private class NoCloseTargetWrapper : AsyncTargetWrapper
+        {
+            public NoCloseTargetWrapper(Target wrappedTarget) : base(wrappedTarget) { }
+
+            protected override void CloseTarget()
+            {
+                // Simulates a subclass that does not call base, leaving the reader running
+            }
+        }
+
+        private class RecordingReader : IChannelReader
+        {
+            private readonly ThreadPoolChannelReader _inner;
             private int _stopCount;
+
+            public RecordingReader(Func<ConsumeResult> consume, int timeToSleepBetweenBatches)
+            {
+                _inner = new ThreadPoolChannelReader(consume, timeToSleepBetweenBatches, "test");
+            }
+
+            public bool ThrowOnStart { get; set; }
 
             public int StopCount => Interlocked.CompareExchange(ref _stopCount, 0, 0);
 
-            public bool Set(Action callback) => _inner.Set(callback);
+            public void Start()
+            {
+                if (ThrowOnStart)
+                    throw new ApplicationException("start failure");
+                _inner.Start();
+            }
 
-            public bool Change(int dueTime, int period) => _inner.Change(dueTime, period);
+            public void Signal() => _inner.Signal();
 
             public bool Stop(TimeSpan timeout)
             {
                 Interlocked.Increment(ref _stopCount);
                 return _inner.Stop(timeout);
+            }
+        }
+
+        private class CountingTarget : Target
+        {
+            private int _writeCount;
+            private int _throwOnNextWrite;
+
+            public bool ThrowOnFirstWrite { set => _throwOnNextWrite = value ? 1 : 0; }
+
+            public ManualResetEvent BlockWrites { get; set; }
+
+            public int WriteCount => Interlocked.CompareExchange(ref _writeCount, 0, 0);
+
+            public bool WaitForWrites(int count, int timeoutMilliseconds)
+            {
+                var deadline = DateTime.UtcNow.AddMilliseconds(timeoutMilliseconds);
+                while (WriteCount < count)
+                {
+                    if (DateTime.UtcNow > deadline)
+                        return false;
+                    Thread.Sleep(10);
+                }
+                return true;
+            }
+
+            protected override void Write(LogEventInfo logEvent)
+            {
+                BlockWrites?.WaitOne(10000);
+                if (Interlocked.Exchange(ref _throwOnNextWrite, 0) == 1)
+                    throw new ApplicationException("write failure");
+                Interlocked.Increment(ref _writeCount);
             }
         }
 
