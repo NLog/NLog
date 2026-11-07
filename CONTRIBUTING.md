@@ -60,20 +60,20 @@ As the current NLog team is a small team, we cannot fix every bug or implement e
 If you like to start with a small task, then
 [up-for-grabs](https://github.com/NLog/NLog/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+label%3Aup-for-grabs)  are nice to start with.
 
-Please note, we have a `dev` and `master` branch
+Please note, we have a `main` and `nlog5` branch
 
-- `master` is for pure bug fixes and targets NLog 5.x
-- `dev` targets NLog 6
+- `nlog5` is for pure bug fixes and targets NLog 5.x
+- `main` targets NLog 6
 
 
 A good way to get started (flow)
 
 1. Fork the NLog repos.
-2. Create a new branch in you current repos from the 'dev' branch. (critical bugfixes from 'master')
+2. Create a new branch in you current repos from the 'main' branch. (critical bugfixes from 'nlog5')
 3. 'Check out' the code with Git or [GitHub Desktop](https://desktop.github.com/)
 4. Push commits and create a Pull Request (PR) to NLog
 
-Please note: bugfixes should target the **master** branch, others the **dev** branch (NLog 6)
+Please note: bugfixes should target the **nlog5** branch, others the **main** branch (NLog 6)
 
 Update your fork
 ----
@@ -88,12 +88,12 @@ After that you repository will have two remotes. You could update your remote (t
 ```
 git fetch upstream
 git checkout <your feature branch>
-git rebase upstream/master
+git rebase upstream/nlog5
 ..fix if needed and
 git push -f 
 ```
 
-if `rebase` won't work well, use `git merge master` as alternative.
+if `rebase` won't work well, use `git merge nlog5` as alternative.
 
 It's also possible to send a PR in the opposite direction, but that's not preferred as it will pollute the commit log.
 
@@ -108,7 +108,7 @@ For building in the cloud we use:
 
 Trying to build your fork in the cloud? Check [this how-to](howto-build-your-fork.md)
 
-Note: master points to NLog 5.x and dev to NLog 6
+Note: nlog5 points to NLog 5.x and main to NLog 6
 
 List of NLog extensions
 ===
