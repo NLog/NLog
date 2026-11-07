@@ -88,12 +88,12 @@ After that you repository will have two remotes. You could update your remote (t
 ```
 git fetch upstream
 git checkout <your feature branch>
-git rebase upstream/nlog5
+git rebase upstream/main
 ..fix if needed and
 git push -f 
 ```
 
-if `rebase` won't work well, use `git merge nlog5` as alternative.
+if `rebase` won't work well, use `git merge main` as alternative.
 
 It's also possible to send a PR in the opposite direction, but that's not preferred as it will pollute the commit log.
 
