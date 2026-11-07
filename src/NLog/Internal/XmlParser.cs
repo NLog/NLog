@@ -407,6 +407,7 @@ namespace NLog.Internal
         {
             _stringBuilder.ClearBuilder();
             int keepLength = 0;
+            bool readInnerText = terminator == '<';
 
             do
             {
@@ -435,7 +436,7 @@ namespace NLog.Internal
                     continue;
                 }
 
-                if (terminator != '<' && (chr == '\n' || chr == '\r' || chr == '\t'))
+                if (!readInnerText && CharIsSpace(chr))
                 {
                     // Attribute value normalization like XmlReader, where CRLF becomes a single space
                     if (!_xmlSource.StartsWith('\r', '\n'))
@@ -446,7 +447,7 @@ namespace NLog.Internal
                 _stringBuilder.Append(chr);
             } while (_xmlSource.Read());
 
-            return terminator == '<'
+            return readInnerText
                 ? _stringBuilder.ToString(0, TrimEndWhitespace(_stringBuilder, keepLength))
                 : _stringBuilder.ToString();
         }
@@ -601,18 +602,9 @@ namespace NLog.Internal
             return true;
         }
 
-        private static bool CharIsSpace(char c)
+        private static bool CharIsSpace(char chr)
         {
-            switch (c)
-            {
-                case ' ':
-                case '\t':
-                case '\r':
-                case '\n':
-                    return true;
-                default:
-                    return char.IsWhiteSpace(c);
-            }
+            return char.IsWhiteSpace(chr);
         }
 
         public sealed class XmlParserElement
