@@ -421,18 +421,18 @@ namespace NLog.Internal
                 if (chr == '&')
                 {
                     _xmlSource.Read();
-                    if (TryParseSpecialXmlToken(out var specialToken))
-                    {
-                        _stringBuilder.Append(specialToken);
-                        keepLength = _stringBuilder.Length;  // Whitespace from character references should not be trimmed
-                    }
-                    else
+
+                    if (!TryParseSpecialXmlToken(out var specialToken))
                     {
                         _stringBuilder.Append('&'); // Unrecognized special token, return the '&' character as-is.
-                        if (_xmlSource.Current == terminator)
-                            break;
-                        _stringBuilder.Append(_xmlSource.Current);
+                        specialToken = _xmlSource.Current.ToString();
                     }
+
+                    if (_xmlSource.Current == terminator)
+                        break;
+
+                    _stringBuilder.Append(specialToken);
+                    keepLength = _stringBuilder.Length;  // Whitespace from character references should not be trimmed
                     continue;
                 }
 
