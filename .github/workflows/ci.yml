@@ -36,6 +36,7 @@ jobs:
         include:
           - framework: net462
             os: windows-latest
+            upload_coverage: true
           - framework: net8.0
             os: windows-latest
           - framework: net8.0
