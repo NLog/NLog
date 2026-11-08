@@ -63,7 +63,7 @@ jobs:
           }
 
   unit-tests:
-    name: Unit tests main test project (${{ matrix.framework }}, ${{ matrix.os }})
+    name: Unit tests nlog package (${{ matrix.framework }}, ${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
@@ -107,7 +107,7 @@ jobs:
           }
 
   package-tests:
-    name: Unit tests other test projects (${{ matrix.framework }}, ${{ matrix.os }}, ${{ matrix.testTargetFramework || 'default' }})
+    name: Unit tests additional package (${{ matrix.framework }}, ${{ matrix.os }}${{ matrix.testTargetFramework && format(', {0}', matrix.testTargetFramework) || '' }})
     strategy:
       fail-fast: false
       matrix:
@@ -122,8 +122,8 @@ jobs:
             os: windows-latest
           - framework: net10.0
             os: ubuntu-latest
-          - framework: net8.0
-            os: windows-latest
+          - framework: net10.0
+            os: ubuntu-latest
             testTargetFramework: netstandard2.0
     runs-on: ${{ matrix.os }}
     permissions:
