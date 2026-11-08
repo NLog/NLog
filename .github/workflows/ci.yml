@@ -348,14 +348,14 @@ jobs:
         env:
           VERSION_SUFFIX: ${{ steps.version.outputs.suffix }}
         run: |
-          msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX45=true
+          msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX45=true /verbosity:minimal
 
           $schemaProperties = @('/p:Configuration=Release', '/p:BuildNetFX45=true', '/p:BuildLabelOverride=NONE')
           if ($env:VERSION_SUFFIX) {
             $schemaProperties += "/p:NuGetPrelease=$env:VERSION_SUFFIX"
           }
 
-          msbuild src/NLog.proj /t:NuGetSchemaPackage @schemaProperties
+          msbuild src/NLog.proj /t:NuGetSchemaPackage @schemaProperties /verbosity:minimal
 
       - name: Upload NuGet package
         uses: actions/upload-artifact@v7
