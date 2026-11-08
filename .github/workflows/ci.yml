@@ -28,40 +28,6 @@ jobs:
       - name: Build
         run: dotnet build ${{ env.SOLUTION }} --configuration Release
 
-  source-checks:
-    name: Source code and XSD check
-    runs-on: windows-latest
-    permissions:
-      contents: read
-
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Build source code checks
-        run: dotnet build tools/CheckSourceCode/src/NLog.SourceCodeTests.sln --configuration Release --no-incremental
-
-      - name: Run source code checks
-        run: .\tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
-
-      - name: Build NLog for schema generation
-        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net45
-
-      - name: Generate configuration schema
-        run: dotnet msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX45=true
-
-      - name: Run XSD check
-        shell: pwsh
-        run: |
-          $excludedTests = @('Database', 'Chainsaw', 'NLogViewer')
-          $configFiles = @(Get-ChildItem -Path './examples/targets/Configuration File' -Directory -Exclude $excludedTests | Get-ChildItem -Recurse -File -Filter NLog.config)
-          if ($configFiles.Count -eq 0) {
-            throw 'No example NLog.config files were found for XSD validation.'
-          }
-
-          if (-not (./Test-XmlFile.ps1)) {
-            throw "Example configuration XSD check failed."
-          }
-
   unit-tests:
     name: Unit tests nlog package (${{ matrix.framework }}, ${{ matrix.os }})
     strategy:
@@ -127,6 +93,46 @@ jobs:
           name: Coverage-unit-${{ matrix.framework }}-${{ matrix.os }}
           path: tests/**/TestResults/**/coverage.cobertura.xml
           if-no-files-found: error
+
+  netframework-tests:
+    name: Unit tests nlog package (${{ matrix.framework }})
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [net35, net45]
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Restore UnitTests
+        run: dotnet restore tests/NLog.UnitTests/NLog.UnitTests.csproj
+
+      - name: Build NLog
+        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework ${{ matrix.framework }}
+
+      - name: Build UnitTests for .NET framework
+        run: dotnet msbuild /t:Build /p:TargetFramework=net462 /p:Configuration=Release /p:DebugType=Full /p:TestTargetFramework=${{ matrix.framework }} tests/NLog.UnitTests/NLog.UnitTests.csproj
+
+      - name: Run UnitTests for .NET framework
+        shell: pwsh
+        run: |
+          dotnet vstest tests/NLog.UnitTests/bin/Release/${{ matrix.framework }}/NLog.UnitTests.dll --logger GitHubActions --logger "trx;LogFileName=netframework-test-results.trx"
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
+          $testResultsPath = Join-Path (Get-Location) 'TestResults/netframework-test-results.trx'
+          if (-not (Test-Path $testResultsPath)) {
+            throw 'UnitTests for .NET framework did not produce test results.'
+          }
+
+          [xml] $testResults = Get-Content -Raw $testResultsPath
+          if ([int] $testResults.TestRun.ResultSummary.Counters.total -eq 0) {
+            throw 'No UnitTests for .NET framework were discovered.'
+          }
 
   package-tests:
     name: Unit tests additional package (${{ matrix.framework }}, ${{ matrix.os }}${{ matrix.testTargetFramework && format(', {0}', matrix.testTargetFramework) || '' }})
@@ -235,12 +241,9 @@ jobs:
       - name: Run trim test project
         run: .\tests\TestTrimPublish\bin\Release\net10.0\win-x64\publish\TestTrimPublish.exe
 
-  netframework-tests:
-    name: Unit tests nlog package (${{ matrix.framework }})
-    strategy:
-      fail-fast: false
-      matrix:
-        framework: [net35, net45]
+
+  source-checks:
+    name: Source code and XSD check
     runs-on: windows-latest
     permissions:
       contents: read
@@ -248,32 +251,54 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Restore UnitTests
-        run: dotnet restore tests/NLog.UnitTests/NLog.UnitTests.csproj
+      - name: Build source code checks
+        run: dotnet build tools/CheckSourceCode/src/NLog.SourceCodeTests.sln --configuration Release --no-incremental
 
-      - name: Build NLog
-        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework ${{ matrix.framework }}
+      - name: Run source code checks
+        run: .\tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
 
-      - name: Build UnitTests for .NET framework
-        run: dotnet msbuild /t:Build /p:TargetFramework=net462 /p:Configuration=Release /p:DebugType=Full /p:TestTargetFramework=${{ matrix.framework }} tests/NLog.UnitTests/NLog.UnitTests.csproj
+      - name: Build NLog for schema generation
+        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net45
 
-      - name: Run UnitTests for .NET framework
+      - name: Generate configuration schema
+        run: dotnet msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX45=true
+
+      - name: Run XSD check
         shell: pwsh
         run: |
-          dotnet vstest tests/NLog.UnitTests/bin/Release/${{ matrix.framework }}/NLog.UnitTests.dll --logger GitHubActions --logger "trx;LogFileName=netframework-test-results.trx"
-          if ($LASTEXITCODE -ne 0) {
-            exit $LASTEXITCODE
+          $excludedTests = @('Database', 'Chainsaw', 'NLogViewer')
+          $configFiles = @(Get-ChildItem -Path './examples/targets/Configuration File' -Directory -Exclude $excludedTests | Get-ChildItem -Recurse -File -Filter NLog.config)
+          if ($configFiles.Count -eq 0) {
+            throw 'No example NLog.config files were found for XSD validation.'
           }
 
-          $testResultsPath = Join-Path (Get-Location) 'TestResults/netframework-test-results.trx'
-          if (-not (Test-Path $testResultsPath)) {
-            throw 'UnitTests for .NET framework did not produce test results.'
+          if (-not (./Test-XmlFile.ps1)) {
+            throw "Example configuration XSD check failed."
           }
 
-          [xml] $testResults = Get-Content -Raw $testResultsPath
-          if ([int] $testResults.TestRun.ResultSummary.Counters.total -eq 0) {
-            throw 'No UnitTests for .NET framework were discovered.'
-          }
+  coverage:
+    name: Upload coverage to Codecov
+    needs: [unit-tests, package-tests]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Download coverage artifacts
+        uses: actions/download-artifact@v7
+        with:
+          pattern: Coverage-*
+          path: coverage
+          merge-multiple: true
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage/**/coverage.cobertura.xml
+          fail_ci_if_error: true
 
   pack:
     name: Create NuGet package
@@ -374,26 +399,3 @@ jobs:
           NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
         run: dotnet nuget push "artifacts/*.nupkg" --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
 
-  coverage:
-    name: Upload coverage to Codecov
-    needs: [unit-tests, package-tests]
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Download coverage artifacts
-        uses: actions/download-artifact@v7
-        with:
-          pattern: Coverage-*
-          path: coverage
-          merge-multiple: true
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: coverage/**/coverage.cobertura.xml
-          fail_ci_if_error: true
