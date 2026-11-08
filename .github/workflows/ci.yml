@@ -29,7 +29,7 @@ jobs:
         run: dotnet build ${{ env.SOLUTION }} --configuration Release
 
   unit-tests:
-    name: Unit tests nlog package (${{ matrix.framework }}, ${{ matrix.os }})
+    name: Tests NLog package (${{ matrix.framework }}, ${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
@@ -95,7 +95,7 @@ jobs:
           if-no-files-found: error
 
   netframework-tests:
-    name: Unit tests nlog package (${{ matrix.framework }})
+    name: Tests NLog package (${{ matrix.framework }})
     strategy:
       fail-fast: false
       matrix:
@@ -135,7 +135,7 @@ jobs:
           }
 
   package-tests:
-    name: Unit tests additional package (${{ matrix.framework }}, ${{ matrix.os }}${{ matrix.testTargetFramework && format(', {0}', matrix.testTargetFramework) || '' }})
+    name: Tests additional packages (${{ matrix.framework }}, ${{ matrix.os }}${{ matrix.testTargetFramework && format(', {0}', matrix.testTargetFramework) || '' }})
     strategy:
       fail-fast: false
       matrix:
@@ -227,7 +227,7 @@ jobs:
           if-no-files-found: error
 
   trim-publish:
-    name: Publish and run trim test
+    name: Run trim test
     runs-on: windows-latest
     permissions:
       contents: read
