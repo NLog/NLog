@@ -227,7 +227,7 @@ jobs:
           if-no-files-found: error
 
   trim-publish:
-    name: Run trim test
+    name: Trim test
     runs-on: windows-latest
     permissions:
       contents: read
