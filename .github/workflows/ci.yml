@@ -370,8 +370,8 @@ jobs:
         with:
           name: NuGetPackages
           path: |
-            artifacts/*.nupkg
-            artifacts/*.snupkg
+            artifacts/NLog*.nupkg
+            artifacts/NLog*.snupkg
           if-no-files-found: error
 
   publish:
