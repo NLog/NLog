@@ -107,7 +107,7 @@ jobs:
           }
 
   package-tests:
-    name: Unit tests other test projects (${{ matrix.framework }}, ${{ matrix.os }})
+    name: Unit tests other test projects (${{ matrix.framework }}, ${{ matrix.os }}, ${{ matrix.testTargetFramework || 'default' }})
     strategy:
       fail-fast: false
       matrix:
@@ -122,6 +122,9 @@ jobs:
             os: windows-latest
           - framework: net10.0
             os: ubuntu-latest
+          - framework: net8.0
+            os: windows-latest
+            testTargetFramework: netstandard2.0
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -133,18 +136,47 @@ jobs:
         shell: pwsh
         env:
           TEST_FRAMEWORK: ${{ matrix.framework }}
+          TEST_TARGET_FRAMEWORK: ${{ matrix.testTargetFramework }}
         run: |
           $projects = @(
-            'tests/NLog.RegEx.Tests/NLog.RegEx.Tests.csproj',
-            'tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj',
-            'tests/NLog.Targets.GZipFile.Tests/NLog.Targets.GZipFile.Tests.csproj'
+            @{
+              TestProject = 'tests/NLog.RegEx.Tests/NLog.RegEx.Tests.csproj'
+              LibraryProject = 'src/NLog.RegEx/NLog.RegEx.csproj'
+            },
+            @{
+              TestProject = 'tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj'
+              LibraryProject = 'src/NLog.Targets.AtomicFile/NLog.Targets.AtomicFile.csproj'
+            },
+            @{
+              TestProject = 'tests/NLog.Targets.GZipFile.Tests/NLog.Targets.GZipFile.Tests.csproj'
+              LibraryProject = 'src/NLog.Targets.GZipFile/NLog.Targets.GZipFile.csproj'
+            }
           )
           $failedProjects = @()
 
-          foreach ($project in $projects) {
+          foreach ($projectInfo in $projects) {
+            $project = $projectInfo.TestProject
+            if ($env:TEST_TARGET_FRAMEWORK) {
+              dotnet build $projectInfo.LibraryProject --configuration Release --framework $env:TEST_TARGET_FRAMEWORK
+              if ($LASTEXITCODE -ne 0) {
+                $failedProjects += "$($projectInfo.LibraryProject) failed for $env:TEST_TARGET_FRAMEWORK with exit code $LASTEXITCODE"
+                continue
+              }
+            }
+
             $projectName = [System.IO.Path]::GetFileNameWithoutExtension($project)
             $resultFileName = "$projectName-$env:TEST_FRAMEWORK.trx"
-            dotnet test $project --configuration Release --framework $env:TEST_FRAMEWORK --logger 'console;verbosity=normal' --logger "trx;LogFileName=$resultFileName" --results-directory $env:RUNNER_TEMP
+            $testArguments = @(
+              '--configuration', 'Release',
+              '--framework', $env:TEST_FRAMEWORK,
+              '--logger', 'console;verbosity=normal',
+              '--logger', "trx;LogFileName=$resultFileName",
+              '--results-directory', $env:RUNNER_TEMP
+            )
+            if ($env:TEST_TARGET_FRAMEWORK) {
+              $testArguments += "-p:TestTargetFramework=$env:TEST_TARGET_FRAMEWORK"
+            }
+            dotnet test $project @testArguments
             if ($LASTEXITCODE -ne 0) {
               $failedProjects += "$project failed for $env:TEST_FRAMEWORK with exit code $LASTEXITCODE"
               continue
@@ -222,40 +254,6 @@ jobs:
             throw 'No UnitTests for .NET framework were discovered.'
           }
 
-  atomic-file-netstandard:
-    name: AtomicFile tests (netstandard2.0)
-    runs-on: windows-latest
-    permissions:
-      contents: read
-
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Build AtomicFile for netstandard2.0
-        run: dotnet build src/NLog.Targets.AtomicFile/NLog.Targets.AtomicFile.csproj --configuration Release --framework netstandard2.0
-
-      - name: Test AtomicFile against netstandard2.0
-        shell: pwsh
-        run: |
-          dotnet test tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj --configuration Release --framework net8.0 -p:TestTargetFramework=netstandard2.0 --logger 'trx;LogFileName=atomic-tests.trx' --results-directory $env:RUNNER_TEMP
-          if ($LASTEXITCODE -ne 0) {
-            exit $LASTEXITCODE
-          }
-
-          $testResults = Get-ChildItem -Path $env:RUNNER_TEMP -Filter 'atomic-tests*.trx'
-          if (-not $testResults) {
-            throw 'AtomicFile tests did not produce test results.'
-          }
-
-          $totalTests = 0
-          foreach ($testResult in $testResults) {
-            [xml] $results = Get-Content -Raw $testResult.FullName
-            $totalTests += [int] $results.TestRun.ResultSummary.Counters.total
-          }
-          if ($totalTests -eq 0) {
-            throw 'No AtomicFile tests were discovered.'
-          }
-
   pack:
     name: Create NuGet package
     runs-on: windows-latest
@@ -324,7 +322,7 @@ jobs:
 
   publish:
     name: Publish NuGet package
-    needs: [build, source-checks, unit-tests, package-tests, trim-publish, netframework-tests, atomic-file-netstandard, pack]
+    needs: [build, source-checks, unit-tests, package-tests, trim-publish, netframework-tests, pack]
     if: >-
       github.repository == 'NLog/NLog' &&
       (

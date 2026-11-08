@@ -21,6 +21,13 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net10.0' AND '$(TestTargetFramework)' != '' ">
+    <Reference Include="NLog.RegEx">
+      <HintPath>../../src/NLog.RegEx/bin/$(Configuration)/$(TestTargetFramework)/NLog.RegEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\src\NLog.RegEx\NLog.RegEx.csproj" />
   </ItemGroup>

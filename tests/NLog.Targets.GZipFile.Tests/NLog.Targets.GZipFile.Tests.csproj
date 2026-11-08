@@ -26,6 +26,13 @@
     <PackageReference Include="Basic.Reference.Assemblies " Version="1.8.0" />
   </ItemGroup>
 
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net10.0' AND '$(TestTargetFramework)' != '' ">
+    <Reference Include="NLog.Targets.GZipFile">
+      <HintPath>../../src/NLog.Targets.GZipFile/bin/$(Configuration)/$(TestTargetFramework)/NLog.Targets.GZipFile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\src\NLog.Targets.GZipFile\NLog.Targets.GZipFile.csproj" />
   </ItemGroup>
