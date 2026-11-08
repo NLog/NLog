@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - dev
+      - main
   pull_request:
   workflow_dispatch:
     inputs:
@@ -90,25 +90,8 @@ jobs:
         env:
           TEST_PROJECT: tests/NLog.UnitTests/NLog.UnitTests.csproj
           TEST_FRAMEWORK: ${{ matrix.framework }}
-          NO_WARN: ${{ matrix.framework != 'net462' && 'CS8765,CS8619,CS8604,CS8603,CS8601' || '' }}
         run: |
-          function ConvertTo-MSBuildList($value) {
-            ($value -split ',') -join '%3B'
-          }
-
-          $testArguments = @(
-            '--configuration', 'Release',
-            '--framework', $env:TEST_FRAMEWORK,
-            '--logger', 'console;verbosity=normal',
-            '--logger', 'trx;LogFileName=test-results.trx',
-            '--results-directory', $env:RUNNER_TEMP
-          )
-
-          if ($env:NO_WARN) {
-            $testArguments += "-p:NoWarn=$(ConvertTo-MSBuildList $env:NO_WARN)"
-          }
-
-          dotnet test $env:TEST_PROJECT @testArguments
+          dotnet test $env:TEST_PROJECT --configuration Release --framework $env:TEST_FRAMEWORK --logger 'console;verbosity=normal' --logger 'trx;LogFileName=test-results.trx' --results-directory $env:RUNNER_TEMP
           if ($LASTEXITCODE -ne 0) {
             exit $LASTEXITCODE
           }
@@ -150,12 +133,7 @@ jobs:
         shell: pwsh
         env:
           TEST_FRAMEWORK: ${{ matrix.framework }}
-          NO_WARN: ${{ matrix.framework != 'net462' && 'CS8765,CS8619,CS8604,CS8603,CS8601' || '' }}
         run: |
-          function ConvertTo-MSBuildList($value) {
-            ($value -split ',') -join '%3B'
-          }
-
           $projects = @(
             'tests/NLog.RegEx.Tests/NLog.RegEx.Tests.csproj',
             'tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj',
@@ -166,19 +144,7 @@ jobs:
           foreach ($project in $projects) {
             $projectName = [System.IO.Path]::GetFileNameWithoutExtension($project)
             $resultFileName = "$projectName-$env:TEST_FRAMEWORK.trx"
-            $testArguments = @(
-              '--configuration', 'Release',
-              '--framework', $env:TEST_FRAMEWORK,
-              '--logger', 'console;verbosity=normal',
-              '--logger', "trx;LogFileName=$resultFileName",
-              '--results-directory', $env:RUNNER_TEMP
-            )
-
-            if ($env:NO_WARN) {
-              $testArguments += "-p:NoWarn=$(ConvertTo-MSBuildList $env:NO_WARN)"
-            }
-
-            dotnet test $project @testArguments
+            dotnet test $project --configuration Release --framework $env:TEST_FRAMEWORK --logger 'console;verbosity=normal' --logger "trx;LogFileName=$resultFileName" --results-directory $env:RUNNER_TEMP
             if ($LASTEXITCODE -ne 0) {
               $failedProjects += "$project failed for $env:TEST_FRAMEWORK with exit code $LASTEXITCODE"
               continue
@@ -307,7 +273,7 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           RUN_NUMBER: ${{ github.run_number }}
         run: |
-          if ($env:REF -eq "refs/heads/master") {
+          if ($env:REF -eq "refs/heads/main") {
             echo "suffix=" >> $env:GITHUB_OUTPUT
           } elseif ($env:PR_NUMBER) {
             echo "suffix=pr.$($env:PR_NUMBER).ci.$($env:RUN_NUMBER)" >> $env:GITHUB_OUTPUT
@@ -357,7 +323,7 @@ jobs:
     name: Publish NuGet package
     needs: [build, source-checks, unit-tests, package-tests, trim-publish, netframework-tests, atomic-file-netstandard, pack]
     if: >-
-      (github.event_name == 'push' && github.ref == 'refs/heads/dev') ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
       (github.event_name == 'workflow_dispatch' && inputs.force_nuget_publish)
     runs-on: ubuntu-latest
     permissions:
