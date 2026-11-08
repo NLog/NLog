@@ -30,6 +30,10 @@
     <DefineConstants>$(DefineConstants);NET45</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(TargetFramework)' != 'net10.0' AND '$(TestTargetFramework)' == 'net46' ">
+    <DefineConstants>$(DefineConstants);NET46</DefineConstants>
+  </PropertyGroup>
+
   <PropertyGroup Condition=" '$(monobuild)' != '' ">
     <DefineConstants>$(DefineConstants);MONO</DefineConstants>
   </PropertyGroup>
