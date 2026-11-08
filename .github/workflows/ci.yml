@@ -138,33 +138,20 @@ jobs:
           TEST_FRAMEWORK: ${{ matrix.framework }}
           TEST_TARGET_FRAMEWORK: ${{ matrix.testTargetFramework }}
         run: |
-          $projects = @(
-            @{
-              TestProject = 'tests/NLog.RegEx.Tests/NLog.RegEx.Tests.csproj'
-              LibraryProject = 'src/NLog.RegEx/NLog.RegEx.csproj'
-            },
-            @{
-              TestProject = 'tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj'
-              LibraryProject = 'src/NLog.Targets.AtomicFile/NLog.Targets.AtomicFile.csproj'
-            },
-            @{
-              TestProject = 'tests/NLog.Targets.GZipFile.Tests/NLog.Targets.GZipFile.Tests.csproj'
-              LibraryProject = 'src/NLog.Targets.GZipFile/NLog.Targets.GZipFile.csproj'
-            }
-          )
-          $failedProjects = @()
+          function Test-PackageProject {
+            param (
+              [string] $TestProject,
+              [string] $Project
+            )
 
-          foreach ($projectInfo in $projects) {
-            $project = $projectInfo.TestProject
             if ($env:TEST_TARGET_FRAMEWORK) {
-              dotnet build $projectInfo.LibraryProject --configuration Release --framework $env:TEST_TARGET_FRAMEWORK
+              dotnet build $Project --configuration Release --framework $env:TEST_TARGET_FRAMEWORK
               if ($LASTEXITCODE -ne 0) {
-                $failedProjects += "$($projectInfo.LibraryProject) failed for $env:TEST_TARGET_FRAMEWORK with exit code $LASTEXITCODE"
-                continue
+                throw "$Project failed for $env:TEST_TARGET_FRAMEWORK with exit code $LASTEXITCODE"
               }
             }
 
-            $projectName = [System.IO.Path]::GetFileNameWithoutExtension($project)
+            $projectName = [System.IO.Path]::GetFileNameWithoutExtension($TestProject)
             $resultFileName = "$projectName-$env:TEST_FRAMEWORK.trx"
             $testArguments = @(
               '--configuration', 'Release',
@@ -176,28 +163,25 @@ jobs:
             if ($env:TEST_TARGET_FRAMEWORK) {
               $testArguments += "-p:TestTargetFramework=$env:TEST_TARGET_FRAMEWORK"
             }
-            dotnet test $project @testArguments
+            dotnet test $TestProject @testArguments
             if ($LASTEXITCODE -ne 0) {
-              $failedProjects += "$project failed for $env:TEST_FRAMEWORK with exit code $LASTEXITCODE"
-              continue
+              throw "$TestProject failed for $env:TEST_FRAMEWORK with exit code $LASTEXITCODE"
             }
 
             $testResultsPath = Join-Path $env:RUNNER_TEMP $resultFileName
             if (-not (Test-Path $testResultsPath)) {
-              $failedProjects += "$project produced no test results for $env:TEST_FRAMEWORK"
-              continue
+              throw "$TestProject produced no test results for $env:TEST_FRAMEWORK"
             }
 
             [xml] $testResults = Get-Content -Raw $testResultsPath
             if ([int] $testResults.TestRun.ResultSummary.Counters.total -eq 0) {
-              $failedProjects += "$project discovered no tests for $env:TEST_FRAMEWORK"
+              throw "$TestProject discovered no tests for $env:TEST_FRAMEWORK"
             }
           }
 
-          if ($failedProjects.Count -gt 0) {
-            $failedProjects | ForEach-Object { Write-Error $_ }
-            exit 1
-          }
+          Test-PackageProject 'tests/NLog.RegEx.Tests/NLog.RegEx.Tests.csproj' 'src/NLog.RegEx/NLog.RegEx.csproj'
+          Test-PackageProject 'tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj' 'src/NLog.Targets.AtomicFile/NLog.Targets.AtomicFile.csproj'
+          Test-PackageProject 'tests/NLog.Targets.GZipFile.Tests/NLog.Targets.GZipFile.Tests.csproj' 'src/NLog.Targets.GZipFile/NLog.Targets.GZipFile.csproj'
 
   trim-publish:
     name: Publish and run trim test
