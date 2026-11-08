@@ -99,7 +99,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        framework: [net35, net45]
+        framework: [net35, net46]
     runs-on: windows-latest
     permissions:
       contents: read
