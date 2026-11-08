@@ -37,9 +37,7 @@
     <BZip2>$(MSBuildProjectDirectory)\..\tools\bzip2.exe</BZip2>
     <Git Condition=" '$(Git)' == '' ">git</Git>
     <NuGetOutputPath>$(MSBuildProjectDirectory)\..\artifacts</NuGetOutputPath>
-    <NuGetTool>$(MSBuildProjectDirectory)\..\tools\NuGet.exe</NuGetTool>
     <NuGetBuildPath>$(BaseOutputDirectory)\obj\$(Configuration)\NuGet</NuGetBuildPath>
-    <NuGetProperties>BuildVersion=$(NuGetVersion)</NuGetProperties>
   </PropertyGroup>
 
   <Target Name="All" DependsOnTargets="Clean;Build;Documentation">
@@ -98,11 +96,9 @@
     <Copy SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\NLog.xsd"
           DestinationFolder="$(NuGetBuildPath)\NLog.Schema\content" />
 
-    <TokenReplace Path="$(NuGetBuildPath)\NLog.Schema\NLog.Schema.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
-
     <!-- package -->
     <MakeDir Directories="$(NuGetOutputPath)" />
-    <Exec Command='"$(NuGetTool)" pack NLog.Schema.nuspec -OutputDirectory "$(NuGetOutputPath)" -Properties $(NuGetProperties)' WorkingDirectory="$(NuGetBuildPath)\NLog.Schema" />
+    <Exec Command='dotnet pack "$(MSBuildProjectDirectory)\NuGet\NLog.Schema.Pack\NLog.Schema.Pack.csproj" --configuration $(Configuration) --no-build --output "$(NuGetOutputPath)" -p:SchemaPackageContentPath="$(NuGetBuildPath)\NLog.Schema" -p:BuildVersion="$(NuGetVersion)"' />
   </Target>
 
   <Target Name="BuildApiDumpTool">

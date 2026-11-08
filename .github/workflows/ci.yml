@@ -335,10 +335,6 @@ jobs:
           VERSION_SUFFIX: ${{ steps.version.outputs.suffix }}
         run: dotnet pack ${{ env.SOLUTION }} --no-restore --configuration Release --output artifacts -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:EmbedUntrackedSources=true -p:ContinuousIntegrationBuild=true --version-suffix "$env:VERSION_SUFFIX"
 
-      - name: Download NuGet CLI
-        shell: pwsh
-        run: Invoke-WebRequest https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile tools/NuGet.exe
-
       - name: Build NLog for schema package
         run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net45
 
