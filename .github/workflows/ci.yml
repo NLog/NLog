@@ -231,10 +231,13 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      - name: Build AtomicFile for netstandard2.0
+        run: dotnet build src/NLog.Targets.AtomicFile/NLog.Targets.AtomicFile.csproj --configuration Release --framework netstandard2.0
+
       - name: Test AtomicFile against netstandard2.0
         shell: pwsh
         run: |
-          dotnet test tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj --configuration Release -p:TestTargetFramework=netstandard2.0 --logger 'trx;LogFileName=atomic-tests.trx' --results-directory $env:RUNNER_TEMP
+          dotnet test tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj --configuration Release --framework net8.0 -p:TestTargetFramework=netstandard2.0 --logger 'trx;LogFileName=atomic-tests.trx' --results-directory $env:RUNNER_TEMP
           if ($LASTEXITCODE -ne 0) {
             exit $LASTEXITCODE
           }
@@ -323,8 +326,11 @@ jobs:
     name: Publish NuGet package
     needs: [build, source-checks, unit-tests, package-tests, trim-publish, netframework-tests, atomic-file-netstandard, pack]
     if: >-
-      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
-      (github.event_name == 'workflow_dispatch' && inputs.force_nuget_publish)
+      github.repository == 'NLog/NLog' &&
+      (
+        (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+        (github.event_name == 'workflow_dispatch' && inputs.force_nuget_publish)
+      )
     runs-on: ubuntu-latest
     permissions:
       contents: read
