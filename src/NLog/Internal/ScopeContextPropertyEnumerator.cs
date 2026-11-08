@@ -94,6 +94,15 @@ namespace NLog.Internal
 
         public static void TryAddScopePropertiesToDictionary(IReadOnlyCollection<KeyValuePair<string, TValue?>> parentContext, Dictionary<string, object?> scopeDictionary)
         {
+#if !NETSTANDARD2_1_OR_GREATER && !NET
+            if (scopeDictionary.Count == 0)
+            {
+                // Optimization for .NET Framework and .NET Standard 2.0, where Dictionary.TryAdd is not available, but duplicate keys are then handled differently
+                CopyScopePropertiesToDictionary(parentContext, scopeDictionary);
+                return;
+            }
+#endif
+
             using (var propertyEnumerator = new ScopeContextPropertyEnumerator<TValue?>(parentContext))
             {
                 while (propertyEnumerator.MoveNext())

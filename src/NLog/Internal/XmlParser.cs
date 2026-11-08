@@ -407,6 +407,7 @@ namespace NLog.Internal
         {
             _stringBuilder.ClearBuilder();
             int keepLength = 0;
+            bool readInnerText = terminator == '<';
 
             do
             {
@@ -420,25 +421,33 @@ namespace NLog.Internal
                 if (chr == '&')
                 {
                     _xmlSource.Read();
-                    if (TryParseSpecialXmlToken(out var specialToken))
-                    {
-                        _stringBuilder.Append(specialToken);
-                        keepLength = _stringBuilder.Length;  // Whitespace from character references should not be trimmed
-                    }
-                    else
+
+                    if (!TryParseSpecialXmlToken(out var specialToken))
                     {
                         _stringBuilder.Append('&'); // Unrecognized special token, return the '&' character as-is.
-                        if (_xmlSource.Current == terminator)
-                            break;
-                        _stringBuilder.Append(_xmlSource.Current);
+                        specialToken = _xmlSource.Current.ToString();
                     }
+
+                    if (_xmlSource.Current == terminator)
+                        break;
+
+                    _stringBuilder.Append(specialToken);
+                    keepLength = _stringBuilder.Length;  // Whitespace from character references should not be trimmed
+                    continue;
+                }
+
+                if (!readInnerText && CharIsSpace(chr))
+                {
+                    // Attribute value normalization like XmlReader, where CRLF becomes a single space
+                    if (!_xmlSource.StartsWith('\r', '\n'))
+                        _stringBuilder.Append(' ');
                     continue;
                 }
 
                 _stringBuilder.Append(chr);
             } while (_xmlSource.Read());
 
-            return terminator == '<'
+            return readInnerText
                 ? _stringBuilder.ToString(0, TrimEndWhitespace(_stringBuilder, keepLength))
                 : _stringBuilder.ToString();
         }
@@ -593,18 +602,9 @@ namespace NLog.Internal
             return true;
         }
 
-        private static bool CharIsSpace(char c)
+        private static bool CharIsSpace(char chr)
         {
-            switch (c)
-            {
-                case ' ':
-                case '\t':
-                case '\r':
-                case '\n':
-                    return true;
-                default:
-                    return char.IsWhiteSpace(c);
-            }
+            return char.IsWhiteSpace(chr);
         }
 
         public sealed class XmlParserElement
