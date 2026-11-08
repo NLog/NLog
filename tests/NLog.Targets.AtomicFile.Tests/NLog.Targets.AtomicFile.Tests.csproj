@@ -31,7 +31,7 @@
     <PackageReference Include="Basic.Reference.Assemblies " Version="1.8.0" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' != 'net10.0' AND '$(TestTargetFramework)' != '' ">
+  <ItemGroup Condition=" '$(TestTargetFramework)' != '' ">
     <Reference Include="NLog.Targets.AtomicFile">
       <HintPath>../../src/NLog.Targets.AtomicFile/bin/$(Configuration)/$(TestTargetFramework)/NLog.Targets.AtomicFile.dll</HintPath>
       <Private>True</Private>

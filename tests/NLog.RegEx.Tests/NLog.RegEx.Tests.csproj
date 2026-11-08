@@ -21,7 +21,7 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' != 'net10.0' AND '$(TestTargetFramework)' != '' ">
+  <ItemGroup Condition=" '$(TestTargetFramework)' != '' ">
     <Reference Include="NLog.RegEx">
       <HintPath>../../src/NLog.RegEx/bin/$(Configuration)/$(TestTargetFramework)/NLog.RegEx.dll</HintPath>
       <Private>True</Private>

@@ -78,6 +78,7 @@ jobs:
             os: windows-latest
           - framework: net10.0
             os: ubuntu-latest
+            upload_coverage: true
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -90,13 +91,26 @@ jobs:
         env:
           TEST_PROJECT: tests/NLog.UnitTests/NLog.UnitTests.csproj
           TEST_FRAMEWORK: ${{ matrix.framework }}
+          UPLOAD_COVERAGE: ${{ matrix.upload_coverage }}
         run: |
-          dotnet test $env:TEST_PROJECT --configuration Release --framework $env:TEST_FRAMEWORK --logger 'console;verbosity=normal' --logger 'trx;LogFileName=test-results.trx' --results-directory $env:RUNNER_TEMP
+          $testResultsDirectory = Join-Path (Split-Path $env:TEST_PROJECT -Parent) 'TestResults'
+          $testArguments = @(
+            '--configuration', 'Release',
+            '--framework', $env:TEST_FRAMEWORK,
+            '--logger', 'console;verbosity=normal',
+            '--logger', 'GitHubActions',
+            '--logger', 'trx;LogFileName=test-results.trx',
+            '--results-directory', $testResultsDirectory
+          )
+          if ($env:UPLOAD_COVERAGE -eq 'true') {
+            $testArguments += @('--collect', 'XPlat Code Coverage')
+          }
+          dotnet test $env:TEST_PROJECT @testArguments
           if ($LASTEXITCODE -ne 0) {
             exit $LASTEXITCODE
           }
 
-          $testResultsPath = Join-Path $env:RUNNER_TEMP 'test-results.trx'
+          $testResultsPath = Join-Path $testResultsDirectory 'test-results.trx'
           if (-not (Test-Path $testResultsPath)) {
             throw "Test results were not produced for $env:TEST_PROJECT ($env:TEST_FRAMEWORK)."
           }
@@ -105,6 +119,14 @@ jobs:
           if ([int] $testResults.TestRun.ResultSummary.Counters.total -eq 0) {
             throw "No tests were discovered for $env:TEST_PROJECT ($env:TEST_FRAMEWORK)."
           }
+
+      - name: Upload coverage artifact
+        if: matrix.upload_coverage
+        uses: actions/upload-artifact@v7
+        with:
+          name: Coverage-unit-${{ matrix.framework }}-${{ matrix.os }}
+          path: tests/**/TestResults/**/coverage.cobertura.xml
+          if-no-files-found: error
 
   package-tests:
     name: Unit tests additional package (${{ matrix.framework }}, ${{ matrix.os }}${{ matrix.testTargetFramework && format(', {0}', matrix.testTargetFramework) || '' }})
@@ -122,6 +144,7 @@ jobs:
             os: windows-latest
           - framework: net10.0
             os: ubuntu-latest
+            upload_coverage: true
           - framework: net10.0
             os: ubuntu-latest
             testTargetFramework: netstandard2.0
@@ -137,6 +160,7 @@ jobs:
         env:
           TEST_FRAMEWORK: ${{ matrix.framework }}
           TEST_TARGET_FRAMEWORK: ${{ matrix.testTargetFramework }}
+          UPLOAD_COVERAGE: ${{ matrix.upload_coverage }}
         run: |
           function Test-PackageProject {
             param (
@@ -153,22 +177,27 @@ jobs:
 
             $projectName = [System.IO.Path]::GetFileNameWithoutExtension($TestProject)
             $resultFileName = "$projectName-$env:TEST_FRAMEWORK.trx"
+            $testResultsDirectory = Join-Path (Split-Path $TestProject -Parent) 'TestResults'
             $testArguments = @(
               '--configuration', 'Release',
               '--framework', $env:TEST_FRAMEWORK,
               '--logger', 'console;verbosity=normal',
+              '--logger', 'GitHubActions',
               '--logger', "trx;LogFileName=$resultFileName",
-              '--results-directory', $env:RUNNER_TEMP
+              '--results-directory', $testResultsDirectory
             )
             if ($env:TEST_TARGET_FRAMEWORK) {
               $testArguments += "-p:TestTargetFramework=$env:TEST_TARGET_FRAMEWORK"
+            }
+            if ($env:UPLOAD_COVERAGE -eq 'true') {
+              $testArguments += @('--collect', 'XPlat Code Coverage')
             }
             dotnet test $TestProject @testArguments
             if ($LASTEXITCODE -ne 0) {
               throw "$TestProject failed for $env:TEST_FRAMEWORK with exit code $LASTEXITCODE"
             }
 
-            $testResultsPath = Join-Path $env:RUNNER_TEMP $resultFileName
+            $testResultsPath = Join-Path $testResultsDirectory $resultFileName
             if (-not (Test-Path $testResultsPath)) {
               throw "$TestProject produced no test results for $env:TEST_FRAMEWORK"
             }
@@ -182,6 +211,14 @@ jobs:
           Test-PackageProject 'tests/NLog.RegEx.Tests/NLog.RegEx.Tests.csproj' 'src/NLog.RegEx/NLog.RegEx.csproj'
           Test-PackageProject 'tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj' 'src/NLog.Targets.AtomicFile/NLog.Targets.AtomicFile.csproj'
           Test-PackageProject 'tests/NLog.Targets.GZipFile.Tests/NLog.Targets.GZipFile.Tests.csproj' 'src/NLog.Targets.GZipFile/NLog.Targets.GZipFile.csproj'
+
+      - name: Upload coverage artifact
+        if: matrix.upload_coverage
+        uses: actions/upload-artifact@v7
+        with:
+          name: Coverage-packages-${{ matrix.framework }}-${{ matrix.os }}
+          path: tests/**/TestResults/**/coverage.cobertura.xml
+          if-no-files-found: error
 
   trim-publish:
     name: Publish and run trim test
@@ -223,7 +260,7 @@ jobs:
       - name: Run UnitTests for .NET framework
         shell: pwsh
         run: |
-          dotnet vstest tests/NLog.UnitTests/bin/Release/${{ matrix.framework }}/NLog.UnitTests.dll --logger "trx;LogFileName=netframework-test-results.trx"
+          dotnet vstest tests/NLog.UnitTests/bin/Release/${{ matrix.framework }}/NLog.UnitTests.dll --logger GitHubActions --logger "trx;LogFileName=netframework-test-results.trx"
           if ($LASTEXITCODE -ne 0) {
             exit $LASTEXITCODE
           }
@@ -306,7 +343,7 @@ jobs:
 
   publish:
     name: Publish NuGet package
-    needs: [build, source-checks, unit-tests, package-tests, trim-publish, netframework-tests, pack]
+    needs: [build, source-checks, unit-tests, package-tests, trim-publish, netframework-tests, pack, coverage]
     if: >-
       github.repository == 'NLog/NLog' &&
       (
@@ -336,3 +373,27 @@ jobs:
         env:
           NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
         run: dotnet nuget push "artifacts/*.nupkg" --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+  coverage:
+    name: Upload coverage to Codecov
+    needs: [unit-tests, package-tests]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Download coverage artifacts
+        uses: actions/download-artifact@v7
+        with:
+          pattern: Coverage-*
+          path: coverage
+          merge-multiple: true
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage/**/coverage.cobertura.xml
+          fail_ci_if_error: true
