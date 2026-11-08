@@ -98,6 +98,7 @@
 
     <!-- package -->
     <MakeDir Directories="$(NuGetOutputPath)" />
+    <Exec Command='dotnet restore "$(MSBuildProjectDirectory)\NuGet\NLog.Schema.Pack\NLog.Schema.Pack.csproj"' />
     <Exec Command='dotnet pack "$(MSBuildProjectDirectory)\NuGet\NLog.Schema.Pack\NLog.Schema.Pack.csproj" --configuration $(Configuration) --no-build --output "$(NuGetOutputPath)" -p:SchemaPackageContentPath="$(NuGetBuildPath)\NLog.Schema" -p:BuildVersion="$(NuGetVersion)"' />
   </Target>
 

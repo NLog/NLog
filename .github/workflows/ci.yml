@@ -73,6 +73,9 @@ jobs:
             '--logger', 'trx;LogFileName=test-results.trx',
             '--results-directory', $testResultsDirectory
           )
+          if ($env:TEST_FRAMEWORK -eq 'net462') {
+            $testArguments += '-p:PublicSign=false'
+          }
           if ($env:UPLOAD_COVERAGE -eq 'true') {
             $testArguments += @('--collect', 'XPlat Code Coverage')
           }
