@@ -351,21 +351,19 @@ jobs:
       - name: Build NLog for schema package
         run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net45
 
-      - uses: microsoft/setup-msbuild@30375c66a4eea26614e0d39710365f22f8b0af57 # v3
-
       - name: Generate and pack NLog.Schema
         shell: pwsh
         env:
           VERSION_SUFFIX: ${{ steps.version.outputs.suffix }}
         run: |
-          msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX45=true /verbosity:minimal
+          dotnet msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX45=true /verbosity:minimal
 
           $schemaProperties = @('/p:Configuration=Release', '/p:BuildNetFX45=true', '/p:BuildLabelOverride=NONE')
           if ($env:VERSION_SUFFIX) {
             $schemaProperties += "/p:NuGetPrelease=$env:VERSION_SUFFIX"
           }
 
-          msbuild src/NLog.proj /t:NuGetSchemaPackage @schemaProperties /verbosity:minimal
+          dotnet msbuild src/NLog.proj /t:NuGetSchemaPackage @schemaProperties /verbosity:minimal
 
       - name: Upload NuGet package
         uses: actions/upload-artifact@v7
