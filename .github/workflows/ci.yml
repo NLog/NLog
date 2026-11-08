@@ -24,6 +24,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Build
         run: dotnet build ${{ env.SOLUTION }} --configuration Release
@@ -52,6 +54,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Test
         shell: pwsh
@@ -107,6 +111,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Restore UnitTests
         run: dotnet restore tests/NLog.UnitTests/NLog.UnitTests.csproj
@@ -161,6 +167,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Test package projects
         shell: pwsh
@@ -235,6 +243,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Publish trim test project
         run: dotnet publish tests/TestTrimPublish/TestTrimPublish.csproj --configuration Release --framework net10.0
@@ -251,6 +261,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Build source code checks
         run: dotnet build tools/CheckSourceCode/src/NLog.SourceCodeTests.sln --configuration Release --no-incremental
@@ -286,6 +298,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Download coverage artifacts
         uses: actions/download-artifact@v7
@@ -309,6 +323,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Restore
         run: dotnet restore ${{ env.SOLUTION }}
