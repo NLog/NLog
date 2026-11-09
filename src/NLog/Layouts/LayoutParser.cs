@@ -422,12 +422,13 @@ namespace NLog.Layouts
             Debug.Assert(ch == '{', "'{' expected in layout specification");
 
             string typeName = ParseLayoutRendererTypeName(stringReader);
-            var layoutRenderer = GetLayoutRenderer(typeName, configurationItemFactory, throwConfigExceptions);
+            var layoutRenderer = GetLayoutRenderer(typeName, configurationItemFactory, throwConfigExceptions, out var layout);
 
             Dictionary<Type, LayoutRenderer>? wrappers = null;
             List<LayoutRenderer>? orderedWrappers = null;
 
             string? previousParameterName = null;
+            object targetObject = (object?)layout ?? layoutRenderer;
 
             ch = stringReader.Read();
             while (ch != -1 && ch != '}')
@@ -438,9 +439,9 @@ namespace NLog.Layouts
                     stringReader.Read(); // skip the '='
 
                     parameterName = parameterName.Trim();
-                    LayoutRenderer parameterTarget = layoutRenderer;
+                    object parameterTarget = targetObject;
 
-                    if (!PropertyHelper.TryGetPropertyInfo(configurationItemFactory, layoutRenderer, parameterName, out var propertyInfo))
+                    if (!PropertyHelper.TryGetPropertyInfo(configurationItemFactory, parameterTarget, parameterName, out var propertyInfo))
                     {
                         if (TryResolveAmbientLayoutWrapper(parameterName, configurationItemFactory, ref wrappers, ref orderedWrappers, out var layoutWrapper) && layoutWrapper != null)
                         {
@@ -478,10 +479,10 @@ namespace NLog.Layouts
                 }
                 else
                 {
-                    parameterName = SetDefaultPropertyValue(parameterName, layoutRenderer, configurationItemFactory, throwConfigExceptions);
+                    parameterName = SetDefaultPropertyValue(parameterName, targetObject, configurationItemFactory, throwConfigExceptions);
                 }
 
-                previousParameterName = ValidatePreviousParameterName(previousParameterName, parameterName, layoutRenderer, throwConfigExceptions);
+                previousParameterName = ValidatePreviousParameterName(previousParameterName, parameterName, targetObject, throwConfigExceptions);
 
                 ch = stringReader.Read();
             }
@@ -549,11 +550,11 @@ namespace NLog.Layouts
             }
         }
 
-        private static string? ValidatePreviousParameterName(string? previousParameterName, string parameterName, LayoutRenderer layoutRenderer, bool? throwConfigExceptions)
+        private static string? ValidatePreviousParameterName(string? previousParameterName, string parameterName, object targetObject, bool? throwConfigExceptions)
         {
             if (parameterName?.Equals(previousParameterName, StringComparison.OrdinalIgnoreCase) == true)
             {
-                var configException = new NLogConfigurationException($"'{layoutRenderer?.GetType()?.Name}' has same property '{parameterName}=' assigned twice");
+                var configException = new NLogConfigurationException($"'{targetObject?.GetType()?.Name}' has same property '{parameterName}=' assigned twice");
                 if (throwConfigExceptions ?? configException.MustBeRethrown())
                 {
                     throw configException;
@@ -587,19 +588,26 @@ namespace NLog.Layouts
             return true;
         }
 
-        private static LayoutRenderer GetLayoutRenderer(string typeName, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
+        private static LayoutRenderer GetLayoutRenderer(string typeName, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions, out Layout? layout)
         {
             LayoutRenderer? layoutRenderer = null;
+            layout = null;
 
             try
             {
-                if (throwConfigExceptions == false && !configurationItemFactory.LayoutRendererFactory.TryCreateInstance(typeName, out layoutRenderer))
+                if (!configurationItemFactory.LayoutRendererFactory.TryCreateInstance(typeName, out layoutRenderer))
                 {
-                    InternalLogger.Debug("Failed to create LayoutRenderer with unknown type-alias: '{0}'", typeName);
-                    return new LiteralLayoutRenderer(string.Empty); // replace with empty values
-                }
-                else
-                {
+                    if (configurationItemFactory.LayoutFactory.TryCreateInstance(typeName, out layout) && layout != null && !(layout is SimpleLayout))
+                    {
+                        return new NoRawValueLayoutRendererWrapper() { Inner = layout };
+                    }
+
+                    if (throwConfigExceptions == false)
+                    {
+                        InternalLogger.Debug("Failed to create LayoutRenderer with unknown type-alias: '{0}'", typeName);
+                        return new LiteralLayoutRenderer(string.Empty); // replace with empty values
+                    }
+
                     layoutRenderer = configurationItemFactory.LayoutRendererFactory.CreateInstance(typeName);
                 }
             }
@@ -621,23 +629,23 @@ namespace NLog.Layouts
                 ?? new LiteralLayoutRenderer(string.Empty); // replace with empty values
         }
 
-        private static string SetDefaultPropertyValue(string value, LayoutRenderer layoutRenderer, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
+        private static string SetDefaultPropertyValue(string value, object targetObject, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
         {
             // what we've just read is not a parameterName, but a value
             // assign it to a default property (denoted by empty string)
-            if (PropertyHelper.TryGetPropertyInfo(configurationItemFactory, layoutRenderer, string.Empty, out var propertyInfo) && propertyInfo != null)
+            if (PropertyHelper.TryGetPropertyInfo(configurationItemFactory, targetObject, string.Empty, out var propertyInfo) && propertyInfo != null)
             {
                 if (!typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType) && value.IndexOf('\\') >= 0)
                 {
                     value = EscapeUnicodeStringValue(value);
                 }
 
-                PropertyHelper.SetPropertyFromString(layoutRenderer, propertyInfo, value, configurationItemFactory);
+                PropertyHelper.SetPropertyFromString(targetObject, propertyInfo, value, configurationItemFactory);
                 return propertyInfo.Name;
             }
             else
             {
-                var configException = new NLogConfigurationException($"'{layoutRenderer?.GetType()?.Name}' has no default property to assign value {value}");
+                var configException = new NLogConfigurationException($"'{targetObject?.GetType()?.Name}' has no default property to assign value {value}");
                 if (throwConfigExceptions ?? configException.MustBeRethrown())
                 {
                     throw configException;

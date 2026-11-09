@@ -886,6 +886,58 @@ namespace NLog.UnitTests.Layouts
             Assert.NotEqual(CurrentProcessId.ToString(), literal.Text);
         }
 
+        [Fact]
+        public void Parse_LayoutTypeAliasFallback_JsonLayout()
+        {
+            // Arrange
+            SimpleLayout layout = "${jsonlayout:includeeventproperties=true}";
+            layout.Initialize(null);
+
+            var logEvent = LogEventInfo.Create(LogLevel.Info, "MyLogger", "Hello");
+            logEvent.Properties["OrderId"] = 42;
+
+            // Act
+            var result = layout.Render(logEvent);
+
+            // Assert
+            Assert.Equal("{\"OrderId\":42}", result);
+            Assert.True(layout.ThreadAgnostic);
+            Assert.True(layout.ThreadAgnosticImmutable);
+        }
+
+        [Fact]
+        public void Parse_LayoutTypeAliasFallback_CustomLayoutWithAmbientWrapper()
+        {
+            // Arrange
+            var logFactory = new LogFactory().Setup()
+                .SetupExtensions(ext => ext.RegisterLayout<CustomFallbackTestLayout>("mylayout"))
+                .LoadConfigurationFromXml(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target name='debug' type='Debug' layout='${mylayout:awesome=true:uppercase=true}' />
+                    </targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>").LogFactory;
+
+            // Act
+            logFactory.GetCurrentClassLogger().Info("hello world");
+
+            // Assert
+            AssertDebugLastMessage("debug", "AWESOME: HELLO WORLD", logFactory);
+        }
+
+        private sealed class CustomFallbackTestLayout : Layout
+        {
+            public bool Awesome { get; set; }
+
+            protected override string GetFormattedMessage(LogEventInfo logEvent)
+            {
+                return Awesome ? $"Awesome: {logEvent.FormattedMessage}" : logEvent.FormattedMessage;
+            }
+        }
+
         private sealed class LayoutRendererWithListParam : LayoutRenderer
         {
             public List<double> Doubles { get; set; }
