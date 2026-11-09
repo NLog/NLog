@@ -910,11 +910,11 @@ namespace NLog.UnitTests.Layouts
         {
             // Arrange
             var logFactory = new LogFactory().Setup()
-                .SetupExtensions(ext => ext.RegisterLayout<CustomFallbackTestLayout>("mylayout"))
+                .SetupExtensions(ext => ext.RegisterLayout<CustomFallbackTestLayout>("mycustomlayout"))
                 .LoadConfigurationFromXml(@"
                 <nlog throwExceptions='true'>
                     <targets>
-                        <target name='debug' type='Debug' layout='${mylayout:awesome=true:uppercase=true}' />
+                        <target name='debug' type='Debug' layout='${mycustomlayout:awesome=true:uppercase=true}' />
                     </targets>
                     <rules>
                         <logger name='*' minlevel='Debug' writeTo='debug' />

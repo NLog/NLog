@@ -602,6 +602,7 @@ namespace NLog.Layouts
                         return new NoRawValueLayoutRendererWrapper() { Inner = layout };
                     }
 
+                    layout = null;
                     if (throwConfigExceptions == false)
                     {
                         InternalLogger.Debug("Failed to create LayoutRenderer with unknown type-alias: '{0}'", typeName);
