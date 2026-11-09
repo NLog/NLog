@@ -45,10 +45,10 @@
 
   <ItemGroup>
     <!--The info for the nuspec-->
-    <TargetFramework Include="net45" Condition="'$(BuildNetFX45)'=='true'">
-      <ProjectFileSuffix>.netfx45</ProjectFileSuffix>
-      <ToolsVersion>15.0</ToolsVersion>
-      <NuGetDir>net45</NuGetDir>
+    <TargetFramework Include="net481" Condition="'$(BuildNetFX481)'=='true'">
+      <ProjectFileSuffix>.netfx481</ProjectFileSuffix>
+      <ToolsVersion>Current</ToolsVersion>
+      <NuGetDir>net481</NuGetDir>
     </TargetFramework>
   </ItemGroup>
 

@@ -268,10 +268,10 @@ jobs:
         run: .\tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
 
       - name: Build NLog for schema generation
-        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net45
+        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net481 -p:TargetFrameworks=net481
 
       - name: Generate configuration schema
-        run: dotnet msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX45=true
+        run: dotnet msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX481=true
 
       - name: Run XSD check
         shell: pwsh
@@ -349,16 +349,16 @@ jobs:
         run: dotnet pack ${{ env.SOLUTION }} --no-restore --configuration Release --output artifacts -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:EmbedUntrackedSources=true -p:ContinuousIntegrationBuild=true --version-suffix "$env:VERSION_SUFFIX"
 
       - name: Build NLog for schema package
-        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net45
+        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net481 -p:TargetFrameworks=net481
 
       - name: Generate and pack NLog.Schema
         shell: pwsh
         env:
           VERSION_SUFFIX: ${{ steps.version.outputs.suffix }}
         run: |
-          dotnet msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX45=true /verbosity:minimal
+          dotnet msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX481=true /verbosity:minimal
 
-          $schemaProperties = @('/p:Configuration=Release', '/p:BuildNetFX45=true', '/p:BuildLabelOverride=NONE')
+          $schemaProperties = @('/p:Configuration=Release', '/p:BuildNetFX481=true', '/p:BuildLabelOverride=NONE')
           if ($env:VERSION_SUFFIX) {
             $schemaProperties += "/p:NuGetPrelease=$env:VERSION_SUFFIX"
           }

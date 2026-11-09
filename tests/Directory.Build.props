@@ -4,7 +4,7 @@
     <PackageReference Include="GitHubActionsTestLogger" Version="3.0.5" PrivateAssets="all" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0' Or '$(TargetFramework)' == 'net10.0'">
+  <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))">
     <!-- CS8765: Parameter nullability differs from the overridden member. -->
     <!-- CS8619: A value's nullability differs from the target type. -->
     <!-- CS8604: A possibly null value is passed as an argument. -->

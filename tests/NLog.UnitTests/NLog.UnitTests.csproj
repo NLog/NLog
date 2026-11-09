@@ -26,10 +26,6 @@
     <DefineConstants>$(DefineConstants);NET35</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' != 'net10.0' AND '$(TestTargetFramework)' == 'net45' ">
-    <DefineConstants>$(DefineConstants);NET45</DefineConstants>
-  </PropertyGroup>
-
   <PropertyGroup Condition=" '$(TargetFramework)' != 'net10.0' AND '$(TestTargetFramework)' == 'net46' ">
     <DefineConstants>$(DefineConstants);NET46</DefineConstants>
   </PropertyGroup>
