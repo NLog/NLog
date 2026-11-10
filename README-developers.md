@@ -33,7 +33,7 @@ Build Pipeline
 
 
 For developing: the following platforms will be used:
-- net46;net35;netstandard1.3;netstandard1.5;netstandard2.0 (see nlog.csproj)
+- net46;net35;netstandard2.0;netstandard2.1 (see nlog.csproj)
 
 GitHub Actions runs the unit tests on Windows and Linux. See [.github/workflows/ci.yml](.github/workflows/ci.yml). To run tests locally, use the `dotnet test` commands from the workflow for your platform and target framework.
 

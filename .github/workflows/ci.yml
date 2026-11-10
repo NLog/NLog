@@ -36,10 +36,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - framework: net8.0
-            os: windows-latest
-          - framework: net8.0
-            os: ubuntu-latest
           - framework: net10.0
             os: windows-latest
           - framework: net10.0
@@ -146,10 +142,6 @@ jobs:
         include:
           - framework: net462
             os: windows-latest
-          - framework: net8.0
-            os: windows-latest
-          - framework: net8.0
-            os: ubuntu-latest
           - framework: net10.0
             os: windows-latest
           - framework: net10.0
