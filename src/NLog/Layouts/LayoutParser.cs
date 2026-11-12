@@ -428,7 +428,7 @@ namespace NLog.Layouts
             List<LayoutRenderer>? orderedWrappers = null;
 
             string? previousParameterName = null;
-            object targetObject = (object?)layout ?? layoutRenderer;
+            var targetRenderer = (IRenderable?)layout ?? layoutRenderer;
 
             ch = stringReader.Read();
             while (ch != -1 && ch != '}')
@@ -439,7 +439,7 @@ namespace NLog.Layouts
                     stringReader.Read(); // skip the '='
 
                     parameterName = parameterName.Trim();
-                    object parameterTarget = targetObject;
+                    var parameterTarget = targetRenderer;
 
                     if (!PropertyHelper.TryGetPropertyInfo(configurationItemFactory, parameterTarget, parameterName, out var propertyInfo))
                     {
@@ -479,10 +479,10 @@ namespace NLog.Layouts
                 }
                 else
                 {
-                    parameterName = SetDefaultPropertyValue(parameterName, targetObject, configurationItemFactory, throwConfigExceptions);
+                    parameterName = SetDefaultPropertyValue(parameterName, targetRenderer, configurationItemFactory, throwConfigExceptions);
                 }
 
-                previousParameterName = ValidatePreviousParameterName(previousParameterName, parameterName, targetObject, throwConfigExceptions);
+                previousParameterName = ValidatePreviousParameterName(previousParameterName, parameterName, targetRenderer, throwConfigExceptions);
 
                 ch = stringReader.Read();
             }
@@ -550,11 +550,11 @@ namespace NLog.Layouts
             }
         }
 
-        private static string? ValidatePreviousParameterName(string? previousParameterName, string parameterName, object targetObject, bool? throwConfigExceptions)
+        private static string? ValidatePreviousParameterName(string? previousParameterName, string parameterName, IRenderable targetRenderer, bool? throwConfigExceptions)
         {
             if (parameterName?.Equals(previousParameterName, StringComparison.OrdinalIgnoreCase) == true)
             {
-                var configException = new NLogConfigurationException($"'{targetObject?.GetType()?.Name}' has same property '{parameterName}=' assigned twice");
+                var configException = new NLogConfigurationException($"'{targetRenderer?.GetType()?.Name}' has same property '{parameterName}=' assigned twice");
                 if (throwConfigExceptions ?? configException.MustBeRethrown())
                 {
                     throw configException;
@@ -630,23 +630,23 @@ namespace NLog.Layouts
                 ?? new LiteralLayoutRenderer(string.Empty); // replace with empty values
         }
 
-        private static string SetDefaultPropertyValue(string value, object targetObject, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
+        private static string SetDefaultPropertyValue(string value, IRenderable targetRenderer, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
         {
             // what we've just read is not a parameterName, but a value
             // assign it to a default property (denoted by empty string)
-            if (PropertyHelper.TryGetPropertyInfo(configurationItemFactory, targetObject, string.Empty, out var propertyInfo) && propertyInfo != null)
+            if (PropertyHelper.TryGetPropertyInfo(configurationItemFactory, targetRenderer, string.Empty, out var propertyInfo) && propertyInfo != null)
             {
                 if (!typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType) && value.IndexOf('\\') >= 0)
                 {
                     value = EscapeUnicodeStringValue(value);
                 }
 
-                PropertyHelper.SetPropertyFromString(targetObject, propertyInfo, value, configurationItemFactory);
+                PropertyHelper.SetPropertyFromString(targetRenderer, propertyInfo, value, configurationItemFactory);
                 return propertyInfo.Name;
             }
             else
             {
-                var configException = new NLogConfigurationException($"'{targetObject?.GetType()?.Name}' has no default property to assign value {value}");
+                var configException = new NLogConfigurationException($"'{targetRenderer?.GetType()?.Name}' has no default property to assign value {value}");
                 if (throwConfigExceptions ?? configException.MustBeRethrown())
                 {
                     throw configException;
