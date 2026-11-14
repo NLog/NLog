@@ -4,6 +4,10 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 7.0 (Unreleased)
+**Breaking Changes**
+- [#6232](https://github.com/NLog/NLog/issues/6232) DateLayoutRenderer - Changed default Format to `yyyy-MM-dd HH:mm:ss.ffff` for consistency with rest of NLog (breaking change, was `yyyy/MM/dd HH:mm:ss.fff`).
+
 ### Version 6.2.2 (2026/10/15)
 **Improvements**
 - [#6303](https://github.com/NLog/NLog/pull/6303) XmlParser - Keep whitespace from character references in InnerText. (@APX403)
@@ -15,6 +19,7 @@ Date format: (year/month/day)
 - [#6289](https://github.com/NLog/NLog/pull/6289) MemoryTarget - Introduced DumpInitialError with focused diagnostic context. (@snakefoot)
 - [#6287](https://github.com/NLog/NLog/pull/6287) MemoryTarget - Introduced DumpOnError with full diagnostic context. (@snakefoot)
 - [#6283](https://github.com/NLog/NLog/pull/6283) MemoryTarget - RingBuffer supporting non-blocking enumeration. (@snakefoot)
+
 
 ### Version 6.2.1 (2026/09/16)
 **Improvements**
