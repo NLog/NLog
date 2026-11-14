@@ -185,8 +185,6 @@ namespace MakeNLogXSD
         /// <summary>
         /// Ignore if returns null
         /// </summary>
-        /// <param name="propertyElement"></param>
-        /// <returns></returns>
         private static XElement GetAttributeElement(XElement propertyElement)
         {
             var result = new XElement(xsd + "attribute",
@@ -291,8 +289,6 @@ namespace MakeNLogXSD
         /// <summary>
         /// Ignore if returns null.
         /// </summary>
-        /// <param name="propertyElement"></param>
-        /// <returns></returns>
         private static XElement GetPropertyElement(XElement propertyElement)
         {
             var result = new XElement(xsd + "element",
