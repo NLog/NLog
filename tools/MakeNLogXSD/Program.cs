@@ -10,7 +10,7 @@ try
     for (int i = 0; i < args.Length; ++i)
     {
         string argName;
-        if (args[i].StartsWith("/") || args[i].StartsWith("-"))
+        if (args[i].StartsWith('/') || args[i].StartsWith('-'))
         {
             argName = args[i].Substring(1).ToLowerInvariant();
         }
