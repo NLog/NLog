@@ -116,6 +116,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets how key/value pairs will be formatted.
         /// </summary>
+        /// <remarks>Default: <c>[key]=[value]</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         public string Format
         {

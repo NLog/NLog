@@ -136,7 +136,6 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog xsi:internalLogLevel='Debug' throwExceptions='true />")]
         [InlineData("<nlog xsi:internalLogLevel='Debug' throwExceptions=\"true />")]
         [InlineData("<nlog xsi:internalLogLevel='Debug' throwExceptions='&gt' />")]
-        [InlineData("<nlog><![CDATA[]]]></nlog>")]
         [InlineData("<nlog><![CDATA[]></nlog>")]
         [InlineData("<nlog><![CDATA]></nlog>")]
         [InlineData("<nlog><![CDATA></nlog>")]
@@ -155,6 +154,9 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog>&quot</nlog>")]
         [InlineData("<nlog><nlog/>")]
         [InlineData("<nlog><targets><targets/><nlog/>")]
+        [InlineData("<\0nlog></nlog>")]
+        [InlineData("<nlog/><!-- hello")]
+        [InlineData("<nlog/><!-- hello -- >")]
         public void XmlParse_InvalidDocument(string xmlSource)
         {
             Assert.Throws<XmlParserException>(() => new XmlParser(xmlSource).LoadDocument(out var _));
@@ -187,7 +189,10 @@ namespace NLog.UnitTests.Internal
         [InlineData("<?xml ?><nlog />")]
         [InlineData("<?xml ?>\n<nlog />")]
         [InlineData("<?xml ?><!-- Hello --><nlog />")]
-        [InlineData("<!-- Hello --><?xml ?><!-- World --><nlog />")]
+        [InlineData("<!-- Hello --><!-- World --><nlog />")]
+        [InlineData("<nlog/><!-- hello -->")]
+        [InlineData("<!--hello--><nlog/>")]
+        [InlineData("<nlog><!-- --></nlog>")]
         public void XmlParse_EmptyDocument(string xmlSource)
         {
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
@@ -259,6 +264,11 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog internalLogFile='&lt;&gt;' />", "<>")]
         [InlineData("<nlog internalLogFile='\"' />", "\"")]
         [InlineData("<nlog internalLogFile=\"'\" />", "'")]
+        [InlineData("<nlog internalLogFile='a\nb' />", "a b")]
+        [InlineData("<nlog internalLogFile='a\r\nb' />", "a b")]
+        [InlineData("<nlog internalLogFile='a\rb' />", "a b")]
+        [InlineData("<nlog internalLogFile='a\tb' />", "a b")]
+        [InlineData("<nlog internalLogFile='a&#13;&#10;b&#9;' />", "a\r\nb\t")]
         public void XmlParse_Attributes_Tokens(string xmlSource, string value)
         {
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
@@ -284,6 +294,7 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog>&#x3c; &#x3e; ? &#x22; &#x26;</nlog>", "< > ? \" &")]
         [InlineData("<nlog> &#x3c; &#x3e; ? &#x22; &#x26; </nlog>", "< > ? \" &")]
         [InlineData("<nlog>\n&#x3c; &#x3e; ? &#x22; &#x26;\n</nlog>", "< > ? \" &")]
+        [InlineData("<nlog><![CDATA[]]></nlog>", "")]
         [InlineData("<nlog><![CDATA[\n\n]]></nlog>", "\n\n")]
         [InlineData("<nlog> <![CDATA[\n\n]]> </nlog>", "\n\n")]
         [InlineData("<nlog>\n<![CDATA[\n\n]]>\n</nlog>", "\n\n")]
@@ -291,7 +302,17 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog>\n<!--CDATA-->\n<![CDATA[<CDATA>]]>\n</nlog>", "<CDATA>")]
         [InlineData("<nlog><!--CDATA--><!--CDATA--><![CDATA[<CD]]>A<!--CDATA--><!--CDATA--><![CDATA[TA>]]></nlog>", "<CDATA>")]
         [InlineData("<nlog><![CDATA[<![CDATA[]]>]]<![CDATA[>]]></nlog>", "<![CDATA[]]>")]
+        [InlineData("<nlog><![CDATA[]]]></nlog>", "]")]
+        [InlineData("<nlog><![CDATA[]]]]></nlog>", "]]")]
+        [InlineData("<nlog><![CDATA[abc]]]]></nlog>", "abc]]")]
+        [InlineData("<nlog><![CDATA[abc]]x]]></nlog>", "abc]]x")]
         [InlineData("<nlog>hello<![CDATA[]]>world</nlog>", "helloworld")]
+        [InlineData("<nlog>&#10;</nlog>", "\n")]
+        [InlineData("<nlog>&#x20;</nlog>", " ")]
+        [InlineData("<nlog>hello&#10;</nlog>", "hello\n")]
+        [InlineData("<nlog>&#xA;</nlog>", "\n")]
+        [InlineData("<nlog>&#xA; </nlog>", "\n")]
+        [InlineData("<nlog> &#xA; </nlog>", "\n")]
         public void XmlParse_InnerText_Tokens(string xmlSource, string value)
         {
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);
@@ -309,7 +330,8 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog>\n<variable\nname='abc'\nlayout='${message}'>\n<!--  <variable name='abc' layout='${message}' /> -->\n</variable></nlog>")]
         [InlineData("<nlog>\n<variable\nname='abc'\nlayout='level >= LogLevel.Warn'/>\n</nlog>")]
         [InlineData("<nlog><variable><name>abc</name><layout>${message}</layout></variable></nlog>")]
-        [InlineData("<nlog><variable><variable/></variable></nlog>")]
+        [InlineData("<nlog><variable><name/></variable></nlog>")]
+        [InlineData("<nlog><variable><name/><value/></variable></nlog>")]
         [InlineData("<nlog>\n<variable>\n<name>abc</name>\n<layout>${message}</layout>\n</variable>\n</nlog>")]
         [InlineData("<nlog>\n<variable>\n<name>abc</name>\n<layout>level >= LogLevel.Warn</layout>\n</variable>\n</nlog>")]
         public void XmlParse_Children(string xmlSource)
@@ -329,6 +351,7 @@ namespace NLog.UnitTests.Internal
         [InlineData("<nlog><variable><name>abc</name><layout>${message}</layout></variable><variable><name>123</name><layout>${message}</layout></variable></nlog>")]
         [InlineData("<nlog>\n<variable>\n<name>abc</name>\n<layout>${message}</layout>\n</variable>\n<variable>\n<name>123</name>\n<layout>${message}</layout>\n</variable>\n</nlog>")]
         [InlineData("<nlog><variable/><variable></variable></nlog>")]
+        [InlineData("<nlog><variable/><variable/></nlog>")]
         public void XmlParse_Children_Multiple(string xmlSource)
         {
             var xmlDocument = new XmlParser(xmlSource).LoadDocument(out var _);

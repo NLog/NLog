@@ -1,0 +1,401 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      force_nuget_publish:
+        description: Force NuGet publish # for non-master. The package version gets a suffix. See Create NuGet Package step
+        type: boolean
+        default: false
+
+env:
+  SOLUTION: src/NLog.sln
+
+jobs:
+  build:
+    name: Build solution
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Build
+        run: dotnet build ${{ env.SOLUTION }} --configuration Release
+
+  unit-tests:
+    name: Tests NLog package (${{ matrix.framework }}, ${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - framework: net10.0
+            os: windows-latest
+          - framework: net10.0
+            os: ubuntu-latest
+            upload_coverage: true
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Test
+        shell: pwsh
+        env:
+          TEST_PROJECT: tests/NLog.UnitTests/NLog.UnitTests.csproj
+          TEST_FRAMEWORK: ${{ matrix.framework }}
+          UPLOAD_COVERAGE: ${{ matrix.upload_coverage }}
+        run: |
+          $testResultsDirectory = Join-Path (Split-Path $env:TEST_PROJECT -Parent) 'TestResults'
+          $testArguments = @(
+            '--configuration', 'Release',
+            '--framework', $env:TEST_FRAMEWORK,
+            '--logger', 'console;verbosity=normal',
+            '--logger', 'GitHubActions',
+            '--logger', 'trx;LogFileName=test-results.trx',
+            '--results-directory', $testResultsDirectory
+          )
+          if ($env:UPLOAD_COVERAGE -eq 'true') {
+            $testArguments += @('--collect', 'XPlat Code Coverage')
+          }
+          dotnet test $env:TEST_PROJECT @testArguments
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
+          $testResultsPath = Join-Path $testResultsDirectory 'test-results.trx'
+          if (-not (Test-Path $testResultsPath)) {
+            throw "Test results were not produced for $env:TEST_PROJECT ($env:TEST_FRAMEWORK)."
+          }
+
+          [xml] $testResults = Get-Content -Raw $testResultsPath
+          if ([int] $testResults.TestRun.ResultSummary.Counters.total -eq 0) {
+            throw "No tests were discovered for $env:TEST_PROJECT ($env:TEST_FRAMEWORK)."
+          }
+
+      - name: Upload coverage artifact
+        if: matrix.upload_coverage
+        uses: actions/upload-artifact@v7
+        with:
+          name: Coverage-unit-${{ matrix.framework }}-${{ matrix.os }}
+          path: tests/**/TestResults/**/coverage.cobertura.xml
+          if-no-files-found: error
+
+  netframework-tests:
+    name: Tests NLog package (${{ matrix.framework }})
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [net35, net46]
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Restore UnitTests
+        run: dotnet restore tests/NLog.UnitTests/NLog.UnitTests.csproj
+
+      - name: Build NLog
+        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework ${{ matrix.framework }}
+
+      - name: Build UnitTests for .NET framework
+        run: dotnet msbuild /t:Build /p:TargetFramework=net462 /p:Configuration=Release /p:DebugType=Full /p:TestTargetFramework=${{ matrix.framework }} tests/NLog.UnitTests/NLog.UnitTests.csproj
+
+      - name: Run UnitTests for .NET framework
+        shell: pwsh
+        run: |
+          dotnet vstest tests/NLog.UnitTests/bin/Release/${{ matrix.framework }}/NLog.UnitTests.dll --logger GitHubActions --logger "trx;LogFileName=netframework-test-results.trx"
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
+          $testResultsPath = Join-Path (Get-Location) 'TestResults/netframework-test-results.trx'
+          if (-not (Test-Path $testResultsPath)) {
+            throw 'UnitTests for .NET framework did not produce test results.'
+          }
+
+          [xml] $testResults = Get-Content -Raw $testResultsPath
+          if ([int] $testResults.TestRun.ResultSummary.Counters.total -eq 0) {
+            throw 'No UnitTests for .NET framework were discovered.'
+          }
+
+  package-tests:
+    name: Tests additional packages (${{ matrix.framework }}, ${{ matrix.os }}${{ matrix.testTargetFramework && format(', {0}', matrix.testTargetFramework) || '' }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - framework: net462
+            os: windows-latest
+          - framework: net10.0
+            os: windows-latest
+          - framework: net10.0
+            os: ubuntu-latest
+            upload_coverage: true
+          - framework: net10.0
+            os: ubuntu-latest
+            testTargetFramework: netstandard2.0
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Test package projects
+        shell: pwsh
+        env:
+          TEST_FRAMEWORK: ${{ matrix.framework }}
+          TEST_TARGET_FRAMEWORK: ${{ matrix.testTargetFramework }}
+          UPLOAD_COVERAGE: ${{ matrix.upload_coverage }}
+        run: |
+          function Test-PackageProject {
+            param (
+              [string] $TestProject,
+              [string] $Project
+            )
+
+            if ($env:TEST_TARGET_FRAMEWORK) {
+              dotnet build $Project --configuration Release --framework $env:TEST_TARGET_FRAMEWORK
+              if ($LASTEXITCODE -ne 0) {
+                throw "$Project failed for $env:TEST_TARGET_FRAMEWORK with exit code $LASTEXITCODE"
+              }
+            }
+
+            $projectName = [System.IO.Path]::GetFileNameWithoutExtension($TestProject)
+            $resultFileName = "$projectName-$env:TEST_FRAMEWORK.trx"
+            $testResultsDirectory = Join-Path (Split-Path $TestProject -Parent) 'TestResults'
+            $testArguments = @(
+              '--configuration', 'Release',
+              '--framework', $env:TEST_FRAMEWORK,
+              '--logger', 'console;verbosity=normal',
+              '--logger', 'GitHubActions',
+              '--logger', "trx;LogFileName=$resultFileName",
+              '--results-directory', $testResultsDirectory
+            )
+            if ($env:TEST_TARGET_FRAMEWORK) {
+              $testArguments += "-p:TestTargetFramework=$env:TEST_TARGET_FRAMEWORK"
+            }
+            if ($env:UPLOAD_COVERAGE -eq 'true') {
+              $testArguments += @('--collect', 'XPlat Code Coverage')
+            }
+            dotnet test $TestProject @testArguments
+            if ($LASTEXITCODE -ne 0) {
+              throw "$TestProject failed for $env:TEST_FRAMEWORK with exit code $LASTEXITCODE"
+            }
+
+            $testResultsPath = Join-Path $testResultsDirectory $resultFileName
+            if (-not (Test-Path $testResultsPath)) {
+              throw "$TestProject produced no test results for $env:TEST_FRAMEWORK"
+            }
+
+            [xml] $testResults = Get-Content -Raw $testResultsPath
+            if ([int] $testResults.TestRun.ResultSummary.Counters.total -eq 0) {
+              throw "$TestProject discovered no tests for $env:TEST_FRAMEWORK"
+            }
+          }
+
+          Test-PackageProject 'tests/NLog.RegEx.Tests/NLog.RegEx.Tests.csproj' 'src/NLog.RegEx/NLog.RegEx.csproj'
+          Test-PackageProject 'tests/NLog.Targets.AtomicFile.Tests/NLog.Targets.AtomicFile.Tests.csproj' 'src/NLog.Targets.AtomicFile/NLog.Targets.AtomicFile.csproj'
+          Test-PackageProject 'tests/NLog.Targets.GZipFile.Tests/NLog.Targets.GZipFile.Tests.csproj' 'src/NLog.Targets.GZipFile/NLog.Targets.GZipFile.csproj'
+
+      - name: Upload coverage artifact
+        if: matrix.upload_coverage
+        uses: actions/upload-artifact@v7
+        with:
+          name: Coverage-packages-${{ matrix.framework }}-${{ matrix.os }}
+          path: tests/**/TestResults/**/coverage.cobertura.xml
+          if-no-files-found: error
+
+  trim-publish:
+    name: Trim test
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Publish trim test project
+        run: dotnet publish tests/TestTrimPublish/TestTrimPublish.csproj --configuration Release --framework net10.0
+
+      - name: Run trim test project
+        run: .\tests\TestTrimPublish\bin\Release\net10.0\win-x64\publish\TestTrimPublish.exe
+
+
+  source-checks:
+    name: Source code and XSD check
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Build source code checks
+        run: dotnet build tools/CheckSourceCode/src/NLog.SourceCodeTests.sln --configuration Release --no-incremental
+
+      - name: Run source code checks
+        run: .\tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
+
+      - name: Build NLog for schema generation
+        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net481 -p:TargetFrameworks=net481
+
+      - name: Generate configuration schema
+        run: dotnet msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX481=true
+
+      - name: Run XSD check
+        shell: pwsh
+        run: |
+          $excludedTests = @('Database', 'Chainsaw', 'NLogViewer')
+          $configFiles = @(Get-ChildItem -Path './examples/targets/Configuration File' -Directory -Exclude $excludedTests | Get-ChildItem -Recurse -File -Filter NLog.config)
+          if ($configFiles.Count -eq 0) {
+            throw 'No example NLog.config files were found for XSD validation.'
+          }
+
+          if (-not (./Test-XmlFile.ps1)) {
+            throw "Example configuration XSD check failed."
+          }
+
+  coverage:
+    name: Upload coverage to Codecov
+    needs: [unit-tests, package-tests]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Download coverage artifacts
+        uses: actions/download-artifact@v7
+        with:
+          pattern: Coverage-*
+          path: coverage
+          merge-multiple: true
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage/**/coverage.cobertura.xml
+          fail_ci_if_error: true
+
+  pack:
+    name: Create NuGet package
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Restore
+        run: dotnet restore ${{ env.SOLUTION }}
+
+      - name: Determine version suffix
+        id: version
+        shell: pwsh
+        env:
+          REF: ${{ github.ref }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          if ($env:REF -eq "refs/heads/main") {
+            echo "suffix=" >> $env:GITHUB_OUTPUT
+          } elseif ($env:PR_NUMBER) {
+            echo "suffix=pr.$($env:PR_NUMBER).ci.$($env:RUN_NUMBER)" >> $env:GITHUB_OUTPUT
+          } else {
+            echo "suffix=ci.$($env:RUN_NUMBER)" >> $env:GITHUB_OUTPUT
+          }
+
+      - name: Create NuGet package
+        shell: pwsh
+        env:
+          VERSION_SUFFIX: ${{ steps.version.outputs.suffix }}
+        run: dotnet pack ${{ env.SOLUTION }} --no-restore --configuration Release --output artifacts -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:EmbedUntrackedSources=true -p:ContinuousIntegrationBuild=true --version-suffix "$env:VERSION_SUFFIX"
+
+      - name: Build NLog for schema package
+        run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net481 -p:TargetFrameworks=net481
+
+      - name: Generate and pack NLog.Schema
+        shell: pwsh
+        env:
+          VERSION_SUFFIX: ${{ steps.version.outputs.suffix }}
+        run: |
+          dotnet msbuild src/NLog.proj /t:XSD /p:Configuration=Release /p:BuildNetFX481=true /verbosity:minimal
+
+          $schemaProperties = @('/p:Configuration=Release', '/p:BuildNetFX481=true', '/p:BuildLabelOverride=NONE')
+          if ($env:VERSION_SUFFIX) {
+            $schemaProperties += "/p:NuGetPrelease=$env:VERSION_SUFFIX"
+          }
+
+          dotnet msbuild src/NLog.proj /t:NuGetSchemaPackage @schemaProperties /verbosity:minimal
+
+      - name: Upload NuGet package
+        uses: actions/upload-artifact@v7
+        with:
+          name: NuGetPackages
+          path: |
+            artifacts/NLog*.nupkg
+            artifacts/NLog*.snupkg
+          if-no-files-found: error
+
+  publish:
+    name: Publish NuGet package
+    needs: [build, source-checks, unit-tests, package-tests, trim-publish, netframework-tests, pack, coverage]
+    if: >-
+      github.repository == 'NLog/NLog' &&
+      (
+        (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+        (github.event_name == 'workflow_dispatch' && inputs.force_nuget_publish)
+      )
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Download NuGet package
+        uses: actions/download-artifact@v7
+        with:
+          name: NuGetPackages
+          path: artifacts
+
+      - name: NuGet login
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Push to NuGet.org
+        shell: pwsh
+        env:
+          NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
+        run: dotnet nuget push "artifacts/*.nupkg" --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+

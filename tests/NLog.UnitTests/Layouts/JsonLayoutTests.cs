@@ -117,6 +117,38 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("{\"date\":\"2010-01-01 12:34:56.0000\",\"level\":\"Info\",\"message\":\"hello, world\"}", jsonLayout.Render(logEventInfo));
         }
 
+
+        [Fact]
+        public void JsonLayoutRenderingNestedSuppressSpacesExplicit()
+        {
+            var innerJsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("type", "${exception:format=type}"),
+                    },
+                SuppressSpaces = true,  // Explicitly avoid inheriting from parent JsonLayout
+            };
+
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("level", "${level}"),
+                        new JsonAttribute("exception", innerJsonLayout, false),
+                    },
+                SuppressSpaces = false, // Default propagates to Attributes that uses JsonLayout
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Level = LogLevel.Error,
+                Exception = new InvalidOperationException("boom"),
+            };
+
+            Assert.Equal("{ \"level\": \"Error\", \"exception\": {\"type\":\"System.InvalidOperationException\"} }", jsonLayout.Render(logEventInfo));
+        }
+
         [Fact]
         public void JsonLayoutRenderingEscapeUnicode()
         {
@@ -135,6 +167,28 @@ namespace NLog.UnitTests.Layouts
             var logEventInfo = LogEventInfo.Create(LogLevel.Info, "\u00a9", null, "{$a}", new object[] { "\\" });
             logEventInfo.Properties["msg"] = "\u00a9";
             Assert.Equal("{\"logger\":\"\\u00a9\",\"level\":\"Info\",\"message\":\"\u00a9\",\"a\":\"\\\\\",\"msg\":\"\u00a9\"}", jsonLayout.Render(logEventInfo));
+        }
+
+        [Theory]
+        // Surrogates are built from char-codes, since a lone surrogate cannot survive as an InlineData string-literal
+        [InlineData("A{0}{1}B", "{\"msg\":\"A\ud83d\ude00B\"}")]   // Valid surrogate-pair is written as-is
+        [InlineData("A{0}B", "{\"msg\":\"A\\ud83dB\"}")]           // Lone high surrogate must be escaped
+        [InlineData("A{1}B", "{\"msg\":\"A\\ude00B\"}")]           // Lone low surrogate must be escaped
+        [InlineData("{0}", "{\"msg\":\"\\ud83d\"}")]
+        public void JsonLayoutRenderingLoneSurrogate(string messageFormat, string expected)
+        {
+            var message = string.Format(messageFormat, (char)0xd83d, (char)0xde00);
+
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes = { new JsonAttribute("msg", "${message}") { EscapeUnicode = false } },
+            };
+
+            var logEventInfo = new LogEventInfo(LogLevel.Info, "logger1", message);
+            var result = jsonLayout.Render(logEventInfo);
+
+            Assert.Equal(expected, result);
+            new System.Text.UTF8Encoding(false, true).GetBytes(result);  // Must be encodable as UTF8
         }
 
         [Fact]

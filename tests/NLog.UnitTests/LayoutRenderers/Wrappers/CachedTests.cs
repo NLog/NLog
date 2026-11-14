@@ -35,6 +35,7 @@ using NLog.Config;
 
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
+    using System;
     using System.Linq;
     using NLog;
     using NLog.Layouts;
@@ -125,6 +126,30 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             var s2 = l.Render(new LogEventInfo());
             Assert.Equal(s1, s2);
             var s3 = l.Render(new LogEventInfo() { TimeStamp = NLog.Time.TimeSource.Current.Time.AddMinutes(2) });
+            Assert.NotEqual(s2, s3);
+        }
+
+        [Fact]
+        public void CachedUntilHourChangeTest()
+        {
+            SimpleLayout l = "${guid:cachedUntil=HourChange}";
+            var timeStamp = new DateTime(2021, 2, 27, 17, 30, 0);
+            var s1 = l.Render(new LogEventInfo() { TimeStamp = timeStamp });
+            var s2 = l.Render(new LogEventInfo() { TimeStamp = timeStamp.AddMinutes(29) });
+            Assert.Equal(s1, s2);
+            var s3 = l.Render(new LogEventInfo() { TimeStamp = timeStamp.AddMinutes(30) });
+            Assert.NotEqual(s2, s3);
+        }
+
+        [Fact]
+        public void CachedUntilDayChangeTest()
+        {
+            SimpleLayout l = "${guid:cachedUntil=DayChange}";
+            var timeStamp = new DateTime(2021, 2, 27, 17, 30, 0);
+            var s1 = l.Render(new LogEventInfo() { TimeStamp = timeStamp });
+            var s2 = l.Render(new LogEventInfo() { TimeStamp = timeStamp.AddHours(6) });
+            Assert.Equal(s1, s2);
+            var s3 = l.Render(new LogEventInfo() { TimeStamp = timeStamp.AddHours(6.5) });
             Assert.NotEqual(s2, s3);
         }
     }

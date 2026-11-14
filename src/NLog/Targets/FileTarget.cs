@@ -468,7 +468,7 @@ namespace NLog.Targets
         /// </summary>
         private FileLifecycleHooks? FileLifeCycle { get; }
 
-        private int OpenFileMonitorTimerInterval
+        private int OpenFileMonitorIntervalSeconds
         {
             get
             {
@@ -588,7 +588,7 @@ namespace NLog.Targets
                 StringFormat_ArchiveSuffixFormat(int.MaxValue, DateTime.MaxValue, true);
             }
 
-            if (OpenFileMonitorTimerInterval > 0)
+            if (OpenFileMonitorIntervalSeconds > 0)
             {
                 // Prepare Timer for periodic checking of flushing/closing open files (inactive until first file is opened)
                 _openFileMonitorTimer = new Timer(OpenFileMonitorTimer);
@@ -732,7 +732,7 @@ namespace NLog.Targets
 
         private int WriteToMemoryStream(IList<AsyncLogEventInfo> logEvents, int startIndex, MemoryStream ms)
         {
-            long maxBufferSize = BufferSize * 100;   // Max Buffer Default = 30 KiloByte * 100 = 3 MegaByte
+            long maxBufferSize = BufferSize * 100L;   // Max Buffer Default = 30 KiloByte * 100 = 3 MegaByte
 
             using (var targetStream = _reusableFileWriteStream.Allocate())
             using (var targetBuilder = ReusableLayoutBuilder.Allocate())
@@ -786,36 +786,48 @@ namespace NLog.Targets
                 openFile = OpenFile(filename, firstLogEvent, null);
             }
 
-            try
+            for (int i = 0; i < 2; ++i)
             {
-                if (ArchiveAboveSize > 0 || ArchiveEvery != FileArchivePeriod.None)
+                try
                 {
-                    openFile = RollArchiveFile(filename, openFile, firstLogEvent, hasWritten);
+                    if (ArchiveAboveSize > 0 || ArchiveEvery != FileArchivePeriod.None || i != 0)
+                    {
+                        openFile = RollArchiveFile(filename, openFile, firstLogEvent, hasWritten, i != 0);
+                    }
+
+                    openFile.FileAppender.Write(firstLogEvent.TimeStamp, ms.GetBuffer(), 0, (int)ms.Length);
+                    if (AutoFlush)
+                    {
+                        openFile.FileAppender.Flush();
+                    }
+
+                    break;  // Succesful file-write
                 }
-
-                openFile.FileAppender.Write(firstLogEvent.TimeStamp, ms.GetBuffer(), 0, (int)ms.Length);
-
-                if (AutoFlush)
+                catch (IOException ex)
                 {
-                    openFile.FileAppender.Flush();
+                    CloseFile(filename, openFile);
+                    if (i == 0 && KeepFileOpen)
+                    {
+                        InternalLogger.Info(ex, "{0}: Failed writing {1} bytes, will close and reopen file: {2}", this, ms.Length, openFile.FileAppender.FilePath);
+                        continue;
+                    }
+                    throw;
                 }
-            }
-            catch
-            {
-                // Close file (any retry-logic must happen inside the FileStream-implementation)
-                _openFileCache.Remove(filename);
-                openFile.FileAppender.Dispose();
-                throw;
+                catch
+                {
+                    CloseFile(filename, openFile);
+                    throw;
+                }
             }
         }
 
-        private OpenFileAppender RollArchiveFile(string filename, OpenFileAppender openFile, LogEventInfo firstLogEvent, bool hasWritten)
+        private OpenFileAppender RollArchiveFile(string filename, OpenFileAppender openFile, LogEventInfo firstLogEvent, bool hasWritten, bool retryAfterError)
         {
             var lastSequenceNo = -1;
 
             bool skipFileLastModified = ArchiveFileName is null;
 
-            while (lastSequenceNo != openFile.SequenceNumber && MustArchiveFile(openFile.FileAppender, firstLogEvent))
+            while (lastSequenceNo != openFile.SequenceNumber && (retryAfterError || MustArchiveFile(openFile.FileAppender, firstLogEvent)))
             {
                 lastSequenceNo = openFile.SequenceNumber;
 
@@ -823,14 +835,25 @@ namespace NLog.Targets
                 if (previousFileLastModified > openFile.FileAppender.LastWriteTime && (previousFileLastModified == openFile.FileAppender.OpenStreamTime || firstLogEvent.TimeStamp.Date == previousFileLastModified?.Date))
                     previousFileLastModified = openFile.FileAppender.LastWriteTime;
 
-                // Close file and roll to next file
-                if (hasWritten)
-                    CloseFileWithFooter(filename, openFile, true);
-                else
-                    CloseFile(filename, openFile);
+                // Close file and roll to next file, and ensure File.Exists check works by closing file-handles first
+                if (!retryAfterError)
+                {
+                    if (hasWritten)
+                        CloseFileWithFooter(filename, openFile, true);
+                    else
+                        CloseFile(filename, openFile);
+                }
+
+                var nextSequenceNumber = openFile.SequenceNumber + 1;
+                if (nextSequenceNumber != 0 && (retryAfterError || !openFile.FileAppender.VerifyFileExists()))
+                {
+                    InternalLogger.Debug("{0}: Resets current archive sequence number, after issues with file: '{1}'", this, openFile.FileAppender.FilePath);
+                    retryAfterError = false;
+                    nextSequenceNumber = 0; // Signal that OpenFile must re-enumerate existing files to resolve next sequence-number
+                }
 
                 hasWritten = false;
-                openFile = OpenFile(filename, firstLogEvent, previousFileLastModified, openFile.SequenceNumber + 1);
+                openFile = OpenFile(filename, firstLogEvent, previousFileLastModified, nextSequenceNumber);
             }
 
             return openFile;
@@ -935,7 +958,7 @@ namespace NLog.Targets
 
             if (_openFileCache.Count == 1)
             {
-                _openFileMonitorTimer?.Change(OpenFileMonitorTimerInterval * 1000, Timeout.Infinite);
+                _openFileMonitorTimer?.Change(OpenFileMonitorIntervalSeconds * 1000L, Timeout.Infinite);
             }
 
             return openFile;
@@ -981,6 +1004,44 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// NLog FileTarget supports both dynamic-archive-mode (FileName with ${date} / ${shortdate} and legacy static-archive-mode (ArchiveFileName specified)
+        /// Mixing dynamic-archive-mode with legacy static-archive-mode is not supported, and will give a bad user-experience as files from yesterday are not handled at startup.
+        /// NLog v4/v5 had special repair logic where it kept track of previous file-name / file-modified, used as hint on day-roll. Trying to replicate this repair logic for legacy archive mode.
+        /// </summary>
+        internal string? ClosePreviousFileWhenArchiveEveryLegacy(LogEventInfo firstLogEvent, out DateTime previousFileClosedLastModified)
+        {
+            if ((FileName as SimpleLayout)?.IsFixedText == true || ArchiveFileName is null || ArchiveEvery == FileArchivePeriod.None)
+            {
+                previousFileClosedLastModified = default;
+                return null;
+            }
+
+            KeyValuePair<string, OpenFileAppender> openFileExpired = default;
+            foreach (var openFile in _openFileCache)
+            {
+                var fileAppender = openFile.Value.FileAppender;
+                if (fileAppender.NextArchiveTime >= firstLogEvent.TimeStamp)
+                    continue;   // Not using MustArchiveEveryTimePeriod-method to avoid confusion from InternalLogger output
+
+                if (openFileExpired.Key is null || fileAppender.LastWriteTime >= openFileExpired.Value.FileAppender.LastWriteTime)
+                {
+                    openFileExpired = openFile; // Find the most recent used file to match NLog v4/v5 special repair logic
+                }
+            }
+
+            if (openFileExpired.Key != null && MustArchiveEveryTimePeriod(openFileExpired.Value.FileAppender, firstLogEvent))
+            {
+                var previousFullFilePath = openFileExpired.Value.FileAppender.FilePath;
+                previousFileClosedLastModified = openFileExpired.Value.FileAppender.FileLastModified;
+                CloseFileWithFooter(openFileExpired.Key, openFileExpired.Value, true);
+                return previousFullFilePath;
+            }
+
+            previousFileClosedLastModified = default;
+            return null;    
+        }
+
         internal void CloseOpenFileBeforeArchiveFileDelete(string filepath)
         {
             KeyValuePair<string, OpenFileAppender> foundOpenFile;
@@ -1003,7 +1064,6 @@ namespace NLog.Targets
 
                 if (foundOpenFile.Key != null)
                 {
-                    InternalLogger.Debug("{0}: Archive cleanup closing file: {1}", this, filepath);
                     CloseFile(foundOpenFile.Key, foundOpenFile.Value);
                 }
             } while (foundOpenFile.Key != null);
@@ -1022,6 +1082,7 @@ namespace NLog.Targets
         {
             try
             {
+                InternalLogger.Debug("{0}: Closing file: {1}", this, filename);
                 _openFileCache.Remove(filename);
                 if (_openFileCache.Count == 0)
                 {
@@ -1106,13 +1167,13 @@ namespace NLog.Targets
             finally
             {
                 if (startTimer)
-                    _openFileMonitorTimer?.Change(OpenFileMonitorTimerInterval * 1000, Timeout.Infinite);
+                    _openFileMonitorTimer?.Change(OpenFileMonitorIntervalSeconds * 1000L, Timeout.Infinite);
             }
         }
 
         private void PruneOpenFileCacheUsingTimeout()
         {
-            DateTime closeTime = Time.TimeSource.Current.Time.AddSeconds(-OpenFileCacheTimeout).AddSeconds(OpenFileCacheTimeout > OpenFileMonitorTimerInterval ? -OpenFileMonitorTimerInterval : 0);
+            DateTime closeTime = Time.TimeSource.Current.Time.AddSeconds(-OpenFileCacheTimeout).AddSeconds(OpenFileCacheTimeout > OpenFileMonitorIntervalSeconds ? -OpenFileMonitorIntervalSeconds : 0);
             bool unusedFileMustBeClosed = false;
 
             foreach (var openFile in _openFileCache)
@@ -1271,11 +1332,10 @@ namespace NLog.Targets
             return ArrayHelper.Empty<byte>();
         }
 
-        internal Stream CreateFileStreamWithRetry(IFileAppender fileAppender, int bufferSize, bool initialFileOpen)
+        internal Stream CreateFileStreamWithRetry(string filePath, int bufferSize, bool initialFileOpen)
         {
             int currentDelay = 1;
             int retryCount = KeepFileOpen ? 0 : 5;
-            var filePath = fileAppender.FilePath;
 
             for (int i = 0; i <= retryCount; ++i)
             {

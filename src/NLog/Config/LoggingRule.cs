@@ -112,6 +112,7 @@ namespace NLog.Config
         /// <summary>
         /// Rule identifier to allow rule lookup
         /// </summary>
+        /// <remarks>Default: <see langword="null"/></remarks>
         public string? RuleName { get; set; }
 
         /// <summary>
@@ -142,12 +143,13 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets a value indicating whether to quit processing any following rules when this one matches.
         /// </summary>
-        /// <remarks>Alternative use <see cref="FinalMinLevel"/> to simplify filtering based on log levels.</remarks>
+        /// <remarks>Default: <see langword="false"/>. Alternative use <see cref="FinalMinLevel"/> to simplify filtering based on log levels.</remarks>
         public bool Final { get; set; }
 
         /// <summary>
         /// Gets or sets the minimum <see cref="NLog.LogLevel"/> needed to trigger this rule.
         /// </summary>
+        /// <remarks>Default: <see cref="NLog.LogLevel.Off"/></remarks>
         public LogLevel MinLevel
         {
             get
@@ -170,7 +172,7 @@ namespace NLog.Config
         /// Gets or sets the <see cref="NLog.LogLevel"/> whether to quit processing any following rules when lower severity and this one matches.
         /// </summary>
         /// <remarks>
-        /// Loggers matching will be restricted to specified minimum level for following rules.
+        /// Default: <see langword="null"/>. Loggers matching will be restricted to specified minimum level for following rules.
         /// </remarks>
         public LogLevel? FinalMinLevel
         {
@@ -187,7 +189,7 @@ namespace NLog.Config
         /// Gets or sets logger name pattern.
         /// </summary>
         /// <remarks>
-        /// Logger name pattern used by <see cref="NameMatches(string)"/> to check if a logger name matches this rule.
+        /// Default: <see cref="string.Empty"/>.  Logger name pattern used by <see cref="NameMatches(string)"/> to check if a logger name matches this rule.
         /// It may include one or more '*' or '?' wildcards at any position.
         /// <list type="bullet">
         /// <item>'*' means zero or more occurrences of any character</item>
@@ -230,8 +232,8 @@ namespace NLog.Config
         /// Default action when filters not matching
         /// </summary>
         /// <remarks>
-        /// NLog v4.6 introduced the setting with default value <see cref="FilterResult.Neutral"/>.
-        /// NLog v5 marked it as obsolete and change default value to <see cref="FilterResult.Ignore"/>
+        /// Default: <see cref="FilterResult.Ignore"/>. NLog v4.6 introduced the setting with default value <see cref="FilterResult.Neutral"/>.
+        /// NLog v5 marked it as obsolete and changed default value to <see cref="FilterResult.Ignore"/>
         /// </remarks>
         [Obsolete("Replaced by FilterDefaultAction. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -241,7 +243,7 @@ namespace NLog.Config
         /// Default action if none of the filters match
         /// </summary>
         /// <remarks>
-        /// NLog v5 changed default value to <see cref="FilterResult.Ignore"/>
+        /// Default: <see cref="FilterResult.Ignore"/> (New default value with NLog v5, that changed from <see cref="FilterResult.Neutral"/>)
         /// </remarks>
         public FilterResult FilterDefaultAction { get; set; } = FilterResult.Ignore;
 

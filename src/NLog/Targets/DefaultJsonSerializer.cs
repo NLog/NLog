@@ -613,47 +613,61 @@ namespace NLog.Targets
 
             for (int i = startIndex; i < text.Length; ++i)
             {
-                char ch = text[i];
-                if (!RequiresJsonEscape(ch, escapeUnicode))
+                char chr = text[i];
+                if (!RequiresJsonEscape(chr, escapeUnicode))
                 {
-                    destination.Append(ch);
+                    destination.Append(chr);
                     continue;
                 }
 
-                switch (ch)
+                var jsonEscape = TryGetJsonEscape(chr);
+                if (jsonEscape is null)
                 {
-                    case '"':
-                        destination.Append("\\\"");
-                        break;
-
-                    case '\\':
-                        destination.Append("\\\\");
-                        break;
-
-                    case '\b':
-                        destination.Append("\\b");
-                        break;
-
-                    case '\r':
-                        destination.Append("\\r");
-                        break;
-
-                    case '\n':
-                        destination.Append("\\n");
-                        break;
-
-                    case '\f':
-                        destination.Append("\\f");
-                        break;
-
-                    case '\t':
-                        destination.Append("\\t");
-                        break;
-
-                    default:
-                        destination.AppendFormat(CultureInfo.InvariantCulture, "\\u{0:x4}", (int)ch);
-                        break;
+                    if (escapeUnicode || !char.IsHighSurrogate(chr) || i + 1 >= text.Length || !char.IsLowSurrogate(text[i + 1]))
+                    {
+                        destination.AppendFormat(CultureInfo.InvariantCulture, "\\u{0:x4}", (int)chr);
+                    }
+                    else
+                    {
+                        // Writes a valid surrogate-pair as-is, since only lone surrogates need escaping.
+                        destination.Append(text[i]);
+                        destination.Append(text[++i]);
+                    }
                 }
+                else
+                {
+                    destination.Append(jsonEscape);
+                }
+            }
+        }
+
+        private static string? TryGetJsonEscape(char chr)
+        {
+            switch (chr)
+            {
+                case '"':
+                    return "\\\"";
+
+                case '\\':
+                    return "\\\\";
+
+                case '\b':
+                    return "\\b";
+
+                case '\r':
+                    return "\\r";
+
+                case '\n':
+                    return "\\n";
+
+                case '\f':
+                    return "\\f";
+
+                case '\t':
+                    return "\\t";
+
+                default:
+                    return null;
             }
         }
 
@@ -677,7 +691,7 @@ namespace NLog.Targets
             if (ch < 32)
                 return true;
             if (ch > 127)
-                return escapeUnicode;
+                return escapeUnicode || char.IsSurrogate(ch);
             return ch == '"' || ch == '\\';
         }
 
@@ -687,6 +701,7 @@ namespace NLog.Targets
             destination.Append('{');
 
             string? jsonPropertyDelimeter = null;
+            bool escapePropertyNames = objectPropertyList.IsExpandoObject;   // Expando keys can contain any character
 
             foreach (var propertyValue in objectPropertyList)
             {
@@ -699,7 +714,12 @@ namespace NLog.Targets
 
                     destination.Append(jsonPropertyDelimeter);
 
-                    QuoteValue(destination, propertyValue.Name);
+                    destination.Append('"');
+                    if (escapePropertyNames)
+                        AppendStringEscape(destination, propertyValue.Name, options);
+                    else
+                        destination.Append(propertyValue.Name);
+                    destination.Append('"');
                     destination.Append(':');
 
                     var objTypeCode = propertyValue.TypeCode;

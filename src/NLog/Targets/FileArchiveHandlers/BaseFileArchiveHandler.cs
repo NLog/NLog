@@ -113,12 +113,17 @@ namespace NLog.Targets.FileArchiveHandlers
 
         private int ResolveMaxArchiveFiles(bool initialFileOpen)
         {
+            if (initialFileOpen)
+            {
+                if (_fileTarget.DeleteOldFileOnStartup)
+                    return 0;
+
+                if (!_fileTarget.ArchiveOldFileOnStartup)
+                    return _fileTarget.MaxArchiveFiles;
+            }
+
             var maxArchiveFiles = _fileTarget.MaxArchiveFiles;
-            if (initialFileOpen && (!_fileTarget.ArchiveOldFileOnStartup || _fileTarget.DeleteOldFileOnStartup))
-                maxArchiveFiles = _fileTarget.DeleteOldFileOnStartup ? 0 : maxArchiveFiles;
-            else if (maxArchiveFiles > 0)
-                maxArchiveFiles -= 1;
-            return maxArchiveFiles;
+            return maxArchiveFiles > 0 ? maxArchiveFiles - 1 : maxArchiveFiles;
         }
 
         protected static int? GetMaxArchiveSequenceNo(FileInfo[] fileInfos, int fileWildcardStartIndex, int fileWildcardEndIndex)
@@ -459,6 +464,19 @@ namespace NLog.Targets.FileArchiveHandlers
                         return true;
                     if (i >= 3 && ex.MustBeRethrown(_fileTarget))
                         throw;
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+#if NET35
+                    var hResult = 0;
+#else
+                    var hResult = ex.HResult;
+#endif
+                    InternalLogger.Debug(ex, "{0}: Failed to delete old file HResult=0x{1:X8}, maybe file is locked: '{2}'", _fileTarget, hResult, filepath);
+                    if (!File.Exists(filepath))
+                        return true;
+
+                    return false;
                 }
                 catch (Exception ex)
                 {
