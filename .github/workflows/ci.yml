@@ -253,11 +253,15 @@ jobs:
         with:
           persist-credentials: false
 
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 11.x
+
       - name: Build source code checks
         run: dotnet build tools/CheckSourceCode/src/NLog.SourceCodeTests.sln --configuration Release --no-incremental
 
       - name: Run source code checks
-        run: .\tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
+        run: dotnet run --project tools/CheckSourceCode/src/NLog.SourceCodeTests/NLog.SourceCodeTests.csproj --configuration Release --no-build
 
       - name: Build NLog for schema generation
         run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net481 -p:TargetFrameworks=net481
