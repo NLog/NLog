@@ -543,10 +543,7 @@ namespace DumpApiXml
         private void FixupElement(XmlElement element)
         {
             var summary = (XmlElement)element.SelectSingleNode("summary");
-            if (summary != null)
-            {
-                summary.InnerXml = FixupSummaryXml(summary.InnerXml);
-            }
+            summary?.InnerXml = FixupSummaryXml(summary.InnerXml);
 
             foreach (XmlElement code in element.SelectNodes("//code[@src]"))
             {
