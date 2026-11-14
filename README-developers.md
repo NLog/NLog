@@ -33,9 +33,9 @@ Build Pipeline
 
 
 For developing: the following platforms will be used:
-- net46;net45;net35;netstandard1.3;netstandard1.5;netstandard2.0 (see nlog.csproj)
+- net46;net35;netstandard2.0;netstandard2.1 (see nlog.csproj)
 
-The build server will run unit-tests on both Windows and Linux platforms (see build.ps1 + run-tests.ps1)
+GitHub Actions runs the unit tests on Windows and Linux. See [.github/workflows/ci.yml](.github/workflows/ci.yml). To run tests locally, use the `dotnet test` commands from the workflow for your platform and target framework.
 
 NuGet package management
 ===
@@ -43,12 +43,12 @@ NuGet package management
 
 ## Create NuGet packages
 
-See build.ps1
+NuGet packages are created by the GitHub Actions workflow.
 
 ## Versions
 
 - "BuildLastMajorVersion" should be `major.0.0`. In NLog 4.x - 4.y: 4.0.0
-- "AssemblyFileVersion" should be: `major.minor.patch.appVeyorBuildVersion`, eg. 4.2.2.1251 for NLog 4.2.2
+- "AssemblyFileVersion" should be: `major.minor.patch.buildNumber`, eg. 4.2.2.1251 for NLog 4.2.2
 - "BuildVersion" should be: `major.minor.patch` where `.patch` is ommited when 0. E.g 4.0, 4.1, 4.1.1, 4.2
 
 Example of correct version numbers in NuGet Package explorer:

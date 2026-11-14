@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">18.0</VisualStudioVersion>
     <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' AND '$(VisualStudioVersion)' &lt; '17.0' ">net462</TargetFrameworks>
     <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' AND '$(VisualStudioVersion)' &lt; '18.0' ">net462;net8.0</TargetFrameworks>
     <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net462;net10.0</TargetFrameworks>
@@ -25,8 +25,8 @@
     <DefineConstants>$(DefineConstants);NET35</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' != 'net10.0' AND '$(TestTargetFramework)' == 'net45' ">
-    <DefineConstants>$(DefineConstants);NET45</DefineConstants>
+  <PropertyGroup Condition=" '$(TargetFramework)' != 'net10.0' AND '$(TestTargetFramework)' == 'net46' ">
+    <DefineConstants>$(DefineConstants);NET46</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(monobuild)' != '' ">

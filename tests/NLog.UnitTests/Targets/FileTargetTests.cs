@@ -1079,6 +1079,11 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void RetryFileOpenWhenFileLocked()
         {
+            RetryingIntegrationTest(3, RetryFileOpenWhenFileLockedCore);
+        }
+
+        private void RetryFileOpenWhenFileLockedCore()
+        {
             var logFile = Path.GetTempFileName();
 
             var fileTarget = new FileTarget("file")

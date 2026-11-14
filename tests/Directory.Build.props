@@ -1,0 +1,15 @@
+<Project>
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="10.1.0" PrivateAssets="all" />
+    <PackageReference Include="GitHubActionsTestLogger" Version="3.0.5" PrivateAssets="all" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))">
+    <!-- CS8765: Parameter nullability differs from the overridden member. -->
+    <!-- CS8619: A value's nullability differs from the target type. -->
+    <!-- CS8604: A possibly null value is passed as an argument. -->
+    <!-- CS8603: A possibly null value is returned. -->
+    <!-- CS8601: A possibly null value is assigned. -->
+    <NoWarn>$(NoWarn);CS8765;CS8619;CS8604;CS8603;CS8601</NoWarn>
+  </PropertyGroup>
+</Project>
