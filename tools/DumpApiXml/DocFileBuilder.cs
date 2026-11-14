@@ -710,12 +710,7 @@ namespace DumpApiXml
                 return true;
             }
 
-            if (HasAttribute(pi, "NLog.Config.ArrayParameterAttribute"))
-            {
-                return true;
-            }
-
-            return false;
+            return HasAttribute(pi, "NLog.Config.ArrayParameterAttribute");
         }
 
         private string MakeCamelCase(string s)
