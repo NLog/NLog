@@ -680,7 +680,7 @@ namespace DumpApiXml
 
         private bool IncludeProperty(PropertyInfo pi)
         {
-            if (pi.CanRead && pi.CanWrite && pi.GetSetMethod() != null && pi.GetSetMethod().IsPublic)
+            if (pi.CanRead && pi.CanWrite && pi.GetSetMethod()?.IsPublic == true)
             {
                 if (pi.Name == "CultureInfo")
                 {
