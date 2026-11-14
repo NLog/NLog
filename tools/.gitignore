@@ -1,0 +1,6 @@
+/CheckSourceCode/*.exe
+/CheckSourceCode/*.pdb
+/SandcastleDocs/Doc/
+/SandcastleDocs/Working/
+/SandcastleDocs/dll_to_doc/*.XML
+/SandcastleDocs/dll_to_doc/*.dll

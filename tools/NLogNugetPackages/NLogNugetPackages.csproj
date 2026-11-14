@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net481</TargetFramework>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb;.xml</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
@@ -31,6 +31,11 @@
     <PackageReference Include="NLog.Windows.Forms" Version="6.*" />
     <PackageReference Include="NLog.WindowsIdentity" Version="6.*" />
     <PackageReference Include="NLog.WindowsRegistry" Version="6.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Override the vulnerable transitive version used by NLog.Web.AspNetCore. -->
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.*" />
   </ItemGroup>
 
 </Project>

@@ -257,8 +257,8 @@ jobs:
         with:
           dotnet-version: 11.x
 
-      - name: Build source code checks
-        run: dotnet build tools/CheckSourceCode/SourceCodeTests.csproj --configuration Release --no-incremental
+      - name: Build all tools
+        run: dotnet build tools/NLog.Tools.slnx --configuration Release --no-incremental
 
       - name: Run source code checks
         run: dotnet run --project tools/CheckSourceCode/SourceCodeTests.csproj --configuration Release --no-build
@@ -318,6 +318,10 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 11.x
 
       - name: Restore
         run: dotnet restore ${{ env.SOLUTION }}
