@@ -33,4 +33,9 @@
     <PackageReference Include="NLog.WindowsRegistry" Version="6.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Override the vulnerable transitive version used by NLog.Web.AspNetCore. -->
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.*" />
+  </ItemGroup>
+
 </Project>
