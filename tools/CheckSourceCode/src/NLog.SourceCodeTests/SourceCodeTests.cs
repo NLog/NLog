@@ -2,14 +2,17 @@ using System.Text.RegularExpressions;
 
 namespace NLog.SourceCodeTests;
 
-public sealed class SourceCodeTests
+public sealed partial class SourceCodeTests
 {
-    private static readonly Regex ClassNameRegex = new(
+    [GeneratedRegex(
         @"^\s+(public |abstract |sealed |static |partial |internal )*\s*(class|interface|struct|enum)\s+(?<className>\w+)\b",
-        RegexOptions.Compiled | RegexOptions.CultureInvariant);
-    private static readonly Regex DelegateTypeRegex = new(
+        RegexOptions.CultureInvariant)]
+    private static partial Regex ClassNameRegex();
+
+    [GeneratedRegex(
         @"^    (public |internal )delegate .*\b(?<delegateType>\w+)\(",
-        RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        RegexOptions.CultureInvariant)]
+    private static partial Regex DelegateTypeRegex();
     private static readonly string[] DirectoriesToVerify = ["src/NLog", "tests/NLog.UnitTests"];
     private static readonly HashSet<string> FileNamesToIgnore = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -145,13 +148,13 @@ public sealed class SourceCodeTests
         var classNames = new HashSet<string>(StringComparer.Ordinal);
         foreach (var line in File.ReadLines(filePath))
         {
-            var match = ClassNameRegex.Match(line);
+            var match = ClassNameRegex().Match(line);
             if (match.Success)
             {
                 classNames.Add(match.Groups["className"].Value);
             }
 
-            match = DelegateTypeRegex.Match(line);
+            match = DelegateTypeRegex().Match(line);
             if (match.Success)
             {
                 classNames.Add(match.Groups["delegateType"].Value);
