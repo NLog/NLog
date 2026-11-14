@@ -13,7 +13,7 @@ public sealed partial class SourceCodeTests
         @"^    (public |internal )delegate .*\b(?<delegateType>\w+)\(",
         RegexOptions.CultureInvariant)]
     private static partial Regex DelegateTypeRegex();
-    private static readonly string[] DirectoriesToVerify = ["src/NLog", "tests/NLog.UnitTests"];
+    private static readonly string[] DirectoriesToVerify = ["src", "tests"];
     private static readonly HashSet<string> FileNamesToIgnore = new(StringComparer.OrdinalIgnoreCase)
     {
         "AssemblyInfo.cs",
