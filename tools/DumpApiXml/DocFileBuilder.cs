@@ -114,10 +114,9 @@ namespace DumpApiXml
 
         private static string GetTypeName(Type type)
         {
-            string simpleName;
             type = GetUnderlyingType(type);
 
-            if (simpleTypeNames.TryGetValue(type.FullName, out simpleName))
+            if (simpleTypeNames.TryGetValue(type.FullName, out string simpleName))
             {
                 return simpleName;
             }
@@ -142,9 +141,8 @@ namespace DumpApiXml
 
         private static bool IsCollection(PropertyInfo prop, out Type elementType, out string elementName)
         {
-            object v1, v2;
 
-            if (TryGetFirstTwoArgumentForAttribute(prop, "NLog.Config.ArrayParameterAttribute", out v1, out v2))
+            if (TryGetFirstTwoArgumentForAttribute(prop, "NLog.Config.ArrayParameterAttribute", out object v1, out object v2))
             {
                 elementType = (Type)v1;
                 elementName = (string)v2;
@@ -191,8 +189,7 @@ namespace DumpApiXml
 
         private static bool TryGetTypeNameFromNameAttribute(Type type, string attributeTypeName, out string name)
         {
-            object val;
-            if (TryGetFirstArgumentForAttribute(type, attributeTypeName, out val))
+            if (TryGetFirstArgumentForAttribute(type, attributeTypeName, out object val))
             {
                 name = (string)val;
                 return true;
@@ -221,8 +218,7 @@ namespace DumpApiXml
                 writer.WriteAttributeString("assembly", type.Assembly.GetName().Name);
                 writer.WriteAttributeString("clrType", type.FullName);
 
-                string name;
-                if (TryGetTypeNameFromNameAttribute(type, attributeTypeName, out name))
+                if (TryGetTypeNameFromNameAttribute(type, attributeTypeName, out string name))
                 {
                     writer.WriteAttributeString("name", name);
                 }
@@ -244,8 +240,7 @@ namespace DumpApiXml
                     writer.WriteAttributeString("iswrapper", "1");
                 }
 
-                string ambientPropName;
-                if (TryGetTypeNameFromNameAttribute(type, "NLog.LayoutRenderers.AmbientPropertyAttribute", out ambientPropName))
+                if (TryGetTypeNameFromNameAttribute(type, "NLog.LayoutRenderers.AmbientPropertyAttribute", out string ambientPropName))
                 {
                     writer.WriteAttributeString("ambientProperty", ambientPropName);
                 }
@@ -271,13 +266,12 @@ namespace DumpApiXml
 
         private void DumpTypeMembers(XmlWriter writer, Type type)
         {
-            XmlElement memberDoc;
             var categories = new Dictionary<string, int>();
 
             categories["General Options"] = 10;
             categories["Layout Options"] = 20;
 
-            if (TryGetMemberDoc("T:" + type.FullName, out memberDoc))
+            if (TryGetMemberDoc("T:" + type.FullName, out XmlElement memberDoc))
             {
                 writer.WriteStartElement("doc");
                 memberDoc.WriteContentTo(writer);
@@ -369,15 +363,12 @@ namespace DumpApiXml
                         .Where(p => property2Category[p] == categoryName).OrderBy(
                             p => propertyOrderWithinCategory[p]).ThenBy(pi => pi.Name))
                 {
-                    string elementTag;
-                    Type elementType;
 
                     writer.WriteStartElement("property");
                     writer.WriteAttributeString("name", propInfo.Name);
                     writer.WriteAttributeString("camelName", MakeCamelCase(propInfo.Name));
 
-                    string defaultValue;
-                    if (TryGetPropertyDefaultValue(configInstance, propInfo, out defaultValue))
+                    if (TryGetPropertyDefaultValue(configInstance, propInfo, out string defaultValue))
                     {
                         writer.WriteAttributeString("defaultValue", defaultValue);
                     }
@@ -407,7 +398,7 @@ namespace DumpApiXml
                     {
                         writer.WriteAttributeString("type", "Condition");
                     }
-                    else if (IsCollection(propInfo, out elementType, out elementTag))
+                    else if (IsCollection(propInfo, out Type elementType, out string elementTag))
                     {
                         writer.WriteAttributeString("type", "Collection");
                         writer.WriteStartElement("elementType");
