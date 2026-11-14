@@ -1,7 +1,9 @@
 using NLog.SourceCodeTests;
 
 var tests = new SourceCodeTests();
-var success = tests.VerifyFileHeaders() & tests.VerifyNamespacesAndClassNames();
+var fileHeadersValid = tests.VerifyFileHeaders();
+var namespacesAndClassNamesValid = tests.VerifyNamespacesAndClassNames();
+var success = fileHeadersValid && namespacesAndClassNamesValid;
 
 if (success)
 {
