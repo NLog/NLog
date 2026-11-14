@@ -812,7 +812,7 @@ namespace NLog.Layouts
                 sb.AppendLine();
         }
 
-        private void EndXmlDocument(StringBuilder sb, string elementName)
+        private static void EndXmlDocument(StringBuilder sb, string elementName)
         {
             RenderEndElement(sb, elementName);
         }
