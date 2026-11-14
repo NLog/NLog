@@ -107,7 +107,7 @@ public sealed partial class SourceCodeTests
             .Contains("obj", StringComparer.OrdinalIgnoreCase);
     }
 
-    private void VerifyClassNames(string path, List<string> errors)
+    private static void VerifyClassNames(string path, List<string> errors)
     {
         if (FileInObjFolder(path))
         {
