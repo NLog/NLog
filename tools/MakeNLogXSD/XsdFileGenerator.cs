@@ -42,12 +42,12 @@ namespace MakeNLogXSD
 
     public class XsdFileGenerator
     {
-        private static XNamespace xsd = "http://www.w3.org/2001/XMLSchema";
+        private static readonly XNamespace xsd = "http://www.w3.org/2001/XMLSchema";
 
-        private HashSet<string> typesEmitted;
-        private XElement template;
-        private XElement typesGoHere;
-        private XElement filtersGoHere;
+        private readonly HashSet<string> typesEmitted;
+        private readonly XElement template;
+        private readonly XElement typesGoHere;
+        private readonly XElement filtersGoHere;
 
         public XsdFileGenerator()
         {
@@ -341,7 +341,7 @@ namespace MakeNLogXSD
             return result;
         }
 
-        private static HashSet<string> IgnoreTypes = new HashSet<string> { "NLog.Targets.IFileCompressor" };
+        private static readonly HashSet<string> IgnoreTypes = new HashSet<string> { "NLog.Targets.IFileCompressor" };
 
         private static string GetXsdType(string apiTypeName, bool attribute)
         {

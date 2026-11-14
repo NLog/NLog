@@ -8,7 +8,7 @@ namespace MergeApiXml
 
     public class NLogApiMerger
     {
-        private List<KeyValuePair<string, string>> releases = new List<KeyValuePair<string, string>>();
+        private readonly List<KeyValuePair<string, string>> releases = new List<KeyValuePair<string, string>>();
 
         public XDocument Result { get; set; }
 

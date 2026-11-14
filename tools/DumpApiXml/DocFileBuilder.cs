@@ -10,7 +10,7 @@ namespace DumpApiXml
 
     public class DocFileBuilder
     {
-        private static Dictionary<string, string> simpleTypeNames = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> simpleTypeNames = new Dictionary<string, string>()
         {
             { typeof(string).FullName, "String" },
             { typeof(int).FullName, "Integer" },
@@ -32,8 +32,8 @@ namespace DumpApiXml
             { "NLog.FilterResult", "FilterResult" },
         };
 
-        private List<Assembly> assemblies = new List<Assembly>();
-        private List<XmlDocument> comments = new List<XmlDocument>();
+        private readonly List<Assembly> assemblies = new List<Assembly>();
+        private readonly List<XmlDocument> comments = new List<XmlDocument>();
 
         public void Build(string outputFile)
         {
