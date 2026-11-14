@@ -7,11 +7,11 @@
 <!--[![StackOverflow](https://img.shields.io/stackexchange/stackoverflow/t/nlog.svg?maxAge=2592000&label=stackoverflow)](https://stackoverflow.com/questions/tagged/nlog) -->
 
 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=ncloc&branch=main)](https://sonarcloud.io/dashboard/?id=nlog&branch=main)
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=bugs&branch=main)](https://sonarcloud.io/dashboard/?id=nlog&branch=main)
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=vulnerabilities&branch=main)](https://sonarcloud.io/dashboard/?id=nlog&branch=main)
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=ncloc&branch=main)](https://sonarcloud.io/code?id=nlog)
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=bugs&branch=main)](https://sonarcloud.io/project/issues?id=nlog&impactSoftwareQualities=RELIABILITY&s=FILE_LINE&issueStatuses=OPEN%2CCONFIRMED)
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=vulnerabilities&branch=main)](https://sonarcloud.io/component_measures?metric=software_quality_security_issues&id=nlog)
 [![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=code_smells&branch=main)](https://sonarcloud.io/project/issues?id=nlog&resolved=false&types=CODE_SMELL&branch=main)
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=duplicated_lines_density&branch=main)](https://sonarcloud.io/component_measures/domain/Duplications?id=nlog&branch=main)
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=duplicated_lines_density&branch=main)](https://sonarcloud.io/component_measures?id=nlog&metric=duplicated_lines_density&view=list)
 [![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=sqale_debt_ratio&branch=main)](https://sonarcloud.io/dashboard/?id=nlog&branch=main)
 [![codecov](https://codecov.io/gh/NLog/NLog/graph/badge.svg?token=6GBXKTPOZC)](https://codecov.io/gh/NLog/NLog)
 
