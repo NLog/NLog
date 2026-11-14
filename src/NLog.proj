@@ -125,6 +125,7 @@
   </Target>
 
   <Target Name="BuildMakeNLogXSDTool">
+    <MSBuild Projects="..\tools\MakeNLogXSD\MakeNLogXSD.csproj" Targets="Restore" Properties="IsRestoring=true" />
     <MSBuild Projects="..\tools\MakeNLogXSD\MakeNLogXSD.csproj" />
   </Target>
 
