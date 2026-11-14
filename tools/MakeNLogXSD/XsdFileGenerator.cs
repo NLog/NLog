@@ -51,12 +51,12 @@ namespace MakeNLogXSD
 
         public XsdFileGenerator()
         {
-            this.template = LoadTemplateXSD();
+            template = LoadTemplateXSD();
 
-            this.filtersGoHere = template.Descendants("filters-go-here").Single();
-            this.typesGoHere = template.Descendants("types-go-here").Single();
+            filtersGoHere = template.Descendants("filters-go-here").Single();
+            typesGoHere = template.Descendants("types-go-here").Single();
 
-            this.typesEmitted = new HashSet<string>();
+            typesEmitted = new HashSet<string>();
         }
 
         public string TargetNamespace { get; set; }
@@ -155,8 +155,8 @@ namespace MakeNLogXSD
 
         public void SaveResult(string outputFile)
         {
-            template.Attribute("targetNamespace").Value = this.TargetNamespace;
-            template.Attribute("xmlns").Value = this.TargetNamespace;
+            template.Attribute("targetNamespace").Value = TargetNamespace;
+            template.Attribute("xmlns").Value = TargetNamespace;
             filtersGoHere.Remove();
             typesGoHere.Remove();
 
@@ -168,7 +168,7 @@ namespace MakeNLogXSD
         {
             XElement xElement;
 
-            using (var stream = this.GetType().Assembly.GetManifestResourceStream(this.GetType(), "TemplateXSD.xml"))
+            using (var stream = GetType().Assembly.GetManifestResourceStream(GetType(), "TemplateXSD.xml"))
             {
                 using XmlReader reader = XmlReader.Create(stream, new XmlReaderSettings { IgnoreWhitespace = true });
                 xElement = XElement.Load(reader);

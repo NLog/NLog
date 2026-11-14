@@ -48,28 +48,28 @@ namespace DumpApiXml
         {
             writer.WriteProcessingInstruction("xml-stylesheet", "type='text/xsl' href='style.xsl'");
             writer.WriteStartElement("types");
-            this.DumpApiDocs(writer, "target", "NLog.Targets.TargetAttribute", "", " target");
-            this.DumpApiDocs(writer, "layout", "NLog.Layouts.LayoutAttribute", "", "");
-            this.DumpApiDocs(writer, "layout-renderer", "NLog.LayoutRenderers.LayoutRendererAttribute", "${", "}");
-            this.DumpApiDocs(writer, "filter", "NLog.Filters.FilterAttribute", "", " filter");
+            DumpApiDocs(writer, "target", "NLog.Targets.TargetAttribute", "", " target");
+            DumpApiDocs(writer, "layout", "NLog.Layouts.LayoutAttribute", "", "");
+            DumpApiDocs(writer, "layout-renderer", "NLog.LayoutRenderers.LayoutRendererAttribute", "${", "}");
+            DumpApiDocs(writer, "filter", "NLog.Filters.FilterAttribute", "", " filter");
 
-            this.DumpApiDocs(writer, "target", "NLog.TargetAttribute", "", " target");
-            this.DumpApiDocs(writer, "layout", "NLog.LayoutAttribute", "", "");
-            this.DumpApiDocs(writer, "layout-renderer", "NLog.LayoutRendererAttribute", "${", "}");
-            this.DumpApiDocs(writer, "filter", "NLog.FilterAttribute", "", " filter");
+            DumpApiDocs(writer, "target", "NLog.TargetAttribute", "", " target");
+            DumpApiDocs(writer, "layout", "NLog.LayoutAttribute", "", "");
+            DumpApiDocs(writer, "layout-renderer", "NLog.LayoutRendererAttribute", "${", "}");
+            DumpApiDocs(writer, "filter", "NLog.FilterAttribute", "", " filter");
 
-            this.DumpApiDocs(writer, "time-source", "NLog.Time.TimeSourceAttribute", "", " time source");
+            DumpApiDocs(writer, "time-source", "NLog.Time.TimeSourceAttribute", "", " time source");
             writer.WriteEndElement();
         }
 
         public void DisableComments()
         {
-            this.comments.Clear();
+            comments.Clear();
         }
 
         public void LoadAssembly(string fileName)
         {
-            this.assemblies.Add(Assembly.LoadFrom(fileName));
+            assemblies.Add(Assembly.LoadFrom(fileName));
         }
 
         public void LoadComments(string commentsFile)
@@ -77,7 +77,7 @@ namespace DumpApiXml
             var commentsDoc = new XmlDocument();
             commentsDoc.Load(commentsFile);
             FixWhitespace(commentsDoc.DocumentElement);
-            this.comments.Add(commentsDoc);
+            comments.Add(commentsDoc);
         }
 
         private void FixWhitespace(XmlElement xmlElement)
@@ -211,7 +211,7 @@ namespace DumpApiXml
 
         private void DumpApiDocs(XmlWriter writer, string kind, string attributeTypeName, string titlePrefix, string titleSuffix)
         {
-            foreach (Type type in this.GetTypesWithAttribute(attributeTypeName).OrderBy(t => t.Name))
+            foreach (Type type in GetTypesWithAttribute(attributeTypeName).OrderBy(t => t.Name))
             {
                 if (type.IsAbstract)
                 {
@@ -228,7 +228,7 @@ namespace DumpApiXml
                 {
                     writer.WriteAttributeString("name", name);
                 }
-                writer.WriteAttributeString("slug", this.GetSlug(name, kind));
+                writer.WriteAttributeString("slug", GetSlug(name, kind));
                 writer.WriteAttributeString("title", titlePrefix + name + titleSuffix);
 
                 if (InheritsFrom(type, "CompoundTargetBase"))
@@ -252,7 +252,7 @@ namespace DumpApiXml
                     writer.WriteAttributeString("ambientProperty", ambientPropName);
                 }
 
-                this.DumpTypeMembers(writer, type);
+                DumpTypeMembers(writer, type);
 
                 writer.WriteEndElement();
             }
@@ -279,7 +279,7 @@ namespace DumpApiXml
             categories["General Options"] = 10;
             categories["Layout Options"] = 20;
 
-            if (this.TryGetMemberDoc("T:" + type.FullName, out memberDoc))
+            if (TryGetMemberDoc("T:" + type.FullName, out memberDoc))
             {
                 writer.WriteStartElement("doc");
                 memberDoc.WriteContentTo(writer);
@@ -298,7 +298,7 @@ namespace DumpApiXml
             var propertyOrderWithinCategory = new Dictionary<PropertyInfo, int>();
             var propertyDoc = new Dictionary<PropertyInfo, XmlElement>();
 
-            var propertyInfos = this.GetProperties(type).ToList();
+            var propertyInfos = GetProperties(type).ToList();
             foreach (PropertyInfo propInfo in propertyInfos)
             {
                 string category = null;
@@ -316,7 +316,7 @@ namespace DumpApiXml
                     continue;
                 }
 
-                if (this.TryGetMemberDoc("P:" + propInfo.DeclaringType.FullName + "." + propInfo.Name, out memberDoc))
+                if (TryGetMemberDoc("P:" + propInfo.DeclaringType.FullName + "." + propInfo.Name, out memberDoc))
                 {
                     propertyDoc.Add(propInfo, memberDoc);
 
@@ -376,7 +376,7 @@ namespace DumpApiXml
 
                     writer.WriteStartElement("property");
                     writer.WriteAttributeString("name", propInfo.Name);
-                    writer.WriteAttributeString("camelName", this.MakeCamelCase(propInfo.Name));
+                    writer.WriteAttributeString("camelName", MakeCamelCase(propInfo.Name));
 
                     string defaultValue;
                     if (TryGetPropertyDefaultValue(configInstance, propInfo, out defaultValue))
@@ -417,7 +417,7 @@ namespace DumpApiXml
                         writer.WriteAttributeString("elementTag", elementTag);
                         if (elementType != type)
                         {
-                            this.DumpTypeMembers(writer, elementType);
+                            DumpTypeMembers(writer, elementType);
                         }
                         writer.WriteEndElement();
                     }
@@ -435,7 +435,7 @@ namespace DumpApiXml
                                 writer.WriteStartElement("enum");
                                 writer.WriteAttributeString("name", fi.Name);
                                 if (
-                                    this.TryGetMemberDoc(
+                                    TryGetMemberDoc(
                                         "F:" + underlyingType.FullName.Replace("+", ".") + "." + fi.Name,
                                         out memberDoc))
                                 {
@@ -453,7 +453,7 @@ namespace DumpApiXml
                         }
                     }
 
-                    if (this.TryGetMemberDoc("P:" + propInfo.DeclaringType.FullName + "." + propInfo.Name, out memberDoc))
+                    if (TryGetMemberDoc("P:" + propInfo.DeclaringType.FullName + "." + propInfo.Name, out memberDoc))
                     {
                         writer.WriteStartElement("doc");
                         memberDoc.WriteContentTo(writer);
@@ -556,7 +556,7 @@ namespace DumpApiXml
             var summary = (XmlElement)element.SelectSingleNode("summary");
             if (summary != null)
             {
-                summary.InnerXml = this.FixupSummaryXml(summary.InnerXml);
+                summary.InnerXml = FixupSummaryXml(summary.InnerXml);
             }
 
             foreach (XmlElement code in element.SelectNodes("//code[@src]"))
@@ -569,18 +569,18 @@ namespace DumpApiXml
         private string FixupSummaryXml(string xml)
         {
             xml = xml.Trim();
-            xml = this.ReplaceAndCapitalize(xml, "Gets or sets a value indicating ", "Indicates ");
-            xml = this.ReplaceAndCapitalize(xml, "Gets or sets the ", "");
-            xml = this.ReplaceAndCapitalize(xml, "Gets or sets a ", "");
-            xml = this.ReplaceAndCapitalize(xml, "Gets or sets ", "");
-            xml = this.ReplaceAndCapitalize(xml, "Gets the ", "The ");
+            xml = ReplaceAndCapitalize(xml, "Gets or sets a value indicating ", "Indicates ");
+            xml = ReplaceAndCapitalize(xml, "Gets or sets the ", "");
+            xml = ReplaceAndCapitalize(xml, "Gets or sets a ", "");
+            xml = ReplaceAndCapitalize(xml, "Gets or sets ", "");
+            xml = ReplaceAndCapitalize(xml, "Gets the ", "The ");
             return xml;
         }
 
         private IEnumerable<PropertyInfo> GetProperties(Type type)
         {
             return type.GetProperties()
-                .Where(c => this.IncludeProperty(c)).OrderBy(p => p.Name);
+                .Where(c => IncludeProperty(c)).OrderBy(p => p.Name);
         }
 
         private string GetSlug(string name, string kind)
@@ -639,7 +639,7 @@ namespace DumpApiXml
 
         private IEnumerable<Type> GetTypesWithAttribute(string attributeTypeName)
         {
-            foreach (Assembly assembly in this.assemblies)
+            foreach (Assembly assembly in assemblies)
             {
                 foreach (Type t in assembly.SafeGetTypes())
                 {
@@ -755,19 +755,19 @@ namespace DumpApiXml
         {
             if (xml.StartsWith(pattern))
             {
-                return this.Capitalize(xml.Replace(pattern, replacement));
+                return Capitalize(xml.Replace(pattern, replacement));
             }
             return xml;
         }
 
         private bool TryGetMemberDoc(string id, out XmlElement element)
         {
-            foreach (XmlDocument doc in this.comments)
+            foreach (XmlDocument doc in comments)
             {
                 element = (XmlElement)doc.SelectSingleNode("/doc/members/member[@name='" + id + "']");
                 if (element != null)
                 {
-                    this.FixupElement(element);
+                    FixupElement(element);
                     return true;
                 }
             }

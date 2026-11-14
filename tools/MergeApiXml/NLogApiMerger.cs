@@ -47,11 +47,11 @@ namespace MergeApiXml
 
             foreach (var typeElement in resultDoc.Root.Elements("type"))
             {
-                this.SortProperties(typeElement);
+                SortProperties(typeElement);
             }
 
-            this.PostProcessSupportedIn(resultDoc.Root);
-            this.Result = resultDoc;
+            PostProcessSupportedIn(resultDoc.Root);
+            Result = resultDoc;
         }
 
         private void FixWhitespace(XElement xmlElement)
@@ -158,10 +158,10 @@ namespace MergeApiXml
                     resultDoc.Add(mergedElement);
                 }
 
-                this.AddSupportedIn(mergedElement, releaseName, frameworkName);
-                this.MergeDoc(mergedElement, type);
-                this.MergeAttributes(mergedElement, type);
-                this.MergeProperties(mergedElement, releaseName, frameworkName, type);
+                AddSupportedIn(mergedElement, releaseName, frameworkName);
+                MergeDoc(mergedElement, type);
+                MergeAttributes(mergedElement, type);
+                MergeProperties(mergedElement, releaseName, frameworkName, type);
             }
         }
 
@@ -201,10 +201,10 @@ namespace MergeApiXml
 
                 mergedProperty.SetAttributeValue("name", (string)property.Attribute("name"));
 
-                this.AddSupportedIn(mergedProperty, releaseName, frameworkName);
-                this.MergeDoc(mergedProperty, property);
-                this.MergeAttributes(mergedProperty, property);
-                this.MergeEnumValues(mergedProperty, releaseName, frameworkName, property);
+                AddSupportedIn(mergedProperty, releaseName, frameworkName);
+                MergeDoc(mergedProperty, property);
+                MergeAttributes(mergedProperty, property);
+                MergeEnumValues(mergedProperty, releaseName, frameworkName, property);
 
                 var elementType = property.Element("elementType");
                 if (elementType != null)
@@ -216,9 +216,9 @@ namespace MergeApiXml
                         mergedProperty.Add(mergedElementType);
                     }
 
-                    this.AddSupportedIn(mergedElementType, releaseName, frameworkName);
-                    this.MergeAttributes(mergedElementType, elementType);
-                    this.MergeProperties(mergedElementType, releaseName, frameworkName, elementType);
+                    AddSupportedIn(mergedElementType, releaseName, frameworkName);
+                    MergeAttributes(mergedElementType, elementType);
+                    MergeProperties(mergedElementType, releaseName, frameworkName, elementType);
                 }
             }
         }
@@ -235,9 +235,9 @@ namespace MergeApiXml
                     mergedProperty.Add(mergedEnum);
                 }
 
-                this.AddSupportedIn(mergedEnum, releaseName, frameworkName);
-                this.MergeDoc(mergedEnum, enumElement);
-                this.MergeAttributes(mergedEnum, enumElement);
+                AddSupportedIn(mergedEnum, releaseName, frameworkName);
+                MergeDoc(mergedEnum, enumElement);
+                MergeAttributes(mergedEnum, enumElement);
             }
         }
 
