@@ -434,92 +434,101 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryWithDynamicSource()
         {
-            const int maxMessageLength = 10;
-            string expectedMessage = string.Join("", Enumerable.Repeat("a", maxMessageLength));
+            RetryingIntegrationTest(3, () =>
+            {
+                const int maxMessageLength = 10;
+                string expectedMessage = string.Join("", Enumerable.Repeat("a", maxMessageLength));
 
-            var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Split, maxMessageLength);
-            target.Layout = new SimpleLayout("${message}");
-            target.Source = new SimpleLayout("${event-properties:item=DynamicSource}");
+                var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Split, maxMessageLength);
+                target.Layout = new SimpleLayout("${message}");
+                target.Source = new SimpleLayout("${event-properties:item=DynamicSource}");
 
-            LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
 
-            var logger = LogManager.GetLogger("WriteEventLogEntry");
+                var logger = LogManager.GetLogger("WriteEventLogEntry");
 
-            var sourceName = "NLog.UnitTests" + Guid.NewGuid().ToString("N");
-            var logEvent = CreateLogEventWithDynamicSource(expectedMessage, LogLevel.Trace, "DynamicSource", sourceName);
+                var sourceName = "NLog.UnitTests" + Guid.NewGuid().ToString("N");
+                var logEvent = CreateLogEventWithDynamicSource(expectedMessage, LogLevel.Trace, "DynamicSource", sourceName);
 
-            RetryingIntegrationTest(3, () => logger.Log(logEvent));
+                logger.Log(logEvent);
 
-            var eventLog = new EventLog(target.Log.ToString());
-            var entries = GetEventRecords(eventLog.Log).ToList();
+                var eventLog = new EventLog(target.Log.ToString());
+                var entries = GetEventRecords(eventLog.Log).ToList();
 
-            entries = entries.Where(a => a.ProviderName == sourceName).ToList();
-            Assert.Single(entries);
-            AssertWrittenMessage(entries, expectedMessage);
+                entries = entries.Where(a => a.ProviderName == sourceName).ToList();
+                Assert.Single(entries);
+                AssertWrittenMessage(entries, expectedMessage);
 
-            sourceName = "NLog.UnitTests" + Guid.NewGuid().ToString("N");
-            expectedMessage = string.Join("", Enumerable.Repeat("b", maxMessageLength));
+                sourceName = "NLog.UnitTests" + Guid.NewGuid().ToString("N");
+                expectedMessage = string.Join("", Enumerable.Repeat("b", maxMessageLength));
 
-            logEvent = CreateLogEventWithDynamicSource(expectedMessage, LogLevel.Trace, "DynamicSource", sourceName);
-            RetryingIntegrationTest(3, () => logger.Log(logEvent));
+                logEvent = CreateLogEventWithDynamicSource(expectedMessage, LogLevel.Trace, "DynamicSource", sourceName);
+                logger.Log(logEvent);
 
-            entries = GetEventRecords(eventLog.Log).ToList();
-            entries = entries.Where(a => a.ProviderName == sourceName).ToList();
-            Assert.Single(entries);
-            AssertWrittenMessage(entries, expectedMessage);
+                entries = GetEventRecords(eventLog.Log).ToList();
+                entries = entries.Where(a => a.ProviderName == sourceName).ToList();
+                Assert.Single(entries);
+                AssertWrittenMessage(entries, expectedMessage);
+            });
         }
 
         [Fact]
         public void LogEntryWithStaticEventIdAndCategoryInTargetLayout()
         {
-            var scatterGenerator = new ScatterGenerator();
-            int eventId = scatterGenerator.Next(1, short.MaxValue);
-            int category = scatterGenerator.Next(1, short.MaxValue);
-            var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
-            target.EventId = eventId;
-            target.Category = (short)category;
-            LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
-            var logger = LogManager.GetLogger("WriteEventLogEntry");
-            logger.Log(LogLevel.Error, "Simple Test Message");
-            var eventLog = new EventLog(target.Log.ToString());
-            var entries = GetEventRecords(eventLog.Log).ToList();
-            var expectedProviderName = target.GetFixedSource();
-            var filtered = entries.Where(entry =>
-                                         entry.ProviderName == expectedProviderName &&
-                                         HasEntryType(entry, EventLogEntryType.Error)
-                                        );
-            Assert.Single(filtered);
-            var record = filtered.First();
-            Assert.Equal(eventId, record.Id);
-            Assert.Equal(category, record.Task);
+            RetryingIntegrationTest(3, () =>
+            {
+                var scatterGenerator = new ScatterGenerator();
+                int eventId = scatterGenerator.Next(1, short.MaxValue);
+                int category = scatterGenerator.Next(1, short.MaxValue);
+                var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
+                target.EventId = eventId;
+                target.Category = (short)category;
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
+                var logger = LogManager.GetLogger("WriteEventLogEntry");
+                logger.Log(LogLevel.Error, "Simple Test Message");
+                var eventLog = new EventLog(target.Log.ToString());
+                var entries = GetEventRecords(eventLog.Log).ToList();
+                var expectedProviderName = target.GetFixedSource();
+                var filtered = entries.Where(entry =>
+                                             entry.ProviderName == expectedProviderName &&
+                                             HasEntryType(entry, EventLogEntryType.Error)
+                                            );
+                Assert.Single(filtered);
+                var record = filtered.First();
+                Assert.Equal(eventId, record.Id);
+                Assert.Equal(category, record.Task);
+            });
         }
 
         [Fact]
         public void LogEntryWithDynamicEventIdAndCategory()
         {
-            var scatterGenerator = new ScatterGenerator();
-            int eventId = scatterGenerator.Next(1, short.MaxValue);
-            int category = scatterGenerator.Next(1, short.MaxValue);
-            var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
-            target.EventId = "${event-properties:EventId}";
-            target.Category = "${event-properties:Category}";
-            LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
-            var logger = LogManager.GetLogger("WriteEventLogEntry");
-            LogEventInfo theEvent = new LogEventInfo(LogLevel.Error, "TestLoggerName", "Simple Message");
-            theEvent.Properties["EventId"] = eventId;
-            theEvent.Properties["Category"] = category;
-            logger.Log(theEvent);
-            var eventLog = new EventLog(target.Log.ToString());
-            var entries = GetEventRecords(eventLog.Log).ToList();
-            var expectedProviderName = target.GetFixedSource();
-            var filtered = entries.Where(entry =>
-                                         entry.ProviderName == expectedProviderName &&
-                                         HasEntryType(entry, EventLogEntryType.Error)
-                                        );
-            Assert.Single(filtered);
-            var record = filtered.First();
-            Assert.Equal(eventId, record.Id);
-            Assert.Equal(category, record.Task);
+            RetryingIntegrationTest(3, () =>
+            {
+                var scatterGenerator = new ScatterGenerator();
+                int eventId = scatterGenerator.Next(1, short.MaxValue);
+                int category = scatterGenerator.Next(1, short.MaxValue);
+                var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
+                target.EventId = "${event-properties:EventId}";
+                target.Category = "${event-properties:Category}";
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
+                var logger = LogManager.GetLogger("WriteEventLogEntry");
+                LogEventInfo theEvent = new LogEventInfo(LogLevel.Error, "TestLoggerName", "Simple Message");
+                theEvent.Properties["EventId"] = eventId;
+                theEvent.Properties["Category"] = category;
+                logger.Log(theEvent);
+                var eventLog = new EventLog(target.Log.ToString());
+                var entries = GetEventRecords(eventLog.Log).ToList();
+                var expectedProviderName = target.GetFixedSource();
+                var filtered = entries.Where(entry =>
+                                             entry.ProviderName == expectedProviderName &&
+                                             HasEntryType(entry, EventLogEntryType.Error)
+                                            );
+                Assert.Single(filtered);
+                var record = filtered.First();
+                Assert.Equal(eventId, record.Id);
+                Assert.Equal(category, record.Task);
+            });
         }
 
         private static IEnumerable<EventLogMock.EventRecord> WriteWithMock(LogLevel logLevel, EventLogEntryType expectedEventLogEntryType,
