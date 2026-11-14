@@ -114,17 +114,12 @@ namespace MergeApiXml
 
         private static int GetCategoryValue(string categoryName)
         {
-            switch (categoryName)
+            return categoryName switch
             {
-                case "General Options":
-                    return 0;
-
-                case "Layout Options":
-                    return 10;
-
-                default:
-                    return 100;
-            }
+                "General Options" => 0,
+                "Layout Options" => 10,
+                _ => 100,
+            };
         }
 
         private static void MergeApiFile(XElement resultDoc, XElement apiDoc, string releaseName, string frameworkName)
