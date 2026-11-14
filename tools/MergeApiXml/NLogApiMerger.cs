@@ -58,15 +58,13 @@ namespace MergeApiXml
         {
             foreach (var node in xmlElement.DescendantNodes())
             {
-                XElement el = node as XElement;
-                if (el != null)
+                if (node is XElement el)
                 {
                     FixWhitespace(el);
                     continue;
                 }
 
-                XText txt = node as XText;
-                if (txt != null)
+                if (node is XText txt)
                 {
                     txt.Value = FixWhitespace(txt.Value);
                 }

@@ -84,15 +84,13 @@ namespace DumpApiXml
         {
             foreach (var node in xmlElement.ChildNodes)
             {
-                XmlElement el = node as XmlElement;
-                if (el != null)
+                if (node is XmlElement el)
                 {
                     FixWhitespace(el);
                     continue;
                 }
 
-                XmlText txt = node as XmlText;
-                if (txt != null)
+                if (node is XmlText txt)
                 {
                     txt.Value = FixWhitespace(txt.Value);
                 }
