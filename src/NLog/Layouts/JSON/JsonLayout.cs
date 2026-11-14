@@ -226,7 +226,7 @@ namespace NLog.Layouts
         public bool ExcludeEmptyProperties { get; set; }
 
         /// <summary>
-        /// List of property names to exclude when <see cref="IncludeAllProperties"/> is true
+        /// List of property names to exclude when <see cref="IncludeEventProperties"/> is true
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
 #if !NET35

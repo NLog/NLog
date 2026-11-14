@@ -426,7 +426,7 @@ namespace NLog.UnitTests.Targets
         {
             yield return new object[] { "true", typeof(bool), true };
             yield return new object[] { "True", typeof(bool), true };
-            yield return new object[] { 1.2.ToString(), typeof(decimal), (decimal)1.2 };
+            yield return new object[] { 1.2.ToString(), typeof(decimal), 1.2m };
             yield return new object[] { 1.2.ToString(), typeof(double), (double)1.2 };
             yield return new object[] { 1.2.ToString(), typeof(float), (float)1.2 };
             yield return new object[] { "2:30", typeof(TimeSpan), new TimeSpan(0, 2, 30, 0), };

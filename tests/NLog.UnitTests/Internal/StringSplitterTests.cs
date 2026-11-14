@@ -57,7 +57,7 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"a;;b", ';', @"a,,b")]
         [InlineData(@"a'b'c''d", SingleQuote, @"a,b,c,,d")]
         [InlineData(@"'a", SingleQuote, @",a")]
-        void SplitStringWithSelfEscape(string input, char splitChar, string output)
+        public void SplitStringWithSelfEscape(string input, char splitChar, string output)
         {
             var quoteChar = splitChar == SingleQuote ? '"' : SingleQuote;
             var strings = StringSplitter.SplitQuoted(input, splitChar, quoteChar, quoteChar).ToArray();
@@ -86,7 +86,7 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"a\;b\;c;d", @"a\,b\,c,d")]
         [InlineData(@"a\;b;c\;d", @"a\,b,c\,d")]
         [InlineData(@"abc\;", @"abc\,")]
-        void SplitStringWithEscape(string input, string output)
+        public void SplitStringWithEscape(string input, string output)
         {
             // Not possible to escape the splitter without using quotes
             SplitStringWithEscape2(input, ';', Backslash, output);
@@ -122,9 +122,36 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"\", @"\")]
         [InlineData(@"a\", @"a\")]
         [InlineData(@"\b", @"\b")]
-        void SplitStringWithQuotes_selfQuoted(string input, string output)
+        [InlineData(@"'';a", "',a")]
+        [InlineData(@"'a;b';c", "a;b,c")]
+        [InlineData(@"a''b;c", "a''b,c")]
+        [InlineData(@"a;'';b", "a,',b")]
+        [InlineData(@"''", "'")]
+        [InlineData(@"''''", "'''")]
+        [InlineData(@"a'b;c", "a'b,c")]
+        [InlineData(@"a; 'b;c'", "a, 'b,c'")]
+        [InlineData(@"a;;", "a,,")]
+        [InlineData(@";a", ",a")]
+        [InlineData(@";;a", ",,a")]
+        [InlineData(@"'a';", "a,")]
+        [InlineData(@";'a'", ",a")]
+        [InlineData(@"'a';'b'", "a,b")]
+        [InlineData(@"'a;b';'c;d'", "a;b,c;d")]
+        [InlineData(@"'a''b'", "a'b")]          // Bug fix as before expected = a,b (Split into 2 parts)
+        [InlineData(@"'a''''b'", "a''b")]       // Bug fix as before expected = a,''b' (Split into 2 parts)
+        [InlineData(@"'a''b;c'", "a'b;c")]      // Bug fix as before expected = a,b;c (Split into 2 parts)
+        [InlineData(@"a'''b;c", "a'''b,c")]
+        [InlineData(@"'''a';b", "''a',b")]
+        [InlineData(@"'a''", "a'")]            // Todo How to handle ending with double quotes? (Old expected 2 parts = a,')
+        [InlineData(@"'a''';b", "a',b")]        // Bug fix as before expected = a,',b (Split into 3 parts)
+        [InlineData(@"'a''b';", "a'b,")]        // Bug fix as before expected = a,b, (Split into 3 parts)
+        [InlineData(@"'a';;", "a,,")]
+        [InlineData(@"'';''", "','")]
+        [InlineData(@"a'b''c'", "a'b''c'")]
+        [InlineData(@"'ab''cd';e", "ab'cd,e")]  // Bug fix as before expected = ab,cd,e (Split into 3 parts)
+        public void SplitStringWithQuotes_selfQuoted(string input, string output)
         {
-            SplitStringWithQuotes(input, ';', SingleQuote, SingleQuote, output);
+            AssertSplit(input, ';', SingleQuote, SingleQuote, output);
         }
 
         /// <summary>
@@ -132,6 +159,7 @@ namespace NLog.UnitTests.Internal
         /// </summary>
         [Theory]
         [InlineData(null, "")]
+        [InlineData("", "")]
         [InlineData(@"\", @"\")]
         [InlineData(@"'", @"'")]
         [InlineData(@"' ", @"' ")]
@@ -151,18 +179,62 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"a;'b;c", "a,'b;c")]
         [InlineData(@"a;b'c;d", "a,b'c,d")]
         [InlineData(@"a;\'b;c", "a,'b,c")]
+        [InlineData(@"'a;b';c", "a;b,c")]
+        [InlineData("a; 'b;c'", "a, 'b,c'")]
+        [InlineData("a'b;c", "a'b,c")]
+        [InlineData(@"a\;b;c", @"a\,b,c")]
         [InlineData(@"\b", @"\b")]
-        [InlineData(@"'\'", @"''")]     //todo check case (How to handle escape before last quote?)
-        [InlineData(@"'\\'", @"'\'")]   //todo check case (How to handle escape before last quote?)
-        [InlineData(@"'\\\'", @"'\\'")] //todo check case (How to handle escape before last quote?)
-        [InlineData(@"'\''", @"'")]
-        [InlineData(@"'\\''", @"\'")]
-        void SplitStringWithQuotes_escaped(string input, string output)
+        [InlineData(@"'\'", @"\")]     //todo check case (How to handle escape before last quote?)
+        [InlineData(@"'\\'", @"\")]    //todo check case (How to handle escape before last quote?)
+        [InlineData(@"'\\\'", @"\\")]  //todo check case (How to handle escape before last quote?)
+        [InlineData(@"'\\\\'", @"\\")]
+        [InlineData(@"'\''", "'")]
+        [InlineData(@"'\\''", @"\,'")]
+        [InlineData(@"'a\'b';c", "a'b,c")]
+        [InlineData(@"a\'b;c", "a'b,c")]
+        [InlineData(@"'a\\b';c", @"a\b,c")]
+        [InlineData(@"'abc\", @"'abc\")]
+        [InlineData(@"'abc\';", @"'abc';")]
+        [InlineData(@"'abc", @"'abc")]
+        [InlineData(@"a''b;c", "a''b,c")]
+        [InlineData(@"a\\b;c", @"a\\b,c")]
+        [InlineData(@"a\\;b;c", @"a\\,b,c")]
+        [InlineData(@"a\;;b", @"a\,,b")]
+        [InlineData(@"'a\'b'", "a'b")]
+        [InlineData(@"a\'b", "a'b")]
+        [InlineData(@"'a\\b'", @"a\b")]
+        [InlineData("a;;c;", "a,,c,")]
+        [InlineData(";a", ",a")]
+        [InlineData("a;", "a,")]
+        [InlineData("a;;b", "a,,b")]
+        [InlineData(@"\;a", @"\,a")]
+        [InlineData(@"a\;", @"a\,")]
+        [InlineData(@"'abc'", "abc")]
+        [InlineData(@"a;'b'", "a,b")]
+        [InlineData(@"'a';'b'", "a,b")]
+        [InlineData(@"a;;", "a,,")]
+        [InlineData(@"a;;b;", "a,,b,")]
+        [InlineData(@"a;b\", @"a,b\")]
+        [InlineData(@"'abc''", "abc,'")]
+        [InlineData("a;'';b", "a,,b")]
+        [InlineData(@"'\a'", @"a")]
+        [InlineData("'a' ", "a, ")]
+        [InlineData("'a'a", "a,a")]
+        [InlineData("' a ' ", " a , ")]
+        [InlineData("'a' 'b'", "a, 'b'")]
+        [InlineData("'a'a; b", "a,a, b")]
+        [InlineData("'a' ; b", "a, , b")]
+        [InlineData("' a ' ; b", " a , , b")]
+        [InlineData(@"a\''b;c", @"a''b,c")]
+        [InlineData(@"'a''b';c", @"a,b,c")]
+        [InlineData(@"''a", "a")]
+        [InlineData(@"''a;b", "a,b")]
+        public void SplitStringWithQuotes_escaped(string input, string output)
         {
-            SplitStringWithQuotes(input, ';', SingleQuote, Backslash, output);
+            AssertSplit(input, ';', SingleQuote, Backslash, output);
         }
 
-        private static void SplitStringWithQuotes(string input, char splitChar, char quoteChar, char escapeChar, string output)
+        private static void AssertSplit(string input, char splitChar, char quoteChar, char escapeChar, string output)
         {
             var strings = StringSplitter.SplitQuoted(input, splitChar, quoteChar, escapeChar).ToArray();
             var result = string.Join(",", strings);
@@ -172,7 +244,7 @@ namespace NLog.UnitTests.Internal
         [Theory]
         [InlineData(';', ';', Backslash)]
         [InlineData(';', Backslash, ';')]
-        void SplitStringNotSupported(char splitChar, char quoteChar, char escapeChar)
+        public void SplitStringNotSupported(char splitChar, char quoteChar, char escapeChar)
         {
             Assert.Throws<NotSupportedException>(() => StringSplitter.SplitQuoted("dont care", splitChar, quoteChar, escapeChar));
         }

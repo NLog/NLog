@@ -655,6 +655,7 @@ namespace NLog
                 Common.InternalLogger.Warn(ex, "Error when formatting a message.");
                 if (ex.MustBeRethrown())
                     throw;
+                messageTemplateParameters = null;   // Render can fail after partial assignment
             }
 
             var logEvent = new LogEventInfo(level, Name, formattedMessage, messageTemplate, (IList<MessageTemplates.MessageTemplateParameter>?)null);
@@ -670,14 +671,12 @@ namespace NLog
 
         private LogEventInfo PrepareLogEventInfo(LogEventInfo logEvent)
         {
-            if (_contextProperties != null)
+            if (_contextProperties?.Count > 0)
             {
+                var properties = logEvent.CreatePropertiesInternal();
                 foreach (var property in _contextProperties)
                 {
-                    if (!logEvent.Properties.ContainsKey(property.Key))
-                    {
-                        logEvent.Properties[property.Key] = property.Value;
-                    }
+                    properties.TryAdd(property.Key, property.Value);
                 }
             }
             return logEvent;

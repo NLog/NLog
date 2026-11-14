@@ -312,7 +312,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " 2");
         }
 
-#if !NET35 && !NET40 && !NET45
+#if !NET35 && !NET40
         [Fact]
         public void NDLCTimingTest()
         {

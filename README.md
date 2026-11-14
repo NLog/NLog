@@ -7,13 +7,13 @@
 <!--[![StackOverflow](https://img.shields.io/stackexchange/stackoverflow/t/nlog.svg?maxAge=2592000&label=stackoverflow)](https://stackoverflow.com/questions/tagged/nlog) -->
 
 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=ncloc&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog2&branch=dev) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=bugs&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog2&branch=dev) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=vulnerabilities&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog2&branch=dev) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=code_smells&branch=dev)](https://sonarcloud.io/project/issues?id=nlog2&resolved=false&types=CODE_SMELL&branch=dev) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=duplicated_lines_density&branch=dev)](https://sonarcloud.io/component_measures/domain/Duplications?id=nlog2&branch=dev) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=sqale_debt_ratio&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog2&branch=dev) 
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=coverage&branch=dev)](https://sonarcloud.io/dashboard?id=nlog2&branch=dev)
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=ncloc&branch=main)](https://sonarcloud.io/dashboard/?id=nlog2&branch=main)
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=bugs&branch=main)](https://sonarcloud.io/dashboard/?id=nlog2&branch=main)
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=vulnerabilities&branch=main)](https://sonarcloud.io/dashboard/?id=nlog2&branch=main)
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=code_smells&branch=main)](https://sonarcloud.io/project/issues?id=nlog2&resolved=false&types=CODE_SMELL&branch=main)
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=duplicated_lines_density&branch=main)](https://sonarcloud.io/component_measures/domain/Duplications?id=nlog2&branch=main)
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=sqale_debt_ratio&branch=main)](https://sonarcloud.io/dashboard/?id=nlog2&branch=main)
+[![codecov](https://codecov.io/gh/NLog/NLog/graph/badge.svg?token=6GBXKTPOZC)](https://codecov.io/gh/NLog/NLog)
 
 
 [![Wiki](https://img.shields.io/badge/Docs-GitHub%20wiki-brightgreen)](https://github.com/NLog/NLog/wiki)
@@ -43,9 +43,9 @@ Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/
 -----
 
 
- ℹ️ NLog 6.0 supports AOT
+ ℹ️ NLog ver. 6 supports AOT
 
-[NLog 6.0](https://www.nuget.org/packages/NLog/) now available. See also [List of major changes in NLog 6.0](https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html)
+[NLog v6](https://www.nuget.org/packages/NLog/) now available. See also [List of major changes in NLog v6](https://nlog-project.org/2025/04/29/nlog-6-0-major-changes.html)
 
 
 NLog Extensions
@@ -53,7 +53,7 @@ NLog Extensions
 The NLog-nuget-package provides everything needed for doing file- and console-logging. If you need other output options, then there are many NLog extension packages available (such as database, email, https-endpoint, etc.).
 See [targets](https://nlog-project.org/config/?tab=targets) and [layout renderers](https://nlog-project.org/config/?tab=layout-renderers) overview!
 
-The NLog extension packages maintained by the NLog-project are [listed here](https://github.com/NLog/NLog/blob/dev/packages-and-status.md) with Nuget/build status.
+The NLog extension packages maintained by the NLog-project are [listed here](https://github.com/NLog/NLog/blob/main/packages-and-status.md) with Nuget/build status.
 
 It is also possible to [Create your own custom NLog extensions](https://github.com/NLog/NLog/wiki/Extending-NLog).
 

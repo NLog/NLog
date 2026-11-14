@@ -113,12 +113,17 @@ namespace NLog.Targets.FileArchiveHandlers
 
         private int ResolveMaxArchiveFiles(bool initialFileOpen)
         {
+            if (initialFileOpen)
+            {
+                if (_fileTarget.DeleteOldFileOnStartup)
+                    return 0;
+
+                if (!_fileTarget.ArchiveOldFileOnStartup)
+                    return _fileTarget.MaxArchiveFiles;
+            }
+
             var maxArchiveFiles = _fileTarget.MaxArchiveFiles;
-            if (initialFileOpen && (!_fileTarget.ArchiveOldFileOnStartup || _fileTarget.DeleteOldFileOnStartup))
-                maxArchiveFiles = _fileTarget.DeleteOldFileOnStartup ? 0 : maxArchiveFiles;
-            else if (maxArchiveFiles > 0)
-                maxArchiveFiles -= 1;
-            return maxArchiveFiles;
+            return maxArchiveFiles > 0 ? maxArchiveFiles - 1 : maxArchiveFiles;
         }
 
         protected static int? GetMaxArchiveSequenceNo(FileInfo[] fileInfos, int fileWildcardStartIndex, int fileWildcardEndIndex)

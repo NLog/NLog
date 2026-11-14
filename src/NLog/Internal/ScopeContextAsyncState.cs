@@ -73,19 +73,21 @@ namespace NLog.Internal
         IList<object>? CloneNestedContext(ref ScopeContextNestedStateCollector contextCollector);
     }
 
+    /// <summary>
+    /// Collects scope properties by traversing the AsyncLocal parent state chain.
+    /// Properties from newer scopes take precedence over properties from older scopes.
+    /// </summary>
     struct ScopeContextPropertyCollector
     {
-        IReadOnlyCollection<KeyValuePair<string, object?>>? _allProperties;
-        ICollection<KeyValuePair<string, object?>>? _propertyCollector;
+        private IReadOnlyCollection<KeyValuePair<string, object?>>? _allProperties;
+        private Dictionary<string, object?>? _propertyCollector;
 
         public bool IsCollectorEmpty => _allProperties is null || (_allProperties.Count == 0 && _propertyCollector is null);
-
         public bool IsCollectorInactive => _allProperties is null;
 
-        public ScopeContextPropertyCollector(IReadOnlyCollection<KeyValuePair<string, object?>> allProperties, ICollection<KeyValuePair<string, object?>> propertyCollector)
+        public ScopeContextPropertyCollector(Dictionary<string, object?> propertyCollector)
         {
-            _allProperties = allProperties;
-            _propertyCollector = propertyCollector;
+            _allProperties = _propertyCollector = propertyCollector;
         }
 
         public IReadOnlyCollection<KeyValuePair<string, object?>> StartCaptureProperties(IScopeContextAsyncState? state)
@@ -103,47 +105,112 @@ namespace NLog.Internal
 
         public IReadOnlyCollection<KeyValuePair<string, object?>> CaptureCompleted(IReadOnlyCollection<KeyValuePair<string, object?>>? properties)
         {
-            if (_allProperties?.Count > 0)
-            {
-                if (properties?.Count > 0)
-                {
-                    if (_propertyCollector is null)
-                    {
-                        return _allProperties = MergeUniqueProperties(_allProperties, properties);
-                    }
+            if (properties?.Count > 0)
+                AddProperties(properties);
 
-                    CollectProperties(properties, _propertyCollector);
-                }
+            if (_propertyCollector != null)
+                return _propertyCollector;
 
+            if (_allProperties is null)
+                return _allProperties = Array.Empty<KeyValuePair<string, object?>>();
+
+            if (_allProperties.Count > 1)
                 return _allProperties = EnsureUniqueProperties(_allProperties);
-            }
-            else
-            {
-                if (properties?.Count > 0)
-                    return _allProperties = EnsureUniqueProperties(properties);
-                else
-                    return _allProperties = Array.Empty<KeyValuePair<string, object?>>();
-            }
+
+            return _allProperties;
         }
 
-        private static Dictionary<string, object?> MergeUniqueProperties(IReadOnlyCollection<KeyValuePair<string, object?>> newProperties, IReadOnlyCollection<KeyValuePair<string, object?>> existingProperties)
+        public void AddProperty(string propertyName, object? propertyValue)
         {
-            var scopeProperties = new Dictionary<string, object?>(newProperties.Count + existingProperties.Count, ScopeContext.DefaultComparer);
-            ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(newProperties, scopeProperties);
-            ScopeContextPropertyEnumerator<object>.TryAddScopePropertiesToDictionary(existingProperties, scopeProperties);
-            return scopeProperties;
+            if (_propertyCollector is null)
+            {
+                var existingPropertyCount = _allProperties?.Count ?? 0;
+                if (_allProperties is null || existingPropertyCount == 0)
+                {
+                    _allProperties = new[] { new KeyValuePair<string, object?>(propertyName, propertyValue) };
+                    return;
+                }
+
+                if (existingPropertyCount == 1 && _allProperties is IReadOnlyList<KeyValuePair<string, object?>> existingList)
+                {
+                    _allProperties = MergeSingleProperties(existingList, propertyName, propertyValue);
+                    return;
+                }
+
+                _allProperties = _propertyCollector = CreatedPropertyCollector(_allProperties, existingPropertyCount, 1);
+            }
+
+            // Newest properties are added first, so do not overwrite with old values
+#if NETSTANDARD2_1_OR_GREATER || NET
+            _propertyCollector.TryAdd(propertyName, propertyValue);
+#else
+            if (!_propertyCollector.ContainsKey(propertyName))
+                _propertyCollector.Add(propertyName, propertyValue);
+#endif
+        }
+
+        public void AddProperties(IReadOnlyCollection<KeyValuePair<string, object?>> properties)
+        {
+            if (_propertyCollector is null)
+            {
+                if (_allProperties is null)
+                {
+                    _allProperties = properties;
+                    return;
+                }
+
+                if (properties is null)
+                    return; // No properties to add
+
+                var propertiesCount = properties.Count;
+                if (propertiesCount == 0)
+                    return; // No properties to add
+
+                var existingPropertyCount = _allProperties.Count;
+                if (existingPropertyCount == 0)
+                {
+                    _allProperties = properties;
+                    return;
+                }
+
+                if (existingPropertyCount == 1 && propertiesCount == 1 && _allProperties is IReadOnlyList<KeyValuePair<string, object?>> existingList && properties is IReadOnlyList<KeyValuePair<string, object?>> propertiesList)
+                {
+                    var singleProperty = propertiesList[0];
+                    _allProperties = MergeSingleProperties(existingList, singleProperty.Key, singleProperty.Value);
+                    return;
+                }
+
+                _allProperties = _propertyCollector = CreatedPropertyCollector(_allProperties, existingPropertyCount, propertiesCount);
+            }
+
+            ScopeContextPropertyEnumerator<object>.TryAddScopePropertiesToDictionary(properties, _propertyCollector);
+        }
+
+        private static IReadOnlyList<KeyValuePair<string, object?>> MergeSingleProperties(IReadOnlyList<KeyValuePair<string, object?>> existingList, string propertyName, object? propertyValue)
+        {
+            // Newest properties are added first, so do not overwrite with old values
+            var existingProperty = existingList[0];
+            return ScopeContext.DefaultComparer.Equals(existingProperty.Key, propertyName) ?
+                existingList : new[] { existingProperty, new KeyValuePair<string, object?>(propertyName, propertyValue) };
+        }
+
+        private static Dictionary<string, object?> CreatedPropertyCollector(IReadOnlyCollection<KeyValuePair<string, object?>> existingProperties, int existingPropertyCount, int additionalCapacity)
+        {
+            var dictionary = new Dictionary<string, object?>(existingPropertyCount + additionalCapacity, ScopeContext.DefaultComparer);
+            if (existingPropertyCount > 0)
+            {
+                ScopeContextPropertyEnumerator<object>.TryAddScopePropertiesToDictionary(existingProperties, dictionary);
+            }
+            return dictionary;
         }
 
         private static IReadOnlyCollection<KeyValuePair<string, object?>> EnsureUniqueProperties(IReadOnlyCollection<KeyValuePair<string, object?>> properties)
         {
-            var scopePropertyCount = properties.Count;
-            if (scopePropertyCount <= 1)
-                return properties;
-
             if (properties is Dictionary<string, object?> dictionary && ReferenceEquals(dictionary.Comparer, ScopeContext.DefaultComparer))
                 return properties;
 
             // Must validate that collected properties are unique
+            var scopePropertyCount = properties.Count;
             if (scopePropertyCount > 10 || !ScopeContextPropertyEnumerator<object?>.HasUniqueCollectionKeys(properties, ScopeContext.DefaultComparer))
             {
                 // The newest properties are added first, so do not overwrite with old values
@@ -153,64 +220,6 @@ namespace NLog.Internal
             }
 
             return properties;
-        }
-
-        public void AddProperty(string propertyName, object? propertyValue)
-        {
-            if (_allProperties is null || IsCollectorEmpty)
-            {
-                _allProperties = new[] { new KeyValuePair<string, object?>(propertyName, propertyValue) };
-            }
-            else
-            {
-                if (_propertyCollector is null)
-                {
-                    var propertyCollector = new List<KeyValuePair<string, object?>>(Math.Max(4, _allProperties.Count + 1));
-                    _propertyCollector = propertyCollector;
-                    CollectProperties(_allProperties, propertyCollector);
-                    propertyCollector.Add(new KeyValuePair<string, object?>(propertyName, propertyValue));
-                    _allProperties = propertyCollector;
-                }
-                else
-                {
-                    _propertyCollector.Add(new KeyValuePair<string, object?>(propertyName, propertyValue));
-                }
-            }
-        }
-
-        public void AddProperties(IReadOnlyCollection<KeyValuePair<string, object?>> properties)
-        {
-            if (_allProperties is null || IsCollectorEmpty)
-            {
-                _allProperties = properties;
-            }
-            else if (properties?.Count > 0)
-            {
-                if (_propertyCollector is null)
-                {
-                    var propertyCollector = new List<KeyValuePair<string, object?>>(Math.Max(4, _allProperties.Count + properties.Count));
-                    _propertyCollector = propertyCollector;
-                    CollectProperties(_allProperties, propertyCollector);
-                    CollectProperties(properties, propertyCollector);
-                    _allProperties = propertyCollector;
-                }
-                else
-                {
-                    CollectProperties(properties, _propertyCollector);
-                }
-            }
-        }
-
-        private static void CollectProperties(IReadOnlyCollection<KeyValuePair<string, object?>> properties, ICollection<KeyValuePair<string, object?>> propertyCollector)
-        {
-            using (var scopeEnumerator = new ScopeContextPropertyEnumerator<object?>(properties))
-            {
-                while (scopeEnumerator.MoveNext())
-                {
-                    var property = scopeEnumerator.Current;
-                    propertyCollector.Add(property);
-                }
-            }
         }
     }
 
@@ -432,7 +441,7 @@ namespace NLog.Internal
     /// <summary>
     /// Special merged state that can collapse multiple property-scopes into single scope (Avoid huge object-graphs)
     /// </summary>
-    internal sealed class ScopeContextMergeAsyncState : ScopeContextAsyncState, IScopeContextPropertiesAsyncState, ICollection<KeyValuePair<string, object?>>, IReadOnlyCollection<KeyValuePair<string, object?>>
+    internal sealed class ScopeContextMergeAsyncState : ScopeContextAsyncState, IScopeContextPropertiesAsyncState, IReadOnlyCollection<KeyValuePair<string, object?>>
     {
         int IScopeContextPropertiesAsyncState.PropertyCount => MergedProperties.Count;
 
@@ -458,8 +467,8 @@ namespace NLog.Internal
 
         public void CollectMergedProperties<TValue>(IReadOnlyCollection<KeyValuePair<string, TValue?>> properties, IScopeContextAsyncState? parent)
         {
-            ScopeContextPropertyEnumerator<TValue>.CopyScopePropertiesToDictionary(properties, MergedProperties);
-            var propertyCollector = new ScopeContextPropertyCollector(MergedProperties, this);
+            ScopeContextPropertyEnumerator<TValue>.TryAddScopePropertiesToDictionary(properties, MergedProperties);
+            var propertyCollector = new ScopeContextPropertyCollector(MergedProperties);
             var allProperties = propertyCollector.StartCaptureProperties(parent);
             if (MergedProperties.Count == 0)
                 ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(allProperties, MergedProperties);
@@ -475,22 +484,6 @@ namespace NLog.Internal
             return contextCollector.CollectNestedStates(NestedState, Parent);
         }
 
-        public void Add(KeyValuePair<string, object?> item)
-        {
-            // Newest properties are added first, so do not overwrite with old values
-#if NETSTANDARD2_1_OR_GREATER || NET
-            MergedProperties.TryAdd(item.Key, item.Value);
-#else
-            if (!MergedProperties.ContainsKey(item.Key))
-                MergedProperties.Add(item.Key, item.Value);
-#endif
-        }
-
-        void ICollection<KeyValuePair<string, object?>>.Clear() => MergedProperties.Clear();
-        bool ICollection<KeyValuePair<string, object?>>.Contains(KeyValuePair<string, object?> item) => MergedProperties.ContainsKey(item.Key);
-        void ICollection<KeyValuePair<string, object?>>.CopyTo(KeyValuePair<string, object?>[] array, int arrayIndex) => ((ICollection<KeyValuePair<string, object?>>)MergedProperties).CopyTo(array, arrayIndex);
-        bool ICollection<KeyValuePair<string, object?>>.Remove(KeyValuePair<string, object?> item) => MergedProperties.Remove(item.Key);
-        bool ICollection<KeyValuePair<string, object?>>.IsReadOnly => ((ICollection<KeyValuePair<string, object?>>)MergedProperties).IsReadOnly;
         public IEnumerator<KeyValuePair<string, object?>> GetEnumerator() => MergedProperties.GetEnumerator();
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => ((System.Collections.IEnumerable)MergedProperties).GetEnumerator();
     }
