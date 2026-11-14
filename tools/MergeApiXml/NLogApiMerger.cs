@@ -8,7 +8,7 @@ namespace MergeApiXml
 
     public class NLogApiMerger
     {
-        private List<KeyValuePair<string, string>> releases = new List<KeyValuePair<string, string>>();
+        private readonly List<KeyValuePair<string, string>> releases = [];
 
         public XDocument Result { get; set; }
 
@@ -47,33 +47,30 @@ namespace MergeApiXml
 
             foreach (var typeElement in resultDoc.Root.Elements("type"))
             {
-                this.SortProperties(typeElement);
+                SortProperties(typeElement);
             }
 
-            this.PostProcessSupportedIn(resultDoc.Root);
-            this.Result = resultDoc;
+            Result = resultDoc;
         }
 
-        private void FixWhitespace(XElement xmlElement)
+        private static void FixWhitespace(XElement xmlElement)
         {
             foreach (var node in xmlElement.DescendantNodes())
             {
-                XElement el = node as XElement;
-                if (el != null)
+                if (node is XElement el)
                 {
                     FixWhitespace(el);
                     continue;
                 }
 
-                XText txt = node as XText;
-                if (txt != null)
+                if (node is XText txt)
                 {
                     txt.Value = FixWhitespace(txt.Value);
                 }
             }
         }
 
-        private string FixWhitespace(string p)
+        private static string FixWhitespace(string p)
         {
             p = p.Replace("\n", " ");
             p = p.Replace("\r", " ");
@@ -88,11 +85,7 @@ namespace MergeApiXml
             return p;
         }
 
-        private void PostProcessSupportedIn(XElement rootElement)
-        {
-        }
-
-        private void SortProperties(XElement typeElement)
+        private static void SortProperties(XElement typeElement)
         {
             var propertyElements = typeElement.Elements("property").ToList();
             foreach (var prop in propertyElements)
@@ -119,29 +112,24 @@ namespace MergeApiXml
             typeElement.Add(propertyElements);
         }
 
-        private int GetCategoryValue(string categoryName)
+        private static int GetCategoryValue(string categoryName)
         {
-            switch (categoryName)
+            return categoryName switch
             {
-                case "General Options":
-                    return 0;
-
-                case "Layout Options":
-                    return 10;
-
-                default:
-                    return 100;
-            }
+                "General Options" => 0,
+                "Layout Options" => 10,
+                _ => 100,
+            };
         }
 
-        private void MergeApiFile(XElement resultDoc, XElement apiDoc, string releaseName, string frameworkName)
+        private static void MergeApiFile(XElement resultDoc, XElement apiDoc, string releaseName, string frameworkName)
         {
             AddSupportedIn(resultDoc, releaseName, frameworkName);
 
             MergeTypes(resultDoc, releaseName, frameworkName, apiDoc);
         }
 
-        private void MergeTypes(XElement resultDoc, string releaseName, string frameworkName, XElement apiDoc)
+        private static void MergeTypes(XElement resultDoc, string releaseName, string frameworkName, XElement apiDoc)
         {
             foreach (var type in apiDoc.Elements("type"))
             {
@@ -158,14 +146,14 @@ namespace MergeApiXml
                     resultDoc.Add(mergedElement);
                 }
 
-                this.AddSupportedIn(mergedElement, releaseName, frameworkName);
-                this.MergeDoc(mergedElement, type);
-                this.MergeAttributes(mergedElement, type);
-                this.MergeProperties(mergedElement, releaseName, frameworkName, type);
+                AddSupportedIn(mergedElement, releaseName, frameworkName);
+                MergeDoc(mergedElement, type);
+                MergeAttributes(mergedElement, type);
+                MergeProperties(mergedElement, releaseName, frameworkName, type);
             }
         }
 
-        private void MergeAttributes(XElement mergedElement, XElement sourceElement)
+        private static void MergeAttributes(XElement mergedElement, XElement sourceElement)
         {
             foreach (var attrib in sourceElement.Attributes())
             {
@@ -173,7 +161,7 @@ namespace MergeApiXml
             }
         }
 
-        private void MergeDoc(XElement mergedElement, XElement sourceElement)
+        private static void MergeDoc(XElement mergedElement, XElement sourceElement)
         {
             var oldDoc = mergedElement.Element("doc");
             var sourceDoc = sourceElement.Element("doc");
@@ -187,7 +175,7 @@ namespace MergeApiXml
             }
         }
 
-        private void MergeProperties(XElement mergedType, string releaseName, string frameworkName, XElement inputType)
+        private static void MergeProperties(XElement mergedType, string releaseName, string frameworkName, XElement inputType)
         {
             foreach (var property in inputType.Elements("property"))
             {
@@ -201,10 +189,10 @@ namespace MergeApiXml
 
                 mergedProperty.SetAttributeValue("name", (string)property.Attribute("name"));
 
-                this.AddSupportedIn(mergedProperty, releaseName, frameworkName);
-                this.MergeDoc(mergedProperty, property);
-                this.MergeAttributes(mergedProperty, property);
-                this.MergeEnumValues(mergedProperty, releaseName, frameworkName, property);
+                AddSupportedIn(mergedProperty, releaseName, frameworkName);
+                MergeDoc(mergedProperty, property);
+                MergeAttributes(mergedProperty, property);
+                MergeEnumValues(mergedProperty, releaseName, frameworkName, property);
 
                 var elementType = property.Element("elementType");
                 if (elementType != null)
@@ -216,14 +204,14 @@ namespace MergeApiXml
                         mergedProperty.Add(mergedElementType);
                     }
 
-                    this.AddSupportedIn(mergedElementType, releaseName, frameworkName);
-                    this.MergeAttributes(mergedElementType, elementType);
-                    this.MergeProperties(mergedElementType, releaseName, frameworkName, elementType);
+                    AddSupportedIn(mergedElementType, releaseName, frameworkName);
+                    MergeAttributes(mergedElementType, elementType);
+                    MergeProperties(mergedElementType, releaseName, frameworkName, elementType);
                 }
             }
         }
 
-        private void MergeEnumValues(XElement mergedProperty, string releaseName, string frameworkName, XElement property)
+        private static void MergeEnumValues(XElement mergedProperty, string releaseName, string frameworkName, XElement property)
         {
             foreach (var enumElement in property.Elements("enum"))
             {
@@ -235,13 +223,13 @@ namespace MergeApiXml
                     mergedProperty.Add(mergedEnum);
                 }
 
-                this.AddSupportedIn(mergedEnum, releaseName, frameworkName);
-                this.MergeDoc(mergedEnum, enumElement);
-                this.MergeAttributes(mergedEnum, enumElement);
+                AddSupportedIn(mergedEnum, releaseName, frameworkName);
+                MergeDoc(mergedEnum, enumElement);
+                MergeAttributes(mergedEnum, enumElement);
             }
         }
 
-        private void AddSupportedIn(XElement element, string releaseName, string frameworkName)
+        private static void AddSupportedIn(XElement element, string releaseName, string frameworkName)
         {
             var supportedIn = element.Element("supported-in");
             if (supportedIn == null)

@@ -42,21 +42,21 @@ namespace MakeNLogXSD
 
     public class XsdFileGenerator
     {
-        private static XNamespace xsd = "http://www.w3.org/2001/XMLSchema";
+        private static readonly XNamespace xsd = "http://www.w3.org/2001/XMLSchema";
 
-        private HashSet<string> typesEmitted;
-        private XElement template;
-        private XElement typesGoHere;
-        private XElement filtersGoHere;
+        private readonly HashSet<string> typesEmitted;
+        private readonly XElement template;
+        private readonly XElement typesGoHere;
+        private readonly XElement filtersGoHere;
 
         public XsdFileGenerator()
         {
-            this.template = LoadTemplateXSD();
+            template = LoadTemplateXSD();
 
-            this.filtersGoHere = template.Descendants("filters-go-here").Single();
-            this.typesGoHere = template.Descendants("types-go-here").Single();
+            filtersGoHere = template.Descendants("filters-go-here").Single();
+            typesGoHere = template.Descendants("types-go-here").Single();
 
-            this.typesEmitted = new HashSet<string>();
+            typesEmitted = [];
         }
 
         public string TargetNamespace { get; set; }
@@ -155,8 +155,8 @@ namespace MakeNLogXSD
 
         public void SaveResult(string outputFile)
         {
-            template.Attribute("targetNamespace").Value = this.TargetNamespace;
-            template.Attribute("xmlns").Value = this.TargetNamespace;
+            template.Attribute("targetNamespace").Value = TargetNamespace;
+            template.Attribute("xmlns").Value = TargetNamespace;
             filtersGoHere.Remove();
             typesGoHere.Remove();
 
@@ -168,18 +168,16 @@ namespace MakeNLogXSD
         {
             XElement xElement;
 
-            using (var stream = this.GetType().Assembly.GetManifestResourceStream(this.GetType(), "TemplateXSD.xml"))
+            using (var stream = GetType().Assembly.GetManifestResourceStream(GetType(), "TemplateXSD.xml"))
             {
-                using (XmlReader reader = XmlReader.Create(stream, new XmlReaderSettings { IgnoreWhitespace = true }))
-                {
-                    xElement = XElement.Load(reader);
-                }
+                using XmlReader reader = XmlReader.Create(stream, new XmlReaderSettings { IgnoreWhitespace = true });
+                xElement = XElement.Load(reader);
             }
 
             return xElement;
         }
 
-        private static IEnumerable<XElement> GetAttributeElements(XElement type)
+        private static List<XElement> GetAttributeElements(XElement type)
         {
             return type.Elements("property").Select(GetAttributeElement).Where(elem => elem != null).ToList();
         }
@@ -187,8 +185,6 @@ namespace MakeNLogXSD
         /// <summary>
         /// Ignore if returns null
         /// </summary>
-        /// <param name="propertyElement"></param>
-        /// <returns></returns>
         private static XElement GetAttributeElement(XElement propertyElement)
         {
             var result = new XElement(xsd + "attribute",
@@ -275,7 +271,7 @@ namespace MakeNLogXSD
                     enumerationValues));
         }
 
-        private static IEnumerable<XElement> GetPropertyElements(XElement type)
+        private static List<XElement> GetPropertyElements(XElement type)
         {
             var results = new List<XElement>();
             foreach (var propertyElement in type.Elements("property"))
@@ -293,8 +289,6 @@ namespace MakeNLogXSD
         /// <summary>
         /// Ignore if returns null.
         /// </summary>
-        /// <param name="propertyElement"></param>
-        /// <returns></returns>
         private static XElement GetPropertyElement(XElement propertyElement)
         {
             var result = new XElement(xsd + "element",
@@ -333,7 +327,7 @@ namespace MakeNLogXSD
                 else
                     result.Add(new XAttribute("minOccurs", "0"));
                 result.Add(new XAttribute("maxOccurs", "1"));
-                
+
                 if (!string.IsNullOrEmpty(defaultValue) && xsdType.StartsWith("xs:"))
                     result.Add(new XAttribute("default", defaultValue));
             }
@@ -341,7 +335,7 @@ namespace MakeNLogXSD
             return result;
         }
 
-        private static HashSet<string> IgnoreTypes = new HashSet<string> { "NLog.Targets.IFileCompressor" };
+        private static readonly HashSet<string> IgnoreTypes = ["NLog.Targets.IFileCompressor"];
 
         private static string GetXsdType(string apiTypeName, bool attribute)
         {
