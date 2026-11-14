@@ -14,8 +14,9 @@ public sealed partial class SourceCodeTests
         RegexOptions.CultureInvariant)]
     private static partial Regex DelegateTypeRegex();
     private static readonly string[] DirectoriesToVerify = ["src", "tests"];
-    private static readonly HashSet<string> FileNamesToIgnore = new(StringComparer.OrdinalIgnoreCase)
-    {
+    private static readonly HashSet<string> FileNamesToIgnore =
+    [
+        with(StringComparer.OrdinalIgnoreCase),
         "AssemblyInfo.cs",
         "AssemblyBuildInfo.cs",
         "GlobalSuppressions.cs",
@@ -25,7 +26,7 @@ public sealed partial class SourceCodeTests
         "NUnitAdapter.cs",
         "LocalizableAttribute.cs",
         "Annotations.cs"
-    };
+    ];
 
     private readonly string _rootDirectory;
     private readonly string[] _licenseLines;

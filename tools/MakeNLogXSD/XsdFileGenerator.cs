@@ -56,7 +56,7 @@ namespace MakeNLogXSD
             filtersGoHere = template.Descendants("filters-go-here").Single();
             typesGoHere = template.Descendants("types-go-here").Single();
 
-            typesEmitted = new HashSet<string>();
+            typesEmitted = [];
         }
 
         public string TargetNamespace { get; set; }
@@ -335,7 +335,7 @@ namespace MakeNLogXSD
             return result;
         }
 
-        private static readonly HashSet<string> IgnoreTypes = new HashSet<string> { "NLog.Targets.IFileCompressor" };
+        private static readonly HashSet<string> IgnoreTypes = ["NLog.Targets.IFileCompressor"];
 
         private static string GetXsdType(string apiTypeName, bool attribute)
         {

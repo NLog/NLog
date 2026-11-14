@@ -10,7 +10,7 @@ namespace DumpApiXml
 
     public class DocFileBuilder
     {
-        private static readonly Dictionary<string, string> simpleTypeNames = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> simpleTypeNames = new()
         {
             { typeof(string).FullName, "String" },
             { typeof(int).FullName, "Integer" },
@@ -32,8 +32,8 @@ namespace DumpApiXml
             { "NLog.FilterResult", "FilterResult" },
         };
 
-        private readonly List<Assembly> assemblies = new List<Assembly>();
-        private readonly List<XmlDocument> comments = new List<XmlDocument>();
+        private readonly List<Assembly> assemblies = [];
+        private readonly List<XmlDocument> comments = [];
 
         public void Build(string outputFile)
         {
@@ -266,10 +266,11 @@ namespace DumpApiXml
 
         private void DumpTypeMembers(XmlWriter writer, Type type)
         {
-            var categories = new Dictionary<string, int>();
-
-            categories["General Options"] = 10;
-            categories["Layout Options"] = 20;
+            var categories = new Dictionary<string, int>
+            {
+                ["General Options"] = 10,
+                ["Layout Options"] = 20
+            };
 
             if (TryGetMemberDoc("T:" + type.FullName, out XmlElement memberDoc))
             {
