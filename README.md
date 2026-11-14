@@ -13,7 +13,7 @@
 [![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=code_smells&branch=main)](https://sonarcloud.io/project/issues?id=nlog2&resolved=false&types=CODE_SMELL&branch=main)
 [![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=duplicated_lines_density&branch=main)](https://sonarcloud.io/component_measures/domain/Duplications?id=nlog2&branch=main)
 [![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=sqale_debt_ratio&branch=main)](https://sonarcloud.io/dashboard/?id=nlog2&branch=main)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=coverage&branch=main)](https://sonarcloud.io/dashboard?id=nlog2&branch=main)
+[![codecov](https://codecov.io/gh/NLog/NLog/graph/badge.svg?token=6GBXKTPOZC)](https://codecov.io/gh/NLog/NLog)
 
 
 [![Wiki](https://img.shields.io/badge/Docs-GitHub%20wiki-brightgreen)](https://github.com/NLog/NLog/wiki)

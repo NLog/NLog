@@ -371,16 +371,6 @@ namespace NLog.UnitTests
             return !NLog.Internal.PlatformDetector.IsWin32;
         }
 
-        /// <summary>
-        /// Are we running on AppVeyor?
-        /// </summary>
-        /// <returns></returns>
-        protected static bool IsAppVeyor()
-        {
-            var val = Environment.GetEnvironmentVariable("APPVEYOR");
-            return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
-        }
-
         public delegate void SyncAction();
 
         public sealed class NoThrowNLogExceptions : IDisposable

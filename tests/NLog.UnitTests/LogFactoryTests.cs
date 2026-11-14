@@ -135,10 +135,29 @@ namespace NLog.UnitTests
         public void FlushAsync_TargetTimeout_Async()
         {
             var logFactory = new LogFactory();
-            logFactory.Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteToMethodCall((evt, parms) => { System.Threading.Thread.Sleep(5000); }));
-            System.Threading.Tasks.Task.Run(() => logFactory.GetCurrentClassLogger().Info("Sleep")).Wait(50);
-            var task = logFactory.FlushAsync(new CancellationTokenSource(100).Token);
-            Assert.Throws<System.Threading.Tasks.TaskCanceledException>(() => task.GetAwaiter().GetResult());
+            using (var writeStarted = new ManualResetEvent(false))
+            using (var releaseWrite = new ManualResetEvent(false))
+            {
+                logFactory.Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteToMethodCall((evt, parms) =>
+                {
+                    writeStarted.Set();
+                    releaseWrite.WaitOne();
+                }));
+
+                var writeTask = System.Threading.Tasks.Task.Run(() => logFactory.GetCurrentClassLogger().Info("Sleep"));
+                try
+                {
+                    Assert.True(writeStarted.WaitOne(5000), "The target write did not start.");
+                    var task = logFactory.FlushAsync(new CancellationTokenSource(100).Token);
+                    Assert.Throws<System.Threading.Tasks.TaskCanceledException>(() => task.GetAwaiter().GetResult());
+                }
+                finally
+                {
+                    releaseWrite.Set();
+                }
+
+                Assert.True(writeTask.Wait(5000), "The target write did not complete.");
+            }
         }
 
         [Fact]
