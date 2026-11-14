@@ -34,6 +34,8 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
+    using System.Collections.Generic;
+    using System.Threading;
     using NLog.Common;
     using NLog.Layouts;
 
@@ -47,7 +49,9 @@ namespace NLog.Targets.Wrappers
     [Target("LimitingWrapper", IsWrapper = true)]
     public class LimitingTargetWrapper : WrapperTargetBase
     {
-        private DateTime _firstWriteInInterval;
+        private readonly object _rolloverLock = new object();
+
+        private volatile IntervalRollState _intervalRollState = new IntervalRollState(DateTime.MinValue);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LimitingTargetWrapper" /> class.
@@ -107,26 +111,50 @@ namespace NLog.Targets.Wrappers
         public Layout<TimeSpan> Interval { get; set; }
 
         /// <summary>
-        /// Gets the number of <see cref="AsyncLogEventInfo"/> written in the current <see cref="Interval"/>.
+        /// Gets the number of logevents processed in the current <see cref="Interval"/>.
         /// </summary>
-        /// <remarks>Default: <see langword="0"/>. Resets to zero on next write after <see cref="Interval"/> has expired.</remarks>
-        /// <docgen category='General Options' order='10' />
-        public int MessagesWrittenCount { get; private set; }
+        public int MessagesWrittenCount
+        {
+            get
+            {
+                var count = Interlocked.Read(ref _intervalRollState.MessagesWrittenCount);
+                return count <= 0 ? 0 : (int)Math.Min(count, int.MaxValue);
+            }
+        }
 
-        /// <summary>
-        /// Initializes the target and resets the current Interval and <see cref="MessagesWrittenCount"/>.
-        ///  </summary>
+        /// <inheritdoc />
         protected override void InitializeTarget()
         {
             if (MessageLimit.IsFixed && MessageLimit.FixedValue <= 0)
-                throw new NLogConfigurationException("The LimitingTargetWrapper\'s MessageLimit property must be > 0.");
+                throw new NLogConfigurationException("The LimitingTargetWrapper MessageLimit property must be > 0.");
+
             if (Interval.IsFixed && Interval.FixedValue <= TimeSpan.Zero)
-                throw new NLogConfigurationException("The LimitingTargetWrapper\'s property Interval must be > 0.");
+                throw new NLogConfigurationException("The LimitingTargetWrapper property Interval must be > 0.");
+
             base.InitializeTarget();
-            ResetInterval(DateTime.MinValue);
+
+            lock (_rolloverLock)
+            {
+                _intervalRollState = new IntervalRollState(DateTime.MinValue);
+            }
+
             InternalLogger.Trace("{0}: Initialized with MessageLimit={1} and Interval={2}.", this, MessageLimit, Interval);
         }
 
+        /// <inheritdoc />
+        protected sealed override void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
+        {
+            for (int i = 0; i < logEvents.Count; ++i)
+            {
+                WriteAsyncThreadSafe(logEvents[i]);
+            }
+        }
+
+        /// <inheritdoc />
+        protected sealed override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+        {
+            Write(logEvent);
+        }
 
         /// <summary>
         /// Writes log event to the wrapped target if the current <see cref="MessagesWrittenCount"/> is lower than <see cref="MessageLimit"/>.
@@ -136,31 +164,66 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">Log event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            var messageLimit = RenderLogEvent(MessageLimit, logEvent.LogEvent);
-            var interval = RenderLogEvent(Interval, logEvent.LogEvent);
+            var logEventInfo = logEvent.LogEvent;
+            var timestamp = logEventInfo.TimeStamp;
+            var messageLimit = MessageLimit.RenderValue(logEventInfo);
+            var intervalDuration = Interval.RenderValue(logEventInfo);
 
-            if ((logEvent.LogEvent.TimeStamp - _firstWriteInInterval) > interval)
+            while (true)
             {
-                ResetInterval(logEvent.LogEvent.TimeStamp);
-                InternalLogger.Debug("{0}: New interval of '{1}' started.", this, interval);
-            }
+                var state = _intervalRollState;
+                // Do not roll the interval backward for out-of-order events
+                if (timestamp > state.IntervalStart && timestamp - state.IntervalStart > intervalDuration)
+                {
+                    ResetInterval(state, timestamp, intervalDuration);
+                    continue;
+                }
 
-            if (messageLimit <= 0 || MessagesWrittenCount < messageLimit)
-            {
+                var count = Interlocked.Increment(ref state.MessagesWrittenCount);
+                if (count < 0)
+                    continue;   // Negative means state has rolled, retry with latest state.
+
+                // Reject if the limit has been reached.
+                if (messageLimit > 0 && count > messageLimit)
+                {
+                    logEvent.Continuation(null);
+                    InternalLogger.Trace("{0}: Discarded event, because MessageLimit of '{1}' was reached.", this, messageLimit);
+                    return;
+                }
+
                 WrappedTarget?.WriteAsyncLogEvent(logEvent);
-                MessagesWrittenCount++;
-            }
-            else
-            {
-                logEvent.Continuation(null);
-                InternalLogger.Trace("{0}: Discarded event, because MessageLimit of '{1}' was reached.", this, messageLimit);
+                return;
             }
         }
 
-        private void ResetInterval(DateTime timestamp)
+        private void ResetInterval(IntervalRollState observedState, DateTime intervalStart, TimeSpan intervalDuration)
         {
-            _firstWriteInInterval = timestamp;
-            MessagesWrittenCount = 0;
+            long messagesWrittenCount = 0;
+
+            lock (_rolloverLock)
+            {
+                var current = _intervalRollState;
+                if (!ReferenceEquals(current, observedState))
+                    return; // We have been raced by other thread in the reset.
+
+                // Close the old state before publishing the replacement.
+                messagesWrittenCount = Interlocked.Exchange(ref current.MessagesWrittenCount, IntervalRollState.MarkedAsClosed);
+                _intervalRollState = new IntervalRollState(intervalStart);
+            }
+
+            InternalLogger.Debug("{0}: New interval started with {1} secs duration. Previous Interval LogEvent Count={2}", this, intervalDuration.TotalSeconds, messagesWrittenCount < 0 ? -1 : messagesWrittenCount);
+        }
+
+        private sealed class IntervalRollState
+        {
+            public const long MarkedAsClosed = long.MinValue;
+            public readonly DateTime IntervalStart;
+            public long MessagesWrittenCount;
+
+            public IntervalRollState(DateTime intervalStart)
+            {
+                IntervalStart = intervalStart;
+            }
         }
     }
 }

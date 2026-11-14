@@ -82,13 +82,24 @@ namespace NLog.Targets.FileAppenders
             {
                 if (_nextArchiveTime < NLog.Time.TimeSource.Current.Time.AddMinutes(1) || _lastFileBirthTimeUtc == DateTime.MinValue)
                 {
-                    var fileInfo = new FileInfo(_filePath);
-                    var fileBirthTimeUtc = (fileInfo.Exists && fileInfo.Length != 0) ? FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo) : DateTime.MinValue;
-                    if (fileBirthTimeUtc == DateTime.MinValue || _lastFileBirthTimeUtc < fileBirthTimeUtc)
+                    try
                     {
-                        var fileBirthTime = fileBirthTimeUtc.Year > FileInfoHelper.MinReliableBirthYear ? NLog.Time.TimeSource.Current.FromSystemTime(fileBirthTimeUtc) : OpenStreamTime;
-                        _nextArchiveTime = FileTarget.CalculateNextArchiveEventTime(_fileTarget.ArchiveEvery, fileBirthTime);
-                        _lastFileBirthTimeUtc = fileBirthTimeUtc;
+                        var fileInfo = new FileInfo(_filePath);
+                        var fileBirthTimeUtc = (fileInfo.Exists && fileInfo.Length != 0) ? FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo) : DateTime.MinValue;
+                        if (fileBirthTimeUtc == DateTime.MinValue || _lastFileBirthTimeUtc < fileBirthTimeUtc)
+                        {
+                            var fileBirthTime = fileBirthTimeUtc.Year > FileInfoHelper.MinReliableBirthYear ? NLog.Time.TimeSource.Current.FromSystemTime(fileBirthTimeUtc) : OpenStreamTime;
+                            _nextArchiveTime = FileTarget.CalculateNextArchiveEventTime(_fileTarget.ArchiveEvery, fileBirthTime);
+                            _lastFileBirthTimeUtc = fileBirthTimeUtc;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        NLog.Common.InternalLogger.Error(ex, "{0}: Failed to lookup FileInfo.CreationTimeUtc for file: {1}", _fileTarget, _filePath);
+                        if (ex.MustBeRethrown())
+                            throw;
+
+                        return _nextArchiveTime > DateTime.MinValue ? _nextArchiveTime : DateTime.MaxValue;
                     }
                 }
                 return _nextArchiveTime;
@@ -133,7 +144,7 @@ namespace NLog.Targets.FileAppenders
             var initialFileOpen = _initialFileOpen;
             _initialFileOpen = false;
 
-            using (var fileStream = _fileTarget.CreateFileStreamWithRetry(this, overrideBufferSize, initialFileOpen))
+            using (var fileStream = _fileTarget.CreateFileStreamWithRetry(_filePath, overrideBufferSize, initialFileOpen))
             {
                 fileStream.Write(buffer, offset, count);
 

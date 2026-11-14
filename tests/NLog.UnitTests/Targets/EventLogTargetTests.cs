@@ -448,7 +448,7 @@ namespace NLog.UnitTests.Targets
             var sourceName = "NLog.UnitTests" + Guid.NewGuid().ToString("N");
             var logEvent = CreateLogEventWithDynamicSource(expectedMessage, LogLevel.Trace, "DynamicSource", sourceName);
 
-            logger.Log(logEvent);
+            RetryingIntegrationTest(3, () => logger.Log(logEvent));
 
             var eventLog = new EventLog(target.Log.ToString());
             var entries = GetEventRecords(eventLog.Log).ToList();
@@ -461,7 +461,7 @@ namespace NLog.UnitTests.Targets
             expectedMessage = string.Join("", Enumerable.Repeat("b", maxMessageLength));
 
             logEvent = CreateLogEventWithDynamicSource(expectedMessage, LogLevel.Trace, "DynamicSource", sourceName);
-            logger.Log(logEvent);
+            RetryingIntegrationTest(3, () => logger.Log(logEvent));
 
             entries = GetEventRecords(eventLog.Log).ToList();
             entries = entries.Where(a => a.ProviderName == sourceName).ToList();

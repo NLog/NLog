@@ -216,6 +216,11 @@ namespace NLog.Internal
             if (objectValue is System.IO.Stream)
                 return false;   // Skip serializing properties that often throws exceptions
 
+#if !NET35
+            if (objectValue is System.Threading.Tasks.Task)
+                return false;   // Skip serializing Task.Result that will block until task is completed or throw exception.
+#endif
+
             return true;
         }
 
@@ -349,6 +354,8 @@ namespace NLog.Internal
             }
 
             public bool IsSimpleValue => _properties.Length == 0 && (_fastLookup is null || _fastLookup.Length == 0);
+
+            public bool IsExpandoObject => _properties.Length == 0 && _fastLookup?.Length == 1 && _fastLookup[0].Name.Length == 0;
 
             public object ObjectValue => _object;
 

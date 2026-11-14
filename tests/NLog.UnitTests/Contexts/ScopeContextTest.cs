@@ -137,6 +137,67 @@ namespace NLog.UnitTests.Contexts
             Assert.False(stringValueLookup3);
         }
 
+#if !NETFRAMEWORK
+        [Fact]
+        public void PushPropertiesDuplicateKeyTest()
+        {
+            // Arrange
+            ScopeContext.Clear();
+            var expectedFirst = "First";
+            var properties = new[]
+            {
+                new KeyValuePair<string, object>("Hello", expectedFirst),
+                new KeyValuePair<string, object>("Hello", "Second")
+            };
+            Dictionary<string, object> allProperties = null;
+            object stringValueLookup = null;
+            // Act
+            using (ScopeContext.PushProperties(properties))
+            {
+                allProperties = ScopeContext.GetAllProperties().ToDictionary(x => x.Key, x => x.Value);
+                ScopeContext.TryGetProperty("Hello", out stringValueLookup);
+            }
+            // Assert
+            Assert.Single(allProperties);
+            Assert.Equal(expectedFirst, allProperties["Hello"]);
+            Assert.Equal(expectedFirst, stringValueLookup);
+        }
+#endif
+
+#if !NETFRAMEWORK
+        [Fact]
+        public void PushPropertiesDuplicateKeyCollapsedTest()
+        {
+            ScopeContext.Clear();
+            var expectedFirst = "First";
+            var properties = new[]
+            {
+                new KeyValuePair<string, object>("Hello", expectedFirst),
+                new KeyValuePair<string, object>("Hello", "Second")
+            };
+
+            using (ScopeContext.PushProperty("Parent", "ParentValue"))
+            using (ScopeContext.PushProperty("Hello", "Outer"))
+            {
+                // The third property scope triggers CollectMergedProperties.
+                using (ScopeContext.PushProperties(properties))
+                {
+                    var allProperties = ScopeContext.GetAllProperties()
+                        .ToDictionary(p => p.Key, p => p.Value);
+
+                    Assert.Equal(2, allProperties.Count);
+                    Assert.Equal("ParentValue", allProperties["Parent"]);
+                    Assert.Equal(expectedFirst, allProperties["Hello"]);
+                    Assert.True(ScopeContext.TryGetProperty("Hello", out var value));
+                    Assert.Equal(expectedFirst, value);
+                }
+
+                Assert.True(ScopeContext.TryGetProperty("Hello", out var restoredValue));
+                Assert.Equal("Outer", restoredValue);
+            }
+        }
+#endif
+
 #if !NET35 && !NET40
         [Fact]
         public void PushNestedStatePropertiesTest()
@@ -193,7 +254,7 @@ namespace NLog.UnitTests.Contexts
             ScopeContext.TryGetProperty("Hello", out stringValueLookup);
 
             // Assert
-#if !NET35 && !NET40 && !NET45
+#if !NET35 && !NET40
             Assert.Same(expectedProperties, allPropertiesState);
 #endif
             Assert.Equal(2, allProperties.Count);
