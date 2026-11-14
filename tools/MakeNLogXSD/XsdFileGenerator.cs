@@ -271,7 +271,7 @@ namespace MakeNLogXSD
                     enumerationValues));
         }
 
-        private static IEnumerable<XElement> GetPropertyElements(XElement type)
+        private static List<XElement> GetPropertyElements(XElement type)
         {
             var results = new List<XElement>();
             foreach (var propertyElement in type.Elements("property"))
@@ -327,7 +327,7 @@ namespace MakeNLogXSD
                 else
                     result.Add(new XAttribute("minOccurs", "0"));
                 result.Add(new XAttribute("maxOccurs", "1"));
-                
+
                 if (!string.IsNullOrEmpty(defaultValue) && xsdType.StartsWith("xs:"))
                     result.Add(new XAttribute("default", defaultValue));
             }
