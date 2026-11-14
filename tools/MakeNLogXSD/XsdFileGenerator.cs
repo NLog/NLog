@@ -177,7 +177,7 @@ namespace MakeNLogXSD
             return xElement;
         }
 
-        private static IEnumerable<XElement> GetAttributeElements(XElement type)
+        private static List<XElement> GetAttributeElements(XElement type)
         {
             return type.Elements("property").Select(GetAttributeElement).Where(elem => elem != null).ToList();
         }
