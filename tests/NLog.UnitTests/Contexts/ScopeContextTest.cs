@@ -254,7 +254,7 @@ namespace NLog.UnitTests.Contexts
             ScopeContext.TryGetProperty("Hello", out stringValueLookup);
 
             // Assert
-#if !NET35 && !NET40 && !NET45
+#if !NET35 && !NET40
             Assert.Same(expectedProperties, allPropertiesState);
 #endif
             Assert.Equal(2, allProperties.Count);

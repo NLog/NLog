@@ -332,7 +332,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("___ala ma kota c", target.LastMessage);
         }
 
-#if !NET35 && !NET40 && !NET45
+#if !NET35 && !NET40
         [Fact]
         public void ScopeNestedTimingTest()
         {
