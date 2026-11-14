@@ -108,6 +108,7 @@
   </Target>
 
   <Target Name="BuildApiMergeTool">
+    <MSBuild Projects="..\tools\MergeApiXml\MergeApiXml.csproj" Targets="Restore" Properties="IsRestoring=true" />
     <MSBuild Projects="..\tools\MergeApiXml\MergeApiXml.csproj" />
   </Target>
 
