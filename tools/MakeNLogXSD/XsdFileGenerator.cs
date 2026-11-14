@@ -170,10 +170,8 @@ namespace MakeNLogXSD
 
             using (var stream = this.GetType().Assembly.GetManifestResourceStream(this.GetType(), "TemplateXSD.xml"))
             {
-                using (XmlReader reader = XmlReader.Create(stream, new XmlReaderSettings { IgnoreWhitespace = true }))
-                {
-                    xElement = XElement.Load(reader);
-                }
+                using XmlReader reader = XmlReader.Create(stream, new XmlReaderSettings { IgnoreWhitespace = true });
+                xElement = XElement.Load(reader);
             }
 
             return xElement;

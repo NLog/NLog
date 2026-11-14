@@ -37,13 +37,11 @@ namespace DumpApiXml
 
         public void Build(string outputFile)
         {
-            using (XmlWriter writer = XmlWriter.Create(outputFile, new XmlWriterSettings
+            using XmlWriter writer = XmlWriter.Create(outputFile, new XmlWriterSettings
             {
                 Indent = true
-            }))
-            {
-                Build(writer);
-            }
+            });
+            Build(writer);
         }
 
         public void Build(XmlWriter writer)
