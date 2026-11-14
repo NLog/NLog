@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="CheckSourceCode/SourceCodeTests.csproj" />
+  <Project Path="DumpApiXml/DumpApiXml.csproj" />
+  <Project Path="MakeNLogXSD/MakeNLogXSD.csproj" />
+  <Project Path="MergeApiXml/MergeApiXml.csproj" />
+  <Project Path="NLogNugetPackages/NLogNugetPackages.csproj" />
+  <Project Path="SandcastleDocs/dll_to_doc/dll_to_doc.csproj" />
+</Solution>

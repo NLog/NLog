@@ -258,10 +258,10 @@ jobs:
           dotnet-version: 11.x
 
       - name: Build source code checks
-        run: dotnet build tools/CheckSourceCode/src/NLog.SourceCodeTests.sln --configuration Release --no-incremental
+        run: dotnet build tools/CheckSourceCode/SourceCodeTests.csproj --configuration Release --no-incremental
 
       - name: Run source code checks
-        run: dotnet run --project tools/CheckSourceCode/src/NLog.SourceCodeTests/NLog.SourceCodeTests.csproj --configuration Release --no-build
+        run: dotnet run --project tools/CheckSourceCode/SourceCodeTests.csproj --configuration Release --no-build
 
       - name: Build NLog for schema generation
         run: dotnet build src/NLog/NLog.csproj --configuration Release --framework net481 -p:TargetFrameworks=net481
