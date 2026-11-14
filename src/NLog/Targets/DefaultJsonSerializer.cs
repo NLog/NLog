@@ -233,7 +233,7 @@ namespace NLog.Targets
             }
             else
             {
-                var objectPropertyList = _objectReflectionCache.LookupObjectProperties(value);
+                var objectPropertyList = _objectReflectionCache.LookupObjectProperties(value, options.IncludePublicFields);
                 return SerializeObjectPropertyList(value, ref objectPropertyList, destination, options, ref objectsInPath, depth);
             }
         }
@@ -749,6 +749,7 @@ namespace NLog.Targets
             destination.Append('}');
             return true;
         }
+
 
         private bool SerializeObjectAsString(object value, StringBuilder destination, JsonSerializeOptions options)
         {
