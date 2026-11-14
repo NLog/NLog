@@ -58,7 +58,7 @@ namespace NLog.Targets.Wrappers
         public ChannelTimer(TimerCallback callback)
         {
             _callback = callback ?? throw new ArgumentNullException(nameof(callback));
-            _timer = new Timer(OnTimer, null, Timeout.Infinite, Timeout.Infinite);
+            _timer = new Timer(OnTimer, this, Timeout.Infinite, Timeout.Infinite);
         }
 
         /// <summary>
@@ -96,19 +96,20 @@ namespace NLog.Targets.Wrappers
             return _timer.WaitForDispose(timeout);
         }
 
-        private void OnTimer(object? state)
+        private static void OnTimer(object? state)
         {
-            lock (_lockObject)
+            var channelTimer = (ChannelTimer)state!;
+            lock (channelTimer._lockObject)
             {
-                if (_stopped)
+                if (channelTimer._stopped)
                     return;
             }
 
             var previousTimer = _currentCallbackTimer;
-            _currentCallbackTimer = this;
+            _currentCallbackTimer = channelTimer;
             try
             {
-                _callback(state);
+                channelTimer._callback(null);
             }
             finally
             {
