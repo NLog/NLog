@@ -1,5 +1,5 @@
 <Solution>
-  <Project Path="CheckSourceCode/src/NLog.SourceCodeTests/NLog.SourceCodeTests.csproj" />
+  <Project Path="CheckSourceCode/NLog.SourceCodeTests.csproj" />
   <Project Path="DumpApiXml/DumpApiXml.csproj" />
   <Project Path="MakeNLogXSD/MakeNLogXSD.csproj" />
   <Project Path="MergeApiXml/MergeApiXml.csproj" />
