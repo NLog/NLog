@@ -188,7 +188,7 @@ namespace NLog.Targets
 #endif
 
 #if !NETFRAMEWORK && !WINDOWS
-        private Stream CreateUnixStream(string filePath)
+        private static Stream CreateUnixStream(string filePath)
         {
             // Linux fcntl.h values (stable across Linux architectures)
             int O_WRONLY = (1 << 0);
