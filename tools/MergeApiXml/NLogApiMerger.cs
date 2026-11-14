@@ -50,7 +50,6 @@ namespace MergeApiXml
                 SortProperties(typeElement);
             }
 
-            PostProcessSupportedIn(resultDoc.Root);
             Result = resultDoc;
         }
 
@@ -84,10 +83,6 @@ namespace MergeApiXml
             }
 
             return p;
-        }
-
-        private void PostProcessSupportedIn(XElement rootElement)
-        {
         }
 
         private void SortProperties(XElement typeElement)
