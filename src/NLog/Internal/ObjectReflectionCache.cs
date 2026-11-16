@@ -435,13 +435,9 @@ namespace NLog.Internal
                 _fastLookup = CreateIDictionaryEnumerator;
             }
 
-            // The expando enumerator is stored as a single nameless entry, which no real member can be
-            private static bool IsExpandoLookup(FastPropertyLookup[] fastLookup)
-                => fastLookup.Length == 1 && fastLookup[0].Name.Length == 0;
-
             public bool TryGetPropertyValue(string name, out PropertyValue propertyValue)
             {
-                if (_properties.Length == 0 && (_fastLookup is null || _fastLookup.Length == 0 || IsExpandoLookup(_fastLookup)))
+                if (_properties.Length == 0)
                 {
                     if (_object is IDictionary<string, object> expandoObject)
                     {
@@ -517,7 +513,7 @@ namespace NLog.Internal
 
             public Enumerator GetEnumerator()
             {
-                if (_properties.Length > 0 || _fastLookup is null || _fastLookup.Length == 0 || !IsExpandoLookup(_fastLookup))
+                if (_properties.Length > 0 || _fastLookup is null || _fastLookup.Length == 0)
                     return new Enumerator(_object, _properties, _fastLookup);
 
                 var expandoObject = _fastLookup[0].ValueLookup(_object, ArrayHelper.Empty<object>());
