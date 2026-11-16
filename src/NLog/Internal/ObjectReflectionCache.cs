@@ -85,7 +85,7 @@ namespace NLog.Internal
                         return new ObjectPropertyList(result, ObjectPropertyInfos.SimpleToString.Properties, ObjectPropertyInfos.SimpleToString.FastLookup);
                     }
 
-                    if (TryLookupExpandoObject(result, out propertyValues))
+                    if (TryLookupExpandoObject(result, includeFields, out propertyValues))
                     {
                         return propertyValues;
                     }
