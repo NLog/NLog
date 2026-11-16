@@ -437,7 +437,7 @@ namespace NLog.Internal
 
             public bool TryGetPropertyValue(string name, out PropertyValue propertyValue)
             {
-                if (_properties.Length == 0)
+                if (_properties.Length == 0 && IsExpandoObject)
                 {
                     if (_object is IDictionary<string, object> expandoObject)
                     {
@@ -513,7 +513,7 @@ namespace NLog.Internal
 
             public Enumerator GetEnumerator()
             {
-                if (_properties.Length > 0 || _fastLookup is null || _fastLookup.Length == 0)
+                if (_properties.Length > 0 || _fastLookup is null || _fastLookup.Length == 0 || !IsExpandoObject)
                     return new Enumerator(_object, _properties, _fastLookup);
 
                 var expandoObject = _fastLookup[0].ValueLookup(_object, ArrayHelper.Empty<object>());
