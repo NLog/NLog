@@ -712,9 +712,13 @@ namespace NLog
             }
 
             var timeout = cancellationToken.CanBeCanceled ? -1 : (int)DefaultFlushTimeout.TotalMilliseconds;
-            var flushTimeout = System.Threading.Tasks.Task.Delay(timeout, cancellationToken).ContinueWith(prevTask => throw new System.Threading.Tasks.TaskCanceledException("NLog LogFactory Flush Timeout"), CancellationToken.None, System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously, System.Threading.Tasks.TaskScheduler.Default);
-            flushTimeout.ContinueWith(prevTask => flushTimeoutHandler.Invoke(null), CancellationToken.None, System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously, System.Threading.Tasks.TaskScheduler.Default);
-            return System.Threading.Tasks.TaskExtensions.Unwrap(System.Threading.Tasks.Task.WhenAny(flushCompleted.Task, flushTimeout));
+            System.Threading.Tasks.Task.Delay(timeout, cancellationToken).ContinueWith(prevTask =>
+            {
+                // Complete the same task for both outcomes, so a late timeout cannot leave an unobserved exception.
+                if (flushCompleted.TrySetException(new System.Threading.Tasks.TaskCanceledException("NLog LogFactory Flush Timeout")))
+                    flushTimeoutHandler.Invoke(null);
+            }, CancellationToken.None, System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously, System.Threading.Tasks.TaskScheduler.Default);
+            return flushCompleted.Task;
         }
 #endif
 
