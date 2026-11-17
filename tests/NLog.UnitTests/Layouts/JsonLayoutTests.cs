@@ -1326,6 +1326,34 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void IncludePublicFields_SerializesFieldsOfPropertyValue()
+        {
+            var jsonLayout = new JsonLayout() { IncludeEventProperties = true, IncludePublicFields = true };
+
+            var logEventInfo = new LogEventInfo();
+            logEventInfo.Properties["Person"] = new ClassWithOnlyFields { Name = "John", Age = 42 };
+
+            Assert.Equal("{\"Person\":{\"Name\":\"John\",\"Age\":42}}", jsonLayout.Render(logEventInfo));
+        }
+
+        [Fact]
+        public void IncludePublicFields_DottedRecursion_FlattensFields()
+        {
+            var jsonLayout = new JsonLayout() { IncludeEventProperties = true, IncludePublicFields = true, DottedRecursion = true };
+
+            var logEventInfo = new LogEventInfo();
+            logEventInfo.Properties["Person"] = new ClassWithOnlyFields { Name = "John", Age = 42 };
+
+            Assert.Equal("{\"Person.Name\":\"John\",\"Person.Age\":42}", jsonLayout.Render(logEventInfo));
+        }
+
+        private sealed class ClassWithOnlyFields
+        {
+            public string Name;
+            public int Age;
+        }
+
+        [Fact]
         public void DottedRecursion_WithMaxRecursionLimit()
         {
             var jsonLayout = new JsonLayout()
