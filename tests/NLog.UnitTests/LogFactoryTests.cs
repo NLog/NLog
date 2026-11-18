@@ -132,6 +132,56 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        public void FlushAsync_CancellationAfterSuccess_NoUnobservedException()
+        {
+            int unobservedTimeouts = 0;
+            EventHandler<System.Threading.Tasks.UnobservedTaskExceptionEventArgs> handler = (sender, args) =>
+            {
+                foreach (var exception in args.Exception.Flatten().InnerExceptions)
+                {
+                    if (exception is System.Threading.Tasks.TaskCanceledException && exception.Message == "NLog LogFactory Flush Timeout")
+                    {
+                        Interlocked.Increment(ref unobservedTimeouts);
+                        args.SetObserved();
+                    }
+                }
+            };
+
+            System.Threading.Tasks.TaskScheduler.UnobservedTaskException += handler;
+            try
+            {
+                FlushAsync_CancelAfterSuccess();
+                for (int i = 0; i < 5; ++i)
+                {
+                    Thread.Sleep(100);
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                }
+                Assert.Equal(0, Volatile.Read(ref unobservedTimeouts));
+            }
+            finally
+            {
+                System.Threading.Tasks.TaskScheduler.UnobservedTaskException -= handler;
+            }
+        }
+
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+        private static void FlushAsync_CancelAfterSuccess()
+        {
+            using (var logFactory = new LogFactory())
+            using (var cancellation = new CancellationTokenSource())
+            {
+                // A target is required to exercise the timeout path.
+                logFactory.Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteToMethodCall((evt, parms) => { }));
+                var task = logFactory.FlushAsync(cancellation.Token);
+                Assert.True(task.Wait(5000));
+                cancellation.Cancel();
+                Assert.False(task.IsFaulted);
+                Assert.False(task.IsCanceled);
+            }
+        }
+
+        [Fact]
         public void FlushAsync_TargetTimeout_Async()
         {
             var logFactory = new LogFactory();
