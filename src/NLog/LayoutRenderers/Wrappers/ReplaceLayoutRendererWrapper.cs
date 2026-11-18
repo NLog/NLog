@@ -119,7 +119,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (IgnoreCase || WholeWords)
             {
-                var stringComparer = IgnoreCase ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture;
+                var stringComparer = IgnoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
                 return StringHelpers.Replace(text, _searchFor, _replaceWith, stringComparer, WholeWords);
             }
             else

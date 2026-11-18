@@ -66,6 +66,29 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         }
 
         [Fact]
+        public void ReplaceTestIgnoreCaseTurkishCulture()
+        {
+            var originalCulture = System.Globalization.CultureInfo.CurrentCulture;
+            try
+            {
+                System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo("tr-TR");
+
+                // Arrange
+                SimpleLayout layout = @"${replace:inner=${message}:searchFor=info:replaceWith=X:ignorecase=true}";
+
+                // Act
+                var result = layout.Render(new LogEventInfo(LogLevel.Info, "Test", "An INFO and an info message."));
+
+                // Assert
+                Assert.Equal("An X and an X message.", result);
+            }
+            finally
+            {
+                System.Globalization.CultureInfo.CurrentCulture = originalCulture;
+            }
+        }
+
+        [Fact]
         public void ReplaceTestWholeWordsWithoutRegEx()
         {
             // Arrange
