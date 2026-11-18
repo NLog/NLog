@@ -56,7 +56,7 @@ namespace NLog.Layouts
         private const int SpacesPerIndent = 2;
         private Layout[]? _precalculateLayouts;
 
-        private LimitRecursionJsonConvert JsonConverter => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, SuppressSpaces, ResolveService<IJsonConverter>()));
+        private LimitRecursionJsonConvert JsonConverter => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, SuppressSpaces, IncludePublicFields, ResolveService<IJsonConverter>()));
         private LimitRecursionJsonConvert? _jsonConverter;
         private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = ResolveService<IValueFormatter>());
         private IValueFormatter? _valueFormatter;
@@ -69,11 +69,11 @@ namespace NLog.Layouts
             private readonly Targets.DefaultJsonSerializer? _serializer;
             private readonly Targets.JsonSerializeOptions _serializerOptions;
 
-            public LimitRecursionJsonConvert(int maxRecursionLimit, bool suppressSpaces, IJsonConverter converter)
+            public LimitRecursionJsonConvert(int maxRecursionLimit, bool suppressSpaces, bool includePublicFields, IJsonConverter converter)
             {
                 _converter = converter;
                 _serializer = converter as Targets.DefaultJsonSerializer;
-                _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit), SuppressSpaces = suppressSpaces, SanitizeDictionaryKeys = true };
+                _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit), SuppressSpaces = suppressSpaces, IncludePublicFields = includePublicFields, SanitizeDictionaryKeys = true };
             }
 
             public bool SerializeObject(object? value, StringBuilder builder)
@@ -241,6 +241,13 @@ namespace NLog.Layouts
         /// <remarks>Default: <see langword="1"/></remarks>
         /// <docgen category='Layout Options' order='100' />
         public int MaxRecursionLimit { get; set; } = 1;
+
+        /// <summary>
+        /// Gets or sets whether the JSON serializer should write the public fields of an object that has no public properties
+        /// </summary>
+        /// <remarks>Default: <see langword="false"/></remarks>
+        /// <docgen category='Layout Options' order='100' />
+        public bool IncludePublicFields { get; set; }
 
         /// <summary>
         /// Should forward slashes be escaped? If <see langword="true"/>, / will be converted to \/
@@ -530,7 +537,7 @@ namespace NLog.Layouts
                 return;
             }
 
-            var objectPropertyList = ObjectReflectionCache.LookupObjectProperties(propertyValue);
+            var objectPropertyList = ObjectReflectionCache.LookupObjectProperties(propertyValue, IncludePublicFields);
             if (objectPropertyList.IsSimpleValue)
             {
                 AppendJsonPropertyValue(basePropertyName, objectPropertyList.ObjectValue, sb, beginJsonMessage);
