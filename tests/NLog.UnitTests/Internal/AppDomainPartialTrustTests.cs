@@ -46,15 +46,18 @@ namespace NLog.UnitTests.Internal
 {
     public class AppDomainPartialTrustTests : NLogTestBase
     {
-        [Fact]
-        public void MediumTrustWithExternalClass()
+        [Theory]
+        [InlineData("ThreadPool")]
+        [InlineData("DedicatedThread")]
+        [InlineData("Timer")]
+        public void MediumTrustWithExternalClass(string dispatcher)
         {
             var fileWritePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             try
             {
                 int times = 25;
 
-                RunAppDomainTestMethod(fileWritePath, times, true);
+                RunAppDomainTestMethod(fileWritePath, times, true, dispatcher);
 
                 // this also checks that thread-volatile layouts
                 // such as ${threadid} are properly cached and not recalculated
@@ -94,7 +97,7 @@ namespace NLog.UnitTests.Internal
             try
             {
                 int times = 5;
-                RunAppDomainTestMethod(fileWritePath, times, false);
+                RunAppDomainTestMethod(fileWritePath, times, false, "ThreadPool");
 
                 Assert.False(File.Exists(Path.Combine(fileWritePath, "Trace.txt")));
                 Assert.False(File.Exists(Path.Combine(fileWritePath, "Debug.txt")));
@@ -109,7 +112,7 @@ namespace NLog.UnitTests.Internal
             }
         }
 
-        private static void RunAppDomainTestMethod(string fileWritePath, int times, bool autoShutdown)
+        private static void RunAppDomainTestMethod(string fileWritePath, int times, bool autoShutdown, string dispatcher)
         {
             // ClassUnderTest must extend MarshalByRefObject
             AppDomain partialTrusted = MediumTrustContext.CreatePartialTrustDomain(fileWritePath);
@@ -119,7 +122,7 @@ namespace NLog.UnitTests.Internal
             using (ScopeContext.PushNestedState(new { Hello = "World" }))
             {
                 partialTrusted.DoCallBack(HelloWorld);
-                classUnderTest.PartialTrustSuccess(times, fileWritePath, autoShutdown);
+                classUnderTest.PartialTrustSuccess(times, fileWritePath, autoShutdown, dispatcher);
             }
             AppDomain.Unload(partialTrusted);
         }
@@ -135,14 +138,27 @@ namespace NLog.UnitTests.Internal
     [Serializable]
     public class ClassUnderTest : MarshalByRefObject
     {
-        public void PartialTrustSuccess(int times, string fileWritePath, bool autoShutdown)
+        public void PartialTrustSuccess(int times, string fileWritePath, bool autoShutdown, string dispatcher)
         {
             var filePath = Path.Combine(fileWritePath, "${level}.txt");
+            string asyncTargets;
+            switch (dispatcher)
+            {
+                case "DedicatedThread":
+                    asyncTargets = "<targets><default-wrapper type='AsyncWrapper' dispatcher='DedicatedThread' />";
+                    break;
+                case "Timer":
+                    asyncTargets = "<targets><default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='50' />";    // Automatic timer
+                    break;
+                default:
+                    asyncTargets = "<targets async='true'>";
+                    break;
+            }
 
             // NOTE Using BufferingWrapper to validate that DomainUnload remembers to perform flush
             var configXml = $@"
             <nlog throwExceptions='false' autoShutdown='{autoShutdown}' internalLogLevel='Info'>
-                <targets async='true'>
+                {asyncTargets}
                     <target name='file' type='BufferingWrapper' bufferSize='10000'>
                         <target name='filewrapped' type='file' layout='${{message}} ${{threadid}}' filename='{filePath}' LineEnding='lf' concurrentWrites='true' />
                     </target>
