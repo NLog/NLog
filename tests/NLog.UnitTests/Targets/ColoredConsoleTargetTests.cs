@@ -103,6 +103,32 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void WordHighlightingTextIgnoreCaseTurkishCulture()
+        {
+            var originalCulture = System.Globalization.CultureInfo.CurrentCulture;
+            try
+            {
+                System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo("tr-TR");
+
+                var target = new ColoredConsoleTarget { Layout = "${logger} ${message}" };
+                target.WordHighlightingRules.Add(
+                    new ConsoleWordHighlightingRule
+                    {
+                        ForegroundColor = ConsoleOutputColor.Red,
+                        Text = "info",
+                        IgnoreCase = true,
+                    });
+
+                AssertOutput(target, "An INFO and an info message.",
+                    new string[] { "An ", "INFO", " and an ", "info", " message." });
+            }
+            finally
+            {
+                System.Globalization.CultureInfo.CurrentCulture = originalCulture;
+            }
+        }
+
+        [Fact]
         public void WordHighlightingTextWholeWords()
         {
             var target = new ColoredConsoleTarget { Layout = "${logger} ${message}" };
