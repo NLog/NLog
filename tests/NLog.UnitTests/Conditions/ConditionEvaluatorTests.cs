@@ -154,6 +154,18 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult(string.Empty, "''");
             AssertEvaluationResult("x", "'x'");
             AssertEvaluationResult("d'Artagnan", "'d''Artagnan'");
+            AssertEvaluationResult(int.MaxValue, "2147483647");
+            AssertEvaluationResult(int.MinValue, "-2147483648");
+            AssertEvaluationResult(3000000000L, "3000000000");
+            AssertEvaluationResult(-3000000000L, "-3000000000");
+        }
+
+        [Fact]
+        public void RelationalOperatorOutsideInt32RangeTest()
+        {
+            AssertEvaluationResult(true, "3000000000 > 2147483647");
+            AssertEvaluationResult(true, "-3000000000 < 1");
+            AssertEvaluationResult(true, "3000000000 == 3000000000.0");
         }
 
         [Fact]
