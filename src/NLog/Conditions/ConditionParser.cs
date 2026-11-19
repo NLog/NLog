@@ -317,8 +317,14 @@ namespace NLog.Conditions
                 return new ConditionLiteralExpression(negative ? -d : d);
             }
 
-            var i = int.Parse(numberString, CultureInfo.InvariantCulture);
-            return new ConditionLiteralExpression(negative ? -i : i);
+            var l = long.Parse(negative ? "-" + numberString : numberString, NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture);
+
+            if (l >= int.MinValue && l <= int.MaxValue)
+            {
+                return new ConditionLiteralExpression((int)l);
+            }
+
+            return new ConditionLiteralExpression(l);
         }
 
         private ConditionExpression ParseBooleanRelation()

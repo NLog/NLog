@@ -163,6 +163,15 @@ namespace NLog.UnitTests.Conditions
         }
 
         [Fact]
+        public void NumberOutsideInt32RangeTest()
+        {
+            Assert.Equal("3000000000", ((ConditionExpression)"3000000000").ToString());
+            Assert.Equal("-3000000000", ((ConditionExpression)"-3000000000").ToString());
+            Assert.Equal("-2147483648", ((ConditionExpression)"-2147483648").ToString());
+            Assert.Equal("-9223372036854775808", ((ConditionExpression)"-9223372036854775808").ToString());
+        }
+
+        [Fact]
         public void ExtraParenthesisTest()
         {
             Assert.Equal("3.141592", ((ConditionExpression)"(((3.141592)))").ToString());
