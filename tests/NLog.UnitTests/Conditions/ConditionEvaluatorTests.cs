@@ -158,6 +158,8 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult(int.MinValue, "-2147483648");
             AssertEvaluationResult(3000000000L, "3000000000");
             AssertEvaluationResult(-3000000000L, "-3000000000");
+            AssertEvaluationResult(long.MaxValue, "9223372036854775807");
+            AssertEvaluationResult(long.MinValue, "-9223372036854775808");
         }
 
         [Fact]

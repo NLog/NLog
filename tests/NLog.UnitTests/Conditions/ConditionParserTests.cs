@@ -168,6 +168,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Equal("3000000000", ((ConditionExpression)"3000000000").ToString());
             Assert.Equal("-3000000000", ((ConditionExpression)"-3000000000").ToString());
             Assert.Equal("-2147483648", ((ConditionExpression)"-2147483648").ToString());
+            Assert.Equal("-9223372036854775808", ((ConditionExpression)"-9223372036854775808").ToString());
         }
 
         [Fact]
