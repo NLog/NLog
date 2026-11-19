@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public DateLayoutRenderer()
         {
-            _format = Format = "yyyy/MM/dd HH:mm:ss.fff";
+            _format = Format = "yyyy-MM-dd HH:mm:ss.ffff";
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the date format. Can be any argument accepted by DateTime.ToString(format).
         /// </summary>
-        /// <remarks>Default: <c>yyyy/MM/dd HH:mm:ss.fff</c></remarks>
+        /// <remarks>Default: <c>yyyy-MM-dd HH:mm:ss.ffff</c></remarks>
         /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public string Format
