@@ -93,7 +93,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
                 // Assert
                 Assert.Equal(expectedValue, GlobalDiagnosticsContext.Get(nameof(GDCIgnoreCaseTest)));
-                Assert.Equal(expectedValue, GlobalDiagnosticsContext.Get(nameof(GDCIgnoreCaseTest).ToLower()));
+                Assert.Equal(expectedValue, GlobalDiagnosticsContext.Get(nameof(GDCIgnoreCaseTest).ToLowerInvariant()));
             }
             finally
             {
