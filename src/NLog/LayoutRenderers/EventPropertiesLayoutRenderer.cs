@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
     using System.Globalization;
     using System.Text;
     using NLog.Config;
@@ -129,7 +130,30 @@ namespace NLog.LayoutRenderers
 
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object? value)
         {
-            TryGetValue(logEvent, out value);
+            if (!logEvent.HasProperties || !logEvent.Properties.TryGetValue(_item, out value))
+            {
+                value = null;
+                return true;
+            }
+
+            if (_objectPropertyPath.PathNames != null)
+            {
+                if (value != null && Convert.GetTypeCode(value) == TypeCode.Object && !value.GetType().IsValueType)
+                {
+                    value = null;
+                    return false;
+                }
+
+                if (ObjectReflectionCache.TryGetObjectProperty(value, _objectPropertyPath.PathNames, out var rawValue))
+                {
+                    value = rawValue;
+                }
+                else
+                {
+                    value = null;
+                }
+            }
+
             return true;
         }
 
@@ -149,7 +173,7 @@ namespace NLog.LayoutRenderers
 
         string? INoAllocationStringValueRenderer.GetFormattedStringNoAllocation(LogEventInfo logEvent)
         {
-            if (Format is null)
+            if (Format is null && _objectPropertyPath.PathNames is null)
                 return (!TryGetValue(logEvent, out var value) || value is null) ? string.Empty : value as string;
             else
                 return null;

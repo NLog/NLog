@@ -198,5 +198,44 @@ namespace NLog.UnitTests.LayoutRenderers
             logEvent2.Properties["prop1"] = new { Id = 1, id = 2, Name = "test", Nested = new { Id = 3 } };
             Assert.Equal(expectedValue, layout.Render(logEvent2));
         }
+
+        [Fact]
+        public void ObjectPathPrecalculateMutableObjectTest()
+        {
+            Layout stringLayout = "${event-properties:prop1:objectpath=Name}";
+            Layout intLayout = "${event-properties:prop1:objectpath=Id}";
+
+            var mutableHolder = new MutablePropertyHolder { Id = 42, Name = "initial" };
+            var logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["prop1"] = mutableHolder;
+
+            stringLayout.Precalculate(logEvent);
+            intLayout.Precalculate(logEvent);
+
+            mutableHolder.Id = 99;
+            mutableHolder.Name = "mutated";
+
+            Assert.Equal("initial", stringLayout.Render(logEvent));
+            Assert.Equal("42", intLayout.Render(logEvent));
+            Assert.False(stringLayout.TryGetRawValue(logEvent, out _));
+            Assert.False(intLayout.TryGetRawValue(logEvent, out _));
+        }
+
+        [Fact]
+        public void ObjectPathTryGetRawValueStructTest()
+        {
+            Layout layout = "${event-properties:prop1:objectpath=Key}";
+            var logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["prop1"] = new KeyValuePair<string, int>("myKey", 42);
+
+            Assert.True(layout.TryGetRawValue(logEvent, out var rawValue));
+            Assert.Equal("myKey", rawValue);
+        }
+
+        private sealed class MutablePropertyHolder
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
     }
 }
