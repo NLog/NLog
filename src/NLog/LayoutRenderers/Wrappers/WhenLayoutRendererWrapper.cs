@@ -50,8 +50,10 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("when")]
     [AmbientProperty(nameof(When))]
     [ThreadAgnostic]
-    public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBase, IRawValue
+    public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBase, IRawValuePrecalculate
     {
+        private bool _whenNeedsPrecalculate;
+
         /// <summary>
         /// Gets or sets the condition that must be met for the <see cref="WrapperLayoutRendererBase.Inner"/> layout to be printed.
         /// </summary>
@@ -73,6 +75,17 @@ namespace NLog.LayoutRenderers.Wrappers
                 throw new NLogConfigurationException("When-LayoutRenderer When-property must be assigned.");
 
             base.InitializeLayoutRenderer();
+
+            _whenNeedsPrecalculate = false;
+            var whenLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(ConfigurationItemFactory.Default, false, When);
+            foreach (var layout in whenLayouts)
+            {
+                layout.Initialize(LoggingConfiguration);
+                if (!layout.ThreadAgnostic || layout.ThreadAgnosticImmutable)
+                {
+                    _whenNeedsPrecalculate = true;
+                }
+            }
         }
 
         /// <inheritdoc/>
@@ -116,6 +129,23 @@ namespace NLog.LayoutRenderers.Wrappers
             }
 
             return TryGetRawValueFromLayout(logEvent, Else, out value);
+        }
+
+        bool IRawValuePrecalculate.TryPrecalculateRawValue(LogEventInfo logEvent)
+        {
+            if (_whenNeedsPrecalculate)
+            {
+                return false;
+            }
+
+            var activeLayout = ShouldRenderInner(logEvent) ? Inner : Else;
+            if (activeLayout is null)
+            {
+                return false;
+            }
+
+            activeLayout.Precalculate(logEvent);
+            return activeLayout.TryGetRawValue(logEvent, out var rawValue) && SimpleLayout.IsRawValueImmutable(rawValue);
         }
 
         private static bool TryGetRawValueFromLayout(LogEventInfo logEvent, Layout layout, out object? value)

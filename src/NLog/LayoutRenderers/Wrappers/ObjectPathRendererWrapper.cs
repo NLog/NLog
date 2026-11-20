@@ -49,7 +49,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("Object-Path")]
     [AmbientProperty(nameof(ObjectPath))]
     [ThreadAgnostic]
-    public sealed class ObjectPathRendererWrapper : WrapperLayoutRendererBase, IRawValue
+    public sealed class ObjectPathRendererWrapper : WrapperLayoutRendererBase, IRawValuePrecalculate
     {
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));
         private ObjectReflectionCache? _objectReflectionCache;
@@ -110,6 +110,9 @@ namespace NLog.LayoutRenderers.Wrappers
 
         private bool TryGetRawPropertyValue(LogEventInfo logEvent, out object? propertyValue)
         {
+            if (_objectPropertyPath.TryGetCachedRawValue(logEvent, out propertyValue, out var found))
+                return found;
+
             if (Inner?.TryGetRawValue(logEvent, out var rawValue) == true && rawValue != null && TryGetPropertyValue(rawValue, out propertyValue))
                 return true;
 
@@ -127,5 +130,16 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object? value) => TryGetRawPropertyValue(logEvent, out value);
+
+        bool IRawValuePrecalculate.TryPrecalculateRawValue(LogEventInfo logEvent)
+        {
+            if (_objectPropertyPath.TryGetCachedRawValue(logEvent, out _, out _))
+            {
+                return true;
+            }
+
+            var found = TryGetRawPropertyValue(logEvent, out var propertyValue);
+            return _objectPropertyPath.TryCacheRawValue(logEvent, propertyValue, found);
+        }
     }
 }

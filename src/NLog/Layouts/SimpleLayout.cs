@@ -343,11 +343,11 @@ namespace NLog.Layouts
             if (ThreadAgnostic && !ThreadAgnosticImmutable)
                 return false;
 
-            if (_rawValueRenderer != null && TryGetRawValue(logEvent, out var rawValue) && IsRawValueImmutable(rawValue))
-                return false;   // If raw value is immutable, then we can skip precalculate-caching
-
             if (logEvent.TryGetCachedLayoutValue(this, out var _))
                 return false;
+
+            if (_rawValueRenderer != null && TryPrecalculateRawValue(logEvent))
+                return false;   // If raw value is immutable, then we can skip precalculate-caching
 
             if (IsSimpleStringText)
             {
@@ -363,7 +363,40 @@ namespace NLog.Layouts
             return true;
         }
 
-        private static bool IsRawValueImmutable(object? value)
+        private bool TryPrecalculateRawValue(LogEventInfo logEvent)
+        {
+            if (_rawValueRenderer is IRawValuePrecalculate precalculateRenderer)
+            {
+                return TryPrecalculateSafeRawValue(precalculateRenderer, logEvent);
+            }
+
+            return TryGetRawValue(logEvent, out var rawValue) && IsRawValueImmutable(rawValue);
+        }
+
+        private static bool TryPrecalculateSafeRawValue(IRawValuePrecalculate precalculateRenderer, LogEventInfo logEvent)
+        {
+            try
+            {
+                return precalculateRenderer.TryPrecalculateRawValue(logEvent);
+            }
+            catch (Exception exception)
+            {
+                //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
+                if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
+                {
+                    InternalLogger.Warn(exception, "Exception in TryPrecalculateRawValue using '{0}.TryPrecalculateRawValue()'", precalculateRenderer.GetType());
+                }
+
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+            }
+
+            return false;
+        }
+
+        internal static bool IsRawValueImmutable(object? value)
         {
             return value != null && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType);
         }

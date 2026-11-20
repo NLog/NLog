@@ -35,6 +35,8 @@ namespace NLog.Internal
 {
     internal struct ObjectPropertyPath
     {
+        private Layouts.Layout? _rawValueCacheKey;
+
         public string[]? PathNames { get; private set; }
 
         /// <summary>
@@ -43,7 +45,58 @@ namespace NLog.Internal
         public string? Value
         {
             get => PathNames?.Length > 0 ? string.Join(".", PathNames) : null;
-            set => PathNames = StringHelpers.IsNullOrWhiteSpace(value) ? null : value?.SplitAndTrimTokens('.');
+            set
+            {
+                PathNames = StringHelpers.IsNullOrWhiteSpace(value) ? null : value?.SplitAndTrimTokens('.');
+                _rawValueCacheKey = PathNames != null ? new ObjectPathRawValueLayout() : null;
+            }
+        }
+
+        public bool TryGetCachedRawValue(LogEventInfo logEvent, out object? rawValue, out bool found)
+        {
+            if (_rawValueCacheKey != null && logEvent.TryGetCachedLayoutValue(_rawValueCacheKey, out var cachedValue))
+            {
+                if (ReferenceEquals(cachedValue, _rawValueCacheKey))
+                {
+                    rawValue = null;
+                    found = false;
+                }
+                else
+                {
+                    rawValue = cachedValue;
+                    found = true;
+                }
+                return true;
+            }
+
+            rawValue = null;
+            found = false;
+            return false;
+        }
+
+        public bool TryCacheRawValue(LogEventInfo logEvent, object? rawValue, bool found)
+        {
+            if (_rawValueCacheKey is null)
+                return false;
+
+            if (!found)
+            {
+                logEvent.AddCachedLayoutValue(_rawValueCacheKey, _rawValueCacheKey);
+                return true;
+            }
+
+            if (rawValue is null || Layouts.SimpleLayout.IsRawValueImmutable(rawValue))
+            {
+                logEvent.AddCachedLayoutValue(_rawValueCacheKey, rawValue);
+                return true;
+            }
+
+            return false;
+        }
+
+        private sealed class ObjectPathRawValueLayout : Layouts.Layout
+        {
+            protected override string GetFormattedMessage(LogEventInfo logEvent) => string.Empty;
         }
     }
 }

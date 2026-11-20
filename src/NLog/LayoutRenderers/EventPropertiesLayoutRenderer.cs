@@ -50,7 +50,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("event-context")]
     [ThreadAgnostic]
     [ThreadAgnosticImmutable]
-    public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue, INoAllocationStringValueRenderer
+    public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValuePrecalculate, INoAllocationStringValueRenderer
     {
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));
         private ObjectReflectionCache? _objectReflectionCache;
@@ -133,6 +133,29 @@ namespace NLog.LayoutRenderers
             return true;
         }
 
+        bool IRawValuePrecalculate.TryPrecalculateRawValue(LogEventInfo logEvent)
+        {
+            var pathNames = _objectPropertyPath.PathNames;
+            if (pathNames is null)
+            {
+                TryGetValue(logEvent, out var rawValue);
+                return Layouts.SimpleLayout.IsRawValueImmutable(rawValue);
+            }
+
+            if (_objectPropertyPath.TryGetCachedRawValue(logEvent, out _, out _))
+            {
+                return true;
+            }
+
+            if (!logEvent.HasProperties || !logEvent.Properties.TryGetValue(_item, out var propValue) || propValue is null)
+            {
+                return true;
+            }
+
+            var pathValue = ObjectReflectionCache.TryGetObjectProperty(propValue, pathNames, out var foundValue) ? foundValue : null;
+            return _objectPropertyPath.TryCacheRawValue(logEvent, pathValue, found: true);
+        }
+
         string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             if (!MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format))
@@ -149,7 +172,7 @@ namespace NLog.LayoutRenderers
 
         string? INoAllocationStringValueRenderer.GetFormattedStringNoAllocation(LogEventInfo logEvent)
         {
-            if (Format is null)
+            if (Format is null && _objectPropertyPath.PathNames is null)
                 return (!TryGetValue(logEvent, out var value) || value is null) ? string.Empty : value as string;
             else
                 return null;
@@ -157,6 +180,12 @@ namespace NLog.LayoutRenderers
 
         private bool TryGetValue(LogEventInfo logEvent, out object? value)
         {
+            var pathNames = _objectPropertyPath.PathNames;
+            if (pathNames != null && _objectPropertyPath.TryGetCachedRawValue(logEvent, out value, out var found))
+            {
+                return found;
+            }
+
             value = null;
 
             if (!logEvent.HasProperties)
@@ -165,9 +194,9 @@ namespace NLog.LayoutRenderers
             if (!logEvent.Properties.TryGetValue(_item, out value))
                 return false;
 
-            if (_objectPropertyPath.PathNames != null)
+            if (pathNames != null)
             {
-                if (ObjectReflectionCache.TryGetObjectProperty(value, _objectPropertyPath.PathNames, out var rawValue))
+                if (ObjectReflectionCache.TryGetObjectProperty(value, pathNames, out var rawValue))
                 {
                     value = rawValue;
                 }
