@@ -108,10 +108,15 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
-        private bool TryGetRawPropertyValue(LogEventInfo logEvent, out object? propertyValue)
+        private bool TryGetRawPropertyValue(LogEventInfo logEvent, out object? propertyValue, bool rawValue = false)
         {
-            if (Inner?.TryGetRawValue(logEvent, out var rawValue) == true && rawValue != null && TryGetPropertyValue(rawValue, out propertyValue))
-                return true;
+            if (Inner?.TryGetRawValue(logEvent, out var innerValue) == true && innerValue != null)
+            {
+                if (!rawValue || (Inner.ThreadAgnostic && !Inner.ThreadAgnosticImmutable) || Convert.GetTypeCode(innerValue) != TypeCode.Object || innerValue.GetType().IsValueType)
+                {
+                    return TryGetPropertyValue(innerValue, out propertyValue);
+                }
+            }
 
             propertyValue = null;
             return false;
@@ -126,6 +131,6 @@ namespace NLog.LayoutRenderers.Wrappers
             return ObjectReflectionCache.TryGetObjectProperty(sourceObject, _objectPropertyPath.PathNames, out propertyValue);
         }
 
-        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object? value) => TryGetRawPropertyValue(logEvent, out value);
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object? value) => TryGetRawPropertyValue(logEvent, out value, rawValue: true);
     }
 }

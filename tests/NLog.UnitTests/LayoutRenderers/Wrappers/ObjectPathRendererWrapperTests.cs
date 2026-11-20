@@ -131,5 +131,33 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             Assert.Equal(expectedInt, rawValue);
             Assert.Equal(expectedResult, result);
         }
+
+        [Fact]
+        public void ObjectPathPrecalculateMutableEventPropertyTest()
+        {
+            Layout stringLayout = "${object-path:${event-properties:prop1}:path=Name}";
+            Layout intLayout = "${object-path:${event-properties:prop1}:path=Id}";
+
+            var mutableHolder = new MutablePropertyHolder { Id = 42, Name = "initial" };
+            var logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["prop1"] = mutableHolder;
+
+            stringLayout.Precalculate(logEvent);
+            intLayout.Precalculate(logEvent);
+
+            mutableHolder.Id = 99;
+            mutableHolder.Name = "mutated";
+
+            Assert.Equal("initial", stringLayout.Render(logEvent));
+            Assert.Equal("42", intLayout.Render(logEvent));
+            Assert.False(stringLayout.TryGetRawValue(logEvent, out _));
+            Assert.False(intLayout.TryGetRawValue(logEvent, out _));
+        }
+
+        private sealed class MutablePropertyHolder
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
     }
 }
