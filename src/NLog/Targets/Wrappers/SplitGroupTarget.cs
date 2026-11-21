@@ -53,10 +53,6 @@ namespace NLog.Targets.Wrappers
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/SplitGroup/NLog.config" />
-    /// <p>
-    /// To set up the log target programmatically use code like this:
-    /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/SplitGroup/Simple/Example.cs" />
     /// </example>
     [Target("SplitGroup", IsCompound = true)]
     public class SplitGroupTarget : CompoundTargetBase
