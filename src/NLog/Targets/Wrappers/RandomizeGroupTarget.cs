@@ -52,10 +52,6 @@ namespace NLog.Targets.Wrappers
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/RandomizeGroup/NLog.config" />
-    /// <p>
-    /// To set up the log target programmatically use code like this:
-    /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/RandomizeGroup/Simple/Example.cs" />
     /// </example>
     [Target("RandomizeGroup", IsCompound = true)]
     public class RandomizeGroupTarget : CompoundTargetBase

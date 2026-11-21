@@ -53,10 +53,6 @@ namespace NLog.Targets.Wrappers
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/FilteringWrapper/NLog.config" />
-    /// <p>
-    /// To set up the log target programmatically use code like this:
-    /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/FilteringWrapper/Simple/Example.cs" />
     /// </example>
     [Target("FilteringWrapper", IsWrapper = true)]
     public class FilteringTargetWrapper : WrapperTargetBase
