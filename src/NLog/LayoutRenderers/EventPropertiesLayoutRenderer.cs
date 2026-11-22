@@ -135,25 +135,13 @@ namespace NLog.LayoutRenderers
 
         bool IRawValuePrecalculate.TryPrecalculateRawValue(LogEventInfo logEvent)
         {
-            var pathNames = _objectPropertyPath.PathNames;
-            if (pathNames is null)
-            {
-                TryGetValue(logEvent, out var rawValue);
-                return Layouts.SimpleLayout.IsRawValueImmutable(rawValue);
-            }
-
-            if (_objectPropertyPath.TryGetCachedRawValue(logEvent, out _, out _))
-            {
+            if (!TryGetValue(logEvent, out var rawValue))
                 return true;
-            }
 
-            if (!logEvent.HasProperties || !logEvent.Properties.TryGetValue(_item, out var propValue) || propValue is null)
-            {
-                return true;
-            }
+            if (_objectPropertyPath.PathNames is null)
+                return rawValue is null || Layouts.SimpleLayout.IsRawValueImmutable(rawValue);
 
-            var pathValue = ObjectReflectionCache.TryGetObjectProperty(propValue, pathNames, out var foundValue) ? foundValue : null;
-            return _objectPropertyPath.TryCacheRawValue(logEvent, pathValue, found: true);
+            return _objectPropertyPath.TryPrecalculateRawValue(logEvent, rawValue);
         }
 
         string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
@@ -180,16 +168,16 @@ namespace NLog.LayoutRenderers
 
         private bool TryGetValue(LogEventInfo logEvent, out object? value)
         {
-            var pathNames = _objectPropertyPath.PathNames;
-            if (pathNames != null && _objectPropertyPath.TryGetCachedRawValue(logEvent, out value, out var found))
-            {
-                return found;
-            }
-
             value = null;
 
             if (!logEvent.HasProperties)
                 return false;
+
+            var pathNames = _objectPropertyPath.PathNames;
+            if (pathNames != null && _objectPropertyPath.TryGetCachedRawValue(logEvent, out value))
+            {
+                return true;
+            }
 
             if (!logEvent.Properties.TryGetValue(_item, out value))
                 return false;

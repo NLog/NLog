@@ -110,8 +110,8 @@ namespace NLog.LayoutRenderers.Wrappers
 
         private bool TryGetRawPropertyValue(LogEventInfo logEvent, out object? propertyValue)
         {
-            if (_objectPropertyPath.TryGetCachedRawValue(logEvent, out propertyValue, out var found))
-                return found;
+            if (_objectPropertyPath.TryGetCachedRawValue(logEvent, out propertyValue))
+                return true;
 
             if (Inner?.TryGetRawValue(logEvent, out var rawValue) == true && rawValue != null && TryGetPropertyValue(rawValue, out propertyValue))
                 return true;
@@ -133,13 +133,12 @@ namespace NLog.LayoutRenderers.Wrappers
 
         bool IRawValuePrecalculate.TryPrecalculateRawValue(LogEventInfo logEvent)
         {
-            if (_objectPropertyPath.TryGetCachedRawValue(logEvent, out _, out _))
+            if (TryGetRawPropertyValue(logEvent, out var propertyValue))
             {
-                return true;
+                return _objectPropertyPath.TryPrecalculateRawValue(logEvent, propertyValue);
             }
 
-            var found = TryGetRawPropertyValue(logEvent, out var propertyValue);
-            return _objectPropertyPath.TryCacheRawValue(logEvent, propertyValue, found);
+            return false;
         }
     }
 }

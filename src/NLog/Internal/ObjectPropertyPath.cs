@@ -52,40 +52,20 @@ namespace NLog.Internal
             }
         }
 
-        public bool TryGetCachedRawValue(LogEventInfo logEvent, out object? rawValue, out bool found)
+        public bool TryGetCachedRawValue(LogEventInfo logEvent, out object? rawValue)
         {
-            if (_rawValueCacheKey != null && logEvent.TryGetCachedLayoutValue(_rawValueCacheKey, out var cachedValue))
+            if (_rawValueCacheKey != null && logEvent.TryGetCachedLayoutValue(_rawValueCacheKey, out rawValue))
             {
-                if (ReferenceEquals(cachedValue, _rawValueCacheKey))
-                {
-                    rawValue = null;
-                    found = false;
-                }
-                else
-                {
-                    rawValue = cachedValue;
-                    found = true;
-                }
                 return true;
             }
 
             rawValue = null;
-            found = false;
             return false;
         }
 
-        public bool TryCacheRawValue(LogEventInfo logEvent, object? rawValue, bool found)
+        public bool TryPrecalculateRawValue(LogEventInfo logEvent, object? rawValue)
         {
-            if (_rawValueCacheKey is null)
-                return false;
-
-            if (!found)
-            {
-                logEvent.AddCachedLayoutValue(_rawValueCacheKey, _rawValueCacheKey);
-                return true;
-            }
-
-            if (rawValue is null || Layouts.SimpleLayout.IsRawValueImmutable(rawValue))
+            if (_rawValueCacheKey != null && (rawValue is null || Layouts.SimpleLayout.IsRawValueImmutable(rawValue)))
             {
                 logEvent.AddCachedLayoutValue(_rawValueCacheKey, rawValue);
                 return true;

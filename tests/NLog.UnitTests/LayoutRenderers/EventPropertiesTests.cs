@@ -315,40 +315,6 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void ObjectPathPrecalculateWhenWrappersTest()
-        {
-            Layout whenEmptyValueLayout = "${event-properties:prop1:objectpath=Id:whenEmpty=0}";
-            Layout whenEmptyFallbackLayout = "${event-properties:prop1:objectpath=Optional:whenEmpty=fallback}";
-            Layout whenStaticConditionLayout = "${when:when=level>=LogLevel.Info:inner=${event-properties:prop1:objectpath=Id}}";
-            Layout whenMutableConditionLayout = "${when:when='${event-properties:prop1:objectpath=Name}'=='initial':inner=${event-properties:prop1:objectpath=Id}:else=0}";
-
-            var mutableHolder = new MutablePropertyHolder { Id = 42, Name = "initial", Optional = null };
-            var logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
-            logEvent.Properties["prop1"] = mutableHolder;
-
-            whenEmptyValueLayout.Precalculate(logEvent);
-            whenEmptyFallbackLayout.Precalculate(logEvent);
-            whenStaticConditionLayout.Precalculate(logEvent);
-            whenMutableConditionLayout.Precalculate(logEvent);
-
-            mutableHolder.Id = 99;
-            mutableHolder.Name = "mutated";
-            mutableHolder.Optional = "now-set";
-
-            Assert.Equal("42", whenEmptyValueLayout.Render(logEvent));
-            Assert.True(whenEmptyValueLayout.TryGetRawValue(logEvent, out var whenEmptyRaw));
-            Assert.Equal(42, whenEmptyRaw);
-
-            Assert.Equal("fallback", whenEmptyFallbackLayout.Render(logEvent));
-
-            Assert.Equal("42", whenStaticConditionLayout.Render(logEvent));
-            Assert.True(whenStaticConditionLayout.TryGetRawValue(logEvent, out var whenStaticRaw));
-            Assert.Equal(42, whenStaticRaw);
-
-            Assert.Equal("42", whenMutableConditionLayout.Render(logEvent));
-        }
-
-        [Fact]
         public void ObjectPathPrecalculateMissingPropertyTest()
         {
             Layout layout = "${event-properties:prop1:objectpath=Id}";

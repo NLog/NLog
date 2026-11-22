@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty(nameof(WhenEmpty))]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBase, IRawValuePrecalculate, IStringValueRenderer
+    public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBase, IRawValue, IStringValueRenderer
     {
         private Func<LogEventInfo, string>? _stringValueRenderer;
 
@@ -147,32 +147,6 @@ namespace NLog.LayoutRenderers.Wrappers
 
             // render WhenEmpty when the inner layout was empty
             return WhenEmpty.TryGetRawValue(logEvent, out value);
-        }
-
-        bool IRawValuePrecalculate.TryPrecalculateRawValue(LogEventInfo logEvent)
-        {
-            if (Inner != null)
-            {
-                Inner.Precalculate(logEvent);
-                if (Inner.TryGetRawValue(logEvent, out var innerValue))
-                {
-                    if (innerValue != null && !innerValue.Equals(string.Empty))
-                    {
-                        return SimpleLayout.IsRawValueImmutable(innerValue);
-                    }
-                }
-                else
-                {
-                    var innerResult = Inner.Render(logEvent);
-                    if (!string.IsNullOrEmpty(innerResult))
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            WhenEmpty.Precalculate(logEvent);
-            return WhenEmpty.TryGetRawValue(logEvent, out var whenEmptyValue) && SimpleLayout.IsRawValueImmutable(whenEmptyValue);
         }
     }
 }
