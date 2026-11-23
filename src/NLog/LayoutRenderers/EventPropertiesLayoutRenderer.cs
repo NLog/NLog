@@ -50,7 +50,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("event-context")]
     [ThreadAgnostic]
     [ThreadAgnosticImmutable]
-    public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue, INoAllocationStringValueRenderer
+    public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValuePrecalculate, INoAllocationStringValueRenderer
     {
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));
         private ObjectReflectionCache? _objectReflectionCache;
@@ -133,6 +133,17 @@ namespace NLog.LayoutRenderers
             return true;
         }
 
+        bool IRawValuePrecalculate.TryPrecalculateRawValue(LogEventInfo logEvent)
+        {
+            if (!TryGetValue(logEvent, out var rawValue))
+                return true;    // No property-value found, so no need to save precalculated value
+
+            if (_objectPropertyPath.PathNames is null)
+                return rawValue is null || Layouts.SimpleLayout.IsRawValueImmutable(rawValue);
+
+            return _objectPropertyPath.TryPrecalculateRawValue(logEvent, rawValue);
+        }
+
         string? IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             if (!MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format))
@@ -149,7 +160,7 @@ namespace NLog.LayoutRenderers
 
         string? INoAllocationStringValueRenderer.GetFormattedStringNoAllocation(LogEventInfo logEvent)
         {
-            if (Format is null)
+            if (Format is null && _objectPropertyPath.PathNames is null)
                 return (!TryGetValue(logEvent, out var value) || value is null) ? string.Empty : value as string;
             else
                 return null;
@@ -162,12 +173,18 @@ namespace NLog.LayoutRenderers
             if (!logEvent.HasProperties)
                 return false;
 
+            var pathNames = _objectPropertyPath.PathNames;
+            if (pathNames != null && _objectPropertyPath.TryGetCachedRawValue(logEvent, out value))
+            {
+                return true;
+            }
+
             if (!logEvent.Properties.TryGetValue(_item, out value))
                 return false;
 
-            if (_objectPropertyPath.PathNames != null)
+            if (pathNames != null)
             {
-                if (ObjectReflectionCache.TryGetObjectProperty(value, _objectPropertyPath.PathNames, out var rawValue))
+                if (ObjectReflectionCache.TryGetObjectProperty(value, pathNames, out var rawValue))
                 {
                     value = rawValue;
                 }

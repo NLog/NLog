@@ -35,6 +35,8 @@ namespace NLog.Internal
 {
     internal struct ObjectPropertyPath
     {
+        private Layouts.Layout? _rawValueCacheKey;
+
         public string[]? PathNames { get; private set; }
 
         /// <summary>
@@ -43,7 +45,38 @@ namespace NLog.Internal
         public string? Value
         {
             get => PathNames?.Length > 0 ? string.Join(".", PathNames) : null;
-            set => PathNames = StringHelpers.IsNullOrWhiteSpace(value) ? null : value?.SplitAndTrimTokens('.');
+            set
+            {
+                PathNames = StringHelpers.IsNullOrWhiteSpace(value) ? null : value?.SplitAndTrimTokens('.');
+                _rawValueCacheKey = PathNames != null ? new ObjectPathRawValueLayout() : null;
+            }
+        }
+
+        public bool TryGetCachedRawValue(LogEventInfo logEvent, out object? rawValue)
+        {
+            if (_rawValueCacheKey != null && logEvent.TryGetCachedLayoutValue(_rawValueCacheKey, out rawValue))
+            {
+                return true;
+            }
+
+            rawValue = null;
+            return false;
+        }
+
+        public bool TryPrecalculateRawValue(LogEventInfo logEvent, object? rawValue)
+        {
+            if (_rawValueCacheKey != null && (rawValue is null || Layouts.SimpleLayout.IsRawValueImmutable(rawValue)))
+            {
+                logEvent.AddCachedLayoutValue(_rawValueCacheKey, rawValue);
+                return true;
+            }
+
+            return false;
+        }
+
+        private sealed class ObjectPathRawValueLayout : Layouts.Layout
+        {
+            protected override string GetFormattedMessage(LogEventInfo logEvent) => string.Empty;
         }
     }
 }

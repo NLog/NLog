@@ -343,11 +343,11 @@ namespace NLog.Layouts
             if (ThreadAgnostic && !ThreadAgnosticImmutable)
                 return false;
 
-            if (_rawValueRenderer != null && TryGetRawValue(logEvent, out var rawValue) && IsRawValueImmutable(rawValue))
-                return false;   // If raw value is immutable, then we can skip precalculate-caching
-
             if (logEvent.TryGetCachedLayoutValue(this, out var _))
                 return false;
+
+            if (_rawValueRenderer != null && TryPrecalculateRawValue(logEvent))
+                return false;   // If raw value is immutable, then we can skip precalculate-caching
 
             if (IsSimpleStringText)
             {
@@ -363,7 +363,17 @@ namespace NLog.Layouts
             return true;
         }
 
-        private static bool IsRawValueImmutable(object? value)
+        private bool TryPrecalculateRawValue(LogEventInfo logEvent)
+        {
+            if (_rawValueRenderer is IRawValuePrecalculate precalculateRenderer)
+            {
+                return precalculateRenderer.TryPrecalculateRawValue(logEvent);
+            }
+
+            return TryGetRawValue(logEvent, out var rawValue) && IsRawValueImmutable(rawValue);
+        }
+
+        internal static bool IsRawValueImmutable(object? value)
         {
             return value != null && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType);
         }

@@ -35,6 +35,7 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using NLog.Layouts;
     using Xunit;
 
@@ -197,6 +198,158 @@ namespace NLog.UnitTests.LayoutRenderers
             LogEventInfo logEvent2 = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
             logEvent2.Properties["prop1"] = new { Id = 1, id = 2, Name = "test", Nested = new { Id = 3 } };
             Assert.Equal(expectedValue, layout.Render(logEvent2));
+        }
+
+        [Fact]
+        public void ObjectPathPrecalculateMutableObjectTest()
+        {
+            Layout stringLayout = "${event-properties:prop1:objectpath=Name}";
+            Layout intLayout = "${event-properties:prop1:objectpath=Id}";
+            Layout formattedLayout = "${event-properties:prop1:objectpath=Id:format=D4}";
+            Layout nullLayout = "${event-properties:prop1:objectpath=Optional}";
+            Layout nullJsonLayout = "${event-properties:prop1:objectpath=Optional:format=@}";
+            Layout mutableSubValueLayout = "${event-properties:prop1:objectpath=Builder}";
+
+            var logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            using (var mutableHolder = new MutablePropertyHolder
+            {
+                Id = 42,
+                Name = "initial",
+                Optional = null,
+                Builder = new StringBuilder("initial")
+            })
+            {
+                logEvent.Properties["prop1"] = mutableHolder;
+
+                Assert.True(intLayout.TryGetRawValue(logEvent, out var rawBeforePrecalculate));
+                Assert.Equal(42, rawBeforePrecalculate);
+
+                stringLayout.Precalculate(logEvent);
+                intLayout.Precalculate(logEvent);
+                formattedLayout.Precalculate(logEvent);
+                nullLayout.Precalculate(logEvent);
+                nullJsonLayout.Precalculate(logEvent);
+                mutableSubValueLayout.Precalculate(logEvent);
+            }
+
+            // Calling Precalculate again after Dispose() mutation should keep the previously cached raw value
+            intLayout.Precalculate(logEvent);
+
+            Assert.Equal("initial", stringLayout.Render(logEvent));
+            Assert.True(stringLayout.TryGetRawValue(logEvent, out var rawName));
+            Assert.Equal("initial", rawName);
+
+            Assert.Equal("42", intLayout.Render(logEvent));
+            Assert.True(intLayout.TryGetRawValue(logEvent, out var rawId));
+            Assert.Equal(42, rawId);
+
+            Assert.Equal("0042", formattedLayout.Render(logEvent));
+            Assert.True(formattedLayout.TryGetRawValue(logEvent, out var rawFormattedId));
+            Assert.Equal(42, rawFormattedId);
+
+            Assert.Equal(string.Empty, nullLayout.Render(logEvent));
+            Assert.True(nullLayout.TryGetRawValue(logEvent, out var rawNull));
+            Assert.Null(rawNull);
+
+            Assert.Equal("null", nullJsonLayout.Render(logEvent));
+
+            Assert.Equal("initial", mutableSubValueLayout.Render(logEvent));
+            Assert.False(mutableSubValueLayout.TryGetRawValue(logEvent, out _));
+        }
+
+        [Fact]
+        public void ObjectPathPrecalculateJsonArrayAndJsonLayoutTest()
+        {
+            var jsonArray = new JsonArrayLayout
+            {
+                SuppressSpaces = true,
+                Items =
+                {
+                    "${level}",
+                    "${logger}",
+                    "${event-properties:prop1:objectpath=Id}",
+                    "${event-properties:prop1:objectpath=Name}",
+                }
+            };
+            jsonArray.Initialize(null);
+
+            var jsonLayout = new JsonLayout
+            {
+                SuppressSpaces = true,
+                Attributes =
+                {
+                    new JsonAttribute("level", "${level}"),
+                    new JsonAttribute("logger", "${logger}"),
+                    new JsonAttribute("id", "${event-properties:prop1:objectpath=Id}") { ValueType = typeof(int) },
+                    new JsonAttribute("name", "${event-properties:prop1:objectpath=Name}"),
+                }
+            };
+            jsonLayout.Initialize(null);
+
+            var mutableHolder = new MutablePropertyHolder { Id = 42, Name = "initial" };
+            var logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["prop1"] = mutableHolder;
+
+            // Without Precalculate: numeric raw value is preserved
+            Assert.Equal("[\"Info\",\"logger1\",42,\"initial\"]", jsonArray.Render(logEvent));
+            Assert.Equal("{\"level\":\"Info\",\"logger\":\"logger1\",\"id\":42,\"name\":\"initial\"}", jsonLayout.Render(logEvent));
+
+            // With PrecalculateBuilder (per-item precalculation) + Dispose() mutation: precalculated raw value is preserved as numeric JSON
+            var logEvent2 = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            using (var mutableHolder2 = new MutablePropertyHolder { Id = 42, Name = "initial" })
+            {
+                logEvent2.Properties["prop1"] = mutableHolder2;
+
+                jsonArray.PrecalculateBuilder(logEvent2, new StringBuilder());
+                jsonLayout.PrecalculateBuilder(logEvent2, new StringBuilder());
+                Assert.False(logEvent2.TryGetCachedLayoutValue(jsonArray, out _));
+                Assert.False(logEvent2.TryGetCachedLayoutValue(jsonLayout, out _));
+            }
+
+            Assert.Equal("[\"Info\",\"logger1\",42,\"initial\"]", jsonArray.Render(logEvent2));
+            Assert.Equal("{\"level\":\"Info\",\"logger\":\"logger1\",\"id\":42,\"name\":\"initial\"}", jsonLayout.Render(logEvent2));
+        }
+
+        [Fact]
+        public void ObjectPathPrecalculateMissingPropertyTest()
+        {
+            Layout layout = "${event-properties:prop1:objectpath=Id}";
+            var logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+
+            layout.Precalculate(logEvent);
+
+            Assert.Equal(string.Empty, layout.Render(logEvent));
+            Assert.True(layout.TryGetRawValue(logEvent, out var rawValue));
+            Assert.Null(rawValue);
+        }
+
+        [Fact]
+        public void ObjectPathTryGetRawValueStructTest()
+        {
+            Layout layout = "${event-properties:prop1:objectpath=Key}";
+            var logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["prop1"] = new KeyValuePair<string, int>("myKey", 42);
+
+            layout.Precalculate(logEvent);
+
+            Assert.True(layout.TryGetRawValue(logEvent, out var rawValue));
+            Assert.Equal("myKey", rawValue);
+        }
+
+        private sealed class MutablePropertyHolder : IDisposable
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Optional { get; set; }
+            public StringBuilder Builder { get; set; }
+
+            public void Dispose()
+            {
+                Id = 99;
+                Name = "disposed";
+                Optional = "disposed";
+                Builder?.Clear();
+            }
         }
     }
 }
