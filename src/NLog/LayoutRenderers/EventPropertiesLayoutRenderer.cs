@@ -136,7 +136,7 @@ namespace NLog.LayoutRenderers
         bool IRawValuePrecalculate.TryPrecalculateRawValue(LogEventInfo logEvent)
         {
             if (!TryGetValue(logEvent, out var rawValue))
-                return true;
+                return true;    // No property-value found, so no need to save precalculated value
 
             if (_objectPropertyPath.PathNames is null)
                 return rawValue is null || Layouts.SimpleLayout.IsRawValueImmutable(rawValue);
