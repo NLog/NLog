@@ -15,3 +15,38 @@ trim_trailing_whitespace = true
 # .NET formatting rules
 [*.{cs,vb}]
 dotnet_sort_system_directives_first = true
+
+# .NET code analysis (EnableNETAnalyzers + AnalysisMode=Recommended)
+dotnet_diagnostic.CA1001.severity = suggestion      # CA1001: Type owns disposable field(s) but is not disposable
+dotnet_diagnostic.CA1848.severity = suggestion      # CA1848: For improved performance, use the LoggerMessage delegates
+dotnet_diagnostic.CA1707.severity = none            # CA1707: Remove underscores from member name
+dotnet_diagnostic.IDE0130.severity = none           # IDE0130: Namespace does not match folder structure
+
+# Public API naming / design rules that cannot be changed without breaking changes
+dotnet_diagnostic.CA1000.severity = none            # CA1000: Do not declare static members on generic types
+dotnet_diagnostic.CA1067.severity = suggestion      # CA1067: Override Equals when implementing IEquatable
+dotnet_diagnostic.CA1068.severity = suggestion      # CA1068: CancellationToken parameters must come last
+dotnet_diagnostic.CA1069.severity = none            # CA1069: Enums should not have duplicate values
+dotnet_diagnostic.CA1710.severity = none            # CA1710: Identifiers should have correct suffix
+dotnet_diagnostic.CA1711.severity = none            # CA1711: Identifiers should not have incorrect suffix
+dotnet_diagnostic.CA1716.severity = none            # CA1716: Identifiers should not match keywords
+dotnet_diagnostic.CA1725.severity = suggestion      # CA1725: Parameter names should match base declaration
+
+# Rules where the suggested API is not available for all target platforms (net35, netstandard2.0)
+dotnet_diagnostic.CA1840.severity = suggestion      # CA1840: Use Environment.CurrentManagedThreadId
+dotnet_diagnostic.CA1858.severity = suggestion      # CA1858: Use StartsWith instead of IndexOf
+dotnet_diagnostic.CA1865.severity = suggestion      # CA1865: Use string.Method(char) instead of string.Method(string) for string with single char
+dotnet_diagnostic.CA2249.severity = suggestion      # CA2249: Consider using String.Contains instead of String.IndexOf
+dotnet_diagnostic.CA2263.severity = suggestion      # CA2263: Prefer generic overload when type is known
+
+# Code quality rules that can be resolved later
+dotnet_diagnostic.CA1305.severity = suggestion      # CA1305: Specify IFormatProvider
+dotnet_diagnostic.CA1309.severity = suggestion      # CA1309: Use ordinal StringComparison
+dotnet_diagnostic.CA1806.severity = suggestion      # CA1806: Do not ignore method results
+dotnet_diagnostic.CA1822.severity = suggestion      # CA1822: Mark members as static
+dotnet_diagnostic.CA1830.severity = suggestion      # CA1830: Prefer strongly-typed Append and Insert method overloads on StringBuilder
+dotnet_diagnostic.CA1838.severity = suggestion      # CA1838: Avoid StringBuilder parameters for P/Invokes
+dotnet_diagnostic.CA1859.severity = suggestion      # CA1859: Use concrete types when possible for improved performance
+dotnet_diagnostic.CA1861.severity = suggestion      # CA1861: Avoid constant arrays as arguments
+dotnet_diagnostic.CA2101.severity = suggestion      # CA2101: Specify marshalling for P/Invoke string arguments
+dotnet_diagnostic.CA2208.severity = suggestion      # CA2208: Instantiate argument exceptions correctly
