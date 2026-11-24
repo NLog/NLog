@@ -54,10 +54,6 @@ namespace NLog.Targets
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/EventLog/NLog.config" />
-    /// <p>
-    /// To set up the log target programmatically use code like this:
-    /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/EventLog/Simple/Example.cs" />
     /// </example>
     [Target("EventLog")]
     public class EventLogTarget : TargetWithLayout, IInstallable

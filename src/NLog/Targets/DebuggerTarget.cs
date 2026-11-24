@@ -50,10 +50,6 @@ namespace NLog.Targets
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/Debugger/NLog.config" />
-    /// <p>
-    /// To set up the log target programmatically use code like this:
-    /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/Debugger/Simple/Example.cs" />
     /// </example>
     [Target("Debugger")]
     public sealed class DebuggerTarget : TargetWithLayoutHeaderAndFooter

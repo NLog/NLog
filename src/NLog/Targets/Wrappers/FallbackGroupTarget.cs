@@ -52,10 +52,6 @@ namespace NLog.Targets.Wrappers
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/FallbackGroup/NLog.config" />
-    /// <p>
-    /// To set up the log target programmatically use code like this:
-    /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/FallbackGroup/Simple/Example.cs" />
     /// </example>
     [Target("FallbackGroup", IsCompound = true)]
     public class FallbackGroupTarget : CompoundTargetBase
