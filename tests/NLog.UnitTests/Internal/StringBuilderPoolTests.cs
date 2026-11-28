@@ -41,8 +41,8 @@ namespace NLog.UnitTests.Internal
         [Fact]
         public void StringBuilderPoolMaxCapacityTest()
         {
-            int poolItemCount = 10;
-            NLog.Internal.StringBuilderPool pool = new NLog.Internal.StringBuilderPool(poolItemCount);
+            NLog.Internal.StringBuilderPool pool = new NLog.Internal.StringBuilderPool();
+            int poolItemCount = pool.MaxPoolCapacity;
             string mediumPayload = new string('A', 40 * 1024);
             RecursiveAcquirePoolItems(poolItemCount, pool, mediumPayload, true);        // Verify fast-pool + slow-pool must grow
             RecursiveAcquirePoolItems(poolItemCount, pool, mediumPayload, false);       // Verify fast-pool + slow-pool has kept their capacity

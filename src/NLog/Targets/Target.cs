@@ -251,7 +251,7 @@ namespace NLog.Targets
         {
             if (_precalculateStringBuilderPool is null)
             {
-                System.Threading.Interlocked.CompareExchange(ref _precalculateStringBuilderPool, new StringBuilderPool(Environment.ProcessorCount * 2), null);
+                System.Threading.Interlocked.CompareExchange(ref _precalculateStringBuilderPool, new StringBuilderPool(), null);
             }
 
             using (var targetBuilder = _precalculateStringBuilderPool.Acquire())
