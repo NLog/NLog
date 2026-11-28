@@ -41,7 +41,7 @@ namespace NLog.Internal
     /// </summary>
     internal struct AppendBuilderCreator : IDisposable
     {
-        private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
+        private static readonly StringBuilderPool _builderPool = new StringBuilderPool();
 
         /// <summary>
         /// Access the new builder allocated

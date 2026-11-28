@@ -42,7 +42,7 @@ namespace NLog.Internal
 
     internal sealed class LogMessageTemplateFormatter : ILogMessageFormatter
     {
-        private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
+        private static readonly StringBuilderPool _builderPool = new StringBuilderPool();
         private readonly LogFactory _logFactory;
 
         private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = _logFactory.ServiceRepository.GetService<IValueFormatter>());

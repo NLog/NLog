@@ -40,24 +40,63 @@ namespace NLog.Internal
     internal sealed class StringBuilderPool
     {
         private StringBuilder? _fastPool;
-        private readonly StringBuilder?[] _slowPool;
+        private readonly SlowSlot[] _slowPool;
+
+        private struct SlowSlot
+        {
+            public StringBuilder? Item;
+
+            // Total 64-byte stride to reduce false sharing.
+            // Struct with only object reference is not blittable, so [StructLayout(LayoutKind.Sequential, Size = 64)] alone will not affect managed layout.
+#pragma warning disable CS0169 // The field is never used
+            long _padding1; // NOSONAR
+            long _padding2; // NOSONAR
+            long _padding3; // NOSONAR
+            long _padding4; // NOSONAR
+            long _padding5; // NOSONAR
+            long _padding6; // NOSONAR
+            long _padding7; // NOSONAR
+#pragma warning restore CS0169 // The field is never used
+        }
+
         private readonly int _maxBuilderCapacity;
+
+        public int MaxPoolCapacity => _slowPool.Length + 1;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="poolCapacity">Max number of items</param>
         /// <param name="initialBuilderCapacity">Initial StringBuilder Size</param>
         /// <param name="maxBuilderCapacity">Max StringBuilder Size</param>
-        public StringBuilderPool(int poolCapacity, int initialBuilderCapacity = 1024, int maxBuilderCapacity = 40 * 1024)
+        public StringBuilderPool(
+            int initialBuilderCapacity = 1024,
+            int maxBuilderCapacity = 40 * 1024)
         {
+            if (initialBuilderCapacity < 0)
+                throw new ArgumentOutOfRangeException(nameof(initialBuilderCapacity));
+
+            if (maxBuilderCapacity < initialBuilderCapacity)
+                throw new ArgumentOutOfRangeException(nameof(maxBuilderCapacity));
+
             _fastPool = new StringBuilder(10 * initialBuilderCapacity);
-            _slowPool = new StringBuilder[poolCapacity];
+
+            _maxBuilderCapacity = maxBuilderCapacity;
+            var primePoolCapacity = Environment.ProcessorCount > 8 ? 17 : 11;   // Must be prime to iterate with stride of 2
+            _slowPool = new SlowSlot[primePoolCapacity];
             for (int i = 0; i < _slowPool.Length; ++i)
             {
-                _slowPool[i] = new StringBuilder(initialBuilderCapacity);
+                _slowPool[i].Item = new StringBuilder(initialBuilderCapacity);
             }
             _maxBuilderCapacity = maxBuilderCapacity;
+        }
+
+        private int GetPreferredIndex()
+        {
+#if !NET35
+            return (int)((uint)Environment.CurrentManagedThreadId % (uint)_slowPool.Length);
+#else
+            return 0;
+#endif
         }
 
         /// <summary>
@@ -69,21 +108,30 @@ namespace NLog.Internal
             StringBuilder? item = _fastPool;
             if (item is null || item != Interlocked.CompareExchange(ref _fastPool, null, item))
             {
-                for (int i = 0; i < _slowPool.Length; i++)
+                int length = _slowPool.Length;
+                int index = GetPreferredIndex();
+
+                for (int i = 0; i < length; i++)
                 {
-                    item = _slowPool[i];
-                    if (item != null && item == Interlocked.CompareExchange(ref _slowPool[i], null, item))
+                    item = _slowPool[index].Item;
+                    if (item != null)
                     {
-                        return new ItemHolder(item, this, i);
+                        item = Interlocked.Exchange(ref _slowPool[index].Item, null);
+                        if (item != null)
+                            return new ItemHolder(item, this, index);
                     }
+
+                    index += 2; // Will wrap around to visit all slots. 2 is coprime with prime pool capacity.
+
+                    if (index >= length)
+                        index -= length;
                 }
 
+                // Pool exhausted.
                 return new ItemHolder(new StringBuilder(), null, 0);
             }
-            else
-            {
-                return new ItemHolder(item, this, -1);
-            }
+
+            return new ItemHolder(item, this, -1);
         }
 
         /// <summary>
@@ -113,7 +161,7 @@ namespace NLog.Internal
             }
             else
             {
-                _slowPool[poolIndex] = stringBuilder;
+                _slowPool[poolIndex].Item = stringBuilder;
             }
         }
 
